@@ -1,0 +1,293 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {"../figures"}
+}
+
+\begin{document}
+
+\subsection{Constant Coefficient \nth{2} Order ODEs}
+
+\[
+\text{Consider the equation } y''-6y'+8y = 0
+.\] 
+
+The solution is going to be in the form of a function whose derivatives only effect its coefficients and not the function itself. Inspect the exponential function: $y=e^{rx} \implies y'=re^{rx} \implies y''=r^2e^{rx}\ldots$
+
+% \stickynote{Uniqueness of an ODE}{
+% An ODE without an initial condition supplied may have multiple solutions, however in cases like a homogeneous linear ODE, an initial condition determines a unique solution.
+% }
+
+\[
+y''-6y'+8y = 0 \implies r^2e^{rx} -6re^{rx} + 8e^{rx} = 0
+.\] 
+
+Which turns into:
+
+\[
+e^{rx} \left( r^2 -6r + 8 \right) = 0
+.\] 
+
+Now solve the internal quadratic for r:
+
+\[
+				(r-2)(r-4) = 0 \implies r=\{2,4\}
+.\] 
+
+Therefore the solutions are:
+\begin{align*}
+				& y_1=e^{2x} & y_2=e^{4x} &
+.\end{align*}
+
+Since both are linearly independent, all solutions are represented by:
+
+\[
+				y(x) = c_1 e^{2x} + c_2 e^{4x} \: ; \: \{c_1,c_2\} \in \mathbb{R}
+.\] 
+
+For any \nth{2} Order Linear Homogeneous ODE with constant coefficients, the solution can be determined by the roots of the characteristic equation:
+
+\[
+ar^2 + br + c = 0
+.\]
+
+Stated in a theorem:
+
+\begin{theorem}{Constant Coefficient \nth{2} Order ODEs Solution}{constantode}
+				Let $r_1$ and $r_2$ be the roots of the characteristic polynomial. If both roots are distinct, the general solution is:
+				\[
+				y(x) = c_1 e^{r_1x} + c_2 e^{r_2x} \: ; \: \{c_1,c_2\} \in \mathbb{R}
+				.\] 
+
+If both roots are the same, the general solution is:
+\[
+				y(x) = e^{r_1x} \left( c_1 + c_2 x \right) 
+.\] 
+
+If the roots are expressed as $r = \alpha \pm i \beta$:
+\begin{align*}
+				y(x) &= Ae^{x(\alpha + i \beta)} + Be^{x(\alpha - i \beta)} \\
+				&= Ae^{\alpha x} e^{i\beta x} + Be^{\alpha x} e^{-i\beta x} \\
+				&= Ae^{\alpha x} (\cos{\beta x} + i\sin{\beta x}) + Be^{\alpha x}(\cos{\beta x} - i\sin{\beta x}) \\
+				y(x) &= c_1 e^{\alpha x} \cos{(\beta x)} + c_2 e^{\alpha x} \sin{(\beta x)} \: ; \: \{c_1,c_2\} \in \mathbb{R}
+.\end{align*}
+
+\end{theorem}
+
+\begin{stickynote}{Complex Root Selection}
+				Note that in \thmref{th:constantode}, one can just take one the complex values of $r$ and take its real and imaginary components as linearly independent. Given $r = a + bi$,
+				 \begin{align*}
+								y = e^{rt} &= e^{(a+bi)t} \\
+				        &=e^{at} e^{bi\cdot t} \\
+								&=e^{at} \left( \cos(bt) + i\sin(bt) \right)
+				\end{align*} \begin{align*}
+								& y_1 = \Re(y) & y_2 = \Im(y) & \\
+								& y_1 = e^{at}\cos(bt) & y_2 = e^{at}\sin(bt) &
+				.\end{align*}
+				\boldmath\[
+								y(t) = c_1 e^{at}\cos(bt) + c_2 e^{at} \sin(bt).
+				\] 
+\end{stickynote}
+
+\begin{example}{Find solution to $y'' - 8y' + 16y = 0$,  $y(0) = 2$, $y'(0) = 6$.}
+ \begin{align*}
+				 \text{Characteristic equation: } r^2 - 8r + 16 &= 0 \\
+				 (r-4)^2 &= 0 \\
+				 \text{General solution: } y(x) = e^{4x} ( c_1 + c_2 x ) 
+.\end{align*}
+
+Using the initial condition:
+
+\begin{multicols}{2}
+For $c_1$:
+\begin{align*}
+				y(0) = e^{0} (c_1 + c_2\cdot 0) &= 2 \\
+				c_1 &= 2 \\
+\end{align*}
+
+\columnbreak
+
+For $c_2$:
+\begin{align*}
+				y'(x) &= 4e^{4x} (c_1 + c_2 x) + c_2e^{4x} \\
+				y'(0) &= 4e^{4 \cdot 0} (c_1 + c_2 \cdot 0) + c_2e^{4\cdot 0} \\
+				4 c_1 + c_2 &=6 \\
+				4c_1 &= 4 \\
+				c_1 &= 1
+.\end{align*}
+\end{multicols}
+\end{example}
+
+Note that \thmref{th:constantode} can be generalized to any nth order ODE as long as its linear and homogeneous:
+
+\begin{align*}
+				\begin{bmatrix} 
+								y \\
+								y' \\
+								y'' \\
+								\vdots \\
+								y^{n}
+				\end{bmatrix} \cdot 
+				\begin{bmatrix} 
+								a_0 \\
+								a_1 \\
+								a_2 \\
+								\vdots \\
+								a_n
+				\end{bmatrix} &= 0 \\
+				\intertext{Note that the parametrized solution $y(x) = e^{rx}$ works}
+				e^{rx} \begin{bmatrix} 
+								1 \\
+								r \\
+								r^2 \\
+								\vdots \\
+								r^{n}
+				\end{bmatrix} \cdot
+				\begin{bmatrix} 
+								a_0 \\
+								a_1 \\
+								a_2 \\
+								\vdots \\
+								a_n
+				\end{bmatrix} &= 0 \\
+				\intertext{Divide out by $e^{rx}$ since it is always greater than 0}
+				\begin{bmatrix} 
+								1 \\
+								r \\
+								r^2 \\
+								\vdots \\
+								r^{n}
+				\end{bmatrix} \cdot
+				\begin{bmatrix} 
+								a_0 \\
+								a_1 \\
+								a_2 \\
+								\vdots \\
+								a_n
+				\end{bmatrix} &= 0 \\
+				\intertext{Expanding out the dot product}
+				a_0 + a_1 r + a_2 r^2 + \hdots + a_{n-1} r^{n-1} + a_n r^{n} &= 0
+\end{align*}
+
+The resulting parametrized polynomial encodes the values of parameter $r$ that define the solution. The final analytic solution will therefore be a superposition/linear combination of all the parametrized functions:
+
+\begin{stickynote}{Repeated Roots of $r$}
+				If $r$ is repeated $k$ times, then the linearly independent solutions of $k$ are:
+				\[
+				e^{rx}, xe^{rx}, x^2e^{rx},\hdots,x^{k}e^{rx}
+				.\] 
+\end{stickynote}
+\begin{example}{Find the general solution for $y^{(4)} -3y''' - 3y'' -y' = 0$.}
+\begin{align*}
+				\intertext{Utilize the parametrized solution $y=e^{rx}$}
+				r^{4}-3r^3-3r^2-r&=0 \\
+				r(r^3-3r^2 -3r -1) &= 0 \\
+				r(r-1)^3 &= 0 \implies r=\{0,1,1,1\}
+				\intertext{$r$ is repeated three times, therefore:}
+				y(x) &= c_1 + c_2 e^{x} + c_3 x e^{x} + c_4 x^2 e^{x} &
+\end{align*}
+\end{example}
+
+\subsection{Non-Homogeneous Equation}
+
+If an ODE has the form $L(y) = f(x)$, then to find the solution you find:
+
+\textbf{Complementary Solution} ($\implies y_c$) solves the associated linear homogeneous equation  
+
+\textbf{Particular Solution} ($\implies y_p$) solves the original non-homogeneous equation
+
+Using these solutions, the general solution for the original ODE is
+\[
+				y(x) = y_c + y_p 
+.\]
+
+\subsubsection{Method of Undetermined Coefficients}
+
+\begin{theorem}{Undetermined Coefficients}{undeterminedcoefficients}
+    The general solution of a linear non-homogeneous ODE can be written as
+    \[
+        y(t) = y_c (t) + y_p (t)
+    .\] 
+    Where $y_c(t)$ is the general solution to the homogeneous form of the ODE and  $y_p (t)$ is a solution with a form that is guessed by the form of the non-homogeneous term.
+\end{theorem}
+
+\begin{example}{$y'' + 5y' + 6y  = 2x+1$,  $y(0)=0$ and  $y'(0) = \frac{1}{3}$}
+\begin{align*}
+				\intertext{Consider the associated homogeneous equation $y'' + 5y' + 6y  = 0$}
+				r^2+5r+6&=0 \implies r=\{-2,-3\} \\
+				\intertext{Therefore the complementary solution is:}
+				y_c &= c_1 e^{-2x} + c_2 e^{-3x}
+.\end{align*}
+
+To find the \textbf{particular solution}, take a guess about the form of $y_p$. Since the linear combination of \nth{2} derivative, \nth{1} derivative, and itself is a linear polynomial, its possible that $y_p$ is also a polynomial and linear. Therefore:
+\[
+				\text{Guess } y_p = Ax + B
+.\] 
+\begin{align*}
+				\intertext{Substitute $y_p$ into original ODE}
+				y_p'' + 5y_p' + 6y_p &= 2x +  1 \\
+				0 + 5A + 6(Ax+B) &= 2x +1 \\
+				6Ax + 5A + 6B &= 2x + 1 
+.\end{align*}
+Now match coefficients
+\begin{align*}
+				6A &= 2 \\
+				5A + 6B &= 1 \\
+				\intertext{Therefore $A = \frac{1}{3}$ and $B = -\frac{1}{9}$}
+				y_p = \frac{1}{3} x - \frac{1}{9}
+.\end{align*}
+The general solution is therefore
+\[
+y(x) = c_1 e^{-2x} + c_2 e^{-3x} + \frac{1}{3} x - \frac{1}{9}
+.\] 
+\end{example}
+
+\begin{tcolorbox}[colback=red!80!black,coltext=white,fontupper=\bfseries\boldmath]
+				Do not use initial condition in just $y_c$. To solve for  $c_1$ and $c_2$, use the general solution
+\end{tcolorbox}
+
+\begin{stickynote}{Selecting a $y_p$}
+				When guessing a form for $y_p$, take the most general form of the function and its derivatives. Some examples for $L(y) = f(x)$:
+				\begin{center}
+				{\def\arraystretch{1.5}
+				\setlength{\arrayrulewidth}{1pt}
+				\begin{tabular}{|a|a|}
+								\hline
+								Given: & Ansatz: \\\hline
+								$f(x) = x$ & $y_p = Ax+B$  \\\hline
+								$f(x) = 3x^2 + 1 $ & $y_p = Ax^2 + Bx + C $  \\\hline
+								$f(x) = \cos(x) $ & $y_p = A\cos(x) + B\sin(x) $  \\\hline
+								$f(x) = e^{kx} $ & $y_p = Ae^{kx} $  \\ 
+								\hline
+				\end{tabular}
+				}
+				\end{center}
+\end{stickynote}
+
+What happens when $y_p$ is a solution of the homogeneous equation (similar to that of a repeated root)?
+
+\begin{example}{Find the general solution of $y'' - 9y = e^{3x}$.}
+For the homogeneous system:
+\begin{align*}
+				y'' -9y &= 0 \\
+				r^2 - 9 &= 0 \implies r = \pm 3
+.\end{align*}
+\[
+				\boxed{y_c = c_1 e^{3x} + c_2 e^{-3x}.}
+\] 
+
+For the particular system, guess that $y_p = Ae^{3x}$. Plug into the ODE:
+\begin{align*}
+				9Ae^{3x} - 9Ae^{3x} &= e^{3x} \\
+				e^{3x} &= 0
+.\end{align*}
+
+Note that the prediction leads to nonsense. Therefore, treat it like a repeated root of a characteristic equation and add a multiple of $x$. Now  $y_p = Axe^{3x}$. Plugging into the ODE:
+\begin{align*}
+				A(9xe^{3x} + 6e^{3x}) - 9Axe^{3x} &= e^{3x} \\
+				6Ae^{3x} &= e^{3x} \implies A = \frac{1}{6}
+.\end{align*}
+
+While the Method of Undetermined Coefficients is really powerful, it fails to work in situations where the function of the independent variable has infinite linearly independent derivatives.
+\end{example}
+
+\end{document}

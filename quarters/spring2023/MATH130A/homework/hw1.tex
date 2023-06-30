@@ -1,0 +1,109 @@
+\documentclass[12pt]{extarticle}
+
+\usepackage{multicol}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{\textbf{Math 130A: Homework \#1}}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\usetikzlibrary{arrows.meta}
+
+\begin{document}
+
+\section*{Problem 1}
+\subsection*{Part A}
+
+There are $26^2$ ways to choose 2 letters and $10^5$ ways to choose 5 numbers. Therefore there are $26^2 \cdot 10^5 = 67,600,000$ different 7-place license plate numbers.
+
+\subsection*{Part B}
+There are $26$ ways to choose the first letter and $25$ ways to choose the next letter. With a similar argument there are $10\cdot 9\cdot 8\cdot 7\cdot 6 = 30,240$ ways to choose 5 unique numbers. Therefore there are $26\cdot 25 \cdot 30,240 = 19,656,000$ unique 7 place license plates.
+
+\section*{Problem 2}
+There are $\binom{10}{5}$ ways to choose $5$ men and $\binom{12}{5}$ ways to choose $5$ women. There are $5!$ ways to pair up $5$ men with $5$ women, meaning that there are $5! \cdot \binom{10}{5} \cdot \binom{12}{5} = 23,950,080$ distinct possible results.
+
+\section*{Problem 3}
+The first gift can be given to $10$ children, the second gift can be given to $9$ children and so forth. Therefore the number of distinct results possible is $10\cdot 9 \cdot 8\cdot 7 \cdot 6\cdot 5\cdot 4 = 604,800$. 
+
+\section*{Problem 4}
+\[
+	S = \qty{
+		(R, R),
+		(R, G),
+		(R, B),
+		(G, R),
+		(G, G),
+		(G, B),
+		(B, R),
+		(B, G),
+		(B, B)
+	}
+.\]
+
+The probability associated with each point in the sample space is $\frac{1}{9} \approx 11.11\%$
+
+\section*{Problem 5}
+\[
+	S = \qty{
+		(R, G),
+		(R, B),
+		(G, R),
+		(G, B),
+		(B, R),
+		(B, G)
+	}
+.\]
+
+\section*{Problem 6}
+The sample space is infinite.
+
+\def\Heads{\mathbf{H}}
+\def\Tails{\mathbf{T}}
+\begin{align*}
+	S = \{
+		&(\Heads, \Heads), \\
+		&(\Tails, \Heads, \Heads), \\
+		&(\Tails, \Tails, \Heads, \Heads),
+		(\Heads, \Tails, \Heads, \Heads), \\
+		&(\Tails, \Tails, \Tails, \Heads, \Heads),
+		(\Heads, \Tails, \Tails, \Heads, \Heads),
+		(\Tails, \Heads, \Tails, \Heads, \Heads) \ldots \}
+\end{align*}
+
+There are $2^4 = 16$ possible outcomes from tossing a coin 4 times and there are $2$ outcomes in the sample space that are $4$ tosses, meaning the probability of the coin being tossed exactly four times if $\frac{2}{16} = \frac{1}{8} = 12.5\%$.
+
+\section*{Problem 7}
+The number of ways to pick $5$ people from a group of $15$ is $\binom{15}{5} = 3,003$. The number of ways to pick $3$ and $2$ women is $\binom{6}{3} \cdot \binom{9}{2} = 720$. Therefore the probability of the committee consisteng of $3$ men and $2$ women is $\frac{720}{3,003} \approx 23.98\%$.
+
+\section*{Problem 8}
+Consider the set of $n$ balls. The group of marked balls has $1$ ball in it (the marked ball) and the group of unmarked balls has $n - 1$ balls in it. The total number of ways to draw $k$ balls from $n$ balls is $\binom{n}{k}$. The number of ways to draw $k$ balls with the marked ball in it is $\binom{1}{1} \cdot \binom{n-1}{k-1}$. The ways to choose $1$ marked ball from a set of $1$ marked ball is $\binom{1}{1} = 1$ and the ways to choose the remaining $k-1$ balls is $\binom{n-1}{k-1}$. Therefore the probability of drawing the marked ball is
+\[
+	\frac{\binom{n-1}{k-1}}{\binom{n}{k}} = \frac{k}{n}
+.\]
+
+\section*{Problem 9}
+\subsection*{Part 1}
+Since $A$ and $B$ are mutually exclusive, $P(AB) = 0$. Therefore 
+\begin{align*}
+	P(A \cup B) &= P(A) + P(B) + P(AB) \\ 
+							&= P(A) + P(B) \\ 
+							&= 80\%
+.\end{align*}
+
+\subsection*{Part 2}
+\begin{align*}
+	P(AB^\complement) &= P(A) - P(AB) \\
+										&= P(A) \\
+										&= 30\%
+.\end{align*}
+
+\subsection*{Part 3}
+Since $A$ and $B$ are mutually exclusive, $P(AB) = 0$.
+
+\section*{Problem 10}
+Firstly, the number of ways $5$ cards can be dealt from a deck is $\binom{52}{5} = 2,598,960$. A straight hand will be comprised of picking $5$ cards with $4$ possible suits per card. Therefore given a straight range the number of possibilities is $4^5 - 4$. The substraction of $4$ accounts for the $4$ hands where all the cards are the same suit which would make the hand a straight flush and not a straight. There are $10$ different possible ranges for a straight meaning that there are $(4^5 - 4)\cdot 10 = 10,200$ possible straight hands. Therefore the probability of being dealt a straight hand from a deck is $\frac{10,200}{2598960} \approx 0.392\%$.
+
+
+\end{document}

@@ -1,0 +1,217 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+
+\banner{Introduction to Groups}
+
+\subsection{Groups}
+
+Consider past experiences with basic algebra. Beyond simple computation, computation would be used to solve equations. The simplest possible equations done would be linear equations of the form $a + x = b$. Condsider the example equation $5 + x = 3$. Then one would solve it by doing
+\begin{align*}
+	5 + x &= 3 \\
+	-5 + (5 + x) &= -5 + 3 \\
+	(-5 + 5) + x &= -5 + 3 \\
+	0 + x &= -5 + 3 \\
+	x &= -5 + 3 \\
+	x &= -2
+.\end{align*}
+
+What was required to solve this equation? There were 3 mains things. Firstly associativity had to be utilized in order to group the $-5$ and $5$ numbers together. Second, there needed to be a \textit{neutral} element, in this instance $0$. Thirdly, there needed to be an inverse element, in this instance $-5$. Therefore this shall be the motivation behind the definition of a group.
+
+\begin{definition}[Group]
+	A group $\langle G, * \rangle$ is a set $G$ closed under the binary operation $*$ such that it follows three axioms.
+	\begin{enumerate}
+		\item For all $a,b,c \in G$, we have
+			\[
+				(a * b) * c = a * (b * c)
+			.\]
+		\item There exists an element $e \in G$ such that for all $x \in G$, we have
+			\[
+				e * x = x * e = x
+			.\]
+		\item For each element $a \in G$, there is an element $a' \in G$ such that
+			\[
+				a * a' = a' * a = e
+			.\]
+	\end{enumerate}
+\end{definition}
+
+\begin{example}
+	Take the structure $\langle Z, * \rangle$ where $a * b = a\cdot b$. The structure is not a group since there is no inverse element for \textit{any} of the elements, therefore it certianly cannot be a group
+\end{example}
+
+\subsection{Subgroups}
+
+\begin{definition}[Subgroup]
+	A subset $H$ of a group $G$ is a subgroup if it is
+	\begin{enumerate}
+		\item Closed under the binary operation of $G$
+		\item $H$ with the induced operation of $G$ is a group
+	\end{enumerate}
+	The notation $H \leq G$ and $G \geq H$ denotes that $H$ is a subgroup of $G$, and additionally $H < G$ and $G > H$ denote that $H$ is a subgroup of $G$ where $H \neq G$.
+\end{definition}
+
+To show that a given subset of $G$ is a subgroup over its induced binary operation, one can follow a simple $3$ condition process. This process can be shrunken down to one condition as proved in Theorem \ref{thm:subgroupcondition}.
+
+\begin{theorem}[Subgroup]
+	\label{thm:subgroup}
+	A subset $H$ of $G$ is a subgroup of $G$ if and only if
+	\begin{enumerate}
+		\item $H$ is closed under the binary operation of $G$
+		\item The identity element $e$ of $G$ is in $H$ 
+		\item For all $a \in H$ it is true that $a^{-1} \in H$
+	\end{enumerate}
+\end{theorem}
+
+\begin{example}
+	Consider the subset of $M_n(\mathbb{R})$ defined as
+	\[
+		S = \qty{A \in M_n (\mathbb{R}) : A^\transp A = I_n}
+	.\]
+	under the binary operation of matrix multiplication. Check the conditions that $S$ is a subgroup of $M_n (\mathbb{R})$. \\
+
+	\quad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Closure) \quad
+		Let $A,B \in S$. Then
+		\begin{align*}
+			(AB)^\transp AB &= B^\transp A^\transp A B \\
+											&= B^\transp I_n B \\
+											&= B^\transp B \\
+											&= I_n
+		.\end{align*}
+		Therefore $AB \in S$.
+	\end{minipage} \\
+	\\
+
+	\quad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Identity) \quad
+		The identity matrix $I_n$ is in $S$ since $I_n = I_n^\transp$, therefore
+		\[
+			I_n^\transp I_n = I_n I_n = I_n
+		.\]
+		Therefore $S$ has an identity element.
+	\end{minipage} \\
+	\\
+
+	\quad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Inverse) \quad
+		Let $A \in S$.
+	\end{minipage}
+\end{example}
+
+\subsection{Generators and Cyclic Subgroups}
+
+Consider the group $\mathbb{Z}_n$ under modular addition. Something of interest to note is that every element in $\mathbb{Z}_n$ can be written as the repeated addition of $1$. Take for example $\mathbb{Z}_3 = \qty{0,1,2}$. It follows then that
+\begin{align*}
+	1 & = 1 \\
+	1 +_3 1 & = 2 \\
+	2 +_3 1 & = 0
+.\end{align*}
+
+In this instance, the repeated operation of $1$ produced all the elements of $\mathbb{Z}_3$. In a sense, the element $1$ \textit{generated} the entire group. This idea can be cautified abstractly.
+
+\begin{definition}[Generator]
+	An element $g$ of a group $G$ is a generator for $G$ if the set
+	\[
+		\langle g \rangle = \qty{g^n : n \in \mathbb{Z}}
+	.\]
+	Is equivalent to $G$. That is
+	\[
+		\langle g \rangle = G
+	.\]
+\end{definition}
+
+Note that all elements of a group $G$ function as generators that produce a cyclic subgroup.
+
+\begin{example}
+	Consider the cyclic subgroup of $GL(2,\mathbb{R})$ with the generator
+	\[
+		\left\langle \mqty[0 & -1 \\ -1 & 0] \right\rangle
+	.\]
+	For simplicity, denote the matrix as $a$ and the identity matrix as $e$. Note that then
+	\[
+		\mqty[0 & -1 \\ -1 & 0] \mqty[0 & -1 \\ -1 & 0] = \mqty[1 & 0 \\ 0 & 1]
+	\]
+	meaning that $a^2 = e$, implying that $a^{2n} = e$ and $a^{2n+1} = a$. Additionally, since $a^2 = e$, it follows that $a = a^{-1}$. therefore
+	\[
+		\left\langle \mqty[0 & -1 \\ -1 & 0] \right\rangle = \qty{\mqty[0 & -1 \\ -1 & 0], \mqty[1 & 0 \\ 0 & 1]} \leq GL(2, \mathbb{R})
+	.\]
+\end{example}
+
+\begin{example}
+	Consider the cylic subgroup of $GL(2,\mathbb{R})$ with the generator
+	\[
+		\left\langle \mqty[1 & 1 \\ 0 & 1] \right\rangle
+	.\]
+	Note that multiplaction of the matrix results in
+	\[
+		\mqty[1 & 1 \\ 0 & 1] \mqty[1 & 1 \\ 0 & 1] = \mqty[1 & 2 \\ 0 & 1]
+	.\]
+	In general,
+	\[
+		\mqty[1 & m \\ 0 & 1] \mqty[1 & n \\ 0 & 1 ] = \mqty[1 & m + n \\ 0 & 1]
+	.\]
+	Therefore if $a$ denotes the generating elements
+	\[
+		a^n = \mqty[1 & n \\ 0 & 1]
+	.\]
+	Additionally, $a^{-n} a^n = e$, meaning
+	\[
+		a^{-n} = \mqty[1 & -n \\ 0 & 1]
+	.\]
+	Hence the group generated by $a$ is
+	\[
+		\left\langle \mqty[1 & 1 \\ 0 & 1] \right\rangle = \qty{\mqty[1 & k \\ 0 & 1] : k \in \mathbb{Z}}
+	.\]
+\end{example}
+
+\begin{example}
+	Is the following group cyclic?
+	\[
+		G = \qty{a + b \sqrt{2} : a,b \in \mathbb{Z}}
+	.\]
+	The group is not cylic.
+	\begin{proof}
+		Assume towards contradiction that $G$ is cylic. Consider two cases for a choice of generator. Assume that $b = 0$. Then all possible generators are in the form $a$ where $a \in \mathbb{Z}$. However $a \neq \sqrt{2} \in G$, hence $b$ cannot be zero. Assume then that $b \neq 0$. Then all generators are of the form $a + b \sqrt{2}$ with $a,b \in \mathbb{Z}$. However, the generator will never result in any integers since $a + b \sqrt{2} \notin \mathbb{Z}$. Therefore the group cannot be cylic since there are no possible generators of the group.
+	\end{proof}
+\end{example}
+
+\begin{theorem}
+	A group with no proper non-trivial subgroups is cyclic
+\end{theorem}
+\begin{proof}
+	Let $G$ be a group and assume that it has no proper non-trivial subgroups, meaning that the only subgroups of $G$ are $\qty{e}$ and $G$. The case where $G = \qty{e}$ is trivial. Therefore let $g \in G$ such that $g \neq e$. Then $\langle g \rangle \leq G$. However since $G$ has no proper non-trivial subgroups, $\langle g \rangle \neq G$ and hence $\langle g \rangle = G$
+\end{proof}
+
+\begin{theorem}[Singular Subgroup Condition]
+	\label{thm:subgroupcondition}
+	$H$ is a subgroup of $G$ if and only if $ab^{-1} \in H$ for all $a,b \in H$.
+\end{theorem}
+\begin{proof}
+	Let $G$ be a group and $H \subseteq G$. Assume that $\forall a,b \in H$ that $ab^{-1} \in H$. Consider the three conditions (out of order in this case) in Theorem \ref{thm:subgroup} \\
+
+	\quad\begin{minipage}{\dimexpr\textwidth-2cm}
+		2.) \;
+		Let $a \in H$. Then $a a^{-1} \in H$, or equivalently $e \in H$. Therefore $H$ contains the identity element of $G$.
+	\end{minipage} \\
+	\\
+
+	\quad\begin{minipage}{\dimexpr\textwidth-2cm}
+		3.) \;
+		Let $b \in H$. Since $e \in H$, it follows that $eb^{-1} \in H$, or equivalently $b^{-1} \in H$. Therefore $H$ has an inverse for every element within itself.
+	\end{minipage} \\
+	\\
+
+	\quad\begin{minipage}{\dimexpr\textwidth-2cm}
+		1.) \;
+		Let $a,b \in H$. Since $H$ contains inverses for every element, $b^{-1} \in H$ and also $\qty(b^{-1})^{-1} \in H$. Therefore $a\qty(b^{-1})^{-1} \in H$ or equivalently $ab \in H$. Hence $H$ is closed under the binary operation of $G$.
+	\end{minipage} \\
+	\\
+
+	Since $H$ satisfies the $3$ condition of Theorem \ref{thm:subgroup}, it follows that $H \leq G$.
+\end{proof}
+
+\end{document}

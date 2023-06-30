@@ -1,0 +1,231 @@
+\documentclass[12pt]{extarticle}
+
+\usepackage{multicol}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{\textbf{Math 130A: Homework \#2}}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\begin{document}
+\section*{Problem 1}
+
+Let $T_i$ denote the event the player throws a total $i$ and $W$ denote the event the player wins. Therefore
+\[
+	P(W) = \sum_{i=1}^{12} P(W | T_i) P(T_i)
+.\]
+
+Consider a case where the player does not throw a winning or losing score. The probability the player will win will be the summation of possible rounds the player can play. Therefore if $N_i$ denotes the event of a neutral throw (that is a score that doesn't win or lose), then the probability a player wins given an initial throw that didnt win or lose
+\begin{align*}
+	P(W | T_i) &= P(T_i) + P(N_i)P(T_i) + P(N_i)^2 P(T_i) + \ldots \\
+						 &= P(T_i) \cdot\sum_{n=0}^{\infty} P(N_i)^n, \; i\in\qty{4,5,6,8,9,10}
+.\end{align*}
+
+Therefore the entire conditional probability can be described by
+\[
+	P(W | T_i) = 
+	\begin{cases}
+		0 & i = 2,3,12 \\
+		1 & i = 7,11 \\
+		P(T_i)\cdot \displaystyle\sum_{n=0}^\infty P(N_i) & i = 4,5,6,8,9,10 \\
+	\end{cases}
+.\]
+
+Calculating the probability of each non-zero or non-one case results in
+{
+	\everymath={\displaystyle}
+\[
+	\begin{array}{rcccl}
+	P(W | T_4)  &= \frac{3}{36} \cdot \sum_{n=0}^{\infty} \qty(\frac{27}{36})^n &= \frac{3}{36} \cdot \frac{1}{1 - \frac{27}{36}} &= \frac{3}{36} \cdot \frac{36}{9}  &= \frac{1}{3} \\
+	P(W | T_5)  &= \frac{4}{36} \cdot \sum_{n=0}^{\infty} \qty(\frac{26}{36})^n &= \frac{4}{36} \cdot \frac{1}{1 - \frac{26}{36}} &= \frac{4}{36} \cdot \frac{36}{10} &= \frac{2}{5} \\
+	P(W | T_6)  &= \frac{5}{36} \cdot \sum_{n=0}^{\infty} \qty(\frac{25}{36})^n &= \frac{5}{36} \cdot \frac{1}{1 - \frac{25}{36}} &= \frac{5}{36} \cdot \frac{36}{11} &= \frac{5}{11} \\
+	P(W | T_8)  &= \frac{5}{36} \cdot \sum_{n=0}^{\infty} \qty(\frac{25}{36})^n &= \frac{5}{36} \cdot \frac{1}{1 - \frac{25}{36}} &= \frac{5}{36} \cdot \frac{36}{11} &= \frac{5}{11} \\
+	P(W | T_9)  &= \frac{4}{36} \cdot \sum_{n=0}^{\infty} \qty(\frac{26}{36})^n &= \frac{4}{36} \cdot \frac{1}{1 - \frac{26}{36}} &= \frac{4}{36} \cdot \frac{36}{10} &= \frac{2}{5} \\
+	P(W | T_{10}) &= \frac{3}{36} \cdot \sum_{n=0}^{\infty} \qty(\frac{27}{36})^n &= \frac{3}{36} \cdot \frac{1}{1 - \frac{27}{36}} &= \frac{3}{36} \cdot \frac{36}{9}  &= \frac{1}{3} \\
+	\end{array}
+\]
+}
+
+Therefore
+\begin{align*}
+	P(W) &= \sum_{n=2}^{12} P(W|T_i) P(T_i) \\
+	&= \frac{1}{36}\cdot\qty(
+	2\cdot 3\cdot \frac{1}{3} + 2\cdot 4\cdot \frac{2}{5} + 2\cdot 5\cdot \frac{5}{11} + 3\cdot 0 + 6\cdot 1
+	) \\
+	&= \frac{244}{495} \approx 49.3\%
+.\end{align*}
+
+\section*{Problem 2}
+The probability of $A$ winning would be
+\[
+	p + (1-p)(1-p)\cdot p + (1-p)(1-p)(1-p)(1-p)\cdot p + \ldots 
+\]
+therefore
+\begin{align*}
+	P(\text{A wins}) &= p \cdot \sum_{n=0}^\infty (1-p)^{2n} \\
+						&= p \cdot \sum_{n=0}^\infty \qty((1-p)^2)^n \\
+						&= p \cdot \frac{1}{1 - (1-p)^2} \\
+						&= \frac{p}{2p - p^2} \\
+						&= \frac{1}{2 - p}
+.\end{align*}
+
+$B$ will win when $A$ doesn't win meaning
+\begin{align*}
+	P(\text{B wins}) &= 1 - P(\text{A wins}) \\
+						&= 1 - \frac{1}{2-p} \\
+						&= \frac{1-p}{2-p}
+.\end{align*}
+
+\section*{Problem 3}
+Let $S$ denote all the possible outcomes of tossing $3$ coins and $E$ denote the event that the round ends. Therefore $E^\complement$ is the event the round succeeds and therefore $E^\complement = \qty{\textbf{TTT}, \textbf{HHH}}$. Therefore
+\begin{align*}
+	P(E) &= 1 - P(E^\complement) \\
+			 &= 1 - \frac{2}{2^3} \\
+			 &= 1 - \frac{1}{4} \\
+			 &= \frac{3}{4}
+.\end{align*}
+
+In the case where the coin is biased, $P(\textbf{TTT}) = \qty(\frac{3}{4})^3 = \frac{27}{64}$ and $P(\textbf{TTT}) = \qty(\frac{1}{4})^3 = \frac{1}{64}$. Therefore in this case
+\begin{align*}
+	P(E) &= 1 - P(E^\complement) \\
+			 &= 1 - (P(\textbf{TTT}) + P(\textbf{HHH})) \\
+			 &= 1 - \frac{7}{16}
+			 = \frac{9}{16}
+.\end{align*}
+
+\section*{Problem 4}
+Let $E = $ event that at least one dice is a six and $S$ be the sample space of all possible $2$ dice pairs. Then
+\begin{align*}
+	P(E) &= \frac{N(E)}{N(S)} \\
+			 &= \frac{11}{36}
+.\end{align*}
+
+Let $D = $ event that both dice faces are different. Then
+\begin{align*}
+	P(D) &= 1 - P(D^\complement) \\
+			 &= 1 - \frac{N(D^\complement)}{N(S)} \\
+			 &= 1 - \frac{6}{36}
+			 = \frac{5}{6}
+.\end{align*}
+
+Therefore the probability of at least one dice being a $6$ given both faces are different is
+\begin{align*}
+	P(E|D) &= \frac{P(DE)}{P(D)} \\
+	\intertext{$P(DE) = \frac{10}{36}$ since there is $10$ elements in $E$ where the faces are different.}
+				 &= \frac{\frac{10}{36}}{\frac{5}{6}} \\
+				 &= \frac{10}{36} \cdot \frac{6}{5} \\
+				 &= \frac{1}{3}
+.\end{align*}
+
+\section*{Problem 5}
+Assume that the first two dice are the same and the last one is not and then multiply final calculation by $3$ since there are $3$ ways to rearrange them.
+
+\begin{align*}
+	P(\text{Same on 2 Dice}) &= 3 \cdot \frac{\binom{6}{1} \binom{5}{1}}{6^3} \\
+													 &= 3 \cdot \frac{5}{36} \\
+													 &= \frac{15}{36}
+.\end{align*}
+
+\section*{Problem 6}
+Let $M=$ Male, $F=$ Female and $C=$ Colorblind.
+\begin{align*}
+	P(M | C) &= \frac{P(C | M) P(M)}{P(C)} \\
+					 &= \frac{P(C | M) P(M)}{P(C|M)P(M) + P(C|F)P(F)} \\
+					 &= 2 \cdot \frac{P(C | M) P(M)}{P(C|M) + P(C|F)} \\
+					 &= 2 \cdot \frac{\frac{1}{20}\cdot\frac{1}{2}}{\frac{1}{20} + \frac{1}{400}} \\
+					 &= \frac{\frac{1}{20}}{\frac{21}{400}}
+					 = \frac{20}{21} \approx 95.2\%
+.\end{align*}
+
+\section*{Problem 7}
+Let $1$ round of play denote both $A$ and $B$ scoring a single point. Therefore the question of the probability they play $2n$ points can be stated as
+\[
+	P(2n) = P(n-1\text{ rounds}) \cdot P(A\text{ wins} \cup B\text{ wins}) \quad \forall n \geq 1
+.\]
+Therefore
+\begin{align*}
+	P(2n) &= ((1-p)p + p(p-1))^{n-1} \cdot \qty(P(A\text{ wins}) + P(B\text{ wins})) \\
+				&= (2p(1-p))^{n-1} \cdot (p^2 + (1-p)^2)
+.\end{align*}
+
+Consider now the probability that $A$ wins the $\text{n}^\text{th}$ round. It will be when both $A$ and $B$ have scored $1$ point each for every round except round $n$ when $A$ scores twice to win. Therefore the probability $A$ wins given a round $n$ is
+\begin{align*}
+	P(A\text{ wins on round }n) &= (p(p-1) + (p-1)p)^{n-1} p^2 \\
+															&= (2p(p-1))^{n-1} p^2
+.\end{align*}
+Therefore the probability $A$ wins is
+\begin{align*}
+	P(A\text{ wins}) &= \sum_{n=1}^\infty (2p(p-1))^{n-1} p^2 \\
+					  &= p^2 \sum_{n=1}^\infty (2p(p-1))^{n-1} \\
+					  &= p^2 \sum_{n=0}^\infty (2p(p-1))^n \\
+						&= p^2 \cdot\frac{1}{1 - 2p(p-1)} \\
+						&= \frac{p^2}{1 - 2p(p-1)}
+.\end{align*}
+
+\section*{Problem 8}
+For part (1), one of the cards can be chosen as the pair denomination. Therefore the probability the second part is of the same denominiation will be the remaining cards of the same denomination over the remaining cards in the deck, hence
+\[
+	P(\text{pair}) = \frac{3}{51}
+.\]
+For part (2), the condition probability can be expressed as
+\[
+	P(\text{pair}|\text{different suites}) = \frac{P(\text{pair and different suites})}{P(\text{different suites})}
+.\]
+The probability of getting a pair with different suites is the probability of getting a pair since both cards must be of different suites since there are no repeats of suites for a given denomination. Additionally, the chance that both cards will be a different suite is $\frac{39}{51}$. Therefore
+\begin{align*}
+	P(\text{pair}|\text{different suites}) &= \frac{P(\text{pair and different suites})}{P(\text{different suites})} \\
+																				 &= \frac{\frac{3}{51}}{\frac{39}{51}} \\
+																				 &= \frac{3}{51}\cdot\frac{51}{39} \\
+																				 &= \frac{3}{39}
+																				 = \frac{1}{13}
+.\end{align*}
+
+\section*{Problem 9}
+% 
+% Box 1 => {W B}
+% Box 2 => {W B B}
+% 
+% P(black) = P(Black | Box 1)P(Box 1) + P(Black | Box 2)P(Box 2)
+% 
+% 
+For part (1), the probability that the process results in drawing a black is
+\begin{align*}
+	P(\text{Black}) &= P(\text{Black} | \text{Box $1$})P(\text{Box $1$}) + P(\text{Black} | \text{Box $2$})P(\text{Box $2$}) \\
+									&= \frac{1}{2}\cdot\frac{1}{2} + \frac{1}{2}\cdot\frac{2}{3} \\
+									&= \frac{1}{4} + \frac{1}{3}
+									= \frac{7}{12}
+.\end{align*}
+For part (2), the probability the box selected was box 1 given a white marble was drawn is
+\begin{align*}
+	P(\text{Box }1 | \text{White}) &= \frac{P(\text{White}|\text{Box }1) \cdot P(\text{Box }1)}{P(\text{White})} \\
+																 &= \frac{\frac{1}{2} \cdot \frac{1}{2}}{1 - P(\text{Black})} \\
+																 &= \frac{\frac{1}{4}}{1 - \frac{7}{12}} \\
+																 &= \frac{\frac{1}{4}}{\frac{5}{12}}
+																 = \frac{1}{4}\cdot\frac{12}{5}
+																 = \frac{3}{5}
+.\end{align*}
+
+\section*{Problem 10}
+% 
+% A => 	50   50% Women
+% B => 	75   60% Women
+% C => 100   70% Women
+% 
+% P(resign) = 1 / (50 + 75 + 100)
+% P(resign and woman) = 140 / 225
+% 
+% P(C | resign and woman) = P(C and resign and woman) / P(resign and woman)
+% 												= (70 / 225) / (140 / 225)
+%													= 1 / 2
+
+The probability that any one employ resign is $\frac{1}{50 + 75 + 100} = \frac{1}{225}$, meaning the probability that a woman resigns is $\frac{50(0.5) + 75(0.6) + 100(0.7)}{225} = \frac{140}{225}$. Additionally, the probability that a woman who worked at store C resigns is $\frac{100(0.7)}{225} = \frac{70}{225}$. Therefore
+\begin{align*}
+	P(\text{Worked at C}| \text{Woman and Resigned}) &= \frac{P(\text{Worked at C, Woman, Resigned})}{P(\text{Woman and Resigned})} \\
+																									 &= \frac{\frac{70}{225}}{\frac{140}{225}} \\
+																									 &= \frac{70}{225}\cdot\frac{225}{140}
+																									 = \frac{1}{2}
+.\end{align*}
+
+\end{document}

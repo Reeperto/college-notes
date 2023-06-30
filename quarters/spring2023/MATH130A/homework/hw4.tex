@@ -1,0 +1,163 @@
+\documentclass[12pt]{extarticle}
+
+\input{../preamble.tex}
+\usepackage{svg}
+\svgsetup{inkscapeexe=inkscape, inkscapearea=drawing, inkscapeversion=1}
+\svgpath{{figures/}}
+
+\fancyhead[R]{\textbf{Homework \#$4$}}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\begin{document}
+\section*{Problem 1}
+Let $X$ denote the number of $6$'s that appear in $3$ rolls. Then $X \sim \text{Binom}(3, \frac{1}{6})$. Therefore
+\begin{align*}
+	\Prob{X \leq 1} &= \Prob{X = 0} + \Prob{X = 1} \\
+									&= \binom{3}{0}\qty(\frac{5}{6})^3 + \binom{3}{1}\qty(\frac{1}{6})\qty(\frac{5}{6})^2 \\
+									&= \frac{25}{27}
+.\end{align*}
+
+\section*{Problem 2}
+Since there is replacement, each drawing is independent. Let $X$ denote the number of white balls drawn after $4$ drawings. Then $X \sim \text{Binom}(4, \frac{1}{2})$. Therefore
+\begin{align*}
+	\Prob{X = 2} &= \binom{4}{2} \cdot \frac{1}{2}^4 \\
+							 &= 6 \cdot \frac{1}{16} = \frac{3}{8}
+.\end{align*}
+
+\section*{Problem 3}
+\begin{align*}
+	\Exp{X} &= 25\qty(\frac{25}{148}) + 33\qty(\frac{33}{148}) + 40\qty(\frac{40}{148}) + 50\qty(\frac{50}{148}) \\
+					&= \frac{2907}{74} \approx 39.28 \\
+					\\
+	\Exp{Y} &= \frac{1}{4} \cdot (25 + 33 + 40 + 50) \\
+	&= \frac{148}{4} = 37
+\end{align*}
+
+\section*{Problem 4}
+Let $I$ denote the revenue the company makes. Let $X$ denote the profit the company makes. Note that $X = \qty{I, I - A}$ with $\Prob{X = I-A} = p$ and $\Prob{X = I} = p$. Therefore the expected profit is
+\[
+	\Exp{X} = I (1-p) + (I - A)p = I - pA
+.\]
+Therefore since the company wants their expected profit to be $10\%$ of $A$,
+\begin{align*}
+	\Exp{X} &= \frac{A}{10} \\
+	I - pA &= \frac{A}{10} \\
+	I &= \frac{A}{10} + pA \implies \boxed{I = A\qty(p + \frac{1}{10})}
+.\end{align*}
+
+\section*{Problem 5}
+Let $X_1 \sim \text{Bern}(0.6)$ represent the first flip and $X_2 \sim \text{Bern}(0.7)$ represent the second flip. Then $X = X_1 + X_2$. Therefore 
+\begin{align*}
+	\Prob{X = 1} &= \Prob{X_1 = 1, X_2 = 0} + \Prob{X_1 = 0, X_2 = 1} \\
+	&= (0.6)(1-0.7) + (0.7)(1-0.6) \\
+	&= 0.18 + 0.28 = 0.46
+.\end{align*}
+and
+\begin{align*}
+	\Exp{X} &= \Exp{X_1 + X_2} \\
+					&= \Exp{X_1} + \Exp{X_2} \\
+					&= 0.6 + 0.7 = 1.3
+.\end{align*}
+
+\section*{Problem 6}
+The probability a tails appears on the $n^{\text{th}}$ flip is $\qty(\frac{1}{2})^n$, therefore the expected value is
+\begin{align*}
+	\Exp{X} &= \sum_{n=1}^{\infty} 2^n \cdot\qty(\frac{1}{2})^n \\
+	        &= \sum_{n=1}^{\infty} 2^n \cdot\frac{1}{2^n} \\
+	        &= \sum_{n=1}^{\infty} 1 \to +\infty
+.\end{align*}
+For (1), no because to get a net positive amount back one would have to flip $19$ heads in a row which has a probability of 0.0000019073, meaning it's very unlikely one would recover their million dollars. However, for (2), it would advanteagous to pay a million because the expectation is infinite, meaning eventually after enough tries one could easily make more than a million dollars by playing the game contiuonsly.
+
+\section*{Problem 7}
+Let $X$ denote the winnings. Then
+\begin{align*}
+	\Exp{X} = -1 \cdot \qty(2\cdot\frac{\binom{5}{2}}{\binom{10}{2}}) + 1.1 \cdot \qty(2\cdot\frac{\binom{5}{1}}{\binom{10}{2}}) = -0.2
+.\end{align*}
+and
+\[
+	\Var{X} = (-1)^2 \cdot \qty(2\cdot\frac{\binom{5}{2}}{\binom{10}{2}}) + (1.1)^2 \cdot \qty(2\cdot\frac{\binom{5}{1}}{\binom{10}{2}}) + 0.2 = 0.913
+.\]
+
+\section*{Problem 8}
+Let $D \sim \text{Binom}\qty(10, \frac{1}{3})$ denote the daily demand. Let $n$ denote the number of papers he buys and $X_n$ denote the associated profit. If $D > n$, then $X = 0.05 n$. If $D \leq n$, then $X = 0.04 D - 0.10(n - X)$. Therefore
+\[
+	\Exp{X_n} = \sum_{i=0}^{n} \qty(0.05 i - 0.10(n - i)) \Prob{D = i} + \sum_{k=n+1}^{10} (0.05 n) \Prob{D = k}
+.\]
+
+Calculating $\Exp{X_n}$ for $0 \leq n \leq 10$ is shown in the table.
+\begin{figure}[h!]
+	\centering
+	\includesvg[width=1\textwidth]{figures/profit.svg}
+\end{figure}
+Therefore the profit maximizing amount of papers the boy should buy is $3$.
+
+\section*{Problem 9}
+Note that $\Var{X} = \Exp{X^2} - \Exp{X}^2 \implies \Exp{X^2} = \Var{X} + \Exp{X}^2$. \\
+
+\begin{multicols}{2}
+\subsubsection*{(1)}
+\begin{align*}
+	\Exp{(2+X^2)} &= \Exp{X^2 + 4X + 4} \\
+								&= \Exp{X^2} + 4\cdot\Exp{X} + 4 \\
+								&= \Var{X} + \Exp{X}^2 + 4\cdot\Exp{X} + 4 \\
+								&= 5 + 1^2 + 4\cdot 1 + 4 \\
+								&= 14
+.\end{align*}
+\columnbreak
+\subsubsection*{(2)}
+\begin{align*}
+	\Var{4 + 3X} &= \Var{3X} \\
+							 &= 3^2 \cdot \Var{X} \\
+							 &= 9 \cdot 5 \\ 
+							 &= 45
+.\end{align*}
+\end{multicols}
+
+\section*{Problem 10}
+Consider the case where $i = 2$. Let $X_2$ denote the number of games played before a team wins $2$ times. Note that $\mathcal{R}_{X_2} = \qty{2,3}$ with the following possible game scenarios
+\[
+	\begin{array}{rl}
+		AA & ABA \\
+		BB & BAA \\
+		   & BAB \\
+		   & ABB \\
+	\end{array}
+\]
+Therefore
+\begin{align*}
+	\Exp{X_2} &= 2\cdot\qty[ p^2 + (1-p)^2 ] + 3\cdot\qty[2p^2(1-p) + 2(1-p)^2 p] \\
+	&= 2 + 2 p - 2 p^2
+.\end{align*}
+
+Consider the case where $i = 3$. Let $X_3$ denote the number of games played before a teame wins $3$ times. Note that $\mathcal{R}_{X_3} = \qty{3,4,5}$ with the following possible game scenarios
+\[
+	\begin{array}{rcl}
+		AAA & AABA & BBAAA \\
+		BBB & ABAA & BABAA \\
+		    & BAAA & BAABA \\
+		    & BBAB & ABABA \\
+		    & BABB & AABBA \\
+				& ABBB & AABBB \\
+		    &      & ABABB \\
+		    &      & ABBAB \\
+		    &      & BABAB \\
+		    &      & BBAAB \\
+	\end{array}
+\]
+Therefore
+\begin{align*}
+	\Exp{E_3} &= 3\cdot\qty[p^3 + (1-p)^3] + 4\cdot\qty[3p^3(1-p) + 3p(1-p)^3] + 5\cdot\qty[4p^3(1-p)^2+4p^2(1-p)^3] \\
+						&= 3 + 3p - 7p^2 + 8p^3 - 4p^4
+.\end{align*}
+
+Consider the derivatives of each expectation.
+\begin{align*}
+	\dv{\Exp{X_2}}{p} &= 2 - 4p = 0 \implies p = \frac{1}{2} \\
+	\dv{\Exp{X_3}}{p} &= 3-14p + 24p^2 - 15p^3 = 0 \implies p = \frac{1}{2}
+.\end{align*}
+
+Since both are concave down and $p=\frac{1}{2}$ is the only critical point for both, the expectations are maximized by $p=\frac{1}{2}$.
+
+\end{document}

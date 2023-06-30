@@ -1,0 +1,391 @@
+\documentclass[12pt]{extarticle}
+
+\usepackage{multicol}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{Homework \#2}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+% Section 3: 
+% 2, 8, 11, 19, 26, 28, 33
+
+% Section 4: 
+% 6, 9, 11, 29, 31, 32, 33, 34, 37, 41
+
+\begin{document}
+\section*{Problem 3.2}
+$\phi$ is an isomorphism since it is one-to-one and onto and $\phi(n+m) = - (n + m) = (-n) + (-m) = \phi(n) + \phi(m)$ for all $m,n \in \mathbb{Z}$.
+
+\section*{Problem 3.8}
+$\phi$ is not an isomorphism because it is not one-to-one. Consider the following two matrices
+\[
+	A = \mqty[3 & 0 \\ 0 & 2], B = \mqty[2 & 0 \\ 0 & 3]
+.\]
+It is clear that $A \neq B$. However $\det(A) = \det(B) = 6$, hence $\phi$ is not one-to-one and therefore not an isomorphism.
+
+\section*{Problem 3.11}
+$\phi$ is not an isomorphism because it is not one-to-one. Consider $f(x) = x^2 + 3$ and $g(x) = x^2 + 4$. Note that $f'(x) = g'(x) = 2x$. However since $f(x) \neq g(x)$, $\phi$ is not one-ton-one and hence not an isomorphism.
+
+\section*{Problem 3.19}
+\subsection*{Part A}
+Define the binary operation $*$ by
+\[
+	a * b = \frac{(a+1)\cdot (b+1)}{3} - 1
+.\]
+Note that this satisifes the homorphism property since
+\[
+	\phi(x \cdot y) = 3xy - 1
+.\]
+and
+\begin{align*}
+	\phi(x) * \phi(y) &= (3x - 1) * (3y - 1) \\
+										&= \frac{(3x - 1 + 1)\cdot (3y - 1 + 1)}{3} - 1 \\
+										&= \frac{3x\cdot 3y}{3} - 1 \\
+										&= \frac{9xy}{3} - 1 \\
+										&= 3xy - 1
+.\end{align*}
+Therefore since $\phi(x \cdot y) = \phi(x) * \phi(y)$, $\phi$ is homomorphic and since it is a bijection it is an isomorphism between $\langle \mathbb{Q}, \cdot \rangle$ and $\langle \mathbb{Q}, * \rangle$. The identity element for $*$ is $2$ since for all $a \in \mathbb{Q}$,
+\begin{align*}
+	2 * a &= \frac{(2+1)(a+1)}{3} - 1 \\
+				&= a + 1 - 1 = a
+.\end{align*}
+and
+\begin{align*}
+	a * 2 &= \frac{(a + 1)(2 + 1)}{3} - 1 \\
+	&= a + 1 - 1 = a
+.\end{align*}.
+
+\subsection*{Part B}
+Since $\phi$ is one-to-one and onto, it is invertible. Therefore
+\[
+	\phi^{-1}(x) = \frac{x+1}{3}
+.\]
+Since $\phi^{-1}$ must also be an isomorphism
+\begin{align*}
+	a * b &= \phi^{-1}(3a - 1) \cdot \phi^{-1}(3b - 1) \\
+				&= \phi^{-1} ((3a - 1) \cdot (3b -1)) \\
+				&= \phi^{-1} (9ab - 3a - 3b + 1) \\
+				&= \frac{9ab - 3a - 3b + 1 + 1}{3} \\
+				&= 3ab - a - b + \frac{2}{3}
+.\end{align*}
+The identity element of $\langle \mathbb{Q}, \cdot \rangle$ is preserved under $\phi$, therefore the identity element of $\langle \mathbb{Q}, * \rangle$ is
+\[
+	\phi^{-1}(1) = \frac{2}{3}
+.\]
+
+\section*{3.26}
+\begin{proof}
+	Let $\langle S, * \rangle$ and $\langle S', *' \rangle$ be binary algebraic structures and assume there exists an isomorphism $\phi : S \to S'$. Consider the inverse map $\phi^{-1} : S' \to S$. Since $\phi$ is an isomorphism, it is one-to-one and onto and therefore its inverse is also one-to-one and onto. Let $a',b' \in S'$. By the properties of inverses
+	\[
+		\phi(\phi^{-1} (a' *' b')) = a' *' b'
+	.\]
+	Since $\phi$ is an isomorphism
+	\begin{align*}
+		\phi(\phi(a') * \phi(b')) &= \phi(\phi^{-1} (a')) *' \phi(\phi^{-1}(b')) \\
+		&= a' *' b'
+	.\end{align*}
+	Therefore since both equations are equal to $a' *' b'$, it follows that
+	\begin{align*}
+		\phi(\phi^{-1}(a' *' b')) &= \phi(\phi^{-1}(a') * \phi^{-1}(b')) \\
+		\phi^{-1}(a' *' b') &= \phi^{-1}(a') * \phi^{-1}(b')
+	,\end{align*}
+	meaning $\phi^{-1}$ is a homorphism. Therefore since $\phi^{-1}$ is one-to-one, onto, and homomorphic, it is an isomorphism from $\langle S', *' \rangle$ to $\langle S, * \rangle$.
+\end{proof}
+
+\section*{3.28}
+\begin{proof}
+	Let $A$ be a set of binary algebraic structures and define a relation $\simeq$ over $A$ such that
+	\[
+		\langle S, * \rangle \simeq \langle S', *' \rangle \Longleftrightarrow \langle S, * \rangle\text{ is isomorphic to }\langle S', *' \rangle
+	.\]
+	Proceed to show that $\simeq$ is an equivalence relation.
+	\\
+
+	\qquad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Reflexivity)\quad Let $\langle S, * \rangle \in A$. Define a mapping $\phi : S \to S : a \mapsto a$. Let $a,b \in S$ and assume $\phi(a) = \phi(b)$. Then $a = b$, hence $\phi$ is one-to-one. Let $b \in S$. Then $\phi(b) = b$, meaning $\phi$ is onto. Additionally, $\phi(a * b) = a*b = \phi(a) * \phi(b)$ meaning $\phi$ is homomorphic. Therefore $\phi$ is an isomorphism, meaning $\langle S, * \rangle \simeq \langle S, * \rangle$.
+	\end{minipage} \\
+  \\
+
+	\qquad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Symmetry)\quad Let $\langle S, * \rangle, \langle S', *' \rangle \in A$. Assume that $\langle S, * \rangle \simeq \langle S', *' \rangle$. By the result in ($3.26$), it follows there is an isomorphic map from $\langle S', *' \rangle$ to $\langle S, * \rangle$, meaning $\langle S', *' \rangle \simeq \langle S, * \rangle$.
+	\end{minipage} \\
+	\\
+
+	\qquad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Transitivty)\quad Let $\langle S, * \rangle, \langle S', *' \rangle, \langle S'', *'' \rangle \in A$. For simplicity, denote each structure by its set. Assume $S \simeq S'$ and $S' \simeq S''$. Therefore $S$ is isomorphic to $S'$ and $S'$ is isomorphic to $S''$. By the result in ($3.27$), $S$ is isomorphic to $S''$. Hence $S \simeq S''$
+	\end{minipage} \\
+	\\
+
+	Since $\simeq$ is reflexive, symmetric, and transitive, it is an equivalent relation.
+\end{proof}
+
+\section*{3.33}
+\subsection*{Part A}
+\begin{proof}
+	Let $H \subseteq M_2(\mathbb{R})$ such that an element of $H$ is of the form $\mqty[a & -b \\ b & a]$ with $a,b \in \mathbb{R}$. Define a map $\phi : \mathbb{C} \to H$ such that for a complex number $z$ in its cartesian form $a + bi$
+	\[
+		\phi(z) = \mqty[a & -b \\ b & a]
+	.\]
+	Examine the conditions for $\phi$ to be an isomorphism. \\
+
+	\qquad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(One-to-One)\quad 
+		Let $z_1, z_2 \in \mathbb{C}$. Then there exists $a,b,c,d \in \mathbb{R}$ such that $z_1 = a+bi$ and $z_2 = c+di$. Assume $\phi(z_1) = \phi(z_2)$. Then
+		\begin{align*}
+			\phi(z_1) &= \phi(z_2) \\
+			\phi(a+bi) &= \phi(c+di) \\
+			\mqty[a & -b \\ b & a] &= \mqty[c & -d \\ d & c]
+		.\end{align*}
+		For the two matrices to be equal, $a = c$ and $b = d$. Therefore $z_1 = z_2$, hence $\phi$ is one-to-one.
+	\end{minipage} \\
+	\\
+
+	\qquad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Onto)\quad 
+		Let $M \in H$. Then there exists $a,b \in \mathbb{R}$ such that
+		$
+			M = \mqty[a & -b \\ b & a]
+		$
+		Let $z = a+bi \in \mathbb{C}$. Then
+		\[
+			\phi(z) = \mqty[a & -b \\ b & a] = M
+		.\]
+		Therefore $\phi$ is onto.
+	\end{minipage} \\
+	\\
+
+	\qquad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Homomorphic)\quad 
+		Let $z_1, z_2 \in \mathbb{C}$. Then there exists $a,b,c,d \in \mathbb{R}$ such that $z_1 = a+bi$ and $z_2 = c+di$. It follows that
+		\begin{align*}
+			\phi((a+bi) + (c+di)) &= \phi((a+c) + (b+d)i) \\
+														&= \mqty[a + c & -b-d \\ b + d & a + c]
+		.\end{align*}
+		Additionally,
+		\begin{align*}
+			\phi(a+bi) + \phi(c+di) &= \mqty[a & -b \\ b & a] + \mqty[c & -d \\ d & c] \\
+														&= \mqty[a + c & -b-d \\ b + d & a + c]
+		.\end{align*}
+		Therefore $\phi(z_1 + z_2) = \phi(z_1) + \phi(z_2)$ meaning $\phi$ is homomorphic.
+	\end{minipage} \\
+	\\
+
+	Since $\phi$ is one-to-one, onto, and homomorphic, it is an isomorphism between $\langle \mathbb{C}, + \rangle$ and $\langle H, + \rangle$.
+\end{proof}
+
+\subsection*{Part B}
+\begin{proof}
+	Let $H \subseteq M_2(\mathbb{R})$ such that an element of $H$ is of the form $\mqty[a & -b \\ b & a]$ with $a,b \in \mathbb{R}$. Define a map $\phi : \mathbb{C} \to H$ such that for a complex number $z$ in its cartesian form $a + bi$
+	\[
+		\phi(z) = \mqty[a & -b \\ b & a]
+	.\]
+	From Part A, $\phi$ is one-to-one and onto. Examine $\phi$ for the homomorphism property. \\
+
+	\qquad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Homomorphic)\quad 
+		Let $z_1, z_2 \in \mathbb{C}$. Then there exists $a,b,c,d \in \mathbb{R}$ such that $z_1 = a+bi$ and $z_2 = c+di$. It follows that
+		\begin{align*}
+			\phi((a+bi)(c+di)) &= \phi((ac - bd) + (ad + bc)i) \\
+														&= \mqty[ac - bd & -ad-bc \\ ad+bc & ac-bd]
+		.\end{align*}
+		Additionally,
+		\begin{align*}
+			\phi(a+bi) + \phi(c+di) &= \mqty[a & -b \\ b & a]\mqty[c & -d \\ d & c] \\
+															&= \mqty[ac - bd & -ad - bc \\ ad + bc & ac - bd]
+		.\end{align*}
+		Therefore $\phi(z_1 + z_2) = \phi(z_1)\phi(z_2)$ meaning $\phi$ is homomorphic.
+	\end{minipage} \\
+	\\
+
+	Since $\phi$ is one-to-one, onto, and homomorphic, it is an isomorphism between $\langle \mathbb{C}, \cdot \rangle$ and $\langle H, \cdot \rangle$.
+\end{proof}
+
+\section*{4.6}
+$\langle \mathbb{C}, * \rangle$ is not a group since there is no inverse element for $0$.
+
+\section*{4.9}
+Consider the following equation for each respective group with $x$ being an element of a given group, $e$ being the associated identity, and $*$ being the associated operation. Then the equation
+\[
+	x * x * x = e
+\]
+will have $1$ solution in $\mathbb{R}$, $1$ solution in $\mathbb{R}^*$, but $3$ solutions in $U$. Therefore $\langle U, \cdot \rangle$ cannot be isomorphic to either $\langle \mathbb{R}, + \rangle$ or $\langle \mathbb{R}^*, \cdot \rangle$.
+
+\section*{4.11}
+The set of all $n \times n$ diagonal matrices under matrix addition is a group.
+
+\begin{proof}
+	Let $D_n$ denote the set of all $n \times n$ diagonal matrices define the binary structure $\langle D_n, + \rangle$ where $+$ is normal matrix addition. Examine the three axioms of a group. \\
+
+	\quad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Associativity)\quad
+		Let $A, B, C \in D_n$. Then it quickly follows that
+		\[
+			A + (B + C) = (A + B) + C
+		\]
+		since matrix addition is associative.
+	\end{minipage} \\
+	\\
+
+	\quad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Identity Element)\quad
+		Let $e$ be the $n \times n$ matrix with all zero entries. Clearly $e \in D_n$ and given a matrix $A \in D_n$,
+		\[
+			A + e = e + A = A
+		.\]
+		hence $e$ is the indentity element.
+	\end{minipage} \\
+	\\
+
+	\quad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Inverse)\quad
+		Let $A \in D_n$. Let $A'$ be the diagonal matrix where the diagonal is the negation of $A$. Therefore
+		\[
+			A + A' = A' + A = A - A = e
+		.\]
+	\end{minipage} \\
+	\\
+
+	Since $\langle D_n, + \rangle$ follows the three axioms of a group, it is a group.
+\end{proof}
+
+\section*{4.29}
+\begin{proof}
+	Let $G$ be a finite group with an even number of elements. Consider the following set
+	\[
+		S = \qty{a \in G : a \neq a'}
+	.\]
+	Note that $|S|$ must be even since entries are paired by $a, a'$. Since $|G|$ is even and $|S|$ is even, $|G - S|$ must also be even. $|G - S| \neq 0$ since the identity element $e \in G$ is in $G$ but not in $S$, so it is in $G - S$. However, since $|G - S|$ is even, there must be at least one other element in $G - S$, meaning there is another element $a \in G$ that isnt the identity such that $aa = a$
+\end{proof}
+
+\section*{4.31}
+\begin{proof}
+	Let $\langle G, * \rangle$ be a group. Let $e \in G$ denote the identity element of $G$. It is trivial that $e$ is idempotent for $*$ since $e * e = e$. Therefore there is at least one idempotent for $*$. Assume towards contradiction there exists an element $x \in G \neq e$ that is also an idempotent for $*$. Since $x$ is an idempotent,
+	\[
+		x * x = x
+	.\]
+	Since $x$ is an element of a group, $x$ has an inverse $x'$. Therefore
+	\begin{align*}
+		x * x &= x \\
+		x * x * x' &= x * x' \\
+		x * e &= e \\
+		x &= e
+	.\end{align*}
+	However, this contradicts the assumption that $a \neq e$. Therefore there cannot be any other idempotents for $*$ besides an identity element $e$. By the uniqueness of the identity element, there is only one identity for $G$, hence $e$ is the only idempotent for $*$.
+\end{proof}
+
+\section*{4.32}
+\begin{proof}
+	Let $G$ be a group with identity $*$ and assume that for all $x \in G$ that $x * x = e$. Therefore for all $x \in G$
+	\begin{align*}
+		x * x &= e \\
+		x * x * x' &= e * x' \\
+		x * e &= x' \\
+		x &= x'
+	.\end{align*}
+	Let $a,b \in G$. Consider $(a*b) * (a*b)$. Then
+	\begin{align*}
+		(a*b) * (a*b) &= e \\
+		a*b &= (a*b)' \\
+		a*b &= b'*a' \\
+		a*b &= b*a
+	.\end{align*}
+	Therefore $G$ is abelian.
+\end{proof}
+
+\section*{4.33}
+\begin{proof}
+	Proceed with induction. Let $G$ be an abelian group with $a, b \in G$. Consider the base case where $n=1$. Then
+	\[
+		(a * b)^1 = a * b = a^1 * b^1
+	.\]
+	Therefore the base case holds. Assume for some fixed $n \in \mathbb{Z}^+$ that $(a*b)^n = a^n * b^n$. Then
+	\begin{align*}
+		(a*b)^{n+1} &= (a*b) * (a*b)^n \\
+		&= a*b * a^n * b^n \\
+		&= a * a^n * b * b^n \\
+		&= a^{n+1} * b^{n+1}
+	.\end{align*}
+	Therefore the $n+1$ case holds, meaning for $n \in \mathbb{Z}^+$ that for all $a,b \in G$ that $(a*b)^n = a^n * b^n$.
+\end{proof}
+
+\section*{4.34}
+\begin{proof}
+	Let $G$ be a finite group and let $a \in G$. Consider the set $S = \qty{a, a^2, a^3, \ldots, a^m, a^{m+1}}$ where $m = |G|$. Since there are $m+1$ elements in $S$, there has to be a repeat otherwise $S$ would contain $m+1$ unique elements which is larger than $|G|$. Therefore there exists $\alpha, \beta \in \mathbb{Z}^+$ such that $\alpha \neq \beta$ and $a^\alpha = a^\beta$. Without loss of generality let $\alpha < \beta$. Then
+	\begin{align*}
+		a^\beta &= a^\alpha \\
+		a^{\beta - \alpha} &= e
+	.\end{align*}
+	Since $\alpha < \beta$, $\beta - \alpha > 0$ meaning $\beta - \alpha \in \mathbb{Z}^+$. Therefore for any $a \in G$ there exists a $n \in \mathbb{Z}^+$ such that $a^n = e$.
+\end{proof}
+
+\section*{4.37}
+\begin{proof}
+	Let $G$ be a group and $a,b,c \in G$. Assume that $a * b * c = e$. Then
+	\begin{align*}
+		a * b * c &= e \\
+		a' * a * b * c &= e * a' \\
+		b * c &= a' \\
+		b * c * c' &= a' * c' \\
+		b &= a' * c' \\
+		b * c &= a' * c' * c \\
+		b * c &= a' \\
+		b * c * a &= a' * a \\
+		b * c * a &= e
+	.\end{align*}
+	Therefore for all $a,b,c \in G$, if $a * b * c = e$ then $b * c * a = e$.
+\end{proof}
+
+\section*{4.41}
+\begin{proof}
+	Let $G$ be a group and $g \in G$. Define the map $i_g : G \to G$ such that $i_g(x) = gxg'$ for $x \in G$. Check the conditions that $i_g$ is an isomorphism of $G$ with itself. \\
+
+	\quad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(One-to-One)\quad
+		Let $a,b \in G$ and assume that $i_g (a) = i_g (b)$. Then
+		\begin{align*}
+			i_g(a) &= i_g(b) \\
+			gag' &= gbg' \\
+			gag'g &= gbg'g \\
+			ga &= gb \\
+			g'ga &= g'gb \\
+			a &= b
+		.\end{align*}
+		Therefore $i_g$ is one-to-one.
+	\end{minipage} \\
+	\\
+
+	\quad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Onto)\quad
+		Let $b \in G$ and let $a = g'bg$. Then
+		\begin{align*}
+			i_g(a) &= gag' \\
+			&= gg'bgg' \\
+			&= b
+		.\end{align*}
+		Therefore $i_g$ is onto.
+	\end{minipage} \\
+	\\
+
+	\quad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Homomorphic)\quad
+		Let $a,b \in G$. Then
+		\[
+			i_g(ab) = gabg'
+		.\]
+		and
+		\begin{align*}
+			i_g(a)i_g(b) &= gag'gbg' \\
+			&= gabg'
+		.\end{align*}
+		Therefore $i_g(ab) = i_g(a) i_g(b)$, meaning $i_g$ is homomorphic.
+	\end{minipage} \\
+	\\
+
+	Therefore since $i_g$ is one-to-one, onto, and homomorphic, it is an isomorphism of $G$ with itself.
+
+\end{proof}
+	
+\end{document}

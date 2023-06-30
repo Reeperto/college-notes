@@ -1,0 +1,76 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {"../figures"}
+}
+
+\begin{document}
+
+\banner{Method's of Proof}
+
+There are 4 standard proof methods, namely
+\begin{itemize}
+	\item Direct Proof
+	\item Contrapositive
+	\item Contradiction
+	\item Induction\footnote{Will be discussed later}
+\end{itemize}
+
+Each assume and show different things, but in the end are all logically equivalencies to $P \implies Q$. Therefore their usage varys depending on given information. Table \ref{tbl:proofmethods} shows what is assumed and what is shown in each method.
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c | c c c}
+		\textbf{Method} & \textbf{Direct} & \textbf{Contradiction} & \textbf{Contrapositive} \\\hline
+		Assume & $P$ & $P \land\lnot Q$ & $\lnot Q$ \\
+		Show   & $Q$ & Contradiction & $\lnot P$ \\
+	\end{tabular}
+	\label{tbl:proofmethods}
+\end{table}
+
+Compared to a direct proof or a contrapositive argument, a contradictive proof is slightly more subtle in its reasoning as doesn't directly assume one side of an implication to show the other.
+
+\begin{theorem}[Proof by Contradiction]
+  Given two propositions $P$ and $Q$, if the assumption that $P$ and $\lnot Q$ are true results in a contradiction, then $P \Longrightarrow Q$ is true.
+\end{theorem}
+\begin{proof}
+	Given two propositions $P$ and $Q$, if the assumption that both $P$ and $\lnot Q$ are true arises in a contradiction, then $P \land \lnot Q$ is false. $P \land \lnot Q$ is logically equivalent to $\lnot (P \Longrightarrow Q)$. Therefore if $P \land \lnot Q$ is false, then $P \Longrightarrow Q$ is true.
+\end{proof}
+
+\begin{example}
+	Prove the following statement: \textit{suppose $x \in \mathbb{Z}$ and $3x + 5$ is even, then $3x$ is odd.}
+\end{example}
+
+This will be proved in each manner of proof (except induction). Firstly a direct proof.
+\begin{proof}
+	
+\end{proof}
+
+\subsection{Definition Pushing}
+
+Often, a definition is not limited to the specific case it concerns. Many times it can be proven to hold in other alternative cases. The act of expanding a definitions scope is called \textit{definition pushing}. Here's an example of expanding the definition of integer divisibility.
+
+\begin{definition}[Divisbility]
+	Let $n,p \in \mathbb{Z}$. Then we say "$n$ is divisible by $p$" if $\exists k\in\mathbb{Z}$ such that $n = pk$.
+\end{definition}
+
+\begin{theorem}[Square Divisibility]
+	\label{thm:sqrdivisibility}
+	Let $n\in \mathbb{Z}$. If $n$ is divisible by $p$, then $n^2$ is divisible by $p^2$.
+\end{theorem}
+
+\begin{proof}
+	Let $n,p \in\mathbb{Z}$ such that $n$ is divisible by $p$. By definition of divisiblity there exists $k\in\mathbb{Z}$ such that $n = pk$. Squaring both sides results in $n^2 = p^2 k^2$. Since $k^2 \in\mathbb{Z}$, it follows that $n^2$ is divisible by $p^2$.
+\end{proof}
+
+\subsection{Proof by Counter Example}
+
+Consider Theorem \ref{thm:sqrdivisibility} again. This time a proof by contradiction can be used.
+
+\begin{proof}
+	Let $n,p\in\mathbb{Z}$. Assume towards contradiction that $p | n$ and $p^2 \nmid n^2$. Consider the case where $n = 8$ and $p = 2$. It is true that $p|n$. It follows that $n^2 = 64$ and $p^2 = 4$. It is also true that $p^2 | n^2$.
+\end{proof}
+
+In this instance, rather than find a general falsehood, a simple case can be used to disprove or prove the entire theorem. Cases like these are called \textit{counter-examples} as they run counter to the proposition.
+
+
+\end{document}

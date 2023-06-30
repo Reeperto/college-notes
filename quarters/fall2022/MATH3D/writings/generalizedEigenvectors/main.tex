@@ -1,0 +1,28 @@
+\documentclass[12pt]{extarticle}
+
+\usepackage{subfiles}
+
+\usepackage[bottom]{footmisc}
+\usepackage{libertine}
+\usepackage{libertinust1math}
+\usepackage[T1]{fontenc}
+\usepackage{catchfile}
+\newcommand{\getenv}[2][]{%
+  \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{\endlinechar=-1}%
+  \if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi}
+
+\getenv[\PREAMBLE]{latex_preamble}
+\input{\PREAMBLE/main_preamble.tex}
+
+\pagestyle{fancy}
+\fancyhead[L]{\bfseries Generalized Eigenvectors for an ODE System}
+\fancyhead[R]{}
+\fancyfoot[R]{}
+\fancyfoot[C]{}
+
+
+\begin{document}
+
+\subfile{geneig.tex}
+
+\end{document}

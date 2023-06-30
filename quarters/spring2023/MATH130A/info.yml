@@ -1,0 +1,24 @@
+- name: "MATH 130A"
+  slot:
+    days:
+      - "Mon"
+      - "Wed"
+      - "Fri"
+    end:
+      hour: 14
+      minute: 50
+    start:
+      hour: 14
+      minute: 0
+
+- name: "MATH 130A Dis"
+  slot:
+    days:
+      - "Tue"
+      - "Thu"
+    end:
+      hour: 12
+      minute: 50
+    start:
+      hour: 12
+      minute: 0

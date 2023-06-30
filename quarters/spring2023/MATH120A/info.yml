@@ -1,0 +1,24 @@
+- name: "MATH 120A"
+  slot:
+    days:
+      - "Mon"
+      - "Wed"
+      - "Fri"
+    end:
+      hour: 13
+      minute: 50
+    start:
+      hour: 13
+      minute: 0
+
+- name: "MATH 120A Dis"
+  slot:
+    days:
+      - "Mon"
+      - "Wed"
+    end:
+      hour: 17
+      minute: 50
+    start:
+      hour: 17
+      minute: 0

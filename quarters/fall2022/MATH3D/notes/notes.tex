@@ -1,0 +1,52 @@
+\documentclass[12pt]{extarticle}
+
+\usepackage{libertine}
+\usepackage{libertinust1math}
+\usepackage[T1]{fontenc}
+
+\input{./main_preamble.tex}
+
+\newcommand{\notestitle}{MATH 3D}
+
+\setlength{\headheight}{14.49998pt}
+
+\begin{document}
+
+\cover{MATH 3D}{Collection of type setted notes from fall quarter of 2022 Math}
+
+{\large
+\renewcommand*\contentsname{Table of Contents}
+\tableofcontents
+}
+
+\pagebreak
+
+\tocadd{Week 1}{./week/week1.tex}
+
+\tocadd{Week 2}{./week/week2.tex}
+
+\tocadd{Week 3}{./week/week3.tex}
+
+\tocadd{Week 4}{./week/week4.tex}
+
+\tocadd{Week 5}{./week/week5.tex}
+
+\tocadd{Week 6}{./week/week6.tex}
+
+\tocadd{Week 7}{./week/week7.tex}
+
+\pagebreak
+\begin{week}
+    \section*{Appendix}
+\end{week}
+
+\subfile{../writings/generalizedEigenvectors/geneig.tex}
+
+\pagebreak
+\begin{week}
+    \section*{Definitions}
+\end{week}
+
+\pagebreak
+\tcblistof[\section*]{theorems}{List of Theorems}
+\end{document}

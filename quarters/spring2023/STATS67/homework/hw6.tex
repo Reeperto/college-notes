@@ -1,0 +1,67 @@
+\documentclass[12pt]{extarticle}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{Homework \#6}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\section*{Problem 1}
+\subsection*{Part A}
+\[
+	\int_{97}^{107} \frac{1}{5 \sqrt{2\pi}} e^{-\frac{(x-102)^2}{50}} \dd x \approx 0.682689
+.\]
+
+\subsection*{Part B}
+\[
+	\Prob{X = 120} = \int_{120}^{120} \frac{1}{5 \sqrt{2\pi}} e^{-\frac{(x-102)^2}{50}} \dd x = 0
+.\]
+
+\[
+	\Prob{X < 120} = \int_{-\infty}^{120} \frac{1}{5 \sqrt{2\pi}} e^{-\frac{(x-102)^2}{50}} \dd x \approx 0.9998
+.\]
+
+\subsection*{Part C}
+The 90$^{\text{th}}$ percentile is 108.41 degrees Fahrenheit.
+
+\subsection*{Part D}
+The distribution $0.55 X - 17.6$ is a normal distribution with $\mu = 38.5$ and $\sigma = 2.75$.
+
+\subsection*{Part E}
+The distribution of the sample mean of the daily temperatures is an approximate normal distribution with a mean the same as $X \implies \mu = 102$ and a variance of $\sigma^2 = \sigma_X^2 / n = 25/25 = 1$.
+
+\subsection*{Part F}
+The sample mean in Celsius follows an approximate normal distribution with $\mu = 38.5$ and $\sigma = 0.55$.
+
+\section*{Problem 2}
+\subsection*{Part A}
+The sum $\sum_{i=1}^{n} X_i$ is a binomial distribution with $p = 0.5$ and $n = 100$.
+
+\subsection*{Part B}
+$\bar{X}$ will follow an approximate normal distribution with $\mu = 0.5$ and $\sigma = 0.05$.
+
+\subsection*{Part C}
+\[
+	\Prob{\overline{X} \geq 0.5} = \int_{0.5}^\infty \frac{1}{0.05 \sqrt{2\pi}} e^{-\frac{1}{2}\qty(\frac{x-0.5}{0.05})^2} \dd x = 0.5
+.\]
+
+\section*{Problem 3}
+\subsection*{Part A}
+\[
+	\frac{\overline{X} - \mu}{\frac{\sigma}{\sqrt{n}}} \sim N(0,1)
+.\]
+
+\subsection*{Part B}
+The condifence interval is
+\[
+	(\hat{x} - z^* \cdot \frac{s}{\sqrt{n}}, \hat{x} + z^* \cdot \frac{s}{\sqrt{n}})
+.\]
+Since this is a 95\% condifence interval, $z^* = 1.96$. Therefore substituting in values resutls in
+\[
+	(5.8510, 6.7890)
+.\]
+
+\end{document}

@@ -1,0 +1,227 @@
+% Package Imports --------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{extsizes}
+\usepackage{standalone}
+\usepackage{textcomp}
+\usepackage{fancyhdr}
+
+\usepackage{subfiles}
+
+% Math Packages
+\usepackage{mathtools, amsmath, amssymb, amsthm, physics}
+\usepackage{thmtools}
+\usepackage{empheq}
+\usepackage{accents}
+
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+
+\usepackage{tikz}
+\usepackage{pgf}
+\usepackage{pgfplots}
+\usepackage{xpatch}
+\usepackage[super]{nth}
+\usepackage{import}
+
+\usepackage{multicol}
+
+% Redefinitions and makes ------------------------------------------------------
+
+\makeatletter
+\def\hlinewd#1{%
+\noalign{\ifnum0=`}\fi\hrule \@height #1 \futurelet
+\reserved@a\@xhline}
+\makeatother
+
+\makeatletter
+\newcommand*{\currentname}{\@currentlabelname}
+\makeatother
+
+% Page Setup -------------------------------------------------------------------
+\geometry{margin=1in,letterpaper}
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyhead[L]{\bfseries\notestitle}
+\fancyhead[R]{\bfseries\currentname}
+\fancyfoot[R]{
+				\tcbox[size=fbox,colframe=black,colback=black,coltext=white]{\bfseries\thepage}
+}
+\fancyfoot[C]{}
+
+% Remove indents ---------------------------------------------------------------
+\setlength\parindent{0pt}
+
+% Math Definitions -------------------------------------------------------------
+
+\DeclareMathOperator{\Ker}{Ker}
+\newcommand{\laplace}[1]{
+\mathcal{L}\qty{ #1 }
+}
+\newcommand{\invlaplace}[1]{
+\mathcal{L}^{-1}\qty{ #1 }
+}
+
+% Custom colors ----------------------------------------------------------------
+\definecolor{links}{HTML}{28859c}
+\definecolor{exampleBG}{HTML}{42f575}
+\definecolor{theoremBG}{HTML}{4cbdd9}
+\definecolor{noteBG}{HTML}{ebc334}
+
+\newcolumntype{a}{>{\columncolor{white!10}}l}
+
+% Custom t-colorbox commands/styles ---------------------------------------------
+
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins}
+\tcbuselibrary{breakable}
+
+\tcbset{
+fuzzy shadow={1.2mm}{-1.0mm}{0mm}{0.4mm}{black!60}
+}
+
+\newtcolorbox{eqbox}[1][]{
+sharp corners,
+colback=white,
+colframe=black,
+hbox,
+boxrule=1pt
+}
+
+\newtcolorbox{week}{
+colback=black,
+coltext=white,
+fontupper={\large\bfseries},
+width=1.2\paperwidth,
+size=fbox,
+halign upper=center,
+center
+}
+
+\newtcolorbox{example}[1]{
+enhanced,
+breakable,
+colbacktitle=exampleBG!60!black,
+coltitle=white,
+colback=white,
+colframe=exampleBG!50!black,
+fonttitle=\bfseries\boldmath,
+title={Ex. #1}
+}
+
+\newtcolorbox{stickynote}[1]{
+enhanced,
+breakable,
+attach boxed title to top left={xshift=3mm,yshift=-3mm,yshifttext=-1mm},
+colback=noteBG!20,
+colframe=noteBG!90!black,
+colbacktitle=noteBG!98!black,
+title={Note: #1},
+fonttitle=\bfseries\boldmath,
+boxed title style={size=small,colframe=noteBG!90!black},
+}
+
+\newtcbox{\theoremreference}{
+enhanced,
+nobeforeafter,
+tcbox raise base,
+boxrule=0.4pt,
+no shadow,
+top=0mm,
+bottom=0mm,
+right=0mm,
+left=4mm,
+arc=1pt,
+boxsep=2pt,
+before upper={\vphantom{dlg}},
+colframe=theoremBG!50!black,
+coltext=theoremBG!25!black,
+colback=theoremBG!10!white,
+overlay={
+    \begin{tcbclipinterior}
+        \fill[theoremBG!75!blue!50!white] (frame.south west)
+        rectangle node[text=white,font=\bfseries\scriptsize,rotate=90] {TH} ([xshift=4mm]frame.north west);
+    \end{tcbclipinterior}
+    }
+}
+
+\MakeRobust\theoremreference
+
+\ifdefined\pdfstringdefDisableCommands
+  \pdfstringdefDisableCommands{\def\theoremreference#1{'#1'}}
+\fi
+
+\newcommand{\thmref}[1]{\theoremreference{\ref{#1}}}
+\newcommand{\namethmref}[1]{\theoremreference{\nameref{#1}}}
+
+% Theorem Definitions ----------------------------------------------------------
+\tcbuselibrary{theorems}
+
+\newtcbtheorem[number within=section,list inside={theorems}]{theorem}{Theorem}{
+enhanced,
+breakable,
+attach boxed title to top center={yshift=-1pt,yshifttext=-1mm},
+colback=theoremBG!15,
+colframe=theoremBG!45!black,
+separator sign={\ $\blacktriangleright$},
+fonttitle=\bfseries,
+colbacktitle=theoremBG!10!black,
+boxed title style={sharp corners=south,size=small,colframe=theoremBG!10!black}
+}{th}
+
+% Weekly based T.O.C -----------------------------------------------------------
+\newcommand{\tocadd}[2]{
+    \pagebreak
+    \begin{week}
+    				\section*{#1}
+    \end{week}
+    \addcontentsline{toc}{section}{#1}
+    \addtocounter{section}{1}
+    \setcounter{subsection}{0}
+    \subfile{#2}
+}
+
+% Notes Cover Page -------------------------------------------------------------
+\newcommand{\cover}[2]{
+\begin{center}
+				\LARGE
+
+				\textbf{#1 Notes}
+
+				\vspace{0.5cm}
+				#2
+				\vspace{2cm}
+
+ 				\begin{tikzpicture}[scale=6,every node/.style={transform shape}]
+ 								\draw[fill=black, line width=2mm] (0,0) circle [radius=0.5];
+ 								\draw[fill=white, line width=2mm] (0,0) circle [radius=0.7];
+ 								\draw[fill=black, line width=2mm] (0,0) circle [radius=0.6];
+ 								\draw[color=white] (0,0) node {$\nabla^2$};
+ 				\end{tikzpicture}
+
+				\vspace{2cm}
+
+				\textbf{Eli Griffiths}
+
+				\vspace{0.8cm}
+
+				School of Physical Sciences \\
+				U.C. Irvine\\
+				United States\\
+				\today
+\end{center}
+\pagebreak
+}
+
+% Auto-Hyperlinks -------------------------------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+				colorlinks=true,
+				linktoc=all,
+				linkcolor=links,
+				bookmarksopen=true
+}
+
+\usetikzlibrary{external}

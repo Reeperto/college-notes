@@ -1,0 +1,176 @@
+\documentclass[12pt]{extarticle}
+
+\usepackage{multicol}
+\usepackage{customdice}
+
+\renewcommand\complement{\mathsf{c}}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{Homework \#3}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\section*{Problem 1}
+\subsection*{Part A}
+All the probabilities are valid since they are between $0$ and $1$ and the sum of all probabilities is $1$, therefore is is a valid probability mass function.
+
+\subsection*{Part B}
+\[
+	P(X \leq 4) = 0.1 + 0.2 + 0.2 + 0.3 + 0.1 = 0.9
+.\]
+
+\subsection*{Part C}
+\[
+	P(X \leq 3) = 0.1 + 0.2 + 0.2 + 0.3 = 0.8
+.\]
+
+\subsection*{Part D}
+\[
+	E(X) = 0(0.1) + 1(0.2) + 2(0.2) + 3(0.3) + 4(0.1) + 5(0.1) = 2.4
+.\]
+
+\subsection*{Part E}
+The profit of the operator is $200 X - 100$ with an expected value of
+\begin{align*}
+	E(200 X - 100) &= 200 E(X) - 100 \\
+								 &= 200 (2.4) - 100 \\
+								 &= 380\$
+.\end{align*}
+
+\subsection*{Part F}
+\begin{align*}
+	\text{Var}(200 X - 100) &= 200^2 \cdot \text{Var}(X) \\
+		&= 200^2 \qty(E(X^2) - \qty(E(X))^2) \\
+		&= 200^2 \qty(2.04) \\
+		&= 81,600
+.\end{align*}
+
+\section*{Problem 2}
+\subsection*{Part A}
+The missing value should be $0.1$.
+
+\subsection*{Part B}
+\[
+	E(X) = 1(.2) + 2(.2) + 3(.3) + 4(.2) + 5(.1) = 2.8
+.\]
+
+\subsection*{Part C}
+\[
+	P(X = 1 | X \leq 3) = \frac{P(X = 1)}{P(X \leq 3)} = \frac{0.2}{0.7} = \frac{2}{7}
+.\]
+
+\subsection*{Part D}
+\begin{align*}
+	E(X | X \leq 3) &= 1\cdot P (X = 1|X \leq 3) + 2\cdot P (X = 2|X \leq 3) + 3\cdot P (X = 3|X \leq 3) \\
+									&= 1 \cdot\frac{2}{7} + 2\cdot\frac{2}{7} + 3\cdot\frac{3}{7} \\
+									&= 2.412
+.\end{align*}
+
+\section*{Problem 3}
+\subsection*{Part A}
+$X$ is a binomial random variable where $n=20$ and $p=0.65$.
+
+\subsection*{Part B}
+\[
+	E(X) = n\cdot p = 20 (0.65) = 13
+.\]
+
+Out of a total of $20$ passengers, the operator should expect $13$ frequent rider club members.
+
+\subsection*{Part C}
+\[
+	P(X = 10) = \binom{20}{10} \qty(0.65)^10 \qty(0.35)^10
+.\]
+
+The R code that would solve this is \verb|dbinom(10,20,0.65)| which results in a value of $0.0686$.
+
+\subsection*{Part D}
+\[
+	P(X > 10) = \sum_{n=11}^{20} \binom{20}{n} (0.65)^n (0.35)^{20-n} = 1 - P(X \leq 10)
+.\]
+The R code that would solve this is \verb|1-pbinom(10, 20, 0.65)| which results in a value of $0.878$.
+
+\subsection*{Part E}
+The revenue would be $3 \cdot 20 = 60\$$ since there is no randomness in what each passenger pays. The number of passengers doesn't ever change, only the number of members in the frequent rider club, meaning that the expected value is just $60\$$ and the variance is $0$.
+
+\subsection*{Part F}
+The revenue earned is $2\cdot X + 4.5 \cdot (20 - X)$, therefore
+\begin{align*}
+	E(2\cdot X + 4.5 \cdot (20 - X)) &= E(90 - 2.5 X) \\
+	&= 90 - 2.5 E(X) \\
+	&= 90 - 2.5 (20) (0.65) \\
+	&= 57.5
+.\end{align*}
+
+\subsection*{Part G}
+The distribution is a Bernoulli distribution with parameter $p = 0.65$.
+
+\section*{Problem 4}
+\subsection*{Part A}
+Since each event is independent,
+\[
+	P(ABC) = P(A) P(B) P(C) = (0.25)(0.3)(0.5) = 0.0375
+.\]
+
+\subsection*{Part B}
+Each complement of each event is independent, therefore
+\[
+	P(A^\complement B^\complement C^\complement) = P(A^\complement)  P(B^\complement) P(C^\complement) = (1 - 0.25) (1 - 0.3) (1 - 0.5) = 0.2625
+.\]
+
+\subsection*{Part C}
+Define the following events
+\begin{align*}
+	E_A &= A B^\complement C^\complement \\
+	E_B &= A^\complement B C^\complement \\
+	E_C &= A^\complement B^\complement C
+.\end{align*}
+
+Then it follows that
+\begin{align*}
+	P(E_A) &= P(A) P(B^\complement) P(C^\complement) = 0.0875 \\
+	P(E_B) &= P(A^\complement) P(B) P(C^\complement) = 0.1125 \\
+	P(E_C) &= P(A^\complement) P(B^\complement) P(C) = 0.2625
+.\end{align*}
+
+Therefore
+\[
+	P(E_A \cup E_B \cup E_C) = P(E_A) + P(E_B) + P(E_C) = 0.0875 + 0.1125 + 0.2625 = 0.4625
+.\]
+
+\section*{Problem 5}
+\begin{align*}
+	P(A | BC) P(B|C) P(C) &= \frac{P(ABC)}{P(BC)} \cdot \frac{P(BC)}{P(C)} \cdot P(C) \\
+	&= P(ABC)
+.\end{align*}
+
+\section*{Problem 6}
+\subsection*{Part A}
+Yes because the chance of drawing a ball on the second pick is not affected by the first as the balls are replaced after each draw, meaning the probability of drawing a white never changes.
+
+\subsection*{Part B}
+No since the number of possible cards to draw from has decreased, changing the probability of the second pick.
+
+\subsection*{Part C}
+Yes it is a binomial distribution since the trials are independent and there is a constant probability of success.
+
+\section*{Problem 7}
+\subsection*{Part A}
+\[
+	E(7X + 2Y - 3) = 7E(X) + 2E(Y) - 3 = 7(0) + 2(-1) - 3 = -5
+.\]
+\subsection*{Part B}
+\[
+	E(X^2) = \text{Var}(X) + \qty(E(X))^2 = 1 + 0 = 1
+.\]
+
+\subsection*{Part C}
+\[
+	\text{Var}(2X - 5Y + 7) = 4 \text{Var}(X) + 25 \text{Var}(Y) = 4 + 25(4) = 104
+.\]
+
+\end{document}

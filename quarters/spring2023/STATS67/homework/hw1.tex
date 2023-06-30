@@ -1,0 +1,169 @@
+\documentclass[12pt]{extarticle}
+
+\usepackage{multicol}
+
+\input{../preamble.tex}
+
+\newcommand{\powerset}[1]{\mathcal{P}(#1)}
+\fancyhead[R]{Homework \#1}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\usetikzlibrary{arrows.meta}
+
+\begin{document}
+
+\section*{Problem 1}
+\begin{multicols}{2}
+\subsection*{Part A}
+\[
+	S = \qty{2,3,4,5,6,7,8,9,10,11,12}
+.\]
+\subsection*{Part B}
+\[
+	S = \qty{1,2,3,4,5,6,7}
+.\]
+
+\subsection*{Part C}
+	\def\Heads{\mathbf{H}}
+	\def\Tails{\mathbf{T}}
+	\begin{align*}
+		S = \{
+			&(\Tails,\Tails,\Tails), (\Heads,\Heads,\Heads),\\
+			&(\Tails,\Tails,\Heads), (\Heads,\Tails,\Tails),\\
+			&(\Tails,\Heads,\Heads), (\Heads,\Heads,\Tails), \\
+			&(\Tails,\Heads,\Tails), (\Heads,\Tails,\Heads)
+		\}
+	\end{align*}
+
+\columnbreak
+
+\subsection*{Part D}
+\[
+	S = \qty{0,1,2,3,4,5}
+.\]
+
+\subsection*{Part E}
+\[
+	S = \qty{1,2,3,4,5,6}
+.\]
+
+\subsection*{Part F}
+\[
+	S = \qty{0,1,2,3,4,5}
+.\]
+\end{multicols}
+
+\section*{Problem 2}
+\subsection*{Part A}
+\[
+	A = \qty{
+		(J,M),
+		(J,A),
+		(S,M),
+		(S,A)
+	}
+.\]
+
+\subsection*{Part B}
+\[
+	B = \qty{
+		(J,M),
+		(J,A),
+		(S,M),
+		(S,A),
+		(M,A)
+	}
+.\]
+
+\subsection*{Part C}
+\[
+	A^\complement = \qty{
+		(J,S),
+		(M,A)
+	}
+.\]
+
+\subsection*{Part D}
+\[
+	A\cap B = \qty{
+		(J, M),
+		(J, A),
+		(S, M),
+		(S, A)
+	}
+.\]
+
+\section*{Problem 3}
+\subsection*{Part A}
+A probability distribution was not used as the probability of getting a 2 is negative which is not a valid probability since it does not lie between 0 or 1.
+
+\subsection*{Part B}
+A probability distribution was used as each probability is in the range of 0 to 1 and the sum of the probability of each element in the sample space adds up to 1.
+
+\subsection*{Part C}
+A probability distribution was not used as the sum of the probabilities is $0.95 \neq 1$.
+
+\section*{Problem 4}
+$A$ and $B$ cannot be mutually exclusive as the probability $P(A \cup B) = 1.10 > 1$, meaning that $A$ and $B$ could potentially occur at the same time. Hence they cannot be mutually exclusive.
+
+\section*{Problem 5}
+\subsection*{Part A}
+\begin{align*}
+	P(A^\complement B^\complement) &= P((A \cup B)^\complement) \\
+																			&= 1 - P(A \cup B) \\
+																			&= 1 - 0.8 \\
+																			&= 20\%
+\end{align*}
+\subsection*{Part B}
+\begin{align*}
+	P(A\cup B) &= P(A) + P(B) - P(AB) \\
+	P(AB) &= P(A) + P(B) - P(A \cup B) \\
+	&= 0.5 + 0.45 - 0.8 \\
+	&= 15\%
+\end{align*}
+\subsection*{Part C}
+\begin{align*}
+	P(AB^\complement) &= P(A) - P(AB) \\
+										&= 0.5 - 0.15 \\
+										&= 35\%
+\end{align*}
+\subsection*{Part D}
+The events of having a Visa card and a having a Mastercard are not mutually exlcusive since $P(AB) > 0$.
+
+\section*{Problem 6}
+\subsection*{Part A}
+
+\begin{align*}
+	\hat{p}_1 &= 0.6000 \\
+	\hat{p}_2 &= 0.3000 \\
+	\hat{p}_3 &= 0.7000 \\
+	\hat{p}_4 &= 0.5000 \\
+	\hat{p}_5 &= 0.4000
+\end{align*}
+
+The true proportion of heads should be 0.5 since the coin is fair.
+
+\subsection*{Part B}
+
+\begin{align*}
+	\hat{p}_1 &= 0.5010  \\
+	\hat{p}_2 &= 0.4945 \\
+	\hat{p}_3 &= 0.5062 \\
+	\hat{p}_4 &= 0.4981 \\
+	\hat{p}_5 &= 0.4993
+\end{align*}
+
+\section*{Problem 7}
+\subsection*{Part A}
+
+Probability student doesn't miss any days $= 1 - 0.25 - 0.15 - 0.28 = 32\%$.
+
+\subsection*{Part B}
+Probability student misses one day or less $= 1 - 0.15 - 0.28 = 57\%$.
+
+\section*{Problem 8}
+The meaning of a $75\%$ chance is that if I play many games against an opponent and look at the proportion of games I won to the games I played, in the long run that proportion will converge towards $0.75$ or $75\%$.
+
+\end{document}

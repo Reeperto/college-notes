@@ -1,0 +1,22 @@
+- name: "STATS 67"
+  slot:
+    days:
+      - "Mon"
+      - "Wed"
+    end:
+      hour: 16
+      minute: 50
+    start:
+      hour: 15
+      minute: 30
+
+- name: "STATS 67 Dis"
+  slot:
+    days:
+      - "Tue"
+    end:
+      hour: 17
+      minute: 50
+    start:
+      hour: 17
+      minute: 0

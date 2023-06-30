@@ -1,0 +1,64 @@
+\documentclass[../notes.tex]{subfiles}
+
+\graphicspath{
+    {"../figures"}
+}
+
+\begin{document}
+\banner{Conditional Probability and Independence}
+
+\subsection{Independent Events}
+\begin{definition}[Pairwise Independence]
+	Two events $E$ and $F$ are said to be Independent if
+	\[
+		P(EF) = P(E) \cdot P(F)
+	.\]
+	or equivalently
+	\[
+		P(E | F) = P(E)
+	.\]
+\end{definition}
+
+Pairwise independence can be understood as the two events having no impact on the other. This intuition follows from the definition of independence using conditional probability since an event $E$'s probability of occurring given $F$ occurred is just the probability of $E$, meaning $F$ occurring had no impact on $E$.
+
+\begin{example}
+	Consider tossing a coin 2 times. Let $E_1 = \qty{HH, TT}, E_2 = \qty{TH, HH}$. Then \[
+		E_1 E_2 = \qty{HH}
+	.\]
+	The probability $P(E_1 E_2) = \frac{1}{4}$. Calculating the probability of each individual event results in $P(E_1) = \frac{1}{2}$ and $E_2 = \frac{1}{2}$, hence
+	\[
+		P(E_1) \cdot P(E_2) = \frac{1}{2} \cdot \frac{1}{2} = P(E_1 E_2)
+	.\]
+	Therefore the two events are Independent of each other.
+\end{example}
+
+\subsection{Bayes Theorem}
+\begin{theorem}
+	Given two events $E$ and $F$, the following holds
+	\begin{enumerate}
+		\item Law of Total Probability
+			\[
+				P(E | F) P(F) + (1 - P(F))\cdot P(E | F^\complement)
+			.\]
+		\item Bayes Rule
+			\[
+				P(E | F) = \frac{P(F | E) \cdot P(E)}{P(F)}
+			.\]
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Let $E$ and $F$ be events. Note that $EF$ and $EF^\complement$ are disjoint events. Therefore
+	\begin{align*}
+		P(E) &= P(EF) + P(EF^\complement) \\
+				 &= P(E | F) P(F) + P(E | F^\complement) P(F^\complement) \\
+				 &= P(E | F) P(F) + (1 - P(F))\cdot P(E | F^\complement)
+	\end{align*}
+	hence the Law of Total Probability. Consider now the following
+	\begin{align*}
+		P(E | F) &= \frac{P(FE)}{P(E)} \\
+						 &= \frac{P(E | F) P(E)}{P(F)}
+	\end{align*}
+	hence Baye's Rules.
+\end{proof}
+	
+\end{document}

@@ -1,0 +1,178 @@
+\documentclass[12pt]{extarticle}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{\textbf{Homework \#2}}
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\section*{Problem 1}
+
+Show that for any given integers $a, b, c$, if $a$ is even and $b$ is odd, then $7a - ab + 12c + b^2 + 4$ is odd.
+
+\subsection*{Solution}
+
+A direct proof that for any given integers $a, b, c$, if $a$ is even and $b$ is odd, then $7a - ab + 12c + b^2 + 4$ is odd.
+
+\begin{proof}
+	Let $a, b, c \in \mathbb{Z}$. Suppose $a$ is an even integer and $b$ is an odd integer. There exists $m,k \in \mathbb{Z}$ such that $a = 2m$ and $b = 2k + 1$. Then
+  \begin{align*}
+  	7a - ab + 12c + b^2 + 4 &= 7(2m) - (2m)(2k+1) + 12c + (2k+1)^2 + 4 \\
+  													&= 14m - 4mk - 2m + 12c + 4k^2 + 4k + 1 + 4 \\
+  													&= 2(6m - 2mk + 6c + 2k^2 + 2k + 2) + 1 
+  .\end{align*}
+	is by definition an odd integer because $6m - 2mk + 6c + 2k^2 + 2k + 2 \in \mathbb{Z}$ .\qedhere
+\end{proof}
+
+\section*{Problem 3}
+
+Prove or disprove the following conjectures: 
+
+\begin{enumerate}[label=(\alph*)]
+	\item The sum of any 3 consecutive integers is divisible by 3. 
+	\item The sum of any 4 consecutive integers is divisible by 4.
+\end{enumerate}
+
+\subsection*{Solution}
+
+\subsubsection*{Part A}
+
+A direct proof that the sum of any 3 consecutive integers is divisible by 3.
+\begin{proof}
+	Let $a,b,c \in \mathbb{Z}$. Suppose that $a$, $b$ and $c$ are consecutive. Without loss of generality they can be expressed as $a = a$, $b = a+1$, and $c = a+2$ by the definition consecutive integers. It then follows
+	\begin{align*}
+		a + b + c &= (a) + (a+1) + (a+2) \\
+		&= 3a + 3 \\
+		&= 3(a+1).
+	\end{align*}
+	is a multiple of 3.
+\end{proof}
+
+\subsubsection*{Part B}
+
+A direct proof that the sum of any 4 consecutive integers is not divisible by 4, disproving the second conjecture.
+\begin{proof}
+	Let $a,b,c,d \in \mathbb{Z}$. Suppose that $a,b,c$ and $d$ are consecutive. Without loss of generality they can be written as $a = a$, $b = a+1$, $c = a+2$, and $c = a+3$. Then
+	\begin{align*}
+		a + b + c + d &= (a) + (a+1) + (a+2) + (a+3) \\
+									&= 4a + 6.
+	\end{align*}
+	is not a multiple of 4.
+\end{proof}
+
+\section*{Problem 5}
+
+Prove that if $n$ is a natural number greater than 1, then $n! + 2$ is even.
+
+\subsection*{Solution}
+
+A direct proof that if $n$ is a natural number greater than 1, then $n! + 2$ is even.
+\begin{proof}
+	Let $n \in \mathbb{N}$ such that $n > 1$. By definition of the factorial, $n! = n \cdot (n-1) \cdot (n-2)\ldots 3 \cdot 2 \cdot 1$. Then
+	\begin{align*}
+		n! + 2 &= n \cdot (n-1) \cdot (n-2)\ldots 3 \cdot 2 \cdot 1 + 2 \\
+					 &= 2 \qty(n \cdot (n-1) \cdot (n-2)\ldots 3 \cdot 1 + 1)
+	\end{align*}
+	Since $n \cdot (n-1) \cdot (n-2)\ldots 3 \cdot 1 + 1$ is an integer, $n! + 2$	 is an even number.
+\end{proof}
+
+\section*{Problem 7}
+
+\begin{enumerate}[label=(\alph*)]
+	\item Let $x \in \mathbb{Z}$. Prove that $5x + 3$ is even if and only if $7x - 2$ is odd.
+	\item Can you conclude anything about $7x - 2$ if $5x + 3$ is odd?
+\end{enumerate}
+
+\subsection*{Solution}
+
+\subsubsection*{Part A}
+
+A direct proof of both directions.
+
+\begin{proof}
+	Let $x \in \mathbb{Z}$. Suppose that $5x+3$ is even. By definition there exists $k \in \mathbb{Z}$ such that $5x + 3 = 2k$. It follows that
+	\begin{align*}
+		5x + 3 &= 2k \\
+					 &\big\Updownarrow \\
+		5x - 2 &= 2k - 5 \\
+					 &\big\Updownarrow \\
+		7x - 2 &= 2k + 2x - 5 \\
+					 &= 2k + 2x - 6 + 1 \\
+					 &= 2(k + x - 3) + 1 \\
+	\end{align*}
+	Since $k + x - 3 \in \mathbb{Z}$, $7x-2$ is by definition an odd integer.
+\end{proof}
+
+\subsubsection*{Part B}
+
+Yes. One can conclude that if $5x + 3$ is odd then $7x-2$ is even. Consider the backwards direction of Part A. That is: "If $7x-2$ is odd, then $5x + 3$ is even". This is a true statement as established in Part A. Therefore its contrapositive is also true. Therefore the statement: "If $5x + 3$ is odd, then $7x - 2$ is even" is true.
+
+\section*{Problem 10}
+
+\begin{definition}
+	A real number $x$ is rational if it may be written in the form $x = \frac{p}{q}$ where $p$ is an integer and $q$ is a positive integer. $x$ is irrational if it is not rational.
+\end{definition}
+
+Prove or disprove the following conjecture. 
+\begin{conjecture}
+  If $x$ and $y$ are real numbers such that $3x + 5y$ is irrational, then at least one of $x$ and $y$ is irrational.
+\end{conjecture}
+
+\subsection*{Solution}
+
+A proof by contrapositive that if $x$ and $y$ are real numbers such that $3x + 5y$ is irrational, then at least one of $x$ and $y$ is irrational.
+\begin{proof}
+	Let $x,y \in \mathbb{R}$. Suppose both are rational. Therefore both can be written in the form $x = \frac{p}{q}$ and $y = \frac{m}{n}$ where $p,q,m$, and $n$ are integers with $q$ and $n$ being positive. Then
+	\begin{align*}
+		3x + 5y &= 3\qty(\frac{p}{q}) + 5 \qty(\frac{m}{n}) \\
+						&= \frac{3p}{q} + \frac{5m}{n} \\
+						&= \frac{3pn + 5mq}{qn}
+	\end{align*}
+	is by definition a rational number since the top is an integer and the bottom is a product of positive integers and therefore also a positive integer. This proves the contrapositive and therefore the original proposition.
+\end{proof}
+
+\section*{Problem 11}
+
+Let $x$ and $y$ be integers. Prove: For $x^2 + y^2$ to be even, it is necessary that $x$ and $y$ have the same parity (i.e. both even or both odd).
+
+\subsection*{Solution}
+
+% x and y having the same parity is neccessary for x^2 + y^2 to be even.
+% If x^2 + y^2 is even, then x and y have the same parity
+
+% Contrapositive: If x and y have a different parity, then x^2 + y^2 is odd
+
+Proof by contrapositive that if $x^2 + y^2$ is even then $x$ and $y$ have the same parity.
+\begin{proof}
+	Suppose there are two integers $x$ and $y$ with different parity. That is, one of $x$ or $y$ is even with the other being odd. Without loss of generality, assume that $x$ is an even integer and $y$ is an odd integer. Therefore there exists integers $m$ and $n$ such that $x = 2m$ and $y=2n+1$. Then
+	\begin{align*}
+		x^2 + y^2 &= (2m)^2 + (2n+1)^2 \\
+							&= 4m^2 + 4n^2 + 4n + 1 \\
+							&= 2(2m^2 + 2n^2 + 2n) + 1.
+	\end{align*}
+	is an odd integer. This proves the contrapositive and therefore the original proposition.
+\end{proof}
+
+\section*{Problem 12}
+
+Prove that if x and y are positive real numbers, then $\sqrt{x+y} \neq \sqrt{x} + \sqrt{y}$. \textit{Argue by contradiction.}
+
+\subsection*{Solution}
+
+Proof by contradiction that if $x$ and $y$ are positive real numbers, then $\sqrt{x+y} \neq \sqrt{x} + \sqrt{y}$.
+
+\begin{proof}
+	Let $x$ and $y$ be  real numbers. Assume towards contradiction that $x$ and $y$ are positive and that $\sqrt{x + y} = \sqrt{x} + \sqrt{y}$. It follows that
+	\begin{align*}
+		\sqrt{x+y} &= \sqrt{x} + \sqrt{y} \\
+		\qty(\sqrt{x+y})^2 &= \qty(\sqrt{x} + \sqrt{y})^2 \\
+		x+y &= x + \sqrt{xy} + y \\
+		\sqrt{xy} &= 0 \\
+		xy &= 0.
+	\end{align*}
+	which implies that either $x$ or $y$ are 0. However since it was assumed both $x$ and $y$ are positive, they are both stricly greater than 0 and hence a contradiction.
+\end{proof}
+
+
+\end{document}

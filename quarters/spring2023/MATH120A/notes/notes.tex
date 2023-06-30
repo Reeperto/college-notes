@@ -1,0 +1,37 @@
+\documentclass[12pt,titlepage]{extarticle}
+
+\input{../preamble.tex}
+
+\renewcommand*\contentsname{Table of Contents}
+
+\title{Math 120A: Group Theory}
+\author{Eli Griffiths}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\thispagestyle{empty}
+\tableofcontents
+
+\pagebreak
+
+\subfile{topics/intro.tex}
+\subfile{topics/binaryoperations.tex}
+\subfile{topics/binarystructures.tex}
+\subfile{topics/introgroups.tex}
+\subfile{topics/permutations.tex}
+\subfile{topics/homomorphisms.tex}
+
+\newpage
+\pagestyle{empty}
+
+\addcontentsline{toc}{section}{List of Theorems}
+\listoftheorems[ignoreall,onlynamed={theorem}]
+
+\addcontentsline{toc}{section}{List of Definitions}
+\listoftheorems[ignoreall,onlynamed={definition},title={List of Definitions}]
+
+\end{document}

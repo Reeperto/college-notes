@@ -1,0 +1,178 @@
+\documentclass[12pt]{extarticle}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{Homework \#$5$}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+
+\begin{document}
+\DeclarePairedDelimiter\bangle\langle\rangle
+
+\section*{6.1}
+\[
+	n = 4(9) + 6 \implies r = 6, q = 4
+.\]
+
+\section*{6.3}
+\[
+	n = -7(8) + 6 \implies r = 6, q = -7
+.\]
+
+\section*{6.5}
+\[
+	\gcd(32,24) = 8
+.\]
+
+\section*{6.9}
+The number of generators a cylic group of order $n$ has is the quantity of numbers $m$ such that $1 \geq m < n$ and $\gcd(m,n) = 1$, or equivalently the number of coprime numbers to $n$ that are less than $n$. Since $1,3,5,$ and $7$ are the only numbers less than $8$ that satisfy this property, the number of generators for a cyclic group of order $8$ is $4$.
+
+\section*{6.13}
+The generators of a group must be preserved under an isomorphism. Therefore the number of automorphisms on $\mathbb{Z}_6$ is the number of isomorphic mappings that preserve the mapping of the generators of $\mathbb{Z}_6$. The generators of $\mathbb{Z}_6$ are $1,5$, therefore there are $2$ automorphisms on $\mathbb{Z}_6$.
+
+\section*{6.17}
+\[
+	|\bangle{25}| = \frac{42}{\gcd(42,25)} = \frac{42}{3} = 14
+.\]
+
+\section*{6.24}
+
+\begin{multicols}{2}
+\begin{align*}
+	\bangle{1} &= \bangle{3} = \bangle{5} = \bangle{7} = \mathbb{Z}_8 \\
+	\bangle{2} &= \qty{0,2,4,6} \\
+	\bangle{4} &= \qty{0,4}
+.\end{align*}
+\columnbreak
+\begin{center}
+	\begin{tikzpicture}
+		\node (1) at (0,3) {$\bangle{1}$};
+		\node (2) at (0,2) {$\bangle{2}$};
+		\node (4) at (0,1) {$\bangle{4}$};
+		\node (0) at (0,0) {$\bangle{0}$};
+
+		\draw (1) -- (2) -- (4) -- (0);
+	\end{tikzpicture}
+\end{center}
+\end{multicols}
+
+\section*{6.25}
+{
+	\newcommand\temp[1]{|\bangle{#1}|}
+	\begin{align*}
+		\temp{1} &= \temp{5} = |\mathbb{Z}_6| = 6 \\
+		\temp{2} &= \temp{4} = \qty|\qty{0,2,4}| = 3 \\
+		\temp{3} &= \qty|\qty{0,3}| = 2
+	.\end{align*}
+}
+
+\section*{6.44}
+\begin{lemma}
+	\label{lem:homomorphicexponent}
+	If $G$ and $G'$ are groups with a homorphism $\phi : G \to G'$, then for all integers $n$ and $a \in G$,
+	\[
+		\phi(a^n) = \phi(a)^n
+	.\]
+\end{lemma}
+\begin{proof}
+	Proceed with induction over $\mathbb{N}_0$. Let $G$ and $G'$ be groups with a homomorphism $\phi$. Let $a \in G$. Consider the base case when $n = 0$. Then $\phi(a^0) = \phi(e) = e' = \phi(e)^0$. Therefore the base case holds. Assume for some fixed $n \in \mathbb{N}_0$ that $\phi(a^n) = \phi(a)^n$. Then
+	\[
+		\phi(a^{n+1}) = \phi(a^n) \phi(a)
+	.\]
+	since $\phi$ is a homomorphism. By the induction hypothesis,
+	\begin{align*}
+		\phi(a^{n+1}) &= \phi(a^n) \phi(a) \\
+		&= \phi(a)^n \phi(a) \\
+		&= \phi(a)^{n+1}
+	.\end{align*}
+	Therefore if $\phi$ is a homorphism, $\phi(a^n) = \phi(a)^n$ for $n \in \mathbb{N}_0$. Note that
+	\[
+		e' = \phi(aa^{-1}) = \phi(a) \phi(a^{-1})
+	,\]
+	meaning that $\phi(a^{-1}) = \phi(a)^{-1}$. Therefore by a similar induction argument above, $\phi(a^n) = \phi(a)^n$ for all integers $n$.
+\end{proof}
+
+\begin{theorem}
+	If $G$ is a cyclic group with generator $a$ and $G'$ is a group isomorphic to $G$, for every $x \in G$, $\phi(x)$ is determined entirely by $\phi(a)$.
+\end{theorem}
+\begin{proof}
+	Let $G$ be a cylic group with generator $a$ and let $G'$ be a group isomorphic to $G$. Let $\phi$ be the isomorphism between $G$ and $G'$. Let $x \in G$. Since $G$ is cylic, there is an $n \in \mathbb{Z}$ such that $x = a^n$. By Lemma \ref{lem:homomorphicexponent}, $\phi(x) = \phi(a^n) = \phi(a)^n$. Therefore for every element $x \in G$, there is some integer $n$ such that $\phi(x) = \phi(a)^n$, hence $\phi(x)$ is determined entirely by $\phi(a)$.
+\end{proof}
+
+\section*{6.46}
+\begin{proof}
+	Let $G$ be a group and let $a,b \in G$. Assume that $ab$ has finite order $n$. That is there exists $n \in \mathbb{Z}$ such that $(ab)^n = e$. Consider then
+	\begin{align*}
+		b (ab)^n a &= (ba)^{n+1} \\
+		b e a &= (ba)^{n+1} \\
+		ba &= (ba)^{n+1} \\
+		(ba)^n &= e
+	.\end{align*}
+	Therefore $ba$ has an order $\leq n$. Assume towards contradiction that $|ba| < n$. Let $s < n$ such that $|ba| = s$. Then
+	\begin{align*}
+		(ba)^s &= e \\
+		a(ba)^s b &= aeb \\
+		(ab)^{s+1} &= ab \\
+		(ab)^s &= e
+	.\end{align*}
+	Thus the order of $ab$ is less than or equal to $s$ and hence less than $n$. This is a contradiction and therefore the order of $ba$ must also be $n$.
+\end{proof}
+
+\section*{6.47}
+\subsection*{Part A}
+The least common multiple of $r$ and $s$ is the smallest positive integer generator for the group
+\[
+	r \mathbb{Z} \cap s \mathbb{Z}
+.\]
+
+\subsection*{Part B}
+The condition in which the least common multiple of $r$ and $s$ is their product is when they share no divisors greater than $1$, or equivalently $r$ and $s$ are coprime.
+
+\subsection*{Part C}
+\begin{proof}
+	Let $d = ir + js$ be the gcd of $r$ and $s$ and $l = qr = ts$ be the least common multiple of $r$ and $s$. Note that $ld = lir + ljs = tisr + qjsr = (ti + qj)sr$ meaning $ld$ is a multiple of $rs$. Additionally there are integers $a,b$ such that $r = ad$ and $s = bd$. Therefore $rs = abdd = (abd)d$. Since $abd = rb = sa$, $abd$ is a multiple of both $r$ and $s$, meaning $abd = lz$ for some integer $z$. Therefore $rs = lzd = (ld)z$, meaning $rs$ is a multiple of $ld$. Since $rs | ld$ and $ld | rs$, $rs = ld$.
+\end{proof}
+
+
+\section*{6.48}
+\begin{proof}
+	Let $G$ be a group with a finite number of subgroups. Note that $G$ can be expressed as the union of all its cylic subgroups because every element of $G$ generates a cyclic subgroup containing $g$. Since $G$ has finite subgroups, it has a finite number of cyclic subgroups. None of these cyclic subgroups can be infinite otherwise they would be isomorphic to $\mathbb{Z}$ which has an infinite number of subgroups. Therefore $G$ has a finite amount of finite cyclic subgroups. Therefore $G$ is the union of a finite set of finite subgroups, meaning $G$ itself is also finite.
+\end{proof}
+
+\section*{6.53}
+\begin{proof}
+	Let $G$ be a cyclic group of order $n$. Let $m$ be an integer such that $m | n$. Note that $G \simeq \mathbb{Z}_n$. Therefore solving $x^m = e$ is the same as solving $mx \equiv 0 \pmod{n}$ with $0 \leq x < n$. Note that $mx \equiv 0 \pmod{n}$ is the same as $mx = nq$ for $q \in \mathbb{Z}$. Hence $x = \frac{nq}{m}$. Additionally, since $x < n$, $\frac{nq}{m} < n$ meaning $q < m$. Therefore the solutions to $x^m = 0$ are of the form $x = \frac{nq}{m}$ where $q \in \qty{0,1,2,\ldots,m-1}$. Therefore there are $m$ solutions to $x^m = e$ when $m | n$.
+\end{proof}
+
+\section*{6.54}
+\begin{proof}
+	Let $G$ be a cyclic gorup of order $n$ and let $m \in \mathbb{Z}$ with $1 < m < n$ and $m \nmid n$. Just like in $6.53$, the problem of finding the solutions to $x^m = e$ is the same as solving for $mx \equiv 0 \pmod{n}$ with $0 \leq x < n$. Note that $0, \frac{n}{d}, \frac{2n}{d}, \ldots, \frac{(m-1)n}{d}$ are all solutions. Assume towards contradiction that there is a solution $r$ that isnt enumerated above. Since $mr \equiv 0 \pmod{n}$, $mr = nq$ for some integer $q$, meaning $r = \frac{nq}{m}$. Let $m = xd$ and $n = yd$ where $d = \gcd(m,n)$ and $x,y \in \mathbb{Z}$. Then
+	\[
+		r = \frac{ydq}{xd} = \frac{yq}{x}
+	.\]
+	Since $x$ and $y$ are coprime, $x$ must divide $q$. Therefore there is an integer $s$ such that $q = xs$. Then
+	\[
+		r = \frac{yq}{x} = \frac{yxs}{x} = ys = \frac{ns}{d}
+	.\]
+	Since $r < n$, $s < d$ meaning $s$ takes on a value between $0$ and $d-1$. However, this means $r$ is one of the enumereated solutions from the beginning. Therefore there are $d$ solutions.
+\end{proof}
+
+\section*{6.55}
+\begin{proof}
+	Let $p$ be a prime and consider $\mathbb{Z}_p$. Since $p$ is prime, every integer less than $p$ is coprime. Therefore every integer less than $p$ and greater than $0$ generates $\mathbb{Z}_p$. Therefore the only subgroups are $\mathbb{Z}_p$ and the trivial group, hence $\mathbb{Z}_p$ has no proper non-trivial subgroups.
+\end{proof}
+
+\section*{6.56}
+\subsection*{Part A}
+\begin{proof}
+	Let $G$ be an abelian group and let $H \leq G$ and $K \leq G$ be cyclic with coprime orders $r$ and $s$ respectively. Let $a$ be the generator of $H$ and $b$ be the generator of $K$. Note that since $G$ is abelian that $(ab)^{rs} = a^{rs} b^{rs} = \qty(a^r)^s \qty(b^s)^r = e$. Assume towards contradiction that there is some $n \in \mathbb{Z}$ less than $rs$ such that $(ab)^n = e$. This implies that $a^n = b^{-n}$. Let $x = a^n = b^{-n}$. Note that $x \in H$ and $x \in K$. Therefore $x$ produces a subgroup of $H$ with an order dividing $r$ and a subgroup of $K$ with an order dividing $s$. Since $r$ and $s$ are coprime, $x = e$ so that $|\bangle{x}| = 1 = \gcd(r,s)$. Therefore $a^n = b^n = e$. However in this case $n$ is divisible by both $r$ and $s$, meaning $n = rs$. This contradicts the assumption that $n < rs$, hence $rs$ is the smallest positive integer such that $(ab)^{rs} = e$. Therefore $ab$ generates a cyclic subgroup of $G$ with order $rs$.
+\end{proof}
+
+\subsection*{Part B}
+\begin{proof}
+	Let $G$ be an abelian group and let $H \leq G$ and $K \leq G$ be cyclic with orders $r$ and $s$ respectively. Let $a$ be the generator of $H$ and $b$ be the generator of $K$. Let $d = \gcd(r,s)$ and $s = dq$ where $\gcd(q,r) = 1$. Then $rq = \frac{rs}{d}$ is the least common multiple of $r$ and $s$. Note that $|\bangle{a}| = r$ and $|\bangle{b^d}| = q$. Part (A) states then that $ab^d$ generates a cyclic subgroup of $rq = \text{lcm}(r,s)$.
+\end{proof}
+
+\end{document}

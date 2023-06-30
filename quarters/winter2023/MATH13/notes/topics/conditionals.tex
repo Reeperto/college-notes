@@ -1,0 +1,171 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {"../figures"}
+}
+
+\begin{document}
+\banner{Propositions}
+
+\begin{definition}[Propositions]
+	A proposition is any statement that is either true or false
+\end{definition}
+
+Examples of propositions are \textit{"I had pizza on thursday"} or symbolic proposition such as $1 + 1 = 3$. Each of these statements can be assigned either true or false. It is helpful however to abstract propositions as variables. Using variables, we can define multiple useful operatives that act upon them. Truth tables provide a way to concretely define these operations. Assume there are propositions $P$ and $Q$.
+
+\subsection{Proposition Operatives}
+
+Propositional operatives are defined through truth tables. Truth tables lay out all possible outcomes given a certain set of inputs. Some of the most common operatives are displayed in Table \ref{tbl:propoperators}.
+
+\begin{table}[h!]
+	\centering
+	\label{tbl:propoperators}
+	\begin{tabular}{ll | llllll}
+		P & Q & $\land$ & $\lor$ & $\Rightarrow$ & $\Leftrightarrow$ & $\lnot P$ & $\lnot Q$ \\\hline
+		T & T & T & T & T & T & F & F \\ 
+		T & F & F & T & F & F & F & T \\ 
+		F & T & F & T & T & F & T & F \\ 
+		F & F & F & F & T & T & T & T \\ 
+	\end{tabular}
+	\caption{Truth table for common operatives}
+\end{table}
+
+\subsection{Translation of Operatives}
+
+Define the propositions $P$, $Q$, and $R$ as
+
+\begin{itemize}
+	\item $P$: Irvine is a city in California
+	\item $Q$: Irvine is a city in Scotland
+	\item $R$: Irvine has seven letters
+\end{itemize}
+
+Simple sentences using these propositions have symbolic representations. Some examples are
+
+\begin{enumerate}
+	\item Irvine is a city in California and Irvine does not have seven letters
+		\begin{itemize}
+			\item $P \land \lnot R$
+		\end{itemize}
+	\item Irvine is a city in California and Irvine does not have seven letters
+		\begin{itemize}
+			\item $P \land \lnot R$
+		\end{itemize}
+	\item Irvine is a city in California and Irvine does not have seven letters
+		\begin{itemize}
+			\item $P \land \lnot R$
+		\end{itemize}
+\end{enumerate}
+
+\subsection{Operations on Conditionals}
+
+There are three introductory manipulations on conditionals that will be used
+
+\begin{itemize}
+	\item Negation
+	\item Converse
+	\item Contrapositive
+\end{itemize}
+
+If given 2 propositions $P$ and $Q$ then the above bullets turn into
+
+\begin{itemize}
+	\item $P \land \lnot Q$
+	\item $Q \implies P$
+	\item $\lnot Q \implies \lnot P$
+\end{itemize}
+
+
+\begin{theorem}[Contrapositive]
+	The contrapositive of an implication is logically equivalent to the original implication
+\end{theorem}
+\begin{proof}
+	Given two propositions $P$ and $Q$, logical equivalence between $P \implies Q $ and $ \lnot Q \implies \lnot P$ can be established directly.
+
+	\begin{center}
+	  \begin{tabular}{c c || c c || c | c}
+	  	$P$ & $Q$ & $\lnot P$ & $\lnot Q$ & $P \implies Q$ & $\lnot Q \implies \lnot P$ \\\hline
+	  	T & T & F & F & T & T \\
+	  	T & F & F & T & F & F \\
+	  	F & T & T & F & T & T \\
+	  	F & F & T & T & T & T \\
+	  \end{tabular}
+	\end{center}
+\end{proof}
+
+The contrapositive is often useful as it changes an implication into something possibly easier to show.
+
+\begin{theorem}
+	If there are 2 integers $x$ and $y$ and their sum $x+y$ is odd, then one of $x$ or $y$ are odd.
+\end{theorem}
+
+\begin{proof}
+	The symbolic representation of the theorem is
+	\[
+	  P \implies Q
+	.\]
+	Where $P$ is the statement that $x+y$ is odd, and $Q$ is the statement that either $x$ or $y$ are odd. A direct proof here will not work out well, meaning a contrapositive approach may be better. The contrapositive of this implication is $\lnot Q \implies \lnot P$, or in written word: "If $x$ and $y$ have the same parity (both are even, both are odd), then their sum $x+y$ is even". This splits into two \textbf{cases}.
+
+	\subsubsection*{Case 1: Both are Even}
+
+	Suppose that $x$ and $y$ are both even integers. There are integers $k_{1}$ and $k_{2}$ such that $x = 2 k_{1}$ and $y = 2 k_{2}$. Their sum is equal to $x + y = 2 k_{1} + 2 k_{2} = 2 (k_{1} + k_{2})$. The resulting sum $2(k_{1} + k_{2})$ is even.
+
+	\subsubsection*{Case 2: Both are Odd}
+
+	Suppose that $x$ and $y$ are both odd integers. There are integers $k_{1}$ and $k_{2}$ such that $x = 2 k_{1}$ and $y = 2 k_{2}$. Their sum is equal to $x + y = 2 k_{1} + 1 + 2 k_{2} + 1 = 2 (k_{1} + k_{2} + 1)$. The resulting sum $2(k_{1} + k_{2} + 1)$ is even.
+	
+	\vspace{1cm}\noindent
+	Therefore $x+y$ is even if both $x$ and $y$ have the same parity.
+\end{proof}
+
+\subsection{De Morgans Laws}
+
+\begin{theorem}[De Morgans Laws]
+	Let $P$ and $Q$ be propositions. Then
+	\begin{enumerate}
+		\item $\lnot (P \land Q) = \lnot P \lor \lnot Q$
+		\item $\lnot (P \lor Q) = \lnot P \land \lnot Q$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	Let $P$ and $Q$ be propositions.
+
+	\subsubsection*{De Morgans Law \#1}
+  
+	\begin{center}
+	  \begin{tabular}{c c || c c c || c c }
+	  	$P$ & $Q$ & $\lnot P$ & $\lnot Q$ & $P \land Q$ & $\lnot (P \land Q)$ & $\lnot P \lor \lnot Q$ \\\hline
+	  	T & T & F & F & T & F & F \\
+	  	T & F & F & T & F & T & T \\
+	  	F & T & T & F & F & T & T \\
+	  	F & F & T & T & F & T & T \\
+	  \end{tabular}
+	\end{center}
+	Both produce the same outcomes, therefore they are logically equivalent
+
+	\subsubsection*{De Morgans Law \#2}
+
+	\begin{center}
+	  \begin{tabular}{c c || c c c || c c }
+	  	$P$ & $Q$ & $\lnot P$ & $\lnot Q$ & $P \lor Q$ & $\lnot (P \lor Q)$ & $\lnot P \land \lnot Q$ \\\hline
+	  	T & T & F & F & T & F & F \\
+	  	T & F & F & T & T & F & F \\
+	  	F & T & T & F & T & F & F \\
+	  	F & F & T & T & F & T & T \\
+	  \end{tabular}
+	\end{center}
+	Both produce the same outcomes, therefore they are logically equivalent.
+\end{proof}
+Take for example the statement \boxemph{Cacao had one dinner and Lubu had one dinner} This proposition can be expresses as $P \land Q$, and therefore its negation, by De Morgans Law is $\lnot P \lor \lnot Q$. In words: "Caco had no dinner or Lubu had no dinner"
+
+\begin{definition}[Contradictions and Tautologies]
+	\hfill
+	\begin{center}
+	  \begin{tabular}{r l}
+	  	\textbf{Contradiction} & A statement that is always false \\
+	  	\textbf{Tautology} & A statement that is always true 
+	  \end{tabular}
+	\end{center}
+\end{definition}
+
+\end{document}

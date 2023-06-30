@@ -1,0 +1,213 @@
+\documentclass[12pt]{extarticle}
+
+\input{../preamble.tex}
+\usepackage{svg}
+\svgsetup{inkscapeexe=inkscape, inkscapearea=drawing, inkscapeversion=1}
+\svgpath{{figures/}}
+
+\fancyhead[R]{Homework \#6}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\section*{Problem 1}
+\subsection*{Part 1}
+\begin{align*}
+	\Prob{X > 5} &= \Prob{\frac{X - 10}{6} > \frac{5 - 10}{6}} \\
+	&= \Prob{Z > -\frac{5}{6}} \\
+	&= 1 - \Phi\qty(-\frac{5}{6}) \approx 0.79767
+.\end{align*}
+
+\subsection*{Part 2}
+\begin{align*}
+	\Prob{4 < X < 16} &= \Prob{\frac{4-10}{6} < \frac{X - 10}{6} < \frac{16 - 10}{6}} \\
+					  &= \Prob{-1 < Z < 1} \\
+					  &= \Phi\qty(1) - \Phi(-1) = 2\cdot\Phi(1) - 1 \approx 0.68268
+.\end{align*}
+
+\subsection*{Part 3}
+\begin{align*}
+	\Prob{X < 8} &= \Prob{\frac{X - 10}{6} < \frac{8 - 10}{6}} \\
+	&= \Prob{Z < -\frac{1}{3}} \\
+	&= \Phi\qty(-\frac{1}{3}) \approx 0.36944
+.\end{align*}
+
+\subsection*{Part 4}
+\begin{align*}
+	\Prob{X < 20} &= \Prob{\frac{X - 10}{6} < \frac{20 - 10}{6}} \\
+	&= \Prob{Z < \frac{5}{3}} \\
+	&= \Phi\qty(\frac{5}{3}) \approx 0.95221
+.\end{align*}
+
+\subsection*{Part 5}
+\begin{align*}
+	\Prob{X > 16} &= \Prob{\frac{X - 10}{6} > \frac{16 - 10}{6}} \\
+	&= \Prob{Z > 1} \\
+	&= 1 - \Phi\qty(1) \approx 0.15866
+.\end{align*}
+
+\section*{Problem 2}
+Assuming that the annual rainfall does not change from year to year and that the rainfall from each year is independent, the probability is going to be
+\[
+	\Prob{X \leq 50}^{10} = 
+	\Prob{\frac{X-40}{4} \leq \frac{50-40}{4}}^{10} =
+	\Prob{Z \leq 2.5}^{10} = \Phi(2.5)^{10} \approx 0.93961
+.\]
+
+\section*{Problem 3}
+Let $X$ denote the salaries of the physicians in thousands of dollars. By the given information,
+\begin{align*}
+	\Prob{X < 180} = \Prob{X > 320} = 0.25
+.\end{align*}
+Therefore
+\begin{align*}
+	\Prob{X < 180} &= 0.25 \\
+	\Prob{\frac{X - \mu}{\sigma} < \frac{180 - \mu}{\sigma}} &= 0.25 \\
+	\Prob{Z < \frac{180 - \mu}{\sigma}} &= 0.25 \\
+	\Phi\qty(\frac{180 - \mu}{\sigma}) &= 0.25 \implies \frac{180 - \mu}{\sigma} = -0.67449
+\end{align*}
+and
+\begin{align*}
+	\Prob{X > 320} &= 0.25 \\
+	\Prob{\frac{X - \mu}{\sigma} > \frac{320 - \mu}{\sigma}} &= 0.25 \\
+	\Prob{Z > \frac{320 - \mu}{\sigma}} &= 0.25 \\
+	1 - \Phi\qty(\frac{320 - \mu}{\sigma}) &= 0.25 \implies \frac{320 - \mu}{\sigma} = 0.67449
+\end{align*}
+Therefore this gives a system of 2 equations
+\begin{align*}
+	180 - \mu &= -0.67449\cdot\sigma \\
+	320 - \mu &= 0.67449\cdot\sigma \\
+.\end{align*}
+Solving gives $\mu = 250$ and $\sigma = 103.704$.
+
+\subsection*{Part 1}
+\begin{align*}
+	\Prob{X < 200} &= \Prob{\frac{X - 250}{103.704} < \frac{200 - 250}{103.704}} \\
+				   &= \Prob{Z < -0.4821414796} \\
+				   &= \Phi{-0.4821414796} \approx 0.31485
+.\end{align*}
+
+\subsection*{Part 2}
+\begin{align*}
+	\Prob{280 < X < 320} &= \Prob{\frac{280 - 250}{103.704} < \frac{X - 250}{103.704} < \frac{320 - 250}{103.704} } \\
+						 &= \Prob{0.28928 < Z < 0.67499} \\
+						 &= \Phi(0.67499) - \Phi(0.28928) \approx 0.13634
+\end{align*}
+
+\section*{Problem 4}
+\begin{align*}
+	\Prob{X > c} &= 0.1 \\
+	\Prob{\frac{X - 12}{2} > \frac{c - 12}{2}} &= 0.1 \\
+	\Prob{Z > \frac{c - 12}{2}} &= 0.1 \\
+	1 - \Phi(Z > \frac{c - 12}{2}) &= 0.1 \\
+	\Phi(Z > \frac{c - 12}{2}) &= 0.9 \\
+	\intertext{Using a lookup table for when $\Phi$ is $0.9$ gives $1.2816$, therefore}
+	\frac{c - 12}{2} &= 1.2816 \\
+	c &= 2(1.2816) + 12 \implies \boxed{c = 14.5632}
+\end{align*}
+
+\section*{Problem 5}
+\[
+	\Prob{X > 2} = 1 - \Prob{X \leq 2} = 1 - \int_0^2 e^{-x} \dd x = 1 - \qty[-e^{-x}]_0^2 = 1 - 1 + e^{-2} = e^{-2}
+.\]
+
+\section*{Problem 6}
+Since the exponential distribution is memoryless, the probability it will last an additional 8 years will be the same as the probability that a new radio would last 8 years. Therefore the probability is
+\[
+	\Prob{X > 8} = 1 - \Prob{X < 8} = 1 - \int_0^8 18e^{-18x} \dd x = 1 - \qty[-e^{-18x}]_0^8 = 1 - 1 + e^{-144} = e^{-144}
+.\]
+
+\section*{Problem 7}
+A quadratic's roots are both real when its discriminant is positive. The discriminant in this case is $16Y^2 - 4(4)(Y+2)$. It follows that
+\begin{align*}
+	16Y^2 - 16Y - 32 \geq 0 \\
+	Y^2 - Y - 2 \geq 0 \\
+	(Y + 1) (Y - 2) \geq 0
+.\end{align*}
+Since $0 < Y < 5$, this only holds when $Y - 2 \geq 0$. Therefore
+\begin{align*}
+	\Prob{Y - 2 \geq 0} &= \Prob{Y \geq 2} \\
+	&= \int_2^5 \frac{1}{5} \dd x = \frac{3}{5}
+.\end{align*}
+
+\section*{Problem 8}
+\begin{align*}
+	&F_Y(t) = \Prob{Y \leq t} = \Prob{\log(X) \leq t}
+					= \Prob{X \leq e^t}
+					= F_X (e^t) \\
+	&\Downarrow \dv{t} \\
+	&f_Y (t) = f_X (e^t) \cdot e^t \implies f_Y (t) = e^{t-e^t}, t \in \mathbb{R}
+.\end{align*}
+
+\section*{Problem 9}
+\subsection*{Part 1}
+\begin{align*}
+	\Exp{|X - a|} &= \int_0^A \frac{1}{A} \cdot |x - a| \dd x \\
+				  &= \frac{1}{A} \cdot \qty[
+				  \int_0^a (a - x) \dd x + \int_a^A (x - a) \dd x
+				  ] \\
+				  &= \frac{1}{A} \cdot \qty[
+				  \eval{ax - \frac{x^2}{2}}_0^a + \frac{x^2}{2} - ax \eval_a^A
+				  ] \\
+				  &= \frac{1}{A} \cdot \qty[
+				  \frac{a^2}{2} + \frac{A^2}{2} - Aa - \frac{a^2}{2} + a^2
+				  ] \\
+				  &= \frac{1}{A} \cdot \qty[
+				  \frac{A^2}{2} - Aa + a^2
+				  ] \\
+				  &= \frac{a^2}{A} - a + \frac{A}{2}
+.\end{align*}
+Therefore by minimizing with respect to $a$,
+\begin{align*}
+	\dv{a} \Exp{|X-a|} &= 0 \\
+	\dv{a} \qty(\frac{a^2}{A} - a + \frac{A}{2}) &= 0 \\
+	\frac{2a}{A} - 1 &= 0 \implies a = \frac{A}{2}
+.\end{align*}
+The concavity at $\frac{a}{2}$ is positive, therefore $\frac{a}{2}$ minimizes the expected distance from the fire.
+
+\subsection*{Part 2}
+\begin{align*}
+	\Exp{|X - a|} &= \lambda \qty[\int_0^\infty |x - a| \cdot e^{-\lambda x} \dd x ]\\
+				  &= \lambda \qty[\int_0^a (a-x) e^{-\lambda x} \dd x + \int_a^\infty (x - a) e^{-\lambda x} \dd x ]\\
+				  &= \lambda \qty[\int_0^a ae^{-\lambda x} - xe^{-\lambda x} \dd x + \int_a^\infty xe^{-\lambda x} - ae^{-\lambda x}  ]\\
+				  &= \lambda \qty[a\int_0^a e^{-\lambda x} \dd x - \int_0^a xe^{-\lambda x} \dd x + \int_0^\infty xe^{-\lambda x} \dd x - a \int_a^\infty e^{-\lambda x} \dd x ]\\
+				  &= \lambda \qty[a \qty[-\frac{e^{-\lambda x}}{\lambda}]_0^a - a \qty[-\frac{e^{-\lambda x}}{\lambda}]_a^\infty - \int_0^a xe^{-\lambda x} \dd x + \int_0^\infty xe^{-\lambda x} \dd x ]\\
+				  &= \lambda \qty[\frac{a}{\lambda} \qty[-e^{-\lambda a} + 1 + 0 - e^{-\lambda a}] - \int_0^a xe^{-\lambda x} \dd x + \int_a^\infty xe^{-\lambda x} \dd x ]\\
+				  &= \lambda \qty[\frac{a}{\lambda} \qty[1-2e^{-\lambda a}] - \qty(-\frac{xe^{-\lambda x}}{\lambda} \eval_0^a + \int_0^a \frac{e^{-\lambda x}}{\lambda} \dd x) + \qty(-\frac{xe^{-\lambda x}}{\lambda} \eval_a^\infty + \int_a^\infty \frac{e^{-\lambda x}}{\lambda} \dd x) ]\\
+				  &= \lambda \qty[\frac{a}{\lambda} \qty[1-2e^{-\lambda a}] - \qty(-\frac{xe^{-\lambda x}}{\lambda} \eval_0^a + \qty(-\frac{e^{-\lambda x}}{\lambda^2} \eval_0^a)) + \qty(-\frac{xe^{-\lambda x}}{\lambda} \eval_a^\infty + \qty(-\frac{e^{-\lambda x}}{\lambda^2} \eval_a^\infty)) ]\\
+				  &= \lambda \qty[\frac{a}{\lambda} \qty[1-2e^{-\lambda a}] - \qty(-\frac{ae^{-\lambda a}}{\lambda} - \frac{e^{-\lambda a}}{\lambda^2} + \frac{1}{\lambda^2}) + \qty(0 + \frac{ae^{-\lambda a}}{\lambda} + \frac{e^{-\lambda a}}{\lambda^2} ) ] \\
+				  &= \lambda \qty[\frac{a}{\lambda} \qty[1-2e^{-\lambda a}] + \frac{ae^{-\lambda a}}{\lambda} + \frac{e^{-\lambda a}}{\lambda^2} - \frac{1}{\lambda^2} + \frac{ae^{-\lambda a}}{\lambda} + \frac{e^{-\lambda a}}{\lambda^2} ] \\
+				  &= \lambda \qty[\frac{a}{\lambda} \qty[1-2e^{-\lambda a}] + \frac{2ae^{-\lambda a}}{\lambda} + \frac{2e^{-\lambda a}}{\lambda^2} - \frac{1}{\lambda^2} ] \\
+				  &= a\qty(1-2e^{-\lambda a}) + 2ae^{-\lambda a} + \frac{2e^{-\lambda a}}{\lambda} - \frac{1}{\lambda} \\
+				  &= a-2ae^{-\lambda a} + 2ae^{-\lambda a} + \frac{2e^{-\lambda a}}{\lambda} - \frac{1}{\lambda} \\
+				  &= a + \frac{2e^{-\lambda a}}{\lambda} - \frac{1}{\lambda}
+.\end{align*}
+Therefore by minimizing with respect to $a$,
+\begin{align*}
+	\dv{a} \qty(a + \frac{2e^{-\lambda a}}{\lambda} - \frac{1}{\lambda}) &= 0 \\
+	1 - 2e^{-\lambda a} &= 0 \\
+	e^{-\lambda a} &= \frac{1}{2} \\
+	\lambda a &= \log(2) \implies \boxed{a = \frac{\log(2)}{\lambda}}
+.\end{align*}
+The concavity is always positive so $\frac{\log(2)}{\lambda}$ minimizes the expected distance from the fire.
+
+\section*{Problem 10}
+Let $Y \sim \text{Binom}\qty(1000, \frac{1}{6})$ be the number of $6$'s that appear in 1000 rolls. Since $np$ and $nq$ are large, $Y$ can be approximated by a normal random variable $X \sim N(np, \sqrt{npq}) = N\qty(\frac{500}{3}, \frac{25\sqrt{2}}{3})$. Let $\mu = \frac{500}{3}$ and $\sigma = \frac{25\sqrt{2}}{3}$. Then
+\begin{align*}
+	\Prob{150 \leq Y \leq 200} &\approx \Prob{150 \leq X \leq 200} \\
+							   &= \Prob{\frac{150 - \mu}{\sigma} \leq \frac{X - \mu}{\sigma} \leq \frac{200 - \mu}{\sigma}} \\
+							   &= \Prob{-\sqrt{2} \leq Z \leq 2\sqrt{2}} \\
+							   &= \Phi\qty(-\sqrt{2}) - \Phi\qty(2\sqrt{2}) \approx 0.919
+.\end{align*}
+
+Consider now if 6 has appeared 200 times. Then the number of times 5 appears in the remaining 800 rolls can be represented by the random variable $Y \sim \text{Binom}\qty(800, \frac{1}{5})$ since there are 800 trials, and since 6 will not appear again, 5 has a $\frac{1}{5}$ chance of appearing. Since $np$ and $nq$ are large, $Y$ can be approximated by $X \sim N\qty(np, \sqrt{npq}) = N\qty(160, 8\sqrt{2})$. Therefore
+\begin{align*}
+	\Prob{Y < 150} &\approx \Prob{X < 150} \\
+				   &= \Prob{\frac{X - 160}{8\sqrt{2}} < \frac{150 - 160}{8\sqrt{2}}} \\
+				   &= \Prob{Z < -\frac{5}{4 \sqrt{2}}} \\
+				   &= \Phi\qty(-\frac{5}{4 \sqrt{2}}) \approx 0.18838
+.\end{align*}
+
+\end{document}

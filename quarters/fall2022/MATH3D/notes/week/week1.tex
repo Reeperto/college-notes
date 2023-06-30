@@ -1,0 +1,100 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {"../figures"}
+}
+
+\begin{document}
+
+\subsection{Existence}
+
+\begin{theorem}{Picard's Theorem}{picard}
+				If $y' = f( x_0,y_0 )$ is continuous in $x$ and $y$, and  $\partial_y f$ exists and is continuous around  $( x_0,y_0 ) $ then:
+				\[
+				\begin{cases}
+								y' &= f( x,y ) \\
+								y( x_0 ) &= y_0 
+				\end{cases}
+				\] 
+\end{theorem}
+
+\namethmref{th:picard} doesn't necessarily guarantee a global solution; only a local solution for some $\epsilon$ distance away from the input  $x_0$.
+
+\subsection{Separability}
+
+\begin{center}
+When $f( x,y ) = \underbrace{h( x ) g( y )}_{\clap{\scriptsize Can be easily integrated}} $ 
+\end{center}
+
+For the general case:
+
+\begin{align*}
+				y' = f( x_0,y_0 ) &= h( x ) g( y ) \\
+				y' &= h( x ) g( y ) \\
+				\frac{y'}{g( y )} &= h( x ) \\
+				\int \frac{y'}{g( y ) } \dd x &= \int h( x ) \dd x \\
+				\int \frac{1}{g( y ) } dy &= \int h( x ) \dd x
+.\end{align*}
+
+\begin{example}{Find the general solution of $y' = xy$}
+\begin{align*}
+				y' = xy \implies \frac{y'}{t} &= x \\
+				\int \frac{1}{y} dy &= \int x \dd x \\
+				\ln \abs{y}  &= \frac{1}{2}x^2 + c \\
+				\abs{y} &= e^{\frac{1}{2}x^2 + c} \\
+				y &= Ae^{\frac{x^2}{2}}; A \in \mathbb{R}
+.\end{align*}
+\end{example}
+
+\begin{example}{Find the general solution of $y' = 1-x^2+y^2-y^2 x^2$; $y( 1 ) = 0$}
+\begin{align*}
+				y' = ( 1+y^2 )( 1-x^2 ) \implies \int \frac{1}{1+y} \dd t &= \int 1-x^2 \dd x \\
+				\arctan(y)  &= x - \frac{x^3}{3} + c \\
+				y  &= \tan( x - \frac{x^3}{3} + c )
+\end{align*}
+Solve with initial condition:
+\begin{align*}
+				y( 1 ) = 0 &= \tan(\frac{2}{3}) \\
+				\arctan(0) &= \frac{2}{3} + c \\
+				\left\{ n\pi : n \in \mathbb{Z} \right\} &= \frac{2}{3} + c
+\intertext{Therefore:}
+				y  &= \tan( x - \frac{x^3}{3} + c ) \\
+				c &= \qty{ n\pi - \frac{2}{3} : n \in \mathbb{Z} }
+.\end{align*}
+\end{example}
+
+\subsection{Linear and Non-Linear ODE}
+
+\begin{stickynote}{Linear vs Non-Linear ODE}
+				\begin{align*}
+								\text{Linear } & \implies \text{Dependent variables and their derivatives appear linearly} \\
+								\text{Non-Linear } & \implies \text{Dependent variables and their derivatives have a power $\ge 2$}
+				.\end{align*}
+\end{stickynote}
+
+\subsubsection{Solving $1^{st}$ Order Linear ODE}
+
+Linear first order ODEs follow the form:
+
+\[
+y' + p( x ) \cdot y = f( x ) 
+.\] 
+
+To solve such equations, utilize the \textbf{Integration Factor}:
+
+\[
+				r( x ) = e^{\int\! p( x ) \dd x}
+.\] 
+
+Here is how the integration factor is utilized.
+
+\begin{align*}
+				y' + p( x ) \cdot y &= f( x ) \\
+				y'r( x )  + \underbrace{r( x ) p( x )}_{\clap{Equivalent to $r'( x ) $}}  \cdot y &= r( x ) f( x ) \\
+				\underbrace{y'r( x ) + r'( x ) \cdot y}_{\clap{Use inverse product rule}}  &= r( x ) f( x ) \\
+				\dv{x} \left[ y\cdot r( x ) \right] &= r( x ) f( x ) \\
+				\int\dv{x} \left[ y\cdot r( x ) \right] \dd x &= \int r( x ) f( x ) \dd x \\
+				y\cdot r( x ) &= \int r( x ) f( x ) \dd x \\
+				y &= \frac{1}{r( x )}\int r( x ) f( x ) \dd x
+.\end{align*}
+
+\end{document}

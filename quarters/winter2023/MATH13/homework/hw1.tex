@@ -1,0 +1,227 @@
+\documentclass[12pt]{extarticle}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{\textbf{Homework \#1}}
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\section*{Problem 1}
+
+Express each of the following statements in the “If \ldots . , then \ldots . ” form. There are many possible correct answers. 
+\begin{enumerate}[label=(\alph*)]
+	\item You must eat your dinner if you want to grow. 
+	\item Being a multiple of 12 is a sufficient condition for a number to be even. 
+	\item It is necessary for you to pass your exams in order for you to obtain a degree. 
+	\item A triangle is equilateral only if all its sides have the same length.
+\end{enumerate}
+
+\subsection*{Solution}
+
+\begin{enumerate}[label=(\alph*)]
+	\item \textbf{If} you want to grow, \textbf{then} you must eat your dinner
+	\item \textbf{If} a number is a multiple of 12, \textbf{then} it is even
+	\item \textbf{If} you want to obtain a degree, \textbf{then} you need to pass your exams
+	\item \textbf{If} a triangle is equalateral, \textbf{then} all its sides are of equal length
+\end{enumerate}
+
+\section*{Problem 2}
+
+Suppose that “Girls smell of roses” and “Boys have dirty hands” are true statements and that “The Teacher is always right” is a false statment. Which of the following are true? \textit{Hint: Label each of the given statements, and think about each of the following using connectives.} 
+
+\begin{enumerate}[label=(\alph*)]
+	\item If girls smell of roses, then the Teacher is always right. 
+	\item If the Teacher is always right, then boys have dirty hands. 
+	\item If the Teacher is always right or girls smell of roses, then boys have dirty hands.
+	\item If boys have dirty hands and girls smell of roses, then the Teacher is always right.
+\end{enumerate}
+
+\subsection*{Solution}
+
+Let $P$ = "Girls smell of roses", $Q$ = "Boys have dirty hands", and $R$ = "The Teacher is Always Right".
+
+\begin{enumerate}[label=(\alph*)]
+	\item $P \implies R$
+	\begin{itemize}
+		\item True $\implies$ False is \textbf{False}
+	\end{itemize}
+	\item $R \implies Q$
+	\begin{itemize}
+		\item False $\implies$ True is \textbf{True}
+	\end{itemize}
+	\item $(R\lor Q) \implies P$
+	\begin{itemize}
+		\item True $\implies$ True is \textbf{True}
+	\end{itemize}
+	\item $(Q\land P) \implies R$
+	\begin{itemize}
+		\item True $\implies$ False is \textbf{False}
+	\end{itemize}
+\end{enumerate}
+
+\section*{Problem 3}
+
+Write the negation (in words) of the following claim: \textit{If Jack and Jill climb up the hill, then they fall down and like pails of water.}
+
+\subsection*{Solution}
+
+Jack and Jill climb up the hill and dont fall down or dont like pails of water.
+
+\section*{Problem 5}
+
+\begin{enumerate}[label=(\alph*)]
+	\item Rewrite the following sentence using the word ‘necessary.’ \\
+		\textit{If I am to get a new bicycle, I must do my homework.}
+	\item Rewrite the following sentence using the word ‘sufficient.’ \\
+		\textit{The United States must play more soccer if it is to win the World Cup}
+\end{enumerate}
+
+\subsection*{Solution}
+
+\begin{enumerate}[label=(\alph*)]
+	\item Doing my homework is \textbf{neccessary} for me to get a new bicycle
+	\item To win the world cup it is \textbf{sufficient} for the United States to play more soccer
+\end{enumerate}
+
+\section*{Problem 6}
+
+\begin{enumerate}[label=(\alph*)]
+	\item What are the converse and the contrapositive of the statements in the previous question? Write your answers in sentences, like the originals.
+	\item What are the negations of the statements in the previous question? 
+\end{enumerate}
+
+\subsection*{Solution}
+
+\subsubsection*{Part A}
+
+\begin{itemize}
+	\item Converse Statements
+	\begin{enumerate}[label=(\alph*)]
+		\item If I do my homework, then I can get a new bicycle
+	\end{enumerate}
+	\item Contrapositive Statements
+	\begin{enumerate}[label=(\alph*)]
+		\item If I do not do my homework, then I will not get a new bicycle 
+	\end{enumerate}
+\end{itemize}
+
+\subsubsection*{Part B}
+\begin{enumerate}[label=(\alph*)]
+	\item I will get a new bicycle and not do my homework
+\end{enumerate}
+
+\section*{Problem 7}
+
+Construct the truth tables for the propositions $P \lor (Q \land R)$ and $(P \lor Q) \land R$. Are they the same?
+
+\subsection*{Solution}
+
+\begin{minipage}[c]{0.5\textwidth}
+	\centering
+	\begin{tabular}{ccc | c || c}
+		$P$ & $Q$ & $R$ & $Q\land R$ & $P \lor (Q \land R)$ \\\hline
+		T & T & T & T & T \\ 
+		T & T & F & F & T \\ 
+		T & F & T & F & T \\ 
+		T & F & F & F & T \\ 
+		F & T & T & T & T \\ 
+		F & T & F & F & F \\ 
+		F & F & T & F & F \\ 
+		F & F & F & F & F \\ 
+	\end{tabular}
+\end{minipage}
+\begin{minipage}[c]{0.5\textwidth}
+	\centering
+	\begin{tabular}{ccc | c || c}
+		$P$ & $Q$ & $R$ & $P \lor Q$ & $(P \lor Q) \land R$ \\\hline
+		T & T & T & T & T \\ 
+		T & T & F & T & F \\ 
+		T & F & T & T & T \\ 
+		T & F & F & T & F \\ 
+		F & T & T & T & T \\ 
+		F & T & F & T & F \\ 
+		F & F & T & F & F \\ 
+		F & F & F & F & F \\ 
+	\end{tabular}
+\end{minipage}
+\vspace{1cm}
+
+The propositions are \textbf{not the same}
+
+\section*{Problem 10}
+
+\begin{enumerate}[label=(\alph*)]
+  \item Prove that $((P \lor Q) \land \lnot P) \land \lnot Q$ is a contradiction.
+  \item Prove that $(\lnot P \land Q) \lor (P \land \lnot Q) \Longleftrightarrow \lnot(P \Longleftrightarrow Q)$ is a tautology.
+\end{enumerate}
+
+\subsection*{Solution}
+\subsubsection*{Part A}
+
+A proposition is a contradiction if for every input it is false.
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{cc || c|c|c|c||c}
+		$P$ & $Q$ & $\lnot P$ & $\lnot Q$ & $P \lor Q$ & $(P \lor Q) \land \lnot P$ & $((P \lor Q) \land \lnot P) \land \lnot Q$ \\\hline
+    T & T & F & F & T & F & F \\
+    T & F & F & T & T & F & F \\
+    F & T & T & F & T & T & F \\
+    F & F & T & T & F & F & F \\
+	\end{tabular}
+\end{table}
+
+Since for all posible inputs $P$ and $Q$ the proposition is false, it is a contradiction.
+
+\newpage
+\subsubsection*{Part B}
+
+Let $H$ be the proposition in question; $H \Longleftrightarrow (\lnot P \land Q) \lor (P \land \lnot Q) \Longleftrightarrow \lnot(P \Longleftrightarrow Q) $
+
+\begin{table}[h!]
+	\centering
+	% \footnotesize
+	\begin{tabular}{cc || c|c|c|c||c}
+		$P$ & $Q$ & $\lnot P \land Q$ & $P \land \lnot Q$ & $(\lnot P \land Q)\lor(P \land \lnot Q)$ & $\lnot(P \Longleftrightarrow Q)$ & $H$\\\hline
+		T	& T & F & F & F & F & T \\ 
+		T	& F & F & T & T & T & T \\ 
+		F	& T & T & F & T & T & T \\ 
+		F	& F & F & F & F & F & T
+	\end{tabular}
+\end{table}
+
+Since $H$ is always true and is the original proposition, then $(\lnot P \land Q) \lor (P \land \lnot Q) \Longleftrightarrow \lnot(P \Longleftrightarrow Q)$ is a tautology.
+
+% First note that the negation of $P \Longleftrightarrow Q$ is equivalent to $P\land \lnot Q$. Secondly, by the commutative law of logic
+% \begin{align*}
+% 	(\lnot P \land Q) \lor (P \land \lnot Q) &\Longleftrightarrow (\lnot P \land (P\land \lnot Q)) \lor (Q \land (P\land \lnot Q)) \\
+% 	\intertext{By the associative and commutative law of logic, the second half can be further rewritten as}
+% 	(\lnot P \land (P\land \lnot Q)) \lor (Q \land (P\land \lnot Q)) &\Longleftrightarrow((\lnot P \land P) \land \lnot Q) \lor ((Q \land \lnot Q)\land P)
+% \end{align*}
+
+\section*{Problem 14}
+
+Suppose that the following statements are true: 
+
+\begin{itemize}
+  \item Every Pig likes mud. 
+  \item If a creature cannot fly then it is not an astronaut. 
+  \item A creature is an astronaut if it likes mud. 
+\end{itemize}
+
+Is it true that ‘Pigs can fly’? Explain your answer. 
+
+\subsection*{Solution}
+
+First we assume that pigs are considered creatures. Each statement can be rewritten as:
+
+\begin{itemize}
+	\item Every pig likes mud
+	\item Cannot fly $\implies$ Is not an astronaut
+	\item Likes mud $\implies$ Is an astronaut
+\end{itemize}
+
+By statement 1, every pig likes mud. By statement 3, any creature that likes mud is an astronaut. Therefore every pig is an astronaut. The contrapositive of statement 2 results in "If a creature is an astronaut, then it can fly". Since the contrapositive of a proposition is logically equivalent to the original proposition, this proposition is also true. Therefore, since every pig is an astronaut and if a creature is an astronaut, it can fly, it is true that all pigs can fly.
+
+\end{document}

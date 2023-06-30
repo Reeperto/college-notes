@@ -1,0 +1,259 @@
+\documentclass[12pt]{extarticle}
+
+\usepackage{multicol}
+
+\input{../preamble.tex}
+
+\newcommand{\powerset}[1]{\mathcal{P}(#1)}
+\fancyhead[R]{\textbf{Math 120A: Homework \#1}}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\usetikzlibrary{arrows.meta}
+
+\begin{document}
+
+\section*{Problem 0.11}
+
+\[
+	\qty{a,b,c} \times \qty{1,2,c} = \qty{(a,1),(a,2),(a,c),(b,1),(b,2),(b,c),(c,1),(c,2),(c,c)}
+.\]
+
+\section*{Problem 0.12}
+\subsection*{Part A}
+
+The relation is a function mapping $A$ into $B$. The function is not one-to-one since $(1,4)$ and $(2,4)$ are in the relation. The function is not onto $B$ either since there is no $a \in A$ that maps to a $b=2$.
+
+\subsection*{Part B}
+
+The relation is a function mapping $A$ into $B$. The function is not one-to-one since $(1,4)$ and $(3,4)$ are in the relation. The function is not onto $B$ either since there is no $a \in A$ that maps to a $b=2$.
+
+\section*{Problem 0.18}
+
+\begin{proof}
+	Let $A$ be any set and let $B^A$ be the set of all functions mapping $A$ into the set $B = \qty{0,1}$. Define a map $\phi: B^A \to \powerset{A}$ where given a function $f \in B^A$, it is defined that $\phi(f) = \qty{a \in A : f(a) = 1}$. Proceed to show that $\phi$ is bijective. \\
+
+	\qquad \begin{minipage}{\dimexpr\textwidth - 3cm}
+		(One-to-One)\quad Let $f,g \in B^A$ and assume that $\phi(f) = \phi(g)$. Therefore for some element $x \in A$, $f(x) = 1$ if and only if $g(x) = 0$. Since $f$ and $g$ only take on two possible values, it also follows that $f(x) = 0$ if and only if $g(x) = 0$. Therefore $f = g$, meaning $\phi$ is one-to-one.
+	\end{minipage} \\
+	\\
+
+	\qquad \begin{minipage}{\dimexpr\textwidth - 3cm}
+		(Onto)\quad Let $S \in \powerset{A}$. Therefore $S \subseteq A$. Define $\theta : A \rightarrow \qty{0,1}$ by 
+		\[
+			\theta(x) = \begin{cases}
+				1, &x \in S \\ 
+				0, &x \notin S
+			\end{cases}
+		.\]
+		Note that $\phi(\theta) = S$, hence $\phi$ is onto.
+	\end{minipage} \\
+	\\
+
+	Since $\phi$ is both one-to-one and onto, it is a bijection between $B^A$ and $\powerset{A}$ meaning they have the same cardinality.
+\end{proof}
+
+\section*{Problem 0.19}
+
+\begin{proof}
+	Assume towards contradiction there exists a one-to-one map $\phi : A \rightarrow \powerset{A}$. Define $S = \qty{x \in A : x \notin \phi(x)}$. Let $a \in A$ and consider two cases. If $a \in \phi(a)$, then $a \notin S$. If $a \notin \phi(a)$, then $a \in S$. Therefore $S$ and $\phi(a)$ are different subsets of $A$ since $a$ is only ever in one but not the either. Hence $\phi$ cannot be one-to-one, which is a contradiction. Therefore $\phi$ cannot exist.
+\end{proof}
+
+The set of everything is not a logically acceptable. If $T$ denotes this supposed set of everything, then $\powerset{T}$ would be larger than $T$, contradicting the fact that it already the set of everything.
+
+\section*{Problem 0.32}
+
+\begin{proof}
+	Proof that $\mathcal{R}$ is not an equivalence relation. Examine transitivity. Let $a,b,c \in \mathbb{R}$ with $a = 1, b = 3$ and $c = 6$. Note that $a \mathcal{R} b$ since $|a - b| = |1 - 3| = 2 \leq 3$ and $b \mathcal{R} c$ since $|b - c| = |3 - 6| = 3 \leq 3$. However $a$ is not related to $c$ since $|a - c| = |1 - 6| = 5 \nleq 3$. Therefore $\mathcal{R}$ is not transitive, meaning it is not an equivalence relation.
+\end{proof}
+
+\section*{Problem 1.4}
+\[
+	(-i)^{35} = (-1)^{35} \cdot i^{35} = -(i^3) = i
+.\]
+
+\section*{Problem 1.20}
+
+\begin{align*}
+	z^6 = 1 \implies &|z^6| (\cos(6\theta) + i \sin(6\theta)) = 1 \\
+	&|z^6| (\cos(6\theta) + i \sin(6\theta)) = 1(1 + 0\cdot i)
+.\end{align*}
+
+Therefore $|z| = 1, \cos(6\theta) = 1$ and $\sin(6\theta) = 0$. This implies that $\theta = \frac{\pi n}{3}$ for $n \in \mathbb{Z}$. Thus the solutions when $\theta \in [0, 2\pi)$ are
+\[
+	z = \qty{e^{\frac{\pi n}{3}} : n \in \qty{0,1,2,3,4,5}}
+.\]
+
+\section*{Problem 1.22}
+\[
+	10 +_{17} 16 = 9
+.\]
+
+\section*{Problem 1.25}
+
+\[
+	\frac{1}{2} +_1 \frac{7}{8} = \frac{3}{8}
+.\]
+
+\section*{Problem 1.26}
+
+\[
+	\frac{3\pi}{4} +_{2\pi} \frac{3\pi}{2} = \frac{\pi}{4}
+.\]
+
+\section*{Problem 1.29}
+Solutions will be when $x + 7 = 15 + 3$, meaning $x = 11$. All other possible values of $x \in \mathbb{Z}_15$ do not work.
+
+\section*{Problem 1.36}
+\begin{align*}
+	\zeta &\leftrightarrow 4 \\
+	\zeta^2 = \zeta \cdot \zeta &\leftrightarrow 4+_7 4 = 1 \\
+	\zeta^3 = \zeta^2 \cdot \zeta &\leftrightarrow 4+_7 1 = 5 \\
+	\zeta^4 = \zeta^2 \cdot \zeta^2 &\leftrightarrow 1+_7 1 = 2 \\
+	\zeta^5 = \zeta^4 \cdot \zeta &\leftrightarrow 5+_7 1 = 6 \\
+	\zeta^6 = \zeta^5 \cdot \zeta &\leftrightarrow 6+_7 4 = 3 \\
+	\zeta^0 = \zeta^5 \cdot \zeta^2 &\leftrightarrow 6+_7 1 = 0
+\end{align*}
+
+\section*{Problem 1.37}
+If there was an isomorphism between $U_6$ and $\mathbb{Z}_6$, then $\zeta^2 = \zeta \cdot \zeta \leftrightarrow 4 +_6 4 = 2$ and $\zeta^4 = \zeta^2 \cdot \zeta^2 \leftrightarrow 2 +_6 2 = 4$. However that means $\zeta$ and $\zeta^4$ correspond to the same value which contradicts the requirement that an ismorphism is one-to-one.
+
+\section*{Problem 2.1}
+\begin{align*}
+	b * d &= e \\
+	\\
+	c * c &= b \\
+	\\
+	[(a * c) * e] * a &= [c * e] * a  \\
+										&= a * a \\
+										&= a
+.\end{align*}
+
+\section*{Problem 2.3}
+
+\begin{align*}
+	(b * d) * c &= e * c \\
+							&= a
+.\end{align*}
+
+\begin{align*}
+	b * (d * c) &= b * b \\
+							&= c
+.\end{align*}
+
+This computation does imply that $*$ in this instance is not associative since the results of each computation are not equal to each other.
+
+\section*{Problem 2.5}
+
+\begin{center}
+	\begin{tabular}{c|c|c|c|c}
+		$*$ & $a$ & $b$ & $c$ & $d$ \\\hline
+		$a$ & $a$ & $b$ & $c$ & $d$ \\\hline
+		$b$ & $b$ & $d$ & $a$ & $c$ \\\hline
+		$c$ & $c$ & $a$ & $d$ & $b$ \\\hline
+		$d$ & $d$ & $c$ & $b$ & $a$ \\
+	\end{tabular}
+\end{center}
+
+\section*{Problem 2.8}
+
+$*$ is commutatitive but not associative.
+
+\begin{proof}
+	First examine commutativity. Let $a,b \in \mathbb{Q}$. Note then that
+	\[
+		a * b = ab + 1 = ba + 1 = b * a
+	.\]
+	Therefore $*$ is commutative. Now examine associativity. Let $a = 1, b = 2, c = 3$. Then note that
+	\begin{align*}
+		(a * b) * c &= 3 * c \\
+								&= 3 * 3 \\
+								&= 10
+	.\end{align*}
+	and that
+	\begin{align*}
+		a * (b * c) &= a * 7 \\
+								&= 1 * 7 \\
+								&= 8
+	.\end{align*}
+	In this case $(a * b) * c \neq a * (b * c)$, meaning $*$ is not associative.
+\end{proof}
+
+\section*{Problem 2.10}
+
+$*$ is commutative but not associative.
+
+\begin{proof}
+	First examine commutativity. Let $a,b \in \mathbb{Z}^+$. Note then that
+	\[
+		a * b = 2^{ab} = 2^{ba} = b * a
+	.\]
+	Therefore $*$ is commutative. Now examine associativity. Let $a = 1, b = 2, c = 3$. Then note that
+	\begin{align*}
+		(a * b) * c &= 2^{2} * c \\
+								&= 4 * 3 \\
+								&= 2^{12}
+	.\end{align*}
+	and that
+	\begin{align*}
+		a * (b * c) &= a * 2^{6} \\
+								&= 1 * 64 \\
+								&= 2^{64}
+	.\end{align*}
+	In this case $(a * b) * c \neq a * (b * c)$, meaning $*$ is not associative.
+\end{proof}
+
+\section*{Problem 2.12}
+
+Consider the tabular representation of $*$. Given the set $S$ that $*$ is over, define $n = |S|$. The table will therefore have $n^2$ entries in it. Each entry has $n$ choices as it can be any element of $S$. Therefore since you have $n$ choices $n^2$ times
+\[
+	\textit{Number of possible binary operations} = n^{(n^2)}
+.\]
+
+\section*{Problem 2.17}
+
+$*$ does not give a binary operation since it breaks Condition $2$. Consider $a = 1, b = 2$. Both $1$ and $2$ are in $\mathbb{Z}^+$, however $a * b = 1 - 2 = -1 \notin \mathbb{Z}^+$.
+
+\section*{Problem 2.20}
+
+$*$ is a binary operation since it obeys both conditions.
+
+\section*{Problem 2.23}
+
+$H$ is closed under under both matrix addition and matrix multiplication.
+
+\begin{proof}
+	Consider first matrix addition on $H$. Let $a,b,c,d \in \mathbb{R}$
+\[
+	\mqty[a & -b \\ b & a] + \mqty[c & -d \\ d & c] = \mqty[(a+c) & - (b + d) \\ (b + d) & (a + c)]
+.\]
+
+\[
+	\mqty[a & -b \\ b & a] \mqty[c & -d \\ d & c] =
+	\mqty[
+	ac - bd & -(ad + bc) \\
+	ad + bc & ac - bd
+	]
+.\]
+\end{proof}
+
+
+\section*{Problem 2.24}
+\section*{Problem 2.36}
+
+
+\end{document}
+
+% 20 * 18 * 16 * 14 * 12 * 10 = 9,676,800 ways to select 6 non couple people
+% order doesn't matter therefore divide out the ways to possibly arrange these 6 people. Therefore
+%
+% Choices = 13,440
+
+% Additionally, there are 10 choose 6 ways to pick 6 couples and there are 2^6 ways to choose a person from each couple,
+% Therefore there are 2^6 * (10 choose 6) = 13,440 ways. Same result
+
+% 10 * 8 * 6 men choices
+% 10 * 8 * 6 women choices
+
+% 230,400 / 14,400 = 16

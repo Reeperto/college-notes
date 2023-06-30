@@ -1,0 +1,200 @@
+\documentclass[12pt]{extarticle}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{PSET \#$3$}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\section*{Problem 1}
+\subsection*{Part A}
+\[
+	\Prob{X = 2} = 0
+.\]
+
+\subsection*{Part B}
+\[
+	\Prob{X \geq 2} = 1 - \Prob{X < 2} = e^{-20} \approx 2.061 \times 10^{-9}
+.\]
+
+\subsection*{Part C}
+\[
+	\Prob{X > 3} = e^{-30} \approx 9.358 \times 10^{-14}
+.\]
+
+\subsection*{Part D}
+\[
+	\Exp{5X} = 5 \cdot \Exp{X} = 5\cdot \frac{1}{10} = \frac{1}{2}
+.\]
+\[
+	\Var{5X} = 25 \cdot \Var{X} = 25 \cdot \frac{1}{100} = \frac{1}{4}
+.\]
+
+\subsection*{Part E}
+\[
+	250\cdot\Exp{X} = 250\cdot \frac{1}{10} = 25\$
+.\]
+\[
+	250\cdot\Exp{5X} = 1250\cdot \frac{1}{10} = 125\$
+.\]
+
+\section*{Problem 2}
+\subsection*{Part A}
+$f(x)$ will be a valid density if
+\[
+	\int_0^2 f(x) \dd x = 1
+.\]
+Therefore
+\begin{align*}
+	\int_0^2 f(x) dx &= \int_0^2 cx^3 \dd x \\
+	1 &= \int_0^2 cx^3 \dd x \\
+	1 &= \int_0^2 cx^3 \dd x \\
+	1 &= \frac{c}{4}\cdot x^4 \eval_0^2 \\
+	1 &= \frac{c}{4}\cdot 2^4 \\
+	1 &= 4c \implies \boxed{c = \frac{1}{4}}
+.\end{align*}
+
+\subsection*{Part B}
+\[
+	\Prob{X = 1} = \int_1^1 f(x) \dd x = 0
+.\]
+\[
+	\Prob{X = 1 \text{ or } X = 2} = \Prob{X = 1} + \Prob{X = 2} = \int_1^1 f(x) \dd x + \int_2^2 f(x) \dd x = 0
+.\]
+
+\subsection*{Part C}
+\[
+	\Exp{X} = \int_0^2 x f(x) \dd x = \int_0^2 \frac{x^4}{4} \dd x = \frac{8}{5}
+.\]
+
+\subsection*{Part D}
+\[
+	\Prob{0.5 < X < 1.5} = \int_{0.5}^{1.5} \frac{x^3}{4} \dd x = \frac{x^4}{16} \eval_{0.5}^{1.5} = \frac{5}{16}
+.\]
+
+\subsection*{Part E}
+\[
+	\Prob{X > 1.5 | X > 0.5} = \frac{\displaystyle\int_{1.5}^2 x^3 \dd x}{\displaystyle\int_{0.5}^2 x^3 \dd x} = 0.6863
+.\]
+
+\section*{Problem 3}
+\subsection*{Part A}
+\[
+	X \sim \text{Binom}(100, 0.85)
+.\]
+
+\subsection*{Part B}
+\[
+	\Exp{X} = 100(0.85) = 85
+.\]
+\[
+	\Var{X} = 100(0.85)(0.15) = 12.75
+.\]
+
+\subsection*{Part C}
+\[
+	\Prob{X \leq 80} = \sum_{n=0}^{80} \binom{100}{n} (0.85)^n (0.15)^{100-n} \approx 0.1065
+.\]
+
+\subsection*{Part D}
+\[
+	\Prob{X \leq 80} = 1 - \Prob{X > 80} = 1 - \sum_{n=81}^{100} \binom{100}{n} (0.85)^n (0.15)^{100-n}
+.\]
+
+\subsection*{Part E}
+\[
+	\Prob{X \leq 80}^2 = (0.1065)^2 = 0.01134
+.\]
+
+\subsection*{Part F}
+No, since the probability of success will change between succesive trials since it improves.
+
+\section*{Problem 4}
+\subsection*{Part A}
+\[
+	\mathcal{R}_X = \mathbb{N}
+.\]
+
+\subsection*{Part B}
+\[
+	\Exp{X} = \frac{1}{0.85} \approx 1.18
+.\]
+
+\subsection*{Part C}
+\[
+	\Prob{X > 2} = 0.003375
+.\]
+
+\subsection*{Part D}
+\[
+	2\cdot\Exp{2X} = 4\cdot \frac{1}{0.85} \approx 9.44
+.\]
+
+\section*{Problem 5}
+\subsection*{Part A}
+The poisson distribution can be used. Therefore
+\[
+	\Exp{X} = 100
+.\]
+\[
+	\Var{X} = 100
+.\]
+\[
+	\sigma = \sqrt{100} = 10
+.\]
+
+\subsection*{Part B}
+\[
+	\Prob{X = 100} = \frac{100^{100}}{100!} e^{-100} \approx 0.0399
+.\]
+
+\subsection*{Part C}
+\[
+	\Prob{X \leq 100} = 0.5266
+.\]
+
+\subsection*{Part D}
+\[
+	\Exp{3X} = 3\cdot 100 = 300
+.\]
+\[
+	\Var{3X} = 9\cdot 100 = 900
+.\]
+\[
+	\sigma = \sqrt{900} = 30
+.\]
+
+\subsection*{Part E}
+\[
+	\Prob{X = 100}\cdot (0.2)^{100} = 0.0399 (0.2)^{100} 
+.\]
+
+\section*{Problem 6}
+\subsection*{Part A}
+\begin{align*}
+	\int_0^{10} cx^2 \dd x &= 1 \\
+	\frac{cx^3}{3} \eval_{0}^{10} &= 1 \\
+	\frac{1000c}{3} &= 1 \implies \boxed{c = \frac{3}{1000}}
+.\end{align*}
+
+\subsection*{Part B}
+\[
+	\Prob{X = 5} = \Prob{X = 5\text{ or }X=9} = 0
+.\]
+
+\subsection*{Part C}
+\[
+	\Prob{X > 5} = \int_5^{10} cx^2 \dd x = \frac{3}{1000} \cdot \frac{875}{3} = \frac{7}{8}
+.\]
+
+\subsection*{Part D}
+\begin{align*}
+	F(a) &= \int_0^a cx^2 \dd x \\
+	&= \frac{3}{1000} \frac{x^3}{3} \eval_0^a \\
+	&= \frac{a^3}{1000}
+.\end{align*}
+
+\end{document}

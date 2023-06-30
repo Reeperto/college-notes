@@ -1,0 +1,65 @@
+\documentclass[../notes.tex]{subfiles}
+
+\begin{document}
+
+\banner{Relations}
+
+Relations will serve useful in concretizing the idea of functions and in general how elements of sets are related to each other.
+
+\hfil\linebreak
+
+\begin{definition}[Relation]
+	A relation $\mathcal{R}$ on a set $A$ is defined as $\mathcal{R} \subseteq A \times A$ with 3 possible properties
+	\begin{align*}
+		&\textbf{Reflexive} &\forall &a \in A, (a,a) \in \mathcal{R} \\
+		&\textbf{Symmetric} &\forall &a,b \in A, (a,b) \in \mathcal{R} \implies (b,a) \in \mathcal{R} \\
+		&\textbf{Transitive} &\forall &a,b,c \in A, (a,b), (b,c) \in \mathcal{R} \implies (a,c) \in \mathcal{R}
+	.\end{align*}
+\end{definition}
+
+Consider the relation $\mathcal{R}$ defined as $(\leq, \mathbb{R})$. Which properties of a relation does it satisfy?
+
+\begin{proof}
+	Let 
+\end{proof}
+
+If a relation $\mathcal{R}$ obeys all 3 possible properties of a relation, it is called an \textbf{Equivalence Relation} often denoted by a $\sim$. Let $\mathcal{R}$ be the relation $\sim$ on $\mathbb{Z}$ such that
+\[
+	x \sim y \Longleftrightarrow x - y \text{ is even}
+.\]
+Is $\mathcal{R}$ an equivalence relation?
+
+\begin{proof}
+	Proceed to show that $\mathcal{R}$ is an equivalence relation.
+	\hfill
+	\hfill\linebreak
+
+	\quad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Reflexivity) Let $a \in \mathbb{Z}$. It follows that
+		\begin{align*}
+			a \sim a &\implies 2 \vert a - a \\
+			 &\implies 2 \vert 0
+		\end{align*}
+		which is true. Therefore $\mathcal{R}$ is reflexive.
+	\end{minipage}
+
+	\hfill\linebreak
+
+	\quad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Symmetry) Let $a,b \in \mathbb{Z}$. It follows that
+		\begin{align*}
+			a \sim b &\implies a - b = 2k \\
+			 &\implies b - a = 2(-k) \\
+			 &\implies b \sim a
+		\end{align*}
+		hence $\mathcal{R}$ is symmetric.
+	\end{minipage}
+
+	\hfill\linebreak
+
+	\quad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Transitivity) Let $a,b,c \in \mathbb{Z}$. 
+	\end{minipage}
+\end{proof}
+
+\end{document}

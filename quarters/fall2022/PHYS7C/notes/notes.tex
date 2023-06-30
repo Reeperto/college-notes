@@ -1,0 +1,28 @@
+\documentclass[12pt]{extarticle}
+
+\usepackage{catchfile}
+\newcommand{\getenv}[2][]{%
+  \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{\endlinechar=-1}%
+  \if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi}
+
+\getenv[\PREAMBLE]{latex_preamble}
+\input{\PREAMBLE/main_preamble.tex}
+
+\begin{document}
+
+\cover{PHYS 7C}{Collection of type setted notes from fall quarter of 2022 Physics}
+
+{\large
+\renewcommand*\contentsname{Table of Contents}
+\tableofcontents
+}
+
+\pagebreak
+
+\tocadd{Week 2}{./week/week2.tex}
+
+\tocadd{Week 4}{./week/week4.tex}
+
+\pagebreak
+\tcblistof[\section*]{theorems}{List of Theorems}
+\end{document}

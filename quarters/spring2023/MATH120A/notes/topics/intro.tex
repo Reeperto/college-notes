@@ -1,0 +1,83 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {"../figures"}
+}
+
+\begin{document}
+
+\banner{Introduction}
+
+\subsection{Understanding Relations and Sets}
+
+\begin{definition}[Relations]
+	A relation between two sets $A$ and $B$ is denoted by $\mathcal{R}$. $\mathcal{R}$ is a subset of $A \times B$ where $(a,b) \in \mathcal{R}$ is read as "$a$ is related to $b$".
+\end{definition}
+
+Analysts are initimately familiar with the concept of functions. A function is a relation (which for these purposes will be denoted by $\phi$) on a domain $X$ and codomain $Y$ such that
+\[
+	(x, y) \in \phi \Longleftrightarrow \phi(x) = y
+.\]
+
+Some often thought of functions are $x \mapsto x^2$ and $x \mapsto e^x$. Consider the following function:
+\[
+	+ : \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{R} : (a,b) \mapsto a + b
+.\]
+
+While it may not seem like a function in the same vain as $f(x) = x^2$, it is just as valid. Hence operators on sets can be thought as a function and hence a relation on the set (in this instance on $\mathbb{R}$).
+
+\begin{definition}[Equivalence Relation]
+	A relation $\mathcal{R}$ is called an \textit{Equivalence Relation} if it satisfies the following three properties:
+	\begin{align*}
+		&\textbf{Reflexive} &\forall &a \in A, (a,a) \in \mathcal{R} \\
+		&\textbf{Symmetric} &\forall &a,b \in A, (a,b) \in \mathcal{R} \implies (b,a) \in \mathcal{R} \\
+		&\textbf{Transitive} &\forall &a,b,c \in A, (a,b), (b,c) \in \mathcal{R} \implies (a,c) \in \mathcal{R}
+	.\end{align*}
+\end{definition}
+
+
+Consider the relation $\mathcal{R}$ where
+\[
+	x \mathcal{R} y \Longleftrightarrow |x| = |y|
+.\]
+
+Checking the three properties reveals that $\mathcal{R}$ is indeed an equivalence relation.
+\begin{align*}
+		&\textbf{Reflexivity} &|x| &= |x| \\
+		&\textbf{Symmetry} &|x| &= |y| \implies |y|=|x| \\
+		&\textbf{Transitivity} &|x| &= |y|, |y|=|z| \implies |x| = |z|
+.\end{align*}
+
+\begin{theorem}[Partitions from Equivalence Relations]
+	Let $A$ be a non empty set, and $\sim$ be an equivalence relation on A. Then for each $a \in A$ it follows that $\bar{a} := \qty{x \in A : x \sim a} \subseteq A$. These subsets produce a partition of $A$.
+\end{theorem}
+
+\begin{proof}
+	First show that if $\bar{a} \cap \bar{b} \neq \varnothing$, then $\bar{a} = \bar{b}$. Let $w \in \bar{a} \cap \bar{b}$. Consider an element $x \in \bar{a}$. Then $x \sim a$. Since $w \in \bar{a}$ it follows that $w \sim a$ hence $x \sim w$. Since $w \in \bar{b}$, its true that $w \sim b$, meaning $x \sim b$. Therefore $x \in \bar{b}$, meaning $\bar{a} \subseteq \bar{b}$. Other direction follows in the same manner.
+\end{proof}
+
+\begin{definition}[Powerset]
+	The powerset of a set $A$, denoted by $\mathcal{P}(A)$, is the set containing all subsets of $A$. Equivalently,
+	\[
+		\mathcal{P}(A) = \qty{ S : S \subseteq A }
+	.\]
+\end{definition}
+
+\begin{theorem}
+	Given a finite, non-empty set $A$, it follows that
+	$
+		\mathcal{P}(A) = 2^{\qty|A|}
+	$.
+\end{theorem}
+
+\begin{proof}
+	Let $A$ be a finite, non-empty set. Define a binary string structure in the following manner. Given a binary string such as 
+	\begin{align*}
+		\qty(0,0,0,\ldots, 0) &\implies \varnothing \\
+		\qty(1,0,0,\ldots, 0) &\implies \qty{a_1} \\
+		\qty(1,1,0,\ldots, 0) &\implies \qty{a_1, a_2} \\
+													&\vdots
+	\end{align*}
+	where $a_1, a_2, \ldots a_n$ denote all the elements in $A$. Therefore, if a set $A$ has $n$ elements, the cardinality of $\mathcal{P}(A)$ is equivalent to the question "How many binary strings are there with length $n$". Each entry of the string provides 2 choices, $\qty{0,1}$. Therefore since there are $n$ choices in the entirety of the string, the number of binary strings of length $n$ is equal to $2^n$. Therefore $\mathcal{P}(A) = 2^n = 2^{|A|}$.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,207 @@
+2.) Line 9, column 412, Rule ID: SENT_START_CONJUNCTIVE_LINKING_ADVERB_COMMA[1]
+Message: Did you forget a comma after a conjunctive/linking adverb?
+Suggestion: Hence,
+...sult of the courts and consequently the law. Hence the prison is understood only in the context...
+                                                ^^^^^                                             
+More info: https://writing.wisc.edu/handbook/grammarpunct/conjadv/
+
+3.) Line 9, column 521, Rule ID: EN_QUOTES[1]
+Message: Use a smart opening quote here.
+Suggestion: “
+...s rhetorically asked by Ruth Wilson Gilmore, "But what about crime? Doesn’t prison exist be...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+4.) Line 9, column 592, Rule ID: EN_QUOTES[2]
+Message: Use a smart closing quote here.
+Suggestion: ”
+...sn’t prison exist because there are criminals" \cite*[12]{gilmoreGoldenGulagPrisons2007}? O...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+5.) Line 9, column 813, Rule ID: EN_QUOTES[1]
+Message: Use a smart opening quote here.
+Suggestion: “
+...g system that bends and changes according to "who, in a social order, needs to be controlle...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+6.) Line 9, column 860, Rule ID: EN_QUOTES[2]
+Message: Use a smart closing quote here.
+Suggestion: ”
+...ho, in a social order, needs to be controlled" \mancite\cite[12]{gilmoreGoldenGulagPrisons2...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+7.) Line 12, column 178, Rule ID: ADVERB_WORD_ORDER[4] prio=-1
+Message: The adverb ‘often’ usually goes after the verb ‘are’.
+Suggestion: are often
+...l and mental sense. The locations of prisons often are in rural parts of America because of the lim...
+                                                ^^^^^^^^^                                             
+More info: http://faculty.washington.edu/marynell/grammar/AdverbPl.html
+
+8.) Line 12, column 406, Rule ID: APOSTROPHE_IN_DATES[1]
+Message: Apostrophes aren’t needed for decades: “1980s”.
+Suggestion: 1980s
+...ped. Consider the following case. During the 1980's, there was a proposal to construct a prison ...
+                                                ^^^^^^                                             
+More info: https://www.monash.edu/about/editorialstyle/editing/apostrophes
+
+9.) Line 14, column 628, Rule ID: EN_QUOTES[1]
+Message: Use a smart opening quote here.
+Suggestion: “
+...amatic interpretations such as in films like "\textit{I Want to Live}, \textit{Papillon}, \...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+10.) Line 14, column 731, Rule ID: EN_QUOTES[2]
+Message: Use a smart closing quote here.
+Suggestion: ”
+...Hand Luke}, and \textit{Escape from Alcatraz}" \cite*[18]{davisArePrisonsObsolete2003} perp...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+11.) Line 14, column 1174, Rule ID: FEWER_LESS[2]
+Message: Did you mean “fewer”? The noun people is countable.
+Suggestion: fewer
+...ocated to more physically distant locations, less people become aware of their presence and re...
+                                                ^^^^                                             
+More info: https://www.lexico.com/grammar/less-or-fewer
+
+12.) Line 16, column 61, Rule ID: EN_QUOTES[1]
+Message: Use a smart opening quote here.
+Suggestion: “
+... restate a rhetorical question Gilmore asks: "Doesn't prison exist because there are crimin...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+13.) Line 16, column 111, Rule ID: EN_QUOTES[2]
+Message: Use a smart closing quote here.
+Suggestion: ”
+...n't prison exist because there are criminals?" \cite*[12]{gilmoreGoldenGulagPrisons2007}. W...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+14.) Line 16, column 1025, Rule ID: EN_QUOTES[1]
+Message: Use a smart opening quote here.
+Suggestion: “
+...ts out is the Black Codes. As said by Davis, "The new Black Codes proscribed a range of act...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+15.) Line 16, column 1258, Rule ID: EN_QUOTES[2]
+Message: Use a smart closing quote here.
+Suggestion: ”
+...alized only when the person charged was black" \cite*[28]{davisArePrisonsObsolete2003}. It ...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+16.) Line 16, column 1461, Rule ID: EN_QUOTES[1]
+Message: Use a smart opening quote here.
+Suggestion: “
+...eral assembly passed an act that stated that "No Indian, Negro, or Molatto is to be from Ho...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+17.) Line 16, column 1473, Rule ID: PROFANITY[10] prio=1
+Message: This expression can be considered offensive.
+Suggestion: Afro-American
+...y passed an act that stated that "No Indian, Negro, or Molatto is to be from Home after 9 o'clo...
+                                                ^^^^^                                             
+More info: https://en.wikipedia.org/wiki/Negro
+
+18.) Line 16, column 1525, Rule ID: EN_QUOTES[2]
+Message: Use a smart closing quote here.
+Suggestion: ”
+...or Molatto is to be from Home after 9 o'clock" \cite{marksammonsBlackPortsmouth2004}. Curfe...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+19.) Line 16, column 1803, Rule ID: SENT_START_CONJUNCTIVE_LINKING_ADVERB_COMMA[1]
+Message: Did you forget a comma after a conjunctive/linking adverb?
+Suggestion: Therefore,
+...sent an objective evaluation of criminality. Therefore this example sheds light on the fact that th...
+                                                ^^^^^^^^^                                             
+More info: https://writing.wisc.edu/handbook/grammarpunct/conjadv/
+
+20.) Line 18, column 215, Rule ID: PROFANITY[16] prio=1
+Message: This expression can be considered offensive.
+... further on this in her book \textit{The New Jim Crow}. Alexander specifically discusses the "War ...
+                                                ^^^^^^^^                                             
+More info: https://en.wiktionary.org/wiki/Jim_Crow#English
+
+21.) Line 18, column 263, Rule ID: EN_QUOTES[1]
+Message: Use a smart opening quote here.
+Suggestion: “
+... Crow}. Alexander specifically discusses the "War on Drugs", a campaign with roots in the 1...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+22.) Line 18, column 276, Rule ID: EN_QUOTES[2]
+Message: Use a smart closing quote here.
+Suggestion: ”
+...nder specifically discusses the "War on Drugs", a campaign with roots in the 1970's that gr...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+23.) Line 18, column 308, Rule ID: APOSTROPHE_IN_DATES[1]
+Message: Apostrophes aren’t needed for decades: “1970s”.
+Suggestion: 1970s
+..."War on Drugs", a campaign with roots in the 1970's that grew in scope under the Reagan Administ...
+                                                ^^^^^^                                             
+More info: https://www.monash.edu/about/editorialstyle/editing/apostrophes
+
+24.) Line 18, column 501, Rule ID: EN_QUOTES[1]
+Message: Use a smart opening quote here.
+Suggestion: “
+...re component of what Alexander says Reagan's "'color-blind' rhetoric on crime, welfare, tax...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+25.) Line 18, column 569, Rule ID: EN_QUOTES[2]
+Message: Use a smart closing quote here.
+Suggestion: ”
+... on crime, welfare, taxes, and states' rights" \cite[47]{alexanderNewJimCrow2012}. In reali...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+26.) Line 21, column 323, Rule ID: EN_QUOTES[1]
+Message: Use a smart opening quote here.
+Suggestion: “
+...ciety to function? As Davis questions, can a "system that \ldots prevailed during the eight...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+27.) Line 21, column 453, Rule ID: EN_QUOTES[2]
+Message: Use a smart closing quote here.
+Suggestion: ”
+...ay absolute claim on the twenty-first century" \cite[43]{davisArePrisonsObsolete2003}.  As ...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+28.) Line 22, column 204, Rule ID: EN_QUOTES[1]
+Message: Use a smart opening quote here.
+Suggestion: “
+...time in prison \nocite{AmericansDifferParty}("American Differ by Party\ldots"). \begin{wrap...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+29.) Line 22, column 235, Rule ID: EN_QUOTES[2]
+Message: Use a smart closing quote here.
+Suggestion: ”
+...sDifferParty}("American Differ by Party\ldots"). \begin{wrapfigure}{r}{0.4\textwidth}  \cen...
+                                                ^                                             
+More info: https://en.wikipedia.org/wiki/Smart_quote#Electronic_documents
+
+30.) Line 29, column 152, Rule ID: RETURN_BACK[1]
+Message: Consider using “return”.
+Suggestion: return
+...cerated}. For me, I see these statistics and return back to the common sense definition of a prison f...
+                                                ^^^^^^^^^^^                                             
+
+31.) Line 29, column 541, Rule ID: POSSESSIVE_APOSTROPHE[1]
+Message: An apostrophe may be missing.
+Suggestion: countries'; country's
+... for? Is the imprisonment of almost 1\% of a countries population correlated directly to public saf...
+                                                ^^^^^^^^^                                             
+Time: 1705ms for 69 sentences (40.5 sentences/sec)

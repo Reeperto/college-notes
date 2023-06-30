@@ -1,0 +1,153 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {"../figures"}
+}
+
+\begin{document}
+
+\subsection{Non-Homogeneous Linear System}
+
+Consider the system
+\begin{align*}
+    x_1' &= x_1 - 2x_2 + t \\
+    x_2' &= x_1 - x_2 
+\end{align*}
+
+In matrix form, the system can be written as
+\[
+    \mqty[x_1' \\ x_2'] = \mqty[x_1 - 2x_2 \\ x_1 - x_2] + \mqty[t \\ 0] \implies \va{x}'(t) = \vb{A} \va{x}(t) + \va{f(t)}
+.\] 
+Where
+\begin{align*}
+    & \vb{A} = \mqty[1 & -2 \\ 1 & -1]. & \va{f}(t) = \mqty[t \\ 0] &
+.\end{align*}
+
+While potentially scarier than previous ODEs, previous methods such as \namethmref{th:undeterminedcoefficients} and \namethmref{th:varofparams} can be used, just utilizing vectors instead of scalars.
+
+\subsubsection{Method of Undetermined Coefficients}
+
+Using the prior example, apply the methods for \namethmref{th:undeterminedcoefficients} using vectors instead of scalars. First, find a solution to the homogeneous system $\va{x}' = \vb{A}\va{x}$. Solve this system using \namethmref{th:eigendecomp}
+{
+    \newcommand{\eig}{\lambda}
+\begin{align*}
+    \det(\mqty[1 - \eig & -2 \\ 1 & -1 - \eig]) &= (1-\eig)(-1-\eig)+2 \\
+    0 &= \eig^2 +1 \implies \eig = \pm i
+.\end{align*}
+
+Use only a single eigenvalue to construct a eigenvector (due to conjugate pairing). Use $\eig = i$
+ \[
+    \ker(A - iI) = \qty[\begin{array}{cc|c}
+        1-i & -2 & 0\\
+        1 & -1-i & 0
+    \end{array}] \implies
+    \eig_i = \mqty[1+i \\ 1]
+.\] 
+Now, write the homogeneous solution as
+\[
+    \va{x}_c = c_1\Re{\eig_i e^{it}} + c_2\Im{\eig_i e^{it}}
+.\]
+Find the real and imaginary components
+\begin{align*}
+    e^{it} \va{\eig}_i &= \qty(\cos(t) + i \sin(t)) \va{\eig}_i \\
+                       &= \mqty[\cos(t) + i \sin(t) + i \cos(t) - \sin(t) \\ \cos(t) + i \sin(t)] \\
+                       &= \underbrace{\mqty[\cos(t) - \sin(t) \\ \cos(t)]}_{\textstyle\text{Re}} + i \underbrace{\mqty[\cos(t) + \sin(t) \\ \sin(t)]}_{\textstyle\text{Im}}
+.\end{align*}
+Therefore the complementary solution can be written as
+\[
+    \va{x}_c (t) = c_1 \mqty[\cos(t) - \sin(t) \\ \cos(t)] + c_2 \mqty[\cos(t) + \sin(t) \\ \sin(t)]
+.\]
+Just like before, along with a complementary solutions there is a particular solution with some the form of some Ansatz. Since in this case $\va{f}(t) = \mqty[t \\ 0]$, assume that
+ \[
+     \va{x}_p = \va{a} t + \va{b} = \mqty[a_1 \\ a_2] t + \mqty[b_1 \\ b_2]
+.\] 
+
+Taking the derivative is easy in this instance since the vectors are constants. Therefore
+\[
+    \va{x}_p' = \va{a}
+.\]
+
+Now substitute into the original system
+\begin{align*}
+    \va{x}_p ' &= A\va{x}_p + \va{f}(t) \\
+    \va{a} &= \vb{A}\qty(\va{a} t + \va{b}) + \va{f}(t) \\
+    \mqty[a_1 \\ a_2] &= \vb{A}\va{a} t + \vb{A}\va{b} + \va{f}(t) \\
+    \mqty[a_1 \\ a_2] &= \vb{A}\mqty[a_1 \\ a_2] t + \vb{A}\mqty[b_1 \\ b_2] + \mqty[t \\ 0] \\
+    \mqty[a_1 \\ a_2] &= \mqty[a_1 - 2a_2 \\ a_1 - a_2] t + \mqty[b_1 - 2b_2 \\ b_1 - b_2] + \mqty[t \\ 0] \\
+    \mqty[a_1 \\ a_2] &= \mqty[a_1 t - 2a_2 t + t + b_1 - 2b_2 \\ a_1 - a_2 + b_1 - b_2]
+.\end{align*}
+Matching coefficients can be used to determine $\va{a}$ and  $\va{b}$
+ \begin{align*}
+     \intertext{Matching t}
+     0 &= a_1 - a_2 \implies a_1 = a_2 \\
+    0 &= a_1 - 2a_2 + 1 \\
+    &= a_1 - 2a_1 + 1 \implies a_1 = a_2 = 1
+.\end{align*}
+ \begin{align*}
+     \intertext{Matching constants}
+     a_1 &= b_1 - 2b_2 \implies 1 = b_1 - 2b_2 \\
+     a_2 &= b_1 - b_2 \implies 1 = b_1 - b_2 \implies b_1 = 1 + b_2 
+.\end{align*}
+
+\[
+1 = (1+b_2) - 2b_2 = 1 - b_2 \implies b_2 = 0 \implies b_1 = 1
+.\] 
+
+Therefore
+\[
+    \va{x}_p = \mqty[1 \\ 1] t + \mqty[1 \\ 0]
+.\] 
+And the general solution is then
+\[
+\va{x}(t) = c_1 \mqty[\cos(t) - \sin(t) \\ \cos(t)] + c_2 \mqty[\cos(t) + \sin(t) \\ \sin(t)] + \mqty[1 \\ 1] t + \mqty[1 \\ 0]
+.\] 
+}
+
+\textit{What if part of the particular solution appears in the complementary solution}? Take for example
+\[
+    \va{x}' = \mqty[1 & 0 \\ 1 & -2]\va{x} + \mqty[3t \\ e^{t}]
+.\] 
+Has a complementary solution
+\[
+    \va{x}_c = c_1 e^{t} \mqty[3 \\ 1] + c_2 e^{-2t} \mqty[0 \\ 1]
+.\]
+If guessing naively, the particular solution would have the form
+
+\[
+\va{x}_p = \va{a}t + \va{b} + \va{c}e^{t}
+.\] 
+
+The issue here is that $\va{c} e^{t}$ is not linearly independent to the complementary solution and therefore the \namethmref{th:superposition} doesn't apply. Therefore, there must a new linearly independent term added to the particular solution. In this case, add the term $\va{d} t e^{t}$ such that
+\[
+    \va{x}_p = \va{a}t + \va{b} + \va{c}e^{t} + \va{d} t e^{t}
+.\] 
+This solution is now linearly independent from the complementary solution and can therefore be used to describe the general solution.
+
+\subsection{Laplace Transform}
+
+The Laplace transform is a transformation that can take a differential equation and convert it into an algebraic object. From there it can be solved with algebraic methods. The solution to that algebraic equation can then have the inverse Laplace transform applied to revert it back into a solution to the differential equation. The Laplace transformation is notated by
+\[
+    \laplace{f(t)} = F(s)
+.\] 
+
+The Laplace transform is defined as
+\[
+    \laplace{f(t)} = \int_{0}^{\infty} e^{-st} f(t) dt = F(s)
+.\]
+
+\begin{stickynote}{Laplace Transform of Simple Functions}
+\begin{align*}
+    \laplace{1} &= \int_{0}^{\infty} e^{-st} dt \\
+                &= \lim_{b \to \infty} \eval{-\frac{1}{s} e^{st}}_0^{b} \\
+                &= \lim_{b \to \infty} -\frac{1}{s} e^{-bs} - \qty(-\frac{1}{s}) \\
+                &= \frac{1}{s} \; (s > 0)
+.\end{align*}    
+\end{stickynote}
+
+\begin{theorem}{Linearity of the Laplace Transform}{laplacelinear}
+    Let $A$ and  $B$ be constants. Let  $f(t)$ and  $g(t)$ be functions. Then the Laplace of their linear combination is
+     \[
+         \laplace{Af(t) + Bg(t)} = A F(s) + B G(s)
+    .\] 
+\end{theorem}
+
+\end{document}

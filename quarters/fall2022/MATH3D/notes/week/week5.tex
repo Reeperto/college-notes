@@ -1,0 +1,328 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {"../figures"}
+}
+
+\begin{document}
+
+\subsection{System's of ODEs}
+
+\begin{figure}[htpb]
+	\centering
+	\import{figures/}{lin-tank-sys.pdf_tex}
+	\caption{Connected Tank System}
+	\label{fig:tanksys}
+\end{figure}
+\begin{example}{An interconnected system of two tanks}
+
+In this example, $x_1$ and $x_2$ are the quantities of salt in each tank, $V$ is the volume in either tank, and  $r$ is the rate in and out of each tank. Examine each tank separately like in \nameref{sec:tankproblems}
+
+$$
+x_1^{\prime}=\frac{x_2}{V} r-\frac{x_1}{V} r=\frac{r}{V} x_2-\frac{r}{V} x_1=\frac{r}{V}\left(x_2-x_1\right) .
+$$
+Similarly for the rate $x_2^{\prime}$, the roles of $x_1$ and $x_2$ are reversed. All in all, the system of ODEs for this problem is
+\begin{align*}
+&x_1^{\prime}=\frac{r}{V}\left(x_2-x_1\right), \\
+&x_2^{\prime}=\frac{r}{V}\left(x_1-x_2\right) .
+\end{align*}
+
+To solve the system of equations, utilize a matrix/vector representation.
+\begin{align*}
+	\va{x}(t) = \mqty[
+	x_1 \\
+	x_2
+	] \implies
+	\va{x}'(t) = \mqty[
+	x_1' \\
+	x_2'
+	]
+.\end{align*}
+Note that we can define a matrix $\vb{A}$ such that
+\[
+	\va{x}'(t) = \vb{A}\va{x}(t)
+.\]
+For this system
+\[
+	\vb{A} = \frac{r}{V}\mqty[
+	-1 & 1 \\
+	1 & -1 \\
+	]
+.\]
+In order to solve this new system, eigenvalues can be used to describe the solution set.
+\end{example}
+
+\subsubsection{Eigenvalues and Eigenvectors}
+
+\begin{theorem}{Eigenvalue Decomposition}{eigendecomp}
+	A linearly homogeneous system can be represented by a constant coefficient matrix $\vb{A}$ such that
+	\[
+		\va{x}'(t)=\vb{A}\va{x}(t)
+	.\]
+	Set $\va{x}=\va{v}e^{\lambda t}$ where $\va{v}$ can be any constant vector and  $\lambda$ is an eigenvalue of $\vb{A}$
+	 \[
+		 \lambda \va{v} e^{\lambda t} = \vb{A} \va{v} e^{\lambda t} \implies \vb{A} \va{v} = \lambda \va{v}
+	.\]
+	By definition, $\va{v}$ must be a eigenvector of  $\vb{A}$. The final solution  $\va{x}(t)$ can be written as a linear combination of the eigenvectors and exponential (by the \nameref{th:superposition})
+	 \[
+		 \boxed{\va{x}(t) = c_1 \va{v}_1 e^{\lambda_1 t} + c_2 \va{v}_2 e^{\lambda_2 t} \hdots + c_n \va{v}_n e^{\lambda_n t}
+	 .}\]
+\end{theorem}
+
+Continuing the previous example, Finding the eigenvectors is the same as finding
+\[
+	\frac{r}{V}\cdot\det(\vb{A} - \vb{I}\lambda) = 0
+.\]
+Using the given matrix
+\[
+	\mdet{
+	-1 - \lambda & 1 \\
+	1 & -1 - \lambda
+} = (\lambda + 1)^2 - 1 = 0 \implies \lambda = \frac{r}{V}\cdot\{ -2, 0 \}
+.\]
+Find the associated eigenvectors
+{
+\newcommand{\vectorone}{\mqty[-1 \\ 1]}
+\newcommand{\vectortwo}{\mqty[1 \\ 1]}
+\begin{align*}
+	\Ker{\vb{A}+2\vb{I}} = \left[\begin{array}{cc|c}
+ 1 & 1 & 0\\
+ 1 & 1 & 0
+\end{array}\right] \implies \va{v}_1 = \vectorone \\
+	\Ker{\vb{A}-0\vb{I}} = \left[\begin{array}{cc|c}
+ -1 & 1 & 0\\
+ 1 & -1 & 0
+\end{array}\right] \implies \va{v}_2 = \vectortwo
+.\end{align*}
+Therefore the general solution of the system is
+\[
+	\va{x}(t) = c_1 \vectorone e^{-2t} + c_2 \vectortwo
+.\]
+Expanding out into solutions for $x_1$ and $x_2$
+\begin{align*}
+	x_1(t) &= c_2 - c_1 e^{-\frac{2r}{V}t} \\
+	x_2(t) &= c_2 + c_1 e^{-\frac{2r}{V}t}
+.\end{align*}
+}
+
+Assume that $x_1(0)=s_0$ and $x_2 = s_1$.
+\begin{align*}
+	x_1(t) &= c_2 - c_1 e^{-\frac{2r}{V}t} \implies s_0 = c_2 -c_1 \\
+	x_2(t) &= c_2 + c_1 e^{-\frac{2r}{V}t} \implies s_1 = c_2 + c_1
+.\end{align*}
+Therefore $c_1=\frac{s_1 - s_0}{2}$ and $c_2=\frac{s_0 + s_1}{2}$. Finally
+{
+\newcommand{\constantone}{\frac{s_1 - s_0}{2}}
+\newcommand{\constanttwo}{\frac{s_1 + s_0}{2}}
+\begin{center}
+\begin{eqbox}
+	$\begin{aligned}
+		x_1(t) &= \constanttwo - \constantone e^{-\frac{2r}{V}t} \\
+		x_2(t) &= \constanttwo + \constantone e^{-\frac{2r}{V}t} \\
+	\end{aligned}$
+\end{eqbox}
+\end{center}
+The solutions can be checked logically as it can be assumed that as time goes on, the mixture of salt in the solvent should even out since the volumes are identical and the rates are also identical. Taking the proper limits for both functions
+\begin{align*}
+	\lim_{t \to \infty} x_1(t) &= \lim_{t \to \infty} \constanttwo - \constantone e^{-\frac{2r}{V}t} = \constanttwo\\
+	\lim_{t \to \infty} x_2(t) &= \lim_{t \to \infty} \constanttwo + \constantone e^{-\frac{2r}{V}t} = \constanttwo.
+\end{align*}
+
+As assumed by just physically guessing the behaviour of the system, the functions result in the same answer. As time approaches infinity, the amount of salt in each tank will even out, therefore becoming the average of the quantities of salt.
+
+}
+
+\subsubsection{Complex Eigenvalues}
+{
+\newcommand{\eigone}{1+i}
+\newcommand{\eigtwo}{1-i}
+\newcommand{\vectorone}{\mqty[-1+i \\ 1]}
+\newcommand{\vectortwo}{\mqty[-1-i \\ 1]}
+
+Consider the system
+\[
+	\va{x}' = \mqty[0 & -2 \\ 1 & 2] \va{x}
+.\]
+Finding the eigenvalues
+\begin{gather*}
+	\det(\vb{A} - \vb{I}\lambda) = 0 \\
+	\mdet{
+	- \lambda & -2 \\
+	1 & 2 - \lambda
+	} =
+	\lambda ^2-2 \lambda +2 = 0 \implies \lambda = \{1+i, 1-i\}
+\end{gather*}
+Both of the eigenvalues for the matrix are complex. This is not a problem however. Continue using the same approach as before. Find the eigenvectors
+
+\begin{align*}
+	\ker{\vb{A}-(\eigone)\vb{I}} = \left[\begin{array}{cc|c}
+		-1-i & -2 & 0\\
+		1 & 1-i & 0
+	\end{array}\right] \implies \va{v}_1 = \vectorone \\
+	\ker{\vb{A}-(\eigtwo)\vb{I}} = \left[\begin{array}{cc|c}
+		-1+i & -2 & 0\\
+	 	1 & 1+i & 0
+	\end{array}\right] \implies \va{v}_2 = \vectortwo
+.\end{align*}
+Therefore the general solution of the system is
+\[
+	\va{x}(t) = c_1 \vectorone e^{(\eigone)t} + c_2 \vectortwo e^{(\eigtwo)t}
+.\]
+Combine into a singular vector
+\begin{align*}
+	\va{x}(t) &=
+	\mqty[
+		c_1 (-1+i) e^{(\eigone)t} + c_2 (-1-i) e^{(\eigtwo)t} \\
+		c_1 e^{(\eigone)t} + c_2 e^{(\eigtwo)t}
+	] \\
+	&=
+	\mqty[
+		-c_1 e^{(\eigone)t} + i c_1 e^{(\eigone)t} + -c_2 e^{(\eigtwo)t} -i c_2 e^{(\eigtwo)t} \\
+		c_1 e^{(\eigone)t} + c_2 e^{(\eigtwo)t}
+	] \\
+	&=
+	\small\mqty[
+		-c_1 e^{t}\qty(\cos(t) + i\sin(t)) + i c_1 e^{t}\qty(\cos(t) + i\sin(t)) + -c_2 e^{t}\qty(\cos(t) - i\sin(t)) -i c_2 e^{t}\qty(\cos(t) - i\sin(t)) \\
+		e^{t}\qty(\cos(t) + i\sin(t)) + c_2 e^{t}\qty(\cos(t) - i\sin(t))
+	] \\
+\end{align*}
+This becomes very unwieldy very quickly. Instead, remember that the real and imaginary components of a complex object are linearly independent. Therefore for each complex eigenvalue, only a single eigenvector needs to be considered as its conjugate pair will result in identical solutions. Take the eigenvector
+\[
+	\vectorone
+.\]
+\begin{align*}
+	\va{x}_1 &= \va{v}_1 e^{(\eigone)t} \\
+	&= e^{t} \qty( \cos(t) + i \sin(t) ) \vectorone \\
+	&\Downarrow \\
+	\va{x}(t) &=
+	c_1 \Re{e^{t} \qty( \cos(t) + i \sin(t) ) \vectorone} + c_2 \Im{e^{t} \qty( \cos(t) + i \sin(t) ) \vectorone}
+	\\
+	\va{x}(t) &=
+	c_1 \left[
+		\begin{array}{c}
+		 -e^t \sin (t)-e^t \cos (t) \\
+		 e^t \cos (t) \\
+		\end{array}
+		\right] +
+	c_2 \left[
+		\begin{array}{c}
+		 e^t \cos (t)-e^t \sin (t) \\
+		 e^t \sin (t) \\
+		\end{array}
+		\right]
+.\end{align*}
+\centering
+\begin{eqbox}
+$
+	\va{x}(t) =
+	c_1 e^{t} \mqty[\cos(t) - \sin(t) \\ \sin(t) ] + c_2 e^{t} \mqty[ 2 \sin(t) \\ \cos(t) + \sin(t) ]
+$
+\end{eqbox}
+}
+
+% \begin{example}{Find solution to  the system $\va{x}'(t) = \mqty[1 & 1 \\ -1 & 1] \va{x}(t)$}
+% \end{example}
+
+\subsubsection{Algebraic and Geometric Multiplicity}
+
+Again by example, take the linear system
+\[
+    \va{x}' = \underbrace{\mqty[2 & 3 \\ 0 & 2]}_{\vb{A}} \va{x}
+\]
+\[
+    \det{\vb{A} - \vb{I}\lambda} = 0 \implies \lambda = \{2,2\}
+.\]
+In this instance, the eigenvalue 2 appears twice. It is therefore said to have \textbf{Algebraic Multiplicity} of 2. Finding the associated eigenvalues results in
+
+{
+\newcommand{\leftside}{
+\Ker{\mqty[1 & 1 \\ 0 & 1]} = \qty[\begin{array}{cc|c}
+    0 & 3 & 0\\
+    0 & 0 & 0
+\end{array}] \implies
+}
+
+\newcommand{\rightside}{
+    \va{\lambda} = \mqty[1 \\ 0]
+}
+
+\begin{empheq}[left=\leftside\empheqlbrace,right=\implies\rightside]{align}
+    v_1 &= v_1 \\
+    v_2 &= 0
+\end{empheq}
+
+}
+Note that while the eigenvalue was present twice, both only correspond to a singular eigenvector. The count of the linearly independent eigenvectors associated with an eigenvalue is called the \textbf{Geometric Multiplicity} of the eigenvalue. In this instance it is 1.
+
+\begin{stickynote}{Algebraic and Geometric Multiplicity}
+    For any eigenvalue, the following relationship holds
+    \[
+        GM \le AM
+    .\]
+    If $GM < AM$, then the method of solving a system with \namethmref{th:eigendecomp} will not work as normal, requiring a method to handle the 'repeated' root / eigenvalue
+\end{stickynote}
+
+\begin{stickynote}{Eigenvector Decomposition (Repeated Values)}
+    \label{nt:repeatedeig}
+    \newcommand{\expone}{e^{\lambda t}}
+    In the case where an eigenvalue has an algebraic multiplicity larger than its geometric multiplicity, the solution set of a linear system cannot be accurately described. Therefore, extra dimensions must be constructed to allow the solution set to be complete and general. Take the system
+    \[
+        \va{x}'(t) = \vb{A}\va{x}(t)
+    .\]
+    Assume an eigenvalue $\lambda$ has an algebraic multiplicity of 2 and geometric multiplicity of 1. To resolve the lower dimensionality of the solution, assume the associated eigenvector solution is
+    \[
+        \va{x}_{\lambda}(t) = \qty(\va{v}_1 + t\va{v}_2)\expone
+    .\]
+    Find the derivative and substitute into the original system equation
+    \begin{align*}
+        \va{x}'_{\lambda}(t) &= \expone\va{v}_2 + \qty(\va{v}_1 + t\va{v}_2)\lambda\expone \\
+        \vb{A}\va{x}(t)&= \expone\va{v}_2 + \qty(\va{v}_1 + t\va{v}_2)\lambda\expone \\
+        \vb{A}(\va{v}_1 + t \va{v}_2 t)\expone &= \expone\va{v}_2 + \qty(\va{v}_1 + t\va{v}_2)\lambda\expone \\
+        \expone\vb{A}\va{v}_1 + t\expone\vb{A}\va{v}_2 &= \expone\va{v}_2 + \lambda\expone\va{v}_1 + t\lambda\expone\va{v}_2
+    .\end{align*}
+    \begin{align*}
+        \expone \va{v}_2 + \lambda\expone\va{v}_1 = \expone\vb{A}\va{v}_1 &\implies \va{v}_2 + \lambda\va{v}_1 = \vb{A}\va{v}_1 \tag{Matching $\expone$} \\
+            &\implies (\vb{A} - \vb{I}\lambda) \va{v}_1 = \va{v}_2 .\\
+        \lambda t \expone \va{v}_2 = t \expone\vb{A}\va{v}_2 &\implies \lambda\va{v}_2 = \vb{A}\va{v}_2 \tag{Matching $t\expone$} \\
+            &\implies (\vb{A} - \vb{I}\lambda)\va{v}_2 = 0
+    .\end{align*}
+    \tcbset{rounded corners}
+    Therefore, the solution works if the following conditions are met
+
+    \centering
+    \begin{eqbox}
+        $\begin{aligned}
+            & (\vb{A} - \vb{I}\lambda)\va{v}_2 = 0 &
+            (\vb{A} - \vb{I}\lambda) \va{v}_1 = \va{v}_2 &
+        .\end{aligned}$
+    \end{eqbox}
+\end{stickynote}
+
+\begin{theorem}{Generalized Eigenvectors}{generalizedeigvector}
+
+    For a system in the form of
+    \[
+        \va{x}'(t) = \vb{A}\va{x}(t)
+    .\]
+
+    %with an associated eigenvalue $\lambda$ with $AM - GM = N$
+    with an associated eigenvalue $\lambda$ with $AM = N$
+    \[
+        \va{x}_\lambda (t) = \qty(\va{x}_1 + t\va{x}_2 + t^2\va{x}_3 + \hdots + t^{N-1}\va{x}_N)e^{\lambda t}
+    .\]
+    Where
+
+    {
+    \centering
+    \begin{eqbox}
+    $\begin{aligned}
+        \qty(\vb{A} - \vb{I}\lambda)&\va{x}_k \, = k\va{x}_{k+1}. \\
+        \qty(\vb{A} - \vb{I}\lambda)&\va{x}_N = 0
+    .\end{aligned}$
+    \end{eqbox}
+    }
+
+    The vector chain from $\va{x}_1$ to  $\va{x}_{N-1}$ are the \textbf{Generalized Eigenvectors} associated with  $\lambda$.
+
+\end{theorem}
+
+\end{document}

@@ -1,0 +1,160 @@
+% Package Imports --------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{extsizes}
+\usepackage{standalone}
+\usepackage{textcomp}
+\usepackage{fancyhdr}
+%\usepackage{parskip}
+
+% Math Packages
+\usepackage{mathtools, amsmath, amssymb, amsthm, physics}
+\usepackage{thmtools}
+
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+
+\usepackage{tikz}
+\usepackage{xpatch}
+\usepackage[super]{nth}
+\usepackage{multicol}
+
+\pdfsuppresswarningpagegroup=1
+
+% Redefinitions and makes ------------------------------------------------------
+
+\makeatletter
+\def\hlinewd#1{%
+\noalign{\ifnum0=`}\fi\hrule \@height #1 \futurelet
+\reserved@a\@xhline}
+\makeatother
+
+\newcommand{\vbrac}[1]{
+\left\langle #1 \right\rangle
+}
+
+\makeatletter
+\newcommand*{\currentname}{\@currentlabelname}
+\makeatother
+
+% Page Setup -------------------------------------------------------------------
+\geometry{margin=1in,letterpaper}
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyhead[L]{\bfseries\notestitle}
+\fancyhead[R]{\bfseries\currentname}
+\fancyfoot[R]{
+				\tcbox[size=fbox,colframe=black,colback=black,coltext=white]{\bfseries\thepage}
+}
+\fancyfoot[C]{}
+
+% Remove indents ---------------------------------------------------------------
+\setlength\parindent{0pt}
+
+% Custom colors ----------------------------------------------------------------
+\definecolor{links}{HTML}{28859c}
+\definecolor{exampleBG}{HTML}{42f575}
+\definecolor{theoremBG}{HTML}{4cbdd9}
+\definecolor{noteBG}{HTML}{ebc334}
+
+\newcolumntype{a}{>{\columncolor{noteBG!50}}l}
+
+% Custom tcolorbox commands/styles ---------------------------------------------
+
+\usepackage[most]{tcolorbox}
+
+\newtcolorbox{week}{
+colback=black,
+coltext=white,
+fontupper={\large\bfseries},
+width=1.2\paperwidth,
+size=small,
+halign upper=center,
+center
+}
+
+\newtcolorbox{example}{
+colback=exampleBG!70,
+colframe=exampleBG!50!black,
+fontupper={\bfseries Ex. \normalfont},
+bottom=0pt,
+top=0pt,
+}
+
+\newtcolorbox{stickynote}[1]{
+enhanced,
+attach boxed title to top left={xshift=3mm,yshift=-3mm,yshifttext=-1mm},
+colback=noteBG!20,
+colframe=noteBG!90!black,
+colbacktitle=noteBG!90!black,
+title=Note: #1,
+fonttitle=\bfseries\boldmath,
+boxed title style={size=small,colframe=noteBG!50!black},
+}
+
+% THMTools Definitions ---------------------------------------------------------
+\tcbuselibrary{theorems}
+
+\newtcbtheorem[number within=section,list inside={theorems}]{theorem}{Theorem}{
+colback=theoremBG!15,
+boxed title style={size=small,colframe=noteBG!50!black},
+colframe=theoremBG!45!black,
+fonttitle=\bfseries
+}{th}
+
+% Weekly based T.O.C -----------------------------------------------------------
+\newcommand{\tocadd}[2]{
+\pagebreak
+\begin{week}
+				\section*{#1}
+\end{week}
+\addcontentsline{toc}{section}{#1}
+\input{#2}
+}
+
+% Notes Cover Page -------------------------------------------------------------
+\newcommand{\cover}[2]{
+				\newcommand{\notestitle}{#1}
+\begin{center}
+				\LARGE
+				 
+				\textbf{#1 Notes}
+				
+				\vspace{0.5cm}
+				#2
+				\vspace{2cm}
+
+ 				\begin{tikzpicture}[scale=6,every node/.style={transform shape}]
+ 								\draw[fill=black, line width=2mm] (0,0) circle [radius=0.5];
+ 								\draw[fill=white, line width=2mm] (0,0) circle [radius=0.7];
+ 								\draw[fill=black, line width=2mm] (0,0) circle [radius=0.6];
+ 								\draw[color=white] (0,0) node {$\nabla^2$};
+ 				\end{tikzpicture}
+
+				\vspace{2cm}
+				
+				\textbf{Eli Griffiths}
+
+				\href{https://github.com/Reeperto}{\faGithub} \hspace{2.5mm} \href{ mailto:elimg@uci.edu}{\faEnvelope}
+				     
+				\vspace{0.8cm}
+				
+				School of Physical Sciences \\
+				U.C. Irvine\\
+				United States\\
+				\today
+\end{center}
+\pagebreak
+}
+
+% Auto-Hyperlinks -------------------------------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+				colorlinks=true,
+				linktoc=all,
+				linkcolor=links,
+				bookmarksopen=true
+}
+

@@ -1,0 +1,112 @@
+\documentclass[12pt]{extarticle}
+
+\usepackage{multicol}
+
+\input{../preamble.tex}
+
+\newcommand{\powerset}[1]{\mathcal{P}(#1)}
+\fancyhead[R]{Homework \#1}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\usetikzlibrary{arrows.meta}
+
+\begin{document}
+
+\section*{Problem 1}
+\subsection*{Part A}
+\begin{align*}
+	P(A) &= 0.4 \\
+	P(B) &= 0.3 \\
+	P(AB) &= 0.2
+.\end{align*}
+
+\subsection*{Part B}
+The events of having a wireless mouse and wireless keyboard are not mutually exclusive since $P(AB) \neq 0$.
+
+\subsection*{Part C}
+\begin{align*}
+	P(A \cup B) &= P(A) + P(B) - P(AB) \\
+	&= 0.4 + 0.2 - 0.2 \\
+	&= 40\%
+.\end{align*}
+
+\subsection*{Part D}
+\begin{align*}
+	P(A^\complement \cup B^\complement) &= P((AB)^\complement) \\
+	&= 1 - P(AB) \\
+	&= 1 - 0.2 \\
+	&= 80\%
+.\end{align*}
+
+\subsection*{Part E}
+The probability for each person is independent of the others choice, meaning for each person there is a $40\%$ chance they have a wireless mouse. Therefore the probability that both have a wireless mouth is $(0.4)^2 = 16\%$.
+
+\section*{Problem 2}
+Let the event of getting at least one $3$ in $100$ rolls be denoted by $A$. Then $A^\complement$ is the event of not getting any $3$'s in $100$ rolls. The chance of not rolling a $3$ each roll is $\frac{5}{6}$. Therefore $P(A^\complement) = \qty(\frac{5}{6})^{100}$, meaning that $P(A) = 1 - \qty(\frac{5}{6})^{100} \approx 99.9999987925\%$.
+
+\section*{Problem 3}
+\subsection*{Part A}
+% 
+% P(A u B) = P(A) + P(B) - P(AB)
+% P(A u B) + P(AB) = P(A) + P(B) - P(AB)
+%
+% 
+\begin{proof}
+	Let $A$ and $B$ be events from some sample space $S$. Therefore
+	\begin{align*}
+		P((AB)^\complement) &= P(A^\complement \cup B^\complement) \leq P(A^\complement) + P(B^\complement) \\
+		P((AB)^\complement) & \leq P(A^\complement) + P(B^\complement)
+	.\end{align*}
+	Note that $P((AB)^\complement) = 1 - P(AB)$, therefore
+	\begin{align*}
+		P((AB)^\complement) & \leq P(A^\complement) + P(B^\complement) \\
+		- P(AB) & \leq - P(A) + 1 - P(B) \\
+		P(AB) & \geq P(A) + P(B) - 1
+	.\end{align*}
+\end{proof}
+
+\subsection*{Part B}
+Since $AB \subseteq B$, then $P(AB) \leq P(B)$ meaning, therefore using that and the Bonferroni inequlity:
+\begin{align*}
+	&P(AB) \geq P(A) + P(B) - 1 \\
+	&P(AB) \geq \frac{1}{12} \\
+	P(B) \geq &P(AB) \geq \frac{1}{12} \\
+	\frac{1}{12} \leq &P(AB) \leq \frac{1}{3}
+.\end{align*}
+
+\section*{Problem 4}
+\subsection*{Part A}
+\[
+	P(X) = 0.2 + 0.3 + 0.1 + 0.3 + 0.1 = 1.0 \;\checkmark
+.\]
+
+\subsection*{Part B}
+\[
+	P(X < 3) = 0.2 + 0.3 + 0.1 = 0.6 = 60%
+.\]
+
+\subsection*{Part C}
+\[
+	P((X=0) \cup (X=4)) = P(X=0) + P(X=4) = 0.2 + 0.1 = 0.3 = 30\%
+.\]
+
+\subsection*{Part D}
+\begin{align*}
+	P(X=1 | X>0) &= \frac{P((X=1)\cap (X>0))}{P(X > 0)} \\
+	&= \frac{P(X=1)}{P(X>0)} \\
+	&= \frac{0.3}{0.3 + 0.1 + 0.3 + 0.1} \\
+	&= 0.375 = 37.5\%
+.\end{align*}
+
+\subsection*{Part E}
+Let $A \Rightarrow$ patient 1 has 0 limbs injure and $B \Rightarrow$ patient 2 has 4 limbs injured. Since $A$ and $B$ are independent, $P(AB) = P(A) \cdot P(B)$. $P(A) = 0.2$ and $P(B) = 0.1$, therefore $P(AB) = 0.02$, meaning
+\begin{align*}
+	P(A | B) &= \frac{P(AB)}{P(B)} \\
+	&= \frac{0.02}{0.1} \\
+	&= 0.2 = 20\%
+.\end{align*}
+
+
+\end{document}

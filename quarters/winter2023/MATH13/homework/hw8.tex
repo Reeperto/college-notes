@@ -1,0 +1,213 @@
+\documentclass[12pt]{extarticle}
+
+\usepackage{multicol}
+
+\input{../preamble.tex}
+
+\newcommand{\powerset}[1]{\mathcal{P}(#1)}
+\fancyhead[R]{\textbf{Homework \#8}}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\usetikzlibrary{arrows.meta}
+
+\begin{document}
+
+ % 7.3.1ab - , 7.3.4 - , 7.3.6 - , 7.3.10, 7.4.3 -
+
+\section*{Problem 7.3.1}
+
+A relation $\mathcal{R}$ is antisymmetric if $((x, y) \in \mathcal{R}) \land ((y, x) \in \mathcal{R}) \Rightarrow x = y$. Give examples of relations $\mathcal{R}$ on $A = \qty{1, 2, 3}$ having the stated property.
+
+\begin{enumerate}
+	\item[(a)] $\mathcal{R}$ is both symmetric and antisymmetric. 
+	\item[(b)] $\mathcal{R}$ is neither symmetric nor antisymmetric.
+\end{enumerate}
+
+\subsection*{Solution}
+\begin{multicols}{2}
+	\centering
+	\subsection*{Part A}
+	\begin{align*}
+		\mathcal{R} &= \qty{(1,1)} \\
+		\mathcal{R} &= \qty{(3,3)} \\
+		\mathcal{R} &= \qty{(1,1), (2,2), (3,3)}
+	.\end{align*}
+
+	\columnbreak
+
+	\centering
+	\subsection*{Part B}
+	\begin{align*}
+		\mathcal{R} &= \qty{(1,2), (2,3), (2,1)} \\
+		\mathcal{R} &= \qty{(1,3), (1,2), (3,1)} \\
+		\mathcal{R} &= \qty{(1,2), (3,1), (1,3)}
+	.\end{align*}
+\end{multicols}
+
+\section*{Problem 7.3.4}
+\begin{enumerate}
+	\item[(a)] Let $\sim$ be the relation defined on $\mathbb{Z}$ by $a \sim b \Longleftrightarrow a + b$ is even. Show that $\sim$ is an equivalence relation and determine the distinct equivalence classes.
+	\item[(b)] Suppose that 'even' is replaced by 'odd' in part (a). Which of the properties reflexive, symmetric, transitive does $\sim$ posses?
+\end{enumerate}
+
+\subsection*{Solution}
+\subsection*{Part A}
+
+\begin{proof}
+	Proceed to show that $\sim$ is an equivalence relation on $\mathbb{Z}$. \\
+
+	\qquad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Reflexivity)\quad Let $a \in \mathbb{Z}$. Then $a + a = 2a$, which by definition is even. Therefore since $a + a$ is even it follows that $a \sim a$, hence $\sim$ is reflexive.
+	\end{minipage} \\ \\
+
+	\qquad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Symmetry)\quad Let $a,b \in \mathbb{Z}$ and assume $a \sim b$. Therefore $a + b$ is even. Since $a + b = b + a$, it follows that $b+a$ is also even and therefore $b \sim a$. Hence $\sim$ is symmetric. 
+	\end{minipage} \\ \\
+
+	\qquad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Transitivity)\quad Let $a,b,c \in \mathbb{Z}$ and assume that $a \sim b$ and $b \sim c$. Therefore $a + b$ and $b + c$ are both even, meaning $\exists m,n \in \mathbb{Z}$ such that $a + b = 2m$ and $b + c = 2n$. Then
+		\begin{align*}
+			(a + b) + (b + c) &= 2m + 2n \\
+			a + 2b + c &= 2m + 2n \\
+			a + c &= 2m + 2n - 2b \\
+			a + c &= 2(m + n - b)
+		.\end{align*}
+		Since $m + n - b \in \mathbb{Z}, a + c$ is even and therefore $a \sim c$. Hence $\sim$ is transitive.
+	\end{minipage} \\ \\
+
+	Since $\sim$ is reflexive, symmetric, and transitive it is an equivalence relation.
+\end{proof}
+
+The two possible equivalence classes are $2\mathbb{Z}$ and $\mathbb{Z}\setminus 2\mathbb{Z}$. Note that if $x$ is an odd integer, then
+\[
+	[a] = \qty{b : a + b \text{ is odd}}
+.\]
+Since $a$ is odd, then $b$ has to also be odd for $a + b$ to be even, meaning the equivalence class of an odd integer is the odd integers. If $a$ is an even integer, then
+\[
+	[a] = \qty{b : a + b \text{ is even}}
+.\]
+Since $a$ is now an even integer, $b$ must also be an even integer for $a + b$ to be even, meaning the equivalence class of an even integer is the even integers.
+
+\subsection*{Part B}
+
+If $even$ is replaced with $odd$, then $\sim$ will be symmetric but not reflexive or transitive. Consider reflexivity. Let $a = 1$ and note that $a + a = 2$ which is not odd, hence $\sim$ would not be reflexive. Consider transitivity. Note $1 \sim 2$ and $2 \sim 3$ since $1 + 2 = 3$ and $2 + 3 = 5$, but $1 \not\sim 3$ because $1 + 3 = 4$ which is even. Consider symmetry. Let $a,b \in \mathbb{Z}$ and assume $a \sim b$. Then $\exists n \in \mathbb{N}$ such that $a + b = 2n + 1$. Equivalently $b + a = 2n+1$, therefore $b \sim a$. Hence $\sim$ would be symmetric.
+
+\section*{Problem 7.3.6}
+For the purposes of this question, we call a real number $x$ small if $|x| \leq 1$. Let $\mathcal{R}$ be the relation on the set of real numbers defined by
+\[
+	x\mathcal{R}y \Longleftrightarrow x - y \text{ is small}
+.\]
+\textit{Prove or disprove}: $\mathcal{R}$ is an equivalence relation on $\mathbb{R}$.
+
+\subsection*{Solution}
+\begin{proof}
+	Proof that $\mathcal{R}$ is not an equivalence relation on $\mathbb{R}$. Let $a = 1, b = 2, c= 3$. Note that $|a - b| = 1 \leq 1$ and $|b - c| = 1 \leq 1$, therefore $a \mathcal{R} b$ and $b \mathcal{R} c$. However $|a - c| = 2 \nleq 1$, meaning $a$ does not relate $c$. Therefore $\mathcal{R}$ is not transitive and hence not an equivalence relation.
+\end{proof}
+
+\section*{Problem 7.3.10}
+Let $A = \qty{2m : m \in \mathbb{Z}}$. A relation $\sim$ is defined on the set $\mathbb{Q}^+$ of positive rational numbers by
+\[
+	a \sim b \Longleftrightarrow \frac{a}{b} \in A
+.\]
+\begin{enumerate}
+	\item[(a)] Show that $\sim$ is an equivalence relation.
+	\item[(b)] Describe the elements in the equivalence class $[3]$.
+\end{enumerate}
+
+\subsection*{Solution}
+\subsection*{Part A}
+
+\begin{proof}
+	Proceed to show that $\sim$ is an equivalence relation on $\mathbb{Q}^+$. \\
+
+	\qquad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Reflexivity)\quad Let $a \in \mathbb{Q}^+$. Note that $\frac{a}{a} = 1 = 2^0$. Since $2^0 \in A$, $\frac{a}{a} \in A$ meaning $a \sim a$. Therefore $\sim$ is reflexive.
+	\end{minipage} \\ \\
+
+	\qquad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Symmetry)\quad Let $a, b \in \mathbb{Q}^+$ and assume that $a \sim b$. Therefore $\frac{a}{b} \in A$, meaning $\exists m \in \mathbb{Z}$ such that $\frac{a}{b} = 2^m$. Note that $\frac{b}{a} = 2^{-m}$. Since $2^{-m} \in A$, $\frac{b}{a} \in A$ meaning $b \sim a$. Therefore $\sim$ is symmetric.
+	\end{minipage} \\ \\
+
+	\qquad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Transitivity)\quad Let $a,b,c \in \mathbb{Q}^+$ and assume that $a \sim b$ and $b \sim c$. Therefore $\frac{a}{b} \in A$ and $\frac{b}{c} \in A$, meaning $\exists m,n \in \mathbb{Z}$ such that $\frac{a}{b} = 2^m$ and $\frac{b}{c} = 2^n$. Then it follows that
+		\begin{align*}
+			\frac{a}{b} \cdot \frac{b}{c} &= 2^m \cdot 2^n \\
+			\frac{a}{c} &= 2^{m+n}
+		.\end{align*}
+		Since $m + n \in \mathbb{Z}$, then $\frac{a}{c} \in A$. Therefore $a \sim c$ meaning $\sim$ is transitive.
+	\end{minipage} \\ \\
+
+	Since $\sim$ is reflexive, symmetric, and transitive it is an equivalence relation.
+\end{proof}
+
+\subsection*{Part B}
+The equivalence class of $3$ can be described as
+\begin{align*}
+	[3] &= \qty{y: 3 \sim y} \\
+			&= \qty{y: y \sim 3} \\
+			&= \qty{y: \frac{y}{3} = 2^m, \forall m \in \mathbb{Z}} \\
+			&= \qty{y: y = 3\cdot 2^m, \forall m \in \mathbb{Z}} \\
+			&= \qty{3, \frac{3}{2}, 6, \frac{3}{4}, 12, \ldots}
+.\end{align*}
+
+\section*{Problem 7.4.3}
+Let $X = \qty{1,2,3}$. Define a relation $\mathcal{R} = \qty{(1,1),(1,2),(1,3),(2,1),(2,2),(3,1),(3,3)}$ on $X$.
+
+\begin{enumerate}
+	\item[(a)] Which of the properties reflexive, symmetric, transitive are satisfied by $\mathcal{R}$?
+	\item[(b)] Compute $A_1, A_2, A_3$ where $A_n = \qty{x \in X : x \mathcal{R} n}$. Show that $\qty{A_1, A_2, A_3}$ do not form a partition of $X$.
+	\item[(c)] Repeat parts (a) and (b) for the relations $\mathcal{S}$ and $\mathcal{T}$ on $X$, where
+		\begin{align*}
+			\mathcal{S} &= \qty{(1, 1), (1, 3), (3, 1), (3, 3)} \\
+			\mathcal{T} &= \qty{(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,3)}
+		.\end{align*}
+\end{enumerate}
+
+\subsection*{Solution}
+\subsection*{Part A}
+$\mathcal{R}$ is reflexive and symmetric but not transitive.
+
+\subsection*{Part B}
+\begin{align*}
+	A_1 &= \qty{1, 2, 3} \\
+	A_2 &= \qty{1, 2} \\
+	A_3 &= \qty{1, 3}
+.\end{align*}
+
+Since $A_1 \cap A_2 \neq \varnothing$, $A_1, A_2, A_3$ do not form a partition of $X$.
+
+\section*{Part C}
+{
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{1pt}
+\begin{multicols}{2}
+	\subsection*{Relation $\mathcal{S}$}
+
+	$\mathcal{S}$ is symmetric but not transitive or reflexive.
+
+	\begin{align*}
+		A_1 &= \qty{1, 3} \\
+		A_2 &= \varnothing \\
+		A_3 &= \qty{1, 3}
+	.\end{align*}
+
+	These sets do not form a partition of $X$ since $A_1 \cup A_2 \cup A_3 = \qty{1,3} \neq X$.
+
+	\columnbreak
+
+	\subsection*{Relation $\mathcal{T}$}
+	$\mathcal{T}$ is reflexive but not transitive or symmetric
+
+	\begin{align*}
+		A_1 &= \qty{1, 2} \\
+		A_2 &= \qty{1, 2} \\
+		A_3 &= \qty{1, 2, 3}
+	.\end{align*}
+
+	Since $A_1 \cap A_2 \neq \varnothing$, $A_1, A_2, A_3$ do not form a partition of $X$.
+
+\end{multicols}
+}
+
+\end{document}

@@ -1,0 +1,297 @@
+\documentclass[12pt]{extarticle}
+% Section 4.1: 2, 5, 7
+% 
+% Section 4.2: 2, 4, 5;
+% 
+% Section 4.3: 2, 5, 7;
+% 
+% Section 4.4: 1, 5, 10
+
+\input{../preamble.tex}
+
+\fancyhead[R]{\textbf{Homework \#4}}
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\section*{Problem 4.1.2}
+
+Describe the following sets in set-builder notation (look for a pattern). 
+\begin{enumerate}[label=(\alph*)]
+	\item $\{\ldots, -3, 0, 3, 6, 9,\ldots\}$
+	\item $\{-3, 1, 5, 9, 13,\ldots\}$
+	\item $\{1, \frac{1}{3} , \frac{1}{7} , \frac{1}{15} , \frac{1}{31} ,\ldots\}$
+\end{enumerate}
+
+\subsection*{Solution}
+
+{
+\everymath{\displaystyle}
+\begin{enumerate}[label=(\alph*)]
+	\item $\{ 3n : n \in \mathbb{Z} \}$
+	\item $\{ 4n + 1 : n \in \mathbb{Z} \}$
+	\item $\qty{ \frac{1}{4n - 1} : n \in \mathbb{Z} }$
+\end{enumerate}
+}
+
+\section*{Problem 4.1.5}
+
+Compare the sets $A = \{3x \in \mathbb{Z} : x \in 2 \mathbb{Z}\}$ and $B = \{x \in \mathbb{Z} : x \equiv 12 \pmod{6}\}$. Are they equal?
+
+\subsection*{Solution}
+
+Set $B$ can be rewritten as $\{ x \in \mathbb{Z} : x \equiv 0 \pmod{6} \}$. Additionally, set $A$ can be rewritten as $\{ 6x : x \in \mathbb{Z} \}$. Set $A$ is all the integer multiples of 6. This is equivalent to saying the set of all integers that reduce to $0 \pmod{6}$, meaning $A = \{ x \in \mathbb{Z} : x \equiv 0 \pmod{6} \} = B$. Therefore both set $A$ and $B$ have the same elements and are therefore equal.
+
+\section*{Problem 4.1.7}
+
+Let $A = \{ 1,2,3,4 \}$, and let $B$ be the set $B = \qty\big{ \{x, y\} : x, y \in  A }$. 
+\begin{enumerate}[label=(\alph*)]
+	\item Describe B in roster notation. 
+	\item Now compute the cardinality of the sets
+		\[
+			C = \qty\Big{ \qty\big{ x, \{ y \} } : x,y \in A }
+		.\]
+		and
+		\[
+			D = \qty\bigg{\qty\Big{ \qty\big{ x, \{ y \} } : x,y \in A }}
+		.\]
+		Compare them to $B$.
+\end{enumerate}
+
+\subsection*{Solution}
+
+\subsection*{Part A}
+
+\[
+	B = \qty\big{
+		\qty{1,1},\,
+		\qty{2,2},\,
+		\qty{3,3},\,
+		\qty{4,4},\,
+		\qty{1,2},\,
+		\qty{1,3},\,
+		\qty{1,4},\,
+		\qty{2,3},\,
+		\qty{2,4},\,
+		\qty{3,4}
+	}
+.\]
+
+\subsection*{Part B}
+
+Set $D$ will have a cardinality of 1 since it contains a single element within it, the set $C$. Set $C$ will have the same cardinality as $B$ since the number of unique elements is still the same, even though in $C$, one of elements of the inner sets is itself a set.
+
+\section*{Problem 4.2.2}
+
+Let $A = \qty{x \in \mathbb{R} : x^3 + x^2 - x - 1 = 0}$ and $B = \qty{x \in \mathbb{R} : x^4 - 5x^2 + 4 = 0}$. Are either of the relations $A \subseteq B$ or $B \subseteq A$ true? Explain.
+
+\subsection*{Solution}
+
+The roots for the polynomial $x^{4} - 5x^2 + 4$ are the square root of the roots of the polynomial $y^2 - 5y + 4 \implies y = \qty{ 1, 4 } \implies x = \qty{ -4, -1, 1, 4 }$. Similarly, the roots for the polynomial $x^3 + x^2 - x - 1$ are $x = {-1, 1}$. Therefore $A = \qty{ -1, 1 }$ and $B = \qty{-4, -1, 1, 4}$. Therefore the only relation that is true is $A \subseteq B$ since all the elements of $A$ are within $B$. $B \subseteq A$ is not true since the element $-4$ is not within $A$.
+
+\section*{Problem 4.2.4}
+
+Given $A \subseteq Z$ and $x \in \mathbb{Z}$, we say that $x$ is $A$-mirrored if and only if $-x \in A$. We also define: 
+\[
+  M_A := \qty{x \in \mathbb{Z} : x \text{ is A-mirrored}} 
+.\]
+
+\begin{enumerate}[label=(\alph*)]
+	\item What is the negation of ‘$x$ is $A$-mirrored.’ 
+	\item Find $M_B$ for $B = \qty{0, 1, -6, -7, 7, 100}$.
+	\item Assume that $A \subseteq \mathbb{Z}$ is closed under addition (i.e., for all $x, y \in  A$, we have $x + y \in A$). Show that $M_A$ is closed under addition. 
+	\item In your own words, under which conditions is $A = M_A$?
+\end{enumerate}
+
+\subsection*{Solution}
+
+\subsection*{Part A}
+
+The negation of ‘$x$ is $A$-mirrored’ is ‘$x$ is not $A$-mirrored’, which in symbols means that ‘$x$ is not $A$-mirrored’ $\Longleftrightarrow -x \notin A$.
+
+\subsection*{Part B}
+
+$M_B = \qty{0, -7, 7}$
+
+\subsection*{Part C}
+
+\begin{proof}
+	Let $A \subseteq \mathbb{Z}$ and assume that $A$ is closed under addition. Consider the set $M_A$. Let $x,y \in M_A$. The construction of $M_A$ then implies that $x,y \in A$ and $-x,-y \in A$. Since $A$ is closed under addition, then $(-x) + (-y) = -x - y \in A$. Therefore it follows that $x + y \in M_A$.
+\end{proof}
+
+\subsection*{Part D}
+
+In order for $A$ and $M_A$ to be equal, then every element in $A$ must have its negative present.
+
+\section*{Problem 4.2.5}
+
+Define the set $[1]$ by: $[1] = \qty{x \in \mathbb{Z} : x \equiv 1 \pmod{5}}$. 
+\begin{enumerate}[label=(\alph*)]
+	 \item Describe the set $[1]$ in roster notation. 
+	 \item Compute the set $M_{[1]}$, as defined in Exercise 4.2.4 
+	 \item Are the sets $[1]$ and $M_{[1]}$ equal? Prove/Disprove. 
+	 \item Now consider the set $[10] = \qty{x \in \mathbb{Z} : x \equiv 10 \pmod{5}}$. Are the sets $[10]$ and $M_{[10]}$ equal? Prove/Disprove.
+\end{enumerate}
+
+\subsection*{Solution}
+\subsection*{Part A}
+
+\[
+	[1] = \qty{ \ldots, -14, -9, -4, 1, 6, 11, 16, \ldots }
+.\]
+
+\subsection*{Part B}
+\[
+	M_{[1]} = \emptyset
+.\]
+
+\subsection*{Part C}
+Proof by contradiction that the sets $[1]$ and $M_{[1]}$ are not equal.
+\begin{proof}
+	Let $[1] = \qty{x \in \mathbb{Z} : x \equiv 1 \pmod{5}}$. Assume that $[1] = M_{[1]}$. Let $x = 1$. It follows that $x \in [1]$ since $1 \equiv 1 \pmod{5}$. However, $-1 \notin [1]$ since $-1 \equiv 4 \pmod{5}$, $1 \notin M_{[1]}$. Therefore, $[1] \neq M_{[1]}$; a contradiction.
+\end{proof}
+
+\subsection*{Part D}
+
+% YES, but prove
+
+\section*{Problem 4.3.2}
+
+Let $A = \qty{1, 3, 5, 7, 9, 11}$ and $B = \qty{1, 4, 7, 10, 13}$. What are the following sets? 
+\begin{enumerate}[label=(\alph*)]
+	\item $A \cap B$
+	\item $A \cup B$
+	\item $A \setminus B $
+	\item $(A \cup B) \setminus (A \cap B)$
+\end{enumerate}
+
+\subsection*{Solution}
+
+\begin{enumerate}[label=(\alph*)]
+	\item $A \cap B = \qty{1,7}$
+	\item $A \cup B = \qty{1, 3, 4, 5, 7, 9, 10, 11, 13}$
+	\item $A \setminus B = \qty{3, 5, 9, 11}$
+	\item $(A \cup B) \setminus (A \cap B) = \qty{3, 4, 5, 9, 10, 11, 13}$
+\end{enumerate}
+
+\section*{Problem 4.3.5}
+
+Prove that $B \setminus A = B \Longleftrightarrow A \cap B = \emptyset$.
+
+\subsection*{Solution}
+
+\begin{proof}
+	Let $A$ and $B$ be sets.
+	\begin{enumerate}
+		\item[$(\Rightarrow)$] 
+			Assume that $B \setminus A = B$. Let $x \in B$. It follows that $x \in B \setminus A$. $B \setminus A$ is equivalent to $B \cap A^\complement$. Therefore $x \in B \cap A^\complement$. By definition of the intersection, $x \in A^\complement$ and therefore $x \notin A$. Therefore since $x$ was an arbitrary element in $B$ and it is not in $A$, $A \cap B$ will have no elements and therefore be equal to $\emptyset$. \hfill\qedsymbol
+		\item[$(\Leftarrow)$] Proof by contrapositive. Assume that $B \setminus A \neq B$. This can be rewritten as $B \cap A^\complement \neq B$. Let $x \in B$. It follows that $x \notin A^\complement \implies x \in A$. Since $x$ is both in $A$ and $B$, their interesection is non-empty. Alternatively, $A \cap B \neq \emptyset$. \hfill\qedsymbol
+	\end{enumerate}
+	\renewcommand{\qedsymbol}{}
+\end{proof}
+
+\section*{Problem 4.3.7}
+
+Write out a formal proof of the set identity 
+\[
+	A = (A \setminus B) \cup (A \cap B)
+.\]
+
+by showing that each side is a subset of the other. Now repeat your argument using only results from set algebra (Theorems 4.9 and 4.10).
+
+\subsection*{Solution}
+Proof by showing that each side is a subset of the other.
+\begin{proof}
+	Let $A$ and $B$ be sets. Let $x \in A$. Consider the case where $x \notin B$. It follows that $x \in B^\complement$. It follows that for the set $A \setminus B$, or equivalently $A \cap B^\complement$ that $x \in A \cap B^\complement$ since $x$ is in both $A$ and $B^\complement$. Therefore the set $(A \setminus B) \cup (A \cap B)$ will contain the element $x$. Consider the case where $x \in B$. It follows that $x \in A \cap B$ since $x$ is in both $A$ and $B$. Since $x \in A\cap B$, it follows that $x \in (A \setminus B) \cup (A \cap B)$. Since $x$ is an arbitrary element of $A$ and is always an element of $(A\setminus B) \cup (A \cap B)$, it follows that $A \subseteq (A \setminus B) \cup (A \cap B)$.
+\end{proof}
+
+\section*{Problem 4.4.1}
+
+For each of the following functions $f : A \rightarrow B$ determine whether $f$ is injective, surjective or bijective. Prove your assertions.
+
+\begin{enumerate}[label=(\alph*)]
+	\item $f : [0,3] \rightarrow \mathbb{R}$ where $f(x)=2x$.
+	\item $f : [3,12) \rightarrow [0,3)$ where $f(x)= \sqrt{x-3}$.
+	\item $f : (-4,1] \rightarrow (-5,-3]$ where $f(x)=-\sqrt{x^2 + 9}$.
+\end{enumerate}
+
+\subsection*{Solution}
+\subsection*{Part A}
+
+$f$ is injective but not surjective.
+\begin{proof}
+	Let $f : [0,3] \rightarrow \mathbb{R}$ where $f(x)=2x$. Let $a,b \in [0,3]$. Then
+	\begin{align*}
+		f(a) = f(b) \\
+		2a = 2b \\
+		a = b
+	.\end{align*}
+	It follows that $f$ is injective. Now assume that $f$ is surjective. Therefore for all $c \in \mathbb{R}$, there is $d \in [0,3]$ such that $f(d) = c$. Consider the case where $c=1000$. It follows
+	\begin{align*}
+		f(d) = c \\
+		f(d) = 1000 \\
+		2d = 1000 \\
+		d = 500
+	.\end{align*}
+	However, it was assumed that $d \in [0,3]$, hence a contradiction.
+\end{proof}
+
+
+\subsection*{Part B}
+
+$f$ is bijective.
+\begin{proof}
+	Let $f : [3,13) \rightarrow [0,3)$ where $f(x) = \sqrt{x-3}$. Let $a,b \in [3,13)$. Then
+	\begin{align*}
+		f(a) &= f(b) \\
+		\sqrt{a - 3} &= \sqrt{b-3} \\
+		a - 3 &= b-3 \\
+		a &= b
+	.\end{align*}
+	Therefore $f$ is injective. Consider now an aribitary element $y \in [0,3)$. Let $x = y^2 + 3$, then $x \in [3, 12)$
+	\begin{align*}
+		0 &\leq y < 3 \\
+		0 &\leq y^2 < 9 \\
+		3 &\leq y^2 + 3 < 12.
+	\end{align*} It also follows that
+	\begin{align*}
+		f(x) &= \sqrt{x - 3} \\
+				 &= \sqrt{(y^2 + 3) - 3} \\
+				 &= \sqrt{y^2} \\
+				 &= \pm y
+	.\end{align*}
+	Since $f(x) > 0$ for all input, then $f(x) = y$. Therefore $f$ is surjective, meaning $f$ is bijective.
+\end{proof}
+
+\subsection*{Part C}
+
+$f$ is surjective but not injective.
+
+\section*{Problem 4.4.5}
+
+You may assume that $g : [2, \infty) \rightarrow \mathbb{R} : x \rightarrow \sqrt{x^3 - 8}$ is an injective function. Find a function $f : \mathbb{R} \rightarrow \mathbb{R}$ which is not injective, but for which the composition $f \circ g : [2, \infty) \rightarrow \mathbb{R}$ is injective.
+Justify your answer.
+
+\subsection*{Solution}
+
+Let $f(x) = x^2$. $f(x)$ is not injective from $\mathbb{R} \rightarrow \mathbb{R}$. Let $a,b \in \mathbb{R}$ such that $b = -a$. Then $f(a) = a^2 = b^2 = (-b)^2 = f(b)$. However, $f \circ g : [2, \infty) \rightarrow \mathbb{R}$ is injective. Consider $x_{1},x_{2} \in [2, \infty)$. Let $h(x) = g(f(x)) = x^3 - 8$. Assume $h(x_{1}) = h(x_{2})$. Then
+\begin{align*}
+	h(x_{1}) &= h(x_{2}) \\
+	x_{1}^3 - 8 &= x_{2}^3 - 8 \\
+	x_{1}^3 &= x_{2}^3 \\
+	x_{1} &= x_{2}
+.\end{align*}
+Therefore establishing an injection.
+
+\section*{Problem 4.4.10}
+
+Suppose that $g \circ f$ is injective. Prove that $f$ is injective.
+
+\subsection*{Solution}
+
+
+\begin{proof}
+	Let $X, Y$ and $Z$ be sets. Let $f : X \rightarrow Y$ and $g : Y \rightarrow Z$. Assume towards contradiction that $g \circ f$ is injective and $f$ is not injective. Since $f$ is not injective, then there exists $a,b \in X$ such that $f(a) = f(b)$. However, this implies that $g(f(a)) = g(f(b))$, meaning $g \circ f$ is not injective. Hence a contradiction.
+\end{proof}
+
+\end{document}

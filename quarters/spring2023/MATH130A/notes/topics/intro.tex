@@ -1,0 +1,43 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {"../figures"}
+}
+
+\begin{document}
+
+\banner{Basic Probability}
+
+\begin{definition}[Sample Space]
+	The collection of all possible outcomes in an experiment.
+\end{definition}
+
+Probability can be understood from the perspective of gambling. The simplest way to gamble to flip a coin. There are only two possibilities, \textbf{H} or \textbf{T}. Therefore
+\[
+	S_{\text{coin}} = \qty{ \textbf{H}, \textbf{T} }
+.\]
+Considering a singular die, there are only six outcomes corresponding to the 6 sides of the die. Therefore
+\[
+	S_{\text{die}} = \qty{1,2,3,4,5,6}
+.\]
+
+\begin{definition}
+	An event is a subset of a sample space. Equivalently a set $E$ is an event of a sample space if $E \subseteq S$.
+\end{definition}
+An event in the first example would be tossing a coin and getting tails ($E = \qty{\textbf{T}}$). Given two events $E$ and $F$, their intersection is denoted as
+\[
+	EF \Leftrightarrow E \cap F
+.\]
+
+\begin{definition}[Probability]
+	Given some event $E \subset S$ where $S$ is a sample space, $\mathbb{P}(E)$ is a number assigned to the event such that
+	\begin{enumerate}
+		\item $0 \leq \mathbb{P}(E) \leq 1$
+		\item $\mathbb{P}(S) = 1$
+		\item For mutually exclusive events $E_1, E_2, E_3, \ldots, E_n, \ldots$ then
+			\[
+				\mathbb{P}\qty(\;\bigcup_{n=1}^\infty E_n) = \sum_{n=1}^\infty \mathbb{P}(E_n)
+			.\]
+	\end{enumerate}
+\end{definition}
+
+\end{document}

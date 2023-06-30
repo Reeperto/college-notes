@@ -1,0 +1,36 @@
+\documentclass[12pt,titlepage]{extarticle}
+
+\input{../preamble.tex}
+
+\renewcommand*\contentsname{Table of Contents}
+
+\title{Math 130A: Intro to Probability Theory}
+\author{Eli Griffiths}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\thispagestyle{empty}
+\tableofcontents
+
+\pagebreak
+
+\subfile{topics/intro.tex}
+\subfile{topics/combinatorics.tex}
+\subfile{topics/basicprobability.tex}
+\subfile{topics/conditionalprobability.tex}
+\subfile{topics/randomvariables.tex}
+
+\newpage
+\pagestyle{empty}
+
+\addcontentsline{toc}{section}{List of Theorems}
+\listoftheorems[ignoreall,onlynamed={theorem}]
+
+\addcontentsline{toc}{section}{List of Definitions}
+\listoftheorems[ignoreall,onlynamed={definition},title={List of Definitions}]
+
+\end{document}

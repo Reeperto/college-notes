@@ -1,0 +1,108 @@
+\documentclass[12pt]{extarticle}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{Homework \#4}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\section*{Problem 1}
+\subsection*{Part A}
+$X$ is a geometric random variable with parameter $p = 0.2$.
+
+\subsection*{Part B}
+\[
+	\Exp{X} = \frac{1}{p} = \frac{1}{0.2} = 5
+.\]
+
+\subsection*{Part C}
+\begin{align*}
+	\Var{X} &= \frac{1-p}{p^2} = \frac{0.8}{0.04} = 20 \\
+	\sigma &= \sqrt{\Var{X}} = \sqrt{20}
+.\end{align*}
+
+\subsection*{Part D}
+\[
+	\Prob{X \leq 4} = \verb|pgeom(3,0.2)| = 0.5904
+.\]
+
+\subsection*{Part E}
+Since the events are independent,
+\[
+	P(\text{Both hits} \leq 4) = P(X \leq 4)^2 = (0.5904)^2 = 0.3486
+.\]
+
+\subsection*{Part F}
+Let $H_1$ and $H_2$ be the number of attempts it takes to hit the target a first time then the target a second. Then
+\[
+	\Exp{H_1 + H_2} = \Exp{H_1} + \Exp{H_2} = 2 \cdot \Exp{X} = 10
+.\]
+
+\section*{Problem 2}
+\subsection*{Part A}
+Since the distribution is a poisson distribution with parameter $\lambda = 10$,
+\begin{align*}
+	&\text{Expected number of cars in $1$ hour } = \Exp{X} = 10 \\
+	&\text{Expected number of cars in $3$ hours } = \Exp{3X} = 3 \cdot\Exp{X} = 3 \cdot 10 = 30
+.\end{align*}
+
+\subsection*{Part B}
+\[
+	\Prob{X \leq 15} = e^{-10} \sum_{n=0}^{15} \frac{10^n}{n!} = \verb|ppois(15,10)| = 0.9513
+.\]
+
+\subsection*{Part C}
+This problem corresponds to a poisson distribution with parameter $\lambda = 30$. Therefore
+\[
+	\Prob{X \leq 45} = e^{-30} \sum_{n=0}^{45} \frac{30^n}{n!} = \verb|ppois(45,30)| = 0.996
+.\]
+
+\subsection*{Part D}
+\begin{align*}
+	\Prob{\text{10 Arrive and all pass}} &= \Prob{\text{10 Arrive}}\cdot\Prob{\text{All pass} | \text{10 Arrive}} \\
+																			 &= \Prob{X = 10}\cdot\Prob{10 \text{Successes}} \\
+																			 &= \qty(\frac{10^{10} \cdot e^{-10}}{10!} \cdot \qty(\frac{1}{2})^{10}) \\
+																			 &= \texttt{dpois(10,10)*dbinom(10,10,0.5)} \\
+																			 &= 0.0001222
+.\end{align*}
+
+\section*{Problem 3}
+\subsection*{Part A}
+\[
+	\renewcommand\arraystretch{1.9}
+	\large
+	\begin{array}{|c|c|c|c|c|c|c|} \hline
+		m & 1 & 2 & 3 & 4 & 5 & 6 \\\hline
+		\Prob{M = m} & \frac{1}{36} & \frac{3}{36} & \frac{3}{36} & \frac{7}{36} & \frac{9}{36} & \frac{11}{36}   \\\hline
+	\end{array}
+\]
+
+\subsection*{Part B}
+\[
+	\Exp{M} = 1\cdot\frac{1}{36} + 2\cdot\frac{3}{36} + 3\cdot\frac{5}{36} + 4\cdot\frac{7}{36} + 5\cdot\frac{9}{36} + 6\cdot\frac{11}{36} = 4.47222
+.\]
+
+\subsection*{Part C}
+\begin{align*}
+	\Var{M} &= \Exp{M^2} - \qty(\Exp{M})^2 \\
+	&= 1^2\cdot\frac{1}{36} + 2^2\cdot\frac{3}{36} + 3^2\cdot\frac{5}{36} + 4^2\cdot\frac{7}{36} + 5^2\cdot\frac{9}{36} + 6^2\cdot\frac{11}{36} - 4.47222 \\
+	&= 1.9716
+.\end{align*}
+
+\subsection*{Part D}
+These are the events in which the max is a $4$,
+\begin{align*}
+	&(1,4),
+	(2,4),
+	(3,4), \\
+	&(4,1), 
+	(4,2), 
+	(4,3), \\
+	&(4,4)
+.\end{align*}
+Of the events, there are $2$ that have a roll of $2$, therefore the probability is $\frac{2}{7}$
+
+\end{document}

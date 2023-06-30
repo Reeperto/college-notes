@@ -1,0 +1,23 @@
+\documentclass{extarticle}
+
+\input{../preamble.tex}
+
+\usepackage{tabularray}
+
+\begin{document}
+\begin{table}[h!]
+	\centering
+	\begin{tblr}{
+			colspec = {X[m,m]X[c]X[c]X[c]X[c]X[c]b{20mm}},
+			stretch = 0,
+			hlines = {0.5pt},
+			vlines = {0.5pt},
+	}
+		$X$ & $\mathbb{S}_X$ & Represents & Parameters & $\Exp{X}$ & $\Var{X}$ & $\Prob{X = i}$ \\\hline
+	Bernoulli & $\qty{0,1}$ & $1$ for succes, $0$ for failure & $p$ & $p$ & $p(1-p)$ & {$\Prob{X=0} = 1-p$ \\ $\Prob{X=1} = p$} \\
+		Binomial & $\qty{0,\ldots,n}$ & number of success in $n$ trials & $n,p$ & $np$ & $np(1-p)$ & $\Prob{X = i} = \binom{n}{i} p^i (1-p)^{n-i}$ \\
+		Geoemtric & $\qty{1,2,\ldots}$ & Number of trials till succes & $p$ & $\frac{1}{p}$ & $\frac{1-p}{p^2}$ & $\Prob{X = i} = p \cdot (1-p)^{i-1}$
+	\end{tblr}
+\end{table}
+	
+\end{document}

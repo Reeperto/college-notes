@@ -1,0 +1,67 @@
+\documentclass[12pt]{extarticle}
+
+\usepackage{multicol}
+
+\input{../preamble.tex}
+
+\newcommand{\powerset}[1]{\mathcal{P}(#1)}
+\fancyhead[R]{}
+\fancyhead[L]{}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\usetikzlibrary{arrows.meta}
+
+\begin{document}
+
+\section*{Problem 1}
+Determine if $*$ defined on $\mathbb{Z}$ is commutative or associative. $a * b = a - b$.
+\subsection*{Solution}
+
+$*$ is associative but not commutative.
+
+\begin{proof}
+	Let $*$ be defined in the manner above. \\
+	\qquad\begin{minipage}{\dimexpr\textwidth-2cm}
+		(Associativity) \quad Let $a,b,c \in \mathbb{Z}$. Consider then $(a * b) * c$. 
+		\begin{align*}
+			(a * b) * c = (a - b) * c \\ 
+			&= (a - b) - c \\ 
+			&= a - b - c
+		.\end{align*}
+
+		Consider $a * (b * c)$. 
+		
+		\begin{align*}
+			a * b) * c = (a - b) * c \\ 
+			&= (a - b) - c \\ 
+			&= a - b - c
+		.\end{align*}
+	\end{minipage}
+\end{proof}
+
+\section*{Problem 2}
+How many different commutative binary operations can be defined on a set of $2$ elements? $3$ elements? $n$ elements?
+\subsection*{Solution}
+Consider the tabular representation of an arbitrary binary operation on the set. For a binary operation to be commutative, its tabular representation must be symmetric across the main diagonal. Therefore the number of commutative binary operations that can defined is the total number of ways to pick elements in the tabular representation above and including the main diagonal. The number of tabular entries is then $n + (n-1) + (n-2) + \ldots = \frac{n(n+1)}{2}$. Each entry has $n$ choices meaning the number of commutative binary operations that can be defined on a set of $n$ elements is $n^{\frac{n(n+1)}{2}}$. Therefore in the cases of $2$ and $3$, the number of commutative binary operations that can be defined are $8$ and $729$ respectively.
+
+\section*{Problem 3}
+Prove that addition and multiplication of residue
+classes in $\mathbb{Z} / n \mathbb{Z}$ is associative (you may assume it is well defined).
+
+\subsection*{Solution}
+
+\begin{proof}
+	Let $\overline{a}, \overline{b}, \overline{c} \in \mathbb{Z}/ n \mathbb{Z}$. Define $\overline{a} + \overline{b} = \overline{a + b}$. Therefore
+	\begin{align*}
+		(\overline{a} + \overline{b}) + \overline{c} &= \overline{a + b} + \overline{c} \\
+		&= \overline{a + b + c}
+	.\end{align*}
+	Additionally
+	\begin{align*}
+		\overline{a} + (\overline{b} + \overline{c}) &= \overline{a} + \overline{b + c} \\
+		&= \overline{a + b + c}
+	.\end{align*}
+\end{proof}
+
+\end{document}

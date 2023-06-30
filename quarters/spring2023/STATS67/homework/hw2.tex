@@ -1,0 +1,126 @@
+\documentclass[12pt]{extarticle}
+
+\usepackage{multicol}
+\usepackage{customdice}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{Homework \#2}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\section*{Problem 1}
+\subsection*{Part A}
+	\begin{align*}
+	P(-) &= P(F) \cdot P(- | F) + P(F^\complement) \cdot P(- | F^\complement) \\
+	&= 0.1 \cdot 0.9 + 0.9 \cdot 0.05 \\
+	&= 0.1 \cdot 0.9 + 0.9 \cdot 0.05 \\
+	&= 0.135 = 13.5\%
+.\end{align*}
+
+\subsection*{Part B}
+\begin{align*}
+	P(F | -) &= \frac{P(- | F) \cdot P(F)}{P(-)} \\
+					 &= \frac{0.9 \cdot 0.1}{0.135} \\
+					 &= \frac{0.9 \cdot 0.1}{0.135} \\
+					 &= \frac{2}{3} \approx 66.7\%
+.\end{align*}
+
+\subsection*{Part C}
+They are not independent since $P(F | -) \neq P(F)$.
+
+\section*{Problem 2}
+\begin{align*}
+	P(\text{System Works}) &= P(\text{Comp. 1 Works}) \cdot P(\text{Comp. 2 Works}) \\
+												 &= P(\geq 1 \text{ Unit works}) \cdot P(\geq 1 \text{ Unit works}) \\
+												 &= P(\geq 1 \text{ Unit works})^2 \\
+												 &= (1 - P(\text{No units work}))^2 \\
+												 &= \qty(1 - p^2)^2
+.\end{align*}
+
+\section*{Problem 3}
+\subsection*{Part A}
+There are 36 elements in the sample space because each ordered pair has $2$ choices of any number from $1$ to $6$, hence there are $6^2 = 36$ choices possible. Each element is equally likely since the first outcome of a roll does not influence the outcome of the second roll. Therefore the probability of rolling a given ordered pair will be $\frac{1}{6} \cdot \frac{1}{6} = \frac{1}{36}$.
+
+\subsection*{Part B}
+% \begin{center}
+% 	\renewcommand{\b}[1]{\dice[black,white]{#1}}
+% 	\newcommand{\w}[1]{\dice{#1}}
+% 	\newcommand{\pair}[2]{\w{#1} \b{#2}}
+% 	\renewcommand{\arraystretch}{1.5}
+% 	\begin{tabular}{c|c|c|c|c|c|c}
+% 		& \b{1} & \b{2} & \b{3} & \b{4} & \b{5} & \b{6} \\\hline
+% 		\w{1} & \pair{1}{1} & \pair{1}{2} & \pair{1}{3} & \pair{1}{4} & \pair{1}{5} & \pair{1}{6} \\\hline
+% 		\w{2} & \pair{2}{1} & \pair{2}{2} & \pair{2}{3} & \pair{2}{4} & \pair{2}{5} & \pair{2}{6} \\\hline
+% 		\w{3} & \pair{3}{1} & \pair{3}{2} & \pair{3}{3} & \pair{3}{4} & \pair{3}{5} & \pair{3}{6} \\\hline
+% 		\w{4} & \pair{4}{1} & \pair{4}{2} & \pair{4}{3} & \pair{4}{4} & \pair{4}{5} & \pair{4}{6} \\\hline
+% 		\w{5} & \pair{5}{1} & \pair{5}{2} & \pair{5}{3} & \pair{5}{4} & \pair{5}{5} & \pair{5}{6} \\\hline
+% 		\w{6} & \pair{6}{1} & \pair{6}{2} & \pair{6}{3} & \pair{6}{4} & \pair{6}{5} & \pair{6}{6}
+% 	\end{tabular}
+% \end{center}
+
+\begin{align*}
+	P(S \leq 11) &= 1 - P(S = 12) \\
+							 &= 1 - \frac{1}{36} \\
+							 &= \frac{35}{36} \\
+							 &= 0.97\overline{2} \approx 97.2\%
+.\end{align*}
+
+\subsection*{Part C}
+\begin{align*}
+	P(\text{Both Even}) &= 3^2 \cdot \frac{1}{36} \\
+											&= \frac{9}{36} \\
+											&= 0.25 = 25\%
+.\end{align*}
+
+\section*{Problem 4}
+The simulation results in $P(S \leq 11) = 0.9723$, which is close to the value derived in Part B.
+
+\section*{Problem 5}
+\[
+	\frac{10!}{3! 3! 2!} = 50,400 \text{ ways to rearrange STATISTICS}
+.\]
+
+\section*{Problem 6}
+\subsection*{Part A}
+Each passenger can go to one of $7$ floors and there are $5$ passengers, therefore there are $7^5 = 16,807$ ways for the passengers to be assigned a floor.
+
+\subsection*{Part B}
+\[
+	\frac{7!}{2!} = 2,520 \text{ ways to assign a unique floor to each passenger}
+.\]
+
+\subsection*{Part C}
+\[
+	P(\text{Each Passenger on Unique Floor}) = \frac{2,520}{16,807} = 0.14994 \approx 15\%
+.\]
+
+\section*{Problem 7}
+\subsection*{Part A}
+\[
+	26^4 \cdot 10^4 = 4,569,760,000 \text{ different UCInetIDs}
+.\]
+
+\subsection*{Part B}
+\[
+	(10)(26)^4(9)(8)(7) = 2,303,159,040 \text{ different UCInetIDs without numerical repetition}
+.\]
+
+\section*{Problem 8}
+\subsection*{Part A}
+\[
+	P(\text{Sophmores All Chosen}) = \frac{\binom{3}{3}\binom{9}{2}}{\binom{12}{5}} = 0.0\overline{45} \approx 4.55\%
+.\]
+
+\subsection*{Part B}
+\begin{align*}
+	P(\text{At Least One Freshman}) &= 1 - P(\text{No Freshmen}) \\
+																	&= 1 - \frac{\binom{10}{5}}{\binom{12}{5}} \\
+																	&= 1 - 0.3\overline{18} \\
+																	&= 0.6\overline{81} \approx 68.2\%
+.\end{align*}
+
+\end{document}

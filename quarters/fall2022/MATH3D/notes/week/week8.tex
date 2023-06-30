@@ -1,0 +1,46 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {"../figures"}
+}
+
+\newcommand{\equaldef}{
+    \overset{\text{def}}{=}
+}
+
+\begin{document}
+
+\subsection{Different properties of Laplace Transforms}
+
+In certain cases, a function may be related to a simpler function through a change of basis via a linear transformation of the input. Examples of this are
+\begin{align*}
+    f(kt) &
+    & F(ks) &
+    & F(as + b) &
+\end{align*}
+
+Consider $\laplace{f(kt)}$ with the restriction that $s > a \geq 0$ and $k > 0$
+\begin{align*}
+    \laplace{f(kt)} &= \int_0^{\infty} e^{-st} f(kt) \dd{t}\\
+    \intertext{Let $u = kt \implies \dd u = k \dd{t}$}
+    &= \frac{1}{k}\int_0^{\infty} e^{-\frac{su}{k}} f(u) \dd{u}\\
+    \intertext{Let $\omega = \frac{s}{k}$}
+    &= \frac{1}{k}\int_0^{\infty} e^{-\omega u } f(u) \dd{u}\\
+    &= \frac{1}{k} F(\omega) \\
+    &= \frac{1}{k} F\qty(\frac{s}{k}); \; s > ka
+.\end{align*}
+
+\subsection{Power Series}
+
+For many, many functions, they can be represented as a long form polynomial known as a power series. They have the general form of
+\[
+     f(x) = \sum_{n=1}^{\infty} a_k (x - x_0)^{k}
+.\]
+
+Some famous power series are as follows
+\begin{align*}
+    e^{x} &= \sum_{n=0}^{\infty} \frac{1}{n!} x^{n} = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + \ldots \\
+    \cos(x) &= \sum_{n=0}^{\infty} \frac{(-1)^{n}}{2n!} x^{2n} = 1 - \frac{x^2}{2} + \frac{x^{4}}{24} - \ldots \\
+    \sin(x) &= \sum_{n=0}^{\infty} \frac{(-1)^{n}}{(2n+1)!} x^{2n+1} = x - \frac{x^3}{6} + \frac{x^5}{120} - \ldots
+.\end{align*}
+
+\end{document}

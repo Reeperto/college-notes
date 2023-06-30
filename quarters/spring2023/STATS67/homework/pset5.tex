@@ -1,0 +1,87 @@
+\documentclass[12pt]{extarticle}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{PSET \#5}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\section*{Problem 1}
+\subsection*{Part A}
+\begin{align*}
+	H_0 &: \mu \leq 8 \\
+	H_\alpha &: \mu > 8
+.\end{align*}
+
+\subsection*{Part B}
+Since the entire confidence interval lies under 8, we do not have sufficient evidence to reject the null hypothesis, that is we do not have sufficient evidence that on average students are getting more than the required amount of sleep to perform optimally at school.
+
+\section*{Problem 2}
+\subsection*{Part A}
+The approximate distribution it follows is a normal distribution with parameters $\mu = 6.32$ and $\sigma = \frac{1.65}{\sqrt{50}} = 0.2333$.
+
+\subsection*{Part B}
+The form of the confidence interval will be $\mu \pm z^* \sigma$ where $z* = 1.96$, resulting in an interval of
+\[
+	(5.8626, 6.7774)
+.\]
+
+\subsection*{Part C}
+We are 95\% confident that the true time necessary for a robotic lens to adapt to reduced light is between 5.8626 and 6.7774.
+
+\subsection*{Part D}
+\begin{align*}
+	H_0 &: \mu \geq 7 \\
+	H_\alpha &: \mu < 7
+.\end{align*}
+
+\section*{Problem 3}
+\subsection*{Part A}
+\begin{align*}
+	H_0 &: \mu_1 \neq \mu_2 \\
+	H_\alpha &: \mu_1 = \mu_2
+.\end{align*}
+
+\subsection*{Part B}
+\[
+	t = \frac{25 - 22}{\sqrt{
+			\frac{2^2}{125} + \frac{3^2}{144}
+	}} \approx 9.759
+.\]
+
+\subsection*{Part C}
+The p value would be found by $p = 2\cdot \Prob{T > 9.759}$ where $T \sim \text{TDist}(124)$.
+
+\subsection*{Part D}
+Since $p$ is significantly small, we have sufficient evidence to reject the null hypothesis, that is we have sufficient evidence that computer science majors and engineering majors study the same amount of hours per week, on average.
+
+\section*{Problem 4}
+\subsection*{Part A}
+\[
+	\widehat{\text{Price}} = 158.950\cdot \widehat{\text{Size}} - 81432.946
+.\]
+
+The estimated selling price of a house that is 2000 square feet is $236,467.05$ dollars.
+
+\subsection*{Part B}
+The intercept does not have a useful interpretation in the study as it does not make sense to have a house that has no floor square footage.
+
+\subsection*{Part C}
+For every foot increase in square footage of a home, its price increases by $158.95$ dollars.
+
+\subsection*{Part D}
+Since $p$ is very small, we can say there is sufficient evidence that the square footage is significant covariant when explaining price.
+
+\subsection*{Part E}
+The $R^2 = 0.6715$, meaning there is a moderate correlation between the square footage of a home and its price.
+
+\subsection*{Part F}
+$R \approx 0.8194$ and is positive since an increase in square footage corresponds to an increase in price.
+
+\subsection*{Part G}
+The estimated standard deviation of the selling price given a square footage is $79120$.
+
+\end{document}

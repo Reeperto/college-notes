@@ -1,0 +1,97 @@
+\documentclass[12pt]{extarticle}
+
+\input{../preamble.tex}
+
+\begin{document}
+
+\section*{Lecture Problem}
+
+With the given definition
+
+\begin{definition}
+	We say a mapping $f: A \rightarrow B$ is well-defined if
+	\begin{enumerate}
+		\item[(a)] $\forall a \in A, f(a) \in B$
+		\item[(b)] $\forall a_1, a_2 \in A, a_1 = a_2 \implies f(a_1) = f(a_2)$
+	\end{enumerate}
+\end{definition}
+
+\subsection*{Part A}
+
+\begin{enumerate}
+	\item Give and example of $f$ that doesn't satisfy (a)
+	\item Give and example of $f$ that doesn't satisfy (b)
+	\item Give and example of $f$ that satisfies (a) and (b) and prove it
+\end{enumerate}
+
+\subsubsection*{Part 1}
+
+Let $f$ be defined as 
+
+\[
+	f: [0,2] \rightarrow [0,1] : x \mapsto x^2
+.\]
+
+In this case $f$ doesn't satisfy (a) since $2 \in [0,2]$, but $f(2) = 4 \notin [0,1]$.
+
+\subsubsection*{Part 2}
+Let $f$
+\[
+	f: [0,1] \rightarrow [-1,1] : x \mapsto \pm \sqrt{x}
+.\]
+
+In this case $f$ doesn't satisfy (b) since $f(1) = 1$ and $f(1) = -1$.
+
+\subsubsection*{Part 3}
+
+Let $f$ be defined as
+
+\[
+	f: A \rightarrow B
+.\]
+
+Where $A = \qty{0,1}$ and $B = \qty{2,3}$ where
+\begin{align*}
+	0 \mapsto 2 \\
+	1 \mapsto 3
+.\end{align*}
+
+\begin{proof}
+	Proof that $f$ satisfies both conditions (a) and (b). Note that $\forall a \in A, f(a) \in B$ since $f(0) = 2 \in B$ and $f(1) = 3 \in B$. Let $a_1, a_2 \in A$ and assume $a_1 = a_2$. If $a_1 = a_2 = 0$, then $f(a_1) = f(a_2) = 2$ and if $a_1 = a_2 = 1$, then $f(a_1) = f(a_2) = 3$. Therefore both (a) and (b) are true for $f$.
+\end{proof}
+
+\subsection*{Part B}
+
+Let
+\[
+	f: \mathbb{Q} \rightarrow \mathbb{Q} : \frac{a}{b} \mapsto a
+.\]
+
+Show that $f$ is not well-defined
+
+\subsubsection*{Solution}
+
+\begin{proof}
+	Let $q_1 = \frac{1}{2}$ and $q_2 = \frac{2}{4}$. Then $q_1 = q_2$ but $f(q_1) = 1 \neq 2 =f(q_2)$, hence $f$ is not well-defined.
+\end{proof}
+
+\subsection*{Part C}
+
+Let
+\[
+	f: \mathbb{Q} \rightarrow \mathbb{Q} : \frac{a}{b} \mapsto \qty(\frac{a}{b})^2
+\]
+
+Show that $f$ is well-defined.
+
+\begin{proof}
+	Let $q = \frac{a}{b} \in \mathbb{Q}$. Then $f(q) = f(\frac{a}{b}) = \frac{a^2}{b^2} \in \mathbb{Q}$. Let $q_1 = \frac{a_1}{b_1} \in \mathbb{Q}$ and $q_2 = \frac{a_2}{b_2} \in \mathbb{Q}$. Assume $q_1 = q_2$. Then
+	\begin{align*}
+		q_1 &= q_2 \\
+		\frac{a_1}{b_1} &= \frac{a_2}{b_2} \\
+		\qty(\frac{a_1}{b_1})^2 &= \qty(\frac{a_2}{b_2})^2 \\
+		f(q_1) &= f(q_2)
+	.\end{align*}
+\end{proof}
+
+\end{document}

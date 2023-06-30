@@ -1,0 +1,24 @@
+- name: "MATH 9"
+  slot:
+    days:
+      - "Mon"
+      - "Wed"
+      - "Fri"
+    start:
+      hour: 13
+      minute: 0
+    end:
+      hour: 13
+      minute: 50
+
+- name: "MATH 9 Lab"
+  slot:
+    days:
+    - "Tue"
+    - "Thu"
+    start:
+      hour: 10
+      minute: 0
+    end:
+      hour: 10
+      minute: 50

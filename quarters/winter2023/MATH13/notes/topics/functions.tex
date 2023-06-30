@@ -1,0 +1,71 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {"../figures"}
+}
+
+\begin{document}
+
+\banner{Functions}
+
+\subsection{Introduction to Functions}
+
+\begin{definition}[Function]
+	A function $f$ is a \textit{'rule'} that assigns elements from a domain set $A$ to a codomain set $B$ with a \textbf{one-to-one} correspondence.
+\end{definition}
+
+If a function $f$ maps elements from a set $A$ to a set $B$, then it is notated as
+\[
+	f: A \rightarrow B
+.\]
+
+When considering an element $a \in A$ and its corresponding functional mapping $b \in B$, we say that $b = f(a)$ and also that
+\[
+	f: a \mapsto b
+.\]
+which reads as $f$ maps $a$ to $b$.
+
+\subsection{Classification}
+
+There are three important classifications of functions.
+
+\begin{definition}[Injectivity]
+	A function $f: A \rightarrow B$ is considered injective, an injection, or one-to-one if it never has the same output twice. Equivalaltenly
+	\[
+		\forall a_1, a_2 \in A, f(a_1) = f(a_2) \implies a_1 = a_2
+	.\]
+\end{definition}
+
+\begin{wrapfigure}{r}{0.63\linewidth}
+	\centering
+	\begin{tikzpicture}[scale=1]
+		\begin{axis}[
+		    axis lines = left,
+		    grid,
+				grid style=dashed,
+		]
+			\addplot [
+			    domain=0:2, 
+			    samples=15, 
+			    color=red,
+			]
+			{x^2};
+		\end{axis}
+	\end{tikzpicture}
+\end{wrapfigure}
+Consider the function 
+\[
+	f : [0,2] \rightarrow \mathbb{R} : x \mapsto x^2
+.\] 
+Graphically it is obvious that for every y-value, there is only a singularlly associated x-value. However, the function $f$ maps to all the real numbers. Consider an output of $16$. This would require an input of $4$, however that is outside the range. We say that in this case that $f$ is not \textit{surjective}.
+
+\begin{theorem}[Function Cardinality]
+	All of the following statements are equivalent.
+
+	\begin{enumerate}
+		\item $\qty|A| \leq \qty|B|$
+		\item $\exists f: A \rightarrow B, f$ is injective
+		\item $\exists f: B \rightarrow A, f$ is surjective
+	\end{enumerate}
+\end{theorem}
+
+\end{document}

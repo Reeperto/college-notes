@@ -1,0 +1,31 @@
+
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {"../figures"}
+}
+
+\begin{document}
+
+\banner{Divisibility and Modularity}
+
+\subsection{Remainders and Mod}
+
+Calling back to elementary, when dividing an integer by another integer, it often resulted in there being a remainder. A more concrete definition can be offered when dividing by 3.
+
+\begin{definition}
+	Let $a \in\mathbb{Z}$. There exists $k\in\mathbb{Z}$ and $n \in \{0,1,2\}$ such that $a=3k + n$. In this case, $n$ represent the remainder of $a$ when divided by 3.
+\end{definition}
+
+Consider now the following conjecture.
+
+\begin{conjecture}
+	If $n \in \mathbb{Z}$, then $n^2$ has a remainder of 0 or 1 when divided by 3.
+\end{conjecture}
+
+There is very little given information to prove this conjecture. However, the limited nature of remainders constricts what needs to be examined into something useable. By definition, all integers can be represented as a multiple of 3 plus a remainder. It also implies that the remainder of integers divided by 3 is cyclic, cycling between $\{0,1,2\}$.
+
+% \begin{definition}[Congruence Modulu $n$]
+% 	Let $a,b,n \in\mathbb{Z}$ such that $n > 1$. We say that $a$ is congruent to $b$ modulu $n$ if there exists an integer $k$ such that $a-b = kn$
+% \end{definition}
+
+\end{document}

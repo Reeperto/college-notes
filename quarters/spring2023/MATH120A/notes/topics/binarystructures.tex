@@ -1,0 +1,46 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {"../figures"}
+}
+
+\begin{document}
+\banner{Binary Structures}
+
+\subsection{Isomorphic Binary Structures}
+
+\begin{definition}[Binary Algebraic Structure]
+	$\langle S, * \rangle$ is a binary algebraic structure if $S$ is a set and $*$ is a binary operation defined over $S$.
+\end{definition}
+
+\begin{definition}[Homomorphism Property]
+	Two binary structures $\langle S, * \rangle$ and $\langle S', *' \rangle$ are homomorphic if there exists a mapping $\phi: S \to S'$ such that
+	\[
+		\phi(x * y) = \phi(x) *' \phi(y)
+	.\]
+\end{definition}
+
+\begin{definition}[Isomorphic Binary Algebraic Structures]
+	Two binary structures $\langle S, * \rangle$ and $\langle S', *' \rangle$ are isomorphic if there exists a mapping $\phi: S \to S'$ such that it is homomorphic, one-to-one, and onto.
+\end{definition}
+
+The following example structures are isomorphic
+\begin{align*}
+	\langle [0,1], +_1 \rangle &\simeq \langle [0,c], +_c \rangle \\
+	\langle U_n, \boldsymbol{\cdot} \rangle &\simeq \langle \mathbb{Z}_n, +_n \rangle \\
+	\langle \mathbb{Z}, + \rangle &\simeq \langle 2\mathbb{Z}, + \rangle
+.\end{align*}
+
+Consider the structures $\langle \mathbb{Q}, + \rangle$ and $\langle \mathbb{R}, + \rangle$. Are these two structures isomorphic? Indeed they cannot be because $| \mathbb{Q} | = \aleph_0$ and $| \mathbb{R} | \neq \aleph_0 $. Therefore there cannot exist a onto-to-one and onto map between the structures, hence they cannot be isomorphic. 
+\begin{tcolorbox}[sharp corners = all, colback = white]
+	In general one can follow a process to show that two binary structures $\langle S, * \rangle$ and $\langle S', *' \rangle$ are isomorphic.
+
+\begin{enumerate}[leftmargin=0.5cm]
+		\item Define some function $\phi$ that will be shown to be an isomorphism from $S$ to $S'$.
+		\item Show that $\phi$ is one-to-one.
+		\item Show that $\phi$ is onto.
+		\item Show that the homomorphic property holds under $\phi$. That is that $\phi(x * y) = \phi(x) *' \phi(y)$ for all $x,y \in S$
+	\end{enumerate}
+\end{tcolorbox}
+
+
+\end{document}

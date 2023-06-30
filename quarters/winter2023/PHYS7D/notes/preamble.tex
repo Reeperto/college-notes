@@ -1,0 +1,144 @@
+% Document Layout and Font
+\usepackage{subfiles}
+\usepackage[margin=2.5cm, headheight=15pt]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}	
+\usepackage{wrapfig}
+
+% \usepackage{fontspec}
+% \setmainfont[Scale=1.125]{scholax}
+% \defaultfontfeatures{Ligatures=TeX}
+
+\usepackage[p,osf]{scholax}
+
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyfoot[C]{}
+
+% Utility Management
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{xpatch}
+\usepackage{xparse}
+
+\definecolor{links}{HTML}{1c73a5}
+
+% Math Packages
+\usepackage{mathtools, amsmath, amssymb, amsthm, physics}
+\usepackage{thmtools}
+\usepackage[scaled=1.075,ncf,vvarbb]{newtxmath}
+
+% Boxes and Theorems
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{tikzsymbols}
+
+\mdfdefinestyle{box}{
+	linewidth=1pt,
+  innertopmargin=10pt,
+  innerbottommargin=12pt,
+}
+
+\mdfdefinestyle{mdmath}{
+  hidealllines=true,
+  leftline=true,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=0pt,
+	linewidth=1pt
+}
+
+\mdfdefinestyle{proof}{
+  hidealllines=true,
+  leftline=true,
+	linewidth=1pt
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+	splittopskip=10pt,
+}
+
+\declaretheoremstyle[
+	notebraces={(}{)},
+	mdframed={style=box}
+]{box}
+
+\declaretheoremstyle[
+	notebraces={(}{)},
+	mdframed={style=mdmath}
+]{math}
+
+\declaretheorem[style=box]{definition}
+\declaretheorem[style=math]{conjecture}
+\declaretheorem[style=math]{theorem}
+\newmdtheoremenv[style=math, numbered=no]{note}{Note}
+
+\renewenvironment{proof}
+{ 
+    \begin{mdframed}[style=proof]%
+    \noindent \textit{\textbf{Proof.}}  
+}
+{
+		\hfill\qedsymbol
+    \end{mdframed}
+}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\ExplSyntaxOn
+	\NewDocumentEnvironment{example} { o +b }
+		{
+			\par\noindent
+			\textbf{Example \IfValueT { #1 } { ~ \textnormal{(#1)} } . ~ }
+			\ignorespaces #2
+		}
+		{}
+\ExplSyntaxOff
+
+\surroundwithmdframed[style=box]{example}
+
+
+% TColorBox
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins}
+\tcbuselibrary{breakable}
+
+\newtcolorbox{week}{
+colback=black,
+coltext=white,
+fontupper={\large\bfseries},
+width=1.2\paperwidth,
+size=fbox,
+halign upper=center,
+center
+}
+
+\newtcbox{\boxemph}{
+	center,
+  sharp corners,
+	colframe=black,
+	colback=white,
+  boxrule=1pt
+}
+
+\newcommand{\banner}[2]{
+    \pagebreak
+    \begin{week}
+    				\section*{#1}
+    \end{week}
+    \addcontentsline{toc}{section}{#1}
+    \addtocounter{section}{1}
+    \setcounter{subsection}{0}
+}
+
+% Hyperref
+\usepackage{hyperref}
+\hypersetup{
+				colorlinks=true,
+				linktoc=all,
+				linkcolor=links,
+				bookmarksopen=true
+}
+
+% Error Handling
+\PackageWarningNoLine{ExtSizes}{It is better to use one of the extsizes 
+                          classes,^^J if you can}

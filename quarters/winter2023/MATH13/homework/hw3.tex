@@ -1,0 +1,171 @@
+\documentclass[12pt]{extarticle}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{\textbf{Homework \#3}}
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\section*{Problem 2.3.3}
+
+Suppose that $P(x), Q(y)$ and $R(x, y, z)$ are propositional functions. Compute the negation of the following quantified propositions: 
+\begin{enumerate}[label=(\alph*)]
+	\item $\forall x, \exists y, P(x) \land Q(y) $
+	\item $\forall x, \exists y, \forall z, R(x, y, z)$
+\end{enumerate}
+
+\subsection*{Solution}
+
+\begin{enumerate}[label=(\alph*)]
+	\item $\exists x, \forall y, \lnot P(x) \lor \lnot Q(y)$
+	\item $\exists x, \forall y, \exists z, \lnot R(x,y,z)$
+\end{enumerate}
+
+\section*{Problem 2.3.10}
+
+Consider the propositional function $P(x, y, z) : (x - 3)^2 + (y - 2)^2 + (z - 7)^2 > 0$ where the domain of each of the variables $x, y$ and $z$ is $\mathbb{R}$. 
+\begin{enumerate}[label=(\alph*)]
+	\item Express the quantified statement $\forall x \in \mathbb{R}, \forall y \in \mathbb{R}, \forall z \in \mathbb{R}, P(x, y, z)$ in words. 
+	\item Is the quantified statement in (a) true or false? Explain. 
+	\item Express the negation of the quantified statement in (a) in symbols. 
+	\item Express the negation of the quantified statement in (a) in words. 
+	\item Is the negation of the quantified statement in (a) true or false? Explain.
+\end{enumerate}
+
+\subsection*{Solution}
+\begin{enumerate}[label=(\alph*)]
+	\item For all real numbers $x,y$ and $z$, $(x - 3)^2 + (y - 2)^2 + (z - 7)^2$ is strictly greater than 0.
+	\item The quantified statement is false. Consider the case where $x=3, y=2, z=7$. Therefore $(x - 3)^2 + (y - 2)^2 + (z - 7)^2 \implies 0 > 0$ which is false.
+	\item $\exists x \in \mathbb{R}, \exists y \in \mathbb{R}, \exists z \in \mathbb{R}, \lnot P(x, y, z)$
+	\item There exists 3 real numbers $x,y,z$ such that $(x - 3)^2 + (y - 2)^2 + (z - 7)^2$ is less than or equal to 0.
+	\item The negation of the quantified statement in a is true. Consider the same case as in (b). That is, $x=3, y=2, z=7$. Therefore $(x - 3)^2 + (y - 2)^2 + (z - 7)^2 \implies 0 \leq 0$ which is true.
+\end{enumerate}
+
+\section*{Problem 2.3.11}
+
+The following statements are about positive real numbers. Which one is true? Explain your answer. 
+\begin{enumerate}[label=(\alph*)]
+	\item $\forall x, \exists y$ such that $xy < y^2$. 
+	\item $\exists x$ such that $\forall y, xy < y^2$.
+\end{enumerate}
+
+\subsection*{Solution}
+
+A is true since it can be simplified to for any positive real number $x$ there exists a positive real number $y$ such that $x < y$. Since the positive real numbers are unbounded, for any real number there is another larger real number. Therefore for every positive real number x, there exists a larger real number y $\implies x < y$.
+
+% B is false. 
+% There exists a positive real number x such that for all positive real numbers y, x < y
+
+\section*{Problem 2.3.16}
+
+You are given the following definition (you do not have to know what is meant by a field). 
+
+\boxemph{Let $x$ be an element of a field $\mathbb{F}$. An inverse of $x$ is an element $y$ in $\mathbb{F}$ such that $xy = 1$.}
+
+Consider the following proposition: 
+
+\boxemph{All non-zero elements in a field have an inverse.}
+
+\begin{enumerate}[label=(\alph*)]
+	\item Restate the proposition using both of the quantifiers $\forall$ and $\exists$. 
+	\item Find the negation of the proposition, again using quantifiers.
+\end{enumerate}
+
+\subsection*{Solution}
+
+\begin{enumerate}[label=(\alph*)]
+	\item $\forall x \neq 0, \exists y$ such that $xy = 1$.
+	\item $\exists x \neq 0, \forall y$ we have $xy \neq 1$ 
+\end{enumerate}
+
+\section*{Problem 2.3.19}
+
+Recall from calculus the definitions of the limit of a sequence $(x_{n}) = (x_{1}, x_{2}, x_{3},\ldots)$. 
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{l l}
+		'$x_n$ diverges to $\infty$' means: & $\forall M > 0, \exists N \in \mathbb{N}$ such that $n > N \implies x_n > M$. \\
+		'$x_n$ converges to L' means: & $\forall \epsilon > 0, \exists N \in \mathbb{N}$ such that $n > N \implies \mid x_n - L\mid  < \epsilon.$ 
+	\end{tabular}
+\end{table}
+
+Here we assume that all elements of ($x_{n}$) are real numbers. 
+
+\begin{itemize}
+	\item State what it means for a sequence $x_n$ not to converge at all. 
+\end{itemize}
+
+\subsection*{Solution}
+
+In symbols: $\forall L, \exists \epsilon > 0, \forall N \in \mathbb{N}, \qty(n > N) \land \qty(\mid x_n - L\mid  \geq \epsilon)$. Or in words, there exists an $\epsilon > 0$ such that for all natural numbers $N$, there exists a natural number $n$ larger than $N$ with $\mid x_n - L\mid  \geq \epsilon$.
+
+% \section*{Problem 3.1.5 (For Fun)}
+%
+% Find the remainder when $17^{251} \cdot 23^{12} - 19^{41}$ is divided by 5
+%
+% \subsection*{Solution}
+% For all lines, congruency will be (mod 5).
+% \begin{align*}
+% 	17^{251} \cdot 23^{12} - 19^{41} &\equiv 2^{251} \cdot 3^{12} - (-1)^{41} \\
+% 																	 &\equiv 2\cdot 2^{250} \cdot \qty(3^2)^{6} + 1 \\
+% 																	 &\equiv 2\cdot \qty(2^2)^{125} \cdot \qty(3^2)^{6} + 1 \\
+% 																	 &\equiv 2\cdot (-1)^{125} \cdot (-1)^{6} + 1 \\
+% 																	 &\equiv -2 + 1 \\
+% 																	 &\equiv -1 \\
+% 	17^{251} \cdot 23^{12} - 19^{41} &\equiv 4 \;(\mathrm{mod}\;5).
+% \end{align*}
+
+\section*{Problem 3.1.13}
+
+If $a \mid  b$ and $b \mid  c$, prove that $a \mid  c$.
+
+\subsection*{Solution}
+
+\begin{proof}
+	Let $a,b,c \in \mathbb{Z}$ . Assume that $a\mid b$ and $b\mid c$. By definition $a$ and $b$ are non zero and there exists $m,n \in \mathbb{Z}$ such that $b = ma$ and $c = nb$. It follows that $b = \frac{c}{n}$. Therefore
+	\begin{align*}
+		b &= ma \\
+		\frac{c}{n} &= ma \\
+		c &= nma \\
+	\end{align*}
+	Since $nm \in \mathbb{Z}$, by definition $a \mid  c$.
+\end{proof}
+
+\section*{Problem 3.1.15}
+
+Here are two conjectures. 
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{r l}
+		\textit{Conjecture 1}: & $a \mid  b$ and $a \mid  c \implies a \mid  bc$ \\
+		\textit{Conjecture 2}: & $a \mid  c$ and $b \mid  c \implies ab \mid  c $
+	\end{tabular}
+\end{table}
+Decide whether each conjecture is true or false and prove/disprove your assertions.
+
+\subsection*{Solution}
+
+
+Proof that conjecture 1 is true.
+\begin{proof}
+	Let $a,b,c \in \mathbb{Z}$. Assume that $a \mid b$ and $a \mid c$. By definition there exists $m,n \in \mathbb{Z}$ such that $b = ma$ and $c = na$. It follows then 
+	\begin{align*}
+		bc &= (ma)(na) \\
+			 &= (mna)a
+	\end{align*}
+	Since $mna \in \mathbb{Z}$, then by definition $a \mid bc$.
+\end{proof}
+
+Proof that conjecture 2 is false by counterexample.
+
+\begin{proof}
+	Let $a = 3, b = 6$ and $c=12$. It is true that $a\mid c \Longleftrightarrow 3 \mid  12$ and that $b\mid c \Longleftrightarrow 6\mid 12$. However, it is not true that $ab\mid c$ since $ab = 18 \implies 18 \nmid 12$.
+\end{proof}
+
+% a = 3
+% c = 12
+% b = 6
+
+\end{document}

@@ -1,0 +1,75 @@
+\documentclass[12pt]{extarticle}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{Homework \#6}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\section*{Problem 1}
+\subsection*{Part A}
+The confidence interval will be of the form $\overline{X} \pm 1.96\cdot\frac{s}{\sqrt{n}}$ with $\overline{X} = 38, s = 5, n = 36$, giving a confidence interval of
+\[
+	(36.37, 39.63)
+.\]
+
+\subsection*{Part B}
+The confidence interval will be of the form $\overline{X} - \overline{Y} \sqrt{\frac{s_1^2}{n} + \frac{s_2^2}{n}}$ with $\overline{X} = 38, \overline{Y} = 36, s_1 = 5, s_2 = 7, n_1 = 36, n_2 = 25$, giving a confidence interval of
+\[
+	(-1.19, 5.19)
+.\]
+
+\subsection*{Part C}
+We can say with 95\% confidence that $\mu_1 - \mu_2$ can be equal to $0$, thus we cannot claim to have evidence that compact and economy cars differ in fuel efficiency.
+
+\section*{Problem 2}
+The confidence interval will be of the form $\overline{X} \pm 1.96 \cdot\sqrt{\frac{\overline{X} (1 - \overline{X})}{n}}$ with $\overline{X} = \frac{710}{1000}, n = 1000$, giving a confidence interval of
+\[
+	(0.68, 0.74)
+.\]
+
+\section*{Problem 3}
+\subsection*{Part A}
+The confidence interval will be of the form $\overline{X} \pm 1.96 \cdot \frac{s}{\sqrt{n}}$ with $\overline{X} = 55, s = 7, n = 36$, giving a confidence interval of
+\[
+	(52.7, 57.2)
+.\]
+
+\subsection*{Part B}
+The confidence interval will be of the form $\overline{X} \pm 2.57 \cdot \frac{s}{\sqrt{n}}$ with $\overline{X} = 55, s = 7, n = 36$, giving a confidence interval of
+\[
+	(52, 58)
+.\]
+
+\subsection*{Part C}
+The interval with a higher confidence interval is wider, which is a consequence of needing a larger margin of error to be more certain that the true population paramter is within the interval.
+
+\subsection*{Part D}
+We have 95\% confidence that $\mu$ lies in the interval $(52.7, 57.2)$ which lies entirely above 50.
+
+\subsection*{Part E}
+\begin{align*}
+	H_0 &: \mu \leq 50 \\
+	H_a &: \mu > 50
+.\end{align*}
+
+\section*{Problem 4}
+\subsection*{Part A}
+The confidence interval will be of the form $\overline{X} \pm 1.96 \cdot \frac{s}{\sqrt{n}}$ with $\overline{X} = 4.5, s = 3.6, n = 100$, giving a confidence interval of
+\[
+	(3.79, 5.21)
+.\]
+
+\subsection*{Part B}
+We can say with 95\% confidence that the average difference between scores of nutritious and light breakfasts is between 3.79 and 5.21, hence we are 95\% confident that a nutritious breakfast will have 3.79 to 5.21 more points on average.
+
+\section*{Problem 5}
+$\overline{X}$ will follow an approximate normal distribution with $\mu = 2.6$ and $s = \frac{1.4}{\sqrt{100}} = 0.14$. Therefore
+\[
+	\Prob{\overline{X} > 3} = 1 - \verb|pnorm(3, 2.6, 0.14)| \approx 0.002
+.\]
+
+\end{document}

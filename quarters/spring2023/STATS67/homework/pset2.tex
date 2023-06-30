@@ -1,0 +1,74 @@
+\documentclass[12pt]{extarticle}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{PSET \#$2$}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\newcommand{\Exp}[1]{\mathrm{E}\qty[#1]}
+\newcommand{\Var}[1]{\mathrm{Var}\qty[#1]}
+
+\begin{document}
+
+\section*{Problem 1}
+\subsection*{Part A}
+$X$ is a binomial random variable with parameters $n = 100$ and $p = 0.85$.
+
+\subsection*{Part B}
+\begin{align*}
+	\Exp{X} &= np = 100(0.85) = 85 \\
+	\Var{X} &= npq = 100(0.85)(0.15) = 12.75
+.\end{align*}
+
+\subsection*{Part C}
+The R command that would solve this is \verb|pbinom(80, 100, 0.85)| which results in a value of $0.1065$.
+
+\subsection*{Part D}
+Using the complement rule, the probability would be 
+\[
+	P(X \leq 80) = 1 - P(X > 80)
+\]
+which can be calculated using \verb|1 - pbinom(80, 100, 0.85, lower.tail = FALSE)| which provides the same value.
+
+\subsection*{Part E}
+Since each robot operates independently, the probability is
+\[
+	(0.1065)^2 = 0.01135
+.\]
+
+\subsection*{Part F}
+Since each robot operates independently, the probability is
+\[
+	(0.10654)(1 - 0.1065443) = 0.09518
+.\]
+
+\section*{Problem 2}
+\subsection*{Part A}
+\[
+	\binom{52}{13}\cdot \binom{39}{13} = 5,157,850,293,780,050,462,400
+.\]
+
+\subsection*{Part B}
+\[
+\frac{\binom{26}{13}\cdot\binom{26}{13}}{\binom{52}{13}\cdot\binom{52}{13}} = 2.68257\cdot 10^{-10}
+.\]
+
+\section*{Problem 3}
+From the given information, $P(H) = 0.2, P(L) = 0.3$ and $P(N) = 0.5$. Additionally,
+\[
+	\frac{1}{2} P(D | H) = P(D | L) = 2 P(D | N)
+.\]
+
+Therefore
+\begin{align*}
+	P(H | D) &= \frac{P(D|H) P(H)}{P(D)} \\
+	&= \frac{P(D|H) P(H)}{P(D | H) P(H) + P(D | L) P(L) + P(D | N) P(N)} \\
+	&= \frac{P(D|H) P(H)}{P(D | H) P(H) + \frac{1}{2} P(D | H) P(L) + 4 P(D | H) P(N)} \\
+	&= \frac{P(H)}{P(H) + \frac{1}{2} P(L) + 4 P(N)} \\
+	&= \frac{0.2}{0.2 + \frac{1}{2} \cdot (0.3) + 4 (0.5)} \\
+	&= 0.0851
+.\end{align*}
+
+\end{document}

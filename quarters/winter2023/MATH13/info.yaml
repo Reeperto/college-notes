@@ -1,0 +1,24 @@
+- name: "MATH 13"
+  slot:
+    days:
+      - "Mon"
+      - "Wed"
+      - "Fri"
+    start:
+      hour: 8
+      minute: 0
+    end:
+      hour: 8
+      minute: 50
+
+- name: "MATH 13 Dis"
+  slot:
+    days:
+      - "Mon"
+      - "Wed"
+    start:
+      hour: 12
+      minute: 0
+    end:
+      hour: 12
+      minute: 50

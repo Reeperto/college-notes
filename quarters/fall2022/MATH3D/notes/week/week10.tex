@@ -1,0 +1,52 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {"../figures"}
+}
+
+\begin{document}
+
+\subsection{More on Power Series}
+
+Consider the geometric power series
+\[
+\sum_{k=0}^{\infty} x^{k} = \frac{1}{1-x}
+.\]
+
+The equivalent power series then for its square would be
+\[
+    \qty(\frac{1}{1-x})^2 = \sum_{k=0}^{\infty} x^{k} \cdot \sum_{k=0}^{\infty} x^{k}
+.\]
+Given two power series multiplied, they can be expressed as a new power series of the form
+\begin{align*}
+    f(x) \cdot g(x) &= \sum_{n=1}^{\infty} c_n x^{k} \\
+    c_n &= \sum_{j=1}^{n} a_j b_{n-j}
+.\end{align*}
+Therefore for this case, $c_n = k+1$, meaning
+\[
+    \qty(\frac{1}{1-x})^2 = \sum_{k=0}^{\infty} (k+1)x^{k}
+.\]
+Consider a more difficult example
+\begin{example}{Find the power series to $\frac{x}{1-4x+4x^2}$}
+    Notice first that the x can be ignored in then numerator as it will just be a multiplier in the final answer. Note that
+    \[
+        \frac{1}{1-4x+4x^2} = \frac{1}{(1-2x)^2}
+    .\]
+While the power series for $\frac{1}{1-2x}$ is unknown, it is simply a scaled input to the power series previously mentioned. Therefore
+\[
+    \frac{1}{1-2x} = \sum_{k=0}^{\infty} 2^{k}x^{k}
+.\]
+Squaring the result necessitates finding the $c_n$ terms.
+\begin{align*}
+    a_n &= 2^{n} \\
+    b_n &= 2^{n} \\
+    a_j b_{n-j} &= 2^{n} \\
+    c_n & =\sum_{k=1}^{n} 2^{k} \\
+    c_n &= (n+1)2^{n}
+.\end{align*}
+Therefore the final power series representation is
+\[
+    \frac{x}{1-4x+4x^2} = \sum_{n=1}^{\infty} (n+1)2^{n}x^{n+1}
+.\]
+\end{example}
+
+\end{document}

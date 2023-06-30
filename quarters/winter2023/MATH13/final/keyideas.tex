@@ -1,0 +1,48 @@
+\documentclass[14pt]{extarticle}
+
+\input{../preamble.tex}
+
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+
+\begin{document}
+
+\begin{definition}[Division Algorithm]
+	Let $m$ be an integer and $n$ a positive integer. Then there exists unique integers $q$ and $r$ which satisfy the following equations:
+	\begin{enumerate}
+		\item $0 \leq r < n$.
+		\item $m = qn + r$.
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Moduluarity and Division]
+	\[
+		a \equiv b \Longleftrightarrow n \mid (b-a)
+	.\]
+\end{theorem}
+
+\begin{theorem}[Modular Arithmetic]
+	Suppose that $a,b,c,d$ are integers and that all congruences are modulo $n$. Then
+	\begin{enumerate}
+		\item $a \equiv b$ and $c \equiv d \implies ac \equiv bd$
+		\item $a \equiv b$ and $c \equiv d \implies a \pm c \equiv b \pm d$
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Modular Division]
+	\[
+		ka \equiv kb \Mod{kn} \implies a \equiv b \Mod{n}
+	.\]
+\end{theorem}
+
+\begin{definition}[Injectivity and Surjectivity]
+	Let $f$ be a function such that $f : A \rightarrow B$. $f$ is injective if
+	\[
+		\forall a_1, a_2 \in A, f(a_1) = f(a_2) \implies a_1 = a_2
+	.\]
+	$f$ is surjective if
+	\[
+		\forall b \in B, \exists a \in A, f(a) = b
+	.\]
+\end{definition}
+	
+\end{document}

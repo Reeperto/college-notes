@@ -1,0 +1,45 @@
+\documentclass[../notes.tex]{subfiles}
+
+\begin{document}
+
+\banner{A Paradigm Shift: Proofs}
+
+Compared to computational math classes, the pivotal component of higher level mathematics are \textbf{proofs}. A proof is generally
+
+\begin{enumerate}
+	\item An argument that establishes the truth of a statement
+	\item Evidence that helps establish the truth of a statement
+\end{enumerate}
+
+Conventionally in lower division math courses, algebraic manipulation and identities were utilized to assert the truth of some statement. More often, questions will be more abstract and therefore require tools or logic extending beyond the familiar world of computation.
+
+\subsection{Showing vs. Proving}
+
+Consider a rudimentary problem such as follows.
+
+\begin{conjecture}
+  If $n$ is any odd integer, then $n^2 - 1$ is a multiple of 8.
+\end{conjecture}
+
+It is tempting to immedietaly attempt to prove the conjecture using isolated computations as follows
+\begin{align*}
+	n^2-1 &= (2k+1)^2 - 1 \\
+				&= 4k^2 + 4k \\
+				&= 4\underbrace{k (k+1)}_{even} \\
+				&= 8m
+\end{align*}
+
+While computational sequences can be useful to understand the skeleton of an argument, one should strive to produce a proof that exists independent of the conjecture or proposition. Therefore a more flushed out proof of conjecture 1 can be written out.
+
+\begin{proof}
+	Let n be an odd integer. By definition there exists an integer $k$ such that $n = 2k+1$. Note that
+	\begin{align*}
+		n^2-1 &= (2k+1)^2 - 1 \\
+					&= 4k^2 + 4k \\
+					&= 4k (k+1)
+	.\end{align*}
+
+If k is even, $k(k+1)$ is even and if k is odd, $k(k+1)$ is also even. Therefore by definition of eveness, there is an integer $m$ such that $k(k+1) = 2m$. Therefore $n^2-1 = 4(2m) = 8m$.
+\end{proof}
+
+\end{document}

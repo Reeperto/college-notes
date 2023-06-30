@@ -1,0 +1,146 @@
+% Package Imports --------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{amsmath, amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{standalone}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{xpatch}
+\usepackage[super]{nth}
+\usepackage{multicol}
+\usepackage{tcolorbox}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{endnotes}
+
+\usepackage{fancyhdr}
+
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\bfseries\nouppercase\leftmark}
+\cfoot{\bfseries\thepage}
+
+% \usetikzlibrary{external}
+% \tikzexternalize[prefix=./tikz/]
+\pdfsuppresswarningpagegroup=1
+
+% Remove indents ---------------------------------------------------------------
+\setlength\parindent{0pt}
+
+% Endnotes ---------------------------------------------------------------------
+
+\let\footnote=\endnote
+
+% Tight List -------------------------------------------------------------------
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Custom colors
+\definecolor{links}{HTML}{28859c}
+\definecolor{theoremBG}{HTML}{4cbdd9}
+\definecolor{noteBG}{HTML}{ebc334}
+
+% Custom tcolorbox commands/styles
+
+\newtcolorbox{mybox}[1]{
+				center,
+				sharp corners,
+				center title,
+				center upper,
+				hbox,
+				title=#1
+}
+
+\newtcolorbox{stickynote}[1]{
+				hbox,
+				center,
+				sharp corners,
+				title=#1
+}
+
+
+% THMTools Definitions ---------------------------------------------------------
+\declaretheoremstyle[
+shaded={
+bgcolor=theoremBG!20,
+margin=1em
+},
+headfont=\sffamily\bfseries,
+headformat=\NAME\space\NUMBER \NOTE,
+headpunct={\!: \newline},
+notebraces=\ \,
+]{theoremStyle}
+
+\declaretheoremstyle[
+shaded={
+bgcolor=noteBG!30,
+margin=1em
+},
+headformat={\NAME:\!\NOTE},
+headpunct=,
+notebraces= \ \
+]{noteStyle}
+
+\declaretheorem[
+    style=theoremStyle,
+    name=Theorem,
+    numberwithin=subsection
+]{theorem}
+
+\declaretheorem[
+    style=noteStyle,
+    name=Note,
+]{note}
+
+% Weekly based T.O.C -----------------------------------------------------------
+\newcommand{\tocadd}[2]{
+\addcontentsline{toc}{section}{#1}
+\section*{#1}
+\input{#2}
+}
+
+% Notes Cover Page -------------------------------------------------------------
+\newcommand{\cover}[2]{
+\begin{center}
+				\LARGE
+				\vspace*{1cm}
+				 
+				\textbf{#1 Notes}
+				
+				\vspace{0.5cm}
+				#2
+				\vspace{2cm}
+
+ 				\begin{tikzpicture}[scale=6,every node/.style={transform shape}]
+ 								\draw[fill=black, line width=2mm] (0,0) circle [radius=0.5];
+ 								\draw[fill=white, line width=2mm] (0,0) circle [radius=0.7];
+ 								\draw[fill=black, line width=2mm] (0,0) circle [radius=0.6];
+ 								\draw[color=white] (0,0) node {$\nabla^2$};
+ 				\end{tikzpicture}
+
+				\vspace{2cm}
+				
+				\textbf{Eli Griffiths}
+				     
+				\vspace{0.8cm}
+				
+				School of Physical Sciences \\
+				U.C. Irvine\\
+				United States\\
+				\today
+\end{center}
+\pagebreak
+}
+
+% Auto-Hyperlinks -------------------------------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+				colorlinks=true,
+				linktoc=all,
+				linkcolor=links,
+}

@@ -1,0 +1,84 @@
+\documentclass[12pt]{extarticle}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{\textbf{Midterm Corrections}}
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\section*{Problem $\mathbf{2}$B}
+
+Let $p \geq 5$ be prime. Prove that $p\equiv \pmod{6}$ or $p\equiv 5 \pmod{6}$.
+
+\subsection*{Original Proof}
+
+\begin{proof}
+	Let $p \geq 5$ and $p$ be prime. Since $p \neq 2$ and is prime, then $p$ is odd. Therefore $\exists m \in \mathbb{Z}$ such that $p = 2m + 1$. Note that all numbers reduce to $1,2,3,4$ or $5$ mod $6$. $p \not\equiv 0 \pmod{6}$ since $p$ is prime. If $p \equiv 2 \pmod{6}$, then $\exists a \in \mathbb{Z}$ such that
+	\begin{align*}
+		p = 6a + 2 &\implies 2m + 1 = 6a + 2 \\
+							 &\implies 0 = 2(3a - m + 1) - 1
+	.\end{align*}
+	Which implies $0$ is odd, which is false so $p \not\equiv 2 \pmod{6}$.
+\end{proof}
+
+\subsection*{Corrected Proof}
+
+\begin{proof}
+	Let $p$ be a prime number where $p \geq 5$. Since $p \neq 2$ and is prime, $p$ is an odd number and therefore $\exists m \in \mathbb{Z}$ such that $p = 2m + 1$. Note that all numbers reduce to $1,2,3,4$ or $5$ (mod $6$). It follows that $p$ cannot be congruent to $0, 2$, or $4\pmod{6}$ otherwise $p$ would be even. Therefore $p$ must be congruent to $1,3$ or $5 \pmod{6}$. If $p \equiv 3 \pmod{6}$, then there exists $a \in \mathbb{Z}$ such that $p = 6a + 3$. However that means $p = 3(2a + 1)$ is divisible by $3$ which contradicts the fact $p$ is prime. Therefore $p$ must reduce to $1$ or $5 \pmod{6}$. 
+\end{proof}
+
+\subsection*{Analysis of Original Argument}
+
+The original arguement was working towards the right idea, however it did not cover all the cases that it implies will be handled. Only the cases where $p$ reduces to $0$ or $2$ are covered instead of the required $0,2,3,$ and $4$.
+
+\section*{Problem $\mathbf{5}$A}
+
+Let $A = \qty{k \in \mathbb{Z}: 5k+ 2 \text{ even}}$ and $B = \qty{4k: k \in \mathbb{Z}}$. Write $A$ and $B$ in roster notation, including at least five elements and at least one positive and one negative element (if applicable).
+
+\subsection*{Original Answer}
+
+\begin{align*}
+	A &= \qty{\ldots -4, -2, 0, 2, 4, \ldots} \\
+	B &= \qty{\ldots -4, -2, 0, 2, 4, \ldots}
+.\end{align*}
+
+\subsection*{Corrected Answer}
+
+\begin{align*}
+	A &= \qty{\ldots -4, -2, 0, 2, 4, \ldots} \\
+	B &= \qty{\ldots -8, -4, 0, 4, 8, \ldots}
+.\end{align*}
+
+\subsection*{Analysis of Original Answer}
+
+While the set $A$ was correct, the set $B$ was incorrect. The set builder notation for $B$ was $B = \qty{4k : k \in \mathbb{Z}}$. This means that $B$ is the set of all multiples of $4$. The original answer was not just the multiples of $4$, but had multiples of $2$ that would not satisfy the condition as described by the builder notation.
+
+\section*{Problem $\mathbf{5}$B}
+
+Let $A$ and $B$ be sets. Prove $A \subseteq B \Longleftrightarrow B^\complement \subseteq A^\complement$ using only the definitions of subsets and complements of sets.
+
+\subsection*{Original Proof}
+
+\begin{proof}
+	Proof via showing both directions.
+	\begin{enumerate}[leftmargin=2cm]
+		\item[$(\implies)$] Let $A, B$ be sets. Assume $A \subseteq B$.
+	\end{enumerate}
+\end{proof}
+
+\subsection*{Corrected Proof}
+
+\begin{proof}
+	Proof via showing both directions. Let $A, B$ be sets.
+	\begin{enumerate}[leftmargin=2cm]
+		\item[$(\implies)$]  Assume $A \subseteq B$. Let $x \in B^\complement$. Then $x \notin B$. Since $A \subseteq B$, x cannot be in $A$. Therefore $x \in A^\complement$. Since $x$ was an arbitary element of $B^\complement$ and is in $A^\complement$, $B^\complement \subseteq A^\complement$.
+		\item[$(\impliedby)$]  Assume $B^\complement \subseteq A^\complement$. Let $x \in A$. Then $x \notin A^\complement$ and since $B^\complement \subseteq A^\complement$, $x$ cannot be in $B^\complement$. Therefore $x \in B$. Since $x$ was an arbitrary element of $A$ and is in $B$, then $A \subseteq B$.
+	\end{enumerate}
+\end{proof}
+
+\subsection*{Analysis of Original Proof}
+
+The original argument failed to address any of the actual proof. The setup was correct as it established that it was going to be proved by showing both implications of the biconditional and started with the correctly paired direction and assumption. However since that was all that was there, the proof was incomplete and failed to show the goal of proving the implication.
+
+\end{document}

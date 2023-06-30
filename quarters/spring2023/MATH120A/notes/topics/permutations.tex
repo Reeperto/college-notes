@@ -1,0 +1,222 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+\banner{Permutations}
+
+\subsection{Groups of Permutations}
+
+\begin{theorem}[Symmetric Groups]
+	Let $A$ be a set and define 
+	\[
+		S_A = \qty{\phi : \phi : A \to A, \text{ one-to-one and onto}}
+	.\] 
+	$S_A$ equipped with the binary operation of composition is a group.
+\end{theorem}
+
+Consider the basic example where $A = \qty{1,2,3}$. Consider an example element $\phi \in S_A$. It can be defined in the following way
+\begin{align*}
+	\phi(1) &\to 1 \\
+	\phi(2) &\to 3 \\
+	\phi(3) &\to 2
+.\end{align*}
+Something of interest is a map from $S_A$ can also be naturally expressed as a matrix like the following
+\[
+	\phi = \mqty(1 & 2 & 3 \\ 1 & 3 & 2)
+.\]
+These groups defined over these sets are called \textbf{symmetric groups}.
+
+\subsubsection{Cayley's Theorem}
+
+Arguably one of the most interesting and powerful results in elementary group theory is Cayley's Theorem which makes a statement about \textit{all} groups.
+
+% Make slightly more rigorous by keeping track of binary operations between the two groups
+\begin{lemma}
+	\label{lem:imageisomorphism}
+	Let $G$ and $G'$ be groups and let $\phi : G \to G'$ be a one-to-one function such that 
+	\[
+		\phi(xy) = \phi(x) \phi(y)
+	\]
+	for all $x,y \in G$. Then $\phi[G]$ is a subgroup of $G$ and $\phi$ is an isomorphism from $G \to \phi[G]$
+\end{lemma}
+\begin{proof}
+	Let $G$ be a group and define $\phi$ as above. Consider then $\phi[G]$. Let $a,b \in \phi[G]$. Then there are $u,v \in G$ such that $a = \phi(u)$ and $b = \phi(v)$. Therefore
+	\[
+		ab = \phi(u)\phi(v) = \phi(uv) \in \phi[G]
+	,\]
+	meaning $\phi[G]$ is a closed binary algebraic structure. Consider the group axioms.
+	\begin{enumerate}
+		\item[$\mathcal{G}_1$] 
+		Associativity is trivial
+		\item[$\mathcal{G}_2$] 
+		Let $e$ be the identity of $G$ and define $e' = \phi(e)$. Note that for all $g' \in G'$ that there exits $g \in G$ such that $g' = \phi(g)$. Therefore
+		\[
+			e' g' = \phi(e) \phi(g) = \phi(eg) = \phi(g) = g'
+		.\]
+		Hence every element of $\phi[G]$ has a left identity.
+		\item[$\mathcal{G}_3$] 
+			Let $g' \in \phi[G]$. Then there is $g \in G$ such that $g' = \phi(g)$. Consider $\phi(g^{-1}) = g'' \in \phi[G]$. Then
+			\[
+				g' g'' = \phi(g) \phi(g^{-1}) = \phi(g g^{-1}) = \phi(e) = e'
+			.\]
+			Hence every element of $\phi[G]$ has a left inverse.
+	\end{enumerate}
+	Since $\phi[G]$ is closed and satisfies the left sided group axioms, it is a group.
+\end{proof}
+
+\begin{theorem}[Cayley's Theorem]
+	Any group is isomorphic to a subgroup of some symmetric group.
+\end{theorem}
+\begin{proof}[Cayley's Theorem]
+	Let $G$ be a group. It is sufficient to find a map $f : G \to S_G$ that is one-to-one and for all $u,v \in G$ that $f(uv) = f(u) f(v)$. Then by Lemma \ref{lem:imageisomorphism}, $G \simeq \phi[G]$. Let $\lambda_x : G \to G$ such that $\lambda_x (g) = xg$. Let $c \in G$ and note that $\lambda_x (x^{-1} c) = c$, hence $\lambda_x$ is onto. Let $a,b \in G$ and assume that $\lambda_x (a) = \lambda_x(b)$. Then
+	\begin{align*}
+		\lambda_x (a) &= \lambda_x (b) \\
+		xa &= xb \\
+		a &= b
+	,\end{align*}
+	meaning $\lambda_x$ is one-to-one. Note that $\lambda_x$ represents a permutation of all the elements of $G$. Now define the mapping
+	\[
+		f : G \to S_G : x \mapsto \lambda_x
+	.\]
+	Suppose that $f(x) = f(y)$. That is, $\lambda_x = \lambda_y$ as functions mapping $G \to G$. This means $\lambda_x (e) = \lambda_y (e)$ which implies $xe = ye$. Therefore $x = y$. Let $g \in G$. Then $\lambda_{xy} (g) = (xy)g$. Note that $\lambda_x(\lambda_y(g)) = (x)(yg) = (xy)g$. Therefore $\lambda_{xy} = \lambda_x \lambda_y$.
+\end{proof}
+
+\subsection*{Orbits}
+\begin{definition}[Orbit]
+	Let $\sigma \in S_n$. The orbit of an element $a$ under $\sigma$ is defined as
+	\[
+		O_\sigma (a) = \qty{\sigma^n(a) : n \in \mathbb{Z}}
+	.\]
+\end{definition}
+\begin{example}
+	Consider the permutation from $S_5$
+	\[
+		\sigma = \mqty(1 & 2 & 3 & 4 & 5 \\ 3 & 4 & 1 & 5 & 2)
+	.\]
+	Then the orbit of $1$ in this case is
+	\[
+		1 \overset{\sigma}{\longrightarrow} 3 \overset{\sigma}{\longrightarrow} 1 \overset{\sigma}{\longrightarrow} \ldots
+	.\]
+	Therefore the chain loops, meaning
+	\[
+		O_\sigma (a) = \qty{1,3}
+	.\]
+\end{example}
+
+\begin{example}
+	Consider the permutation from $S_4$
+	\[
+		\sigma = \mqty(1 & 2 & 3 & 4 \\ 1 & 2 & 4 & 3)
+	.\]
+	$\sigma$ has only three orbits. It is obvious that $O_\sigma(1) = \qty{1}$ and $O_\sigma(2) = \qty{2}$. Additionally, there is a cycle between $3$ and $4$, hence $O_\sigma(3) = O_\sigma(4) = \qty{3,4}$.
+\end{example}
+
+\begin{definition}
+	Let $\sigma \in S_n$. The permutation $\sigma$ is called a cycle if it has at most $1$ orbit containing more than $1$ element.
+\end{definition}
+
+\begin{lemma}
+	\label{lem:binaryorbit}
+	Two orbits of a permutation are either the same or disjoint.
+\end{lemma}
+\begin{proof}
+	Let $\sigma \in S_n$ and consider for $a,b \in S_n$ the orbits $O_\sigma(a)$ and $O_\sigma (b)$. If there exists $x \in O_\sigma(a) \cap O_\sigma(b)$, then there are integers $m,n$ such that
+	\[
+		x = \sigma^m a = \sigma^n b
+	.\]
+	Note that for some arbitrary $s \in \mathbb{Z}$ that
+	\[
+		\sigma^s (a) = \sigma^{s-m}(\sigma^m (a)) = \sigma^{s-m}(\sigma^n (b)) = \sigma^{s-m+n} (b)
+	.\]
+	Since $O_\sigma(a) = \qty{\sigma^n a : n \in \mathbb{Z}}$, then $\sigma^s(a) = \sigma^{s-m+n}(b) \in O_\sigma(a)$. Therefore $O_\sigma(a) \subseteq O_\sigma(b)$. The roles of $a$ and $b$ can be swapped to achieve $O_\sigma(b) \subseteq O_\sigma(a)$. Hence the two are equal. If there does not exist an $x$ in the intersection, the two cycles are disjoint.
+\end{proof}
+
+\begin{theorem}[Permutations as a Cyclic Product]
+	Every permutation $\sigma$ of a finite set is a product of disjoint cycles.
+\end{theorem}
+\begin{proof}
+	Let $\sigma \in S_n$. Consider all orbits of $\sigma$,
+	\[
+		O_\sigma (1),O_\sigma (2), \ldots, O_\sigma (n)
+	.\]
+
+\end{proof}
+
+\subsection{Cartesian Product of Groups}
+\begin{definition}[Cartesian Product of Sets]
+	The cartesian product of a collection of sets $A_1, A_2, \ldots A_n$ is the set of all ordered $n$-tuples
+	\[
+		x = (a_1, a_2, \ldots, a_n)
+	\]
+	where $a_1 \in A_1, a_2 \in A_2, \ldots, a_n \in A_n$ and is denoted as
+	\[
+		A_1 \times A_2 \times \ldots \times A_n = \prod_{i=1}^n A_i
+	\]
+\end{definition}
+Since groups add structure to sets, it makes sense to apply the idea of a cartesian product to a collection of groups rather than a collection of sets.
+
+\begin{definition}[Direct Product of Groups]
+	The direct product of a collection of groups $G_1, \ldots, G_n$ is
+	\[
+		G = \prod_{i=1}^n G_i
+	\]
+	where the binary operation of two elements of $G$, for example $g,h \in G$, is defined as
+	\[
+		gh = (g_1 *_1 h_1, g_2 *_2 h_2, \ldots, g_n *_n h_n)
+	.\]
+\end{definition}
+An important property of the direct product is that itself gives rise to a group structure. This can be checked by examining it under the group axioms.
+
+\begin{theorem}[Group Structure of Direct Product]
+	The direct product of a collection of groups $G_1, G_2, \ldots G_n$ is a group
+\end{theorem}
+\begin{proof}
+	Let $G$ be the direct product of a collection of groups $G_1, \ldots, G_n$. First examine clsoure. Let $g,h \in G$ and consider $gh$. Then
+	\[
+		gh = (g_1 *_1 h_1, g_2 *_2 h_2, \ldots, g_n *_n h_n)
+	.\]
+	Since $g_1 *_1 h_1 \in G_1, \ldots, g_n *_n h_n \in G_n$, $G$ is closed. Consider the group axioms.
+	\begin{enumerate}
+	\item[$\mathcal{G}_1$]
+		Let $g,h,z \in G$. Considering $g(hz)$ and $(gh)z$, it arises that they must be equal as each component of the $n$-tuple are independent with a corresponding binary operation from a group. Since these operations must be associative, the operation of $G$ must also be associative.
+	\item[$\mathcal{G}_2$]
+		Let $e_1 \in G_1, \ldots, e_n \in G_n$ be the identity elements of the collection of groups. Then $e = (e_1, e_2, \ldots, e_n) \in G$, therefore $G$ has an identity element.
+	\item[$\mathcal{G}_3$]
+		Let $a \in G$. Choose $a^{-1}$ as $(a_1^{-1}, \ldots, a_n^{-1})$. It follows quickly that $aa^{-1} = e$. Hence every element of $G$ has an inverse.
+	\end{enumerate}
+	Since $G$ is closed and follows the group axioms, it is a group.
+\end{proof}
+
+Consider the special case where each group of the collection $G_i$ is an abelian group. In this case, the direct product is sometimes called a \textit{direct sum}, harkening to the abelian nature of addition. The group direct sum of the groups $G$ is itself an abelian group. % prove this?
+
+\begin{example}
+	\label{ex:z2crossz2}
+	Consider the direct product $\mathbb{Z}_2 \times \mathbb{Z}_2$. By direct enumeration, $\mathbb{Z}_2 \times \mathbb{Z}_2 = \qty{(0,0), (0,1), (1,0), (1,1)}$. Since $\mathbb{Z}_2 \times \mathbb{Z}_2$ has order 4, it is either isomorphic to $\mathbb{Z}_4$ or $K_4$. Since each element is its own inverse, it cannot be cyclic (because $|(a,b)| < 2$) and hence $\mathbb{Z}_2 \times \mathbb{Z}_2 \simeq K_4$.
+\end{example}
+In this instance, the direct sum of two cyclic groups was not cyclic. Therefore one may conjecture that the direct sum of cyclic groups does not preserve the cyclic property. Consider another simple case.
+\begin{example}
+	Consider the direct product $\mathbb{Z}_2 \times \mathbb{Z}_3$. By direct enumeration, $\mathbb{Z}_2 \times \mathbb{Z}_3 = \qty{(0,0),(1,0),(0,1),(1,1),(1,2),(0,2)}$. Note that in this case $(1,1)$ and $(1,2)$ generates the direct sum.
+\end{example}
+Therefore in some cases, the direct sum is cyclic and other cases it is not. Consider the class of direct products of cyclic groups of the same order $n$. Note the order of $\mathbb{Z}_n \times \mathbb{Z}_n = n^2$. However, given any element $(a,b) \in \mathbb{Z}_n \times \mathbb{Z}_n$, $(a,b)^n = e$. This implies $|(a,b)| \leq n$, hence $(a,b)$ cannot generate the entire group. Since $(a,b)$ was any element, no element generates the group. This explains why in example \ref{ex:z2crossz2} the group was not cyclic. Consider now the following theorem.
+
+\begin{theorem}
+	The direct product $\mathbb{Z}_m \times \mathbb{Z}_n$ is cyclic if and only if $m$ and $n$ are relatively prime.
+\end{theorem}
+\begin{proof}
+	Consider the two directions.
+	\begin{enumerate}
+		\item[$(\Rightarrow)$]
+		Assume that $\mathbb{Z}_m \times \mathbb{Z}_n$ is cyclic. Let $(r,s) \in \mathbb{Z}_m \times \mathbb{Z}_n$ where $(r,s)$ is the generator. Consider $(r,s)^{\frac{mn}{d}}$ where $d = \gcd(m,n)$. Note that
+			\[
+				(r,s)^{\frac{mn}{d}} = (r^{mn}, s^{mn})^{\frac{1}{d}} = (e,e)
+			.\]
+			Therefore the order of $(r,s) \leq \frac{mn}{d}$, meaning $|(r,s)| < mn$ if and only if $d>1$. However, since $(r,s)$ generates the group, $|(r,s)| = mn$, hence $d$ must be equal to $1$. Hence $\gcd(r,s) = 1$.
+		\item[$(\Leftarrow)$]
+		Assume that $\gcd(m,n) = d = 1$. Note that the element $(1,1)$ generates a cyclic subgroup. Note that there are integers $p,q$ such that $N = mp = qn$ with $(1,1)^N = e$. Since $m$ and $n$ are coprime, $N = mn$ is the smallest integer such that $(1,1)^N = e$.
+	\end{enumerate}
+	Therefore the direct product $\mathbb{Z}_m \times \mathbb{Z}_n$ is cyclic if and only if $m$ and $n$ are coprime.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,66 @@
+\documentclass[12pt]{extarticle}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{Homework \#$6$}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\begin{document}
+\DeclarePairedDelimiter\bangle\langle\rangle
+
+% Section 9: 1, 6, 9, 13(a), 16, 29. 34.
+
+\section*{9.1}
+\begin{align*}
+	O_\sigma (1) = O_\sigma (2) = O_\sigma (5) &= \qty{1, 5, 2} \\
+	O_\sigma (4) = O_\sigma (6) &=  \qty{4,6} \\
+	O_\sigma (3) &= \qty{3}
+.\end{align*}
+
+\section*{9.6}
+\begin{align*}
+	O_\sigma (3n) &= 3 \mathbb{Z} \\
+	O_\sigma (3n + 1) &= 3 \mathbb{Z} + 1 \\
+	O_\sigma (3n + 2) &= 3 \mathbb{Z} + 2
+.\end{align*}
+
+\section*{9.9}
+\[
+	(1, 2)(4, 7, 8)(2, 1)(7, 2, 8, 1, 5) = (1, 5, 8) (2, 4, 7)
+.\]
+
+\section*{9.13(a)}
+Let $\sigma = (1, 4, 5, 7)$.
+\begin{align*}
+	\sigma^2 &= (1,5) (4, 7) \\
+	\sigma^3 &= (1, 7, 5, 4) \\
+	\sigma^4 &= e 
+.\end{align*}
+Therefore $|\sigma| = 4$.
+
+\section*{9.16}
+The maximum order of an element is going to be the maximum value that can be obtained from $\text{lcm}(a,b)$ where $a + b = 7$ and $a,b \geq 0$. This is because the order of an element is the least common multiple of the order's of it's disjoint cycles, which is maximized with 2 cycles. Consider all the ways to add 2 numbers to get seven and their lcm:
+\begin{align*}
+	1 + 6 &\implies 6 \\
+	2 + 5 &\implies 10 \\
+	3 + 4 &\implies 12
+.\end{align*}
+Therefore the maximum order of an element in $S_7$ is 12.
+
+\section*{9.29}
+\begin{proof}
+	Let $H \leq S_n$ with $n \geq 2$. If $H$ does not contain any odd permutations, then all the permutations of $H$ are even. Examine the case if there exists an odd permutation in $H$, that is some $\sigma \in H$ that is odd. Define the mapping $\phi : H \to H : \mu \mapsto \sigma\mu$. Let $\mu_1, \mu_2 \in H$ and assume that $\phi(\mu_1) = \phi(\mu_2)$. Then $\sigma \mu_1 = \sigma \mu_2$ which by cancellation implies $\mu_1 = \mu_2$, hence $\phi$ is one-to-one. Let $\mu \in H$. Note that $\phi(\sigma^{-1} \mu) = \mu$, hence $\phi$ is onto. Therefore $\phi$ is a bijection on $H$. Note that $\phi$ takes an odd permutation to an even permutation and takes an even permutation to an odd permutation. Therefore since $\phi$ is bijective, there must be an equal amount of even elements as odd elements otherwise the swapping would not be one-to-one and onto. Therefore if $H$ has an odd permutation, exactly half of its permutations are even.
+\end{proof}
+
+\section*{9.34}
+\begin{proof}
+	It can be assumed without loss of generality that an odd cycle can be represented as $\sigma = (1,2,3,\ldots,m)$ where $m$ is an odd number. Computing its square results in
+	\[
+		\sigma^2 = (1,3,5,\ldots,m,2,4,6,\ldots,m-1)
+	\]
+	which is a cycle.
+\end{proof}
+
+\end{document}

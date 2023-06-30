@@ -1,0 +1,39 @@
+\documentclass[12pt,titlepage]{extarticle}
+
+\input{../preamble.tex}
+
+\renewcommand*\contentsname{Table of Contents}
+
+\title{Math 13: Intro to Abstract Math}
+\author{Eli Griffiths}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\thispagestyle{empty}
+\tableofcontents
+
+\pagebreak
+
+\subfile{topics/introduction.tex}
+\subfile{topics/conditionals.tex}
+\subfile{topics/proofmethods.tex}
+\subfile{topics/modularity.tex}
+\subfile{topics/sets1.tex}
+\subfile{topics/functions.tex}
+\subfile{topics/sets2.tex}
+\subfile{topics/relations.tex}
+
+\newpage
+\pagestyle{empty}
+
+\addcontentsline{toc}{section}{List of Theorems}
+\listoftheorems[ignoreall,onlynamed={theorem}]
+
+\addcontentsline{toc}{section}{List of Definitions}
+\listoftheorems[ignoreall,onlynamed={definition},title={List of Definitions}]
+
+\end{document}

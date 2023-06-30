@@ -1,0 +1,29 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {"../figures"}
+}
+
+\begin{document}
+
+\subsection{Variation of Parameters}
+
+\begin{theorem}{Variation of Parameters}{varofparams}
+				Given a \nth{2} Order ODE $y'' + p(t) y' + q(t) y = g(t)$, the particular solution of the ODE can be written in the form of
+				\[
+				y_p = u_1 y_1 + u_2 y_2
+				.\] 
+				where $y_1$ and $y_2$ are the complementary function solutions to the homogeneous version of the ODE and $u_1$ and $u_2$ are functions of $t$ that follow the following conditions:
+				\begin{align*}
+								 u_1' y_1 + u_2' y_2 &= 0 \\
+								 u_1' y_1' + u_2' y_2' &= g(t)
+				.\end{align*}
+\end{theorem}
+
+The benefit to \namethmref{th:varofparams} is that derivatives of $g(t)$ aren't the limiting factor, but rather the ability to find the functions $u_1$ and $u_2$ is the limiting factor. This means \thmref{th:varofparams} is able to find particular solutions in cases where the method of undetermined coefficients is unable to do so.
+
+\centering
+\begin{tikzpicture}[scale=8,every node/.style={transform shape}]
+    \node [rotate=30] {Midterm};    
+\end{tikzpicture}
+
+\end{document}

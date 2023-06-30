@@ -1,0 +1,79 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+
+\banner{Homomorphisms and Factor Groups}
+
+\subsection{Homomorphisms}
+
+\begin{definition}[Image and Inverse Image]
+	Let $\phi : X \to Y$ be a mapping from $X$ to $Y$ and let $A \subseteq X$ and $B \subseteq Y$. The image of $A$ in $Y$ is $\phi[A] = \qty{\phi(a) : a \in A}$. The inverse image of $B$ in $X$ is $\phi^{-1}[B] = \qty{x \in X : \phi(x) \in B}$. The set $\phi[X]$ is sometimes reffered to as the range of $\phi$.
+\end{definition}
+
+\begin{definition}[Homomorphism]
+	A map $\phi$ of a group $G$ into another group $G'$ is a homomorphism if $\forall a,b \in G$ \[\phi(ab) = \phi(a) \phi(b).\]
+\end{definition}
+
+\begin{theorem}[Properties of Homomorphisms]
+	\label{thm:propsofhomomorphism}
+	If $\phi$ is a homomorphism between two groups $G$ and $G'$, then the following are true
+	\begin{enumerate}
+		\item If $e \in G$ is the identity, $\phi(e)$ is the identity of $G'$.
+		\item If $a \in G$, then $\phi(a^{-1}) = \phi(a)^{-1}$
+		\item If $H \leq G$, then $\phi[H] \leq G'$.
+		\item If $K' \leq G' \cap \phi[G]$, then $\phi^{-1}[K'] \leq G$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	Let $\phi$ be a homomorphism between groups $G$ and $G'$.
+	\begin{enumerate}
+		\item[1.)]
+			$\forall a \in G, \phi(a) = \phi(ea) = \phi(e) \phi(a)$. Therefore $\phi(e)$ must be the identity in $G'$
+		\item[2.)] $\forall a \in G, \phi(e) = \phi(a a^{-1}) = \phi(a) \phi(a^{-1})$, therefore $\phi(a^{-1}) = \phi(a)^{-1}$
+		\item[3.)] 
+		\item[4.)] 
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	Let $\phi : G \to G'$ be a homomorphism of groups. Then $\phi^{-1}[\qty{e'}] = \qty{x \in G : \phi(x) = e'} \leq G$ is the kernel of $\phi$, denoted as $\ker(\phi)$.
+\end{definition}
+
+\begin{theorem}
+	A homomorphism $\phi : G \to G'$ between groups is a one-to-one map if and only if $\ker(\phi) = \qty{e}$.
+\end{theorem}
+
+\begin{proof}
+	Let $\phi : G \to G'$ be a homomorphism of two groups.
+	\begin{enumerate}
+		\item[$(\Rightarrow)$]
+			Assume that $\phi$ is a one-to-one map. Note $\ker(\phi) = \qty{x \in G : \phi(x) = e'}$. By theorem \ref{thm:propsofhomomorphism}, $\phi(e) = e'$. Since $\phi$ is one-to-one, this is the only mapping to $e'$, therefore $\ker(\phi) = \qty{e}$.
+		\item[$(\Leftarrow)$]
+			Assume that $\ker(\phi) = \qty{e}$. Let $a,b \in G$ and assume $\phi(a) = \phi(b)$. Note that
+			\[
+				e' = \phi(b)\phi(b)^{-1} = \phi(a) \phi(b)^{-1} = \phi(ab^{-1})
+			.\]
+			Therefore $ab^{-1} \in \ker(\phi)$, meaning $ab^{-1} = e \implies a = b$, hence $\phi$ is one-to-one.
+	\end{enumerate}
+	Both directions are thus proven.
+\end{proof}
+
+\subsection*{Factor Groups}
+
+\begin{theorem}[Factor Group Isomorphism]
+	Let $\phi : G \to G'$ be a group homomorphism. Then the cosets of $\ker(\phi)$ form a factor group, $G \slash \ker(\phi)$ of which the map $\mu : G \slash \ker(\phi) \to \phi[G]$ defined by $\mu(aH) = \phi(a)$ is an isomorphism.
+\end{theorem}
+
+\begin{proof}
+	Let $\phi : G \to G'$ be a group homomorphism and let $H = \ker(\phi)$. Consider the mapping $\mu : G \slash H \to \phi[G]$ where $\mu(aH) = \phi(a)$. First examine if $\mu$ is well defined. Let $g_1 H, g_2 H \in G \slash H$ and assume that $\mu(g_1 H) = \mu(g_2 H)$. That is, $\phi(g_1) = \phi(g_2)$. Note that $g_1, g_2 \in H$ and therefore $g_1 h_1 = g_2 h_2$ for some $h_1, h_2 \in H$ or equivalently $g_1 = g_2 h$ for some $h \in H$. Therefore $g_2^{-1} g_1 = h \in H$. Therefore $\phi(g_2^{-1} g_1) = e$, meaning $\phi(g_1) = \phi(g_2)$. One-to-one follows by doing a reversed argument. Examining the homomorphic property, let $g_1 H, g_2 H \in G \slash H$. Then $\mu(g_1 H g_2 H) = \mu(g_1 g_2 H) = \phi(g_1 g_2) = \phi(g_1) \phi(g_2)$. Also $\mu(g_1 H) \mu(g_2 H) = \phi(g_1) \phi(g_2)$.
+\end{proof}
+
+\begin{example}
+	Consider the factor group $\mathbb{Z}_{11} \times \mathbb{Z}_{15} \slash \langle (1,1) \rangle$. What is its order? Since a factor group is collection of cosets, a partition is formed over $\mathbb{Z}_{11} \times \mathbb{Z}_{15}$ by the subgroup $\langle (1,1) \rangle$. It is then true that $|G| = |H| \cdot |G \slash H|$. Therefore the order of the factor group should be $\frac{|\mathbb{Z}_{11} \times \mathbb{Z}_{15}|}{|\langle (1,1) \rangle|} = \frac{165}{165} = 1$
+\end{example}
+
+\end{document}

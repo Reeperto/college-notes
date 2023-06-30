@@ -1,0 +1,11 @@
+- name: "COMLIT 10"
+  slot:
+    days:
+    - "Tue"
+    - "Thu"
+    start:
+      hour: 11
+      minute: 0
+    end:
+      hour: 12
+      minute: 50

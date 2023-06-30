@@ -1,0 +1,79 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\newcommand{\xvec}[1]{
+        \va{x}_{#1}
+}
+\newcommand{\eig}{\lambda}
+
+Consider an ODE system of the form
+\[
+    \xvec{}'(t) = \vb{A} \xvec{} (t)
+.\]
+
+Where $\vb{A}$ is a finite constant square matrix. Assume $\vb{A}$ has an eigenvalue  $\eig$ with an algebraic multiplicity $N$ that is greater than its geometric multiplicity. Assume the associated vector solution has the form
+ \[
+    \xvec{\eig}(t) = \qty(\xvec{1} + \xvec{2}t + \xvec{3}t^2 + \hdots + \xvec{N}t^{N-1})e^{\eig t}
+.\]
+
+where the number of vectors $\va{x}$ is finite. Define the sequence $a_n$
+\begin{align*}
+    a_n &= e^{\eig t} \xvec{n} t^{n-1} \\
+    \dv{t} (a_n) &= \eig e^{\eig t} \xvec{n} t^{n-1} + (n-1) e^{\eig t} \xvec{n} t^{n-2}
+    \intertext{Define two new sequences $b_n$ and $c_n$}
+    \dv{t} (a_n) &= \underbrace{\eig e^{\eig t} \xvec{n} t^{n-1}}_{\textstyle b_n} + \underbrace{(n-1) e^{\eig t} \xvec{n} t^{n-2}}_{\textstyle c_n} \\
+    \dv{t} (a_n) &= b_n + c_n
+\end{align*}
+Use the ODE system constraint
+\begin{align*}
+    \xvec{}'(t) &= \vb{A} \xvec{} (t) \\
+    \dv{t} (\xvec{}(t)) &= \vb{A} \xvec{} (t) \\
+    \dv{t} (\sum_{n=1}^{N} a_n) &= A \sum_{n=1}^{N} a_n \\
+    \sum_{n=1}^{N} \dv{t} (a_n) &= A \sum_{n=1}^{N} a_n \tag{1}\\
+    \sum_{n=1}^{N} b_n + c_n &= A \sum_{n=1}^{N} a_n \\
+    \sum_{n=1}^{N} b_n + c_n &= \sum_{n=1}^{N} A\cdot a_n \\
+    \intertext{Define the sequence $d_n = A\cdot a_n$}
+    \sum_{n=1}^{N} b_n + c_n &= \sum_{n=1}^{N} d_n \\
+.\end{align*}
+Match the coefficients of $t$ between the sequences
+\begin{align*}
+    b_n + c_{n+1} = d_n \implies \eig e^{\eig t} \xvec{n} t^{n-1} + n e^{\eig t} \xvec{n+1} t^{n-1} &= A e^{\eig t} \xvec{n} t^{n-1} \\
+    \eig e^{\eig t} \xvec{n} + n e^{\eig t} \xvec{n+1} &= A e^{\eig t} \xvec{n} \\
+    \eig \xvec{n} + n \xvec{n+1} &= A \xvec{n} \\
+    A \xvec{n} - \eig \xvec{n} &= n \xvec{n+1} \\
+\end{align*} 
+Arriving at the condition
+
+{\centering
+\begin{eqbox}
+    $
+        (A - \vb{I}\eig) \xvec{n} = n \xvec{n+1}
+    $ 
+\end{eqbox}
+}
+
+In the boundary case where $n=N$
+\begin{align*}
+    b_N &= \eig e^{\eig t} \xvec{N} t^{N-1} \\
+    c_N &= (N-1) e^{\eig t} \xvec{N} t^{N-2} \\
+    d_N &= A e^{\eig t} \xvec{N} t^{N-1}
+.\end{align*}
+Matching coefficients for $t^{N-1}$ 
+\begin{align*}
+    \eig e^{\eig t} \xvec{N} t^{N-1} &= A e^{\eig t} \xvec{N} t^{N-1} \\
+    \eig \xvec{N} &= A \xvec{N} \\
+    A \xvec{N} - \eig \xvec{N} &= 0
+.\end{align*}
+
+Arriving at the condition
+
+{\centering
+\begin{eqbox}
+    $
+        (A - \vb{I}\eig) \xvec{N} = 0
+    $ 
+\end{eqbox}
+}
+
+\footnotetext[1]{In (1), the derivative can be brought into the summation since it is a linear operator and the sum is convergent due to the initial condition where $\va{x}$ and $\vb{A}$ are finite}
+\end{document}

@@ -1,0 +1,62 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {"../figures"}
+}
+
+\begin{document}
+
+\banner{Set Theory I}
+
+\subsection{Sets}
+
+\begin{definition}[Sets]
+	\label{def:sets}
+	A set can be defined as a 'well-defined' collection of objects. Objects themselves can also be other sets. The set containing no elements is the empty set, denoted as $\varnothing$.
+\end{definition}
+
+Sets are denoted using curly brackets in some form or another. There are many ways to notate a set.
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c | c | p{0.4\linewidth}|}\hline
+		\textbf{Type} & \textbf{Representation} & \textbf{Meaning} \\\hline
+		Explicit & $\{1,2,3,4,5\}$ & Sometimes called roster notation, a set can be defined via an exhaustive list of its elements \\\hline
+		Implicit & $\{1,2,3\ldots\}$ & Similar to roster notation. Outlines a pattern and implies its continuation \\\hline
+		Set-Builder & \{ Elements \::\: Condition \} & Set-builder notation outlines what the elements of the set look like, under the given conditions outlined on the right \\\hline
+		Open Interval & $(a,b)$ & $(a,b) = \{ x \in \mathbb{R} : a < x < b \}$ \\\hline
+		Closed Interval & $[a,b]$ & $[a,b] = \{ x \in \mathbb{R} : a \geq x \leq b \}$ \\\hline
+	\end{tabular}
+\end{table}
+
+\begin{definition}[Cardinality]
+	\label{def:cardinality}
+	A set $A$ is \textit{finite} if the set has finitely many elements. The number of elements within $A$, denoted as $|A|$, is the cardinality of $A$. If $A$ has infinitely many elements, then its cardinality is infinite and is said to be an \textit{infinite set}.
+\end{definition}
+
+Consider the set $A = \{1, 10 -5 ,4\}$. We say that the cardinality of $A$ is finite and therefore $|A| = 4$. Alternatively, the set $B = (1,2)$ has an infinite cardinality and is therefore an infinite set.
+
+\subsection{Subsets}
+\begin{definition}[Subset]
+	\label{def:subset}
+	If $A$ and $B$ are sets, $A$ is a \textit{subset} of $B$ if all the elements of $A$ are in $B$. This is denoted as
+	\[
+	  A \subseteq B \Longleftrightarrow \qty(\forall x \in A \Rightarrow x \in B)
+	.\]
+	Additionally, if $A \neq B$ and $A \neq \varnothing$, then $A$ is a \textit{proper subset} of $B$. This is denoted as
+	\[
+		A \subset B \Longleftrightarrow \forall x \in A, x \in B \text{ and } \exists y \in B \text{ s.t. } y \notin A
+	.\]
+\end{definition}
+
+Now with all of these definitions, useful tools can be constructed.
+
+\begin{theorem}[Set Equality]
+	Two sets are equal if and only if they are subsets of each other
+\end{theorem}
+\begin{proof}
+	Let $A$ and $B$ be sets and suppose that $A = B$. $A$ and $B$ have the same elements so $x \in A$ if and only if $x \in B$. Now, $A \subseteq B$ since $x \in A \implies x \in B$ and $B \subseteq A$ since $x \in B \implies x \in A$. Therefore, $A = B$ if and only if $A$ and $B$ are subsets of each other.
+\end{proof}
+
+% PROVE TRANSITIVITY OF SUBSETS
+
+\end{document}

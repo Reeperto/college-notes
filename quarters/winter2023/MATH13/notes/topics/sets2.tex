@@ -1,0 +1,121 @@
+\documentclass[../notes.tex]{subfiles}
+
+\begin{document}
+\newcommand{\powerset}[1]{\mathcal{P}(#1)}
+
+\banner{Set Theory II}
+
+\subsection{Cartesian Product}
+\begin{definition}[Cartesian Product]
+	Let $A$ and $B$ be sets. Their Cartesian product is defined as
+	\[
+		A \times B = \qty{(a,b) : a \in A, b \in B}
+	.\]
+\end{definition}
+
+For example, consider the 2-dimensional plane. Each point can be defined in Cartesian coordinates, and therefore as an ordered pair $(x,y)$ where $x,y \in \mathbb{R}$. This means that all elements of the Cartesian plane can be expressed as elements of the set
+\[
+	\mathbb{R} \times \mathbb{R} = \mathbb{R}^2 = \qty{(x,y) : x,y \in \mathbb{R}}
+.\]
+
+\begin{theorem}
+	\label{thm:cartesiancardinality}
+	If $A$ and $B$ are finite sets, then $\qty|A \times B| = |A|\cdot |B|$
+\end{theorem}
+
+\begin{proof}
+	\newcolumntype{L}{>{$}c<{$}}
+	Let $|A| = m$ and $|B| = n$. Listing out $A \times B$ in a grid pattern results in
+	\[
+		\begin{tabular}{L L L L L L L L}
+			A\times B =& \{& (a_1, b_1) & (a_1, b_2) & (a_1, b_3) & \ldots & (a_1, b_n) & \\
+			   && (a_2, b_1) & (a_2, b_2) & (a_2, b_3) & \ldots & (a_2, b_n) & \\
+			   && \vdots & \vdots & \vdots & \ddots & \vdots & \\
+				 && (a_m, b_1) & (a_m, b_2) & (a_m, b_3) & \ldots & (a_m, b_n) & \}.\\
+		\end{tabular}
+	\]
+	Every ordered pair is written only once. Since there are $m$ rows and $n$ columns, the number of elements is $mn$, therefore $\qty|A \times B| = mn$.
+\end{proof}
+
+\pagebreak
+
+Here is a basic set relationship involving the Cartesian product.
+\begin{multicols}{2}
+	\begin{theorem}
+		Let $A,B,C,D$ be any sets. Then $(A\times B)\cup (C\times D) \subseteq (A\cup C)\times (B\cup D)$. 
+	\end{theorem}
+	Visually, this can be seen as two regions in the Cartesian plane being contained within a larger region where the boundaries are equivalent to the union of the individual region's sides.
+
+	\columnbreak
+
+	\centering
+	\tikz[scale=0.8]{
+		\newcommand\XM{6}
+		\newcommand\YM{6}
+		\newcommand\POS{0.6}
+		\draw[color=gray, step=0.5] (0,0) grid (\XM,\YM);
+		\draw[color=gray, very thick, ->] (0,-0.2) -- (0,\YM + 0.2);
+		\draw[color=gray, very thick, ->] (-0.2,0) -- (\XM + 0.2,0);
+		\draw[color=red, very thick, Bracket-Bracket] (2.5,0) -- (5.5,0)  node[pos=\POS, below] {$C$};
+		\draw[color=black, very thick, Bracket-Bracket] (0,2.5) -- (0,5.5)  node[pos=\POS, left] {$D$};
+		\draw[color=blue, very thick, Bracket-Bracket] (1,0) -- (3.5,0) node[pos=1 - \POS, below] {$A$};
+		\draw[color=green, very thick, Bracket-Bracket] (0,1) -- (0,3.5)  node[pos=1 - \POS, left] {$B$};
+		\fill[fill = yellow] (2.5, 2.5) rectangle (5.5,5.5);
+		\fill[fill = yellow] (1, 1) rectangle (3.5,3.5);
+		\draw[color = black, very thick] (2.5, 2.5) rectangle (5.5,5.5);
+		\draw[color = black, very thick] (1, 1) rectangle (3.5,3.5);
+		\draw[color = black, dashed, very thick] (1, 1) rectangle (5.5,5.5);
+	}
+\end{multicols}
+
+\begin{proof}
+	Let $(x,y) \in (A \times B) \cup (C \times D)$. If $(x,y)$ is in $(A \times B)$, then $x \in A$ and $y \in B$. Therefore $x \in A \cup C$ and $y \in B \cup D$, meaning $(x,y) \in (A \cup C) \times (B \cup D)$. If $(x,y)$ is in $(C \times D)$, then $x \in C$ and $y \in D$. Therefore $x \in A \cup C$ and $y \in B \cup D$, meaning $(x,y) \in (A \cup C) \times (B \cup D)$, as required.
+\end{proof}
+
+Here is a proof of a more generalized version of Theorem \ref{thm:cartesiancardinality} using induction.
+
+\begin{theorem}
+	For all $n\in\mathbb{N}$, if $A_1, \ldots , A_n$ are finite sets, then 
+	\[
+		\qty|A_1 \times \ldots \times A_n| = \qty|A_1| \ldots \qty|A_n|
+	.\]
+\end{theorem}
+
+
+\begin{proof}
+	Proceed with induction to show that for all $n\in\mathbb{N}$, if $A_1, \ldots , A_n$ are finite sets, then $\qty|A_1 \times \ldots \times A_n| = \qty|A_1| \ldots \qty|A_n|$. Consider the base case when $n = 1$. Then $\qty|A_1| = \qty|A_1|$, hence the base case is true. Assume for a fixed $n \in \mathbb{N}$ that $\qty|A_1 \times \ldots \times A_n| = \qty|A_1| \ldots \qty|A_n|$. Consider then the Cartesian product $A_1 \times \ldots \times A_{n+1}$. This will result in every ordered pair in $A_1 \times \ldots \times A_n$ being repeated with a new element from $A_{n+1}$ added in each time. Hence the number of ordered pairs in the set $A_1 \times \ldots \times A_{n+1}$ will be the same as the number of elements of $A_1 \times \ldots A_n$ multiplied by the number of elements in $A_{n+1}$. By the induction hypothesis, the number of elements in $A_1 \times \ldots \times A_n = \qty|A_1| \ldots \qty|A_n|$ and the number of elements in $A_{n+1}$ is $\qty|A_n+1|$. Hence
+	\[
+		\qty|A_1 \times \ldots \times A_{n+1}| = \qty|A_1| \ldots \qty|A_{n+1}|
+	.\]
+	Therefore for all $n\in\mathbb{N}$, if $A_1, \ldots , A_n$ are finite sets, then 
+	\[
+		\qty|A_1 \times \ldots \times A_n| = \qty|A_1| \ldots \qty|A_n|
+	.\]
+\end{proof}
+
+\subsection{Power Sets}
+
+\begin{definition}[Power Set]
+	The \textit{power set} of a set $A$ is the set $\powerset{A}$ of all subsets of $A$. That is
+	\[
+		\powerset{A} = \qty{B : B \subseteq A}
+	.\]
+	Equivalently $B \in \powerset{A} \Longleftrightarrow B \subseteq A$.
+\end{definition}
+
+\subsection{Indexed Collections}
+
+\begin{definition}[Indexed Collection]
+	Given a family of indexed sets $\qty{A_n : n \in I}$, the union or intersection of the family can be formed as
+	\begin{align*}
+		\bigcup_{n \in I} A_n &= \qty{x : x \in A_n \text{ for some } n \in I} \\
+		\bigcap_{n \in I} A_n &= \qty{x : x \in A_n \text{ for all } n \in I}
+	.\end{align*}
+	Equivalently,
+	\begin{align*}
+		x \in \bigcup_{n \in I} A_n \Longleftrightarrow \exists n \in I, x \in A_n \\
+		x \in \bigcap_{n \in I} A_n \Longleftrightarrow \forall n \in I, x \in A_n
+	\end{align*}
+\end{definition}
+
+\end{document}

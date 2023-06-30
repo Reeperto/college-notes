@@ -1,0 +1,106 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+
+\banner{Operations}
+
+\subsection{Binary Operation}
+
+\begin{definition}[Binary Operation]
+	$*$ is a binary operation if it denotes the mapping $* : S\times S \to S$ into some set $S$ that obeys two rules
+	\begin{enumerate}
+		\item Exactly \textit{one} element is assigned to each possible ordered pair of elements of $S$
+		\item For each ordered pair of elements of $S$, the element assigned to it is again in $S$
+	\end{enumerate}
+\end{definition}
+
+For example, addition on the reals is a binary operation as it is a mapping defined by
+\[
+	+ : \mathbb{R}\times \mathbb{R} \to \mathbb{R} : (a,b) \mapsto a + b
+.\]
+
+Often in abstract algebra, imposing or analyzing structure provides the greatest insight. Therefore there are certain algebraic properties commonly used to identify binary operations. Consider for example the concept of \textit{closure}.
+
+\begin{definition}[Closure]
+	Let $*$ be a binary operation on $S$. Let $H \subseteq S$. $H$ is closed under $*$ if for all $(u,v) \in H \times H$ that $u * v \in H$.
+\end{definition}
+
+\begin{example}
+Examine the normal addition and multiplication of integers
+\[
+	+, \boldsymbol{\cdot} : \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}
+.\]
+
+Consider the subset $H  = \qty{2n + 1 : n \in \mathbb{Z}} \subseteq \mathbb{Z}$. Firstly one has to ask if either operations are indeed a binary operation on $H$. In the case of multiplication, one can consider two elemenets $a,b \in H$. Therefore $\exists m,n \in \mathbb{Z}$ such that $a = 2n + 1$ and $b = 2m + 1$. Multiplying them together results in $2(2m^2 + 2mn) + 1$ which is indeed in $H$. For addition, $5 \in H$ and $3 \in H$, however $3 + 5 = 8 \notin H$.
+\end{example}
+
+\begin{remark}
+	Given an arbitrary binary operation $*$, it is not always the case that $a * b = b * a$.
+\end{remark}
+
+If a binary operation indeed does have $a * b = b * a$, it is \textit{commutative}.
+
+\begin{definition}[Commutative Operation]
+	A binary operation $*$ on $S$ is commutative if $\forall a,b \in S$ that $a * b = b * a$.
+\end{definition}
+
+Pulling from other well known operations, we can generalize the notion of associativity from multiplication and addition to a general binary operation.
+
+\begin{definition}[Associativity]
+	A binary operation $*$ on $S$ is associative if $\forall a,b,c \in S$ that $(a * b) * c = a * (b * c)$.
+\end{definition}
+
+\begin{example}
+Consider a (potential) binary operation. Define the set $F = \qty{f \;|\; f : \mathbb{R} \to \mathbb{R}}$. Define the operation $*$ by
+\[
+	f * g \mapsto f \circ g
+.\]
+It is fairly obvious that $*$ is indeed a binary operation as the composition of two real valued functions should still remain real valued. One may want to say $*$ is commutative, however consider the following functions
+\begin{align*}
+	f(x) &= x + 1 \\
+	g(x) &= x^2
+.\end{align*}
+
+It follows fairly quickly that $f\circ g \neq g\circ f$ in this instance, meaning $*$ can not be commutative. Now a harder question is if $*$ is associative. This would require that for all possible real valued functions $f,g,h$ that $f\circ (g \circ h) = (f \circ g) \circ h$. Surprisingly this is true. Note that
+\begin{align*}
+	f\circ (g \circ h) &= f \circ (g(h(x))) \\
+										 &= f(g(h(x)))
+.\end{align*}
+and that
+\begin{align*}
+	(f \circ g) \circ h &= (f(g(x))) \circ h \\
+											&= f(g(h(x)))
+.\end{align*}
+Hence both are equivalent meaning $*$ is indeed associative.
+\end{example}
+
+\subsubsection{Tabular Representation}
+If given a finite set $S$, a binary operation $*$ on $S$ can be defined by tabulating all possible combinations of elements $a,b \in S$. Consider for example $S = \qty{a,b}$. The operation can then be defined as
+\begin{center}
+	\begin{tabular}{c | c | c}
+		$*$ & $a$ & $b$ \\\hline
+		$a$ & $b$ & $b$ \\\hline
+		$b$ & $a$ & $a$ 
+	\end{tabular}
+\end{center}
+Consider then what the outcome of $a * b$ would be. Using the table, the first element will index the row and the second element will index the column. Therefore $a * b = b$. Consider the following question:
+\begin{center}
+	\textit{How many possible binary operations can be defined on a finite set?}
+\end{center}
+
+The tabular representation of a binary operation is useful in this instance. Given the set $S$ that $*$ is over, define $n = |S|$. The table will therefore have $n^2$ entries in it. Each entry has $n$ choices as it can be any element of $S$. Therefore since you have $n$ choices $n^2$ times, therefore 
+\[
+	\text{Number of possible relations} = n^{n^2}
+.\]
+
+\begin{remark}
+	Not every binary operation is well defined
+\end{remark}
+
+Consider for example $* : \mathbb{R} \times \mathbb{R} \to \mathbb{R} : (a,b) \mapsto a^b$. Note that $-1 * \sqrt{2} = (-1)^{\sqrt{2}} \notin \mathbb{R}$, hence $*$ in this case is not well defined.
+
+
+\end{document}

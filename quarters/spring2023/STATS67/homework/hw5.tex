@@ -1,0 +1,145 @@
+\documentclass[12pt]{extarticle}
+
+\input{../preamble.tex}
+
+\fancyhead[R]{Homework \#5}
+\fancyhead[L]{Eli Griffiths}
+\renewcommand{\headrulewidth}{1pt}
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\section*{Problem 1}
+\subsection*{Part A}
+$f(x)$ will be a valid density if
+\[
+	\int_0^2 f(x) \dd x = 1
+.\]
+Therefore
+\begin{align*}
+	\int_0^2 f(x) dx &= \int_0^2 cx^3 \dd x \\
+	1 &= \int_0^2 cx^3 \dd x \\
+	1 &= \int_0^2 cx^3 \dd x \\
+	1 &= \frac{c}{4}\cdot x^4 \eval_0^2 \\
+	1 &= \frac{c}{4}\cdot 2^4 \\
+	1 &= 4c \implies \boxed{c = \frac{1}{4}}
+.\end{align*}
+
+\subsection*{Part B}
+\[
+	\Prob{X = 1} = \int_1^1 f(x) \dd x = 0
+.\]
+
+\subsection*{Part C}
+\[
+	\Prob{X = 1 \text{ or } X = 2} = \Prob{X = 1} + \Prob{X = 2} = \int_1^1 f(x) \dd x + \int_2^2 f(x) \dd x = 0
+.\]
+
+\subsection*{Part D}
+\[
+	\Exp{X} = \int_0^2 x f(x) \dd x = \int_0^2 \frac{x^4}{4} \dd x = \frac{8}{5}
+.\]
+
+\subsection*{Part E}
+\[
+	\Prob{0.5 < X < 1.5} = \int_{0.5}^{1.5} \frac{x^3}{4} \dd x = \frac{x^4}{16} \eval_{0.5}^{1.5} = \frac{5}{16}
+.\]
+
+\subsection*{Part F}
+\[
+	\Prob{0.5 < X < 2.5} = \Prob{0.5 < X < 2} = \int_{0.5}^{2} \frac{x^3}{4} \dd x = \frac{x^4}{16} \eval_{0.5}^{2} = \frac{255}{256}
+.\]
+
+\section*{Problem 2}
+\subsection*{Part A}
+\[
+	\Prob{X > 3} = 1 - \Prob{X < 3} = 1 - \qty(1 - e^{-10(3)}) = e^{-30} \approx 9.35762 \times 10^{-14}
+.\]
+
+\subsection*{Part B}
+\begin{align*}
+	\Exp{X} &= \int_0^\infty x e^{-10x} \dd x \\
+					&= -x e^{-10 x} \eval_{0}^{\infty} + \int_0^\infty e^{-10x} \dd x \\
+					&= 0 + \frac{e^{-10x}}{-10} \eval_0^\infty \\
+					&= \frac{1}{10} \text{ minutes}
+.\end{align*}
+
+\subsection*{Part C}
+\begin{align*}
+	\Prob{X > 5} = 1 - \Prob{X < 5} = 1 - \qty(1 - e^{-10(5)}) = e^{-50} \approx 1.92875 \times 10^{-22}
+.\end{align*}
+
+\subsection*{Part D}
+Expected time to wait is
+\begin{align*}
+	\Exp{10 X} = 10\cdot\Exp{X} = 10 \cdot \frac{1}{10} = 1 \text{ minute}
+.\end{align*}
+The variance of the true wait time is
+\begin{align*}
+	\Var{10X} = 100 \cdot\Var{X} = 100\cdot\frac{1}{100} = 1 \text{ minute}
+\end{align*}
+
+\section*{Problem 3}
+\subsection*{Part A}
+$f(x)$ will be a valid probability mass function if
+\[
+	\sum_{x = -\infty}^{\infty} f(x) = 1
+.\]
+Therefore
+\begin{align*}
+	\sum_{x = -\infty}^{\infty} f(x) &= 1 \\
+	\sum_{x = -\infty}^{0} f(x) + \sum_{x = 0}^\infty f(x) &= 1 \\
+	0 + \sum_{x = 1}^6 f(x) + \sum_{x=7}^\infty &= 1 \\
+	\sum_{x = 0}^6 \frac{c}{x} &= 1 \\
+	c \cdot\sum_{x = 0}^6 \frac{1}{x} &= 1 \\
+	c \cdot\frac{49}{20} &= 1 \implies \boxed{c = \frac{20}{49}}
+\end{align*}
+
+\subsection*{Part B}
+\begin{align*}
+	\Prob{1 < X < 6} &= \sum_{x=1}^{5} f(x) \\
+	&= \sum_{x=1}^{5} \frac{20}{49x} \\
+	&= \frac{20}{49}\cdot\sum_{x=2}^{5} \frac{1}{x} \\
+	&= \frac{20}{49}\cdot\frac{77}{60} = \boxed{\frac{11}{21}}
+\end{align*}
+
+\section*{Problem 4}
+\subsection*{Part A}
+\[
+	\Prob{X < 12} = 1 - e^{-0.03 (12)^{1.2}} \approx 0.4466
+.\]
+
+\subsection*{Part B}
+\[
+	\Prob{X > 12} = 1 - \Prob{X < 12} \approx 1 - 0.4466 = 0.5534
+.\]
+
+\subsection*{Part C}
+\[
+	\Prob{X > 12 | X > 6} = \frac{\Prob{X > 12}}{\Prob{X > 6}} = \frac{\Prob{X > 12}}{e^{-0.03\cdot(6)^{1.2}}} \approx \frac{0.5534}{0.7729} = 0.716
+.\]
+
+\subsection*{Part D}
+\begin{align*}
+	\Prob{X \leq a} &= 0.5 \\
+	1 - e^{-0.03 \cdot a^{1.2}} &= 0.5 \\
+	e^{-0.03 \cdot a^{1.2}} &= 0.5 \\
+	-0.03 \cdot a^{1.2} &= \ln(0.5) \\
+	a^{1.2} &= \frac{\ln(0.5)}{-0.03} \\
+	a &= \qty(\frac{\ln(0.5)}{-0.03})^{\frac{1}{1.2}} \implies \boxed{a \approx 13.6905}
+.\end{align*}
+
+\subsection*{Part E}
+\begin{align*}
+	\Prob{\text{Only one last more than 12 months}} &= 2\cdot\Prob{X > 12}\cdot\Prob{X < 12} \\
+	&\approx 2\cdot(0.4466)(0.5534) = 0.4943
+.\end{align*}
+
+\subsection*{Part F}
+\begin{align*}
+	\dv{x} F(x) &= \dv{x}\qty(1 - e^{-0.03\cdot x^{1.2}}) \\
+							&= 0.03(1.2)(x^{0.2}) e^{-0.03\cdot x^{1.2}} \\
+				 f(x) &= 0.036\cdot x^{0.2} e^{-0.03\cdot x^{1.2}}
+.\end{align*}
+
+\end{document}
