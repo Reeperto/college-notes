@@ -1,0 +1,10 @@
+- name: "MATH 194"
+  slot:
+    days:
+      - "Tue"
+    end:
+      hour: 17
+      minute: 00
+    start:
+      hour: 18
+      minute: 20

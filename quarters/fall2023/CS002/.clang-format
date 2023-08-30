@@ -1,0 +1,17 @@
+﻿---
+IndentWidth: 4
+ColumnLimit: 75
+BreakBeforeBraces: 'Custom'
+BraceWrapping:
+  AfterEnum: true
+  AfterStruct: false
+  AfterCaseLabel: true
+  AfterFunction: true
+  AfterNamespace: true
+  AfterStruct: true
+  AfterUnion: true
+EmptyLineBeforeAccessModifier: 'Always'
+IndentAccessModifiers: false
+IncludeBlocks: 'Regroup'
+InsertBraces: true
+...

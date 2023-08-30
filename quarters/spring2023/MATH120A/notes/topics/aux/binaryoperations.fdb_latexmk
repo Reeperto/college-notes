@@ -1,11 +1,12 @@
 # Fdb version 4
-["xdvipdfmx"] 1691616304 "aux/notes.xdv" "notes.pdf" "notes" 1691616304 0
-  "aux/notes.xdv" 1691616304 255152 a52f3985f0a042065bd4a38eb4d74d14 "xelatex"
+["xdvipdfmx"] 1691616304 "aux/binaryoperations.xdv" "binaryoperations.pdf" "binaryoperations" 1691616304 0
+  "aux/binaryoperations.xdv" 1691616304 37000 f55eb03742ed921c3611402200668736 "xelatex"
   (generated)
-  "notes.pdf"
+  "binaryoperations.pdf"
   (rewritten before read)
-["xelatex"] 1691616303 "notes.tex" "aux/notes.xdv" "notes" 1691616304 0
-  "../preamble.tex" 1688165078 3228 d92f4dacfd372d5706687172b05b8a1b ""
+["xelatex"] 1691616303 "binaryoperations.tex" "aux/binaryoperations.xdv" "binaryoperations" 1691616304 0
+  "..//../preamble.tex" 1688165078 3228 d92f4dacfd372d5706687172b05b8a1b ""
+  "../notes.tex" 1691616123 744 2c7b43dc9a14d5bd9ad1feba57eeee8b ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -246,6 +247,7 @@
   "/usr/local/texlive/2023/texmf-dist/tex/latex/scholax/T1TeXGyreScholaX-OsF.fd" 1577830653 2468 2e6b1bfedd4c4896c6d9ca9d1fc4cebf ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/scholax/omlzncfmi.fd" 1583704208 786 67525aad517eccf0db1a26b55d0463da ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/scholax/scholax.sty" 1643753094 7698 7bbb83f4e504fc1c0e8863417fb14f7a ""
+  "/usr/local/texlive/2023/texmf-dist/tex/latex/subfiles/subfiles.cls" 1605478891 1507 57de335d88fde4e5c924dfed577fdb74 ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/subfiles/subfiles.sty" 1605478891 5262 70ab9987ec94ed2beeb5c2d951d465f6 ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex" 1676235659 34149 40a5c61723ae09a41d8b57d95fe9b8ba ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/tcolorbox/tcbexternal.code.tex" 1676235659 9035 042a4358e9b2097c3ea9b3b915a6f225 ""
@@ -289,22 +291,12 @@
   "/usr/local/texlive/2023/texmf-dist/web2c/texmf.cnf" 1677365944 40745 87bb86a62d462f93a1efc6b0c65c872e ""
   "/usr/local/texlive/2023/texmf-var/web2c/xetex/xelatex.fmt" 1689928781 10502839 cd32a8e02e41c266c321c40ed7cdc766 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "aux/notes.aux" 1691616304 12473 876389926ef9c38447228128d2b5ecdc "xelatex"
-  "aux/notes.loe" 1691616304 7236 c70c6f3f104d147223fb2115d61cb6cc "xelatex"
-  "aux/notes.out" 1691616304 2885 fdea3bec1b3310c8239d8622a6060d24 "xelatex"
-  "aux/notes.toc" 1691616304 1454 88b4f0ff281cb5c940302a0af666847b "xelatex"
-  "notes.tex" 1691616123 744 2c7b43dc9a14d5bd9ad1feba57eeee8b ""
-  "topics/binaryoperations.tex" 1691616303 4848 7fcdc2e9049cf6ed08cc17a9c49a6f9a ""
-  "topics/binarystructures.tex" 1688165078 2079 6446d2d9287989310451e1d71b7ba46f ""
-  "topics/homomorphisms.tex" 1688165078 4301 f26e340662d8b5df7dc91d121140135b ""
-  "topics/intro.tex" 1688165078 3776 7b2cc908762b7400437cbae8d2dcca09 ""
-  "topics/introgroups.tex" 1688165078 8296 01433c78d4376c09fc8651376d53fa98 ""
-  "topics/permutations.tex" 1688165078 11130 79c64fbe20157e88579eb36c0afa314a ""
+  "aux/binaryoperations.aux" 1691616304 2356 96935fe32850c3051464df49b65db7f1 "xelatex"
+  "aux/binaryoperations.out" 1691616304 412 4979e2233fe8b84d0328fa07f86c2dcf "xelatex"
+  "binaryoperations.tex" 1691616303 4848 7fcdc2e9049cf6ed08cc17a9c49a6f9a ""
   (generated)
-  "aux/notes.aux"
-  "aux/notes.loe"
-  "aux/notes.log"
-  "aux/notes.out"
-  "aux/notes.toc"
-  "aux/notes.xdv"
+  "aux/binaryoperations.aux"
+  "aux/binaryoperations.log"
+  "aux/binaryoperations.out"
+  "aux/binaryoperations.xdv"
   (rewritten before read)

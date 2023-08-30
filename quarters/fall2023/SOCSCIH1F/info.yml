@@ -1,0 +1,22 @@
+- name: "SOC SCI H1F"
+  slot:
+    days:
+      - "Tue"
+      - "Thu"
+    end:
+      hour: 12
+      minute: 30
+    start:
+      hour: 13
+      minute: 50
+
+- name: "SOC SCI H1F Sem"
+  slot:
+    days:
+      - "Fri"
+    end:
+      hour: 13
+      minute: 00
+    start:
+      hour: 14
+      minute: 50
