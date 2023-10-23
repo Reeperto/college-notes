@@ -1,0 +1,49 @@
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}1.1\else \numberline {1.1}Definition\fi \thmtformatoptarg {Peano Axioms}}{2}{definition.1.1}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}1.1\else \numberline {1.1}Theorem\fi \thmtformatoptarg {Induction}}{2}{theorem.1.1}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}1.1\else \numberline {1.1}Example\fi }{2}{example.1.1}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}1.2\else \numberline {1.2}Example\fi }{3}{example.1.2}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}2.2\else \numberline {2.2}Definition\fi }{4}{definition.2.2}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}2.2\else \numberline {2.2}Theorem\fi \thmtformatoptarg {Rational Root Theorem}}{4}{theorem.2.2}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}2.3\else \numberline {2.3}Example\fi \thmtformatoptarg {$\sqrt {2}$}}{4}{example.2.3}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}2.3\else \numberline {2.3}Definition\fi \thmtformatoptarg {Algebraic Number}}{4}{definition.2.3}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}2.4\else \numberline {2.4}Definition\fi \thmtformatoptarg {Ordered Field}}{5}{definition.2.4}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}2.3\else \numberline {2.3}Theorem\fi \thmtformatoptarg {Properties of $\vvmathbb {R}$}}{5}{theorem.2.3}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}2.4\else \numberline {2.4}Theorem\fi \thmtformatoptarg {Properties of Ordered Reals}}{6}{theorem.2.4}%
+\contentsline {remark}{\ifthmt@listswap \else \numberline {\let \autodot \@empty }\fi Remark}{6}{thmt@dummyctr.dummy.12}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}2.5\else \numberline {2.5}Definition\fi \thmtformatoptarg {Absolute Value}}{7}{definition.2.5}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}2.5\else \numberline {2.5}Theorem\fi \thmtformatoptarg {Properties of Absolute Value}}{7}{theorem.2.5}%
+\contentsline {corollary}{\ifthmt@listswap Corollary\nobreakspace {}2.1\else \numberline {2.1}Corollary\fi \thmtformatoptarg {Distance Triangle Inequality}}{7}{corollary.2.1}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}3.6\else \numberline {3.6}Definition\fi \thmtformatoptarg {Upper and Lower Bound}}{9}{definition.3.6}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}3.7\else \numberline {3.7}Definition\fi \thmtformatoptarg {Supremum and Infimum}}{9}{definition.3.7}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}3.4\else \numberline {3.4}Example\fi }{9}{example.3.4}%
+\contentsline {remark}{\ifthmt@listswap \else \numberline {\let \autodot \@empty }\fi Remark}{9}{thmt@dummyctr.dummy.19}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.6\else \numberline {3.6}Theorem\fi \thmtformatoptarg {Uniqueness of Supremum and Infimum}}{9}{theorem.3.6}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}3.5\else \numberline {3.5}Example\fi }{9}{example.3.5}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}3.8\else \numberline {3.8}Definition\fi \thmtformatoptarg {Axiom of Completeness}}{10}{definition.3.8}%
+\contentsline {corollary}{\ifthmt@listswap Corollary\nobreakspace {}3.2\else \numberline {3.2}Corollary\fi \thmtformatoptarg {Axiom of Completeness Reversed}}{10}{corollary.3.2}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.7\else \numberline {3.7}Theorem\fi \thmtformatoptarg {Archimedean Property}}{10}{theorem.3.7}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.8\else \numberline {3.8}Theorem\fi \thmtformatoptarg {$\vvmathbb {Q}$ is Dense in $\vvmathbb {R}$}}{10}{theorem.3.8}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}4.9\else \numberline {4.9}Definition\fi \thmtformatoptarg {Sequence}}{12}{definition.4.9}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.6\else \numberline {4.6}Example\fi }{12}{example.4.6}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.7\else \numberline {4.7}Example\fi }{12}{example.4.7}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.8\else \numberline {4.8}Example\fi }{12}{example.4.8}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}4.10\else \numberline {4.10}Definition\fi \thmtformatoptarg {Sequence Convergence}}{12}{definition.4.10}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.9\else \numberline {4.9}Example\fi }{12}{example.4.9}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.10\else \numberline {4.10}Example\fi }{12}{example.4.10}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.11\else \numberline {4.11}Example\fi }{12}{example.4.11}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.12\else \numberline {4.12}Example\fi }{13}{example.4.12}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.9\else \numberline {4.9}Theorem\fi \thmtformatoptarg {Uniqueness of Limits}}{13}{theorem.4.9}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.13\else \numberline {4.13}Example\fi }{13}{example.4.13}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.14\else \numberline {4.14}Example\fi }{13}{example.4.14}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.10\else \numberline {4.10}Theorem\fi }{14}{theorem.4.10}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.11\else \numberline {4.11}Theorem\fi }{14}{theorem.4.11}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}4.11\else \numberline {4.11}Definition\fi \thmtformatoptarg {Bounded Series}}{14}{definition.4.11}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.12\else \numberline {4.12}Theorem\fi \thmtformatoptarg {Convergence Implies Boundedness}}{15}{theorem.4.12}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.13\else \numberline {4.13}Theorem\fi \thmtformatoptarg {Properties of Limits}}{15}{theorem.4.13}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.15\else \numberline {4.15}Example\fi \thmtformatoptarg {Example Limits}}{16}{example.4.15}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.16\else \numberline {4.16}Example\fi }{17}{example.4.16}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.17\else \numberline {4.17}Example\fi }{17}{example.4.17}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}4.12\else \numberline {4.12}Definition\fi \thmtformatoptarg {Infinite Limit}}{17}{definition.4.12}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.14\else \numberline {4.14}Theorem\fi \thmtformatoptarg {Implication of Infinite Limits}}{17}{theorem.4.14}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}4.13\else \numberline {4.13}Definition\fi \thmtformatoptarg {hi}}{18}{definition.4.13}%
+\contentsline {remark}{\ifthmt@listswap \else \numberline {\let \autodot \@empty }\fi Remark}{18}{thmt@dummyctr.dummy.49}%

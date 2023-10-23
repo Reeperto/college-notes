@@ -1,0 +1,171 @@
+% Document Layout and Font
+\usepackage{subfiles}
+\usepackage[margin=2cm, headheight=15pt]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}	
+\usepackage{wrapfig}
+\usepackage{multicol}
+
+\usepackage[p,osf]{scholax}
+
+\renewcommand*\contentsname{Table of Contents}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[R]{$\thepage$}
+% \setlength{\parindent}{0cm}
+\setlength{\headheight}{17pt}
+\hfuzz=9pt
+
+% Utility Management
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{xpatch}
+\usepackage{xparse}
+
+\definecolor{links}{HTML}{1c73a5}
+\definecolor{bar}{HTML}{584AA8}
+
+% Math Packages
+\usepackage{mathtools, amsmath, amsthm, thmtools, amssymb, physics}
+\usepackage[scaled=1.075,ncf,vvarbb]{newtxmath}
+
+\newcommand\Prob[1]{\mathbb{P}\qty(#1)}
+\newcommand\Var[1]{\text{Var}\qty(#1)}
+\newcommand\Exp[1]{\mathbb{E}\qty[#1]}
+\DeclareMathOperator{\spann}{span}
+\DeclareMathOperator{\nullity}{nullity}
+
+% TIKZ
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{math}
+
+% Boxes and Theorems
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins}
+\tcbuselibrary{breakable}
+\tcbuselibrary{theorems}
+
+\newtheoremstyle{default}{0pt}{0pt}{}{}{\bfseries}{\normalfont.}{0.5em}{}
+\theoremstyle{default}
+
+\renewcommand*{\proofname}{\textit{\textbf{Proof.}}}
+\renewcommand*{\qedsymbol}{$\blacksquare$}
+\tcolorboxenvironment{proof}{
+	breakable,
+	coltitle = black,
+	colback = white,
+	frame hidden,
+	boxrule = 0pt,
+	boxsep = 0pt,
+	borderline west={3pt}{0pt}{bar},
+	sharp corners = all,
+	enhanced,
+}
+
+\newtheorem{theorem}{Theorem}[section]{\bfseries}{}
+\tcolorboxenvironment{theorem}{
+	breakable,
+	enhanced,
+	boxrule = 0pt,
+	frame hidden,
+	coltitle = black,
+	colback = blue!7,
+	left = 0.5em,
+	sharp corners = all,
+}
+
+\newtheorem{corollary}{Corollary}[section]{\bfseries}{}
+\tcolorboxenvironment{corollary}{
+	breakable,
+	enhanced,
+	boxrule = 0pt,
+	frame hidden,
+	coltitle = black,
+	colback = white!0,
+	left = 0.5em,
+	sharp corners = all,
+}
+
+\newtheorem{lemma}{Lemma}[section]{\bfseries}{}
+\tcolorboxenvironment{lemma}{
+	breakable,
+	enhanced,
+	boxrule = 0pt,
+	frame hidden,
+	coltitle = black,
+	colback = green!7,
+	left = 0.5em,
+	sharp corners = all,
+}
+
+\newtheorem{definition}{Definition}[section]{\bfseries}{}
+\tcolorboxenvironment{definition}{
+	breakable,
+	coltitle = black,
+	colback = white,
+	frame hidden,
+	boxsep = 0pt,
+	boxrule = 0pt,
+	borderline west = {3pt}{0pt}{orange},
+	sharp corners = all,
+	enhanced,
+}
+
+\newtheorem{example}{Example}[section]{\bfseries}{}
+\tcolorboxenvironment{example}{
+	% title = \textbf{Example},
+	% detach title,
+	% before upper = {\tcbtitle\quad},
+	breakable,
+	coltitle = black,
+	colback = white,
+	frame hidden,
+	boxrule = 0pt,
+	boxsep = 0pt,
+	borderline west={3pt}{0pt}{green!70!black},
+	sharp corners = all,
+	enhanced,
+}
+
+\newtheoremstyle{remark}{4pt}{4pt}{}{}{\bfseries\itshape}{\normalfont.}{0.5em}{}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+
+% TColorBoxes
+\newtcolorbox{week}{
+	colback = black,
+	coltext = white,
+	fontupper = {\large\bfseries},
+	width = 1.2\paperwidth,
+	size = fbox,
+	halign upper = center,
+	center
+}
+
+\newcommand{\banner}[2]{
+    \pagebreak
+    \begin{week}
+   		\section*{#1}
+    \end{week}
+    \addcontentsline{toc}{section}{#1}
+    \addtocounter{section}{1}
+    \setcounter{subsection}{0}
+}
+
+% Hyperref
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linktoc=all,
+	linkcolor=links,
+	bookmarksopen=true
+}
+
+% Error Handling
+\PackageWarningNoLine{ExtSizes}{It is better to use one of the extsizes 
+                          classes,^^J if you can}

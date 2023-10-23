@@ -1,15 +1,18 @@
 ﻿---
 IndentWidth: 4
 ColumnLimit: 75
+AlignTrailingComments:
+  Kind: 'Always'
 BreakBeforeBraces: 'Custom'
 BraceWrapping:
   AfterEnum: true
-  AfterStruct: false
+  AfterStruct: true
   AfterCaseLabel: true
   AfterFunction: true
   AfterNamespace: true
   AfterStruct: true
   AfterUnion: true
+  AfterControlStatement: 'Always'
 EmptyLineBeforeAccessModifier: 'Always'
 IndentAccessModifiers: false
 IncludeBlocks: 'Regroup'

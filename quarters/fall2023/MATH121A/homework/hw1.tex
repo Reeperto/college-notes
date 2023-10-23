@@ -1,0 +1,112 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{1}
+\input{hw_preamble.tex}
+
+% Section 1.1: 2, 3. 
+% Section 1.2: 1, 13, 17, 19. 
+% Section 1.3: 1, 5, 12, 22. 
+
+\begin{document}
+
+\subsection*{1.1.2}
+\begin{enumerate}[label=\alph*)]
+	\item $(-5, 7, 1) - (3, -2, 4) = (-8, 9, -3)$. Therefore the line is $\vec{x}(t) = (3, -2, 4) + t(-8, 9, -3)$.
+	\item $(-3, -6,0) - (2,4,0) = (-5, -10, 0)$. Therefore the line is $\vec{x}(t) = (2,4,0) + t(-5,-10,0)$.
+	\item $(3,7,-8)-(3,7,2) = (0, 0, -10)$. Therefore the line is $\vec{x}(t) = (3, 7, -8) + t(0, 0, -10)$.
+	\item $(3,9,7)-(-2,-1,5) = (5,10,2)$. Therefore the line is $\vec{x}(t) = (3,9,7) + t(5,10,2)$.
+\end{enumerate}
+
+\subsection*{1.1.3}
+\begin{enumerate}[label=\alph*)]
+	\item Let $A = (2, -5, -1), B = (0,4,6), C = (-3,7,1)$. Then $B - A = (-2, 9, 7)$ and $C - A = (-5, 12, 2)$. Therefore the plane equation is $\vec{x}(s,t) = (2, -5, -1) + s(-2,9,7) + t(-5, 12, 2)$.
+	\item Let $A = (3, -6, 7), B = (-2,0,-4), C = (5,-9,2)$. Then $B - A = (-5, 6, -11)$ and $C - A = (2, -3, -5)$. Therefore the plane equation is $\vec{x}(s,t) = (3, -6, -7) + s(-5, 6, -11) + t(2, -3, -5)$.
+	\item Let $A = (-8, 2, 0), B = (1,3,0), C = (6,-5,0)$. Then $B - A = (9, 1, 0)$ and $C - A = (14, -7, 0)$. Therefore the plane equation is $\vec{x}(s,t) = (-8, 2, 0) + s(9, 1, 0) + t(14, -7, 0)$.
+	\item Let $A = (1,1,1), B = (5,5,5), C = (-6,4,2)$. Then $B - A = (4,4,4)$ and $C - A = (-7, 3, 1)$. Therefore the plane equation is $\vec{x}(s,t) = (1,1,1) + s(4,4,4) + t(-7,3,1)$.
+\end{enumerate}
+
+\subsection*{1.2.1}
+\begin{multicols}{3}
+	\begin{enumerate}[label=\alph*)]
+		\item True
+		\item False
+		\item False
+		\item False
+		\item True
+		\item False
+		\item False
+		\item False
+		\item True
+		\item True
+		\item True
+	\end{enumerate}
+\end{multicols}
+
+\subsection*{1.2.13}
+It is not a vector space. The zero vector must be $0 (a_1, a_2) = (0, a_2)$ for all $a_1, a_2 \in \mathbb{F}$. However since $a_2$ is variable, the zero vector is not unique and therefore $V$ is not a vector space.
+
+\subsection*{1.2.17}
+It is not a vector space. The zero vector must be $0 (a_1, a_2) = (a_1, 0)$ for all $a_1, a_2 \in \mathbb{F}$. This fails the same way the last question does. Therefore $V$ is not a vector space.
+
+\subsection*{1.2.19}
+It is not a vector space. If $V$ were a vector space, then $(2+3) \cdot (3,4) = 2\cdot (3, 4) + 3\cdot (3,4)$. Calculating both sides:
+\begin{align*}
+	(2 + 3) \cdot (3,4) &= 5 \cdot (3,4) \\
+	&= (15, \frac{4}{5}) \\
+	\intertext{and}
+	(2+3) \cdot (3,4) &= 2\cdot (3,4) + 3\cdot (3,4) \\
+					  &= (6, 2) + (9, \frac{4}{3}) \\
+					  &= (15, \frac{10}{3})
+\end{align*}
+Since $(15, \frac{10}{3}) \neq (15, \frac{4}{5})$, distributivity doesn't hold and so $V$ is not a vector space.
+
+\subsection*{1.3.1}
+\begin{multicols}{2}
+	\begin{enumerate}[label=\alph*)]
+		\item False
+		\item False
+		\item True
+		\item False
+		\item True
+		\item False
+		\item False
+	\end{enumerate}
+\end{multicols}
+
+\subsection*{1.3.5}
+\begin{proof}
+	Let $A$ be a square matrix. Then
+	\[
+		(A + A^\transp)^\transp = A^\transp + A = A + A^\transp
+	\]
+	Therefore since $(A + A^\transp)^\transp = A + A^\transp$, $A + A^\transp$ is a symmetric matrix.
+\end{proof}
+
+\subsection*{1.3.12}
+\begin{proof}
+	Let $W = \qty{m\times n\text{ upper triangular matrices}}$. Note that $W \subset M_{m\times n}(\mathbb{F})$. Let $w, k \in W$. $k + w$ will result in an upper triangular matrix since every element below the main diagonal is zero in both and therefore their sum below the main diagonal will be zero. Therefore $k + w \in W$. Let $c \in \mathbb{F}$. $c \cdot w$ will give an upper triangular matrix since every zero element below the main diagonal multiplied by a constant will remain zero, resulting in an upper triangular matrix. Therefore $cw \in W$. Note that the zero matrix is upper triangular and hence is in $W$. Since $W$ is closed under addition and scalar multiplication and the zero matrix is in $W$, $W$ is a subspace of $M_{m\times n} (\mathbb{F})$.
+\end{proof}
+
+\subsection*{1.3.22}
+\def\funfield{\mathcal{F}(\mathbb{F}_1, \mathbb{F}_2)}
+
+Let $\mathbb{F}_1$ and $\mathbb{F}_2$ be fields. First consider even functions:
+\begin{proof}
+	Let $E = \qty{g\text{ is even} : g\in\funfield}$. Note that $E \subset \funfield$. Let $f,g \in E$. Let $h(t) = f(t) + g(t)$ where $t \in \mathbb{F}_1$. Note that
+	\[
+		h(-t) = f(-t) + g(-t) = f(t) + g(t) = h(t)
+	\]
+	Therefore $h(t)$ is also an even function and hence $h \in E$. Let $c \in \mathbb{F}_2$ and $j(t) = c \cdot f(t)$. Since $j(-t) = c \cdot f(-t) = c \cdot f(t) = j(t)$, $j(t)$ is an even function and hence $j \in E$. Additionally, the zero function is even and odd so it is in $E$. Since $E$ is closed under addition and scalar multiplication and contains the zero function, $E$ is a subspace of $\funfield$.
+\end{proof}
+
+Next consider odd functions:
+\begin{proof}
+	Let $O = \qty{g\text{ is odd} : g\in\funfield}$. Note that $O \subset \funfield$. Let $f,g \in O$. Let $h(t) = f(t) + g(t)$ where $t \in \mathbb{F}_1$. Note that
+	\[
+		h(-t) = f(-t) + g(-t) = -f(t) - g(t) = -(f(t) + g(t)) = -h(t)
+	\]
+	Therefore $h(t)$ is also an odd function and hence $h \in O$. Let $c \in \mathbb{F}_2$ and $j(t) = c \cdot f(t)$. Note that $j(-t) = c \cdot f(-t) = -c \cdot f(t) = -j(t)$. Therefore $j$ is an odd function and hence $j \in O$. Additionally, the zero function is even and odd so it is in $O$. Since $O$ is closed under addition and scalar multiplication and contains the zero function, $O$ is a subspace of $\funfield$.
+\end{proof}
+
+\end{document}

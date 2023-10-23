@@ -1,6 +1,6 @@
 ---
 title: C++ Basics Worksheet
-author: Eli Griffiths and Sophie Chen
+author: Eli Griffiths and Sophie Chen (checked by group 13 and 5)
 ---
 
 # Declaration and Initialization
@@ -79,7 +79,7 @@ product = product * n;
 > Life, the Universe, and Everything is 42.
 
 ```cpp
-cout << "The answer to the question of\n Life, the Universe, and Everything is 42.\n";
+cout << "The answer to the question of\nLife, the Universe, and Everything is 42.\n";
 ```
 
 12. Give an input statement that will fill the variable the_number (of type int) with a number typed in at the keyboard. Precede the input statement with a prompt statement asking the user to enter a whole number.
@@ -112,19 +112,19 @@ The program lines would output:
     
     a.) $3x$
     ```cpp
-    3 * x;
+    3 * x
     ```
     b.) $3x + y$
     ```cpp
-    3 * x + y;
+    3 * x + y
     ```
     c.) $\cfrac{x+y}{2}$
     ```cpp
-    (x + y) / 2;
+    (x + y) / 2
     ```
     d.) $7z^3 + 2$
     ```cpp
-    7 * z * z * z + 2;
+    7 * ( z * z * z ) + 2
     ```
 
 16. Evaluate: 30-5/2.0
@@ -145,7 +145,7 @@ using namespace std;
 
 int main()
 {
-    cout << "Hello World";
+    cout << "Hello world\n";
     return 0;   
 }
 ```
@@ -153,13 +153,13 @@ int main()
 19. Write a complete C++ program that reads in two whole numbers and outputs their sum. Be sure to prompt for input, echo input, and label all output.
 
 ```cpp
-!include "programs/basics19.cpp"
+!include "basics19.cpp"
 ```
 
 20. Write a program that contains statements that output the value of five or six variables that have been declared, but not initialized. Compile and run the program. What is the output? Check the program on a different environment or with another student. Do you get the same results? Explain.
 
 ```cpp
-!include "programs/basics20.cpp"
+!include "basics20.cpp"
 ```
 
 Running the program 3 times results in:

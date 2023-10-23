@@ -1,0 +1,65 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+
+\banner{Introduction}
+
+\subsection{The Natural Numbers}
+First examine the natural numbers. It is very common knowledge that $1$ is a natural number and you obtain the rest by increasing the previous by 1. This is however not a rigorous construction of the natural numbers. An example of a rigorous construction is the \textbf{Peano axioms}
+
+\begin{definition}[Peano Axioms]
+    The natural numbers are axiomatically defined by
+    \begin{enumerate}
+        \item $1 \in \mathbb{N}$
+        \item If $n \in \mathbb{N}$, then $n + 1 \in \mathbb{N}$
+        \item $1$ is the first element, meaning it is not the sucessor of any element
+        \item If $S \subset \mathbb{N}$ such that $1 \in S$ and $n \in S$ implies $n + 1 \in S$, then $S = \mathbb{N}$
+    \end{enumerate}
+\end{definition}
+
+While the Peano Axioms are not strong enough for modern math, they are sufficient for lots of math and at least open up the world of rigorous axiomatic constructions. Consider axiom $4$. Assume that it is not true. Then there is an $S \subset \mathbb{N}$ such that $1 \in S$ and $n \in S \implies n + 1 \in S$ but $S \neq \mathbb{N}$. Then let $n_0 = \min\qty{n \in \mathbb{N} : n \not\in S}$. Since $1 \in S$, $n_0 \neq 1$ and hence $n_0$ is the successor of $n_0 - 1$. However since $n \in S \implies n+1 \in S$ and $n_0 - 1 \in S$, $n_0 \in S$ and therefore a contradiction.
+
+While this is a persuasive and intuitive argument, it does not constitute a proof as the existence of $n_0$ is assumed because of the assumption of a minimum element in a non-empty subset of $\mathbb{N}$.
+
+\subsubsection{Mathematical Induction}
+\begin{theorem}[Induction]
+    If $S_1, S_2, S_3, \ldots$ are statements, all are true if
+    \begin{enumerate}
+        \item $S_1$ is true
+        \item $S_n \implies S_{n+1}$
+    \end{enumerate}
+\end{theorem}
+
+For simplicity, the proof of induction shall be left more so as accepting the last Peano Axiom that declares its validity.
+
+\begin{example}
+    Consider the statement $1 + 2 + 3 + \ldots + n = \frac{n(n+1)}{2}$.
+    \begin{proof}
+        Consider the base case $n = 1$. Then $1 = \frac{1(2)}{2} = 1$, therefore the base case holds. Assume that for a fixed $n \in \mathbb{N}$ that $1 + 2 + 3 + \ldots + n = \frac{n(n+1)}{2}$. Then it follows that
+        \begin{align*}
+            1 + 2 + 3 + \ldots + n &= \frac{n(n+1)}{2} \\
+            1 + 2 + 3 + \ldots + n + (n+1) &= \frac{n(n+1)}{2} + (n+1) \\
+            1 + 2 + 3 + \ldots + (n+1) &= \frac{(n+1)(n+2)}{2}
+        \end{align*}
+    \end{proof}
+\end{example}
+
+\begin{example}
+    Consider the statement $\abs{\sin(nx)} \leq \abs{n\sin(x)}, \forall x \in \mathbb{R}$.
+    \begin{proof}
+        The base clearly holds. Assume that for a fixed $n \in \mathbb{N}$ that $\abs{\sin(nx)} \leq \abs{n\sin(x)}, \forall x \in \mathbb{R}$. Then
+        \begin{align*}
+            \abs{\sin((n+1)x)} = \abs{\sin(nx + x)} &= \abs{\sin(nx) \cos(x) + \cos(nx) \sin(x)} \\
+                                                    &\leq \abs{\sin(nx)}\abs{\cos(x)} + \abs{\cos(nx)}\abs{\sin(x)} \\
+                                                    &\leq \abs{\sin(nx)} + \abs{\sin(x)} \\
+                                                    &\leq n\abs{\sin(x)} + \abs{\sin(x)} \\
+                                                    &\leq (n+1)\abs{\sin(x)}
+        \end{align*}
+    \end{proof}
+\end{example}
+
+\end{document}
+

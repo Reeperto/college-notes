@@ -1,0 +1,19 @@
+\documentclass[12pt,titlepage]{extarticle}
+
+\input{../preamble.tex}
+\begin{document}
+
+Let $X_i$ be the expected number of trials required for the car in the $i$th slot to get to the end. Since the order of cards is preserved, car $N$ will end in slot $2N$, car $N -1$ in $2N - 1$, and for car $i$ in the $N + i$ slot. This means every car has to move up $N$ slots. Since the probability that a car moves is the same every trial,
+\[
+	X_i \sim \sum_{j=1}^N Y_j
+\]
+where $Y_j \sim Geometric(0.5)$. This is because a geometric variable counts the number of trials till a success (including the success case). Since we are interested in $N$ successes, we consider $N$ geometric variables one after the other. Therefore
+\[
+	\Exp{X_i} = \Exp{\sum_{j=1}^N Y_j} = \sum_{j=1}^N \Exp{Y_j} = \frac{N}{0.5} = 2N
+\]
+Therefore,
+\[
+	\Exp{\text{Total time}} = \Exp{\sum_{i=0}^N X_i} = 2N \cdot \sum_{i=1}^N = 2N^2
+\]
+
+\end{document}

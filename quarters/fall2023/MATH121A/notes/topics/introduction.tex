@@ -1,0 +1,219 @@
+\documentclass[../notes.tex]{subfiles}
+
+\begin{document}
+
+\banner{Introduction}
+
+\subsection{Fields}
+
+A field is an algebraic structure intended to capture the properties of the rational and real numbers.
+
+\begin{definition}[Field]
+	A field $\mathbb{F}$ is a set $\mathbb{F}$ equipped with an additon and multiplication operator such that
+	\begin{enumerate}
+		\item Elements commute under both operations
+		\item Associativity holds for both operators
+		\item $\exists 1,0 \in \mathbb{F}$ such that $\lambda + 0 = \lambda$ and $\lambda 1 = \lambda$ for all $\lambda \in \mathbb{F}$
+		\item $\forall \lambda \in \mathbb{F}, \exists! \gamma \in \mathbb{F}$ such that $\lambda + \gamma = 0$
+		\item $\forall \lambda \in \mathbb{F}$ where $\lambda \neq 0$, $\exists! \gamma \in \mathbb{F}$ such that $\lambda\gamma = 0$
+	\end{enumerate}
+\end{definition}
+
+Consider a prime number $p$. It is then possible to construct the field $\mathbb{F}_p$ where
+\[
+	\mathbb{F}_p = \mathbb{Z}/p\mathbb{Z}
+\]
+Consider the simplest example, $\mathbb{F}_2 = \qty{0, 1}$. It is clear that this makes up a field as $1$ has a multiplicative and additive inverse. In the case of $\mathbb{F}_4 = \qty{0,1,2,3}$, $2$ has no multiplicative inverse and hence isnt a field. In general, if $a,b \neq 0$ and $ab = 0$, then $a$ and $b$ do not have inverses.
+
+\begin{proof}
+	Let $a,b \in \mathbb{F}$. Assume towards contradiction that $ab = 0$ and that $a$ or $b$ have inverses. WLOG, assume that there is a $c \in F$ such that $ac = 1$.
+\end{proof}
+
+\subsection{Vector Spaces}
+
+\begin{definition}[Vector Space]
+	Let $\mathbb{F}$ be a field. A vector space $V$ over a field $\mathbb{F}$ is a set $V$ equipped with addition and scalar multiplication such that
+	\begin{enumerate}
+		\item $(V, +)$ is an abelian group
+		\item $(V, \cdot)$ is associative and distributive, that is $\forall a,b \in \mathbb{F}$ and $\forall u,v \in V$
+		\begin{enumerate}
+			\item $a(u + v) = au + av$
+			\item $(a + b)v = av + bv$
+		\end{enumerate}
+		\item $\exists! 1 \in \mathbb{F}$ such that $\forall v \in V$, $1v = v$
+	\end{enumerate}
+\end{definition}
+
+\begin{example}
+	Let $\mathbb{F}$ be a field and $n \in \mathbb{N}$. Let
+	\[
+		\mathbb{F}^n = \qty{ (a_1, a_2, a_3, \ldots) : a_i \in \mathbb{F}}
+	\]
+	where
+	\begin{align*}
+		(a_1, a_2, a_3, \ldots) + (b_1, b_2, b_3, \ldots) &= (a_1 + b_1, a_2+b_2, a_3+b_3,\ldots) \\
+		e \cdot (a_1, a_2, a_3, \ldots) &= (ea_1, ea_2, ea_3,\ldots) \\
+	\end{align*}
+	Then $(\mathbb{F}^n, +, \cdot)$ is a vector space. This gives rise to all the familiar vector spaces $\mathbb{C}^n, \mathbb{R}^n, \mathbb{Q}^n, \ldots$
+\end{example}
+\begin{remark}
+	If $K \supset F$ are fields, then $(K, +, \cdot)$ is a vector space over $F$
+\end{remark}
+
+
+\begin{theorem}
+	Let $V$ be a vector space and $u,v,w \in V$. Then $u + w = v + w$ implies $u = v$.
+\end{theorem}
+\begin{proof}
+	Im too lazy :P
+\end{proof}
+
+There are more exotic examples of vector spaces. Consider the set of continuous, real value functions over the interval $[0,1]$.
+
+\begin{example}
+	\[
+		C = \qty{ f : [0,1] \to \mathbb{R} \;|\; f\text{ is continuous} }
+	\]
+	This set can be turned into a vector space by defining the following operations
+	\begin{align*}
+		+ \Rightarrow &(f+g)(x) = f(x) + g(x) \\
+		\cdot \Rightarrow &(cf)(x) = cf(x) \\
+	\end{align*}
+\end{example}
+
+\subsubsection{Subspaces}
+
+\begin{definition}[Subspace]
+	Let $V$ be a vector space over a field $\mathbb{F}$. A subset $W \subset V$ is called a subspace if $W$ is also a vector space over $\mathbb{F}$.
+\end{definition}
+
+\begin{theorem}
+	Let $W \subset V$ be a non-empty subset of $V$. $W$ is a subspace of $V$ if and only if
+	\begin{enumerate}
+		\item $W$ is closed under $+$
+		\begin{enumerate}
+			\item[] $w_1 + w_2 \in W, \forall w_1,w_2 \in W$
+		\end{enumerate}
+		\item $W$ is closed under $\cdot$
+		\begin{enumerate}
+			\item[] $cw \in W, \forall w\in W, c \in \mathbb{F}$
+		\end{enumerate}
+	\end{enumerate}
+	An equivalent formulation of the conditions is that $W$ is closed under linear combination, or symbolically
+	\[
+		c_1 w_1 + c_2 w_2 \in W, \forall c_1,c_2 \in \mathbb{F}, w_1, w_2 \in W
+	\]
+\end{theorem}
+
+Consider the vector space $\mathbb{R}^2$. After some time, it becomes clear that the only subspaces of $\mathbb{R}^2$ are $\{\vec{0}\}$ and $\qty{c(a,b) | c \in \mathbb{R}}$ where $a,b \in \mathbb{R}$ (aka all lines that go through the origin). If a line does not go through the origin of $\mathbb{R}^2$, then it's clear it fails to be a subspace. Examine the line $y + x = 1$. Since it does not contain the zero vector, it fails to be closed under scalar multiplication as any vector in $y + x = 1$ will become the zero vector.
+
+\begin{example}[Polynomial Space]
+	Let $\mathcal{P}_n(\mathbb{F}) := \qty{a_n x^n + a_{n-1} x^{n-1} + \ldots + a_0 : a_i \in \mathbb{F}}$. $\mathcal{P}_n(\mathbb{F})$ is a vector space $\forall n \in \mathbb{N}_0$. Additionally, $\mathcal{P}_{n-1}(\mathbb{F})$ is a subspace of $\mathcal{P}_n(\mathbb{F})$.
+\end{example}
+
+\begin{example}[Matrix Space]
+	Let $M_{n\times m} (\mathbb{F}) := \qty{\mqty(
+		a_{11} &\cdots &a_{1m} \\
+		\vdots & &\vdots \\
+		a_{n1} &\cdots &a_{nm}
+	) : a_{ij} \in \mathbb{F}}$. Then $M_{n\times m}(\mathbb{F})$ is a vector space. An example subspace of $M_{n\times m}(\mathbb{F})$ is the set of upper triangular matrices.
+\end{example}
+
+\begin{theorem}[Trivial Subspaces]
+	For every non-zero vector space $V$, it has at least two subspaces $\{\vec{0}\}$ and $V$.
+\end{theorem}
+
+\begin{theorem}[Subspace Construction]
+	Let $V_1, V_2$ be subspaces of $V$ over $\mathbb{F}$. Then
+	\begin{enumerate}
+		\item $V_1 \cap V_2$ is a subspace
+		\item $V_1 + V_2 = \qty{v_1 + v_2 : v_1 \in V_1, v_2 \in V_2}$ is a subspace
+		\item $V_1 \cup V_2$ is a subspace if and only if $V_1 \subset V_2$ or $V_2 \subset V_1$
+	\end{enumerate}
+\end{theorem}
+
+\subsection{Span and Independence}
+
+\begin{definition}[Linear Combination]
+	Let $V$ be a vector space and $v_1, v_2, \ldots, v_{n} \in V$. A linear combination of $\qty{v_1,v_2,\ldots,v_{n}}$ is a vector of the form
+	\[
+		c_1 v_1 + c_2 v_2 + \ldots + c_{n} v_{n}
+	\]
+	where $c_i \in \mathbb{F}$.
+\end{definition}
+
+\begin{definition}[Span]
+	The span of a set of vectors $\qty{v_1, v_2, \ldots, v_n}$ is the set of all linear combinations of those vectors. It is denoted by $\spann\qty{v_1, v_2, \ldots, v_n}$. For an infinite set of vectors, an alternative definition helps
+	\[
+		\spann(S) = \bigcap_{\substack{w \supseteq S \\ w \leq V}} W = \text{Smallest subspace that contains } S
+	\]
+\end{definition}
+
+\begin{definition}[Subset Independence]
+	Let $S$ be a subset of a vector space $V$.
+	\begin{enumerate}
+		\item If every non-empty finite subset of $S$ is linearly independent, $S$ is called independent.
+		\item If there exists a non-empty finite subset of $S$ that is linearly dependent, $S$ is called dependent.
+	\end{enumerate}
+\end{definition}
+
+\subsection{Basis and Dimension}
+
+\begin{definition}
+	A maximal independent set of vectors is a independent subset of a vector space that, if any other vector is added from the vector space, would be become dependent. That is, given a maximally independent subset $W = \qty{v_1, v_2, v_3, \ldots}$, $u \in \spann(W)$.
+\end{definition}
+
+\begin{definition}[Basis]
+	Let $\qty{u_1, u_2, u_3, \ldots} \subset V$. Then $\qty{u_1, u_2, u_3, \ldots}$ is a basis of $V$ if every vector $v \in V$ can be uniquelly written as $v = c_1 u_1 + c_2 u_2 + \ldots$ with $c_i \in \mathbb{F}$. Equivalently, it is a basis if
+	\begin{enumerate}
+		\item $V = \spann\qty{u_1, u_2, u_2, \ldots}$
+		\item $\qty{u_1, u_2, u_2, \ldots}$ is independent
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+	Let $V = \spann\qty{v_1, v_2, \ldots, v_n}$ and $W = \qty{v_1, v_2, \ldots, v_r}$ be a maximally independent subset of $V$. Then $W$ is a basis for $V$.
+\end{theorem}
+
+\begin{proof}
+	Since $W$ is maximally independent, $v_i \in W$ for $1 \leq i \leq n$. Therefore $V = \spann(W)$. Since $W$ is independent and spans $V$, it is a basis for $V$.
+\end{proof}
+
+\begin{corollary}
+	Let $V = \qty{v_1, v_2, \ldots, v_n}$. Any maximally independent subset of $V$ forms a basis of $V$ over $\mathbb{F}$.
+\end{corollary}
+
+\begin{theorem}
+	If $S$ is an independent subset of a vector space $V$, it can be extended to a basis of $V$ (by the Axiom of Choice).
+\end{theorem}
+
+\begin{theorem}
+	Let $R = \qty{v_1, v_2, \ldots, v_n}$ and $ W = \qty{w_1, w_2, \ldots, w_m}$ be bases of $V$ over $\mathbb{F}$. Then $m = n$.
+\end{theorem}
+\begin{proof}
+	Since $R$ is a basis, $w_i = \sum_{j=1}^n a_j v_j$. This can be expressed in matrix form
+	\[
+		\mqty(w_1 \\ \vdots \\ w_m) = \mqty(a_{11} & \cdots & a_{1n} \\ \vdots & & \vdots \\ a_{m1} & \cdots & a_{mn}) \mqty(v_1 \\ \vdots \\ v_n)
+	\]
+	Since $W$ is also a basis, $v_i = \sum_{j=1}^m b_j w_j$ meaning
+	\[
+		\mqty(w_1 \\ \vdots \\ w_m) = 
+		\underbrace{\mqty(a_{11} & \cdots & a_{1n} \\ \vdots & & \vdots \\ a_{m1} & \cdots & a_{mn})}_A
+		\underbrace{\mqty(b_{11} & \cdots & b_{1m} \\ \vdots & & \vdots \\ b_{m1} & \cdots & b_{nm})}_B
+		\mqty(w_1 \\ \vdots \\ w_n)
+	\]
+	This means that $AB = I$. By starting with $W$ instead of $R$, it follows that $BA = I$. Therefore $A$ and $B$ are invertible meaning they must be square, hence $n = m$.
+\end{proof}
+
+\begin{definition}[Dimension]
+	The dimension of a vector space $V$ is the number of vectors in a basis of $V$.
+\end{definition}
+
+\begin{theorem}
+	Let $W$ be a subspace of $V$ such that $\dim V = n < \infty$. If $\dim W = \dim V$, $W = V$.
+\end{theorem}
+\begin{proof}
+	
+\end{proof}
+	
+\end{document}

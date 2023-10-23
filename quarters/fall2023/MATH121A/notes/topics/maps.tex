@@ -1,0 +1,73 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+
+\banner{Linear Maps}
+
+\subsection{Linearity}
+
+\begin{definition}[Linear Map]
+	A map $T : V \to W$ is linear if $T(au + bv) = aT(u) + bT(v)$ for all $a,b \in \mathbb{F}$ and $u,v \in V$.
+\end{definition}
+
+\begin{theorem}
+	If $\qty{v_1, v_2, \ldots, v_n}$ is a basis of $V$,
+	\[
+		T(a_1 v_1 + a_2 v_2 + \ldots + a_n v_n) = a_1 T(v_1) + a_2 T(v_2) + \ldots a_n T(v_n)
+	\]
+\end{theorem}
+
+A linear map can be defined just by declaring the images of a vector spaces basis vectors as the map has to obey linearity over a basis. This leads to a natural formulation of a linear map as a matrix where the columns are the images of the basis vectors under $T$.
+
+\begin{definition}[Null Space and Range]
+    Let $T : V \to W$ be F-linear. Then
+    \begin{enumerate}
+        \item $N(T) = \qty{v \in V : T(v) = 0}$ is a subspace of $V$
+        \item $R(T) = T(V) = \qty{T(v) : v \in V}$ is a subspace of $W$
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    Let $T : V \to W$ be F-linear. Then
+    \begin{align*}
+        \dim V &= \dim(N(T)) + \dim(R(T)) \\
+               &= \operatorname{nullity} T + \operatorname{rank} T
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    Let $S$ be a basis of $N(T)$. Then $\#S = \operatorname{nullity} T$. $S$ can be extended to be a basis of $V$ with some $S'$ such that $S \cup S'$ is a basis. Therefore
+    \[
+        \dim V = \#(S \cup S') = \#S + \#S' = \operatorname{nullity} T + \#S
+    \]
+
+\end{proof}
+
+\begin{theorem}
+    $T : V \to W$ is one-to-one if and only if $N(T) = \qty{0}$
+\end{theorem}
+
+\begin{proof}
+    The forward direction follows by considering $T(v_1) = T(v_2)$ and settting $v_2$ to zero. Consider the backwards direction. If $T(v_1) = T(v_2)$, then $T(v_1 - v_2) = 0$. Therefore $v_1 - v_2 \in N(T) = \qty{0}$ meanimg $v_1 - v_2 = 0$. Hence $v_1 = v_2$ meaning $T$ is one-to-one.
+\end{proof}
+
+\begin{theorem}
+    Let $T: V \to V$ be a linear map where $\dim V = n < \infty$. Then $T$ is bijective.
+\end{theorem}
+\begin{proof}
+    By the dimension formula,
+    \[
+        n = \dim V = \operatorname{nullity} T + \rank T
+    \]
+    If $T$ is injective, then 
+    \begin{align*}
+        \operatorname{nullity} T = 0 &\implies \rank T \\
+                                     &\implies \rank T = n \\
+                                     &\implies R(T) = V
+    \end{align*}
+\end{proof}
+
+\end{document}

@@ -1,0 +1,30 @@
+\documentclass[12pt,titlepage]{extarticle}
+
+\input{../preamble.tex}
+
+\title{Math 140A: Elementary Analysis}
+\author{Eli Griffiths}
+
+\begin{document}
+
+\maketitle
+\pagebreak
+\thispagestyle{empty}
+\tableofcontents
+\pagebreak
+
+\subfile{topics/introduction.tex}
+\subfile{topics/extending_naturals.tex}
+\subfile{topics/completeness.tex}
+\subfile{topics/sequences.tex}
+
+\newpage
+\pagestyle{empty}
+
+\addcontentsline{toc}{section}{List of Theorems}
+\listoftheorems[ignoreall,onlynamed={theorem}]
+
+\addcontentsline{toc}{section}{List of Definitions}
+\listoftheorems[ignoreall,onlynamed={definition},title={List of Definitions}]
+
+\end{document}

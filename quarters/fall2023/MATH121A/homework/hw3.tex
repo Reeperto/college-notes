@@ -1,0 +1,188 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{3}
+\input{hw_preamble.tex}
+
+% Section 2.1: 1, 5, 9, 15, 17, 22. 
+% Section 2.2: 1, 4, 10, 14, 16. 
+% Section 2.3: 3, 9, 11, 16.
+
+\begin{document}
+
+\subsection*{2.1.1}
+\begin{enumerate}
+    \item True
+    \item False
+    \item False
+    \item True
+    \item False
+    \item False
+    \item True
+    \item False
+\end{enumerate}
+
+\subsection*{2.1.5}
+\begin{proof}
+    Let $T : P_2 (\mathbb{R}) \to P_3 (\mathbb{R})$ defined by $T(f(x)) = x \cdot f(x) + f'(x)$. Let $f,g \in P_2 (\mathbb{R})$ and $c \in \mathbb{R}$. Then
+    \[
+        T(f + g) = x (f(x) + g(x)) + f'(x) + g'(x) = x f(x) + f'(x) + x g(x) + g'(x) = T(f) + T(g)
+    \]
+    and
+    \[
+        T(cf) = x (c\cdot f(x)) + c f'(x) = c (x f(x) + f'(x)) = c T(f).
+    \]
+    Therefore $T$ is a linear transformation.
+\end{proof}
+\begin{align*}
+    \beta_{N(T)} &= \qty{ 0 } &\implies \dim(N(T)) = 0 \\
+    \beta_{R(T)} &= \qty{ x, x^2 + 1, x^3 } &\implies \dim(R(T)) = 3
+\end{align*}
+
+Since $N(T) = \qty{0}$, $T$ is one-to-one but not onto since $\rank(T) < \dim(P_4(\mathbb{R}))$.
+
+\subsection*{2.1.9}
+\begin{enumerate}
+    \item $T(0,0) = (1,0) \neq (0,0)$
+    \item $cT(a_1, a_2) = (ca_1 ca_1^2) \neq (ca_1, c^2 a_1^2) = T(ca_1, ca_2)$
+    \item $T(2\cdot \frac{\pi}{2}, 0) = (0,0) \neq (2,0) = 2\cdot T(\frac{\pi}{2},0)$
+    \item $T((1,0) + (-1,0)) = (0,0) \neq (2,0) = T(1,0) + T(-1,0)$
+    \item $T(0,0) = (1, 0) \neq (0,0)$
+\end{enumerate}
+
+\subsection*{2.1.15}
+Since the only function when integrated equals zero is the zero function itself. Therefore $N(T) = \qty{0}$, therefore $T$ is one-to-one. Note as well that
+\[
+    T(a_n x^n + a_{n-1} x^{n-1} + \ldots + a_{2} x + a_1) = \frac{a_n}{n+1} x^{n+1} + \frac{a_{n-1}}{n-1} x^n + \ldots + \frac{a_{2}}{2} x^2 + a_1 x
+\]
+Since there is no constant term in the output, all constant polynomials dont have a corresponding polynomial that under $T$ would equal it. Therefore $T$ cannot be onto.
+
+\subsection*{2.1.17}
+\subsubsection*{Part A}
+Since $\rank T \leq \dim V < \dim W$, $\rank T < \dim W$ and therefore $T$ is not onto.
+
+\subsubsection*{Part A}
+Since $\nullity T = \dim V - \rank T \geq \dim V - \dim W > 0$, $N(T) \neq \qty{0}$ and therefore $T$ cannot be one-to-one. 
+
+\subsection*{2.1.22}
+For $T : \mathbb{R}^3 \to \mathbb{R}$, let $a = T(1,0,0), b = T(0,1,0), c = T(0,0,1)$. Note then that
+\[
+    T(x,y,z) = x T(1,0,0) + y T(0,1,0) + z T(0,0,1) = ax + by + cz
+\]
+Now generally:
+\begin{theorem}
+    Let $T : \mathbb{F}^n \to \mathbb{F}$ be linear. Then there exists scalars $a_i \in \mathbb{F}$ such that $T(x_1, x_2, \ldots, x_n) = a_1 x_1 + a_2 x_2 + \ldots a_n x_n$.
+\end{theorem}
+\begin{proof}
+    Let $T : \mathbb{F}^n \to \mathbb{F}$ be linear. Let $e_i$ denote the vector where the $i$th position is one and all other's are zero. Let $a_i = T(e_i)$ where $1 \leq i \leq n$. Note then that
+    \[
+        T(x_1, x_2, x_3, \ldots, x_n) = \sum_{i=1}^{n} x_i T(e_i) = \sum_{i=1}^n a_i x_i.
+    \]
+\end{proof}
+
+\subsection*{2.2.1}
+\begin{enumerate}
+    \item True
+    \item True
+    \item False
+    \item True
+    \item True
+    \item False
+\end{enumerate}
+
+\subsection*{2.2.4}
+\[
+    [T]_\beta^\gamma = \mqty(
+    1 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 2 \\
+    0 & 1 & 0 & 0
+    )
+\]
+
+\subsection*{2.2.10}
+\[
+    [T]_\beta = \mqty(
+    1 & 0 & \cdots & 0 & 0\\
+    1 & 1 & 0 &   & 0\\
+    0 & 1 & 1 & \ddots & \vdots\\
+    \vdots &   & \ddots & \ddots & 0\\
+    0 & \cdots & 0 & 1 & 1\\
+    )
+\]
+
+\subsection*{2.2.14}
+\begin{proof}
+    Let $V = P(\mathbb{R})$ and $T_j(f) = f^{(j)}(x)$. Let $n\in \mathbb{N}$ and assume that $\sum_{j=0}^{n} a_i T_i = 0$. Note that $T_j(x^n) = \frac{n!}{(n-j)!} x^{n-j}$. It is clear that for different $j$, the results are linearly independent since the degrees are different. Therefore $\sum_{j=0}^{n} a_i T_i(x^n) = 0$ implies that $a_i = 0$ for all $i$. Hence $\qty{T_1, T_2, \ldots, T_n}$ is linearly independent. 
+\end{proof}
+
+\subsection*{2.2.16}
+
+
+\subsection*{2.3.3}
+\subsubsection*{Part A}
+\begin{align*}
+    [U]_{\beta}^{\gamma} &= \mqty(
+        1 & 1  & 0 \\
+        0 & 0  & 1 \\
+        1 & -1 & 0 \\
+    ) \\
+    [T]_{\beta} &= \mqty(
+        2 & 3 & 0 \\
+        0 & 3 & 8 \\
+        0 & 0 & 2 \\
+    ) \\
+    [UT]_{\beta}^\gamma &= \mqty(
+        2 & 6 & 8 \\
+        0 & 0 & 2 \\
+        2 & 0 & -8 \\
+    ) = \mqty(
+        1 & 1  & 0 \\
+        0 & 0  & 1 \\
+        1 & -1 & 0 \\
+    ) \times \mqty(
+        2 & 3 & 0 \\
+        0 & 3 & 8 \\
+        0 & 0 & 2 \\
+    ) \;\; \checkmark
+\end{align*}
+
+\subsection*{2.3.9}
+Take $T(a, b) = (0, a)$ and $U(a,b) = (a, 0)$. Note then that
+\[
+    UT(a,b) = U(T(a,b)) = U(0,a) = (0,0)
+\]
+but that
+\[
+    TU(a,b) = T(U(a,b)) = T(a,0) = (0, a) \neq (0,0)
+\]
+Therefore by using the standard basis for $\mathbb{F}^2$,
+\begin{align*}
+    \mqty(
+    1 & 0 \\
+    0 & 0 \\
+    )
+    \mqty(
+    0 & 0 \\
+    1 & 0 \\
+    ) &= \mqty(
+    0 & 0 \\  
+    0 & 0 \\  
+    ) \\
+    \mqty(
+    0 & 0 \\
+    1 & 0 \\
+    )
+    \mqty(
+    1 & 0 \\
+    0 & 0 \\
+    ) &= \mqty(
+    0 & 0 \\  
+    1 & 0 \\  
+    ) \\
+\end{align*}
+
+\subsection*{2.3.11}
+
+\subsection*{2.3.16}
+
+\end{document}
