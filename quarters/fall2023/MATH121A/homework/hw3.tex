@@ -11,7 +11,7 @@
 \begin{document}
 
 \subsection*{2.1.1}
-\begin{enumerate}
+\begin{enumerate}[label=\alph*)]
     \item True
     \item False
     \item False
@@ -39,7 +39,7 @@
     \beta_{R(T)} &= \qty{ x, x^2 + 1, x^3 } &\implies \dim(R(T)) = 3
 \end{align*}
 
-Since $N(T) = \qty{0}$, $T$ is one-to-one but not onto since $\rank(T) < \dim(P_4(\mathbb{R}))$.
+Since $N(T) = \qty{0}$, $T$ is one-to-one but not onto since $\rank(T) \neq \dim(P_3(\mathbb{R}))$.
 
 \subsection*{2.1.9}
 \begin{enumerate}
@@ -61,7 +61,7 @@ Since there is no constant term in the output, all constant polynomials dont hav
 \subsubsection*{Part A}
 Since $\rank T \leq \dim V < \dim W$, $\rank T < \dim W$ and therefore $T$ is not onto.
 
-\subsubsection*{Part A}
+\subsubsection*{Part B}
 Since $\nullity T = \dim V - \rank T \geq \dim V - \dim W > 0$, $N(T) \neq \qty{0}$ and therefore $T$ cannot be one-to-one. 
 
 \subsection*{2.1.22}
@@ -81,7 +81,7 @@ Now generally:
 \end{proof}
 
 \subsection*{2.2.1}
-\begin{enumerate}
+\begin{enumerate}[label=\alph*)]
     \item True
     \item True
     \item False
@@ -116,7 +116,33 @@ Now generally:
 \end{proof}
 
 \subsection*{2.2.16}
-
+\begin{proof}
+    Let $V$ and $W$ be vector spaces such that $\dim V = \dim W = n$ and let $T : V \to W$ be linear. Let $\qty{u_1, u_2, u_3, \ldots u_m}$ be a basis for $N(T)$ and extend it to be a basis $\beta = \qty{u_1, \ldots, u_m, v_{m+1}, v_{m+2}, \ldots v_n}$ of $V$. Examine the linear indepence of the set $\qty{T(v_{m+1}), T(v_{m+2}), \ldots, T(v_n)}$. Assume that
+    \[
+        a_{m+1} T(v_{m+1}) + a_{m+2} T(v_{m+2}) + \ldots + a_n T(v_n) = 0.
+    \]
+    Then
+    \[
+        T(a_{m+2} v_{m+1} + a_{m+2} v_{m+2} + \ldots + a_n v_n) = 0.
+    \]
+    Therefore $a_{m+2} v_{m+1} + a_{m+2} v_{m+2} + \ldots + a_n v_n \in N(T)$ and therefore can be expressed as linear combination of basis vectors of $N(T)$. That is
+    \[
+        \sum_{i=m+1}^{n} a_i v_i = \sum_{i=1}^{m} b_i u_i \implies \sum_{i=1}^{m} b_i u_i - \sum_{i=m+1}^{n} a_i v_i = w = 0.
+    \]
+    However, note that $w$ is a linear combination of the basis $\beta$. Therefore the summation is linearly independent meaning all coefficients, and therefore all $a_i$, must equal $0$. Therefore $\qty{T(v_{m+1}), T(v_{m+2}), \ldots, T(v_n)}$ is linearly independent and hence can be extened to be a basis $\gamma$ of $W$ with $\gamma = \qty{w_1, w_2, \ldots, w_m, T(v_{m+1}), T(v_{m+2}), \ldots, T(v_n)}$. Therefore
+    \[
+        [T]_{\beta}^\gamma =
+        \mqty(
+         0 & & & & &\\
+         & \ddots & & & &\\
+         & &0 & & & \\
+         & & & 1 & & \\
+         & & & & \ddots & \\
+         & & & & & 1
+         )
+    \]
+    which is a diagonal matrix.
+\end{proof}
 
 \subsection*{2.3.3}
 \subsubsection*{Part A}
@@ -182,7 +208,36 @@ Therefore by using the standard basis for $\mathbb{F}^2$,
 \end{align*}
 
 \subsection*{2.3.11}
+\begin{proof}
+    Let $V$ be a vector space and $T : V \to V$ be linear.
+    \begin{enumerate}
+        \item[$\Rightarrow)$] %------------------------------------------------
+        Assume that $T^2 = T_0$. Let $w \in R(T)$. Then $\exists v \in V$ such that $w = T(v)$.Note then that $T(w) = T(T(v)) = 0$. Therefore $w \in N(T)$, meaning $R(T) \subseteq N(T)$.
+        \item[$\Leftarrow)$] %------------------------------------------------
+        Assume that $R(T) \subseteq N(T)$. That is, an element $w \in R(T)$ is in $N(T)$ meaning $T(w) = 0$. Since $w \in R(T)$, $\exists v \in V$ such that $T(v) = w$. Hence $T(T(v)) = 0$ meaning $T^2 = T_0$.
+    \end{enumerate}
+\end{proof}
 
 \subsection*{2.3.16}
+Let $V$ be a finite dimensional vector space and $T : V \to V$ be linear.
+
+\subsubsection*{Part A}
+\begin{proof}
+    Assume that $\rank T = \rank T^2$. First, note that $N(T) \subseteq N(T^2)$ since for $x \in T(V)$, $T^2(x) = T(0) = 0$ hence $x \in N(T^2)$. Furthermore, $N(T) = N(T^2)$ since $\nullity T^2 = \dim V - \rank T^2 = \dim V - \rank T = \nullity T$. Let $v \in N(T) \cap R(T)$. Then $v \in R(T)$ meaning there is $u \in V$ such that $T(u) = v$. Since $v \in N(T)$ as well, $T(T(u)) = T(v) = 0$, meaning $u \in N(T^2)$ and therefore $u \in N(T)$. This means that $T(u) = 0 = v$ and therefore $v = 0$, hence $R(T) \cap N(T) = \qty{0}$.
+\end{proof}
+
+Note that since $R(T) \cap N(T) = \qty{0}$, it follows that $R(T) \oplus N(T)$ is well defined and that $R(T) \oplus N(T) = R(T) + N(T)$. Since $R(T) \subseteq V$ and $N(T)\subseteq V$, $R(T) + N(T) \subseteq V$. Note that $\dim(R(T) + N(T)) = \rank T + \nullity T - \dim(R(T) \cap N(t)) = \rank T + \nullity T + 0 = \dim V$. Therefore it follows that $V = R(T) \oplus N(T)$.
+
+\subsubsection*{Part B}
+\begin{proof}
+    Note that $R(T^{k+1}) \subseteq R(T^k)$ for any $k$ since $v \in R(T^{k+1})$ means there is some $a \in V$ such that $T^{k+1}(a) = T^k(T(a)) = v$ meaning $v \in R(T^{k})$. Assume towards contradiction that there is no $k \in \mathbb{N}_0$ such that $R(T^k) \subseteq R(T^{k+1})$. Then $R(T^{k+1}) \subset R(T^k)$ meaning $\rank T^{k+1} < \rank T^k$ for all $k$. This gives rise to an infinite chain 
+    \[
+        0 \leq \ldots <
+        \rank T^3 <
+        \rank T^2 <
+        \rank T
+    \]
+    However, since $\rank T \leq \dim V$, it follows that there is an infinite chain of distinct powers of $T$ between $0$ and $\dim V$ which is only finite. Therefore there must be some $k \in \mathbb{N}_0$ such that $R(T^k) \subset R(T^{k+1})$ and therefore $R(T^k) = R(T^{k+1})$. Hence $\rank T^k = \rank T^{k+1}$. By using the arguement from part A and using the fact that $\rank T^k = \rank T^{k+1}$ instead of $\rank T = \rank T^2$, it will follow that $V = R(T^k) \oplus N(T^k)$.
+\end{proof}
 
 \end{document}

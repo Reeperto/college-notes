@@ -45,5 +45,51 @@
 \contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.17\else \numberline {4.17}Example\fi }{17}{example.4.17}%
 \contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}4.12\else \numberline {4.12}Definition\fi \thmtformatoptarg {Infinite Limit}}{17}{definition.4.12}%
 \contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.14\else \numberline {4.14}Theorem\fi \thmtformatoptarg {Implication of Infinite Limits}}{17}{theorem.4.14}%
-\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}4.13\else \numberline {4.13}Definition\fi \thmtformatoptarg {hi}}{18}{definition.4.13}%
-\contentsline {remark}{\ifthmt@listswap \else \numberline {\let \autodot \@empty }\fi Remark}{18}{thmt@dummyctr.dummy.49}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.15\else \numberline {4.15}Theorem\fi }{17}{theorem.4.15}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}4.13\else \numberline {4.13}Definition\fi \thmtformatoptarg {Limsup and Liminf}}{18}{definition.4.13}%
+\contentsline {remark}{\ifthmt@listswap \else \numberline {\let \autodot \@empty }\fi Remark}{18}{thmt@dummyctr.dummy.50}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.16\else \numberline {4.16}Theorem\fi }{18}{theorem.4.16}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.17\else \numberline {4.17}Theorem\fi }{18}{theorem.4.17}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.18\else \numberline {4.18}Theorem\fi }{18}{theorem.4.18}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}4.14\else \numberline {4.14}Definition\fi \thmtformatoptarg {Cauchy Sequence}}{19}{definition.4.14}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.19\else \numberline {4.19}Theorem\fi \thmtformatoptarg {Properties of Cauchy Sequences}}{19}{theorem.4.19}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.20\else \numberline {4.20}Theorem\fi }{19}{theorem.4.20}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}4.15\else \numberline {4.15}Definition\fi \thmtformatoptarg {Subsequence}}{20}{definition.4.15}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.18\else \numberline {4.18}Example\fi }{20}{example.4.18}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.21\else \numberline {4.21}Theorem\fi \thmtformatoptarg {Properties of Subsequences}}{20}{theorem.4.21}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.19\else \numberline {4.19}Example\fi }{21}{example.4.19}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.20\else \numberline {4.20}Example\fi }{21}{example.4.20}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.22\else \numberline {4.22}Theorem\fi \thmtformatoptarg {Convergence Implies Subsequence Convergence}}{21}{theorem.4.22}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.23\else \numberline {4.23}Theorem\fi \thmtformatoptarg {Sequence's Have Monotonic Subsequences}}{22}{theorem.4.23}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.24\else \numberline {4.24}Theorem\fi \thmtformatoptarg {Bolzano-Weistrass Theorem}}{22}{theorem.4.24}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}4.16\else \numberline {4.16}Definition\fi \thmtformatoptarg {Subsequential Limit}}{22}{definition.4.16}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.21\else \numberline {4.21}Example\fi }{22}{example.4.21}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.25\else \numberline {4.25}Theorem\fi \thmtformatoptarg {Limsup and Liminf Monotone Subsequences}}{22}{theorem.4.25}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.26\else \numberline {4.26}Theorem\fi \thmtformatoptarg {Set of Subsequential Limits}}{22}{theorem.4.26}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.27\else \numberline {4.27}Theorem\fi }{23}{theorem.4.27}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}4.22\else \numberline {4.22}Example\fi }{23}{example.4.22}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}5.17\else \numberline {5.17}Definition\fi \thmtformatoptarg {Metric Space}}{24}{definition.5.17}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}5.23\else \numberline {5.23}Example\fi }{24}{example.5.23}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}5.18\else \numberline {5.18}Definition\fi \thmtformatoptarg {Metric Space Equivalents}}{25}{definition.5.18}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}5.28\else \numberline {5.28}Theorem\fi \thmtformatoptarg {$\vvmathbb {R}^k$ is a Metric Space}}{26}{theorem.5.28}%
+\contentsline {lemma}{\ifthmt@listswap Lemma\nobreakspace {}5.1\else \numberline {5.1}Lemma\fi \thmtformatoptarg {Element Wise Implies Sequence Wise}}{26}{lemma.5.1}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}5.19\else \numberline {5.19}Definition\fi \thmtformatoptarg {Boundedness in $\vvmathbb {R}^k$}}{26}{definition.5.19}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}5.29\else \numberline {5.29}Theorem\fi }{26}{theorem.5.29}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}5.20\else \numberline {5.20}Definition\fi \thmtformatoptarg {Openness}}{27}{definition.5.20}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}5.30\else \numberline {5.30}Theorem\fi \thmtformatoptarg {Properties of Openness}}{27}{theorem.5.30}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}5.21\else \numberline {5.21}Definition\fi }{27}{definition.5.21}%
+\contentsline {remark}{\ifthmt@listswap \else \numberline {\let \autodot \@empty }\fi Remark}{27}{thmt@dummyctr.dummy.81}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}5.24\else \numberline {5.24}Example\fi }{27}{example.5.24}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}5.31\else \numberline {5.31}Theorem\fi }{28}{theorem.5.31}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}5.32\else \numberline {5.32}Theorem\fi }{29}{theorem.5.32}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}5.25\else \numberline {5.25}Example\fi \thmtformatoptarg {Cantor Set}}{29}{example.5.25}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}5.22\else \numberline {5.22}Definition\fi \thmtformatoptarg {Covering and Compactness}}{29}{definition.5.22}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}5.33\else \numberline {5.33}Theorem\fi \thmtformatoptarg {Heine-Borel Theorem}}{30}{theorem.5.33}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}5.23\else \numberline {5.23}Definition\fi \thmtformatoptarg {K-Cell}}{30}{definition.5.23}%
+\contentsline {lemma}{\ifthmt@listswap Lemma\nobreakspace {}5.2\else \numberline {5.2}Lemma\fi }{30}{lemma.5.2}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}5.26\else \numberline {5.26}Example\fi \thmtformatoptarg {Distance to set}}{31}{example.5.26}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}5.34\else \numberline {5.34}Theorem\fi }{32}{theorem.5.34}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}6.24\else \numberline {6.24}Definition\fi \thmtformatoptarg {Summation}}{33}{definition.6.24}%
+\contentsline {remark}{\ifthmt@listswap \else \numberline {\let \autodot \@empty }\fi Remark}{33}{thmt@dummyctr.dummy.93}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}6.25\else \numberline {6.25}Definition\fi \thmtformatoptarg {Absolute Convergence}}{33}{definition.6.25}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}6.27\else \numberline {6.27}Example\fi }{33}{example.6.27}%

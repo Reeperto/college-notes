@@ -134,6 +134,7 @@ The legal issue at the core of Riggs v. Palmer was very clear cut. The law perta
 
 ## McLoughlin
 
+
 ## Dworkin's 'Community of Courtesy'
 
 ## Intentions of the Framers
@@ -166,6 +167,8 @@ The legal issue at the core of Riggs v. Palmer was very clear cut. The law perta
 
 ## The Chain Novel
 
+The Chain Novel is a metaphor Dworkin provides to explain the process of constructive interpretation in judicial decision making. A Judge making a decision is like a new author brought on to write a chapter of a novel. They must interpret the previous chapters and make sure that what they do next fits the story, but at the same time trying to extend the novel in the best or most interesting way the judge believes. This process outlines the cycle of judicial decision making Dworkin constructs and further more makes it clear the idea that jduges are constrained in their interpretation, otherwise the chapter they write will be seen as a mistake as it fails to continue the novel's story.
+
 ## Plessy v. Ferguson
 
 ## Brown v. Board of Education of Topeka
@@ -180,8 +183,20 @@ The legal issue at the core of Riggs v. Palmer was very clear cut. The law perta
 
 ## Hermes
 
+## Acceptability
+
+
+
 ## Conventionalism
 
+Legal Positivism's method of Constructive Interpretation => No further interpretation is necessary
+
+- The right decision is the one that the judge chooses at their discretion once the text of the law runs out
+
 ## Pragmatism
+
+Legal Realism's method of Constructive Interpretation => No further interpretation is necessary
+
+- The right decision is the one that the judge finds most appealing
 
 > Law as integrity is therefore more relentlessly interpretive than either conventionalism or pragmatism.  These latter theories offer themselves as interpretations.  They are conceptions of law that claim to show our legal practices in the best light these can bear, and they recommend, in their postinterpretive conclusions, distinct styles or programs for adjudication.  But the programs they recommend are not themselves programs of interpretation:  they do not ask judges deciding hard cases to carry out any further, essentially interpretive study of legal doctrine.  (Dworkin)

@@ -1,0 +1,143 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{4}
+\input{hw_preamble.tex}
+
+% Section 2.4: 1, 3, 16, 17, 22
+% Section 2.5: 1, 4, 5, 6,
+
+\begin{document}
+
+\subsection*{2.4.1}
+\begin{enumerate}[label=\alph*)]
+    \item False
+    \item True
+    \item False
+    \item False
+    \item True
+    \item False
+    \item True
+    \item True
+    \item True
+\end{enumerate}
+
+\subsection*{2.4.3}
+\begin{enumerate}[label=\alph*)]
+    \item Not isomoprhic since their dimensions are not equal $(3 \neq 4)$   
+    \item Yes since they are the same dimension and any vector space is isomorphic to $\mathbb{F}^n$ where $n$ is the dimension of the vector space
+    \item Yes since theyre finitely dimensional with the same dimension
+    \item Not isomorphic since their dimensions are not equal $(2 \neq 4)$
+\end{enumerate}
+
+\subsection*{2.4.16}
+Let $\Phi^{-1}(A) = B A B^{-1}$. Note then that
+\begin{align*}
+    \Phi(\Phi^{-1} (A)) &= B^{-1} B A B^{-1} B = A \\
+    \Phi^{-1}(\Phi(A)) &= B B^{-1} A B^{-1} B = A
+\end{align*}
+Therefore $\Phi \Phi^{-1} = \Phi^{-1} \Phi = I$. Therefore $\Phi$ is invertible and hence an isomorphism between $M_{n\times n} (\mathbb{F})$ and itself.
+
+\subsection*{2.4.17}
+\subsubsection*{Part A}
+\begin{proof}
+    Since $T$ is an isomorphism, it is linear. Let $y_1, y_2 \in T(V_0)$ where $y_1 = T(x_1)$ and $y_2 = T(x_2)$. Then $y_1 + y_2 = T(x_1) + T(x_2) = T(x_1 + x_2) \in T(V_0)$ since $x_1, x_2 \in V_0$. Additionally, $c y_1 = c T(x_1) = T(cx_1) \in T(V_0)$ by linearity of $T$. $0_W \in T(V_0)$ since $V_0$ is a subspace and hence $0_V \in V_0$ and $T(0_V) = 0_W$. Therefore $T(V_0)$ is a subspace of $W$.
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    Let $T': V_0 \to W$ with $T'(x) = T(x)$. Since $T$ is invertible, it is one-to-one and onto and consequently so is $T'$. Therefore $\nullity T' = 0$ and
+    \[
+        \rank T' = \dim(V_0) \implies \dim(T(V_0)) = \dim(V_0)
+    \]
+\end{proof}
+
+\subsection*{2.4.22}
+\begin{proof}
+    Note that
+    \begin{align*}
+        T(f + cg) &= \qty((f+cg)(c_0), \ldots (f+cg)(c_n)) \\
+                  &= \qty(f(c_0) + c\cdot g(c_0), \ldots, f(c_n) + c\cdot g(c_n)) \\
+                  &= \qty(f(c_0), \ldots, f(c_n)) + c\qty(g(c_0), \ldots, g(c_n)) \\
+                  &= T(f) + cT(g)
+    \end{align*}
+    The only functions that will map to $0$ are functions that have $n+1$ zeroes, which must be the zero function. Therefore $N(T) = \qty{0}$. Since $\dim P_n (\mathbb{F}) = \dim F^{n+1}$ and $T$ is injective since $N(T) = \qty{0}$, $T$ is also onto and therefore a bijection. Hence $T$ is invertible and therefore an isomorphism.
+\end{proof}
+
+\subsection*{2.5.1}
+\begin{enumerate}[label=\alph*)]
+    \item False
+    \item True
+    \item True
+    \item False
+    \item True
+\end{enumerate}
+
+\subsection*{2.5.4}
+\begin{align*}
+    [T]_{\beta'} &= [I]_{\beta}^{\beta'} [T]_{\beta} [I]_{\beta'}^{\beta} \\
+                 &= \mqty(1 & 1 \\ 1 & 2)^{-1}
+                    \mqty(2 & 1 \\ 1 & -3) 
+                    \mqty(1 & 1 \\ 1 & 2) \\
+                 &= \mqty(2 & -1 \\ -1 & 1)
+                    \mqty(2 & 1 \\ 1 & -3) 
+                    \mqty(1 & 1 \\ 1 & 2) \\
+                 &= \mqty(2 & -1 \\ -1 & 1)
+                    \mqty(3 & 4 \\ -2 & -5) \\ 
+                 &= \mqty(8 & 13 \\ -5 & -9)
+\end{align*}
+
+\subsection*{2.5.5}
+\begin{align*}
+    [T]_{\beta'} &= [I]_{\beta}^{\beta'} [T]_{\beta} [I]_{\beta'}^{\beta} \\
+    &= 
+    \mqty(
+        1 & 1 \\
+        1 & -1
+    )^{-1}
+    \mqty(
+        0 & 1 \\
+        0 & 0 \\
+    )
+    \mqty(
+        1 & 1 \\
+        1 & -1
+    ) \\
+    &=
+    \mqty(
+        \frac{1}{2} & \frac{1}{2} \\
+        \frac{1}{2} & -\frac{1}{2}
+    )
+    \mqty(
+        0 & 1 \\
+        0 & 0 \\
+    )
+    \mqty(
+        1 & 1 \\
+        1 & -1
+    ) \\
+    &=
+    \mqty(
+        \frac{1}{2} & \frac{1}{2} \\
+        \frac{1}{2} & -\frac{1}{2}
+    )
+    \mqty(
+        1 & -1 \\
+        0 & 0 \\
+    ) \\
+    &=
+    \mqty(
+        \frac{1}{2} & -\frac{1}{2} \\
+        \frac{1}{2} & -\frac{1}{2} \\
+    )
+\end{align*}
+
+\subsection*{2.5.6}
+\begin{enumerate}
+    \item $[L_A]_{\beta} = \mqty(6 & 11 \\ -2 & -4 \\)$ and $Q = \mqty(1 & 1 \\ 1 & 2)$
+    \item $[L_A]_{\beta} = \mqty(3 & 0 \\ 0 & -1)$ and $Q = \mqty(1 & 1 \\ 1 & -1)$
+    \item $[L_A]_{\beta} = \mqty(2 & 2 & 2 \\ -2 & -3 & -4 \\ 1 & 1 & 2)$ and $Q = \mqty(1 & 1 & 1 \\ 1 & 0 & 1 \\ 1 & 1 & 2)$
+    \item $[L_A]_{\beta} = \mqty(6 & 0 & 0 \\ 0 & 12 & 0 \\ 0 & 0 & 18)$ and $Q = \mqty(1 & 1 & 1 \\ 1 & -1 & 1 \\ -2 & 0 & 1)$
+\end{enumerate}
+
+\end{document}

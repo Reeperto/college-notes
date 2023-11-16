@@ -1,0 +1,102 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{5}
+\input{hw_preamble.tex}
+
+% 11.1, 11.2, 11.5, 11.8, 11.9,
+% 12.1, 12.3, 12.4, 12.10
+
+\begin{document}
+
+\subsection*{11.1}
+\subsubsection*{Part A}
+\[
+    1, 5, 1, 5, 1, 5, 1, 5
+\]
+\subsubsection*{Part B}
+\[
+    \sigma(k) = 2k, (s_{n_k}) = 5, \forall k \in \mathbb{N}
+\]
+
+
+\subsection*{11.2}
+\begin{table}[h!]
+    \def\arraystretch{1.5}
+    \centering
+    \begin{tabular}{rllll}
+                & \multicolumn{1}{c}{$a_n$} & \multicolumn{1}{c}{$b_n$} & \multicolumn{1}{c}{$c_n$} & \multicolumn{1}{c}{$d_n$} \\
+    Monotone    & $\sigma(k) = 2k$          & $\sigma(k) = 2k$          & $\sigma(k) = 2k - 1$      & $\sigma(k) = 3k$          \\
+    Sub. Limits & $\qty{1, -1}$             & $\qty{0}$                 & $\qty{+\infty}$           & $\qty{\frac{6}{7}}$       \\
+    Liminf  & $-1$         & $0$          & $+\infty$ & $\frac{6}{7}$ \\
+    Limsup  & $1$          & $0$          & $+\infty$ & $\frac{6}{7}$ \\
+    Bounded & $\checkmark$ & $\checkmark$ &           & $\checkmark$  \\
+    Limit   & DNE          & $0$          & $+\infty$ & $\frac{6}{7}$
+    \end{tabular}
+\end{table}
+
+\subsection*{11.5}
+The set of subsequential limits is $[0,1] \subset \mathbb{R}$.
+\begin{align*}
+    \limsup_{n \to \infty} q_n &= 1 \\
+    \liminf_{n \to \infty} q_n &= 0 \\
+\end{align*}
+
+\subsection*{11.8}
+\begin{align*}
+    \liminf s_n &= \lim_{N \to \infty} \inf \qty{s_n : n > N} \\
+    &= -\lim_{N \to \infty} \sup \qty{-s_n : n > N} \\
+    &= -\limsup (-s_n)
+\end{align*}
+
+\subsection*{11.9}
+\subsubsection*{Part A}
+\begin{proof}
+    Let $(s_n)$ be a sequence of reals in $[a,b]$ with $\lim s_n = s$. Since $a \leq s_n \leq b$ for all $n$, it follows that $a \leq s \leq b$, hence $[a,b]$ is closed.
+\end{proof}
+
+\subsubsection*{Part B}
+No since $(0,1)$ is not closed.
+
+
+\subsection*{12.1}
+\begin{proof}
+    Let $a_N = \inf\qty{s_n : n > N}$ and $b_N = \inf\qty{t_n : n > N}$. For $n > N > N_0$, $a_N \leq s_n \leq t_n$ hence $a_N \leq b_N$ for all $N > N_0$. Therefore by excercise 9.9, $\lim a_N \leq \lim b_N$ or equivalently $\liminf s_n \leq \liminf t_n$. The same argument works for $\sup$.
+\end{proof}
+
+\subsection*{12.3}
+\begin{enumerate}[label=\alph*)]
+    \item $0$
+    \item $1$
+    \item $2$
+    \item $3$
+    \item $4$
+    \item $0$
+    \item $2$
+\end{enumerate}
+
+
+\subsection*{12.4}
+\begin{proof}
+    Since $s_n$ and $t_n$ are bounded, their sups exist and note that $s_n + t_n \leq \sup\qty{s_n : n > N} + \sup\qty{t_n : n > N}$ for all $n > N \in \mathbb{N}$. Therefore $\sup\qty{s_n : n > N} + \sup\qty{t_n : n > N}$ is an upper bound for $s_n + t_n$ meaning
+    \[
+        \sup\qty{s_n + t_n : n > N} \leq \sup\qty{s_n : n > N} + \sup\qty{t_n : n > N}, \forall n > N
+    \]
+    Since $N$ is arbitrary, it holds for all $N \in \mathbb{N}$ meaning along with the results from 9.9,
+    $
+        \limsup (s_n + t_n) \leq \limsup(s_n) + \limsup(t_n)
+    $
+\end{proof}
+
+\subsection*{12.10}
+\begin{proof}
+    Let $(s_n)$ be a sequence.
+    \begin{enumerate}
+        \item[$\Rightarrow)$]
+            Assume that $s_n$ is bounded. That is $\exists M \in \mathbb{R}$ such that $|s_n| \leq M, \forall n \in \mathbb{N}$. Then $\sup\qty{|s_n| : n > N} \leq M$ for all $N \in \mathbb{N}$, hence $\limsup |s_n| \leq M < +\infty$.
+        \item[$\Leftarrow)$]
+            Proof by contrapositive. Assume that $s_n$ is not bounded. That is, for all $M \in \mathbb{R}$, $\exists N \in \mathbb{N}$ such that $|s_n| > M$ for all $n > N$. Therefore $\sup{|s_n| : n > N} > M$. That means that the supremum is larger than any real number, hence $\limsup s_n = +\infty$.
+    \end{enumerate}
+\end{proof}
+
+\end{document}

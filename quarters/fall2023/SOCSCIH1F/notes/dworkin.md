@@ -24,13 +24,13 @@ Hart would claim that he has actually accounted for this. He would state that Ju
 
 **Dworkin completely disagrees that this is the case on 2 major reasons**
 
-1. Fit
+### 1. Fit 
 
 Hart's description of how Judges make decisions poorly fits how judges actually adjudicate and how participants of the legal system (lawyers, judges, litigants, etc.) argue about an reason about cases. Judges do not act on their own accord and thought when faced with hard cases, but attempt to appeal to the rationale, principles, and intention of law. In the same way that Hart argues Austin's theory does not fit how law actually manifests itself, Dworkin does the same for Hart.
 
 Dworkin also argues that semantic theories of law (a.k.a Hart's) do not allow for theoretical disagreement. They only allow for disagreements about what happened in a case or what the text says, and for disagreements about what the law should be. It does not account for disagreements about what the law (when properly interpreted) *is*
 
-2. Acceptability
+### 2. Acceptability
 
 - Dworkin argues that intentions and principles are themselves part of the Law and are fundamentally the underlying rationale for law.
     - Intentions aren't argued over if they are accepted or not, but instead argued over how to understand or reconstruct the intentions that matter. This theoretical disagreement is enraptured by Hart
@@ -67,8 +67,33 @@ Consider general courtesy people have for one another. People will have differen
 
 ## How does Constructive Interpretation Work
 
-                     
 1. You first start with the objects of interpretation
+    - In law, the objects of interpretation are the text of statutes and past decisions/precedent
 2. Examine how well an interpretation fits the objects
     - Saying Peggy'O is about aliens clearly does not fit the lyrics at all
-3. Figure out the rationale or underlying purpose of the objects, and through the lens of acceptibility pick the best candidate
+3. Figure out the rationale or underlying purpose of the objects, and through the lens of acceptability pick the best candidate
+    - For adjudication, the lens is defined by political and moral principles of the judge under the scrutiny of acceptability
+4. This rationale then guides further approaches to the objects of interpretation
+
+
+**The Judge Hercules: A Constructive Interpreter**
+
+- Hercules as a theoretical judge treats the statements of legislators and components that make up a law's history as 'political acts' that his interpretations of a given statute must adhere to and/or explain. He also believes the interpretation should be the best answer to political questions, determined by his judgment.
+- Dworkin highlights an objection to Hercules method where it can completely ignore the intentions of legislators (say for the snail darter case if the legislators fully intended giving the environmental agency full discretion over these instances).
+- This objection gives the "speakers meaning" view where legislation is an instance of communication and evidence of the mental state of the legislators that is to be conversationally interpreted.
+    - This requires a judge to provide a momentary concrete picture of the statute where all its meaning is developed
+- Hercules is not bounded in how to lay out the entire meaning of a statute at one specific moment, but can consider its entire development from before being law to judgement and make a judgement given the political events that occurred.
+
+## Connection to Natural Law and Hart
+
+The Natural Law Tradition is like the constructive interpretation Dworkin provides, but it entirely ignores fit hence why it seems fairly insanse. On the other hand, Hart only cares about fit, and when fit no longer helps then the judge has full discretion to decide on any extra legal matters they want. Both theories in Dworkin's view fail to capture the whole picture: the coupling of fit and morality/politics/acceptability.
+
+# Dworkin's Big Point
+
+**Law is a social practice, and therefore it must be interpreted**
+
+
+
+# Unfiled
+
+Hercules as a judge when presented with different candid interpretations of a statute asks himself in good faith which interpretation shows the community it applies to in a better light. That is, which interpretation creates a overall better state in the eyes of his moral and political convictions and the moral convictions the community has.

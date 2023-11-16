@@ -1,0 +1,58 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+
+\banner{Determinants}
+
+\subsection{Determinant of $2 \times 2$}
+
+\begin{definition}
+    Let $A \in M_{2\times 2}(\mathbb{F})$ with $A = \mqty(a & b \\ c & d)$. Then $\det A = |A| = ad - bc$.
+    \begin{remark}
+        The determinant has some properties. Let $A = \mqty(A_1 & A_2)$ denote the matrix $A$. Then
+        \begin{enumerate}
+            \item $\det\mqty(A_1 & A_2)$ is bilinear in $A_1$ and $A_2$
+            \item $\det\mqty(A_1 & A_1) = 0$
+            \item $\det\mqty(1 & 0 \\ 0 & 1) = 1$
+        \end{enumerate}
+    \end{remark}
+\end{definition}
+
+Similar statements hold for a $3\times 3$. The determinant can be expressed however for any $n \times n$ matrix.
+
+\subsection{Determinant of $n \times n$}
+
+\begin{definition}[Determinant]
+    Let $A = \mqty(a_{11} & \cdots & a_{1n} \\ \vdots & & \vdots \\ a_{n1} & \cdots & a_{nn}) = \mqty(A_1 & \cdots & A_n)$. For $1 \leq i,j \leq n$, let $A_{ij} = $ the submatrix of $A$ with row $i$ and column $j$ removed. Let $1 \leq k \leq n$. Then
+    \begin{align*}
+        \det A = |A| &= \sum_{j = 1}^n (-1)^{j+k} a_{kj} \det(A_{kj}) \tag{Row Expansion} \\
+        \det A = |A| &= \sum_{i = 1}^n (-1)^{i+k} a_{ik} \det(A_{ik}) \tag{Column Expansion}
+    \end{align*}
+\end{definition}
+
+\begin{definition}[Multilinear Map]
+    A map $f : V_1 \times \ldots \times V_n \to \mathbb{F}$ is a multilinear map if for each $1 \leq i \leq n, v_i$ is held constant then $f(v_1, \ldots, v_i, \ldots, v_n)$ is a linear function of $v_i$.
+\end{definition}
+A multi-linear map is called \textit{alternating} if it equals $0$ when two adjacent coordinates are the same. Note that then the determinant can be expressed as a multilinear map since an $n\times n$ matrix can be represented as an element in $\underbrace{\mathbb{F}^n \times \ldots \mathbb{F}^n}_{n \text{ times}}$.  
+
+\begin{theorem}[Multilinearity of Determinant]
+    \label{thm:mlineardeterminant}
+    Write $A = \mqty(A_1 & \cdots & A_n) \in M_{n\times n}(\mathbb{F})$. Then $\det \mqty(A_1 & \cdots & A_n)$ is multilinear in $A$'s columns.
+\end{theorem}
+
+\begin{proof}
+    This is true for the case $n = 2$. Proceed with induction to show it holds for $n \geq 2$. Let $n \in \mathbb{N}$ be fixed and assume that the determinant is multilinear over $n$ columns. Note that for some $(n+1) \times (n+1)$ matrix $A$ that
+    \[
+        \det A = \sum_{j = 1}^{n+1} (-1)^{1 + j} a_{1j} \det(A_{1j})
+    \]
+    If $j \neq k$, then $a_{ij}$ is independent of column $k$ and $A_{ij}$ will be linear in $A_k$, meaning $a_{ij} A_{ij}$ will be linear in $A_k$. If $j = k$, then $a_{ij} = a_{ik}$ and linear in $A_k$. Note that $A_{1k}$ is independent of $A_k$ meaning $a_{ik} \det{A_{ik}}$ is linear in $A_k$. Therefore the sum $\sum_{j=1}^{n+1} (-1)^{1+j} a_{ij} \det(A_{ij})$ is linear in $A_k$.
+\end{proof}
+
+\begin{theorem}
+    Write $A = \mqty(A_1 & \cdots & A_n) \in M_{n\times n}(\mathbb{F})$. Then $\det \mqty(A_1 & \cdots & A_n)$ is alternating.
+\end{theorem}
+
+\end{document}

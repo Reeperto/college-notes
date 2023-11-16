@@ -13,7 +13,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyfoot[R]{$\thepage$}
-% \setlength{\parindent}{0cm}
+\setlength{\parindent}{0cm}
 \setlength{\headheight}{17pt}
 \hfuzz=9pt
 
@@ -34,6 +34,8 @@
 \newcommand\Prob[1]{\mathbb{P}\qty(#1)}
 \newcommand\Var[1]{\text{Var}\qty(#1)}
 \newcommand\Exp[1]{\mathbb{E}\qty[#1]}
+\newcommand\ball[1]{\mathbb{B}\qty(#1)}
+
 \DeclareMathOperator{\spann}{span}
 \DeclareMathOperator{\nullity}{nullity}
 
@@ -42,6 +44,7 @@
 \usepackage{pgfplots}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{math}
+\usetikzlibrary{cd}
 
 % Boxes and Theorems
 \usepackage[most]{tcolorbox}

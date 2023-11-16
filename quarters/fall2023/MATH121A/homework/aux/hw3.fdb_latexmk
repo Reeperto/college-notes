@@ -1,10 +1,10 @@
 # Fdb version 4
-["xdvipdfmx"] 1698037539 "aux/hw3.xdv" "hw3.pdf" "hw3" 1698037539 0
-  "aux/hw3.xdv" 1698037539 34864 3d61ccb8e9cc0a3bd0e264926cea5d8c "xelatex"
+["xdvipdfmx"] 1698111992 "aux/hw3.xdv" "hw3.pdf" "hw3" 1698111993 0
+  "aux/hw3.xdv" 1698111992 53812 4d0af5ba7e4e3bab0a16f23328832b9e "xelatex"
   (generated)
   "hw3.pdf"
   (rewritten before read)
-["xelatex"] 1698037538 "hw3.tex" "aux/hw3.xdv" "hw3" 1698037539 0
+["xelatex"] 1698111992 "hw3.tex" "aux/hw3.xdv" "hw3" 1698111993 0
   "../preamble.tex" 1698029400 3575 1cc657f6ef540be7d4732c144bac0bbe ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
@@ -283,9 +283,9 @@
   "/usr/local/texlive/2023/texmf-dist/web2c/texmf.cnf" 1677365944 40745 87bb86a62d462f93a1efc6b0c65c872e ""
   "/usr/local/texlive/2023/texmf-var/web2c/xetex/xelatex.fmt" 1689928781 10502839 cd32a8e02e41c266c321c40ed7cdc766 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "aux/hw3.aux" 1698037539 682 330a38421dd0a7e9182d6069ae1a9164 "xelatex"
-  "aux/hw3.out" 1698037539 0 d41d8cd98f00b204e9800998ecf8427e "xelatex"
-  "hw3.tex" 1698037538 5175 5cc253a81e54281bb092dbe13489bd52 ""
+  "aux/hw3.aux" 1698111992 682 def979d481a3d27bcb4e19739b335fb1 "xelatex"
+  "aux/hw3.out" 1698111992 0 d41d8cd98f00b204e9800998ecf8427e "xelatex"
+  "hw3.tex" 1698111990 9506 b5df3aadcfe1d6ad5d25f4f93d320e13 ""
   "hw_preamble.tex" 1696805910 152 3bd9d1ed94fce39b0c670151c8938f47 ""
   (generated)
   "aux/hw3.aux"

@@ -1,0 +1,237 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{6}
+\input{hw_preamble.tex}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+% Section 3.3: 1, 2, 4, 8. 
+% Section 4.1: 1, 2, 9.
+
+\begin{document}
+
+\subsection*{3.3.1}
+\begin{enumerate}[label=\alph*)]
+    \item False
+    \item False
+    \item True
+    \item False
+    \item False
+    \item False
+    \item True
+    \item False
+\end{enumerate}
+
+\subsection*{3.3.2}
+\begin{multicols}{2}
+\subsubsection*{Part A}
+\[
+    \beta = \qty{\mqty(-3 \\ 1)}, \dim \beta = 1
+\]
+
+\subsubsection*{Part B}
+\[
+    \beta = \qty{
+        \mqty(1 \\ 2 \\ 3)
+    },
+    \dim \beta = 1
+\]
+
+\subsubsection*{Part C}
+\[
+    \beta = \qty{
+        \mqty(-1 \\ 1 \\ 1)
+    },
+    \dim \beta = 1
+\]
+
+\subsubsection*{Part D}
+\[
+    \beta = \qty{
+        \mqty(0 \\ 1 \\ 1)
+    },
+    \dim \beta = 1
+\]
+
+\subsubsection*{Part E}
+\[
+    \beta = \qty{
+        \mqty(-2 \\ 1 \\ 0 \\ 0),
+        \mqty(3 \\ 0 \\ 1 \\ 0),
+        \mqty(-1 \\ 0 \\ 0 \\ 1)
+    },
+    \dim \beta = 3
+\]
+
+\subsubsection*{Part F}
+\[
+    \beta = \qty{
+        \mqty(0 \\ 0)
+    },
+    \dim \beta = 0
+\]
+
+\subsubsection*{Part G}
+\[
+    \beta = \qty{
+        \mqty(-3 \\ 1 \\ 1 \\ 0),
+        \mqty(1 \\ -1 \\ 0 \\ 1)
+    },
+    \dim \beta = 2
+\]
+\end{multicols}
+
+\subsection*{3.3.4}
+
+\subsubsection*{Part A}
+\begin{align*}
+    \begin{pmatrix}[cc|cc]
+        1 & 3 & 1 & 0 \\
+        2 & 5 & 0 & 1
+    \end{pmatrix} \rightarrow
+    \begin{pmatrix}[cc|cc]
+        1 & 3 & 1 & 0 \\
+        0 & 1 & 2 & -1
+    \end{pmatrix} \rightarrow
+    \begin{pmatrix}[cc|cc]
+        1 & 0 & -5 & 3 \\
+        0 & 1 & 2 & -1
+    \end{pmatrix} \implies A^{-1} = \mqty(-5 & 3 \\ 2 & -1)
+\end{align*}
+\[
+    Ax = \mqty(4 \\ 3) \implies x = \mqty(-5 & 3 \\ 2 & -1) \mqty(4 \\ 3) = \mqty(-11 \\ 5)
+\]
+
+\subsubsection*{Part B}
+\begin{align*}
+    &\begin{pmatrix}[ccc|ccc]
+        1 & 2  & -1 & 1 & 0 & 0 \\
+        1 & 1  & 1  & 0 & 1 & 0 \\
+        2 & -2 & 1  & 0 & 0 & 1 \\
+    \end{pmatrix} \rightarrow
+    \begin{pmatrix}[ccc|ccc]
+        2 & -2 & 1  & 0 & 0 & 1 \\
+        1 & 1  & 1  & 0 & 1 & 0 \\
+        1 & 2  & -1 & 1 & 0 & 0 \\
+    \end{pmatrix} \rightarrow
+    \begin{pmatrix}[ccc|ccc]
+        3 & 0  & 0  & 1 & 0 & 1 \\
+        1 & 1  & 1  & 0 & 1 & 0 \\
+        1 & 2  & -1 & 1 & 0 & 0 \\
+    \end{pmatrix} \rightarrow \\
+    &
+    \begin{pmatrix}[ccc|ccc]
+        3 & 0  & 0  & 1  & 0 & 1 \\
+        0 & -1 & 2  & -1 & 1 & 0 \\
+        3 & 6  & -3 & 3  & 0 & 0 \\
+    \end{pmatrix} \rightarrow
+    \begin{pmatrix}[ccc|ccc]
+        3 & 0  & 0  & 1  & 0 & 1 \\
+        0 & -1 & 2  & -1 & 1 & 0 \\
+        0 & 6  & -3 & 2  & 0 & -1 \\
+    \end{pmatrix} \rightarrow
+    \begin{pmatrix}[ccc|ccc]
+        3 & 0  & 0  & 1  & 0 & 1 \\
+        0 & -1 & 2  & -1 & 1 & 0 \\
+        0 & 0  & 9 & -4  & 6 & -1 \\
+    \end{pmatrix} \rightarrow \\
+    &
+    \begin{pmatrix}[ccc|ccc]
+        3 & 0  & 0  & 1  & 0  & 1 \\
+        0 & 1  & -2 & 1  & -1 & 0 \\
+        0 & 0  & 9 & -4  & 6  & 0 \\
+    \end{pmatrix} \rightarrow
+    \begin{pmatrix}[ccc|ccc]
+        1 & 0  & 0 & \frac{1}{3}  & 0  & \frac{1}{3} \\
+        0 & 1  & 0 & \frac{1}{9}  & \frac{1}{3} & -\frac{2}{9} \\
+        0 & 0  & 1 & -\frac{4}{9}  & \frac{2}{3}  & -\frac{1}{9} \\
+    \end{pmatrix} \implies A^{-1} = \mqty(
+         \frac{1}{3}  & 0  & \frac{1}{3} \\
+         \frac{1}{9}  & \frac{1}{3} & -\frac{2}{9} \\
+         -\frac{4}{9}  & \frac{2}{3}  & -\frac{1}{9} \\
+        )
+\end{align*}
+\[
+    Ax = \mqty(5 \\ 1 \\ 4) \implies x = \mqty(
+         \frac{1}{3}  & 0  & \frac{1}{3} \\
+         \frac{1}{9}  & \frac{1}{3} & -\frac{2}{9} \\
+         -\frac{4}{9}  & \frac{2}{3}  & -\frac{1}{9} \\
+        ) \mqty(5 \\ 1 \\ 4)
+        = \mqty(3 \\ 0 \\ -2)
+\]
+
+\subsection*{3.3.8}
+\subsubsection*{Part A}
+\begin{align*}
+    \begin{pmatrix}[ccc|c]
+        1 & 1 & 0  & 1  \\
+        0 & 1 & -2 & 3  \\
+        1 & 0 & 2  & -2 \\
+    \end{pmatrix} \rightarrow
+    \begin{pmatrix}[ccc|c]
+        0 & 1 & -2  & 3  \\
+        0 & 1 & -2 &  3  \\
+        1 & 0 & 2  & -2 \\
+    \end{pmatrix} \rightarrow
+    \begin{pmatrix}[ccc|c]
+        1 & 0 & 2 & -2 \\
+        0 & 0 & 0 & 0  \\
+        0 & 0 & 0 & 0  \\
+    \end{pmatrix}
+\end{align*}
+Since there are infinite solutions, there does exist a vector in $\mathbb{R}^3$ that will be mapped to $\mqty(1 \\ 3 \\ -2)$ under $T$.
+
+\subsubsection*{Part B}
+\begin{align*}
+    \begin{pmatrix}[ccc|c]
+        1 & 1 & 0  & 2  \\
+        0 & 1 & -2 & 1  \\
+        1 & 0 & 2  & 1 \\
+    \end{pmatrix} \xrightarrow{\text{Same reductions in (a)}}
+    \begin{pmatrix}[ccc|c]
+        1 & 0 & 2 & 1  \\
+        0 & 0 & 0 & 0  \\
+        0 & 0 & 0 & 0 \\
+    \end{pmatrix}
+\end{align*}
+Since there are infinite solutions, there does exist a vector in $\mathbb{R}^3$ that will be mapped to $\mqty(2 \\ 1 \\ 1)$ under $T$.
+
+\subsection*{4.1.1}
+\begin{enumerate}[label=\alph*)]
+    \item False
+    \item True
+    \item False
+    \item False ($\det$ could be negative)
+    \item True
+\end{enumerate}
+
+\subsection*{4.1.2}
+\begin{enumerate}[label=\alph*)]
+    \item $30$
+    \item $-17$
+    \item $-8$
+\end{enumerate}
+
+\subsection*{4.1.9}
+Let
+\[
+    A = \mqty(a_1 & a_2 \\ a_3 & a_4), B = \mqty(b_1 & b_2 \\ b_3 & b_4)
+\]
+Then
+\begin{align*}
+    \det AB = \det
+        \begin{pmatrix}
+         a_1 b_1+a_2 b_3 & a_1 b_2+a_2 b_4 \\
+         a_3 b_1+a_4 b_3 & a_3 b_2+a_4 b_4 \\
+     \end{pmatrix} &= a_2 a_3 b_2 b_3-a_1 a_4 b_2 b_3-a_2 a_3 b_1 b_4+a_1 a_4 b_1 b_4 \\
+     &= (a_1 a_4 - a_2 a_3) (b_1 b_4 - b_2 b_3) \\
+     &= \det (A) \cdot \det (B)
+\end{align*}
+
+\end{document}

@@ -1,11 +1,11 @@
 # Fdb version 4
-["xdvipdfmx"] 1698088121 "aux/notes.xdv" "notes.pdf" "notes" 1698088121 0
-  "aux/notes.xdv" 1698088121 262372 f3393e7cf2e1c7e118c2968302611c04 "xelatex"
+["xdvipdfmx"] 1700081566 "aux/notes.xdv" "notes.pdf" "notes" 1700081566 0
+  "aux/notes.xdv" 1700081566 498664 dbb3be41c88511d3a783c9f3468da18e "xelatex"
   (generated)
   "notes.pdf"
   (rewritten before read)
-["xelatex"] 1698088120 "notes.tex" "aux/notes.xdv" "notes" 1698088121 0
-  "../preamble.tex" 1698029400 3575 1cc657f6ef540be7d4732c144bac0bbe ""
+["xelatex"] 1700081564 "notes.tex" "aux/notes.xdv" "notes" 1700081566 0
+  "../preamble.tex" 1700081446 3634 05ef87f067f9f9d7cded7f61f31830a4 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -21,6 +21,7 @@
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm" 1589834365 1028 2f6cbe812325cff65b38e4c0a517f4cb ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/newtx/ntxsym.tfm" 1589834365 1572 ee1610f2b8e0679b918f57086595f5a6 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/scholax/TeXGyreScholaX-Bold-osf-t1.tfm" 1591219298 12272 2f4030f39c49bac4b2f0359bc91f2015 ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/scholax/TeXGyreScholaX-Bold-tlf-ot1G.tfm" 1577830653 3540 352c033817ec51a62bc3df1ab3918889 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/scholax/TeXGyreScholaX-BoldItalic-osf-t1.tfm" 1591219298 12396 c8492c1f6386f5d9956428c24a416dab ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/scholax/TeXGyreScholaX-Italic-osf-t1.tfm" 1591219298 12216 f6b353bb19fff1880b62e1ac40c19437 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/scholax/TeXGyreScholaX-Regular-osf-t1.tfm" 1591219298 12412 ae460309dd6b4f9efab07ba86af640ad ""
@@ -67,7 +68,9 @@
   "/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadings.code.tex" 1601326656 1179 5483d86c1582c569e665c74efab6281f ""
   "/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfpu.code.tex" 1601326656 283 0802c14f542ec5204d2d1cc89f08a4d2 ""
   "/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymath.code.tex" 1673816307 25524 2af29d68cc00165e3ca68a2c4992055b ""
+  "/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatrix.code.tex" 1673816307 4228 c39d423dc1a80da31c8c67bf1067f384 ""
   "/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex" 1601326656 325 36322b0789619b270aec5993d5a9ed08 ""
+  "/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryquotes.code.tex" 1673816307 3970 c199216b190c70e45bff870bacf0da00 ""
   "/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex" 1608933718 11518 738408f795261b70ce8dd47459171309 ""
   "/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex" 1673816307 186782 af500404a9edec4d362912fe762ded92 ""
   "/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex" 1601326656 8843 5533436db3e30fbad1e0440db6027dac ""
@@ -145,6 +148,7 @@
   "/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex" 1620507943 71792 dba1b75b15201895eb36f142f13b3238 ""
   "/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex" 1312159636 3286 c17079ba50483e1ac1721268ea016041 ""
   "/usr/local/texlive/2023/texmf-dist/tex/generic/stringenc/stringenc.sty" 1575152242 21514 b7557edcee22835ef6b03ede1802dad4 ""
+  "/usr/local/texlive/2023/texmf-dist/tex/generic/tikz-cd/tikzlibrarycd.code.tex" 1620507957 23059 b4b98da760150611227e2533f15fe352 ""
   "/usr/local/texlive/2023/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty" 1576624663 7008 f92eaa0a3872ed622bbf538217cd2ab7 ""
   "/usr/local/texlive/2023/texmf-dist/tex/generic/xkeyval/xkeyval.tex" 1655411236 19231 27205ee17aaa2902aea3e0c07a3cfc65 ""
   "/usr/local/texlive/2023/texmf-dist/tex/generic/xkeyval/xkvutils.tex" 1655411236 7677 9cb1a74d945bc9331f2181c0a59ff34a ""
@@ -280,15 +284,17 @@
   "/usr/local/texlive/2023/texmf-dist/web2c/texmf.cnf" 1677365944 40745 87bb86a62d462f93a1efc6b0c65c872e ""
   "/usr/local/texlive/2023/texmf-var/web2c/xetex/xelatex.fmt" 1689928781 10502839 cd32a8e02e41c266c321c40ed7cdc766 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "aux/notes.aux" 1698088121 12583 2ec8569790790eab80cb67ff751df51b "xelatex"
-  "aux/notes.loe" 1698088121 7267 7b84707b38f4c2756e0fce60263ddf1f "xelatex"
-  "aux/notes.out" 1698088121 2543 ade38d53f6ea9822bb5faeaee55ea4e5 "xelatex"
-  "aux/notes.toc" 1698088121 1416 e7c26e2a23bd59ec31f759b9e5e6cb7b "xelatex"
-  "notes.tex" 1697274073 634 a1f244b216822ce89b30ec3d904a7b11 ""
+  "aux/notes.aux" 1700081566 22950 5d1e4238fd3c92f4b0756bf3d4855301 "xelatex"
+  "aux/notes.loe" 1700081566 14129 923ec43b047b2e1127e0e57f6093639a "xelatex"
+  "aux/notes.out" 1700081566 3432 40a95e10cfda60ba21ba76c7e36bac1c "xelatex"
+  "aux/notes.toc" 1700081566 1836 6804b47ae8e75cd0485166aede33db1f "xelatex"
+  "notes.tex" 1700080772 696 d03a5f8cfb1f894edf72ac6964d58ea0 ""
   "topics/completeness.tex" 1697053232 6676 9f88f07d2f616b72729312e543eb6abf ""
   "topics/extending_naturals.tex" 1696878540 8660 da663cc87cf5428035b8139b0fef3eef ""
   "topics/introduction.tex" 1697489687 3481 e771f754a32efbd548e773664d47049e ""
-  "topics/sequences.tex" 1698088118 13445 ec2222b5bafbe77c7b467bba260046e3 ""
+  "topics/metricspaces.tex" 1700080649 22753 c7b7551bcacf3f334f4468747ff46c89 ""
+  "topics/sequences.tex" 1698865928 28025 6edca8ede1882f906c42f66f4230f9dd ""
+  "topics/series.tex" 1700081562 1431 5c4fec70835ea1668bbfb6210e6d3f42 ""
   (generated)
   "aux/notes.aux"
   "aux/notes.loe"

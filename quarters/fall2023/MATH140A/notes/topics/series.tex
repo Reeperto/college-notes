@@ -1,0 +1,45 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+
+\banner{Series}
+
+\begin{definition}[Summation]
+    Given a sequence $(a_n)$ starting at $m$, then
+    \[
+        S_n \coloneq \sum_{k = m}^{n} a_k, n \geq m
+    \]
+    and $(S_n)_{n \geq m}$ is the sequence of partial sums. Then
+    \[
+        \sum_{k = m}^\infty a_k \text{ converges } \Leftrightarrow (S_n)_{n \geq m} \text{ converges.}
+    \]
+    Furthermore, if $\lim S_n = s$, then
+    \[
+        \lim_{n\to \infty} \sum_{k = m}^n a_k = s
+    .\]
+\end{definition}
+\begin{remark}
+    Note the following properties for the sequence of partial sums
+    \begin{enumerate}[label=\alph*)]
+        \item $a_k \geq 0$ for all $k \geq m$, then $(S_n)_{n \geq m}$ is an increasing sequence and either converges or diverges to $\infty$.
+        \item As a consequence, $\displaystyle \sum_{k = m}^n a_k$ is always meaningful.
+    \end{enumerate}
+\end{remark}
+
+The last property motivates defining another form of convergence.
+
+\begin{definition}[Absolute Convergence]
+    $\displaystyle \sum_{k = m}^\infty a_k$ converges absolutely if $\displaystyle \sum_{k=m}^\infty |a_k|$ converges.
+\end{definition}
+
+\begin{example}
+    Note that $(1-r)(1 + r + r^2 + \ldots + r^n) = 1 + r^{n+1}$. Therefore
+    \[
+        (1 + r + r^2 + \ldots + r^n) = \sum_{k = 0}^n r^k = \frac{1 + r^{n+1}}{1-r}, \forall n \geq 0
+    .\]
+\end{example}
+
+\end{document}

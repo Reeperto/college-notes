@@ -27,3 +27,16 @@
 \contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}2.10\else \numberline {2.10}Theorem\fi }{7}{theorem.2.10}%
 \contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}2.11\else \numberline {2.11}Theorem\fi }{7}{theorem.2.11}%
 \contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}2.12\else \numberline {2.12}Theorem\fi }{7}{theorem.2.12}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}2.13\else \numberline {2.13}Theorem\fi }{8}{theorem.2.13}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}3.12\else \numberline {3.12}Definition\fi \thmtformatoptarg {Elementary Matrix}}{9}{definition.3.12}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.14\else \numberline {3.14}Theorem\fi \thmtformatoptarg {Application of Elementary Operations}}{9}{theorem.3.14}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}3.13\else \numberline {3.13}Definition\fi \thmtformatoptarg {Rank of a Matrix}}{9}{definition.3.13}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.15\else \numberline {3.15}Theorem\fi \thmtformatoptarg {Rank Across Representation}}{9}{theorem.3.15}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.16\else \numberline {3.16}Theorem\fi \thmtformatoptarg {Rank and General Linear Group}}{10}{theorem.3.16}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.17\else \numberline {3.17}Theorem\fi \thmtformatoptarg {Rank of Matrix}}{10}{theorem.3.17}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}4.14\else \numberline {4.14}Definition\fi }{11}{definition.4.14}%
+\contentsline {remark}{\ifthmt@listswap \else \numberline {\let \autodot \@empty }\fi Remark}{11}{thmt@dummyctr.dummy.38}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}4.15\else \numberline {4.15}Definition\fi \thmtformatoptarg {Determinant}}{11}{definition.4.15}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}4.16\else \numberline {4.16}Definition\fi \thmtformatoptarg {Multilinear Map}}{11}{definition.4.16}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.18\else \numberline {4.18}Theorem\fi \thmtformatoptarg {Multilinearity of Determinant}}{11}{theorem.4.18}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.19\else \numberline {4.19}Theorem\fi }{12}{theorem.4.19}%

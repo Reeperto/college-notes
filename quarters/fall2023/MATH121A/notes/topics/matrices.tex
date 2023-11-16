@@ -1,0 +1,90 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+
+\banner{Matrices}
+
+\subsection{Elementary Matrices}
+
+\begin{definition}[Elementary Matrix]
+    An elementary matrix is a matrix obtained by doing on the types of operations on a $n \times n$ identity matrix
+    \begin{enumerate}
+        \item Exchange two rows (or columns) $\implies$ Type I
+        \item Multiply a row (or column) $\implies$ Type II
+        \item Add a row to a row (or column to column) $\implies$ Type III
+    \end{enumerate}
+\end{definition}
+
+It will be useful to have notation to refer to each type of elementary matrix. For Type I, $E_{ij}$ will indicate swapping row $i$ and $j$. For Type II, $E_{\lambda}$ represents a row multiplication and Type III will be represented by $E(\lambda)$.
+
+\begin{tcolorbox}[sharp corners = all, colback = white,]
+    The following are the common inverses and relationships between the elementary matrices
+    \begin{align*}
+        & E_{ij}^{-1} = E_{ij} & E_{ij}^2 = I \\
+        & E_{\lambda}^{-1} = E_{\lambda^{-1}} & E_{\lambda} E_{\lambda^{-1}} = I
+    \end{align*}
+\end{tcolorbox}
+
+\begin{theorem}[Application of Elementary Operations]
+    % \label{thm:}
+    Let $A \in M_{n\times n}(\mathbb{F})$. Let $E$ be an elementary operation/matrix. Then
+    \begin{align*}
+        A &\xrightarrow{\text{Row operation } E} EA \\
+        A &\xrightarrow{\text{Col. operation } E} AE
+    \end{align*}
+\end{theorem}
+
+\subsection{Rank of Matrices}
+
+Recall that the rank of a linear transformation $T : V \to W$ is $\rank T = \dim T[V]$. Therefore it would make sense to extend this to matrices as they represent linear transformations.
+
+\begin{definition}[Rank of a Matrix]
+    Let $A \in M_{m \times n}(\mathbb{F})$. Then the rank of $A$ is defined as the rank of the linear transformation $L_A : \mathbb{F}^n \to \mathbb{F}^m : x \mapsto Ax$.
+\end{definition}
+
+It is also the case that rank of a linear transformation is preserved in any matrix representation. This can be stated as a theorem:
+
+\begin{theorem}[Rank Across Representation]
+    \label{thm:linearrankpreservation}
+    Let $T: V \to W$ be linear and let $\beta$ be a basis of $V$ and $\gamma$ a basis of $W$. Then
+    \[
+        \rank T = \rank [T]_{\beta}^\gamma
+    \]
+\end{theorem}
+\begin{proof}
+    % TODO: Draw an isomorphism diagram :)
+    % \[\begin{tikzcd}[column sep=small]
+    %     {v \in V} & V &&& W & {w \in W} \\
+    %     \\
+    %     \\
+    %     {[v]_\beta} & {\mathbb{F}^n} &&& {\mathbb{F}^m} & {[w]_\gamma}
+    %     \arrow[from=1-2, to=1-5]
+    %     \arrow["\simeq"', tail reversed, from=1-2, to=4-2]
+    %     \arrow[from=4-2, to=4-5]
+    %     \arrow["\simeq"', tail reversed, from=4-5, to=1-5]
+    %     \arrow[tail reversed, from=1-1, to=4-1]
+    %     \arrow[tail reversed, from=4-6, to=1-6]
+    % \end{tikzcd}\]
+\end{proof}
+
+\begin{theorem}[Rank and General Linear Group]
+    Let $A \in M_{m\times n}(\mathbb{F})$ and $P \in GL_m(\mathbb{F})$, $Q \in GL_n(\mathbb{F})$. Then
+    \begin{enumerate}
+        \item $\rank(PA) = \rank(A)$
+        \item $\rank(AQ) = \rank(A)$
+        \item $\rank(PAQ) = \rank(A)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Rank of Matrix]
+    \label{thm:columnsequalrank}
+    For any matrix $A$,
+    \[
+        \rank A = \dim(C(A)) = \text{Max number of linearly independent columns}
+    \]
+\end{theorem}
+
+\end{document}
