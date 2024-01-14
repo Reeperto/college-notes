@@ -1,0 +1,223 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+\banner{Sequences and Series of Functions}
+
+\subsection{Power Series}
+
+\begin{definition}[Power Series]
+    A power series is a real valued function $f(x) = \sum a_n x^n$ for some sequence $(a_n)$.
+\end{definition}
+
+\begin{theorem}
+    For a power series $\sum a_n x^n$, let $\beta = \limsup |a_n|^{\frac{1}{n}}$ and $R = \frac{1}{\beta}$. The power series converges for $|x| < R$ and diverges for $|x| > R$
+\end{theorem}
+\begin{proof}
+    Apply the root test. Then
+    \[
+        \limsup |c_n|^{\frac{1}{n}} = \limsup |a_n|^{\frac{1}{n}} |x| = \limsup |a_n|^{\frac{1}{n}} |x| = |x| \beta
+    .\]
+    Note then that $|x| < R = \frac{1}{\beta}$ means that $\limsup |c_n|^{\frac{1}{n}} < 1$ and therefore the series converges. The opposite is true for $|x| > R$.
+\end{proof}
+
+\begin{example}
+    Consider $\sum x^n$. Note that $a_n = 1$ for all $n \in \N$. Therefore $\limsup |a_n|^{\frac{1}{n}} = \limsup 1^{\frac{1}{n}} = 1$. Therefore the power series converges for all $|x| < 1$. Note that $x = 1$ gives a divergent series and $x = -1$ gives an alternating series whose non alternative part does not go to zero and hence also diverges.
+\end{example}
+
+\begin{example}
+    Consider $\sum \frac{x^n}{n!}$. In this instance $a_n = \frac{1}{n!}$. Then
+    \[
+        \beta = \limsup |a_n|^{\frac{1}{n}} = \limsup \qty|\frac{1}{n!}|^{\frac{1}{n}}
+    .\]
+    This would be hard to compute. However, if this limit exists, then it matches the value of the ratio test and therefore
+    \[
+        \beta = \limsup \qty|\frac{a_{n+1}}{a_n}| = \limsup \frac{1}{(n+1)!} \cdot \frac{n!}{1} = \limsup \frac{1}{n} = 0
+    .\]
+    Therefore $R = +\infty$ meaning the interval of convergence is all of $\R$.
+    \begin{remark}
+        Alternatively, one can use the Sterling approximation of the factorial to do the root test. The Sterling approximation is
+        \[
+            n! \sim \qty(\frac{n}{e})^n \sqrt{2 \pi n}
+        .\]
+        Hence
+        \[
+            \limsup \qty|\frac{1}{n!}|^{\frac{1}{n}} = \limsup \frac{1}{\qty(\qty(\frac{n}{e})^n \sqrt{2 \pi n})^{\frac{1}{n}}} = \limsup \frac{1}{\frac{n}{e} \cdot \qty(\sqrt{2 \pi n})^{\frac{1}{n}}} = \limsup \frac{1}{n} = 0
+        .\]
+    \end{remark}
+\end{example}
+
+\begin{example}
+    Consider $\sum \frac{x^n}{n^2}$. Then
+    \[
+    \beta = \limsup \qty(\frac{1}{n^2})^{\frac{1}{n}} = \limsup \frac{1}{\sqrt[n]{n^2}} = 1
+    .\]
+    Therefore the power series converges for $|x| < 1$. Importantly, for $x = 1$ and $x = -1$, you get convergent series and therefore the interval of convergence is $[-1,1]$.
+\end{example}
+
+\begin{example}
+    Consider $\sum \frac{(-1)^{n+1} x^n}{n}$. Then $a_n = \frac{(-1)^{n+1}}{n}$ and
+    \[
+        \beta = \limsup \qty|\frac{(-1)^{n+1}}{n}|^{\frac{1}{n}} = \limsup \frac{1}{\sqrt[n]{n}} = \frac{1}{1} = 1
+    .\]
+    Therefore the power series converges for $|x| < 1$. Checking $x = 1$,
+    \[
+        \sum \frac{(-1)^{n+1}}{n} \text{ converges by alternating series test}
+    .\]
+    And checking for $x = -1$,
+    \[
+        \sum \frac{(-1)^{2n+1}}{n} = \sum \frac{-1}{n} = - \sum \frac{1}{n} \text{ which diverges}
+    .\]
+    Therefore the interval of convergence is $(-1, 1]$.
+\end{example}
+
+\begin{example}
+    Consider $\sum \frac{(2n)! x^n}{(n!)^2}$. Then $a_n = \frac{(2n)!}{(n!)^2}$. Apply the ratio test to get $\beta$.
+    \[
+        \beta = \limsup \qty|\frac{a_{n+1}}{a_n}| = \limsup \frac{(2n+2)!}{((n+1)!)^2} \cdot \frac{(2n)!}{(n!)^2} = \limsup \frac{(2n+2)(2n+1)}{(n+1)(n+1)} = 4
+    .\]
+    Therefore it converges on $|x| < \frac{1}{4}$. Checking the endpoints suck but $x = \frac{1}{4}$ diverges by using Sterlings approximation and $x = -\frac{1}{4}$ converges by the alternating series test by the previous method. Therefore the interval of convergence is $\left[-\frac{1}{4}, \frac{1}{4} \right)$.
+\end{example}
+
+\subsection{Uniform Convergence}
+
+An initial, but weak, formulation of functional sequence convergence is by applying the a basic limit of a sequence.
+
+\begin{definition}[Pointwise Convergence]
+    A sequence of real value functions $f_n : S \subset \R \to \R$ converges point wise to a function $f$ on $S$ if $\lim_{n\to \infty} f_n(x) = f(x)$ for all $x \in S$
+\end{definition}
+
+\begin{definition}[Uniform Convergence]
+    A sequence of real value functions $f_n : S \subset \R \to \R$ uniformly converges to a function $f$ on $S$ if $\forall \epsilon > 0$, there is some $N \in \N$ such that
+    \[
+        |f_n(x) - f(x)| < \epsilon, n > N, \forall x \in S
+    .\]
+\end{definition}
+
+\begin{example}
+    Consider the sequence of functions $f_n(x) = x^n$ on $[0,1]$. Note that for all $n$, $f_n(0) = 0$ and $f_n(1) = 1$. Furthermore, for $0 < x < 1$, $\lim x^n = 0$. Therefore
+    \[
+        \lim f_n(x) = f(x) = \begin{cases}
+            0 & 0 \leq x < 1 \\
+            1 & x = 1
+        \end{cases}
+    .\]
+    is the pointwise limit of the sequence. For uniform convergence, we want
+    \[
+        |f_n(x) - f(x)| < \epsilon \Leftrightarrow \qty|x^n - \begin{cases}
+            0 & 0 \leq x < 1 \\
+            1 & x = 1
+        \end{cases}| < \epsilon
+    .\]
+    For $x = 1$, the absolute value goes to $0$ and therefore only $0 \leq x < 1$ matters. The question becomes when
+    \[
+        x^n < \epsilon \implies n > \frac{\ln(\epsilon)}{\ln|x|}
+    .\]
+    However, it is not possible to bound this quantity since $x \to 1$ leads to $\frac{1}{\ln|x|} \to -\infty$. Therefore the sequence does not uniformly converge to $f$.
+\end{example}
+
+\begin{example}
+    Let $g_n(x) = (1 - |x|)^n$ on $(-1, 1)$. Note that $\lim g_n(0) = 1$ since $g_n(0) = 1$ for all $n$. For any other $x$, $|x| < 1$ and therefore $1 - |x| < 1$. Hence $\lim g_n(x) = 0$ for $x \neq 0$. Hence
+    \[
+        \lim g_n(x) = g(x) = \begin{cases}
+            1 & x = 0 \\
+            0 & x \neq 0
+        \end{cases}
+    .\]
+    Checking for uniform convergence,
+    \[
+        |g_n(x) - g(x)| < \epsilon \Leftrightarrow \qty| (1-|x|)^n
+        \begin{cases}
+            1 & x = 0 \\
+            0 & x \neq 0
+        \end{cases}
+        |
+    .\]
+    We only have to care about $x \neq 0$, therefore
+    \[
+        |(1-|x|)^n| < \epsilon \implies n > \frac{\ln(\epsilon)}{\ln(1-|x|)}
+    .\]
+    However, $\sup_{x\in (-1,1)} \frac{\ln(\epsilon)}{\ln(1-|x|)} = +\infty$, therefore the sequence does not uniformly converge to $g(x)$.
+\end{example}
+
+\begin{example}
+    Let $h_n(x) = \frac{1}{n} \sin(nx)$. Since $\qty|\frac{1}{n} \sin(nx)| \leq \qty|\frac{1}{n}| = \frac{1}{n}$, it follows that
+    \[
+        0 \leq \lim_{n\to \infty} \qty|\frac{1}{n} \sin(nx)| \leq \lim_{n \to \infty} \frac{1}{n} = 0
+    .\]
+    Therefore $\lim h_n(x) = 0$. Checking for uniform convergence, we want
+    \[
+        |h_n(x) - h(x)| < \epsilon \Leftrightarrow \qty|\frac{1}{n} \sin(nx) - 0| < \epsilon
+    .\]
+    Since $\qty|\frac{1}{n} \sin(nx)| \leq \frac{1}{n}$, choosing $n > \frac{1}{\epsilon}$ gives the desired inequality. Since the bound for $n$ doesnt depend on $x$, the sequence uniformly converges to $h(x) = 0$.
+\end{example}
+
+\begin{example}
+    Let $j_n(x) = \frac{nx}{2n + 1}$ on $S = [-2, 2]$. It's pointwise limit is
+    \[
+        \lim j_n(x) = \lim \frac{nx}{2n + 1} = x \lim \frac{n}{2n+1} = \frac{x}{2} = j(x)
+    .\]
+    Checking for uniform convergence, we want
+    \begin{align*}
+        \qty|\frac{nx}{2n+1} - \frac{x}{2}| < \epsilon &\implies \qty|\frac{2nx - (2n+1)x}{2(2n+1)}| < \epsilon \\
+                                               &\implies \frac{|x|}{2(2n+1)} < \epsilon\\
+                                               &\implies \frac{|x|}{2\epsilon} < 2n + 1\\
+                                               &\implies n > \frac{|x|}{4\epsilon} - \frac{1}{2}
+    \end{align*}
+    Since $|x| < 2$, $n > \frac{1}{2\epsilon} - \frac{1}{2} > \frac{|x|}{4\epsilon} - \frac{1}{2}$ gives the original inequality. Therefore the sequence uniformly converges to $j(x)$.
+\end{example}
+
+\begin{example}
+    Let
+    \[
+        k_n(x) = \begin{cases}
+            1 & x > \frac{1}{n} \\
+            0 & x \leq \frac{1}{n}
+        \end{cases}
+    \]
+    on $S = [0,1]$. Note that $0 \leq \frac{1}{n}$ for all $n$, meaning $\lim k_n(0) = 0$. For similar reasoning $1 \geq \frac{1}{n}$ for all $n > 1$ and therefore $\lim k_n(1) = 1$. For any $0 < x <1$, there will be some $N \in \N$ such that $n > N \implies \frac{1}{n} < x$. Hence $\lim k_n(x) = 1$ for all $0 < x < 1$. In total then, the pointwise convergence is
+    \[
+        k(x) = \begin{cases}
+            0 & x = 0 \\
+            1 & x \neq 0 \\
+        \end{cases}
+    .\]
+    Checking for uniform convergence, we want
+    \[
+        |k_n(x) - k(x)| < \epsilon \implies \qty|
+        \begin{cases}
+            1 & x > \frac{1}{n} \\
+            0 & x \leq \frac{1}{n}
+        \end{cases} - 
+        \begin{cases}
+            0 & x = 0 \\
+            1 & x \neq 0 \\
+        \end{cases}
+        | = \qty|
+        \begin{cases}
+            0 - 0 & x = 0 \\
+            0 - 1 & 0 < x \leq \frac{1}{n} \\
+            1 - 1 & \frac{1}{n} < x \leq 1
+        \end{cases}
+        | < \epsilon
+    .\]
+    Note then that
+    \[
+        \qty|
+        \begin{cases}
+            0 - 0 & x = 0 \\
+            0 - 1 & 0 < x \leq \frac{1}{n} \\
+            1 - 1 & \frac{1}{n} < x \leq 1
+        \end{cases}
+        | = 
+        \begin{cases}
+            0 & x = 0, \frac{1}{n} < x \leq 1  \\
+            1 & 0 < x \leq \frac{1}{n}
+        \end{cases}
+    .\]
+    Since $0 < x \leq \frac{1}{n}$ the value is $1$, it is not possible to get arbitrarily close to the pointwise convergence across all $x$.
+\end{example}
+
+\end{document}

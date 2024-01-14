@@ -1,0 +1,104 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{2}
+\input{hw_preamble.tex}
+
+% 3.5, 4.1 
+% 4.2 for a,b,e,f,h,i,k,n,t,u (find lower/upper bounds and inf/sup, if they exist), 
+% 4.5, 4.7, 4.10-4.12
+% 5.1, 5.2, 5.5,
+
+\begin{document}
+
+\subsection*{3.5}
+\subsubsection*{Part A}
+\begin{proof}
+	Let $a,b \in \mathbb{R}$. Consider both directions.
+	\begin{enumerate}
+		\item[$\Rightarrow)$]
+			Assume that $|b| \leq a$. If $b \geq 0$, then $|b| = b \leq a$. If $b < 0$, then $|b| = -b \leq a$ or equivalently $b \geq -a$. Therefore for any $b$, $-a \leq b \leq a$.
+		\item[$\Leftarrow)$]
+			Assume that $-a \leq b \leq a$. Note this implies that $b \leq a$ and that $-b \leq a$ by using both sides of the inequality. Since both $-b$ and $b$ are less than $a$, $|b| \leq a$.
+	\end{enumerate}
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+	Let $a,b \in \mathbb{R}$. Note that $|a| = |(a-b) + b| \leq |a-b| + |b|$ by the triangle inequality, giving $|a| - |b| \leq |a-b|$. Equivalently, $|b| - |a| \leq |b - a|$, meaning $|a| - |b| \geq -|a-b|$. Since $-|a-b| \leq |a| - |b| \leq |a-b|$, by 3.5,
+	\[
+		||a| - |b|| \leq |a-b|
+	\]
+\end{proof}
+
+\subsection*{4.1 / 4.2}
+
+\begin{center}
+	\def\arraystretch{1.5}
+	\begin{tabular}{r|c|c|c|c|c|c|c|c|c|c}
+			   & A  & B  & E  & F  & H   & I  & K   & N           & T   & U   \\\hline
+		LB     & -1 & -1 & -1 & -1 & -1  & -2 & 0   & -2          & DNE & -3  \\\hline
+		UB     & 5  & 4  & 2  & 1  & DNE & 3  & DNE & 2           & 10  & DNE \\\hline
+		$\inf$ & 0  & 0  & 0  & 0  & 2   & 0  & 0   & $-\sqrt{2}$ & DNE & 0   \\\hline
+		$\sup$ & 1  & 1  & 1  & 0  & DNE & 1  & DNE & $\sqrt{2}$  & 2   & DNE
+	\end{tabular}
+\end{center}
+
+\subsection*{4.5}
+\begin{proof}
+	Let $S \subset \mathbb{R}$ be non-empty that is bounded above. Assume that $\sup S = M \in S$. Since $M$ is the supremum, $s \leq M$ for all $s \in S$. Since $s \leq M$ for all $s \in S$ and $M \in S$, $M$ is by definition the max of $S$, hence $\sup S = \max S$.
+\end{proof}
+
+\subsection*{4.7}
+\subsubsection*{Part A}
+\begin{proof}
+	Let $S, T \subset \mathbb{R}$ be non empty and bounded. Assume that $S \subset T$. Let $x \in S$. Note that $\inf T \leq s$ for all $s \in S$ since every member of $S$ is a member of $T$. This means that $\inf T$ is a lower bound of $S$ implying $\inf T \leq \inf S$. Equivalently, $\sup T \geq s$ for all $s \in S$, meaning $\sup T$ is an upper bound of $S$ and therefore $\sup T \geq \sup S$. Since $\inf S \leq \sup S$, these inequalities combine to
+	\[
+		\inf T \leq \inf S \leq \sup S \leq \sup T
+	\]
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+	Let $S, T \subset \mathbb{R}$ be non empty and bounded. Note that $S, T \subset S \cup T$. Therefore from (A) it follows that $\sup S, \sup T \leq \sup(S \cup T)$ meaning $\max\qty{\sup S, \sup T} \leq \sup(S\cup T)$. Let $s \in S$. Then $s \leq \sup S \leq \max\qty{\sup S, \sup T}$. Let $t \in T$. Then $t \leq \sup T \leq \max\qty{\sup S, \sup T}$. Therefore for an element $x \in S \cup T$, $x \leq \max\qty{\sup S, \sup T}$. Therefore $\max\qty{\sup S, \sup T}$ admits an upper bound on $S \cup T$ meaning $\sup(S \cup T) \leq \max\qty{\sup S, \sup T}$. Since $\sup(S \cup T) \leq \max\qty{\sup S, \sup T}$ and $\max\qty{\sup S, \sup T} \leq \sup(S \cup T)$, $\sup(S \cup T) = \max\qty{\sup S, \sup T}$.
+\end{proof}
+
+\subsection*{4.10}
+\begin{proof}
+	Let $a > 0$. By applying the archimedean property twice, $\exists N_1, N_2$ such that $a > \frac{1}{N_1}$ and $a < N_2$. Let $N = \max\qty{N_1, N_2}$. Note that $\frac{1}{N_1} \leq \frac{1}{N}$ and $N_2 \leq N$, therefore $\frac{1}{N} < a < N$.
+\end{proof}
+
+\subsection*{4.11}
+Let $a,b \in \mathbb{R}$ with $a < b$. By the denseness of $\mathbb{Q}$, there is a rational $r_1$ such that $a < r_1 < b$. Since $r_1 \in \mathbb{R}$, the denseness of $\mathbb{Q}$ can be applied to the range $a < r_1$ to give an $r_2$ such that $a < r_2 < r_1$. This leads to an infinite sequence of $r_n$'s that are between $a$ and $b$. Hence there are infinitely many rationals between $a$ and $b$.
+
+\subsection*{4.12}
+\begin{proof}
+	Let $a,b \in \mathbb{R}$ such that $a < b$. Consider $r + \sqrt{2}$ where $r = \frac{p}{q} \in \mathbb{Q}$. Assume towards contradiction that $r + \sqrt{2}$ is rational. That is there is an $m \in \mathbb{Z}$ and $n \in \mathbb{N}$ such that
+	\[
+		\frac{p}{q} + \sqrt{2} = \frac{m}{n}
+	\]
+	However, this implies that $\sqrt{2} = \frac{mq - np}{nq}$ which is rational. Therefore $r + \sqrt{2}$ is irrational for all $r \in \mathbb{Q}$. Since $a < b$, $a - \sqrt{2} < b - \sqrt{2}$. By the denseness of $\mathbb{Q}$, there exists $h \in \mathbb{Q}$ such that $a - \sqrt{2} < h < b - \sqrt{2}$, or equivalently $a < h + \sqrt{2} < b$. Note that $h + \sqrt{2}$ is irrational and hence there is an irrational between $a$ and $b$.
+\end{proof}
+
+\subsection*{5.1}
+\begin{align*}
+	\qty{x \in \mathbb{R} : x < 0} &= (-\infty, 0) \\
+	\qty{x \in \mathbb{R} : x^3 \leq 8} &= (-\infty, 2] \\
+	\qty{x^2 : x \in \mathbb{R}} &= [0, \infty) \\
+	\qty{x \in \mathbb{R} : x^2 < 8} &= (-\sqrt{8}, \sqrt{8})
+\end{align*}
+
+\subsection*{5.2}
+\begin{align*}
+	& \inf\qty{x \in \mathbb{R} : x < 0} = -\infty & \sup\qty{x \in \mathbb{R} : x < 0} = 0 \\
+	& \inf\qty{x \in \mathbb{R} : x^3 \leq 8} = -\infty & \sup\qty{x \in \mathbb{R} : x^3 \leq 8} = 2 \\
+	& \inf\qty{x^2 : x \in \mathbb{R}} = 0 & \sup\qty{x^2 : x \in \mathbb{R}} = \infty \\
+	& \inf\qty{x \in \mathbb{R} : x^2 < 8} = -\sqrt{8} & \sup\qty{x \in \mathbb{R} : x^2 < 8} = \sqrt{8} &
+\end{align*}
+
+\subsection*{5.5}
+\begin{proof}
+	Let $S \subset \mathbb{R}$ be non-empty. If $S$ is unbounded, $\inf S = -\infty$ and $\sup S = \infty$ meaning that $\inf S \leq \sup S$. If $S$ is bounded below but unbounded above, $\inf S = m \leq \infty = \sup S$ meaning $\inf S \leq \sup S$. Alternatively, if $S$ is bounded above but unbouneded below, $\sup S = M \geq -\infty = \inf S$ meaning $\inf S \leq \sup S$. If $S$ is bounded, $\inf S = m$ and $\sup S = M$. For all $s \in S$, $m \leq s \leq M$, meaning $m \leq M$ and therefore $\inf S \leq \inf S$.
+\end{proof}
+
+\end{document}

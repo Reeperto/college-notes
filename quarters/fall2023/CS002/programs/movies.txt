@@ -1,0 +1,50 @@
+Jaws
+Steven Spielberg
+1975
+124
+
+The Great Escape
+John Sturges
+1963
+172
+
+Star Wars
+George Lucas
+1977
+121
+
+Deadpool
+Tim Miller
+2016
+108
+
+Big Hero 6
+Chris Williams
+2014
+102
+
+Toy Story
+John Lasseter
+1995
+81
+
+Pulp Fiction
+Quentin Tarantino
+1994
+154
+
+Snatch
+Guy Ritchie
+2000
+103
+
+Gladiator
+Ridley Scott
+2000
+155
+
+Inception
+Christopher Nolan
+2010
+148
+

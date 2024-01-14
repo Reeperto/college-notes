@@ -1,0 +1,27 @@
+.split-pane {
+    -fx-background-color: #212121;
+}
+
+.label {
+    -fx-text-fill: #FFFFFF;
+}
+
+.split-pane *.split-pane-divider {
+    -fx-padding: 0 1 0 1;
+    -fx-background-color: #444444;
+}
+
+.button {
+    -fx-font-size: 2.5em;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-color: #494949;
+}
+
+.clears {
+    -fx-background-color: #be2828;
+    -fx-font-size: 1.6em;
+}
+
+.operator {
+    -fx-background-color: #F2A33C;
+}

@@ -1,0 +1,39 @@
+\documentclass[12pt,titlepage]{extarticle}
+
+\input{../preamble.tex}
+
+\title{Math 140: Real Analysis}
+\author{Eli Griffiths}
+
+\begin{document}
+
+\maketitle
+\pagebreak
+\thispagestyle{empty}
+\tableofcontents
+\pagebreak
+
+% MATH 140A
+\subfile{topics/introduction.tex}
+\subfile{topics/extending_naturals.tex}
+\subfile{topics/completeness.tex}
+\subfile{topics/sequences.tex}
+\subfile{topics/metricspaces.tex}
+\subfile{topics/series.tex}
+\subfile{topics/continuity.tex}
+
+% MATH 140B
+\subfile{topics/functionseriesandsequences.tex}
+
+\newpage
+\pagestyle{empty}
+
+\addcontentsline{toc}{section}{List of Theorems}
+\listoftheorems[ignoreall,onlynamed={theorem}]
+
+\newpage
+
+\addcontentsline{toc}{section}{List of Definitions}
+\listoftheorems[ignoreall,onlynamed={definition},title={List of Definitions}]
+
+\end{document}

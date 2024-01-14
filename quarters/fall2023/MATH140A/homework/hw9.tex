@@ -1,0 +1,119 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{9}
+\input{hw_preamble.tex}
+
+% 17.9, 17.14
+% 18.1, 18.2, 18.4, 18.6, 18.9
+
+\begin{document}
+
+\subsection*{17.9}
+\subsubsection*{Part A}
+\begin{proof}
+    Let $f : \mathbb{R} \to \mathbb{R} : x \mapsto x^2$ and $x_0 = 2$. We want to show that for all $\epsilon > 0$ that $\exists \delta > 0$ such that $|x - x_0| < \delta \implies |f(x) - f(x_0)| < \epsilon$. Note that
+    \[
+        |f(x) - f(x_0)| = |x^2 - 4| = |x+2||x-2|
+    .\]
+    If we let $\delta < 1$, then $|x - x_0| < \delta < 1$ meaning $x_0 - 1 < x < x_0 + 1 \implies |x+2| < x_0 + 3$. Therefore
+    \[
+        |x+2||x-2| < |x-2| \cdot (x_0 + 3) < \epsilon \implies |x-2| < \frac{\epsilon}{x_0+3}
+    .\]
+    So then formally, take $\epsilon > 0$ and let $\delta = \min\qty{1, \frac{\epsilon}{x_0 + 3}}$. Then
+    \[
+        |x-x_0| = |x-2| < \delta \implies |f(x) - f(x_0)| = |x^2 - 4| < \epsilon
+    .\]
+    Hence $f$ is continuous at $x_0 = 2$.
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    Note that
+    \[
+        |f(x) - f(0)| = |\sqrt{x}| = \sqrt{x} < \epsilon \implies x < \epsilon^2 \implies |x| < \epsilon^2
+    .\]
+    Therefore take $\epsilon > 0$ and let $\delta = \epsilon^2$. Then
+    \[
+        |x-0| = |x| < \delta \implies |x| < \epsilon^2 \implies x < \epsilon^2 \implies |\sqrt{x}| < \epsilon
+    .\]
+    Hence $f$ is continuous at $x_0 = 0$.
+\end{proof}
+
+\subsubsection*{Part C}
+\begin{proof}
+    Take $\epsilon > 0$ and let $\delta = \epsilon$. Note then that
+    \[
+        |x| < \delta \implies |x| < \epsilon
+    .\]
+    Since $|\sin x| \leq 1$ for all $x \in \mathbb{R}$, $|\sin \frac{1}{x}| \leq 1$ for $x \neq 0$ and therefore
+    \[
+        |x||\sin \frac{1}{x}| \leq |x| < \epsilon
+    .\]
+    Therefore
+    \[
+        |x \sin \frac{1}{x}| < \epsilon
+    .\]
+    Hence $f$ is continuous at $x = 0$.
+\end{proof}
+
+\subsubsection*{Part D}
+\begin{proof}
+    Take $\epsilon > 0$. Let $\delta = \min\qty{1, \frac{\varepsilon}{3|x_0|^2 + 3|x_0| + 1}}$. Assume that $|x-x_0| < \delta$. Then
+    \begin{align*}
+        |x-x_0| < \delta \implies &|x-x_0| < \frac{\varepsilon}{3|x_0|^2 + 3|x_0| + 1} \\
+                                &|x-x_0| (3|x_0|^2 + 3|x_0| + 1) < \varepsilon \\
+                                &|x-x_0| ((1 + |x_0|)^2 + |x_0|(1+|x_0|) + |x_0|^2) < \epsilon
+    \intertext{Since $|x-x_0| < 1$, $|x| = |x - x_0 + x_0| \leq 1 + |x_0|$. Therefore}
+                                &|x-x_0| (|x|^2 + |x_0 x| + |x_0^2|) < \varepsilon \\
+                                &|x^3 - x_0^3| < \epsilon
+    \end{align*}
+    Therefore $|x-x_0| < \delta \implies |x^3 - x_0^3| < \epsilon$, meaning $f(x) = x^3$ is continuous over all of $\mathbb{R}$.
+\end{proof}
+
+\subsection*{17.14}
+\begin{proof}
+    First show that $f$ is discontinuous at any point in $\mathbb{Q}$. Let $x \in \mathbb{Q}$ with $x = \frac{p}{q}$. Let $\alpha \in \mathbb{R} \setminus \mathbb{Q}$. Construct the sequence 
+    \[
+(x_n)_{n\in \mathbb{N}}, x_n = x + \frac{\alpha}{n}, \forall n
+    .\] 
+    Note that $\lim x_n = x$ and $x_n \notin \mathbb{Q}$ for all $n$. Assume towards contradiction that $f$ is continuous at any point in $\mathbb{Q}$. Then since $x \in \mathbb{Q}$ and $(x_n)$ is a sequence that converges to $x$, $\lim f(x_n) = f(x) = \frac{1}{q} > 0$. However, since $x_n \notin \mathbb{Q}$ for all $n$, $f(x_n) = 0$ for all $n$. However, this means that $\lim f(x_n) = 0$ which contradicts the assumption. Therefore $f$ is not continuous at points in $\mathbb{Q}$. 
+    Let $x_0 \in \mathbb{R}\setminus \mathbb{Q}$. Then for every $q \in \mathbb{N}$, there exists some $\delta_q$ such that $|x_0 - y| \geq \delta_q$ for all $y \in \qty{\frac{p}{q} : p \in \mathbb{Z}}$. Take $\epsilon > 0$ and choose $N \in \mathbb{N}$ such that $\frac{1}{N} < \epsilon$. Let $\delta = \min\qty{\delta_1, \ldots, \delta_N}$. Then
+    \[
+        |x - x_0| < \delta \implies x = \frac{p}{q'}, q' > N \implies |f(x) - f(x_0)| = |f(x)| < \frac{1}{N} < \epsilon
+    .\]
+    Therefore $f$ is continuous on all points in $\mathbb{R}\setminus \mathbb{Q}$.
+\end{proof}
+
+\subsection*{18.1}
+\begin{proof}
+    Let $f$ be the function outlined. Assume that $-f$ assumes its maximum at $x_0 \in [a,b]$. That is,
+    \[
+        -f(x) \leq -f(x_0), \forall x\in [a,b] \implies f(x) \geq f(x_0), \forall x \in [a,b]
+    .\]
+    Therefore $x_0$ is the minimum of $f$.
+\end{proof}
+
+\subsection*{18.2}
+The proof breaks down when the interval is open because the sequence $(x_n)$ that is constructed can converge to some $x_0$ that is the boundary point of the interval, which if open are not a part of the functions domain of continuity.
+
+\subsection*{18.4}
+\begin{proof}
+    Let $S \subset \mathbb{R}$ and assume that there is a sequence $(x_n)$ in $S$ that converges to a number $x_0$ not in $S$. Let $f : S \to \mathbb{R} : x \mapsto \frac{1}{x - x_0}$. Note that $f$ is continuous on $S$ since $x_0 \notin S$ and is unbounded.
+\end{proof}
+
+\subsection*{18.6}
+\begin{proof}
+    Let $g : [0, \frac{\pi}{2}] \to \mathbb{R} : x\mapsto x - \cos(x)$. Note that
+    \[
+        g(0) = -1 < 0, g(\frac{\pi}{2}) = \frac{\pi}{2} > 0
+    .\]
+    Therefore by the IVT, there exists some $x_0 \in (0, \frac{\pi}{2})$ such that $g(x_0) = 0$ and therefore $x_0 - \cos x_0 = 0 \implies x_0 = \cos x_0$.
+\end{proof}
+
+\subsection*{18.9}
+\begin{proof}
+    Let $f$ be a polynomial of odd degree $n$. WLOG let the sign of the highest order odd term be positive. Note then that $\lim_{x\to \infty} f(x) = +\infty$ and $\lim{x\to -\infty} f(x) = -\infty$ since the highest order term is odd. This means that there is some $x_1, x_2 \in \mathbb{R}$ such that $f(x_1) < 0$ and $f(x_2) > 0$. By the intermediate value theorem, there must be some $x \in (x_1, x_2)$ such that $f(x) = 0$. Therefore $f$ has at least a single real root.
+\end{proof}
+
+\end{document}

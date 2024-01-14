@@ -1,0 +1,338 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+
+\banner{Complex Numbers}
+
+\subsection{What are the Complex Numbers?}
+
+\begin{definition}[Complex Number]
+    Formally, a complex number $z \in \C$ is a pair of reals $(x,y)$ that are written in the form $z = x + iy$ where "informally" $i = \sqrt{-1}$.
+\end{definition}
+
+The complex numbers are fairly analogous to the $\R^2$ plane. $\C$ makes up a field where addition and multiplication are defined as follows
+\begin{align*}
+    z_1 + z_2 &= (x_1 + iy_1) + (x_2 + iy_2) = (x_1 + x_2) + i(y_1 + y_2) \\ \\
+    z_1 z_2 &= (x_1 + iy_1) (x_2 + iy_2) \\
+    &= x_1 x_2 + i x_1 y_2  + i x_2 y_1 - y_1 y_2 \\
+    &= (x_1 x_2 - y_1 y_2) + i(x_1 y_2 + x_2 y_1)
+\end{align*}
+
+\begin{theorem}[Properties of Complex Numbers]
+    Let $z_1, z_2, z_3 \in \C$. Then
+    \begin{enumerate}[leftmargin=1.3cm]
+        \item $z_1 + z_2 = z_2 + z_1$
+        \item $(z_1 + z_2) + z_3 = z_1 + (z_2 + z_3)$
+        \item $z_1(z_2 + z_3) = z_1 z_2 + z_1 z_3$
+        \item $z_1 + 0 = z_1$ and $1 \cdot z_1 = z_1$
+        \item $\forall z \in \C$, $\exists w \in \C$ such that $z + w = 0$
+        \item[$(\star)$ 6.] $\forall z \in \C \neq 0$, $\exists w \in \C$ such that $zw = 1$.
+    \end{enumerate}
+\end{theorem}
+
+It does not follow directly that $(\star)$ is true. Through some brute force computation though, it is equivalent to finding some $u,v$ for all $x,y \in \R$ such that
+\begin{align*}
+    xu - yv &= 1 \\
+    xv + yu &= 0
+\end{align*}
+The corresponding solution to this for some $z = x + iy$ is then
+\[
+    z^{-1} = \frac{1}{z} = \frac{x - iy}{x^2 + y^2}
+.\]
+
+While not that elegant, it can be rewritten in terms of other important properties of complex numbers.
+
+\subsection{Conjugate and Modulus}
+
+\begin{definition}[Conjugate]
+    The conjugate of some $z \in \C$ is denoted as $\overline{z}$ and is the mirror image of $z$ across the real axis. That is, if $z = x + iy$, then $\overline{z} = x - iy$
+\end{definition}
+
+\begin{theorem}[Properties of Conjugate]
+    \label{thm:propsconjugate}
+    Let $z_1 = x_1 + iy_1$ and $z_2 = x_2 + iy_2$. Then
+    \begin{enumerate}
+        \item $\overline{z_1 \pm z_2} = \overline{z_1} \pm \overline{z_2}$
+        \item $\conj{z_1 z_2} = \conj{z_1} \cdot \conj{z_2}$
+        \item $\displaystyle \conj{\frac{z_1}{z_2}} = \cfrac{\conj{z_1}}{\conj{z_2}}$ when $z_2 \neq 0$
+        \item $z_1 + \conj{z_1} = 2 \Re z_1$ or equivalently $\Re z_1 = \frac{z_1 + \conj{z_1}}{2}$
+        \item $z_1 - \conj{z_1} = 2i \Im z_1$ or equivalently $\Im z_1 = \frac{z_1 - \conj{z_1}}{2i}$
+    \end{enumerate}
+\end{theorem}
+
+Note that for any $z \in \C$ that $z \overline{z} = x^2 + y^2$. Geometrically, this quantity represents the squared "length" of $z$, notated as $|z|^2$. This quantity is also referred to as the squared \hyperref[def:modulus]{\textit{modulus of $z$}}. Since $z \neq 0 \implies |z|^2 \neq 0$, then
+\[
+    z \overline{z} = |z|^2 \implies z^{-1} = \frac{1}{z} = \frac{\overline{z}}{|z|^2}
+.\]
+
+\begin{definition}[Modulus]
+    \label{def:modulus}
+    Let $z = x + iy$. The modulus of $z$ is defined as 
+    \[
+        |z| \coloneq \sqrt{x^2 + y^2} = \sqrt{(\Re z)^2 + (\Im z)^2}
+    .\]
+    \begin{remark}
+        The modulus squared $|z|^2$ is often worked with to avoid square roots.
+    \end{remark}
+\end{definition}
+
+The modulus captures some important objects, mainly complex disks.
+
+\begin{example}
+    Consider the set of complex numbers $z$ that satisfy $|z - z_0| = R$ where $z,z_0 \in \C$ and $R \in \R$. This is the set of all points $z$ a distance $R$ away from $z_0$, hence the boundary of a disk centered at $z_0$ with radius $R$.
+\end{example}
+
+The modulus also has some important properties.
+
+\begin{theorem}[Properties of Modulus]
+    \label{thm:propsmodulus}
+    Let $z_1 = x_1 + iy_1$ and $z_2 = x_2 + iy_2$. Then
+    \begin{enumerate}
+        \item $|\conj{z_1}| = |z_1|$
+        \item $|z_1 z_2| = |z_1| |z_2|$
+        \item $\displaystyle \qty|\frac{z_1}{z_2}| = \frac{|z_1|}{|z_2|}$
+        \item $|z^n| = |z|^n$
+        \item[$(\star)$] $|z_1 + z_2| \leq |z_1| + |z_2|$ and generally $|z_1 + z_2 + \ldots z_n| \leq |z_1| + |z_2| + \ldots + |z_n|$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}
+        \item %-----------------------------------------------------------------
+        Let $z = x + iy$. Then $|z| = \sqrt{x^2 + y^2} = \sqrt{x^2 + (-y)^2} = |\conj{z}|$
+        \item %-----------------------------------------------------------------
+        First note that since $|z| \geq 0$ for all $z \in \C$, the statement is equivalent to showing $|z_1 z_2|^2 = |z_1|^2 |z_2|^2$. Then
+        \begin{align*}
+            |z_1 z_2|^2 &= (z_1 z_2)(\conj{z_1 z_2}) \\
+                        &= (z_1 z_2) (\conj{z_1} \cdot \conj{z_2}) \\
+                        &= z_1 \cdot z_2 \cdot \conj{z_1} \cdot \conj{z_2} \\
+                        &= z_1 \conj{z_1} z_2 \conj{z_2} \\
+                        &= |z_1|^2 |z_2|^2
+        \end{align*}
+        Hence the original proposition holds.
+        \item[$(\star)$] %--------------------------------------------------------
+        Since the moduli are all positive, it is possible to square both sides and maintain the inequality. Therefore
+        \begin{align*}
+            |z_1 + z_2|^2 &= (z_1 + z_2) \cdot \overline{(z_1 + z_2)} \\
+                          &= z_1 \overline{z_1} + z_1 \overline{z_2} + \overline{z_1} z_2 + z_2 \overline{z_2} \\
+                          &= |z_1|^2 + z_1 \overline{z_2} + \overline{\overline{z_1} z_2} + |z_2|^2 \\
+                          &= |z_1|^2 + 2 \cdot \Re(z_1 \overline{z_2}) + |z_2|^2
+        \intertext{Since $|\Re z| \leq |z|$, the middle is bounded and hence}
+                          &\leq |z_1|^2 + 2 |z_1 \overline{z_2}| + |z_2|^2 \\
+                          &= |z_1|^2 + 2 |z_1 z_2| + |z_2|^2 \\
+                          &= |z_1|^2 + 2 |z_1| |z_2| + |z_2|^2 \\
+                          &= (|z_1| + |z_2|)^2
+        \end{align*}
+        Therefore $|z_1 + z_2|^2 \leq (|z_1| + |z_2|)^2$ meaning $|z_1 + z_2| \leq |z_1| + |z_2|$. The general case follows by a simple inductive argument.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Further Properties of $\C$]
+    Let $z_1, z_2 \in \C$. Then
+    \begin{enumerate}
+        \item If $z_1, z_2 \neq 0$, then $z_1 z_2 \neq 0$
+        \item $z_1 - z_2 \coloneq z_1 + (-z_2) = (x_1 - x_2) + i (y_1 - y_2)$
+        \item $\displaystyle\frac{z_1}{z_2} \coloneq z_1 z_2^{-1} = \frac{z_1 \overline{z}_2}{|z_2|^2}$
+    \end{enumerate}
+\end{theorem}
+
+\subsection{Polar/Exponential Form}
+
+Since there is a natural connection between complex numbers and vectors in $\R^2$, it is natural to ask what representations of $\R^2$ would work as representations for $\C$. In the case of a vector in $\R^2$, it can be described as a Cartesian coordinate, or in polar form. For a vector $(x,y) \in \R^2$, its Cartesian coordinates can be encapsulated by a polar pair $(r, \theta)$ such that
+\begin{align*}
+    x &= r \cos \theta \\
+    y &= r \sin \theta
+\end{align*}
+
+Therefore if $z = x + iy$, it can be rewritten as
+\[
+    z = r \cos \theta + i r \sin \theta = r (\cos \theta + i \sin \theta) = r \cis \theta
+.\]
+\begin{remark}
+    If $z = r \cis \theta$, then $\conj{z} = r \cis(-\theta)$.
+\end{remark}
+
+Note however, that theta is not a unique value since adding $2 \pi k$ for $k \in \Z$ results in the same complex number.
+
+\begin{definition}[Argument]
+    The argument of $z \in \C$ is the set of all $\theta$ theta such that $z = r \cis \theta$. That is,
+    \[
+        \arg z \coloneq \qty{\theta \in \R : z = r \cis \theta}
+    .\]
+\end{definition}
+
+This set is guaranteed to be infinite, hence there is motivation to pick out a "preferred" value of $\theta$ as a representation of $z$.
+
+\begin{definition}[Principal Argument]
+    The principal argument of some $z \in \C$ is defined as the unique $\theta$ in $\arg z$ between $(-\pi, \pi]$. That is
+    \[
+        \Arg z \coloneq \text{Unique element in }\qty{\theta \in (-\pi, \pi] : z = r \cis \theta}
+    .\]
+    Note that $\arg z = \qty{\Arg z + 2 \pi k : k \in \Z}$.
+\end{definition}
+
+This polar form of complex numbers is also termed the exponential form because of the following theorem and corresponding representation.
+
+\begin{theorem}[Euler's Formula]
+    \label{thm:eulers}
+    Given some $\theta \in \R$, $e^{i \theta} = \cis \theta = \cos \theta + i \sin \theta$.
+\end{theorem}
+
+\begin{definition}[Exponential Form]
+    A complex number $z \in \C$ can be represented as $z = r e^{i \theta}$ where $r = |z|$ and $\theta \in \arg z$. The angle $\theta$ is generally taken to be $\Arg z$.
+\end{definition}
+
+\begin{example}
+    $e^{i \pi}$ corresponds to the complex number with polar representation $(1, \pi)$. Hence $e^{i \pi} = -1$.
+\end{example}
+
+\begin{example}
+    A circle of radius $R$ around some $z_0 \in \C$ can be represented as all points $z$ such that
+    \[
+        z = z_0 + Re^{i \theta}
+    .\]
+    for $\theta \in (-\pi, \pi]$.
+\end{example}
+
+\subsection{Products and Powers}
+
+A benefit to the polar/exponential form of a complex number is its simplicity as an algebraic object. Therefore it is often easier to do manipulations on a complex numbers polar representation compared to its Cartesian alternative.
+
+\begin{example}
+    Consider the product $z_1 z_2$. Let $z_1 = r_1 e^{i \theta_1}$ and $z_2 = r_2 e^{i \theta_2}$. Then
+    \begin{align*}
+        z_1 z_2 &= r_1 e^{i \theta_1} r_2 e^{i \theta_2} \\
+                &= r_1 r_2 \qty[(\cos \theta_1 + i \sin \theta_1)(\cos \theta_2 + i \sin \theta_2)] \\
+                &= r_1 r_2 \qty[(\cos \theta \cos \theta_2 - \sin \theta_1 \sin \theta_2) + i (\cos \theta_1 \sin \theta_2 + \sin \theta_1 \cos \theta_2)] \\
+                &= r_1 r_2 \qty[\cos(\theta_1 + \theta_2) + i \sin(\theta_1 + \theta_2)] \\
+                &= r_1 r_2 e^{i (\theta_1 + \theta_2)}
+    \end{align*}
+    Note that multiplication is therefore multiplying the lengths and adding the angles which is comparatively easier than Cartesian multiplication.
+    \begin{remark}
+        For $z_1, z_2 \in \C$ and $z_2 \neq 0$, $\displaystyle \frac{z_1}{z_2} = \frac{|z_1|}{|z_2|} e^{i (\Arg z_1 - \Arg z_2)} = \frac{r_1}{r_2} e^{i(\theta_1 - \theta_2)}$
+    \end{remark}
+\end{example}
+
+Exponentiation of complex numbers is also easier in polar form as
+\[
+    z^n = |z|^n e^{i n \theta}, n \geq 0
+.\]
+This can be extended to all integer powers by defining $z^{-n} \coloneq (z^{-1})^n$. Therefore $z^{-n} = (z^{-1})^n = (z^n)^{-1} = r^{-n} e^{-in \theta}$
+
+\begin{theorem}[De Moivre's Formula]
+    \label{thm:demoivre}
+    \[
+        (r \cos \theta + i r \sin \theta)^n = r^n \cos(n \theta) + r^n \sin(n \theta)
+    .\]
+\end{theorem}
+
+\begin{theorem}[Properties of Products and Powers]
+    \label{thm:propsproductsandpowers}
+    Let $z_1, z_2 \in \C$.
+    \begin{enumerate}
+        \item $z_1 z_2 = r_1 r_2 e^{i (\theta_1 + \theta_2)}$
+        \item $z_1^k = r_1^k e^{i k \theta_1}$ for all $k \in \Z$
+        \item $\dfrac{z_1}{z_2} = \dfrac{r_1}{r_2} e^{i(\theta_1 - \theta_2)}$
+        \item $\arg(z_1 z_2) = \arg(z_1) + \arg(z_2)$
+        \item $\arg\qty(\dfrac{z_1}{z_2}) = \arg(z_1) - \arg(z_2)$
+    \end{enumerate}
+\end{theorem}
+
+\subsection{Roots of Complex Numbers}
+\begin{center}
+    Given $z_0 \in \C$ with $z_0 \neq 0$, for $n = 0,1,2,\ldots$ which $z \in \C$ satisfy $z^n = z_0$. That is, what are the $n$th roots of $z_0$?
+\end{center}
+
+\begin{theorem}
+    For some $z_0 \in \C$, there are $n \in \N$ complex solutions to the equation $z^n = z_0$.
+\end{theorem}
+
+\begin{proof}
+    Let $z_0 = r_0 e^{i \theta_0}$ and $z = r e^{i \theta}$. Then
+    \[
+        z^n = z_0 \Leftrightarrow r^n e^{in \theta} = r_0^n e^{i \theta_0} \Leftrightarrow r^n = r_0, n \theta = \theta_0 + 2 \pi k, k \in \Z
+    .\]
+    Therefore
+    \[
+        r = \sqrt[n]{r_0}, \theta = \frac{\theta_0}{n} + \frac{2k \pi}{n}, k \in \N
+    .\]
+    Hence the $n$th roots of a complex number $z_0$ are of the form
+    \[
+        \sqrt[n]{r_0} \exp\qty(i\qty(\frac{\theta_0}{n} + \frac{2k \pi}{n}))
+    .\]
+    Note that when $k = n$, the solution wrap's back around and therefore there are no unique roots from $n$ onward. Furthermore, $\frac{\theta_0}{n} + \frac{2k \pi}{n} = \frac{\theta_0}{n} + \frac{2\pi (1-k)}{n}$ meaning the unique solutions are captured by $k = 0,\ldots, n-1$. Hence there are $n$ unique roots.
+
+    \begin{remark}
+        This multivalued root motivates defining $z_0^{\frac{1}{n}}$ as the set of all $z_0$'s $n$th roots. That is
+        \[
+            z_0^{\frac{1}{n}} \coloneq \qty{c_0, \ldots, c_{n-1}}
+        .\]
+        where $c_i$ is the $i$th solution to $z^n = z_0$.
+    \end{remark}
+\end{proof}
+
+\begin{definition}[Principal Root]
+    The principal $n$th root of $z_0 \in \C$ is defined as
+    \[
+        c_0 = \sqrt[n]{r_0} \exp\qty(i \frac{\Arg z_0}{n})
+    .\]
+    From the principal root, all other roots can be recovered using
+    \[
+        c_k = c_0 \exp\qty(i \frac{2k \pi}{n}), k = 1,\ldots, n-1
+    .\]
+\end{definition}
+
+The previous definition offers the object $\exp\qty(i \frac{2k \pi}{n})$, which is independent of the complex number $z_0$. Furthermore, they can be interpreted as the $n$th roots of $1$. These objects are useful enough to be defined
+
+\begin{definition}[Primitive Roots]
+    The primitive $n$th roots are the $n$th roots of $1$. That is
+    \[
+        \omega_k = \exp\qty(i \frac{2 k \pi}{n})
+    .\]
+\end{definition}
+
+\newpage
+\subsection{To Be Filed}
+
+\begin{theorem}
+    Let $p(z) = a_n z^n + a_{n-1} z^{n-1} + \ldots + a_1 z + a_0$ with $a_i \in C$ and $a_n \neq 0$. There is a $R > 0$ such that
+    \[
+        \qty|\frac{1}{p(z)}| \leq \frac{2}{|a_n| R^n}
+    \]
+    for $|z| > R$.
+\end{theorem}
+\begin{proof}
+    Let $w(z) = \frac{a_0}{z^n} + \frac{a_1}{z^{n-1}} + \ldots + \frac{a_{n-1}}{z} = \frac{p(z)}{z^n} - a_n$. Therefore $p(z) = (a_n + w(z)) z^n$ for $z \neq 0$. Then
+    \begin{align*}
+        w(z) z^n &= a_0 + a_1 z + \ldots + a_{n-1} z^{n-1} \\
+        |w(z) z^n| &= |a_0 + a_1 z + \ldots + a_{n-1} z^{n-1}| \\
+        |w(z)| |z|^n &\leq |a_0| + |a_1||z| + \ldots + |a_{n-1}| |z^{n-1}| \\
+        |w(z)| &\leq \frac{|a_0|}{|z|^n} + \frac{|a_1|}{|z|^{n-1}} + \ldots + \frac{|a_{n-1}|}{|z|}
+    \end{align*}
+    Since the quantities $\frac{1}{|z|^k}$ get arbitrarily small for large $|z|$ and any positive integer $k$, take $R$ to be large enough such that for $|z| > R$
+    \[
+        \frac{|a_0|}{|z|^n}, \frac{|a_1|}{|z|^{n-1}}, \ldots, \frac{|a_{n-1}|}{|z|} < \frac{|a_n|}{2n} \tag{Not a sum}
+    .\]
+    Therefore 
+    \[
+        |w(z)| < n \cdot \frac{|a_n|}{2n} = \frac{|a_n|}{2}
+    .\]
+    Since $|p(z)| = |a_n + w(z)||z|^n$, for $|z| > R$
+    \begin{align*}
+        |p(z)| &= |a_n + w(z)||z|^n \\
+               &\geq ||a_n| - |w(z)|| |z|^n \\
+               &> \frac{|a_n|}{2} |z|^n \tag{$\star$} \\
+               &> \frac{|a_n|}{2} R^n
+    \end{align*}
+    The reason $(\star)$ is true is that the distance between $|a_n|$ and $|w(z)|$ is at least $\frac{|a_n|}{2}$ because $|w(z)|$ is less than $\frac{|a_n|}{2}$. Therefore
+    \[
+        \qty|\frac{1}{p(z)}| \leq \frac{2}{|a_n| R^n}
+    .\]
+    Hence the original proposition holds.
+\end{proof}
+
+\end{document}

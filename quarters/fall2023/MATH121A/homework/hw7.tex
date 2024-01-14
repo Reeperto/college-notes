@@ -1,0 +1,157 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{7}
+\input{hw_preamble.tex}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+% Section 4.2: 1, 4, 7, 25, 30.
+% Section 4.3. 1, 4, 10, 17.
+
+\begin{document}
+
+\subsection*{4.2.1}
+\begin{enumerate}[label=\alph*)]
+    \item False
+    \item True
+    \item True
+    \item True
+    \item False
+    \item False
+    \item False
+    \item True
+\end{enumerate}
+
+\subsection*{4.2.4}
+\[
+    k = 
+    \underbrace{(-1)}_{-R_1}
+    \times\underbrace{(2)}_{R_1 \to R_1 + R_2 + R_2}
+    \times\underbrace{(1)}_{R_2 -> R_2 - R_1}
+    \times\underbrace{(1)}_{R_3 -> R_3 - R_1}
+    \times\underbrace{(-1)}_{R_3 \leftrightarrow R_2}
+    = 2
+.\]
+
+\subsection*{4.2.7}
+\[
+    \det A = 1\cdot \mqty|
+        1 & 2 \\
+        3 & 0
+    | + 0 + 3 \cdot \mqty|
+        0 & 1 \\
+        2 & 3
+    | = -6 + 3 (-2) = -12
+.\]
+
+\subsection*{4.2.25}
+\begin{proof}
+    Let $A \in M_{n\times n}(\mathbb{F})$. Note that $kA$ is the same as multiplying every row of $A$ by $k$. Therefore since there are $n$ rows in $A$,
+    \[
+        \det (kA) = k^n \det A
+    .\]
+\end{proof}
+
+\subsection*{4.2.30}
+By swapping the $i$th row with the $n + 1 - i$ row for $i = 1,2,\ldots, \left\lfloor \frac{n}{2} \right\rfloor$, it follows that
+\[
+    \det B = (-1)^{\left\lfloor \frac{n}{2} \right\rfloor} \det A
+.\]
+
+\subsection*{4.3.1}
+\begin{enumerate}[label=\alph*)]
+    \item False
+    \item True
+    \item False
+    \item True
+    \item False
+    \item True
+    \item True
+    \item False
+    \item False
+\end{enumerate}
+
+\subsection*{4.3.4}
+\[
+    A = \mqty(
+        2 & 1  & -3 \\
+        1 & -2 & 1 \\
+        3 & 4  & -2
+    ), \det A = \mqty|
+        2 & 1  & -3 \\
+        1 & -2 & 1 \\
+        0 & 5  & 0
+    | = -5(2 + 3) = -25
+.\]
+
+\begin{align*}
+    x_1 &= -\frac{1}{25} \mqty|
+        1  & 1  & -3 \\
+        0  & -2 & 1 \\
+        -5 & 4  & -2
+    | = -\frac{1}{25}\qty(
+    \mqty|
+        -2 & 1 \\
+        4 & -2
+    | - 5 \mqty|
+        1 & -3 \\
+        -2 & 1
+    |
+    ) = -1 \\
+    x_2 &= -\frac{1}{25} \mqty|
+        2 & 1  & -3 \\
+        1 & 0 & 1 \\
+        3 & -5  & -2
+    | = -\frac{1}{25} \mqty|
+        2 & 1  & -3 \\
+        1 & 0 & 1 \\
+        0 & -6  & 0
+    | = -\frac{1}{25} \qty(
+    6 \cdot \mqty|
+        2 & -3 \\
+        1 & 1
+    |
+    ) = -\frac{6}{5} \\
+    x_3 &= -\frac{1}{25} \mqty|
+        2 & 1  & 1 \\
+        1 & -2 & 0 \\
+        3 & 4  & -5
+    | = -\frac{1}{25} \mqty|
+        2 & 1  & 1 \\
+        1 & -2 & 0 \\
+        0 & 35  & 0
+    | = -\frac{1}{25} \mqty|
+        1 & -2 \\
+        0 & 35
+    | = -\frac{7}{5}
+\end{align*}
+
+\subsection*{4.3.10}
+\begin{proof}
+    Let $A \in M_{n \times n}(\mathbb{F})$ and assume that $A$ is nilpotent. That is $\exists k \in \mathbb{Z}$ such that $A^k = O$. Note then that
+    \[
+        (\det A)^k = \det \qty(A^k) = 0 \implies \det A = 0
+    .\]
+    Therefore any nilpotent matrix has a zero determinant.
+\end{proof}
+
+\subsection*{4.3.17}
+\begin{proof}
+    Let $A, B \in M_{n \times n}(\mathbb{F})$ where $AB = -AB$. Assume that $n$ is odd and that $\mathbb{F}$ has characteristic not equal to $2$. Then
+    \begin{align*}
+        \det(AB) &= \det(-BA) \\
+        \det(A)\det(B) &= (-1)^n\det(B)\det(A) \\
+        (1 - (-1)^n)\det(A)\det(B) &= 0 \\
+        (1 + 1)\det(A)\det(B) &= 0
+    \end{align*}
+    Since $\mathbb{F}$ doesn't have characteristic 2, $1 + 1 \neq 0$ so either $A$ or $B$ must a zero determinant and hence $A$ or $B$ are not invertible.
+\end{proof}
+
+
+\end{document}

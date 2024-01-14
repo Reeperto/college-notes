@@ -1,0 +1,113 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{7}
+\input{hw_preamble.tex}
+
+% 14.1a, 14.1b, 14.1e, 14.1f, 14.4, 14.5, 14.6, 14.9, 14.10
+
+\begin{document}
+
+\subsection*{14.1}
+\subsubsection*{Part A}
+The series converges by the ratio test since
+\[
+    \qty|\frac{a_{n+1}}{a_n}| = \frac{(n+1)^4}{2^{n+1}} \cdot \frac{2^n}{n^4} = \frac{1}{2} \qty(1 + \frac{1}{n})^4 \xrightarrow{n \to \infty} \frac{1}{2} < 1
+.\]
+
+\subsubsection*{Part B}
+The series converges by the ratio test since
+\[
+    \qty|\frac{a_{n+1}}{a_n}| = \frac{2^{n+1}}{(n+1)!} \cdot \frac{n!}{2^n} = 2 \cdot \frac{1}{n+1} \xrightarrow{n \to \infty} 0 < 1
+.\]
+
+\subsubsection*{Part E}
+Since
+\[
+    0 \leq \sum_{n \geq 1} \frac{\cos^2(n)}{n^2} \leq \sum_{n \geq 1} \frac{1}{n^2}
+\]
+the partial sums are increasing and bounded meaning the series converges.
+
+\subsubsection*{Part F}
+Since $\ln(n) < n$ for $n \geq 1$,
+\[
+    \frac{1}{\ln(n)} > \frac{1}{n}, \forall n \implies \sum_{n \geq 1} \frac{1}{n} < \sum_{n>= 1} \frac{1}{\ln(n)}
+.\]
+Therefore the series diverges.
+
+\subsection*{14.4}
+\subsubsection*{Part A}
+Since
+\[
+    n - 2 < n + (-1)^n \implies \frac{1}{(n + (-1)^n)^2} < \frac{1}{(n-2)^2}
+\]
+and the series
+\[
+    \sum_{n \geq 3} \frac{1}{(n-2)^2}
+\]
+converges, the series converges by the comparison test.
+
+\subsubsection*{Part B}
+Since
+\begin{align*}
+    a_n = \qty(\sqrt{n+1} - \sqrt{n}) \cdot \frac{\sqrt{n+1} + \sqrt{n}}{\sqrt{n+1} + \sqrt{n}} &= \frac{1}{\sqrt{n+1} + \sqrt{n}} \\
+    &> \frac{1}{\sqrt{n+1} + \sqrt{n+1}} \\
+    &> \frac{1}{2} \cdot \frac{1}{\sqrt{n+1}} \\
+    & > \frac{1}{2\sqrt{2}} \cdot \frac{1}{\sqrt{n}}
+\end{align*}
+and $\frac{1}{\sqrt{n}}$ diverges, the series diverges.
+
+\subsubsection*{Part C}
+By the ratio test,
+\begin{align*}
+    \qty|\frac{a_{n+1}}{a_n}| &= \frac{(n+1)!}{(n+1)^{n+1}} \cdot \frac{n^n}{n!} \\
+                              &= (n+1) \cdot \frac{n^n}{(n+1)^{n+1}} \\
+                              &= \frac{n^n}{(n+1)^n} \\
+                              &= \frac{1}{\qty(1 + \frac{1}{n})^n} \xrightarrow{n \to \infty} \frac{1}{e} < 1
+\end{align*}
+Therefore the series converges.
+
+\subsection*{14.5}
+\subsubsection*{Part A}
+\begin{proof}
+    Let $A_n = \sum_{k = m}^n a_n$ and $B_n = \sum_{k = m}^n b_n$ be the partial sums for $a_{n}$ and $b_{n}$. Both series converge meaing $\lim A_n = A$ and $\lim B_n = B$. Note that then $\lim(A_n + B_n) = \lim \sum_{k = m}^n a_n + b_n = A + B$ by the limit theorems.
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    Let $A_n = \sum_{k = m}^n a_n$ with $\lim A_n = A$. Note that $\lim k \cdot A_n = \sum_{k = m}^n k a_n = k \cdot \lim A_n = kA$.
+\end{proof}
+
+\subsubsection*{Part C}
+It is not reasoanble since the product of single terms in the sequence will not act the same as the product of a bunch of terms added together.
+
+\subsection*{14.6}
+\subsubsection*{Part A}
+\begin{proof}
+    Let $(a_n)$ and $(b_n)$ be sequences where $\sum |a_n|$ converges and $(b_n)$ is bounded. Since $(b_n)$ is bounded, $\exists M \in \mathbb{R}$ such that $|b_n| < M$ for all $n$. By the previous results, $\sum M|a_n|$ is also a convergent series. Therefore since $|a_n b_n| < M|a_n|$ for all $n$, by the comparison test $\sum a_n b_n$ is convergent.
+\end{proof}
+
+\subsubsection*{Part B}
+By choosing $b_n = 1$ for all $n$, it follows that $\sum |a_n|$ implies that $\sum a_n$ converges and hence the corollary is a special case of the previous theorem.
+
+\subsection*{14.9}
+\begin{proof}
+    Let $\sum a_n$ and $\sum b_n$ be series and assume that the set $\qty{a_n \neq b_n : n \in \mathbb{N}}$ is finite. Since the set is finite, choose $N \in \mathbb{N}$ such that $a_n = b_n$ for all $n \geq N$. Let $A_n = \sum_{k = N}^n$ and $B_n = \sum_{k = N}^n$. Since the partial sums are terms $n \geq N$, $A_n = B_n$ for all $n \geq N$. Therefore in the limiting case of their partial sums, if one series converges the other converges to the same value, and if the other series diverges then so does the other.
+\end{proof}
+
+\subsection*{14.10}
+Choose
+\[
+    a_n = \qty(2+(-1)^n)^n
+.\]
+Since $\limsup |a_n|^\frac{1}{n} = 3 > 1$, the series diverges by the root test. However
+\begin{align*}
+    \qty|\frac{a_{n+1}}{a_n}| = \frac{(2+(-1)^{n+1})^{n+1}}{(2+(-1)^n)^n}
+\end{align*}
+which for odd $n$ reveals that
+\[
+    \limsup \qty|\frac{a_{n+1}}{a_n}| = +\infty
+\]
+and hence the ratio test is inconculusive.
+
+\end{document}

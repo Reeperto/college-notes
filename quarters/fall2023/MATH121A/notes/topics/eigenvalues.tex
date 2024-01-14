@@ -1,0 +1,26 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+
+\banner{Eigenvalues and Eigenvectors}
+
+\subsection{Eigenvalues}
+
+\begin{definition}[Eigenvalue]
+    Let $A \in M_{n\times n}(\mathbb{F})$. Then $\lambda \in \mathbb{F}$ is an eigenvalue iff there is $v \in \mathbb{F}^n \setminus \qty{0}$ such that
+    \[
+        Av = \lambda v \Leftrightarrow \det(\lambda I_n - A) = 0
+    .\]
+\end{definition}
+
+\begin{definition}[Characteristic Polynomial]
+    The characteristic polynomial of $A \in M_{n\times n}(\mathbb{F})$ is
+    \[
+        P_A(t) = \det(t I_n - A) = t^n + a_1 t^{n-1} + \ldots + a_n
+    .\]
+\end{definition}
+
+\end{document}

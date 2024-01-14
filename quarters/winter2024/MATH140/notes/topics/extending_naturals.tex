@@ -1,0 +1,192 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+\begin{document}
+
+\banner{Extending the Naturals}
+
+\subsection{Rational Numbers}
+
+\begin{definition}
+	The rational numbers is the set of numbers of the form $\frac{p}{q}$ where $p \in \mathbb{Z}$ and $q \in \mathbb{N}$.
+\end{definition}
+
+Rational numbers are the first number system that provides a nice comprehensive structure. Multiplication, division, addition, and subtraction are all closed operations making it a strong number system.
+
+\begin{theorem}[Rational Root Theorem]
+	Let $c_0, c_1, \ldots, c_{n} \in \mathbb{Z}$. If $r$ solves $c_{n} x^n + c_{n-1} x^{n-1} + \ldots + c_1 x + c_0 = 0$, $c_{n} \neq 0 \neq c_1$ and $r = \frac{p}{q}$ where $p$ and $q$ are coprime
+	\[
+		p \vert c_0, \;\; q \vert c_{n}
+	\]
+\end{theorem}
+\begin{proof}
+	Let $r$ be a rational solution to the polynomial equation $c_{n} x^n + c_{n-1} x^{n-1} + \ldots + c_1 x + c_0 = 0$. Since $r \in \mathbb{Q}$, $r = \frac{p}{q}$ where $p \in \mathbb{Z}$ and $q \in \mathbb{N}$. Then
+	\begin{align*}
+		c_{n} \qty(\frac{p}{q})^n + c_{n-1} \qty(\frac{p}{q})^{n-1} + \ldots + c_1 \qty(\frac{p}{q}) + c_0 &= 0 \\
+		c_{n} p^n + c_{n-1} qp^{n-1} + \ldots + c_1 q^{n-1}p + c_0 q^n &= 0 \\
+		-c_{n} p^n - c_{n-1} qp^{n-1} - \ldots - c_1 q^{n-1}p &= c_0 q^n \\
+		-p \qty[c_{n} p^{n-1} - c_{n-1} qp^{n-2} - \ldots - c_1 q^{n-1}] &= c_0 q^n
+	\end{align*}
+	Therefore $p \vert c_0 q^n$. Since $p$ and $q$ are coprime, $p$ must divide $c_0$. By solving for $c_{n} p^n$ instead, it follows that $q$ divides $c_{n}$.
+\end{proof}
+
+While rationals are quite nice, there are many equations that have solutions that cannot be represented by a rational number.
+
+\begin{example}[$\sqrt{2}$]
+	Consider the equation $x^2 - 2$. Its solutions by the Rational Root Theorem must be an integer. However no integer satisfies the equation and therefore there is no rational root for $x^2-2$.
+\end{example}
+
+\subsection{Algebraic Numbers}
+
+\begin{definition}[Algebraic Number]
+	A number is called algebraic if it is the root of an integer coeffecient polynomial. That is, it is a solution to
+	\[
+		c_{n} x^n + c_{n-1} x^{n-1} + \ldots + c_1 x + c_0 = 0
+	\]
+	where $c_i \in \mathbb{Z}, c_i \neq 0$ and $n \geq 1$.
+\end{definition}
+
+Many numbers that are used day to day are algebraic. It follows clearly that all integers are algebraic and all rationals are algebraic. Other numbers such as the $\sqrt{2}$ are algebraic. Even the number $\sqrt{2 + \sqrt[3]{5}}$ is algebraic. However, there are infinitely many other numbers that are not algebraic such as $\pi$ and $e$.
+
+\subsection*{Real Numbers}
+
+As seen above, both the rationals and algebraic numbers can be very useful but fail to encapsulate important types of numbers. That is, both $\mathbb{Q}$ and the algebraic numbers have gaps in them, that is the irrationals for $\mathbb{Q}$ and transcendtals for algebraic numbers.
+\subsubsection{Ordering Structure}
+\begin{definition}[Ordered Field]
+	We say a field with a relation $(\mathbb{F}, +, \cdot, \leq)$ is an ordered field if it satisfies the following properties:
+	\begin{enumerate}
+		\item $p \leq q$ or $q \leq p$ for all $p,q \in \mathbb{F}$
+		\item $p \leq q$ and $q \leq p \implies p = q$ 
+		\item $p \leq q$ and $q \leq r \implies p \leq r$
+		\item $p \leq q \implies p + r \leq q + r$ 
+		\item $p \leq q \implies pr \leq qr$ for all $r \in \mathbb{F} \geq 0$ 
+	\end{enumerate}
+\end{definition}
+
+Certain properties are derivable from the properties and ordering of $\mathbb{R}$.
+\begin{theorem}[Properties of $\mathbb{R}$]
+	\label{thm:propsreals}
+	For all $p,q,r \in \mathbb{R}$
+	\begin{enumerate}
+		\item $p + r = q + r \implies p = q$
+		\item $p \cdot 0 = 0 = 0 \cdot p$
+		\item $(-p)q = -(pq)$
+		\item $(-p)(-q) = pq$
+		\item $pr = qr \implies p = q$ if $r \neq 0$
+		\item $pq = 0 \implies p=0$ or $q = 0$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	Let $p, q, r \in \mathbb{R}$ for the following.
+	\begin{enumerate}
+		\item[(1)] 
+			Assume that $p + r = q + r$. Since additive inverses exist, $p + r + (-r) = q + r + (-r)$. By associativity, $p + (r + (-r)) = q + (r + (-r))$. By definition of inverses, $p + 0 = q + 0$. By the additive identity, $p = q$.
+		\item[(2)]
+			Examine $p \cdot 0$. Note that $p \cdot 0 = p \cdot (0 + 0)$. By distribution, $p \cdot 0 + p \cdot 0 = p \cdot 0$. This means that $p \cdot 0$ does not change when added to itself, which is by definition the additive identity. Therefore $p \cdot 0 = 0$.
+		\item[(3)]
+			Consider the expression $pq + (-p)q$. By distributivity, $pq + (-p)q = (p + (-p))q$. By inverses, $pq + (-p)q = 0 \cdot q = 0$. Therefore $-pq = (-p)q$.
+		\item[(4)] To be completed
+		\item[(5)] To be completed
+		\item[(6)] Assume that $pq = 0$. WLOG, let $q \neq 0$. Since multiplicative inverses exist, $0 = q^{-1} \cdot 0 = 0 \cdot q^{-1} = pqq^{-1} = p(qq^{-1}) = p$. Therefore $p = 0$. 
+	\end{enumerate}
+\end{proof}
+
+When considering the ordered field of the reals, more properties are derivable.
+
+\begin{theorem}[Properties of Ordered Reals]
+	\label{thm:propsorderedreals}
+	Let $p,q,r \in \mathbb{R}$
+	\begin{enumerate}
+		\item $p \leq q \implies -q \leq -p$
+		\item $p \leq q, r \leq 0 \implies qr \leq pr$
+		\item $p \geq 0, q\geq 0 \implies pq \geq 0$
+		\item $p^2 \geq 0$
+		\item $0 < 1$
+		\item $p > 0 \implies p^{-1} > 0$
+		\item $0 < p < q \implies 0 < q^{-1} < p^{-1}$
+	\end{enumerate}
+
+	\begin{remark}
+		$p < q$ is defined as $p \leq q$ and $p \neq q$.
+	\end{remark}
+\end{theorem}
+
+\begin{proof}
+	Let $p,q,r \in \mathbb{R}$
+	\begin{enumerate}
+		\item[(1)]
+			Assume that $p \leq q$. Let $r = (-p) + (-q)$. Since adding a number to both sides of a inequality preserves it, $p + r \leq q + r$. Then $p + (-p) + (-q) \leq q + (-p) + (-q)$. By commutativity and associativity, $(p + (-p)) + (-q) \leq (q + (-q)) + (-p)$. By inverses and additive identity, $-q \leq -p$.
+		\item[(2)]
+			Assume that $p \leq q$ and that $r \leq 0$. By (1), $-r \leq 0$. Therefore, $p(-r) \leq q(-r)$ hence $-pr \leq -qr$. By (1), $qr \leq pr$.
+		\item[(3)] To complete
+		\item[(4)]
+			By the properties of an ordered field, $p \leq 0$ or $p \geq 0$. If $p \geq 0$, then by (3), $p^2 = p\cdot p \geq 0$. If $p \leq 0$, then $-p \geq 0$. By \ref{thm:propsorderedreals}.4, $p^2 = (-p)(-p) \geq 0$ by the first case.
+		\item[(5)] To complete
+		\item[(6)]
+			Assume towards contradiction that $p > 0$ and $p^{-1} \leq 0$. By (1), $-p^{-1} \geq 0$. Since $p$ and $-p^{-1}$ are non-negative, $p (-p^{-1}) \geq 0$. This means that $-1 \geq 0$ or equivalently $1 \leq 0$. By (5), this is a contradiction.
+	\end{enumerate}
+\end{proof}
+
+\subsubsection{Absolute Value}
+
+\begin{definition}[Absolute Value]
+	Let $p, q \in \mathbb{R}$.
+	\[
+		|p| := \begin{cases}
+			p & p \geq 0 \\
+			-p & p \leq 0
+		\end{cases}
+	\]
+	Additionally, define the distance between two reals as
+	\[
+		\operatorname{dist}(p,q) = | p - q |
+	\]
+\end{definition}
+
+\begin{theorem}[Properties of Absolute Value]
+	\label{thm:propsabsvalue}
+	Let $p,q \in \mathbb{R}$.
+	\begin{enumerate}
+		\item $|p| \geq 0$
+		\item $|pq| = |p||q|$
+		\item \label{itm:triangle_inequality} $|p + q| \leq |p| + |q|$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	Let $p,q \in \mathbb{R}$.
+	\begin{enumerate}
+		\item[(1)]
+			If $p \geq 0$, then $|p| \geq 0$. If $p \leq 0$, then $|p| \geq 0$. Therefore $|p| \geq 0$ for all $p$.
+		\item[(2)]
+			If $p \geq 0, q \geq 0$. Then $|pq| = pq = |p||q|$. If $p \leq 0, q \leq 0$, then $-p \geq 0, -q \geq 0$ and $|p||q| = (-p)(-q) = pq = |pq|$.
+		\item[(3)]
+			Note that $-|p| \leq p \leq |p|$. This is because $p$ either is $|p|$ or $|p| = -p$ meaning $p = -|p|$. Same is true for $q$. Therefore
+			\begin{align*}
+				-|p| + (-|q|) \leq -|p| + q &\leq p + q \leq |p| + q \leq |p| + |q| \\
+				-(|p| + |q|) &\leq p + q \leq |p| + |q|
+			\end{align*}
+			The derived inequality shows that $p+q \leq |p| + |q|$ and $-(p+q) \leq |p| + |q|$. Since $|p + q|$ is either $p + q$ or $-(p+q)$, $|p+q| \leq |p| + |q|$.
+	\end{enumerate}
+\end{proof}
+
+\begin{corollary}[Distance Triangle Inequality]
+	\[
+		\operatorname{dist}(p, r) \leq \operatorname{dist}(p, q) + \operatorname{dist}(q,r)
+	\]
+\end{corollary}
+
+% \begin{proof}
+% 	Consider $\abs| p - q + q - r|$. By the triangle inequality,
+% 	% \begin{align*}
+% 	% 	\abs| p - q + q - r| &\leq \abs|p-q| + \abs|q-r| \\
+% 	% 	\abs| p - r| &\leq \abs|p-q| + \abs|q-r| \\
+% 	% 	\operatorname{dist}(p, r) &\leq \operatorname{dist}(p, q) + \operatorname{dist}(q,r)
+% 	% \end{align*}
+% \end{proof}
+
+\ref{thm:propsabsvalue}.\ref{itm:triangle_inequality} is an important property of the absolute value, usually referred to as the \textit{triangle inequality}. 
+
+\end{document}

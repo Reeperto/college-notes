@@ -1,0 +1,24 @@
+## Things to know
+- Induction
+- The structure of the reals
+    - Ordering and absolute value
+- Existence of irrational numbers
+- Completeness
+    - Lower and Upper bound
+    - Infimum and Supremum
+    - Archimedean Property
+- Sequences in R
+    - Convergence
+        - Limits and Properties of Limits
+    - Boundedness
+    - Limit Theorems
+    - Monotonicity
+        - Increasing and Decreasing
+        - Bounded monotonicity implies convergence
+    - Liminf and Limsup
+        - Relation to limit
+    - Cauchy sequences
+    - Subsequences
+        - Subsequential limits
+        - Bolzano-Weistrass Theorem
+        - Set of Subsequential Limits

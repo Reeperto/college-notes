@@ -1,0 +1,539 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+\banner{Sequences}
+
+\subsection{Limits of Sequences}
+\begin{definition}[Sequence]
+	A sequence is a mapping $s : \mathbb{N}_{\geq m} \to \mathbb{R}$ where $m$ is typically $0$ or $1$. Alternatively, a sequence cant be thought of as an infinite tuple
+	\[
+		s = (s_m, s_{m+1}, s_{m+2}, \ldots)
+	\]
+	Define the image of a sequence as $S(\mathbb{N}_{\geq m}) := \qty{s_n : n \geq m}$
+\end{definition}
+
+\begin{example}
+	Consider $(s_n)_{n \in \mathbb{N}}$ given by $s_n = \frac{(-1)^n}{n^3}$. It is a sequence with $m = 1$ and looks like $(-1, \frac{1}{8}, -\frac{1}{27}, \ldots)$.
+\end{example}
+
+\begin{example}
+	Consider $(s_n)_{n \in \mathbb{N}_0} = (-1)^n$ which is the sequence $(1, -1, 1, -1, 1, \ldots)$. Note that the image $S(\mathbb{N}_0) = \qty{-1, 1}$
+\end{example}
+
+\begin{example}
+	Consider $(s_n)_{n \in \mathbb{N}_0} = \qty(1+\frac{1}{n})^n$ which gives a sequence of real numbers that 'appears' to get closer $e$ as $n$ grows large, as seen by the fact that $s_{1,000,000} = 2.718280469319377$.
+\end{example}
+
+\subsubsection{Convergence of a Sequence}
+
+\begin{definition}[Sequence Convergence]
+	A sequence $(s_n)_{n\in \mathbb{N}_0}$ is said to converge to $s_0 \in \mathbb{R}$ if 
+	\[
+		\forall \epsilon > 0, \exists N \in \mathbb{N} \text{ s.t. } \qty|s_n - s| < \epsilon, \forall n > N
+	\]
+	Pictorially, we are creating a neighborhood of $2 \epsilon$ around $s_0$. And if the sequence converges, there is an eventual $s_N$ such that every subsequent number is within the neighbor hood around $s_0$.
+	\begin{center}
+		\begin{tikzpicture}[scale=2]
+			\draw (-1,0) -- (1,0);
+		\end{tikzpicture}
+	\end{center}
+\end{definition}
+
+\begin{example}
+	Consider $s_n = \frac{1}{n}$. Take $\epsilon > 0$. Note that $|s_n - 0| = \frac{1}{n} < \epsilon$ by the archimedean property. It is clearer if it is rewritten as $1 < n \epsilon$.
+\end{example}
+
+\begin{example}
+	Consider $s_n = (-1)^n, n \in \mathbb{N}$. Take $e > 0$. % TODO
+\end{example}
+
+\begin{example}
+	Consider $s_n = \frac{3n +1}{7n-4}, n \in \mathbb{N}$. A good guess for the limit is $\frac{3}{7}$ since the $3n$ and $7n$ terms 'dominate' as $n \to \infty$. Take $\epsilon > 0$. Then
+	\begin{align*}
+		\qty|\frac{3n+1}{7n-1} - \frac{3}{7}| &= \qty| \frac{21n + 7 - 21n + 12}{7(7n-4)} | \\
+											  &= \qty| \frac{19}{7} \cdot \frac{1}{7n-4} | \\
+											  &= \frac{19}{7} \cdot \frac{1}{7n-4} \\
+											  &\leq \frac{19}{49} \cdot \frac{1}{n - 1}
+	\end{align*}
+	Since $\frac{1}{n-1} \to 0$ as $n \to \infty$. % TODO
+\end{example}
+
+\begin{example}
+	Consider $s_n = \sqrt[n]{n}, n \in \mathbb{N}$. Take $s_0 = 1$, and prove this much later.
+\end{example}
+
+\begin{theorem}[Uniqueness of Limits]
+	If a limit of a sequence exists, then it is unique.
+\end{theorem}
+
+\begin{proof}
+	Let $s_n$ be a sequence that converges to $s$ and $s'$ as $n \to \infty$. Then
+	\begin{align*}
+		\forall \epsilon > 0, \exists N \in \mathbb{N} \text{ s.t. } &\qty|s_n - s| < \frac{\epsilon}{2}, \forall n > N \\
+		\forall \epsilon > 0, \exists N \in \mathbb{N} \text{ s.t. } &\qty|s_n - s'| < \frac{\epsilon}{2}, \forall n > N \\
+	\end{align*}
+	Then
+	\begin{align*}
+		\qty|s - s'| &= \qty|s - s_n + s_n - s'| \\
+					 &\leq \qty|s_n - s| + \qty|s_n - s'| < \epsilon
+	\end{align*}
+	Therefore $0 \leq \qty|s - s'| < \epsilon$ for all $e > 0$, meaning $s = s'$.
+\end{proof}
+
+\begin{example}
+	Consider $\lim_{n\to \infty} \frac{1}{n^2}$. Let $s_0 = 0$.
+\end{example}
+
+\begin{example}
+	Consider $\lim_{n \to \infty} \frac{4n^3 + 3n}{n^3 - 6} \overset{?}{=} 4$. Take $\epsilon > 0$. Then
+	\begin{align*}
+		\qty|\frac{4n^3 + 3n}{n^3 - 6} - 4| &= \qty|\frac{4n^3 + 3n - 4n^3 + 24}{n^3 - 6}| \\
+											&= \frac{3n + 24}{\qty|n^3 - 6|} \\
+											\intertext{Note that $3n + 24 \leq 27n$ for all $n \in \mathbb{N}$ and $n^3 - 6 \geq \frac{n^3}{4}$ for $n \geq 2$.}
+											&\leq 4 \cdot \frac{27n}{n^3} \\
+											&= \frac{108}{n^2} < \epsilon
+	\end{align*}
+	Take $N \in \mathbb{N} \geq \sqrt{\frac{108}{\epsilon}}$. Then
+	\[
+		\qty|\frac{4n^3 + 3n}{n^3 - 6} - 4| \leq 108
+	\]
+\end{example}
+
+\begin{theorem}
+	Let $(s_n)_{n\in \mathbb{N}}$ be a sequence $s_n \geq 0$ for all $n$ and $s = \lim_{n\to \infty} s_n$. Then $\lim_{n\to \infty} \sqrt{s_n} = \sqrt{s}$
+\end{theorem}
+
+\begin{proof}
+	% Prove that $s$ is non negative
+	Consider $|\sqrt{s_n} - \sqrt{s}|$.
+	\begin{align*}
+		|\sqrt{s_n} - \sqrt{s}| &= \qty|\frac{(\sqrt{s_n} - \sqrt{s})(\sqrt{s_n} + \sqrt{s})}{\sqrt{s_n} + \sqrt{s}}| \\
+								&= \frac{\qty|s_n - s|}{\sqrt{s_n} - \sqrt{s}}
+	\end{align*}
+	If $s > 0$, then $\frac{1}{\sqrt{s_n} + \sqrt{s}} \leq \frac{1}{\sqrt{s}}$ meaning we would want $\frac{|s_n - s|}{\sqrt{s}} < \epsilon$ or equivalently $|s_n - s| < \epsilon\sqrt{s}$. If $s = 0$, we want $\sqrt{s_n} < \epsilon$ or $s_n < \epsilon^2$. Now, formally:
+
+
+\end{proof}
+
+\begin{theorem}
+	Let $(s_n)_{n\in \mathbb{N}}$ be convergent to $s \neq 0$ with $\forall n \in \mathbb{N}, s_n \neq 0$. Then $\inf\qty{|s_n| : n \in \mathbb{N}} > 0$.
+\end{theorem}
+
+\begin{proof}
+	The idea is that given a neighborhood around $s$, there is a finite amount of values of the sequence outside of it. By choosing a neighborhood size of $\frac{|s|}{2}$, 0 is avoided. Therefore proceed with the formal proof by letting $\epsilon = \frac{|s|}{2}$. Since $s_n$ converges and $\epsilon > 0$, there is an $N \in \mathbb{N}$ such that $|s_n - s| < \frac{|s|}{2}$ for all $n > N$. Note that
+	\[
+		||s_n| - |s|| \leq |s_n - s| < \frac{|s|}{2}, \forall n > N
+	\]
+	and that
+	\[
+		|s_n| \in \qty(s - \epsilon, s + \epsilon), \forall n > N
+	\]
+\end{proof}
+
+\begin{definition}[Bounded Series]
+	A series $(s_n)_{n\in \mathbb{N}}$ is bounded if the image is bounded. Equivalently, it is bounded if $\exists M \in \mathbb{R}$ such that $s_n \leq M$ for all $n \in \mathbb{N}$.
+\end{definition}
+
+\begin{theorem}[Convergence Implies Boundedness]
+	Let $(s_n)_{n\in \mathbb{N}}$ be a series that converges to $s$. Then the series is bounded.
+\end{theorem}
+
+\begin{proof}
+	Let $(s_n)_{n\in \mathbb{N}}$ be a series and assume it converges to $s$. Take $\epsilon = 1$ and find $N \in \mathbb{N}$ such that $|s_n - s| < 1$ for all $n > N$. Therefore $s_n$ and $s$ are at most $1$ apart, therefore $|s_n| \leq |s| + 1$. This provides an upper bound on $s_n$ for $n > N$. For $n \leq N$, construct the set $M = \qty{s_1, s_2, \ldots, s_N, |s| + 1}$. Then note that
+	\[
+		s_n \leq \max M < \infty, \forall n \in \mathbb{N} 
+	\]
+	Therefore the series is bounded.
+\end{proof}
+
+\begin{theorem}[Properties of Limits]
+	\label{thm:propsoflimits}
+	The following properties hold for all limits of sequences.
+	\begin{enumerate}[label=\alph*)]
+		\item $\lim_{n\to\infty} s_n = s, c \in \mathbb{R} \implies \lim_{n\to\infty} c\cdot s_n = c\lim_{n\to\infty} s_n$
+		\item $\lim_{n\to\infty} s_n = s, \lim_{n\to\infty} t_n = t \implies \lim_{n\to\infty} (s_n + t_n) = s + t$
+		\item $\lim_{n\to\infty} s_n = s, \lim_{n\to\infty} t_n = t \implies \lim_{n\to\infty} (s_n \cdot t_n) = st$
+		\item $\lim_{n\to\infty} s_n = s, s_n \neq 0 \forall n \in \mathbb{N}, s \neq 0 \implies \lim_{n\to\infty} \frac{1}{s_n} = \frac{1}{s}$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	Let $s_n$ and $t_n$ be sequences that converge to $s$ and $t$ respectively.
+	\begin{enumerate}[label=\alph*)]
+		\item TODO
+		\item 
+            Since both sequences are converges, they both admit $N_1, N_2 \in \mathbb{N}$ such that for an $\epsilon > 0$
+            \begin{align*}
+            |s_n - s| &< \frac{\epsilon}{2}, \forall n > N_1 \\
+            |t_n - t| &< \frac{\epsilon}{2}, \forall n > N_2
+            \end{align*}
+            Note then that 
+            \[
+            |(s_n - s) + (t_n - t)| \leq |s_n - s| + |t_n - t| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon, \forall n > \max\qty{N_1, N_2}
+            \]
+        \item
+        \item
+            Note that
+            \[
+                |s_n t_n - st| = |s_n(t_n - t) + (s_n - s)t| \leq |s_n| |t_n - t| + |t| |s_n - s|
+            \]
+            Since $s_n$ and $t_n$ converge, they are bounded. Therefore, take $\epsilon > 0$ and note
+            \begin{align*}
+                &\exists M > 0, |s_n| \leq M, |t_n| \leq M, \forall n \in \mathbb{N} \\
+                &\exists N_1, |s_n - s| < \frac{\epsilon}{2M}, \forall n > N_1 \\
+                &\exists N_2, |t_n - t| < \frac{\epsilon}{2M}, \forall n > N_2 \\
+            \end{align*}
+            Therefore 
+            \[
+                |s_n t_n - st| \leq M \cdot \frac{\epsilon}{2M} + M \cdot \frac{\epsilon}{2M} = \epsilon, \forall n > \max\qty{N_1, N_2}
+            \]
+        \item
+            Consider the target expression $\qty|\frac{1}{S_n} - \frac{1}{s}|$. This can be reformed into $\frac{1}{s_n \cdot s} \qty|s_n - s|$. Since $s_n \neq 0$ and $s \neq 0$, $|s_n|$ is bounded below by a positive number $m$ for all $n$. This also means that $s \geq m$. Therefore
+            \[
+                \qty|\frac{1}{s_n} - \frac{1}{s}| \leq \frac{1}{m^2} |s_n - s|
+            \]
+            Formally, take $\epsilon > 0$. Since $s_n$ converges, $\exists N \in \mathbb{N}$ such that
+            \[
+                |s_n - s| < \epsilon m^2, \forall n > N
+            \]
+            By the previous derivation,
+            \[
+                \qty|\frac{1}{s_n} - \frac{1}{s}| \leq \frac{m^2 \epsilon}{m^2} = \epsilon
+            \]
+            Hence $\frac{1}{s_n}$ converges to $\frac{1}{s}$.
+	\end{enumerate}
+\end{proof}
+
+\begin{example}[Example Limits]
+    The following are basic example limits.
+    \begin{enumerate}
+        \item $\lim_{n\to\infty} \frac{1}{n^p} = 0, \forall p > 0$
+        \item $\lim_{n\to\infty} r^n = 0, |r| < 1$
+        \item $\lim_{n\to\infty} \sqrt[n]{n} = 1$
+        \item $\lim_{n\to\infty} \sqrt[n]{r} = 1, r > 0$
+    \end{enumerate}
+\end{example}
+
+\begin{proof}
+    \begin{enumerate}
+        \item %----------------------------------------------------------------
+            Take $\epsilon > 0$ and $N > \sqrt[p]{\frac{1}{\epsilon}}$. Then $\frac{1}{n^p} < \epsilon$ for all $n > N$.
+        \item %----------------------------------------------------------------
+            If $r = 0$, then clearly $r^n$ is $0$ for all $n$. Consider then $r \neq 0$. If $|r| < 1$, then $\exists S$ such that $|r| = \frac{1}{1+S}$. Therefore $|r^n| = \frac{1}{(1+S)^n} \leq \frac{1}{1+Sn}$. Take $\epsilon > 0$ and $N > \frac{1}{S \epsilon}$. Then for all $n > N$, $|r^n| < \epsilon$.
+        \item %----------------------------------------------------------------
+            Let $s_n = \sqrt[n]{n} - 1 \geq 0$. Note that
+            \[
+                n = (1+ s_n)^n \geq \underbrace{1 + n s_n + \frac{1}{2} n (n-1) s_n^2}_{\text{truncated binomial theorem}} > \frac{1}{2} n(n-1) s_n^2
+            \]
+            Therefore $0 \leq s_n < \sqrt{\frac{2}{n-1}}$. Since $\lim_{n\to\infty} \sqrt{\frac{2}{n-1}} = 0$, by the squeeze theorem $\lim_{n\to\infty} s_n = 0$, meaning $\lim_{n\to\infty} \sqrt[n]{n} = 1$.
+        \item %----------------------------------------------------------------
+            Consider $r \geq 1$. Then there is always an $n \geq r$, meaning $1 \leq r \leq n$. Therefore $1 \leq r^{\frac{1}{n}} \leq n^{\frac{1}{n}} = 1$, hence $\lim_{n\to\infty} \sqrt[n]{r} = 1$. If $0 < r < 1$, then $\frac{1}{r} > 1$ meaning $\qty(\frac{1}{r})^n > 1$. % TODO
+    \end{enumerate}
+\end{proof}
+
+\begin{example}
+    Consider $\lim_{n\to\infty} \frac{n^3 + 6n^2 +7}{4n^3 + 3n - 4}$. This can be rewritten as $\frac{1 + \frac{6}{n} + \frac{7}{n^3}}{4 + \frac{3}{n^2} - \frac{4}{n^3}}$. Then
+    \[
+        \lim_{n\to\infty} \frac{n^3 + 6n^2 +7}{4n^3 + 3n - 4} = \lim_{n\to\infty} \frac{1 + \frac{6}{n} + \frac{7}{n^3}}{4 + \frac{3}{n^2} - \frac{4}{n^3}} = \frac{1 + 0 + 0}{4 + 0 + 0} = \frac{1}{4}
+    \]
+\end{example}
+\begin{example}
+    Consider $\lim_{n\to\infty} \frac{n-5}{n^2 + 7}$. This can be rewritten as $\frac{\frac{1}{n} - \frac{5}{n^2}}{1 + \frac{7}{n^2}}$. Then
+    \[
+        \lim_{n\to\infty} \frac{n-5}{n^2 + 7} = \lim_{n\to\infty} \frac{\frac{1}{n} - \frac{5}{n^2}}{1 + \frac{7}{n^2}} = \frac{0}{1} = 0
+    \]
+\end{example}
+
+\subsubsection{Unbounded Limits}
+\begin{definition}[Infinite Limit]
+    $\lim_{n\to\infty} s_n = \infty$ if $\forall M > 0, \exists N$ s.t. $s_n > M, \forall n > N$. Likewise, $\lim_{n\to\infty} s_n = -\infty$ if $\forall M \leq 0, \exists N$ s.t. $s_n < M, \forall n > N$.
+\end{definition}
+
+\begin{theorem}[Implication of Infinite Limits]
+    Let $s_n$ and $t_n$ be sequences.
+    \begin{enumerate}
+        \item If $\lim_{n\to\infty} s_n = \infty$ and $\lim_{n\to\infty} t_n > 0$, then $\lim_{n\to\infty} s_n t_n = \infty$.
+        \item $\lim_{n\to\infty} s_n = \infty \Leftrightarrow \lim_{n\to\infty} \frac{1}{s_n} = 0$
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    % TODO
+\end{proof}
+
+\begin{theorem}
+    If $(s_n)$ is unbounded and increasing, then $\lim_{n\to \infty} s_n = +\infty$.
+\end{theorem}
+\begin{proof}
+    Fix $M > 0$. Since $s_n$ is increasing, it must have a lower bound $s_1$ and therefore is unbounded above. Since it is unbounded, it is possible to find some $N$ such that $S_N > M$. Since $s$ is increasing, $s_n \geq s_N > M$ for all $n > N$. Therefore the limit is $+\infty$.
+\end{proof}
+
+\subsubsection{Limits of Supremum and Infimum}
+\begin{definition}[Limsup and Liminf]
+    Let $(s_n)_{n \in \mathbb{N}}$ be a real sequence. The statement
+    \[
+        \sup_{n \geq N} s_n
+    \]
+    Is the supremum of the tail of the sequence (since it only acts on terms greater than $N$). In the limiting case where $N \to \infty$, this can be written as
+    \[
+        \lim_{N \to \infty} \sup_{n \geq N} s_n = \limsup_{n\to\infty} s_n
+    \]
+    The same applies for the infimum
+    \[
+        \lim_{N \to \infty} \inf_{n \geq N} s_n = \liminf_{n\to\infty} s_n
+    \]
+\end{definition}
+\begin{remark}
+    If $(s_n)$ is not bounded above $\limsup_{n \to \infty} s_n = \infty$ and if it not bounded below then $\liminf_{n \to \infty} s_n = -\infty$
+\end{remark}
+
+\begin{theorem}
+    $\limsup_{n\to \infty} s_n \leq \sup\qty{s_n : n \in \mathbb{N}}$
+\end{theorem}
+
+\begin{theorem}
+    If $\liminf_{n \to \infty} s_n = +\infty$, then $\lim_{n \to \infty} s_n = +\infty$.
+\end{theorem}
+
+\begin{theorem}
+    Let $(s_n)_{n\in \mathbb{N}}$ be a real sequence. Then $\lim_{n \to \infty} s_n$ exists or equals $\pm \infty$ if and only if
+    \[
+        \limsup_{n\to \infty} s_n = \liminf_{n\to \infty} s_n = \lim_{n\to \infty} s_n
+    \]
+\end{theorem}
+\begin{proof}
+    Let $l_N = \inf_{n \geq N} s_n$ and $u_N = \sup_{n \geq N} s_n$. Let $l = \lim_{N\to \infty} l_N$ and $u = \lim_{N \to \infty} u_N$.
+    \begin{enumerate}
+        \item[$\Rightarrow)$]
+        Assume that $s_n$ converges. That is $s = \lim_{n\to \infty} s_n$. Consider the case where $s = \infty$. Then
+        \[
+            \forall M > 0, \exists N \in \mathbb{N} \text{ s.t. } s_n > M, \forall n > N
+        \]
+        This means that $l_m \geq l_N \geq M$ for all $m > N$. Therefore $l = \infty$. Since $u \geq l$, $u = \infty$. Consider the case where $s \in \mathbb{R}$. Then by definition of convergence
+        \[
+            \forall \epsilon > 0, \exists N \in \mathbb{N} \text{ s.t. } |s_n - s| < \epsilon, \forall n > N.
+        \]
+        Therefore $s_n < s + \epsilon$ for all $n > N$. Then $u_m \leq u_N \leq s + \epsilon$ for all $m > N$, meaning $u \leq s + \epsilon$. Since $\epsilon$ is arbitrary, it can be taken as $0$ and hence $u \leq s$. Returning back to the definition of convergence, it is true that $s_n > s - \epsilon$ for all $n > N$. By the same logic as above, $l \geq s - \epsilon$ and by choosing $\epsilon = 0$ it follows that $l \geq s$. Then overall
+        \[
+            s \leq l \leq u \leq s
+        \]
+        meaning $l = u$.
+        \item[$\Leftarrow)$]
+        % TODO: Cases where limsup = ∞ and when limsup = -∞
+        Consider the case where $\limsup s_n = \limsup s_n = s \in \mathbb{R}$. Then
+        \[
+            \forall \epsilon > 0, \exists M_1 \in \mathbb{N} \text{ s.t. } |s - u_N| < \epsilon, \forall N > M_1.
+        \]
+        This means that $\sup\qty{s_n : n > M_1} < s + \epsilon$. Therefore $s_n < s + \epsilon$ for all $n > M_1$. Considering the infimum,
+        \[
+            \forall \epsilon > 0, \exists M_2 \in \mathbb{N} \text{ s.t. } |s - l_N| < \epsilon, \forall N > M_2.
+        \]
+        This means that $\inf\qty{s_n : n > M_2} > s - \epsilon$ and therefore $s_n > s - \epsilon$ for all $n > M_2$. Therefore
+        \[
+            s - \epsilon < s_n < s + \epsilon, \forall n > \max\qty{M_1, M_2}
+        \]
+        meaning $s_n$ is convergent.
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}[Cauchy Sequence]
+    A sequence $(s_n)_{n\in \mathbb{N}}$ in $\mathbb{R}$ is a Cauchy Sequence if $\forall \epsilon > 0, \exists N \in \mathbb{N}$ such that $|s_n - s_m| < \epsilon$ for all $m,n > N$.
+\end{definition}
+\begin{theorem}[Properties of Cauchy Sequences]
+    \label{thm:cauchyproperties}
+    Let $(s_n)_{n\in \mathbb{N}}$ be a Cauchy sequence.
+    \begin{enumerate}
+        \item Convergent sequences are Cauchy sequences
+        \item $s_n$ is bounded
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Let $(s_n)_{n\in \mathbb{N}}$ be a sequence.
+    \begin{enumerate}
+        \item %----------------------------------------------------------------
+        Assume that $s_n$ is convergent. That is
+        \[
+            \forall \epsilon > 0, \exists N \in \mathbb{N} \text{ s.t. } |s_n - s| < \frac{\epsilon}{2}, \forall n > N
+        \]
+        Note that $|s_n - s_m| \leq |s_n - s| + |s - s_m| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$ for all $n, m > N$.
+        \item %----------------------------------------------------------------
+        Assume that $s_n$ is a Cauchy sequence. Choose $\epsilon = 1$. Then $\exists N \in \mathbb{N}$ such that $|s_n - s_m| < 1$ for all $m,n > N$. Choosing $m = N$, it follows that $|s_n| < |s_N| + 1$. This means that $|s_n| < \max\qty{|s_1|, |s_2|, \ldots, |s_N|, |s_N| + 1}$. Therefore $s_n$ is bounded.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    A sequence of real numbers converges if and only if it is Cauchy.
+\end{theorem}
+\begin{proof}
+    Let $s_n$ be a sequence of reals.
+    \begin{enumerate}
+        \item[$\Rightarrow)$] %------------------------------------------------
+        Assume that $s_n$ converges. By Theorem \ref{thm:cauchyproperties}, $s_n$ is Cauchy.
+        \item[$\Leftarrow)$] %------------------------------------------------
+        Assume that $s_n$ is Cauchy. By Theorem \ref{thm:cauchyproperties}, $s_n$ is bounded. Since $s_n$ is Cauchy, $\forall \epsilon > 0, \exists N \in \mathbb{N}$ such that $|s_n - s_m| < \epsilon$ for all $m,n > N$. This means that $s_n < s_m + \epsilon$ for all $m,n > N$.
+        % TODO: Finish the proof by looking at prof's notes
+    \end{enumerate}
+\end{proof}
+
+\subsection{Subsequences}
+
+\begin{definition}[Subsequence]
+    Let $(s_n)_{n\in \mathbb{N}}$ be a real sequence. If $(n_k)_{k \in \mathbb{N}}$ is a strictly increasing sequence of natural numbers, then $(s_{n_k})_{k\in \mathbb{N}}$ is a sub sequence.
+\end{definition}
+
+\begin{example}
+    Consider the sequence $s_n = n^2 (-1)^n$ with $n_k = 2k, k \in \mathbb{N}$. Substituting into $s_n$ results in the subsequence $s_{2k} = 4k^2$.
+\end{example}
+
+\begin{theorem}[Properties of Subsequences]
+    \label{thm:propssubsequences}
+    Let $(s_n)_{n\in \mathbb{N}}$ be a real sequence.
+    \begin{enumerate}
+        \item There exists a subsequence that converges to $t \in \mathbb{R}$ if and only if the set $\qty{n \in \mathbb{N} : |s_n - t| < \epsilon}$ is infinite for all $\epsilon > 0$
+        \item If $s_n$ is unbounded above, it has a subsequence with limit $+\infty$
+        \item If $s_n$ is unbounded below, it has a subsequence with limit $-\infty$
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Let $(s_n)_{n\in \mathbb{N}}$ be a real sequence.
+    \begin{enumerate}
+        \item
+        \begin{enumerate}
+            \item[$\Rightarrow)$] % TODO
+            \item[$\Leftarrow)$]
+                Assume that $\qty{n \in \mathbb{N} : |s_n - t| < \epsilon}$ for all $\epsilon$. Consider the set $N = \qty{n \in \mathbb{N} : s_n = t}$. If it is infinite, it gives rise to a subsequence of the indices of $N$ such that 
+
+                Consider when $N$ is then finite. Let
+                \begin{align*}
+                    S_\epsilon = \underbrace{\qty{n \in \mathbb{N} : t - \epsilon < s_n < t}}_{S^{-}_\epsilon} \cup \underbrace{\qty{n \in \mathbb{N} : t < s_n < t + \epsilon}}_{S^{+}_\epsilon}
+                \end{align*}
+                Note then that $S_{\epsilon_1}^\pm \subset S_{\epsilon_2}^\pm$ for all $0 < \epsilon_1 < \epsilon_2$. Therefore $S_{\epsilon_1}^\pm$ is finite if $S_{\epsilon_2}^\pm$ is finite. Since $S_\epsilon$ is infinite, either $S_\epsilon^+$ or $S_\epsilon^-$ is infinite. WLOG, assume that $S_\epsilon^+$ is infinite. Choose 
+                \begin{align*}
+                    n_1 \in S_1^+ &\text{ such that } t < s_n < t + 1 \\
+                    n_2 \in S_{\frac{1}{2}}^+ &\text{ such that } t < s_n < t + \frac{1}{2} \\
+                    n_3 \in S_{\frac{1}{3}}^+ &\text{ such that } t < s_n < t + \frac{1}{3} \\
+                                              &\vdots \\
+                    n_k \in S_{\frac{1}{k}}^+ &\text{ such that } t < s_n < t + \frac{1}{k}
+                \end{align*}
+                Note that then $t < s_{n_k} < t + \frac{1}{k}$ when $n_k > n_{k-1}$. Therefore $t < s_{n_k} < t + \frac{1}{k}$ for all $k \in \mathbb{N}$ and therefore the subsequence $s_{n_k}$ converges to $t$.
+        \end{enumerate}
+    \item
+        Assume that $s_n$ is unbounded above. Let $n_1 = 1$.
+    \item % TODO: Prove for unbounded below
+    \end{enumerate}
+\end{proof}
+
+\begin{example}
+    For any real number $r \in \mathbb{R}$, it is possible to find a subsequence of rationals $q_{n^r_k} \to r$ as $k \to \infty$.
+\end{example}
+
+\begin{example}
+    Let $(s_n)_{n\in \mathbb{N}}$ with $\inf\qty{s_n : n \in \mathbb{N}} = 0$ and $s_n > 0$ for all $n$. Note that $s_n$ is not necessairly bounded or convergent as seen by the following cases
+    \begin{align*}
+        s_n = \qty(1, \frac{1}{2}, 1, \frac{1}{3}, 1, \frac{1}{4}, \ldots) \\
+        s_n = \qty(1, \frac{1}{2}, 3, \frac{1}{3}, 4, \frac{1}{5}, \ldots) \\
+    \end{align*}
+    However, note that both have a subsequence that converges to $0$.
+\end{example}
+
+\begin{theorem}[Convergence Implies Subsequence Convergence]
+    If $(s_n)_{n\in \mathbb{N}}$ converges, then every subsequence of $s_n$ converges to the same limit
+\end{theorem}
+
+\begin{proof}
+    Let $(s_n)_{n \in \mathbb{N}}$ be a convergent sequence with $s = \lim_{n \to \infty} s_n$. Let $(s_{n_k})_{k\in \mathbb{N}}$ be a subsquence of $s_n$. Note that $n_k \geq k$ for all $k$. By the convergence of $s_n$, take $\epsilon > 0$ and
+    \[
+        \exists N \in \mathbb{N}, \text{ s.t. } |s_n - s| < \epsilon, \forall n > N
+    \]
+    This implies that
+    \[
+        \exists N \in \mathbb{N}, \text{ s.t. } |s_{n_k} - s| < \epsilon, \forall k > N
+    \]
+    and since $n_k \geq k > N$, $\lim_{k \to \infty} s_{n_k} = s$.
+\end{proof}
+
+\begin{theorem}[Sequence's Have Monotonic Subsequences]
+    \label{thm:sequenceshasmonotonic}
+    Every sequence has a monotonic subsequence.
+\end{theorem}
+\begin{proof}
+    The $n$-th term will be called dominant if $x_m < x_n$ for all $m > n$. Assume that $s_n$ has infinitely many dominant terms. Then let $S_{n_k}$ be the subsequence of all dominant terms. Note that $s_{n_{k+1}} < s_{n_k}$ by the definition of dominant. Hence $s_{n_k}$ is a monotonic decreasing sequence. Consider the case where there are finitely many dominant terms.
+    % TODO: Finish proof. Reasoning: You can pick a term beyond all dominant terms, then a term beyond that, then a term beyond that. That collection of terms is a new increasing monotonic subsequence.
+\end{proof}
+
+\begin{theorem}[Bolzano-Weistrass Theorem]
+    \label{thm:bolzanoweistrass}
+    Every bounded sequence of real numbers has a convergent subsequence.
+\end{theorem}
+\begin{proof}
+    Let $(s_n)$ be a real sequence and assume it is bounded. By \ref{thm:sequenceshasmonotonic}, $s_n$ has a monotonic subsequence. By $\ref{thm:cauchyproperties}$
+\end{proof}
+
+\begin{definition}[Subsequential Limit]
+    A subsequential limit is any real number or $\pm \infty$ that is the limit of a subsequence.
+\end{definition}
+
+\begin{example}
+    Let $(q_n)$ be the sequence of all rational numbers (which is possible since $\mathbb{Q}$ is countable). Then $r$ is a subsequential limit of $(q_n)$ if $r \in \mathbb{R}$.
+\end{example}
+
+\begin{theorem}[Limsup and Liminf Monotone Subsequences]
+    \label{thm:monotonelimsupinf}
+    Let $(s_n)$ be a sequence of reals. Then there are monotone subsequences that converge to $\limsup s_n$ and $\liminf s_n$.
+\end{theorem}
+
+\begin{proof}
+    If $s_n$ is not bounded (either above or below), then by \ref{thm:propssubsequences} there are monotone subsequences that will converge to either $+\infty$ or $-\infty$. Assume that $s_n$ is then bounded below. Then $\liminf s_n = l > -\infty$. Therefore $\exists N_0$ such that
+    \[
+        \inf\qty{n \in \mathbb{N}: n > N} > l - \epsilon, \forall \epsilon > 0, \forall n \geq N_0
+    \]
+    Note that $\qty{n \in \mathbb{N} : l - \epsilon < s_n < l + \epsilon}$ is infinite (otherwise you can derive a contradiction). Therefore using $\ref{thm:propssubsequences}$ again it is possible to create a monotone subsequence. The same argument applies for bounded above.
+\end{proof}
+
+\subsubsection{Subsequential Limits}
+
+\begin{theorem}[Set of Subsequential Limits]
+    \label{thm:setofsublimits}
+    Let $(s_n)$ be a real sequence and $S = \qty{r \in \mathbb{R} : r \text{ is a subsequential limit for } s_n}$. Then
+    \begin{enumerate}
+        \item $S \neq \varnothing$
+        \item $\inf S = \liminf s_n$ and $\sup S = \limsup s_n$
+        \item $(s_n)$ converges if and only if $S$ is a singleton
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Let $(s_n)$ be a real sequence and $S = \qty{r \in \mathbb{R} : r \text{ is a subsequential limit for } s_n}$.
+    \begin{enumerate}
+        \item Follows from \ref{thm:monotonelimsupinf}
+        \item Let $s = \liminf s_{k_n} = \limsup s_{k_n}$. Note that $n_k \geq k$ for all $k$ as well as $\qty{s_{n_k} : k > N} \subseteq \qty{s_n : n > N}$ for all $N \in \mathbb{N}$. Therefore 
+            \[
+                \liminf s_n \leq \liminf s_{n_k} = s = \limsup s_{n_k} \leq \limsup s_n
+            \]
+            meaning
+            \[
+                \liminf s_n \leq \inf S \leq \sup S \leq \limsup s_n.
+            \]
+            And $\limsup s_n, \liminf s_n \in S$.
+        \item Trivial?
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    Let $S$ be the set of subsequential limits of a sequence $(s_n)$. Suppose that $(t_n)$ is a sequence in $\mathbb{R} \cap S$. Then $\lim t_n \in S$.
+\end{theorem}
+\begin{proof}
+    Suppose that $t = \lim t_n$ is finite. Consider an interval $(t - \epsilon, t + \epsilon)$. Then there is a $t_n$ in the interval. Let $\delta = \min{t + \epsilon - t_n, t_n - t + \epsilon}$. Then $(t_n - \delta, t_n + \delta) \subseteq (t - \epsilon, t + \epsilon)$. Since $t_n$ is in $S$, it is a subsequential limit, $\qty{n \in \mathbb{N} : s_n \in (t - \epsilon, t + \epsilon) }$ is infinite. Therefore by \ref{thm:propssubsequences}.1, $t$ is a limit of a subsequence and hence a subsequential limit.
+\end{proof}
+
+\begin{example}
+    If it is the case that for a sequence $s$ that $\liminf s < \limsup s$, then it could be the case that $\qty{n\in \mathbb{N} : \liminf s \leq s_n \leq \limsup s_n}$ is empty. This is true for the sequence $s_n = (-1)^n (1+\frac{1}{n})$. Note that $S = \qty{-1, 1}$. But
+    \begin{align*}
+        s_{2k} = 1+ \frac{1}{2k} &> 1, \forall k \\
+        s_{2k + 1} = -\qty(1+ \frac{1}{2k}) &< -1, \forall k \\
+    \end{align*}
+\end{example}
+
+\end{document}

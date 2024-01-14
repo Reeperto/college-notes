@@ -1,0 +1,363 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{8}
+\input{hw_preamble.tex}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+% Section 4.4: 1, 5, 6. 
+% Section 5.1: 1, 3, 8, 11, 14, 18.
+
+\begin{document}
+
+\subsection*{4.4.1}
+\begin{enumerate}[label=\alph*)]
+    \item True
+    \item True (its also "wise" to check if any two columns or rows are the same)
+    \item True
+    \item False
+    \item False
+    \item True
+    \item True
+    \item False
+    \item True
+    \item True
+    \item True
+\end{enumerate}
+
+\subsection*{4.4.5}
+\begin{proof}
+    Let $A \in M_{n\times n}(\mathbb{F})$ and $I = I_{m}$. We will show that
+    \[
+        \det\mqty(A & B \\ O & I) = \det A
+    \]
+    where $B$ is any $n\times n$ matrix. Proceed with induction on $m$. Consider the base case $m = 1$. Then by doing a cofactor expansion on the bottom row,
+    \[
+        \det\mqty(
+          &   &   & b_1 \\
+          & A &   & \vdots \\
+          &   &   & b_n \\
+        0 & \ldots & 0 & 1
+        ) = (-1)^{(n+1) + (n+1)} \det A = \det A
+    .\]
+    Hence the base case holds. Assume for some fixed $m \geq 1$. Then
+    \[
+        \det\mqty(
+            A & B \\
+            O & I_{m+1}
+        ) = \det\mqty(
+            A & B_1 & B_2 \\
+            0 & I_{m} & 0 \\
+            0 & 0  & 1
+        )
+    \]
+        where $B = \mqty(B_1 & B_2)$ with $B_2$ being a single column. Therefore by expanding on the bottom row,
+        \[
+        \det\mqty(
+            A & B_1 & B_2 \\
+            0 & I_{m} & 0 \\
+            0 & 0  & 1
+            ) = (-1)^{(n + m - 1) + (n + m - 1)} \det\mqty(A & B_1 \\ O & I_m) = \det A
+        .\]
+        Therefore the statement holds for all $m \geq 1$. Note then if there is a matrix $M$ with the form
+        \[
+            M = \mqty(A & B \\ O & I) \implies \det M = \det A 
+        .\]
+\end{proof}
+
+\subsection*{4.4.6}
+\begin{proof}
+    Consider two cases. Assume that $C$ is not invertible. Then there are two rows of $C$ that are not independent, and therefore there are two rows that aren't independent in $\mqty(O & C)$. This means that $M$ cannot be invertible and therefore
+    \[
+        \det(A) \det(C) = 0 = \det(M)
+    .\]
+    Assume then that $C$ is invertible. Note that
+    \[
+        \mqty(
+        I & O \\
+        O & C^{-1}
+        ) \mqty(
+        A & B \\ 
+        O & C
+        ) = 
+        \mqty(
+        A & B \\
+        O & I
+        )
+    .\]
+    By the previous proof,
+    \[
+        \det\mqty(
+        I & O \\
+        O & C^{-1}
+        ) \det\mqty(
+        A & B \\ 
+        O & C
+        ) = 
+        \det\mqty(
+        A & B \\
+        O & I
+        ) \implies \det\mqty(A & B \\ O & C) \det(C^{-1}) = \det(A)
+    .\]
+    Therefore since $\det C^{-1} = \frac{1}{\det C}$,
+    \[
+        \det\mqty(A & B \\ O & C) = \det(A) \det(C)
+    .\]
+\end{proof}
+
+\subsection*{5.1.1}
+\begin{enumerate}[label=\alph*)]
+    \item False
+    \item True
+    \item True
+    \item False
+    \item False
+    \item False
+    \item False
+    \item True
+    \item True
+    \item False
+    \item False
+\end{enumerate}
+
+\subsection*{5.1.3}
+\subsubsection*{Part A}
+\[
+    \det(A - \lambda I) = \det\mqty(1 - \lambda & 2 \\ 3 & 2 - \lambda) = (1-\lambda)(2-\lambda) - 6 = \lambda^2 - 3 \lambda - 4 \implies \lambda = \qty{-1, 4}
+.\]
+For $\lambda = -1$,
+\[
+    A + I = \mqty(2 & 2 \\ 3 & 3) \implies N(A + I) = \spann\qty{\mqty(-1 \\ 1)}
+.\]
+For $\lambda = 4$,
+\[
+    A - 4I = \mqty(-3 & 2 \\ 3 & -2) \implies N(A - 4I) = \spann\qty{\mqty(\frac{2}{3} \\ 1)} = \spann\qty{\mqty{2 \\ 3}}
+.\]
+
+Since $\mqty(-1 \\ 1)$ and $\mqty(2 \\ 3)$ are linearly independent, they form a basis for $\mathbb{F}^2$. Therefore
+\[
+    Q = \mqty(
+        -1 & 2 \\
+        1 & 3
+    ),
+    D = \mqty(
+        \dmat[0]{-1, 4}
+    )
+.\]
+
+\subsubsection*{Part B}
+\[
+    \det(A - \lambda I) = \det\mqty(
+    -\lambda & -2 & -3 \\
+    -1 & 1-\lambda & -1 \\
+    2 & 2 & 5 - \lambda
+    ) = -\lambda ^3+6 \lambda ^2-11 \lambda +6 = -((\lambda -3) (\lambda -2) (\lambda -1))
+.\]
+Therefore $\lambda = \qty{1, 2, 3}$. For $\lambda = 1$,
+\[
+    A - I = \mqty(
+        -1 & -2 & -3 \\
+         -1 & 0 & -1 \\
+         2 & 2 & 4 \\
+         ) \implies N(A - I) = \spann\qty{
+             \mqty(1 \\ 1 \\ -1)
+         }
+.\]
+For $\lambda = 2$,
+\[
+    A - 2 I = \mqty(
+        -2 & -2 & -3 \\
+         -1 & -1 & -1 \\
+         2 & 2 & 3 \\
+    ) \implies N(A - 2I) = \spann\qty{
+        \mqty(1 \\ -1 \\ 0)
+    }
+.\]
+
+For $\lambda = 3$,
+\[
+    A - 3 I = \mqty(
+    -3 & -2 & -3 \\
+     -1 & -2 & -1 \\
+     2 & 2 & 2 \\
+    ) \implies N(A - 3I) = \spann\qty{
+        \mqty(-1 \\ 1 \\ 0),
+        \mqty(-1 \\ 0 \\ 1)
+    }
+.\]
+
+The set $\qty{
+    \mqty(1 \\ -1 \\ 0),
+    \mqty(-1 \\ 0 \\ 1),
+    \mqty(1 \\ 1 \\ -1)
+}$ forms a basis for $\mathbb{F}^3$. Therefore
+\[
+    Q = \mqty(
+    1  & 1  & -1 \\
+    1  & -1 & 0  \\
+    -1 & 0  & 1  
+    ),
+    D = \mqty(
+    \dmat[0]{1,2,3}
+    )
+.\]
+
+\subsubsection*{Part C}
+\[
+    \det\mqty(i - \lambda & 1 \\ 2 & -i - \lambda) = (\lambda - i)(\lambda + i) - 2 = \lambda^2 - 1 \implies \lambda = \qty{-1, 1}
+.\]
+
+For $\lambda = -1$,
+\[
+    A + I = \mqty(
+        i + 1 & 1 \\
+        2  & -i + 1
+    ) \implies N(A - I) = \spann\qty{
+        \mqty(i-1 \\ 2)
+    }
+.\]
+
+For $\lambda = 1$,
+\[
+    A - I = \mqty(
+        i - 1 & 1 \\
+        2  & -i - 1
+    ) \implies N(A - I) = \spann\qty{
+        \mqty(i+1 \\ 2)
+    }
+.\]
+
+The set $\qty{
+    \mqty(i+1 \\ 2),
+    \mqty(i-1 \\ 2)
+}$ forms a basis of $\mathbb{C}^2$. Therefore
+\[
+    Q = \mqty(
+        i + 1 & i - 1 \\
+        2 & 2 \\
+    ), D = \mqty(\dmat[0]{-1,1})
+.\]
+
+
+\subsubsection*{Part D}
+\[
+    \det(A - \lambda I) = \det\mqty(
+        2-\lambda  & 0 & -1 \\
+        4 & 1-\lambda  & -4 \\
+        2 & 0 & -\lambda -1 \\
+        ) = -\lambda ^3+2 \lambda ^2-\lambda = -(\lambda -1)^2 \lambda \implies \lambda = \qty{0, 1}
+.\]
+
+For $\lambda = 0$,
+\[
+    N(A) = \spann\qty{\mqty(1 \\ 4 \\ 2)}
+.\]
+
+For $\lambda = 1$,
+\[
+    A - I = \mqty(
+        1 & 0 & -1 \\
+        4 & 0 & -4 \\
+        2 & 0 & -2 \\
+    ) \implies N(A - I) = \spann\qty{
+        \mqty(1 \\ 0 \\ 1),
+        \mqty(0 \\ 1 \\ 0)
+    }
+.\]
+
+The set $\qty{
+    \mqty(1 \\ 0 \\ 1),
+    \mqty(0 \\ 1 \\ 0),
+    \mqty(1 \\ 4 \\ 2)
+}$ forms a basis for $\mathbb{F}^3$. Therefore
+\[
+    Q = \mqty(
+    1 & 0 & 1 \\
+    0 & 1 & 4 \\
+    1 & 0 & 2 \\
+    ), D = \mqty(\dmat[0]{1,1,0})
+.\]
+
+\subsection*{5.1.8}
+\subsubsection*{Part A}
+\begin{proof}
+    Let $T : V \to V$ be a linear operator on the finite dimensional space $V$.
+    \begin{enumerate}
+        \item[$\Rightarrow)$] 
+            Assume towards contradiction that $T$ is invertible and $0$ is an eigenvalue. Then $\exists x \neq 0$ such that $T(x) = 0$. However, this means that $\nullity T \neq 0$ and therefore $T$ is not invertible, hence a contradiction.
+        \item[$\Leftarrow$]
+            Assume that $0$ is not an eigenvalue of $T$. That is, there is no $x \neq 0$ such that $T(x) = 0$. This means that $\nullity T = 0$ and hence $T$ must be invertible.
+    \end{enumerate}
+    Since both directions are true, the original statement is true.
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    Let $T : V \to V$ be an invertible linear operator with $\lambda$ as an eigenvalue. Then $\exists x \neq 0$ such that $T(x) = \lambda x$. Note then that
+    \[
+        T(x) = \lambda x \implies x = T^{-1}(\lambda x) = \lambda T^{-1}(x) \implies T^{-1}(x) = \frac{1}{\lambda} x
+    .\]
+    Therefore $x$ is an eigenvector for $T^{-1}$ with an eigenvalue of $\lambda^{-1}$.
+\end{proof}
+
+\subsubsection*{Part C}
+\begin{proof}
+    Let $A \in M_{n\times n}(\mathbb{F})$. Assume that $A$ is invertible. Then $A$ has a non zero determinant. This means that $0$ cannot be an eigenvalue of $A$ since $\det(A - 0I) = \det(A) \neq 0$. Assume that $0$ is not an eigenvalue of $A$. Then there is no non-zero vector such that $Ax = 0$. Therefore $A$ is full rank and hence invertible.
+\end{proof}
+\begin{proof}
+    Let $A \in M_{n\times n}(\mathbb{F})$. Assume that $A$ is invertible and $\lambda$ is an eigenvalue for $A$. Then $\exists x \neq 0$ such that $Ax = \lambda x$. Note then that
+    \[
+        Ax = \lambda x \implies x = \lambda A^{-1} x \implies A^{-1} x = \frac{1}{\lambda} x
+    .\]
+    Therefore $x$ is a eigenvector for $A^{-1}$ with eigenvalue $\lambda^{-1}$.
+\end{proof}
+
+
+\subsection*{5.1.11}
+\subsubsection*{Part A}
+\begin{proof}
+    Let $A$ be a square matrix and $\lambda \in \mathbb{F}$. ASsume that $A \sim \lambda I$. Therefore there is an invertible matrix $P$ such that $A = P^{-1} \lambda I P$. Then
+    \[
+        A = P^{-1} \lambda P = \lambda P^{-1} I P = \lambda P^{-1} P = \lambda I
+    .\]
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    Let $A$ be a diagnolizable matrix such that it has a single eigenvalue $\lambda$. Then there exists an invertible matrix $\Lambda$ such that
+    \[
+        A = \Lambda^{-1} \mqty(\dmat{\lambda, \ddots, \lambda}) \Lambda
+    .\]
+    But note that the diagonal matrix is $\lambda I$. Therefore by the previous result $A = \lambda I$.
+\end{proof}
+
+\subsubsection*{Part C}
+\begin{proof}
+    Assume towards contradiction that $\mqty(1 & 1 \\ 0 & 1)$ is diagnolizable. Note that the matrix has only the eigenvalue $1$. Therefore by the previous results the matrix should equal $\mqty(1 & 0 \\ 0 & 1)$ but this is a contradiction.
+\end{proof}
+
+\subsection*{5.1.14}
+\begin{proof}
+    Let $A$ be a square matrix. Note that
+    \[
+        \det(A - \lambda I) = \det((A - \lambda I)^t) = \det(A^t - \lambda I)
+    .\]
+    Therefore $A$ and $A^t$ have the same characteristic polynomial and hence same eigenvalues.
+\end{proof}
+
+\subsection*{5.1.18}
+\begin{proof}
+    Let $A,B$ be similar $n\times n$ matrices. Since they are similar, there is an invertible matrix $Q$ such that
+    \[
+        A = Q^{-1} B Q
+    .\]
+    By exercise $2.5.14$ and noting that $P = Q$, there then must exist an $n$ dimensional vector space $V$ and $n$ dimensional vector space $W$, ordered bases $\beta$ and $\beta'$ for $V$ and $\gamma$ and $\gamma'$ for $W$, and a linear transformation $T : V \to W$
+\end{proof}
+
+\end{document}

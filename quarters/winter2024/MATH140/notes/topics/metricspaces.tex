@@ -1,0 +1,348 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+
+\banner{Metric Spaces and Topological Concepts}
+
+\subsection{Expanding $\mathbb{R}$}
+
+Most of the focus so far has been on $\mathbb{R}$. Importantly, on $\mathbb{R}$ it was possible to define an ordering relation from which the absolute value and distance functions could arise. A natural question to ask is if this conceptual construction of distance can be constructed over different sets.
+
+\begin{definition}[Metric Space]
+    Let $S$ be a set. If there exists some mapping $d : S \times S \to \mathbb{R}$ (called a metric or distance) such that it satisfies
+    \begin{enumerate}
+        \item $d(x,x) = 0, \forall x \in S$ and $d(x,y) > 0, \forall x,y \in S, x\neq y$
+        \item $d(x,y) = d(y,x), \forall x,y \in S$
+        \item $d(x,z) \leq d(x, y) + d(y, z), \forall x,y,z\in S$
+    \end{enumerate}
+    then $(S, d)$ is a metric space.
+\end{definition}
+
+Clearly $(\mathbb{R}, \operatorname{dist})$ is a metric space. However, there are alternative metrics that still admit a metric space over $\mathbb{R}$.
+
+\begin{example}
+    The following are some examples of metric spaces
+    \begin{enumerate}[label=\alph*)]
+        \item $S = \mathbb{R}, d(x,y) = |x - y|$
+        \item $S = \mathbb{R}^k = \qty{(x_1, \ldots, x_k) : x_i \in \mathbb{R}, \forall i = 1,\ldots,k}, d(x,y) = \sqrt{\sum_{i=1}^k (y_i - x_i)^2}$
+    \end{enumerate}
+\end{example}
+
+Consider specifically the case of $\mathbb{R}^k$.
+
+\begin{proof}
+    Consider the metric $d(x,y) = \sqrt{\sum_{i=1}^k (y_i - x_i)^2}$ over $\mathbb{R}^k$. Check that it satisfies the properties of being a metric.
+    \begin{enumerate}
+        \item The metric is zero when $y_i = x_i$ and therefore $x = y$, hence $d(x,x) = 0$ for all $x \in \mathbb{R}^k$
+        \item Since the summation terms are squared, the order of $x_i$ and $y_i$ does not matter, hence $d(x,y) = d(y,x)$ for all $x,y \in \mathbb{R}^k$
+        \item 
+        Firstly, an equivalence is
+        \[
+            d(x,z) \leq d(x,y) + d(y,z) \Leftrightarrow d(x,z)^2 \leq d(x,y)^2 + 2d(x,y)d(y,z) + d(y,z)^2
+        \]
+        By using the scalar product and its properties from vector spaces,
+        \begin{align*}
+            d(x,z)^2 = (x-z) \cdot (x-z) &= (x - y + y - z) \cdot (x - y + y -z) \\
+            &= (x-y)\cdot (x-y) + 2 (x-y) \cdot (y - z) + (y-z)\cdot (y-z) \\
+            &= d(x,y)^2 + 2 (x-y) \cdot (y - z) + d(y,z)^2 \tag{$*$}
+        \end{align*}
+        Note that $\forall t > 0$
+        \begin{align*}
+            0 &\leq ((x-y) - t(y-z)) \cdot ((x-y) - t(y-z)) \\
+            &= d(x,y)^2 + d(y,z)^2 t^2 - 2t (x-y)(y-z) \\
+        \end{align*}
+        Therefore by rearranging
+        \begin{align*}
+            (x-y) \cdot (y-z) \leq \frac{1}{2t} d(x,y)^2 + \frac{t}{2} d(y,z)^2
+        \end{align*}
+        Since $t$ was arbitrary, choosing $t = \frac{d(x,y)}{d(y,z)}$ gives
+        \begin{align*}
+            (x-y) \cdot (y-z) \leq d(x,y) d(y,z) \tag{Cauchy Schwarz Inequality}
+        \end{align*}
+        Going back to $(*)$,
+        \begin{align*}
+            d(x,z)^2 &= d(x,y)^2 + 2 (x-y) \cdot (y - z) + d(y,z)^2 \\
+                     &\leq d(x,y)^2 + 2d(x,y)d(y,z) + d(y,z)^2 \\
+                     &= (d(x,y) + d(y,z))^2
+        \end{align*}
+        and therefore by taking the root of each side,
+        \[
+            d(x,z) \leq d(x,y) + d(y,z), \forall x,y,z \in \mathbb{R}^k
+        \]
+    \end{enumerate}
+    Since $d$ satisfies all the properties of a metric, $(\mathbb{R}^k, d)$ is a metric space
+\end{proof}
+
+Having a metric space provides enough machinery to define concepts like convergence.
+
+\begin{definition}[Metric Space Equivalents]
+    Let $(s_n)_{n\in \mathbb{N}}$ be a sequence in $(S, d)$ and $s \in S$. Then
+    \begin{enumerate}
+        \item Convergence is defined as
+            \[
+                \lim_{n \to \infty} s_n = s \xLeftrightarrow{\text{def}} \lim_{n\to \infty} d(s_n, s) = 0
+            \]
+        \item Cauchy is defined as
+            \[
+                \forall \epsilon > 0, \exists N \in \mathbb{N} \text{ s.t. } d(s_n, s_m) < \epsilon, \forall m,n > N
+            \]
+        \item $(S,d)$ is \textbf{complete} iff all Cauchy sequences converge.
+    \end{enumerate}
+\end{definition}
+
+The last idea of completeness is different in form than the \nameref{def:axiomofcompleteness}, however $(\mathbb{R}, \operatorname{dist})$ satisfies this alternative definition of completeness (and is in fact equivalent to the \nameref{def:axiomofcompleteness}).
+
+\begin{theorem}[$\mathbb{R}^k$ is a Metric Space]
+    \label{thm:rkmetricspace}
+    $(\mathbb{R}^k, d)$ is a complete metric space.
+\end{theorem}
+
+It will be useful to show that convergence of a sequence in $\mathbb{R}^k$ can be determined by element wise sequences converging (and equivalently for determining if a sequence is Cauchy). For notation sake, the superscript refers to the index into a sequence and the subscript is the position index of the original sequence. That is a sequence $(x_n)_{n\in \mathbb{N}} \in \mathbb{R}^k$ is
+\[
+    (x_n)_{n\in \mathbb{N}} = \mqty(
+    x_1^{n} \\
+    \vdots \\
+    x_k^{n} \\
+    )
+\]
+
+\begin{lemma}[Element Wise Implies Sequence Wise]
+    \label{lem:elementwisesequences}
+    A sequence $(x^n)_{n\in \mathbb{N}}$ in $\mathbb{R}^k$ converges iff $(x^n_j)$ converges in $\mathbb{R}$ for $1 \leq j \leq k$. Additionally, $(x^n)_{n\in \mathbb{N}}$ is Cauchy iff $(x^n_j)$ is Cauchy in $\mathbb{R}$ for $1 \leq j \leq k$.
+\end{lemma}
+
+\begin{proof}
+    % TODO: Read from prof notes
+\end{proof}
+
+% TODO: Swap scripts
+\begin{proof}[Proof of \ref{thm:rkmetricspace}]
+    Let $(x_n)_{n\in \mathbb{N}}$ be a Cauchy sequence in $\mathbb{R}^k$. Then by \ref{lem:elementwisesequences}, $\qty(x_n^j)$ is a Cauchy sequence in $\mathbb{R}$. Since $\mathbb{R}$ is complete, $\qty(x_n^j)$ converges. Therefore all component sequences of $(x_n)$ converge which by \ref{lem:elementwisesequences} implies the convergence of $(x_n)$.
+\end{proof}
+
+An interesting fact is that the Bolzano-Weistrass Theorem generalizes to $\mathbb{R}^k$ as long as boundedness is properly defined.
+
+\begin{definition}[Boundedness in $\mathbb{R}^k$]
+    Let $S \subset \mathbb{R}^k$. $S$ is bounded iff there exists $M \in \mathbb{R}$ such that $d(0,s) \leq M$ for all $s \in S$.
+\end{definition}
+
+\begin{theorem}
+    Each bounded sequence in $\mathbb{R}^k$ has a convergent subsequence.
+\end{theorem}
+
+\begin{proof}
+    Let $(x_n)_{n\in \mathbb{N}}$ be a bounded sequence in $\mathbb{R}^k$. Note that $\qty|\qty(x^n_j)| \leq d(0,x_n)$ for all $j = 1,\ldots,k$ and $n \in \mathbb{N}$. Therefore each element wise sequence is bounded. Then
+    \begin{align*}
+        \qty(x^n_1) \text{ is bounded } &\implies \exists \qty(n_l^1)_{l \in \mathbb{N}} \text{ s.t. } x_1^{n^1_l} \to x_1^\infty \\
+        \qty(x^{n_l^1}_2) \text{ is bounded } &\implies \exists \qty(n_l^2)_{l \in \mathbb{N}} \subset \qty(n_l^1)_{l \in \mathbb{N}} \text{ s.t. } x_2^{n^2_l} \to x_2^\infty \\
+                                        &\vdots \\
+        \qty(x^{n_l^{k-1}}_k) \text{ is bounded } &\implies \exists \qty(n_l^k)_{l \in \mathbb{N}} \subset \qty(n_l^{k-1})_{l \in \mathbb{N}} \text{ s.t. } x_k^{n^k_l} \to x_k^\infty \\
+    \end{align*}
+    Therefore a convergent subsequence of $(x_n)$ can be constructed.
+\end{proof}
+
+\begin{definition}[Openness]
+    Let $(S, d)$ be a metric space and $E \subset S$. Then
+    \begin{enumerate}
+        \item $x \in E$ is an interior point of $E$ iff $\qty{s \in S : d(x,s) < r} \subset E$ for some $r > 0$.
+        \item $\mathring{E} = \qty{s \in E : s \text{ is an interior point }}$
+        \item $E$ is open iff $E = \mathring{E}$
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}[Properties of Openness]
+    Let $E \subset S$ where $(S,d)$ is a metric space.
+    \begin{enumerate}
+        \item $S$ is open in $S$
+        \item $\varnothing$ is open in $S$
+        \item $E_\alpha$ is open $\forall \alpha \in A$, then $\bigcup_{a \in A} E_{\alpha}$ is open
+        \item $E_j$ is open $\forall j = 1,\ldots,n$ then $\bigcap_{j = 1}^n E_j$ is open
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}
+    Let $(S, d)$ be a metric space. Then
+    \begin{enumerate}
+        \item $E \subset S$ is closed iff $E^c = S \setminus E$ is open
+        \item The closure of $E$ is $\displaystyle\overline{E} = \bigcap_{\substack{E \subset F \subset S \\ F \text{ closed}}} F$
+        \item The boundary of $E$ is $\partial E = \overline{E} \setminus \mathring{E}$ 
+    \end{enumerate}
+    \begin{remark}
+        $\overline{E}$ is a closed set and is the smallest closed set that contains $E$.
+    \end{remark}
+\end{definition}
+
+\begin{example}
+    The following are examples of openness and boundaries
+    \begin{enumerate}
+        \item $(a,b)$ is open and $[a,b]$ is closed in $\mathbb{R}$
+        \item $(a,b]$ and $[a,b)$ are neither open nor closed
+        \item With $I = \qty{(a,b), [a,b], [a,b), (a,b]}$
+        \begin{enumerate}
+            \item $\overline{I} = [a,b]$
+            \item $\mathring{I} = (a,b)$
+            \item $\partial I = \qty{a,b}$
+        \end{enumerate}
+    \item Let $x \in \mathbb{R}^k$ and $r > 0$. Let $\ball{x,r} = \qty{y \in \mathbb{R}^k : d(x,y) < r}$
+        \begin{enumerate}
+            \item $\ball{x,r}$ is open
+            \item $\overline{\mathbb{B}}(x,r)$ is closed
+            \item $\partial \ball{x,r} = \qty{y \in \mathbb{R}^k : d(x,y) = r}$ 
+        \end{enumerate}
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}
+    Let $(S,d)$ be a metric space and $E \subset S$. Then
+    \begin{enumerate}
+        \item $E$ is closed iff $E = \overline{E}$
+        \item $E$ is closed iff $E$ contains the limit of every convergent sequence in $E$
+        \item $x \in \overline{E}$ iff there exists a sequence $(x_n)_{n\in \mathbb{N}}$ in $E$ that converges to $x$
+        \item $x \in \partial E$ iff $x \in \overline{E} \cap \overline{S\setminus E}$
+    \end{enumerate}
+\end{theorem}
+
+% TODO: Finish for homework
+\begin{proof}
+    Let $E$ be a subset of a metric space $(S,d)$.
+    \begin{enumerate}
+        \item
+        \begin{enumerate}
+            \item[$\Rightarrow)$] %--------------------------------------------
+                Assume that $E$ is closed. Then $\displaystyle \overline{E} = \subset\bigcap_{\substack{E \subset F \subset S \\ F \text{ closed}}} F \subset E$ since $E$ is a subset of itself and is the smallest closed subset that contains itself. Since $E \subset \overline{E}$, it follows that $E = \overline{E}$.
+            \item[$\Leftarrow)$] %---------------------------------------------
+                Assume that $E = \overline{E}$. Since $\overline{E}$ is the intersection of closed sets, it itself is closed. Therefore $E$ must also be closed.
+        \end{enumerate}
+        \item
+        \begin{enumerate}
+            \item[$\Rightarrow)$] %--------------------------------------------
+                Assume that $E$ is closed. Let $(x_n)$ be a sequence in $E$ that converges to some $x \in S$. Assume towards contradiction that $x \not\in E$. Then $x \in S\setminus E$, meaning $\exists r > 0$ such that $\mathbb{B}(x,r) \subset S\setminus E$. However, this means that choosing an $\epsilon < r$ means $\exists N \in \mathbb{N}$ such that $d(x, x_n) < \epsilon < r$ for all $n > N$. Therefore $x_n \in \mathbb{B}(x,r)$ for $n > N$. But that means there are infinitely many terms of the sequence outside of $E$, a contradiction.
+            \item[$\Leftarrow)$] %---------------------------------------------
+                Assume that $E$ contains the limits of every convergent sequence in $E$. Let $x \in S \setminus E$. Suppose that for any $r > 0$ that $\mathbb{B}(x,r) \cap E \neq \varnothing$. Then it is possible to construct a sequence $(x_n)$ where $x_n \in \mathbb{B}(x,\frac{1}{n}) \cap E$. Note that $(x_n) \to x$ since $d(x_n ,x) < \frac{1}{n}$ for each $n$. However, this sequence is in $E$ but the limit point $x$ is not in $E$, hence a contradiction. Therefore there must be some $r >0$ such that $\mathbb{B}(x,r) \cap E = \varnothing$ which is the same as saying $\mathbb{B}(x,r) \subset S \setminus E$. This means that $S \setminus E$ is equal to its interior and therefore $S \setminus E$ is open. Therefore $E$ is closed.
+        \end{enumerate}
+        \item 
+        \begin{enumerate}
+            \item[$\Rightarrow)$] %--------------------------------------------
+                Assume that $x \in \overline{E}$. Note that it is sufficient to show that for any $r>0$ that $\mathbb{B}(x,r) \cap E \neq \varnothing$. If this is true, then by the same logic in $(b)$ it is possible to construct a sequence in $E$ that will approach $x$. Take $r > 0$ and assume towards contradiction that $\mathbb{B}(x,r) \cap E = \varnothing$. Then $E \subset S \setminus \mathbb{B}(x,r)$. Since open balls are open, then $S \setminus \mathbb{B}(x,r)$ is a closed set containing $E$ which means that $\overline{E} \subset S \setminus \mathbb{B}(x,r)$. But then by the assumption, $x \in S \setminus \mathbb{B}(x,r)$ and $x \in \mathbb{B}(x,r)$ which is a contradiction.
+            \item[$\Leftarrow)$] %---------------------------------------------
+                Assume that $x$ is the limit of a sequence $(x_n)$ of points in $E$. By part $(a)$, $\overline{E}$ is closed and by $(b)$, $\overline{E}$ must contain the limit of any sequence of points in $\overline{E}$. Since $x_n \in E$ for all $n$, $x_n \in \overline{E}$ for all $n$. Therefore $(x_n)$ is a sequence of points in $\overline{E}$ and hence its limit must also be in $\overline{E}$.
+        \end{enumerate}
+        \item
+        \begin{enumerate}
+            \item[$\Rightarrow)$] %--------------------------------------------
+                Assume that $x \in \partial E$. Therefore $x \in \overline{E}$ and $x \notin \mathring{E}$. Therefore it is sufficient to show that $x \in \overline{S \setminus E}$. Let $F \supset S \setminus E$ be a closed set. Note that then $S \setminus F$ is open and that $S \setminus F \subset E$. If $x \in S \setminus F$, then there is some $r > 0$ such that $\mathbb{B}(x,r) \subset S \setminus F$. Since $S \setminus F \subset E$, it follows that $\mathbb{B}(x,r) \subset E$. However, this implies that $x$ is in the interior and is therefore a contradiction. Therefore $x \notin S \setminus F$ meaning $x \in F$. Since $F$ was an arbitrary closed set containing $S \setminus E$, $x$ is in every closed set containing $S \setminus E$ and therefore $x \in \overline{S \setminus E}$.
+            \item[$\Leftarrow)$] %---------------------------------------------
+                Assume that $x \in \overline{E}$ and $x \in \overline{S \setminus E}$. It is sufficient to show that $x \notin \mathring{E}$ since $x$ is assumed to be in the closure. Assume towards contradiction that $x \in \mathring{E}$. Then there exists some $r > 0$ such that $\mathbb{B}(x,r) \subset E$. This means that $S \setminus \mathbb{B}(x,r)$ is closed set with $S \setminus \mathbb{B}(x,r) \supset S \setminus E$ which requires that $x \in S \setminus \mathbb{B}(x,r)$. However this is not possible since $x$ is contained in any ball centered around it. Therefore $x$ cannot be interior to $E$.
+        \end{enumerate}
+    \end{enumerate}
+\end{proof}
+
+
+\begin{theorem}
+    \label{thm:setsequencebounded}
+    Let $F_n$ denote a sequence of sets such that $\varnothing \neq F_n = \overline{F_n} \subset \mathbb{R}^k$, $F_{n+1} \subset F_{n}$, and $F_n$ is bounded for all $n$. Then
+    \[
+        \bigcap_{n\in \mathbb{N}} F_n \neq \varnothing \text{ and is closed and bounded}
+    \]
+\end{theorem}
+\begin{proof}
+    First, prove closure of the intersection. Let $(x_k)$ be a sequence in $\bigcap_{n\in \mathbb{N}} F_n$ such that $x_k \to x$. Therefore $(x_k)$ is a sequence in $F_n$ for all $n \in \mathbb{N}$. Since every $F_n$ is closed, the limit $x \in F_n, \forall n$. Therefore $x \in \bigcap_{n\in \mathbb{N}} F_n$, hence closure is proven. Note that $\bigcap_{n \in \mathbb{N}} F_n \subset F_1$. Since $F_1$ is bounded, the intersection is also bounded. For all $n \in \mathbb{N}$, $\exists x_n \in F_n$ since $F_n \neq \varnothing$. Therefore a sequence $(x_n)$ can be made of these terms. The sequence is bounded since $F_n$ is bounded for all $n$. Then by \ref{thm:bolzanoweistrass}, there exists some subsequence $\qty(x_{n_l})$ that converges to some $x \in \mathbb{R}^k$. Then for all $N \in \mathbb{N}$, $x_{n_l} \in F_N$ for all $n_l \geq l > N$ meaning $F_N$ is closed and $x \in \cap_{n\in \mathbb{N}} F_n$ (since $N$ is arbitrary).
+\end{proof}
+
+\begin{example}[Cantor Set]
+    Start with the closed interval $F_1 = [0,1]$. Then split into thirds and discard the middle, giving $F_2 = [0,\frac{1}{3}] \cup [\frac{2}{3}, 1]$. Keep going for all $n \in \mathbb{N}$. Since $F_{n+1} \subset F_n$, each set is closed, bounded, and non-empty meaning $\bigcap_{n\in \mathbb{N}} F_n = C \neq \varnothing$. Note that the length of each interval is $l(F_n) = \qty(\frac{2}{3})^{n-1}$ which converges to $0$ as $n \to \infty$. However, $C$ cannot be put into a sequence.
+\end{example}
+
+\begin{definition}[Covering and Compactness]
+    Let $(S,d)$ be a metric space.
+    \begin{enumerate}
+        \item A collection of open sets $\mathcal{U}$ in $S$ is called an \textbf{open cover} of $E \subset S$ iff $E \subset \bigcup_{U \in \mathcal{U}} U$
+        \item A subcover of $\mathcal{U}$ is any subcollection that covers $E$
+        \item A cover (or subcover) is finite iff it consists of finitely many sets
+        \item A set is called \textbf{compact} iff every open cover poesses a finite subcover
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}[Heine-Borel Theorem]
+    \label{thm:heineborel}
+    A subset $E$ of $\mathbb{R}^k$ is compact iff $E$ is closed and bounded.
+\end{theorem}
+\begin{proof}
+    Let $E \subset \mathbb{R}^k$.
+    \begin{enumerate}
+        \item[$\Rightarrow)$]
+        Assume that $E$ is compact. Let $\mathcal{U}_m = \ball{0,m}$. Note that $E \subset \bigcup_{m \in \mathbb{N}} \mathcal{U}_m = \mathbb{R}^k$. Therefore there exists and finite subcover $\mathcal{U}_{m_1}, \ldots, \mathcal{U}_{m_n}$ with $m_1 < \ldots < m_n$. Therefore $E \subset \mathcal{U}_{m_n}$ since every ball $m_k$ is a subset of $\mathcal{U}_{m_n}$, which means that $E$ is bounded. Next take $x \in S\setminus E$ and let $V_m = \overline{\mathbb{B}}(x,\frac{1}{m})^\complement$. Let $\mathcal{V} = \bigcap_{m\in \mathbb{N}} V_m$. Note that $\mathcal{V}$ is an open cover of $E$ since $V = \mathbb{R}^k \setminus \qty{x}$. Therefore there exists a finite open subcover such that $E \subset \bigcup_{l = 1}^n V_{m_l}$ for some $m_1 < \ldots < m_n$. Therefore $\ball(x, \frac{1}{m_n}) \subset E^\complement$. Since $x$ was arbitrary, it follows that $S \setminus E$ is open and therefore $E$ is closed.
+    \end{enumerate}
+
+    In order to prove the reverse implication, some mathematical machinery will be needed.
+
+    \begin{definition}[K-Cell]
+        A $k$-cell (parallelalpiped) $F$ is a set of the form $[a_1, b_1] \times \ldots \times [a_k, b_k] \subset \mathbb{R}^k$. The diameter of $F$ is defined as $\delta F = \sup\qty{d(\vb{x}, \vb{y}) : \vb{x}, \vb{y} \in F}$ which can be calculated via the normal geometric methods.
+    \end{definition}
+
+    \begin{lemma}
+        \label{lem:kcellsarecompact}
+        $k$-cells are compact.
+    \end{lemma}
+
+    \begin{proof}
+        Assume towards contradiction that a $k$-cell is not compact. Let $F$ be a $k$-cell and $\mathcal{U}$ be an open cover of $F$. Then there is an open cover that does admit a finite subcover over $F$. Approach $F$ as the union of the original $k$-cell halved. That is
+        \[
+            F = \bigcup_{j=1}^{2^k} F_j^1, \delta F_{j}^1 = \frac{1}{2} \delta F
+        .\]
+        Since there is no finite cover over $F$, at least one of sub cells cannot be finitely covered. Say that $F^1_{j_1}$ is the subcell that does not have a finite cover. Then do the same halving process to $F^1_{j_1}$, giving
+        \[
+            F^1_{j_1} = \bigcup_{j=1}^{2^k} F^2_{j}, \delta F_j^2 = \frac{1}{2} F^1_{j_1}
+        .\]
+        Therefore by the same logic, there is at least one $F^2$ subcell that cannot be finitely covered. By continuing this process, it follows that there is a sequence of subsets such that
+        \[
+            F^1_{j_1} \supset F^2_{j_2} \ldots \supset F^n_{j_n}, \delta F^n_{j_n} = \frac{\delta F}{2^n}
+        \]
+        Therefore by \ref{thm:setsequencebounded},
+        \[
+            \bigcap F^n_{j_n} \neq \varnothing \text{ and is closed and bounded}
+        \]
+        % TODO: FINISH
+    \end{proof}
+
+    \begin{enumerate}
+        \item[$\Leftarrow)$]
+            Assume that $E$ is bounded and closed. Since $E$ is bounded, there must be a "square" $Q$ such that
+            \[
+                \underbrace{[-m, m] \times \ldots [-m, m]}_{k-\text{cell}} = Q_m \supset E
+            \]
+            If $\mathcal{U}$ is an open cover of $E$, then $\mathcal{U} \cup E^\complement$ is also an open cover since $E^\complement$ is open. Furthermore, this is an open cover for $Q_m$. Since $Q_m$ is compact, then $\mathcal{U} \cup E^\complement$ admits a finite subcover for $Q_m$ and therefore a finite subcover for $E$.
+    \end{enumerate}
+\end{proof}
+
+\begin{example}[Distance to set]
+    Let $(S,d)$ be a metric space and $\varnothing \neq E \subset S$. Then define
+    \[
+        d(x, E) \coloneq \inf\qty{d(x,e) : e \in E}, x \in S
+    \]
+    Note that $|d(x_1, E) - d(x_2, E)| \leq d(x_1, x_2)$ for all $x_1,x_2 \in S$. Consider the following claim
+    \begin{theorem}
+        If $E \subset S$ is compact and $E \subset U$ where $U$ is open, then $\exists \delta > 0$ such that $\qty{x \in S : d(x,E) < \delta} \subset U$.
+    \end{theorem}
+    \begin{proof}
+        $\forall x \in E \subset U$, there is some $r_x > 0$ such that $\ball{x,r_x} \subset U$ since $U$ is open. Note that then
+        \[
+            \qty{\ball{x,\frac{r_x}{2}} : x \in E}
+        \]
+        is an open cover of $E$. Since $E$ is compact, there is a finite subcover
+        \[
+            \ball{x_1, \frac{r_1}{2}}, \ldots, \ball{x_n, \frac{r_n}{2}} \implies E \subset \bigcup_{i = 1}^n \ball{x_i, \frac{r_i}{2}}
+        .\]
+        Choose $\delta \coloneq \min\qty{\frac{r_1}{2}, \ldots, \frac{r_n}{2}}$. Take $x \in S$ such that $d(x,E) < \delta$. Then $d(x,y) < \delta$ for some $y \in E$, meaning $d(x_j, y) < \delta$ for some $j = 1,\ldots,n$. Note that
+        \begin{align*}
+            d(x, x_j) &\leq d(x,y) + d(y, x_j) \\
+                      &\leq \delta + \frac{r_{x_j}}{2} \\
+                      &\leq \frac{r_{x_j}}{2} \\
+        \end{align*}
+    \end{proof}
+\end{example}
+
+\end{document}

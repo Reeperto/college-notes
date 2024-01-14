@@ -1,0 +1,439 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+
+\banner{Continuity}
+
+\subsection{Continuous Functions}
+
+\begin{definition}[Real Valued Function]
+    Let $E \subset \mathbb{R}$. Then a mapping $f : E \to \mathbb{R}$ is a real valued function. If a domain $E$ isn't specified, the largest possible subset of $\mathbb{R}$ is taken where $f(x)$ makes sense.
+\end{definition}
+
+\begin{definition}[Continuity]
+    Let $f : E \to \mathbb{R}$ be a real valued function and $S \subset E$. Then
+    \begin{enumerate}
+        \item $f$ is continuous at $x_0$ if $x_0 \in E$ iff
+            \[
+                \lim f(x_n) = f(x_0)
+            \]
+            for any sequence $(x_n)$ in $E$ that converges to $x_0$.
+        \item $f$ is continuous on $S$ iff $f$ is continuous at $x_0$ for all $x_0 \in S$
+        \item $f$ is continuous iff it is continuous on all of $E$
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}[Epsilon-Delta Continuity]
+    A real valued function $f$ is continuous at some point $x_0 \in \operatorname{dom}(f)$ iff
+    \[
+        \forall \epsilon >0, \exists \delta > 0 \text{ s.t. } |x - x_0| < \delta \implies |f(x) - f(x_0)| < \epsilon
+    .\]
+\end{theorem}
+
+\begin{definition}[Operations on Real Valued Functions]
+    Let $f : \dom(f) \subset \mathbb{R} \to \mathbb{R}$ and $g : \dom(g) \subset \mathbb{R} \to \mathbb{R}$. Then define
+    \begin{align*}
+        f \pm g : \dom(f) \cap \dom(g) \to \mathbb{R} &: x \mapsto f(x) \pm g(x) \\
+        f \cdot g : \dom(f) \cap \dom(g) \to \mathbb{R} &: x \mapsto f(x) \cdot g(x) \\
+    \end{align*}
+    For division,
+    \[
+        \frac{f}{g} : \dom(f) \cap \qty{x \in \dom(g) : g(x) \neq 0} \to \mathbb{R} : x \mapsto \frac{f(x)}{g(x)}
+    .\]
+    For maxima and minima,
+    \begin{align*}
+        \max(f,g) : \dom(f) \cap \dom(g) \to \mathbb{R} &: x \mapsto \max\qty{f(x), g(x)} \\
+        \min(f,g) : \dom(f) \cap \dom(g) \to \mathbb{R} &: x \mapsto \min\qty{f(x), g(x)} \\
+    \end{align*}
+    Finally for composition,
+    \[
+        g \circ f : \qty{x \in \dom(f) : f(x) \in \dom(g)} \to \mathbb{R} : x \mapsto g(f(x))
+    .\]
+\end{definition}
+
+\begin{theorem}[Basic Operations Preserve Continuity]
+    \label{thm:sumandmultiplicativecontinuity}
+    Let $f,g$ be real valued functions.
+    \begin{enumerate}
+        \item If $f,g$ are continuous at $x_0$, then $f \pm g$ and $f\cdot g$ are continuous at $x_0$.
+        \item If $f,g$ are continuous at $x_0$ and $g(x_0) \neq 0$, then $\frac{f}{g}$ is continuous at $x_0$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Let $f,g$ be real valued functions.
+    \begin{enumerate}
+        \item Assume that $f,g$ are continuous at $x_0$. Let $(x_n)$ be a sequence in $\dom(f) \cap \dom(g)$ that converges to $x_0$. Since $f, g$ are continuous, then $f(x_n) \to x_0$ and $g(x_n) \to g(x_0)$ which by the limit theorems gives $f(x_n) + g(x_n) \to f(x) + g(x)$ meaning $f + g$ is continuous at $x_0$. The argument holds for $f\cdot g$.
+        \item Assume that $f,g$ are continuous at $x_0$ and $g(x) \neq 0$ for all $x \in \dom(f) \cap \dom(f)$. Let $(x_n)$ be a sequence in $\dom(f) \cap \dom(g)$ that converges to $x_0$. Since $f, g$ are continuous, then $f(x_n) \to x_0$ and $g(x_n) \to g(x_0)$. Note that $g(x_n) \neq 0$ for all $n$ by the assumption. Therefore by limit theorems it follows that $\frac{f(x_n)}{g(x_n)} \to \frac{f(x_0)}{g(x_0)}$, hence $\frac{f}{g}$ is continuous at $x_0$.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Composition Preserves Continuity]
+    \label{thm:compositioncontinuity}
+    Let $f,g$ be real valued functions. If $f$ is continuous at $x_0$ and $g$ is continuous at $f(x_0)$, then $g \circ f$ is continuous at $x_0$.
+\end{theorem}
+
+\begin{proof}
+    Let $f,g$ be real valued functions and assume that $f$ is continuous at $x_0$ and $g$ is continuous at $f(x_0)$. Let $(x_n)$ be a sequence in $\qty{x \in \dom(f) : f(x) \in \dom(g)}$ such that $x_n \to x_0$. Since $f$ is continuous at $x_0$, $f(x_n) \to x_0$. Let $(y_n)$ be the sequence defined by $y_n = f(x_n)$. Then $y_0 = f(x_0)$. Therefore since $g$ is continuous at $f(x_0)$, $g(y_n) \to g(y_0) = g(f(x_0))$. Therefore $g\circ f$ is continuous at $x_0$.
+\end{proof}
+
+\begin{theorem}[Maximum Preserves Continuity]
+    \label{thm:compositioncontinuity}
+    Let $f,g$ be real valued functions. If $f$ is continuous at $x_0$ and $g$ is continuous at $f(x_0)$, then $\max(f,g)$ is continuous at $x_0$.
+\end{theorem}
+
+\begin{proof}
+    First note that
+    \[
+        \max(r,s) = \frac{1}{2} (r + s) + \frac{1}{2} |r - s|, \forall r,s \in \mathbb{R}
+    .\]
+    Consider the case $r \geq s$. Then
+    \[
+        \frac{1}{2}(r+s) + \frac{1}{2} |r-s| = \frac{1}{2} (r+s) + \frac{1}{2} (r-s) = r = \max(r,s)
+    .\]
+    If $r < s$, then
+    \[
+        \frac{1}{2}(r+s) + \frac{1}{2} |r-s| = \frac{1}{2} (r+s) - \frac{1}{2} (r-s) = s = \max(r,s)
+    .\]
+    Therefore the original equation holds. Note then that
+    \[
+        \max(f(x), g(x)) = \frac{1}{2} (f(x) + g(x)) - \frac{1}{2} |f(x) + g(x)|
+    .\]
+    Since the absolute value function is continuous on all of $\mathbb{R}$, by \ref{thm:sumandmultiplicativecontinuity} and $\ref{thm:compositioncontinuity}$ it follows that the maximum of two functions in also continuous.
+\end{proof}
+
+\subsection{Properties of Continuous Functions}
+
+\begin{definition}[Function Boundedness]
+    Let $f : \dom(f) \subset \mathbb{R} \to \mathbb{R}$ be a real valued function. $f$ is bounded iff there is some $M \in \mathbb{R}$ such that
+    \[
+        |f(x)| \leq M, \forall x \in \dom(f)
+    .\]
+\end{definition}
+
+\begin{example}
+    Consider the function $\sqrt{x-1}$. Assume towards contradiction that it is bounded. That is, $\exists M \in \mathbb{R}$ such that 
+\end{example}
+
+\begin{theorem}
+    Let $f : [a,b] \to \mathbb{R}$ be continuous. Then
+    \begin{enumerate}
+        \item $f$ is bounded
+        \item $f$ assumes its max and its min. That is $\exists x_m, x_M \in [a,b]$ such that 
+            \[
+            f(x_m) \leq f(x) \leq f(x_M), \forall x \in [a,b]
+            .\]
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Let $f : [a,b] \to \mathbb{R}$ be continuous.
+    \begin{enumerate}
+        \item Assume towards contradiction that $f$ is not bounded. Then $\forall n \in \mathbb{N}$, there is some $x_n \in [a,b]$ such that $|f(x_n)| \geq n$. Therefore $(x_n)_{n\in \mathbb{N}}$ is a sequence in $[a,b]$. Since $(x_n)$ is bounded, there is some subsequence $(n_j)$ such that $(x_{n_j})$ converges to $x_{\infty} \in [a,b]$. Since $f$ is continuous, then $|f(x_{n_j})| \xrightarrow{j \to \infty} |f(x_{\infty})|$. However, $n_j \leq |f(x_{n_{j}})|$ meaning the limit as $j \to \infty$ would be infinite. Hence a contradiction.
+        \item
+            By the first claim, $f$ is bounded. Therefore $m = \inf_{x \in [a,b]} f(x) > -\infty$. Then $\forall n \in \mathbb{N}, \exists x_n \in [a,b]$ such that $m \leq f(x_n) \leq m + \frac{1}{n}$. This gives a sequence $(x_n)$ that is bounded (because it is in $[a,b]$). Therefore by Bolzano Weistrass, $\exists (n_j)$ such that $x_{n_j} \to x_{\min}$. Since $f$ is continuous,
+            \[
+                \lim_{j\to \infty} m \leq \lim_{j\to \infty} f(x_{n_j}) \leq \lim_{j \to \infty} m + \frac{1}{n_j} \implies f(x_{\min}) = m
+            .\]
+            Therefore the infimum $m$ is achieved by $f$ in its domain and therefore $m$ is the minimum value and $x_{\min}$ is the minimum argument. The argument for the maximum follows the same by replacing $\inf$ with $\sup$ and flipping the inequality to squeeze towards the supremum.
+            % TODO: Complete the maxima case
+    \end{enumerate}
+\end{proof}
+
+\begin{remark}
+    If the interval is not closed, then the theorem is not true in general. Consider
+    \[
+        f : (0,1] \to \mathbb{R} : x \mapsto \frac{1}{x}
+    .\]
+    Note that $f$ is continuous but is unbounded and has no max. Furthermore
+    \[
+        f : (-1,1) \to \mathbb{R} : x \mapsto x^2
+    .\]
+    $f$ in this case is continuous and bounded, but it doesn't have a maximum.
+\end{remark}
+
+\begin{theorem}[Intermediate Value Theorem]
+    \label{thm:ivt}
+    Let $f : I \to \mathbb{R}$ be a continuous function where $I$ is an interval in $\mathbb{R}$. If $y_0 \in \qty\big(\min(f(a),f(b)), \max(f(a), f(b)))$ with $a < b$ and $a,b \in I$, then there exists $x_0 \in (a,b)$ such that $f(x_0) = y_0$.
+\end{theorem}
+
+\begin{proof}
+    WLOG, take $f(a) > y_0 > f(b)$. Let $S = \qty{ x \in [a,b] : f(x) > y_0 }$. Note $S$ is non empty since $a \in S$. Since $S$ is bounded, let $x_0 = \sup S$. Therefore for all $n \in \mathbb{N}$, there is some $s_n \in S$ such that $x_0 \geq s_n \geq x_0 - \frac{1}{n}$ since $x_0 - \frac{1}{n}$ is not an upper bound. Therefore
+    \[
+        \lim s_n = x_0, f(s_n) > y_0, \forall n \implies f(x_0) = \lim f(s_n) \geq y_0
+    .\]
+    Next, take $x_0 \leq \xi_n = \min\qty{x_0 + \frac{1}{n}, b}$. Then
+    \[
+        f(x_0) = \lim f(\xi_n) \leq y_0
+    .\]
+    Therefore $y_0 \leq f(x_0) \leq y_0 \implies f(x_0) = y_0$.
+\end{proof}
+
+\begin{corollary}
+    If $f : I \to \mathbb{R}$ where $I$ is an interval in $\mathbb{R}$ is continuous, then
+    \[
+        f(I) = \qty{f(x) : x \in I}
+    \]
+    is an interval or a singleton.
+\end{corollary}
+\begin{proof}
+    Let $J = f(I)$. Take $y_0, y_1 \in J$ with $y_0 < y_1$. Note that if $y_0 < y < y_1$, then by \ref{thm:ivt}, $y \in J$. If $\inf J < \sup J$, then $J$ is an interval and if they are the same then $J$ is a singleton.
+\end{proof}
+
+\begin{example}
+    Let $f : [0,1] \to [0,1]$ be continuous. Then $\exists x_0 \in [0,1]$ such that $f(x_0) = x_0$. That is, $f$ has a fixed point.
+    \begin{proof}
+        Let $g : [0,1] \to [0,1] : x \mapsto f(x) - x$. Note then that $g(0) = f(0) - 0 \geq 0$ and $g(1) = f(1) - 1 \leq 0$. Therefore by \ref{thm:ivt}, $\exists x_0 \in [0,1]$ such that $g(x_0) = 0$ meaning $f(x_0) - x_0 = 0 \implies f(x_0) = x_0$.
+    \end{proof}
+\end{example}
+
+\begin{example}
+    If $y > 0$, then it has a positive $m$ root.
+    \begin{proof}
+        Let $f(x) = x^m, x \geq 0$. Note that $f$ is continuous and $\exists b > 0$ such that $y < b^m$. Then
+        \[
+            f(0) < y \leq f(b) \implies \exists x \in (0, b) \text{ s.t. } f(x) = x^m = y
+        .\]
+    \end{proof}
+\end{example}
+
+\begin{theorem}
+    Let $g : J \to \mathbb{R}$ be a strictly increasing function over the interval $J$. Then if $g(J)$ is also an interval, $g$ is continuous.
+\end{theorem}
+
+\begin{proof}
+    Take $x_0 \in J$ such that $x_0$ is not an endpoint. Then $g(x_0)$ is not an end point of $g(J) = I$ by monotonicity. Therefore it is possible to find a neighborhood $(g(x_0) - \epsilon_0, g(x_0) + \epsilon_0) \subset I$. Take $\epsilon$ such that $0 < \epsilon < \epsilon_0$ and for some $x_1$ and $x_2$ in $J$,
+    \[
+        g(x_1) = g(x_0) - \epsilon, g(x_2) = g(x_0) + \epsilon
+    .\]
+    By monotonicity,
+    \[
+        x_1 < x_0 < x_2 \text{ and } g(x_0) - \epsilon \leq g(x_1) < g(x) < g(x_2) \leq g(x_0) + \epsilon, \forall x \in (x_1, x_2)
+    \]
+    which implies $|g(x) - g(x_0)| < \epsilon$.
+    Take $\delta = \min\qty{x_2 - x_0, x_1 - x_0}$. Then
+    \[
+        |x - x_0| < \delta \implies x_1 < x_0 < x_2 \implies |g(x) - g(x_0)| < \epsilon
+    .\]
+    Therefore $g$ is continuous.
+\end{proof}
+
+\begin{theorem}
+    Let $f : I \to \mathbb{R}$ be continuous and strictly increasing where $I$ is an interval. Then
+    \begin{enumerate}
+        \item $f(I) = J$ is an interval
+        \item $f^{-1} : J \to I$ exists and is strictly increasing and continuous. 
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    
+\end{proof}
+
+\begin{theorem}
+    Let $f : I \to \mathbb{R}$ be one to one and continuous where $I$ is an interval. Then $f$ is strictly increasing or strictly decreasing.
+\end{theorem}
+\begin{proof}
+    Let $f : I \to \mathbb{R}$ be one to one and continuous where $I$ is an interval.
+    \begin{enumerate}
+        \item
+            If $a < b < c$ in $I$, then $f(a) < f(b) < f(c)$. Assume towards contradiction that this is not the case. Then $f(b) > \max\qty{f(a), f(c)}$ or $f(b) < \min\qty{f(a), f(c)}$. Consider the second case. Take $f(b) < y < \min\qty{f(a), f(b)}$ and use \ref{thm:ivt} on $[a,b]$ and $[b,c]$ to find $x_1 \in (a,b)$ and $x_2 \in (b,c)$ such that $f(x_1) = f(x_2) = y$. This contradicts the assumption that $f$ is one to one since $x_1 \neq x_2$. The other case follows similarly.
+        \item
+            Take $a_0 < b_0$ with $a_0,b_0 \in I$. WLOG, let $f(a_0) < f(b_0)$. Note that $f(x) < f(a_0)$ for $x < a_0$ since $x < a_0 < b_0$ and therefore follows from $(1)$. Additionally, $f(a_0) < f(x) < f(b_0)$ for $a_0 < x < b_0$ and $f(x) > f(b_0)$ for $x > b_0$. It then follows that $f(x) < f(a_0)$ for all $x < a_0$ and $f(x) > f(a_0)$ for all $x > a_0$.
+        \item
+            Take $x_1, x_2 \in I$ such that $x_1 < x_2$. If $x_1 \leq a_0 \leq x_2$, then by $(2)$, $f(x_1) < f(x_2)$. If $x_1 < x_2 \leq a_0$, then $f(x_1) < f(a_0)$ and $f(x_1) < f(x_2)$. Lastly, if $a_0 \leq x_1 < x_2$, then $f(a_0) < f(x_2)$ and $f(x_1) < f(x_2)$. Therefore $f$ is strictly increasing.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Uniform Continuity}
+
+\begin{remark}
+    Consider $f : \dom(f) \subset \mathbb{R} \to \mathbb{R}$ and assume that $f$ is continuous on some $S \subset \dom(f)$ iff $\forall x_0 \in S, \forall \epsilon > 0, \exists \delta > 0$ such that $|x - x_0| < \delta \implies |f(x) - f(x_0)| < \epsilon$ whenever $x \in \dom(f)$. Note that in general, $\delta$ is dependent on the value $x_0$ and $\epsilon$. 
+\end{remark}
+\begin{example}
+    Consider $f : (0, \infty) \to \mathbb{R} : x \mapsto \frac{1}{x^2}$. Take $x_0 > 0$ and $\epsilon > 0$. Then
+    \[
+        \qty|f(x) - f(x_0)| = \qty|\frac{1}{x^2} - \frac{1}{x_0^2}| = \frac{1}{x^2 x_0^2} (x-x_0)(x+x_0) = \frac{(x+x_0)}{x^2 x_0^2} (x - x_0)
+    .\]
+    If $|x - x_0| < \frac{x_0}{2}$, then $|x| > \frac{|x_0|}{2}$ and $|x| < \frac{3|x_0|}{2}$. Then, $|x + x_0| < \frac{5|x_0|}{2}$. Therefore
+    \[
+        \frac{(x+x_0)}{x^2 x_0^2} (x - x_0) \leq \frac{\frac{5|x_0|}{2}}{\qty(\frac{x_0}{2})^2 x_0^2} \cdot |x - x_0| = \frac{10}{x_0^3} |x - x_0|
+    .\]
+    By taking $\delta = \min\qty{\frac{x_0}{2}, \frac{x_0^2 \epsilon}{10}}$, $|x - x_0| < \delta \implies |f(x) - f(x_0)| < \epsilon$. In this case, we see that $\delta$ is reliant on both $x_0$ and $\epsilon$.
+\end{example}
+
+\begin{definition}[Uniform Continuity]
+    A function $f : S \subset \mathbb{R} \to \mathbb{R}$ is uniformly continuous iff 
+    \[
+        \forall \epsilon > 0, \exists \delta > 0 \text{ s.t. } |x-\tilde{x}| < \delta \implies |f(x) - f(\tilde{x})| < \epsilon, x,\tilde{x} \in S
+    .\]
+    If $f$ is said to be uniformly continuous, it is assumed to be uniformly continuous on its domain of definition unless specified.
+\end{definition}
+
+\begin{remark}
+    Note that uniform continuity is a "stronger" notion of continuity. Note that
+    \[
+        |x - \tilde{x}| < \delta
+    \]
+    does not rely on some fixed argument $\tilde{x}$ unlike normal continuity. Fixing $\tilde{x}$ would produce an identical definition of continuity, therefore a function that is uniformly continuous is also continuous. Additionally, continuity is a property at a point while uniform continuity is property on a set. A function that is uniformly continuous at a point is meaningless.
+\end{remark}
+
+\begin{example}
+    The function $f(x) = \frac{1}{x^2}$ is uniformly continuous on $[a, \infty)$ for any $a > 0$.
+    \begin{proof}
+        Note that
+        \[
+            |f(x) - f(\tilde{x})| = \qty|\frac{1}{x^2} - \frac{1}{\tilde{x}^2}| \leq 
+            \frac{x + \tilde{x}}{x^2 \tilde{x}^2} |x- \tilde{x}| =
+            \qty(\frac{1}{x \tilde{x}^2} + \frac{1}{x^2 \tilde{x}}) |x- \tilde{x}| 
+            \leq \frac{2}{a^3} |x-\tilde{x}|
+        .\]
+        Take then $\epsilon > 0$ and let $\delta = \frac{a^3 \epsilon}{2}$. Then
+        \[
+            |x - \tilde{x}| < \delta \implies \frac{2}{a^3}|x-\tilde{x}| < \epsilon \implies |f(x) - f(\tilde{x})| < \epsilon
+        .\]
+        Therefore $f$ is uniformly continuous on $[a,\infty)$.
+    \end{proof}
+\end{example}
+
+\begin{example}
+    The function $f(x) = \frac{1}{x^2}$ is not uniformly continuous on $(0, \infty)$.
+    \begin{proof}
+        Take $\epsilon = 1$ and show that $\forall \delta > 0$, there is $x,\tilde{x} \in (0,1)$ such that $|x - \tilde{x}| < \delta$ but $|f(x) - f(\tilde{x})| > 1$. Take $\tilde{x} = x + \frac{\delta}{2}$. Note
+        \[
+            \frac{1}{x^2} - \frac{1}{\tilde{x}^2} = \frac{1}{x^2} - \frac{1}{\qty(x + \frac{\delta}{2})^2} = \frac{\delta x+ \frac{\delta^2}{4}}{x^2 \qty(x + \frac{\delta}{2})^2}= \frac{\delta^2 \frac{5}{4}}{\frac{9}{4} \delta^4} = \frac{5}{9} \frac{1}{\delta^2} > \frac{20}{9} > 1
+        \]
+        for $\delta < \frac{1}{2}$.
+    \end{proof}
+\end{example}
+
+\begin{example}
+    The function $f(x) = x^2$ is uniformly continuous on $[-7, 7]$.
+    \begin{proof}
+        Note that
+        \[
+            |f(x) - f(\tilde{x})| = |x^2 - \tilde{x}| = |x + \tilde{x}||x-\tilde{x}| \leq 14 |x - \tilde{x}|
+        .\]
+        Therefore, take $\epsilon > 0$ and choose $\delta = \frac{\epsilon}{14}$. Then
+        \[
+            |x - \tilde{x}| < \delta \implies 14 |x - \tilde{x}| < \epsilon \implies |f(x) - f(\tilde{x})| < \epsilon
+        \]
+        Hence $f$ is uniformly continuous on $[-7, 7]$.
+    \end{proof}
+\end{example}
+
+\begin{theorem}[Closed Interval Implies Uniform Continuity]
+    \label{thm:closedcontinuityisuniform}
+    If $f$ is continuous on $[a,b]$, then $f$ is uniformly continuous on $[a,b]$.
+\end{theorem}
+
+\begin{proof}
+    Let $f : \dom(f) \to \mathbb{R}$ be a real valued function and assume that it is continuous on the interval $[a,b]$. Assume towards contradiction that $f$ is not uniformly continuous. Then $\exists \epsilon > 0$ such that $\forall\delta > 0$ there is $x, \tilde{x} \in [a,b]$ where $|x - \tilde{x}| < \delta$ and $|f(x) - f(\tilde{x})| \geq \epsilon$. Take $\delta_n = \frac{1}{n}$ to find a sequence of arguments $(x_n)$ and $(\tilde{x}_n)$ in $[a,b]$ such that $|x_n - \tilde{x}_n| < \delta_n$ and $|f(x_n) - f(\tilde{x_n})| \geq \epsilon$. By \ref{thm:bolzanoweistrass}, there exists a subsequence $(n_k)_{k\in \mathbb{N}} \subset \mathbb{N}$ such that
+    \begin{align*}
+        x_{n_k} &\xrightarrow{n \to \infty} x_0 \\
+        \tilde{x}_{n_k} &\xrightarrow{n \to \infty} x_0 \;(\text{since } |x_n - \tilde{x}_n| < \delta_n)
+    \end{align*}
+    Since $[a,b]$ is closed, then the limit point $x_0 \in [a,b]$. Therefore since $f$ is continuous on $[a,b]$,
+    \begin{align*}
+        f(x_{n_k}) &\xrightarrow{n \to \infty} f(x_0) \\
+        f(\tilde{x}_{n_k}) &\xrightarrow{n \to \infty} f(x_0)
+    \end{align*}
+    which means that $|f(x_{n_k}) - f(\tilde{x}_{n_k})| \to 0$. However this contradicts the assumption that $|f(x_{n_k}) - f(\tilde{x}_{n_k})| \geq \epsilon > 0$ for all $k$.
+\end{proof}
+
+\begin{example}
+    The following functions are uniformly continuous
+    \begin{align*}
+        [x\mapsto x^73]&, x \in [-15, 31] \\
+        [x\mapsto \sqrt{x}]&, x\in [0, 413] \\
+        [x\mapsto e^x]&, x\in [-1000, 1000]
+    \end{align*}
+\end{example}
+
+\begin{theorem}[Uniform Continuity Preserves Cauchy Sequences]
+    \label{thm:cauchypreservedunderuniformcontinuity``}
+    If $f$ is uniformly continuous on $S$, then a Cauchy sequence $(s_n)$ in $S$ is mapped to a Cauchy sequence $(f(s_n))$ in $\mathbb{R}$.
+\end{theorem}
+\begin{proof}
+    Take $\epsilon >0$. Then find $\delta > 0$ such that $|x - \tilde{x}| \implies |f(x) - f(\tilde{x})| < \epsilon$ for $x,\tilde{x} \in S$. Since $(s_n)$ is Cauchy, then $\exists N \in \mathbb{N}$ such that $|s_n - s_m| < \delta$ for all $n > N$. Then $|f(s_n) - f(s_m)| < \epsilon$ for all $n > M$ and hence $(f(s_n))$ is also Cauchy.
+\end{proof}
+
+\begin{example}
+    Consider $f(x) = \frac{1}{x^2}$ on the interval $(0, 1]$. $f$ is not uniformly continuous.
+    \begin{proof}
+        Consider the sequence $s_n = \frac{1}{n}$. $(s_n)$ is convergent and in the domain of $f$, but $f(s_n) = n^2$ which is not Cauchy. Hence $f$ is not uniformly continuous.
+    \end{proof}
+\end{example}
+
+\begin{definition}[Function Extension]
+    $\tilde{f} : \dom(\tilde{f}) \subset \mathbb{R} \to \mathbb{R}$ is an extension of $f : \dom(f) \subset \mathbb{R} \to \mathbb{R}$ iff
+    \begin{enumerate}
+        \item $\dom (f) \subset \dom(\tilde{f})$
+        \item $\tilde{f}(x) = f(x)$ for $x \in \dom(f)$
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    Consider the function $f(x) = x \sin \frac{1}{x}$ on the interval $\left(0, \frac{1}{\pi}\right]$. Let
+    \[
+        \tilde{f} = \begin{cases}
+            f(x) & x \in \left(0, \frac{1}{\pi}\right] \\
+            r & x = 0
+        \end{cases}
+    .\]
+    If $r = 0$, then $\tilde{f}$ is continuous on the closed interval $\qty[0, \frac{1}{\pi}]$ and hence is uniformly continuous.
+\end{example}
+
+\begin{example}
+    Consider $f(x) = \sin \frac{1}{x}$ with $x \in \left(0, \frac{1}{\pi}\right]$. $f$ can be extended to the closed interval by setting $f(0) = r \in \mathbb{R}$. However, no choice for $r$ makes the extension continuous.
+\end{example}
+
+\begin{theorem}[Uniform Continuity Extension Equivalency]
+    $f: (a,b) \to \mathbb{R}$ is uniformly continuous on $(a,b)$ iff $f$ has a uniformly continuous extension $\tilde{f}$ on $[a,b]$.
+\end{theorem}
+\begin{proof}
+    Consider both implications
+    \begin{enumerate}
+        \item[$\Leftarrow)$]
+            Assume that $\tilde{f}$ is uniformly continuous on $[a,b]$. Since $f(x) = \tilde{f}(x)$ for $x \in (a,b)$, $f$ must be uniformly continuous.
+        \item[$\Rightarrow)$]
+            Assume that $f$ is uniformly continuous on $(a,b)$. If $f$ has a continuous extension $\tilde{f}$ on $[a,b]$, then it is uniformly continuous. Therefore it is sufficient to define $\tilde{f}$ at $a$ and $b$. Consider $b$. It is possible to take $x_n \in (a,b)$ such that $\lim x_n = b$. Since $(x_n)$ is convergent, it is also Cauchy. Since $f$ is uniformly continuous, $(f(x_n))_{n \in \mathbb{N}}$ is also a Cauchy sequence and therefore is convergent. Therefore there is some $y \in \mathbb{R}$ such that $\lim f(x_n) = y$. Define then $\tilde{f}(b) = y$. It still needs to be verified that for any other sequence that converges to $b$ that the functional sequence converges to $y$. Let $(\tilde{x}_n)$ be a sequence different that before that converges to $b$. Consider a new sequence $(s_n) = (x_1, \tilde{x_1}, x_2, \tilde{x}, \ldots)$. Note that $(s_n)$ is Cauchy since $\lim s_n = b$. Therefore $(f(s_n))_{n\in \mathbb{N}}$ is also Cauchy, meaning $(f(s_n))_{n\in \mathbb{N}}$ has a limit. Therefore all its subsequential limits are the same, hence
+            \[
+                \lim s_{2k} = \lim \tilde{x}_n = \lim s_{2k - 1} = \lim x_n = y
+            .\]
+            Therefore all convergent sequences to $b$ will converge to $y$ under $f$. The same construction follows for $a$.
+    \end{enumerate}
+    Both implications therefore establish the equivalency.
+\end{proof}
+
+\begin{example}
+    Consider $f(x) = \frac{\sin x}{x}$ with $x\neq 0$. Let
+    \[
+        \tilde{f}(x) = \begin{cases}
+            f(x) & x\neq 0 \\
+            1 & x = 0
+        \end{cases}
+    .\]
+    It turns out that $\tilde{f}$ is continuous on $\mathbb{R}$ and therefore is uniformly continuous on any closed interval.
+\end{example}
+
+\begin{theorem}
+    Let $f$ be continuous on an interval $I$. If $f$ restricted to $\mathring{I}$ is differentiable and the derivative is bounded, then $f$ is uniformly continuous.
+\end{theorem}
+
+\begin{proof}
+    Apply MVT with $a < b$ and $a,b \in I$. Then
+    \[
+        f(b) - f(a) = f'(x) \cdot (b-a), x \in (a,b)
+    .\]
+    Therefore $|f(b) - f(a)| \leq |f'(x) (b-a)| = |f'(x)| (b-a)$. Since $f'(x)$ is bounded, there is some $M \in \mathbb{R}$ such that $|f'(x)| \leq M$ for all $x$. Take $\epsilon > 0$ and let $\delta = \frac{\epsilon}{M}$. Then
+    \[
+        |b - a| < \delta \implies |f(b) - f(a)| < \epsilon
+    .\]
+    Hence $f$ is uniformly continuous.
+\end{proof}
+
+\end{document}

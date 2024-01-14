@@ -1,0 +1,212 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{4}
+\input{hw_preamble.tex}
+
+% 9.1b, 9.1c, 9.3, 9.4, 9.9, 9.12
+% 10.1, 10.3, 10.4, 10.6, 10.8, 10.11
+
+\begin{document}
+
+\subsection*{9.1}
+\subsubsection*{Part B}
+\begin{align*}
+    \lim \frac{3n+7}{6n-5} &= \lim \frac{3 + \frac{7}{n}}{6 - \frac{5}{n}} \\
+    &= \frac{\lim\qty(3 + \frac{7}{n})}{\lim\qty(6 - \frac{5}{n})} \\
+    &= \frac{3 + 7 \lim \frac{1}{n}}{6 - 5 \lim \frac{1}{n}} \\
+    &= \frac{3 + 7(0)}{6 - 5(0)} \\
+    &= \frac{3}{6} = \frac{1}{2}.
+\end{align*}
+
+\subsubsection*{Part C}
+\begin{align*}
+    \lim \frac{17n^5 + 73n^4 -18n^2 + 3}{23n^5 + 13n^3} &= \lim\frac{17 + \frac{73}{n} - \frac{18}{n^3} + \frac{3}{n^5}}{23 + \frac{13}{n^2}} \\
+    &= \frac{17 + 73 \cdot \lim \frac{1}{n} - 18\cdot \lim \frac{1}{n^3} + 3\cdot \frac{1}{n^5}}{23 + 13\cdot\lim \frac{1}{n^2}} \\
+    &= \frac{17 + 73(0) - 18(0) + 3(0)}{23 + 13(0)} \\
+    &= \frac{17}{23}
+\end{align*}
+
+\subsection*{9.3}
+Since $b_n^2 + 1 > 0$ for all $n \in \mathbb{N}$,
+\begin{align*}
+    \lim s_n = \frac{\lim a_n^3 + 4 a_n}{\lim b_n^2 + 1} &= \frac{\lim a_n^3 + 4 \lim a_n}{b^2 + 1} \\
+    &= \frac{(\lim a_n)^3 + 4a}{b^2 + 1} = \frac{a^3 + 4a}{b^2 + 1}
+\end{align*}
+
+\subsection*{9.4}
+\subsubsection*{Part A}
+\begin{align*}
+    s_1 &= 1 \\
+    s_2 &= \sqrt{2} \\
+    s_3 &= \sqrt{\sqrt{2} + 1} \\
+    s_4 &= \sqrt{\sqrt{\sqrt{2} + 1} + 1} \\
+\end{align*}
+
+\subsubsection*{Part B}
+Since $s_n$ converges, let $\lim_{n\to \infty} s_n = s$. Then
+\[
+    \lim_{n\to \infty} s_{n+1} = \lim_{n \to \infty} \sqrt{s_n + 1}
+\]
+meaning
+\begin{align*}
+    s = \sqrt{s + 1} &\implies s^2 - s - 1 = 0 \\
+                     &\implies s = \frac{1 \pm \sqrt{5}}{2}
+\end{align*}
+Since $s_n > 0$ for all $n \in \mathbb{N}$, it follows that $s = \frac{1 + \sqrt{5}}{2}$.
+
+\subsection*{9.9}
+Suppose that $\exists N_0 \in \mathbb{N}$ such that $s_n \leq t_n$ for all $n > N_0$.
+
+\subsubsection*{Part A}
+\begin{proof}
+    Assume that $\lim s_n = +\infty$. That is
+    \[
+        \forall M > 0, \exists N_1 \in \mathbb{N} \text{ such that } s_n > M, \forall n > N_1
+    \]
+    Take $N = \max\qty{N_0, N_1}$. If $n > N$, then $t_n \geq s_n > M$. Therefore $\lim t_n = + \infty$.
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    Assume that $\lim t_n = -\infty$. That is
+    \[
+        \forall M < 0, \exists N_1 \in \mathbb{N} \text{ such that } t_n < M, \forall n > N_1
+    \]
+    Take $N = \min\qty{N_0, N_1}$. If $n > N$, then $s_n \leq t_n < M$. Therefore $\lim s_n = - \infty$.
+\end{proof}
+
+\subsubsection*{Part C}
+\begin{proof}
+    Assume that $\lim s_n = s$ and $\lim t_n = t$ exist. Consider the case that $s$ and $t$ are finite. Let $\epsilon > 0$. Then there exists $N_1, N_2 \in \mathbb{N}$ such that
+    \begin{align*}
+        |s_n - s| < \epsilon, \forall n > N_1 \\
+        |t_n - t| < \epsilon, \forall n > N_2
+    \end{align*}
+    Therefore considering $N = \max\qty{N_0, N_1, N_2}$,
+    \[
+        s - \epsilon < s_n \leq t_n < t + \epsilon \implies s < t + 2\epsilon
+    \]
+    Since $\epsilon$ is arbitrary, it follows then that $s \leq t$. If $s = -\infty$, then $t \geq s$ no matter what $t$ is. If $s = \infty$, then by part A it follows that $t = \infty \geq \infty$.
+\end{proof}
+
+\subsection*{9.12}
+\subsubsection*{Part A}
+\begin{proof}
+    Assume that $L < 1$. Let $a \in (L, 1) > 0$ such that $L < a < 1$. Take $\epsilon = a - L > 0$. Since $\qty|\frac{s_{n+1}}{s_n}|$ converges to $L$, there exists $N \in \mathbb{N}$ such that
+    \[
+        L - \epsilon < \qty|\frac{s_{n+1}}{s_n}| < L + \epsilon, \forall n > N
+    \]
+    meaning
+    \[
+        -a + 2L < \qty|\frac{s_{n+1}}{s_n}| < a \implies \qty|\frac{s_{n+1}}{s_n}| < a, \forall n > N.
+    \]
+    Therefore $|s_{n+1}| < a |s_n|$ for all $n > N$. Proceed with induction to show that $|s_n| < a^{n - N} |s_N|$ for $n > N$. Consider the base case $n = N + 1$. By the previous result, $|s_{N + 1}| < a |s_N| = a^{N + 1 - N} |s_N|$, hence the base case holds. Assume for some fixed $n > N$ that $|s_n| < a^{n - N} |s_N|$. Since $a > 0$,
+    \[
+        a|s_n| < a^{(n+1) - N} |s_N|
+    \]
+    And since $|s_{n+1}| < a |s_n|$ for all $n > N$,
+    \[
+        |s_{n+1}| < a |s_n| < a^{(n+1) - N} |s_N| \implies |s_{n+1}| < a^{(n+1) - N} |s_N|
+    \]
+    Therefore the statement holds for all $n > N$. Note then that
+    \[
+        0 \leq |s_n| \leq a^{n - N} |s_N|, \forall n > N
+    \]
+    Since $0 < a < 1$, $a^{n-N} |s_N|$ converges to $0$. By the squeeze theorem, $\lim |s_n| = 0$ hence $\lim s_n = 0$.
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    Assume that $L > 1$ and let $t_n = \frac{1}{|s_n|}$. Note that then $\lim\qty|\frac{t_{n+1}}{t_n}| = \frac{1}{L}$ when $L < \infty$ and $0$ when $L = +\infty$. Therefore $\lim\qty|\frac{t_{n+1}}{t_n}| < 1$, which by part A means $\lim t_n = 0$. By Theorem 9.10, $\lim s_n = + \infty$.
+\end{proof}
+
+\subsection*{10.1}
+Empty means false.
+\begin{table}[h!]
+    \centering
+    \def\arraystretch{1.5}
+    \begin{tabular}{r|l|l|l|l|l|l}
+     & A & B & C & D & E & F \\\hline
+    Increasing &             &              & $\checkmark$ &              &  &              \\\hline
+    Decreasing & $\checkmark$ &              &              &              &  & $\checkmark$ \\\hline
+    Bounded    & $\checkmark$ & $\checkmark$ &              & $\checkmark$ &  & $\checkmark$
+    \end{tabular}
+\end{table}
+
+\subsection*{10.3}
+\begin{proof}
+    Let $K.d_1 d_2 d_3 \ldots$ be a decimal expansion of a real number. Note that for all $n \in \mathbb{N}$,
+    \[
+       \frac{d_1}{10} + \frac{d_2}{10^2} + \ldots + \frac{d_n}{10^n} \leq \frac{9}{10} + \frac{9}{10^2} + \ldots + \frac{9}{10^n} = 1 - \frac{1}{10^n} < 1
+    \]
+    hence
+    \[
+       \frac{d_1}{10} + \frac{d_2}{10^2} + \ldots + \frac{d_n}{10^n} < 1 \implies K + \frac{d_1}{10} + \frac{d_2}{10^2} + \ldots + \frac{d_n}{10^n} < K + 1
+    \]
+    for all $n$. By the definition $(s_n)$, it follows that
+    $
+        s_n < K + 1, \forall n \in \mathbb{N}
+    $
+\end{proof}
+
+\subsection*{10.4}
+Both theorems rely on the completeness axiom to ensure the existence of a supremum which does not hold for $\mathbb{Q}$.
+
+\subsection*{10.6}
+\subsubsection*{Part A}
+
+\begin{proof}
+    Let $(s_n)$ be a sequence and assume that $|s_{n+1} - s_n| < 2^{-n}$ for all $n \in \mathbb{N}$. 
+    Let $m,w \in \mathbb{N}$ and WLOG assume $m \geq w$. Note that
+    \[
+        |s_m - s_w| = |s_m - s_{m-1} + s_{m-1} - s_{m-2} + \ldots + s_{w + 1} - s_w|
+    \]
+    which by triangle inequality
+    \begin{align*}
+        |s_m - s_w| \leq |s_{m+1} - s_m| + |s_{m} - s_{m-1}| + \ldots + |s_{w+1} - s_w| &< 2^{-m} + 2^{1-m} + \ldots + 2^{-w} \\
+        &= \frac{1}{2^m} + \ldots + \frac{1}{2^w} \\
+        &= \frac{1}{2^m}\qty(1 + \frac{1}{2} + \ldots \frac{1}{2^{w-m}}) \\
+    \end{align*}
+    Since $1 + \frac{1}{2} + \ldots + \frac{1}{2^{w-m}} < 2$,
+    \[
+        |s_m - s_w| < \frac{1}{2^m}\qty(1 + \frac{1}{2} + \ldots \frac{1}{2^{w-m}}) < \frac{1}{2^{w-1}}
+    \]
+
+    Take $\epsilon > 0$. Note that for any $n \in \mathbb{N}$, $n < 2^n$ or equivalently $2^{-n} < \frac{1}{n}$ f`or all $n$. By the archimedean property, $\exists N_0$ such that $\frac{1}{N} < \epsilon$. Then $2^{-N} < \epsilon$. If $m,w > N$, then $\frac{1}{2^{m-1}} \leq \frac{1}{2^{-N}}$. Therefore
+    \[
+        |s_m - s_w| < \frac{1}{2^{m-1}} \leq \frac{1}{2^{-N}} < \epsilon
+    \]
+    Therefore $s_n$ is Cauchy and converges since all Cauchy sequences converge.
+\end{proof}
+
+\subsubsection*{Part B}
+The result would not be true if we assume it is less than $\frac{1}{n}$. A key part of the proof is that the series $1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \ldots$ has an upper bound. In the case of $\frac{1}{n}$, the series $1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4}$ is not bounded and therefore it is not possible to obtain an $N$ large enough that for any distance between $m$ and $n$ the difference $|s_m - s_n|$ stays below a fixed upper bound $\epsilon$.
+
+\subsection*{10.8}
+\begin{proof}
+    Note that
+    \begin{align*}
+        \sigma_{n+1} - \sigma_n &= \frac{s_1 + \ldots + s_{n+1}}{n+1} - \frac{s_1 + \ldots + s_n}{n} \\
+        &= \frac{(n+1)(s_1 + \ldots + s_{n+1})}{n(n+1)} - \frac{n(s_1 + \ldots + s_n)}{n(n+1)} \\
+        &= \frac{(s_{n+1} - s_n) + (s_{n+1} - s_{n-1}) + \ldots + (s_{n+1} - s_1)}{n(n+1)} \\
+        \intertext{Since $s_n$ is increasing, $s_n \geq s_m \implies s_n - s_m \geq 0$ for all $n \geq m$, meaning}
+        &\geq \frac{0 + \ldots + 0}{n(n+1)} = 0 \\
+    \end{align*}
+    Therefore $\sigma_{n+1} - \sigma_n \geq 0$ meaning $\sigma_{n+1} \geq \sigma_n$, hence $\sigma_n$ is an increasing sequence.
+\end{proof}
+
+\subsection*{10.11}
+\subsubsection*{Part A}
+\begin{proof}
+    First note that $t_n$ is a decreasing sequence since $t_{n+1}$ is $t_n$ multiplied by a number between $0$ and $1$. Additionally, it is bounded above by $1$ since it is decreasing and below by $0$ since each successive term is positive and $t_1 > 0$. Therefore since $t_n$ is a bounded monotonic sequence, it converges.
+\end{proof}
+
+\subsubsection*{Part B}
+Intuitively, $t_n > 0.5$. By creating a desmos simulation, $t_{574} \approx 0.636$, and using Mathematica to solve the recurrence relation gives $\lim t_n = \frac{2}{\pi}$.
+
+\[
+    t_n = \frac{\qty(\frac{1}{2})_{n-1} \cdot \qty(\frac{3}{2})_{n-1}}{(1)_{n-1}^2}
+\]
+
+\end{document}

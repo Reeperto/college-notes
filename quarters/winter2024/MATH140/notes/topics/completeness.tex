@@ -1,0 +1,90 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+\banner{Axiom of Completeness}
+
+\subsection{Bounds}
+
+\begin{definition}[Upper and Lower Bound]
+	Let $S$ be a non-empty subset of $\mathbb{R}$. An upper bound of $S$ is a number $M$ such that $s \leq M$ for all $s \in \mathbb{R}$. A lower bound of $S$ is a number $m$ such that $s \geq M$ for all $s \in \mathbb{R}$.
+\end{definition}
+
+Note that any finite subset of $\mathbb{R}$ will admit an upper and lower bound as a larger/smaller number can always be chosen compared to any number in the set. There can potentially be infinitely many bounds on a set, but there is an important refinement that can be made.
+
+\begin{definition}[Supremum and Infimum]
+	Let $S \subset \mathbb{R}$. If there exists an upper bound $M$ for $S$ such that for any other upper bound $s$ $M \leq s$, $M$ is called the \textit{least upper bound} for $S$ or equivalently the supremum (notated as $\sup S$). The same logic for lower bounds gives rise to the infimum or \textit{greatest lower bound} (notated as $\inf S$).
+\end{definition}
+
+Consider a finite subset of $\mathbb{R}$. Then it follows that the subset will have a minimum and maximum as each element can be checked against each other because it is finite. This does not generalize to an infinite subset of $\mathbb{R}$.
+
+\begin{example}
+	\label{ex:rationalsupremum}
+	Consider the set $S = \qty{r \in \mathbb{Q} : 0 \leq r, r^2 < 2}$. In $\mathbb{R}$, $0$ is a minimum and $\sqrt{2}$ is the supremum. Note that $\sqrt{2} \not\in S$. Alternatively, if working over $\mathbb{Q}$, there is no supremum as $\sqrt{2} \not\in \mathbb{Q}$.
+\end{example}
+
+\begin{remark}
+	The supremum or infimum of a set does not necessarily have to be an element of said set.
+\end{remark}
+
+\begin{theorem}[Uniqueness of Supremum and Infimum]
+	If a set $S \subset \mathbb{R}$ has a supremum or infimum, then said supremum or infimum is unique.
+\end{theorem}
+\begin{proof}
+	Let $S \subset \mathbb{R}$. Assume that $S$ has two supremum $M$ and $M'$. By definition of a supremum, $M \leq M'$ and $M' \leq M$. Therefore $M = M'$. Same argument applies to the infimum.
+\end{proof}
+
+\begin{example}
+	Consider the set
+	\[
+		D = \qty{x \in \mathbb{R} : x^2 < 10}
+	.\]
+	Then $\sup D = \sqrt{10}$ and $\inf D = -\sqrt{10}$. Since $\pm \sqrt{10} \notin D$, there is no max or min.
+\end{example}
+
+\subsection{The Completeness Axiom}
+
+The completeness axiom is a defining charactersitc of $\mathbb{R}$ that differentiates it from $\mathbb{Q}$. It can be interpreted as requiring there be no gaps between numbers.
+
+\begin{definition}[Axiom of Completeness]
+	\label{def:axiomofcompleteness}
+	Let $S$ be a non-empty subset of $\mathbb{R}$. If $S$ is bounded above, then $\sup S$ exists.
+\end{definition}
+
+Consider the set from example \ref{ex:rationalsupremum}. When working over $\mathbb{Q}$, there exists upper bounds (such as $4$), but it does not admit a least upper bound. In contrast, working over $\mathbb{R}$ admits a supremum. This distinction is what makes $\mathbb{R}$ useful for much of analysis and calculus. While the \nameref{def:axiomofcompleteness} only stipulates the existence of a supremum, it can be derived that the equivalent statement for lower bounds and infimum follows.
+
+\begin{corollary}[Axiom of Completeness Reversed]
+	Let $S$ be a non-empty subset of $\mathbb{R}$. If $S$ is bounded below, then $\inf S$ exists.
+\end{corollary}
+\begin{proof}
+	Let $S$ be a non-empty set that is bounded below. Therefore there exists an $m$ such that $m \leq s$ for all $s \in S$. Equivalently, $-s \leq -m$ for all $s \in S$. Consider the set $-S = \qty{-s : s \in S}$. $-s \leq -m$ for all $s \in S$ implies $-S$ is bounded above by $-m$ and therefore by the \nameref{def:axiomofcompleteness} $\sup(-S) = s_0$ exists. Therefore $r \leq s_0$ for all $r \in -S$ meaning $-s \leq s_0$ for all $s \in S$. Flipping the inequality gives $-s_0 \leq s$ for all $s \in S$, meaning $-s_0$ is a lower bound for $S$.
+	% TODO: FINISH PROOF
+\end{proof}
+
+\begin{theorem}[Archimedean Property]
+	Let $a,b \in \mathbb{R} > 0$. Then $\exists n \in \mathbb{N}$ such that $an > b$.
+\end{theorem}
+
+Consider the special case when $b = 1$. Then $an > b \implies a > \frac{1}{n}$ for some $n \in \mathbb{N}$ meaning there is always a rational number smaller than any positive real number. In the case that $a = 1$, then $an > b \implies n > b$ for some $n \in \mathbb{N}$ meaning there is always a rational/integer larger than any positive real number.
+
+\begin{proof}
+	Assume towards contradiction that $\exists a,b \in \mathbb{R} > 0$ such that $na \leq b$ for all $n \in \mathbb{N}$. Define the set $S = \qty{na : n \in \mathbb{N}}$. Note that $b$ is an upper bound of $S$. Therefore by the \nameref{def:axiomofcompleteness}, $\sup S = s_0$ exists. Since $a > 0$, then $a + s_0 > s_0$ or $s_0 - a < 0$. Note that $s_0 - a$ cannot be an upper bound as $s_0$ is the least upper bound of $S$. But note that then $s_0 - a < n_0 a$ for some $n_0 \in \mathbb{N}$ (because $s_0 - a$ is not an upper bound and therefore there is an element in the set $S$ larger than it). However, this implies that $s_0 < (n_0 + 1)a$ and since $(n_0+1)a \in S$, $s_0$ is not a least upper bound. Therefore there cannot exist such $a,b$.
+\end{proof}
+
+The Archimedean property shows that rational numbers are "everywhere", a concept further emboldended by the idea that the rationals are \textit{dense} in $\mathbb{R}$.
+
+\begin{theorem}[$\mathbb{Q}$ is Dense in $\mathbb{R}$]
+	Let $a,b \in \mathbb{R}$ with $a < b$. Then $\exists r \in \mathbb{Q}$ such that $a < r < b$.
+\end{theorem}
+\begin{proof}
+	Let $a,b \in \mathbb{R}$ such that $a < b$. This means that $b - a > 0$. By the Archimedean principle, there exists $n$ such that $n(b-a) = nb - na > 1$. Therefore there exists $k \in \mathbb{N}$ such that $k > \operatorname{max}\qty{|an|, |bn|}$, meaning $-k < an < bn < k$. Two things can be said about $k$
+	\begin{align*}
+		k &\in K = \qty{j \in \mathbb{Z} : -k \leq j \leq k} \\
+		k &\in L=  \qty{j \in K : an < j}
+	\end{align*}
+	Note that both sets are finite because the first has $2k + 1$ elements and the second is a subset of $K$. Define $m := \min{L}$ (which exists since $L$ is non-empty and finite). Then $-k < an < m$. Therefore $m > -k$ meaning $m - 1 \in K$. Note that $an < m - 1$ is false since $m$ is the minimum value where that inequality holds. Then $m - 1 \leq an$ meaning $m \leq an + 1 < bn$ (since $nb - na > 1$). Therefore since $an < m$, $an < m < bn$ or equivalently $a < \frac{m}{n} < b$. Since $\frac{m}{n} \in \mathbb{Q}$, there is a rational between $a$ and $b$.
+\end{proof}
+
+\end{document}

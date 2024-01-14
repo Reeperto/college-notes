@@ -1,0 +1,158 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{3}
+\input{hw_preamble.tex}
+
+% 7.1 and 7.2 for a,d, 7.3, 7.4, 7.5b 
+% 8.1c, 8.1d, 8.2b, 8.2e, 8.4, 8.5a, 8.9a
+
+\begin{document}
+
+\subsection*{7.1/7.2}
+\begin{multicols}{2}
+\subsubsection*{Part A}
+\begin{align*}
+    s_1 &= \frac{1}{4} \\
+    s_2 &= \frac{1}{7} \\
+    s_3 &= \frac{1}{10} \\
+    s_4 &= \frac{1}{13} \\
+    s_5 &= \frac{1}{16}
+\end{align*}
+
+The sequence converges to $0$.
+
+\subsubsection*{Part D}
+\begin{align*}
+    s_1 &= \frac{\sqrt{2}}{2} \\
+    s_2 &= 1 \\
+    s_3 &= \frac{\sqrt{2}}{2} \\
+    s_4 &= 0 \\
+    s_5 &= -\frac{\sqrt{2}}{2} \\
+\end{align*}
+
+The sequence does not converge as it cycles.
+\end{multicols}
+
+\subsection*{7.3}
+\begin{table}[h!]
+    \def\arraystretch{1.5}
+\begin{tabular}{l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l}
+A & B & C & D & E   & F & G        & H   & I & J             & K        & L   & M   & N   & O & P & Q & R & S             & T \\\hline
+1 & 1 & 0 & 1 & DNC & 1 & $\infty$ & DNC & 0 & $\frac{7}{2}$ & $\infty$ & DNC & DNC & DNC & 0 & 2 & 0 & 1 & $\frac{4}{3}$ & 0
+\end{tabular}
+\end{table}
+
+\subsection*{7.4}
+\subsubsection*{Part A}
+\[
+    s_n = \frac{\sqrt{2}}{n} \in \mathbb{I}, \lim_{n\to \infty} s_n = 0 \in \mathbb{Q}
+\]
+
+\subsubsection*{Part B}
+Let $F_n$ denote the $n$'th fibonacci number with $F_1 = F_2 = 1$.
+\[
+    s_n = \frac{F_{n+1}}{F_n} \in \mathbb{Q}, \lim_{n\to \infty} s_n = \phi = \frac{1+\sqrt{5}}{2} \in \mathbb{I}
+\]
+
+\subsection*{7.5}
+\subsubsection*{Part B}
+Note that $\sqrt{n^2 + n} - n = \frac{n}{\sqrt{n^2+n} + n} \sim \frac{n}{2n}$. Therefore
+\[
+    \lim_{n\to\infty} = \sqrt{n^2 + n} - n = \frac{1}{2}
+\]
+\subsection*{8.1}
+\subsubsection*{Part C}
+\begin{proof}
+    Take $\epsilon > 0$. Let $N \in \mathbb{N} > \frac{3}{5\epsilon}$. Note that
+    \[
+        \qty|\frac{2n-1}{3n+2} - \frac{2}{3}| = \qty|\frac{7}{3} \cdot \frac{1}{3n+2}| = \frac{7}{3} \cdot \frac{1}{3n+2} \leq \frac{3}{5n}.
+    \]
+    For $n > N$, $\frac{3}{5n} \leq \frac{3}{5 N} < \epsilon$. Therefore
+    \[
+        \qty|\frac{2n-1}{3n+2} - \frac{2}{3}| < \epsilon, \forall n > N
+    \]
+    hence $\lim_{n\to \infty} \frac{2n-1}{3n+2} = \frac{2}{3}$.
+\end{proof}
+
+\subsubsection*{Part D}
+\begin{proof}
+    Take $\epsilon > 0$. Let $N \in \mathbb{N} > \max\qty{6, 6 + \frac{1}{\epsilon}}$. Note that $N > 6$, meaning for all $n > N$
+    \[
+        \qty|\frac{n+6}{n^2 - 6}| = \frac{n+6}{n^2 - 6}.
+    \]
+    Since $0 < n^2 - 36 < n^2 - 6$ for all $n > N$,
+    \[
+        \frac{n+6}{n^2 - 6} \leq \frac{n+6}{n^2-36} = \frac{1}{n-6} < \frac{1}{N - 6} < \epsilon, \forall n > N.
+    \]
+    Therefore, $\qty|\frac{n+6}{n^2-6}| < \epsilon$ for all $n > N$, hence $\lim_{n \to \infty}\frac{n+6}{n^2-6} = 0$.
+\end{proof}
+
+\subsection*{8.2}
+\subsubsection*{Part B}
+\[
+    \lim_{n\to \infty} \frac{7n-19}{3n+7} = \frac{7}{3}
+\]
+\begin{proof}
+    Take $\epsilon > 0$. Let $N \in \mathbb{N} > \frac{5}{9\epsilon}$. Note that
+    \[
+        \qty|\frac{7n-19}{3n+7} - \frac{7}{3}| = \qty|\frac{-5}{9n+21}| = \frac{5}{9n + 21}.
+    \]
+    Since $9n \leq 9n + 21$,
+    \[
+        \frac{5}{9n + 21} \leq \frac{5}{9n} < \frac{5}{9N} < \epsilon, \forall n > N.
+    \]
+    Therefore
+    \[
+        \qty|\frac{7n-19}{3n+7} - \frac{7}{3}| < \epsilon, \forall n > N
+    \]
+    hence $\lim_{n\to \infty}\frac{7n-19}{3n+7} = \frac{7}{3}$.
+\end{proof}
+
+\subsubsection*{Part E}
+\[
+    \lim_{n\to \infty} \frac{1}{n} \sin(n) = 0
+\]
+\begin{proof}
+    Take $\epsilon > 0$. Take $N \in \mathbb{N} > \epsilon$. Note that since $-1 \leq \sin(x) \leq 1$ for all $x \in \mathbb{R}$, $|\sin(n)| \leq 1$ for all $x \in \mathbb{R}$. Therefore for $n \in \mathbb{N}$,
+    \[
+        \qty|\frac{1}{n} \sin(n)| = \frac{1}{n} |\sin(n)| \leq \frac{1}{n}
+    .\]
+    For $n > N$, $\frac{1}{n} < \frac{1}{N} < \epsilon$. Therefore
+    \[
+        \qty|\frac{1}{n} \sin(n)| < \epsilon, \forall n < N
+    \]
+    hence $\lim_{n\to \infty}\frac{1}{n} \sin(n) = 0$.
+\end{proof}
+
+\subsection*{8.4}
+\begin{proof}
+    Let $t_n$ be a bounded sequence and $s_n$ be a sequence that converges to $0$. Since $t_n$ is bounded, $|t_n| \leq M \in \mathbb{R}$ for all $n \in \mathbb{N}$. Since $s_n$ converges to $0$,
+    \[
+        \forall\epsilon > 0, \exists N \in \mathbb{N} \text{ s.t. } |s_n| < \frac{\epsilon}{M}, \forall n > N
+    \]
+    Note that $|s_n \cdot t_n| = |s_n| |t_n| \leq |s_n| M < \epsilon$ for all $n > N$. Therefore $\lim_{n\to \infty} t_n s_n = 0$.
+\end{proof}
+
+\subsection*{8.5}
+\subsubsection*{Part A}
+\begin{proof}
+    Let $a_n, b_n, s_n$ be sequences such that $a_n \leq s_n \leq b_n$ for all $n \in \mathbb{N}$ and $\lim_{n \to \infty} a_n = \lim_{n \to \infty} b_n = s \in \mathbb{R}$. Since $a_n$ and $b_n$ converge, for any $\epsilon > 0$,
+    \begin{align*}
+        \exists N_1 \in \mathbb{N} \text{ s.t. } |a_n - s| < \epsilon, \forall n > N_1 &\implies a_n > s - \epsilon, \forall n > N_1 \\
+        \exists N_2 \in \mathbb{N} \text{ s.t. } |b_n - s| < \epsilon, \forall n > N_2 &\implies b_n < s + \epsilon, \forall n > N_2
+    \end{align*}
+    By taking $N = \max\qty{N_1, N_2}$, it follows that  that $a_n > s - \epsilon$ and $b_n < s + \epsilon$ for all $n > N$. Note then that
+    \[
+        s - \epsilon < a_n \leq s_n \leq b_n < s + \epsilon \implies |s_n - s| < \epsilon, \forall n > N.
+    \]
+    Therefore $\lim_{n\to \infty} s_n = s$.
+\end{proof}
+
+\subsection*{8.9}
+\subsubsection*{Part A}
+\begin{proof}
+    Let $s_n$ be a convergent sequence such that $s_n \geq a \in \mathbb{R}$ for all but finitely many $n$. Let $s = \lim_{n \to \infty} s_n$ and let $S = \qty{n \in \mathbb{N} : s_n < a}$. Since $S$ is finite, choose $N = \max S$. Note that then for all $n > N$, $s_n \geq a$. Assume towards contradiction that $s < a$. Then $a - s > 0$. Choose $\epsilon > 0$ such that $0 < \epsilon < a - s$. Since $s_n$ converges, $\exists N_0 \in \mathbb{N}$ such that $s_n < s + \epsilon < a$ for all $n > N_0$. This also holds for all $n > \max{N, N_0}$. However, this means that there is an $n > N$ such that $s_n < a$, which contradicts the fact that $N$ is the maximal index such that $s_N < a$. Therefore $s \geq a$.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,124 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{8}
+\input{hw_preamble.tex}
+
+% 15.1, 15.2b, 15.3, 15.5, 15.7a, 17.1, 17.2, 17.5, 17.6
+
+\begin{document}
+
+\subsection*{15.1}
+\subsubsection*{Part A}
+The series converges by the alternating series test since $\frac{1}{n} > \frac{1}{n+1}$ and $\lim\frac{1}{n} = 0$.
+
+\subsubsection*{Part B}
+The series diverges by the ratio test since $\qty|\frac{a_{n+1}}{a_n}| = \frac{n+1}{2} \to \infty$.
+
+\subsection*{15.2}
+\subsubsection*{Part B}
+Since $-1 < \sin(\frac{\pi n}{7}) < 1$ for all $n$, $|\sin(\frac{\pi n}{7})| < 1$. Since it is also periodic, it is possible to choose $1 > r > \max\qty{\sin(\frac{\pi n}{7}) : n = 1,\ldots,14}$. Note then that $|\sin(\frac{\pi n}{7})|^n < r^n$. Since $0 \leq r < 1$, by the comparison test it follows that the original series converges absolutely and hence converges.
+
+\subsection*{15.3}
+\begin{proof}
+    Suppose that $p > 1$. Then
+    \begin{align*}
+        \int_{2}^n \frac{1}{x (\log x)^p} \dd x &= \int_{\log 2}^{\log n} \frac{1}{u^p} \dd u \\
+                                                &= -\frac{1}{p-1}\qty(\frac{1}{(\log p)^{p-1}} - \frac{1}{(\log 2)^{p-1}}) \\
+                                                &= \frac{1}{p-1}\qty(\frac{1}{(\log 2)^{p-1}} - \frac{1}{(\log p)^{p-1}}) \xrightarrow{n \to \infty} \frac{1}{p-1}\cdot \frac{1}{(\log 2)^{p-1}}
+    \end{align*}
+    Therefore the interval converges and therefore by the integral test the series converges. If $p = 1$, then
+    \begin{align*}
+        \int_{2}^n \frac{1}{x \log x} &= \int_{\log 2}^{\log n} \frac{1}{u} \dd u = \log(\log n) - \log (\log 2) \xrightarrow{n \to \infty} \infty
+    \end{align*}
+    Hence the series diverges by the integral test. Assume that $0 < p < 1$. Then by the first case of $p > 1$,
+    \begin{align*}
+        \int_{2}^n \frac{1}{x (\log x)^p} \dd x &= \frac{1}{p-1}\qty(\frac{1}{(\log 2)^{p-1}} - \frac{1}{(\log p)^{p-1}}) \\
+                                                &= \frac{1}{1 - p}\qty((\log n)^{1-p} - (\log 2)^{1-p}) \xrightarrow{n \to \infty} \infty
+    \end{align*}
+    Therefore the series diverges by the integral test. If $p \leq 0$, then the series terms do not converge to $0$ and therefore the series does not converge.
+\end{proof}
+
+
+\subsection*{15.5}
+It wouldn't be useful to use the comparison test as it would require using an exponent larger than $p$ to compare with, which is a part of the result that is trying to be proven.
+
+\subsection*{15.7}
+\subsubsection*{Part A}
+\begin{proof}
+    Let $(a_n)$ be a sequence and assume that it is decreasing and that $\sum a_n$ converges. Note that this means $a_n > 0$ for all $n$ and that $a_n \to 0$. Let $\epsilon > 0$. Since $\sum a_n$ converges, by the Cauchy criterion there exists $M \in \mathbb{N}$ such that for $n > M$
+    \[
+        a_{M + 1} + \ldots a_n < \frac{\epsilon}{2}
+    .\]
+    Since $(a_n)$ converges, there is some $P \in \mathbb{N}$ such that $n \geq P$ implies $a_n < \frac{\epsilon}{2M}$. Let $N = \max\qty{M, P}$. Then for $n > N$
+    \begin{align*}
+        n \cdot a_n &= \underbrace{a_n + \ldots + a_n}_{n \text{ times}} \\
+                    &\leq \underbrace{a_P + \ldots + a_P}_{m \text{ times}} + \underbrace{a_{M + 1} + \ldots + a_n}_{n - m \text{ times}} \\
+                    &< M a_P + \frac{\epsilon}{2} \\
+                    &< M \cdot \frac{\epsilon}{2M} + \frac{\epsilon}{2} = \epsilon
+    \end{align*}
+    Therefore $\lim n a_n = 0$.
+\end{proof}
+
+\subsection*{17.1}
+\subsubsection*{Part A}
+\begin{align*}
+    \dom(f+g) &\implies (-\infty, 4] \\
+    \dom(fg) &\implies (-\infty, 4] \\
+    \dom(f \circ g) &\implies [-2, 2] \\
+    \dom(g \circ f) &= (-\infty, 4]
+\end{align*}
+
+\subsubsection*{Part B}
+\begin{align*}
+    (f\circ g)(0) &= 2 \\
+    (g \circ f)(0) &= 4 \\
+    (f\circ g)(1) &= \sqrt{3} \\
+    (g \circ f)(1) &= 3 \\
+    (f\circ g)(2) &= 0 \\
+    (g \circ f)(2) &= 2 \\
+\end{align*}
+
+\subsubsection*{Part C}
+The functions are not equal.
+
+\subsubsection*{Part D}
+Only $(g\circ f)(3)$ is meaningful as the $x$ value is in its domain.
+
+\subsection*{17.2}
+\subsubsection*{Part A}
+\begin{align*}
+    (f+g)(x) &= \begin{cases}
+        x^2 & x < 0 \\
+        4 + x^2 & x \geq 0
+    \end{cases} \\
+    (fg)(x) &= \begin{cases}
+        0 & x < 0 \\
+        4x^2 & x \geq 0
+    \end{cases} \\
+    (f \circ g)(x) &= 4, \forall x \in \mathbb{R} \\
+    (g\circ f)(x) &= \begin{cases}
+        0 & x < 0 \\
+        16 & x \geq 0
+    \end{cases}
+\end{align*}
+
+\subsubsection*{Part B}
+Only $g, fg$ and $f \circ g$ are continuous.
+
+\subsection*{17.5}
+\begin{proof}
+    Consider the real valued function $f(x) = x^m$ on all of $\mathbb{R}$ where $m \in \mathbb{N}$. Let $(x_n)$ be a sequence in $\mathbb{R}$ that converges to $x_0 \in \mathbb{R}$. Note then that $\lim f(x_n) = \lim (x_n)^m = \qty(\lim x_n)^m = x_0^m = f(x_0)$. Therefore $f(x)$ is continuous at $x_0$ and hence on all of $\mathbb{R}$.
+\end{proof}
+
+\subsection*{17.6}
+\begin{proof}
+    Let $p(x)$ and $q(x)$ be real polynomials and consider the domain $D = \qty{x \in \mathbb{R} : q(x) \neq 0}$. Let $(x_n)$ be a sequence in $D$ that converges to $x_0 \in D$. Note then that
+    \[
+        \lim \frac{p(x_n)}{q(x_n)} \xRightarrow{q(x) \neq 0} \frac{\lim p(x_n)}{\lim q(x_n)} = \frac{p(x_0)}{q(x_0)}
+    .\]
+    Therefore the rational function $\frac{p}{q}$ on the domain $D$ is continuous.
+\end{proof}
+
+
+\end{document}

@@ -1,0 +1,36 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\begin{document}
+
+\begin{theorem}
+Connectedness is a topological property.
+\end{theorem}
+
+\begin{proof}
+Assume $(X,\mathcal{T}_X),(Y,\mathcal{T}_Y)$ are topological spaces and are homeomorphic, and $(Y,\mathcal{T}_Y)$ is 
+not connected. Then by the negation of Definition $10.1$, there exist two nonempty open sets $U,V$ such that $U\cap V=\emptyset$ and $U\cup V=Y$. Then by Definition $9.7$, there exists a homeomorphism $f:X\to Y$ which is bijective, and both $f$ and $f^{-1}$ are continuous. We want to show that $(X,\mathcal{T}_X)$ is not connected, hence examine the four conditions that $(X, \mathcal{T}_X)$ is not connected.
+
+\begin{enumerate}
+    \item %---------------------------------------------------------
+    Note $f$ is continuous and $U$ and $V$ are open sets. Then by Definition $9.1$, their preimages, $f^{-1}(U)$ and $f^{-1}(U)$, are also open. 
+    \item %---------------------------------------------------------
+    Since $U,V\neq\emptyset$, $f^{-1}(U)\neq\emptyset$ and $f^{-1}(V)\neq\emptyset$
+    \item %---------------------------------------------------------
+    Assume for the sake of contradiction that $f^{-1}(U)\cap f^{-1}(V)$ is nonempty. Then there exists an $x\in X$ such that $x\in f^{-1}(U)\cap f^{-1}(V)$. Then by Definition $3.11$, $x\in f^{-1}(U)$ and $x\in f^{-1}(V)$. Because $f$ is invertible, it is the case that $f(x)\in U$ and $f(x)\in V$. Then by Definition $3.11$, $f(x)\in U\cap V$. This contradicts our previous assumption that $U\cap V=\emptyset$, so $f^{-1}(U)\cap f^{-1}(V)$ must be empty. Equivalently, $f^{-1}(U)\cap f^{-1}(V)=\emptyset$. 
+    \item %---------------------------------------------------------
+    Now we will show that $f^{-1}(U)\cup f^{-1}(V)$ and $X$ are subsets of each and therefore are equal.
+    \begin{enumerate}[label=\alph*)]
+        \item First we will show that $f^{-1}(U)\cup f^{-1}(V) \subseteq X$. Let $a\in f^{-1}(U)\cup f^{-1}(V)$. Then by definition $3.11,$ $a\in f^{-1}(U)$ or $a\in f^{-1}(V)$. Note that $f^{-1}(U)$ and $f^{-1}(V)$ are both subsets of $X$. Therefore in both cases, $a\in X$. Since $a\in X$ for all $a\in a\in f^{-1}(U)\cup f^{-1}(V)$, by Definition $3.4$, $f^{-1}(U)\cup f^{-1}(V)\subseteq X$
+        \item We will now show that $X \subseteq f^{-1}(U)\cup f^{-1}(V)$. Let $b\in X$. Then $f(b)\in Y$.  Note that $Y=U\cup V$. It follows that $f(b)\in U\cup V$. By Definition $3.11$,  $f(b)\in U$ or $f(b)\in V$. Since $f$ is invertible, either $b\in f^{-1}(U)$ or $b\in f^{-1}(V)$ . Then by Definition $3.11$, $b\in f^{-1}(U)\cup f^{-1}(V)$. Since $b\in f^{-1}(U)\cup f^{-1}(V)$ for all $b\in X$, by Definition $3.4$, $X\subseteq f^{-1}(U)\cup f^{-1}(V)$.
+    \end{enumerate}
+    Note we have shown that $f^{-1}(U)\cup f^{-1}(V)\subseteq X$ and $X\subseteq f^{-1}(U)\cup f^{-1}(V)$. By the theorem of equality of sets ($RQ$ $3$), $f^{-1}(U)\cup f^{-1}(V)=X$
+\end{enumerate}
+
+Note $f^{-1}(U)$ and $f^{-1}(V)$ exist, are elements of $X$, and $f^{-1}(U)\cap f^{-1}(V)=\emptyset$ and $f^{-1}(U)\cup f^{-1}(V)=X$. Therefore $(X,\mathcal{T}_X)$ is not connected by Definition $10.1$.
+
+So far we have shown that if $(Y,\mathcal{T}_Y)$ is not connected, any space $(X,\mathcal{T}_X)$ homeomorphic to $(Y,\mathcal{T}_Y)$ cannot be connected. Recall Definition $9.10$, which states $P$ is a topological property if whenever $(X,\mathcal{T}_X)$ does not have property $P$ than neither do any spaces homeomorphic to $(X,\mathcal{T}_X)$. Thus, Connectedness is a topological property.
+\end{proof}
+
+
+\end{document}

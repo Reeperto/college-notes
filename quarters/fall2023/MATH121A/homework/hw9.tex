@@ -1,0 +1,266 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{9}
+\input{hw_preamble.tex}
+
+% Section 5.2: 1, 2 (d)-(f), 3 (a)-(b), 8, 18, 19.  
+% Section 5.4: 1, 2, 4, 17, 18.
+
+\begin{document}
+
+\subsection*{5.2.1}
+\begin{enumerate}[label=\alph*)]
+    \item False
+    \item False
+    \item False
+    \item True
+    \item True
+    \item False
+    \item True
+    \item True
+    \item False
+\end{enumerate}
+
+\subsection*{5.2.2}
+\subsubsection*{Part D}
+\[
+    \det(A - \lambda I) = \det\mqty(
+    7 - \lambda & -4 & 0 \\
+    8 & -5 - \lambda & 0 \\
+    6 & -6 & 3 - \lambda
+    ) = -(\lambda - 3)^2 (1 + \lambda) \implies \lambda = \qty{-1, 3}
+.\]
+
+For $\lambda = -1$,
+\[
+    E_{-1} = N(A + I) = \spann\qty{
+        \mqty(2 \\ 4 \\ 3)
+    }
+.\]
+
+For $\lambda = 3$,
+\[
+    E_3 = N(A - 3I) = \spann\qty{
+        \mqty(1 \\ 1 \\ 0),
+        \mqty(0 \\ 0 \\ 1)
+    }
+.\]
+
+Therefore $A$ is diagonalizable with
+\[
+    D = \mqty(\dmat[0]{-1, 3, 3}), Q = \mqty(
+    2 & 1 & 0 \\
+    4 & 1 & 0 \\
+    3 & 0 & 1
+    )
+.\]
+
+\subsubsection*{Part E}
+Since \[
+    \det(A - \lambda I) = (\lambda^2 + 1)(1-\lambda) 
+.\]
+The characteristic polynomial does not split and therefore $A$ is not diagonalizable.
+
+\subsubsection*{Part F}
+Since $A$ is upper triangular, its eigenvalues are $\lambda = \qty{1, 3}$. Note that
+\[
+    N(A - I) = E_1 = \spann\qty{
+        \mqty(0 \\ 0 \\ 1)
+    }
+.\]
+Since $\dim E_1 < 2$, $A$ is not diagonalizable.
+
+\subsection*{5.2.3}
+\subsubsection*{Part A}
+\[
+    [T]_e = \mqty(
+    0 & 1 & 2 & 0 \\
+    0 & 0 & 2 & 6 \\
+    0 & 0 & 0 & 3 \\
+    0 & 0 & 0 & 0
+    )
+.\]
+
+Since $[T]_e$ is upper triangular, its singular eigenvalue is $0$. Then
+\[
+    E_0 = N(A) = \spann\qty{
+        \mqty(0 \\ 0 \\ 0 \\ 1)
+    }
+.\]
+Therefore since $\dim E_0 < 4$, $T$ is not diagonalizable.
+
+\subsubsection*{Part B}
+\[
+    [T]_e = \mqty(
+    0 & 0 & 1 \\
+    0 & 1 & 0 \\
+    1 & 0 & 0
+    )
+.\]
+
+\[
+    \det([T]_e - \lambda I) = \mqty(
+    -\lambda & 0 & 1 \\
+    0 & 1 - \lambda & 0 \\
+    1 & 0 & -\lambda
+    ) = - (\lambda - 1)^2 (\lambda + 1) \implies \lambda = \qty{-1, 1}
+.\]
+
+For $\lambda = -1$,
+\[
+    E_{-1} = N(A + I) = \spann\qty{
+        \mqty(1 \\ 0 \\ -1)
+    }
+.\]
+
+For $\lambda = 1$,
+\[
+    E_1 = N(A - I) = \spann\qty{
+        \mqty(0 \\ 1 \\ 0),
+        \mqty(1 \\ 0 \\ 1)
+    }
+.\]
+
+Therefore $A$ is diagonalizable with
+\[
+    D = \mqty(\dmat[0]{-1,1,1}), Q = \mqty(
+    1 & 0 & 1 \\
+    0 & 1 & 0 \\
+    -1 & 0 & 1 \\
+    )
+.\]
+
+\subsection*{5.2.8}
+\begin{proof}
+    Since $\lambda_1$ and $\lambda_2$ are distinct, there must be an eigenvector $\vec{\lambda}$ associated with $\lambda_2$ that is independent of the vectors in $E_{\lambda_1}$. Therefore the set of all eigenvectors between them will have dimension $n - 1 + 1 = n$ and therefore $A$ will be diagonalizable.
+\end{proof}
+
+\subsection*{5.2.18}
+\subsubsection*{Part A}
+\begin{proof}
+    Let $\beta$ be the ordered basis such that $[T]_\beta$ and $[U]_{\beta}$ are diagonal matrices. Since diagonal matrices commute,
+    \[
+        [T]_{\beta} [U]_{\beta} = [U]_{\beta}[T]_{\beta}
+    .\]
+    Therefore since the matrix representations commute, $TU = UT$.
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    Let $Q^{-1}$ be the matrix that makes $A$ and $B$ simultaneously diagonalizable. Then
+    \[
+        (Q^{-1} A Q)(Q^{-1} B Q) = (Q^{-1} B Q)(Q^{-1} A Q)
+    \]
+    since $Q$ is invertible, hence $A$ and $B$ commute.
+\end{proof}
+
+\subsection*{5.2.19}
+\begin{proof}
+    Since $T$ and $T^m$ have the same eigenvectors, if $T$ is diagonalizable then $T^m$ is diagonalizable under the same basis.
+\end{proof}
+
+\subsection*{5.4.1}
+\begin{enumerate}[label=\alph*)]
+    \item False
+    \item True
+    \item False
+    \item False
+    \item True
+    \item True
+    \item True
+\end{enumerate}
+
+\subsection*{5.4.2}
+\subsubsection*{Part A}
+Yes. For any polynomial in $P_2(\mathbb{F})$, it follows that
+\[
+    T(ax^2 + bx + c) = 2ax + b \in P_2(\mathbb{F})
+.\]
+
+\subsubsection*{Part B}
+No. For any polynomial in $W = P_2(\mathbb{F})$, it follows that
+\[
+    T(ax^2 + bx + c) = ax^3 + bx^2 + cx \notin W
+.\]
+
+\subsubsection*{Part C}
+Yes. With $(t,t,t) \in W$,
+\[
+    T((t,t,t)) = (t+t+t, t+t+t, t+t+t) = 3\cdot (t,t,t) \in W
+.\]
+
+\subsubsection*{Part D}
+Yes. With $at + b \in W$,
+\[
+    T(at+b) = t\int_{0}^1 ax + b \dd x = \qty(\frac{a}{2} + b) t \in W
+.\]
+
+\subsubsection*{Part E}
+No. Note that $A = \mqty(2 & 0 \\ 0 & 1) \in W$, but
+\[
+    T(A) = \mqty(
+    0 & 1 \\
+    1 & 0
+    )
+    \mqty(
+    2 & 0 \\
+    0 & 1
+    ) = \mqty(
+    0 & 1 \\
+    2 & 0 
+    ) \neq \mqty(
+    0 & 2 \\
+    1 & 0
+    )
+.\]
+
+\subsection*{5.4.4}
+\begin{proof}
+    Let $T$ be a linear operator on $V$ and $W$ be a $T$-invariant subspace. Let $g(t) = a_n t^n + \ldots + a_1 t + a_0$. Note that $W$ is a $T$-invariant subspace of any scalar multiple and positive integer power of $T$. For some $w \in W$ and $a \in \mathbb{F}$ and $k \in \mathbb{Z}_{+}$,
+    \[
+        T(w) \in W \implies T(T(w)) \in W \implies T^k(w) \in W
+    .\]
+    and
+    \[
+        aw \in W \implies T(aw) = aT(w) \in W
+    .\]
+    Furthermore,
+    \[
+        T(w_1 + w_2) \in W \implies T(w_1) + T(w_2) \in W
+    .\]
+    Therefore linear combinations of vectors in $W$ under $T$, whether $T$ is scaled or raised to a power, are still in $W$. Hence the polynomial of $T$ preserves $T$-invariance.
+\end{proof}
+
+\subsection*{5.4.17}
+\begin{proof}
+    Let $f(t) = (-1)^n t^n + \ldots + a_0$ be the characteristic polynomial of $A$. Then
+    \[
+        f(A) = (-1)^n A^n + \ldots + A a_0 = O
+    .\]
+    Therefore $A^n$ is a linear combination of $\qty{I, A, \ldots, A^{n-1}}$. Note then that
+    \[
+        A f(A) = (-1)^n A^{n+1} + \ldots A^2 A_0 = 0
+    .\]
+    Therefore $A^{n+1}$ is a linear combination of $\qty{I, A, \ldots, A^n}$ which reduces to $\qty{I, A, \ldots, A^{n-1}}$. This is true for any succesive power, therefore
+    \[
+        \dim\qty{I, A, A^2, \ldots} = \dim\qty{I, A, \ldots, A^{n-1}} \leq n
+    .\]
+\end{proof}
+
+\subsection*{5.4.18}
+\subsubsection*{Part A}
+Since $f(t) = \det(A - tI)$, if $f(0) = 0$, then $\det(A) = 0$ which would mean $A$ is not invertible. Therefore $f(0) = a_0 \neq 0$.
+
+\subsubsection*{Part B}
+Note that
+\begin{align*}
+    A A^{-1} &= -A \cdot \frac{1}{a_0} \qty(
+    (-1)^n A^{n-1} + a_{n-1} A^{n-2} + \ldots + a_1 I_n
+    ) \\
+             &= -\frac{1}{a_0} \qty((-1)^n A^n + a_{n-1} A^{n-1} + \ldots a_1 A) \\
+             &= -\frac{1}{a_0} \qty(-a_0 I) = I
+\end{align*}
+Therefore the formula for $A^{-1}$ is valid.
+
+\end{document}

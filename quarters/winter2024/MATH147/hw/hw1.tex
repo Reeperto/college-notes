@@ -1,0 +1,135 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{1}
+\input{hw_preamble.tex}
+
+\begin{document}
+
+% Section 2: #2
+% Section 3: #1 (show your work)
+% Section 6: #7, 10, 13
+% Section 9: #5, 6, 8
+% Section 11: #3, 5
+% Section 12: #1, 4
+
+\subsection*{2.2}
+Let $z = x + iy$ such that $\Re(z) = x$ and $\Im(z) = y$.
+\subsubsection*{Part A}
+
+\[
+    \Re(iz) = \Re(i(x + iy)) = \Re(ix - y) = \Re(- y + ix) = -y = -\Im(z)
+.\]
+
+\subsubsection*{Part B}
+\[
+    \Im(iz) = \Im(i(x + iy)) = \Im(- y + ix) = x = \Re(z)
+.\]
+
+\subsection*{3.1}
+\subsubsection*{Part A}
+\begin{align*}
+    \frac{1+2i}{3-4i} + \frac{2-i}{5i} &=
+    \frac{(1+2i)(\overline{3-4i})}{3^2 + (-4)^2} + \frac{(2-i)(\overline{5i})}{0^2 + 5^2} \\
+    &= \frac{(1+2i)(3+4i)}{25} + \frac{(2-i)(-5i)}{25} \\
+    &= \frac{3 + 4i + 6i + 8i^2}{25} + \frac{-10i + 5i^2}{25} \\
+    &= \frac{-5 + 10i}{25} + \frac{-5 -10i}{25} \\
+    &= -\frac{10}{25} = - \frac{2}{5}
+\end{align*}
+
+\subsubsection*{Part B}
+\begin{align*}
+    \frac{5i}{(1-i)(2-i)(3-i)} &= \frac{5i}{(2 - i - 2i + i^2)(3-i)} \\
+    &= \frac{5i}{(1 - 3i)(3 - i)} \\
+    &= \frac{5i}{3 - i - 9i + 3i^2} \\
+    &= \frac{5i}{-10i} \\
+    &= -\frac{5}{10} = -\frac{1}{2}
+\end{align*}
+
+\subsubsection*{Part C}
+\[
+    (1-i)^2 = 1 - 2i + i^2 = -2i \implies (1-i)^4 = (-2i)^2 = 4i^2 = -4
+.\]
+
+\subsection*{6.7}
+\begin{align*}
+    |\Re(2+\overline{z} + z^3)| &= \qty|\frac{2 + \overline{z} + z^3 + (\overline{2 + \overline{z} + z^3})}{2}| \\
+    &= \qty|\frac{2 + \overline{z} + z^3 + 2 + z + \overline{z}^3}{2}| \\
+    &= \qty|\frac{4 + z + \overline{z} + z^3 + 2}{2}| \\
+    &\leq \frac{2 + |z| + |\overline{z}| + |z|^3 + |\overline{z}|^3}{2} \\
+    &= \frac{2 + 2|z| + 2|z|^3}{2} \\
+    &\leq \frac{2 + 2 + 2}{2} = 3 \leq 4
+\end{align*}
+
+\subsection*{6.10}
+\begin{proof}
+    Let $z = x + iy$.
+    \begin{enumerate}
+        \item[$\Rightarrow)$]
+            Assume that $z$ is real. That is, $y = 0$. Then $z = x + 0y = x = x - 0y = \overline{z}$. Therefore $z = \overline{z}$
+        \item[$\Leftarrow)$]
+            Assume that $z = \overline{z}$. Then
+            \[
+                x + iy = x - iy
+            .\]
+            Equating the imaginary components gives $iy = - iy$ or equivalently $y = -y$. This is only true if $y = 0$. Therefore $z = x + 0y = x$ and hence $z$ is real.
+    \end{enumerate}
+    Both directions hence prove the if and only if.
+\end{proof}
+
+\subsection*{6.13}
+\begin{align*}
+    |z - z_0| = R \implies |z - z_0|^2 &= R^2 \\
+    (z - z_0)\conj{(z - z_0)} &= R^2 \\
+    (z - z_0) (\conj{z} - \conj{z_0}) &= R^2 \\
+    z \conj{z} - z \conj{z_0} - \conj{z} z_0 + z_0 \conj{z_0} &= R^2 \\
+    |z|^2 - z \conj{z_0} - \conj{z \conj{z_0}} + |z_0|^2 &= R^2 \\
+    |z|^2 - (z \conj{z_0} + \conj{z \conj{z_0}}) + |z_0|^2 &= R^2 \\
+    |z|^2 - 2 \Re(z \conj{z_0}) + |z_0|^2 &= R^2
+\end{align*}
+
+\subsection*{9.5}
+\subsubsection*{Part A}
+Since
+\begin{align*}
+    i &\Leftrightarrow e^{i\frac{\pi}{2}} \\
+    1 - i\sqrt{3} &\Leftrightarrow 2e^{-i \frac{\pi}{3}} \\
+    \sqrt{3} + i &\Leftrightarrow 2e^{i \frac{\pi}{6}}
+\end{align*}
+it follows that
+\begin{align*}
+    i (1 - i\sqrt{3})(\sqrt{3} + i) &= e^{i \frac{\pi}{2}} \cdot 2 e^{-i \frac{\pi}{3}} \cdot 2e^{i \frac{\pi}{6}} \\
+    &= 4 e^{i\qty(\frac{\pi}{2} - \frac{\pi}{3} + \frac{\pi}{6})} \\
+    &= 4e^{i \frac{\pi}{3}} \\
+    &= 4 \cdot (\frac{1}{2} + i\frac{\sqrt{3}}{2}) = 2 \cdot (1 + i\sqrt{3})
+\end{align*}
+
+\subsubsection*{Part B}
+Since
+\begin{align*}
+    5i &\Leftrightarrow 5 e^{i \frac{\pi}{2}} \\
+    2 + i &\Leftrightarrow \sqrt{5} e^{i \arctan(\frac{1}{2})}
+\end{align*}
+it follows
+\begin{align*}
+    \frac{5i}{2+i} &= 5e^{\pi \frac{\pi}{2}} \cdot \sqrt{5} e^{-i \arctan(\frac{1}{2})} \\
+                   &= 5 \sqrt{5} e^{i \qty(\frac{\pi}{2} - \arctan{\frac{1}{2}})} \\
+                   &= 5 \sqrt{5} e^{i \qty(\frac{\pi}{2} - \arctan{\frac{1}{2}})}
+\end{align*}
+
+\subsubsection*{Part C}
+
+
+\subsubsection*{Part D}
+
+\subsection*{9.6}
+\subsection*{9.8}
+
+\subsection*{11.3}
+\subsection*{11.5}
+
+\subsection*{12.1}
+\subsection*{12.4}
+
+
+\end{document}

@@ -1,0 +1,29 @@
+\documentclass[12pt,titlepage]{extarticle}
+
+\input{../preamble.tex}
+
+\title{Math 147A: Complex Analysis}
+\author{Eli Griffiths}
+
+\begin{document}
+
+\maketitle
+\pagebreak
+\thispagestyle{empty}
+\tableofcontents
+\pagebreak
+
+\subfile{topics/complexnumbers.tex}
+
+\newpage
+\pagestyle{empty}
+
+\addcontentsline{toc}{section}{List of Theorems}
+\listoftheorems[ignoreall,onlynamed={theorem}]
+
+\newpage
+
+\addcontentsline{toc}{section}{List of Definitions}
+\listoftheorems[ignoreall,onlynamed={definition},title={List of Definitions}]
+
+\end{document}

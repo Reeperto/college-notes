@@ -1,0 +1,245 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{6}
+\input{hw_preamble.tex}
+
+% 13.1, 13.3, 13.4, 13.5, 13.6, 13.8, 13.9, 13.11
+
+\begin{document}
+
+\subsection*{13.1}
+\subsubsection*{Part A}
+\begin{proof}[$d_1$ is a metric]
+    Let $\vb{x},\vb{y},\vb{z} \in \mathbb{R}^k$. Examine the requirements for $d_1$ to be a metric
+    \begin{enumerate}
+        \item %----------------------------------------------------------------
+            Note that $d_1(x,x) = \max\qty{|x_i - x_i| : i = 1,\ldots,k} = 0$. Additionally, $|x_i - y_i| > 0$ for all $i$ and therefore the maximum is larger than $0$, hence $d(x,y) > 0$.
+        \item %----------------------------------------------------------------
+            Since $|x_i - y_i| = |y_i - x_i|$, it follows that $d_1(x,y) = d_2(y,x)$.
+        \item %----------------------------------------------------------------
+            Note that one can rewrite $|x_i - z_i| = |x_i - y_i + y_i - z_i| \leq |x_i - y_i| + |y_i - z_i|$. This means that $\max\qty{|x_i - z_i| : i = 1,\ldots,k} \leq \max\qty{|x_i - y_i| : i = 1,\ldots,k} + \max\qty{|y_i - z_i| : i=1,\ldots,k}$ and therefore $d_1(x,z) \leq d_1(x,y) + d_1(y,z)$.
+    \end{enumerate}
+    Therefore $d_1$ is a metric over $\mathbb{R}^k$.
+\end{proof}
+
+\begin{proof}[$d_2$ is a metric]
+    Let $\vb{x},\vb{y},\vb{z} \in \mathbb{R}^k$. Examine the requirements for $d_1$ to be a metric.
+    \begin{enumerate}
+        \item %----------------------------------------------------------------
+            Note that $d_2(\vb{x}, \vb{x}) = \sum_{i=0}^k |x_i - x_i| = 0$. Further more, $|x_i - y_i| > 0$ for all $i = 1,\ldots,k$ meaning their sum is positive, hence $d_2(\vb{x}, \vb{y}) > 0$.
+        \item %----------------------------------------------------------------
+            Since $|x_i - y_i| = |y_i - x_i|$, it follows that $d_2(\vb{x}, \vb{y}) = d_2(\vb{y}, \vb{x})$.
+        \item %----------------------------------------------------------------
+            Note that
+            \[
+                \sum_{i=1}^k |x_i - z_i| = \sum_{i=1}^k |x_i - y_i + y_i - z_i| \leq \sum_{i=1}^k \qty(|x_i - y_i| + |y_i - z_i|) = \sum_{i=1}^k |x_i - y_i| + \sum_{i=1}^k |y_i - z_i|
+            \]
+            hence $d_2(\vb{x}, \vb{z}) \leq d_2(\vb{x}, \vb{y}) + d_2(\vb{y}, \vb{z})$.
+    \end{enumerate}
+    Therefore $d_2$ is a metric over $\mathbb{R}^k$.
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}[$d_1$ is a complete metric]
+    Let $\vb{x},\vb{y},\vb{z} \in \mathbb{R}^k$. We will first prove the following inequality
+    \[
+        d_1(\vb{x},\vb{y}) \leq d(\vb{x},\vb{y}) \leq \sqrt{k} \cdot d_1(\vb{x},\vb{y})
+    \]
+    For the first inequality, note that $|x_j - y_j| \leq \sqrt{(x_j - y_j)^2} \leq \sqrt{\sum_{i=1}^k (x_i - y_i)^2}$ for all $i=j,\ldots,k$. Therefore $\max\qty{|x_i - y_i| : i = 1,\ldots,k} \leq d(\vb{x},\vb{y})$ hence $d_1(\vb{x},\vb{y}) \leq d(\vb{x},\vb{y})$. Now for the second inequality, note that
+    \begin{align*}
+        d(\vb{x},\vb{y}) = \sqrt{\sum_{i=1}^k (x_i - y_i)^2} &\leq \sqrt{\sum_{i=1}^k \qty(\max\qty{|x_j - y_j| : j = 1,\ldots, k})^2} \\
+                                                   &= \sqrt{k \cdot d_1^2(\vb{x},\vb{y})} \\
+                                                   &= \sqrt{k} \cdot d_1(\vb{x},\vb{y})
+    \end{align*}
+    Therefore $d(\vb{x},\vb{y}) \leq \sqrt{k} \cdot d_1(\vb{x},\vb{y})$ proving the original inequality. Let $(\vb{x}_n)$ be a sequence in $\mathbb{R}^k$ and assume it is Cauchy under $d_1$. Take $\epsilon > 0$. Then $\exists N \in \mathbb{N}$ such that
+    \[
+        d_1(\vb{x}_n, \vb{x}_m) < \frac{\epsilon}{\sqrt{k}}, \forall m,n > N
+    \]
+    and therefore
+    \[
+        d(\vb{x}_n, \vb{x}_m) \leq \sqrt{k} \cdot d_1(\vb{x}_n, \vb{x}_m) < \epsilon, \forall m,n > N
+    \]
+    meaning that $(\vb{x}_n)$ is Cauchy under $d$. Since $\mathbb{R}^k$ is complete under $d$ there exists $\vb{s} \in \mathbb{R}^k$ such that $\lim_{n\to \infty} d(\vb{x}_n, \vb{s}) = 0$. Note then by the first inequality and squeeze lemma that
+    \[
+        0 \leq \lim d_1(\vb{x_n}, \vb{s}) \leq \lim d(\vb{x_n}, \vb{s}) = 0 \implies \lim d_1(\vb{x_n}, \vb{s}) = 0
+    \]
+    Therefore the sequence $(\vb{x}_n)$ converges under $d_1$ meaning $\mathbb{R}^k$ is complete under $d_1$.
+\end{proof}
+
+\begin{proof}[$d_2$ is a complete metric]
+    Let $\vb{x},\vb{y},\vb{z} \in \mathbb{R}^k$. We will first prove the following inequality
+    \[
+        d_1(\vb{x},\vb{y}) \leq d_2(\vb{x},\vb{y}) \leq k \cdot d_1(\vb{x},\vb{y})
+    \]
+    Consider $d_1(\vb{x}, \vb{y})$. Let $q$ denote the index between $1,\ldots,k$ such that $d_1(\vb{x}, \vb{y}) = \max\qty{|x_i - y_i| : i = 1,\ldots,k} = |x_q - y_q|$. Note then that
+    \[
+        d_2(\vb{x}, \vb{y}) = \sum_{i=1}^k |x_i - y_i| = |x_q - y_q| + \sum_{i = 1}^{q-1} |x_i - y_i| + \sum_{i=q+1}^{k} |x_i - y_i| \geq |x_q - y_q| = d_1(\vb{x}, \vb{y})
+    .\]
+    Therefore the first inequality holds. Note that $|x_i - y_i| \leq d_1(\vb{x}, \vb{y})$ for all $i = 1, \ldots,k$. Therefore the sum of all $i$'s is less than or equal to the sum of $d_1(\vb{x}, \vb{y})$ $k$ times, meaning
+    \[
+        d_2(\vb{x}, \vb{y}) = \sum_{i = 1}^k |x_i - y_i| \leq k d_2(\vb{x}, \vb{y})
+    \]
+    and hence the second inequality holds, proving the original inequality. Let $(\vb{x}_n)$ be a sequence in $\mathbb{R}^k$ and assume that is is Cauchy under $d_2$. Take $\epsilon > 0$. Then $\exists N \in \mathbb{N}$ such that
+    \[
+        d_2(\vb{x}_n, \vb{x}_m) < \frac{\epsilon}{k}, \forall m,n > N
+    \]
+    and therefore
+    \[
+        d_1(\vb{x}_n, \vb{x}_m) < k \cdot d_2(\vb{x}_n, \vb{x}_m) < \epsilon, \forall m,n > N
+    \]
+    meaning that $(\vb{x}_n)$ is Cauchy under $d_1$. Since $d_1$ is a complete metric by the previous proof, it follows that $\exists \vb{s} \in \mathbb{R}^k$ such that $\lim d_1(\vb{x}_n, \vb{s}) = 0$. Then by the first inequality and squeeze lemma
+    \[
+        0 \leq \lim d_2(\vb{x}_n, \vb{s}) \leq k \cdot \lim d_1(\vb{x}_n, \vb{s}) = 0 \implies \lim d_2(\vb{x}_n, \vb{s}) = 0
+    \]
+    Therefore the sequence converges under $d_2$ meaning $\mathbb{R}^k$ is complete under $d_2$.
+\end{proof}
+
+\subsection*{13.3}
+\subsubsection*{Part A}
+\begin{proof}
+    Let $(x_n),(y_n),(z_n) \in B$. Examine the requirements for $d$ to be a metric.
+    \begin{enumerate}
+        \item %----------------------------------------------------------------
+            Note that $d(x_n,x_n) = \sup\qty{|x_i - x_i| : i = 1, 2,\ldots} = 0$. Since $d$ is the supremum of absolute values which are all positive, the metric will always be positive or $0$.
+        \item %----------------------------------------------------------------
+            Since $|x_i - y_i| = |y_i - x_i|$, it follows that $d(x_n,y_n) = d(y_n, x_n)$.
+        \item %----------------------------------------------------------------
+            Note that
+            \begin{align*}
+                d(x_n,z_n) &= \sup\qty{|x_i - z_i| : i = 1,2,\ldots} \\
+                           &= \sup\qty{|x_i - y_i + y_i - z_i| : i = 1,2,\ldots} \\
+                           &\leq \sup\qty{|x_i - y_i| + |y_i - z_i| : i = 1,2,\ldots} \\
+                           &\leq \sup\qty{|x_i - y_i| : i = 1,2,\ldots} + \sup\qty{|y_i - z_i|: i = 1,2,\ldots} \\
+                           &= d(x_n, y_n) + d(y_n, z_n)
+            \end{align*}
+            Therefore $d(x_n, z_n) \leq d(x_n, y_n) + d(y_n, z_n)$.
+    \end{enumerate}
+    Therefore $d$ is a metric over $B$.
+\end{proof}
+
+\subsubsection*{Part B}
+$d^*$ does not define a metric of $B$ because it is not always finite. If $(x_n) = 1$ and $(y_n) = 1$, then $d^*(x_n, y_n) = \sum_{j=1}^\infty 1$ which is infinite.
+
+\subsection*{13.4}
+\subsubsection*{iii}
+\begin{proof}
+    Let $V = \bigcup_n E_n$ be union of a collection of open sets. Let $x \in V$. Then $\exists m \in \mathbb{N}$ such that $x \in E_m$. Since $E_m$ is open, $x \in \mathring{E}$ and therefore $\exists r > 0$ such that $\mathbb{B}(x,r) \subset E_m \subset V$. Therefore $x \in \mathring{V}$. Therefore $V \subset \mathring{V}$. Since by definition $\mathring{V} \subset V$, it follows that $V = \mathring{V}$ and therefore $V$ is closed.
+\end{proof}
+
+\subsubsection*{iv}
+\begin{proof}
+    Let $V = \bigcap_{i=1}^n E_i$ be a finite intersection of open sets. If $V = \varnothing$, then it is open since the empty set is open. Let $x \in V$. Then $x \in E_i, i = 1,\ldots,n$. Since each $E_i$ is open, there is an associated $r_i$ such that $\mathbb{B}(x,r_i) \subset E_i$. Let $r = \min\qty{r_i : i = 1,\ldots,n}$. Note then that $\mathbb{B}(x,r) \subset \mathbb{B}(x,r_i) \subset E_i$ for all $i = 1,\ldots,n$. Therefore $\mathbb{B}(x,r) \subset V$ meaning $x \in \mathring{V}$. Therefore $V \subset \mathring{V}$ which by the same logic as the previous proof gives $V = \mathring{V}$.
+\end{proof}
+
+\subsection*{13.5}
+\subsubsection*{Part A}
+\begin{proof}
+    Let $S$ be a set and $\mathcal{U}$ be a collection of sets. Let $x \in \bigcap S\setminus U$. Then $x \in S$ and $x \notin U$ for all $U \in \mathcal{U}$. Therefore $x \notin \bigcup U$ meaning $x \in S \setminus \bigcup U$, hence $\bigcap S\setminus U \subset S \setminus \bigcup U$. Let $x \in S \setminus \bigcup U$. Then $x \in S$ and $x \notin \bigcup U$. Therefore $x \notin U$ meaning $s \in S \setminus U$ for all $U \in \mathcal{U}$. Therefore $x \in \bigcap S \setminus U$, hence $\bigcap S \setminus U \subset S \setminus \bigcup U$. Since both are subsets of each other,
+    \[
+        \bigcap_{U \in \mathcal{U}} S \setminus U = S \setminus \bigcup_{U \in \mathcal{U}} U
+    \]
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    First note that the previous result holds when the intersection and union are swapped. That is,
+    \[
+        S \setminus \bigcap_{U \in \mathcal{U}} U = \bigcup_{U \in \mathcal{U}} S\setminus U
+    \]
+    Let $\mathcal{U}$ be a collection of closed sets. Then
+    \[
+        S \setminus \bigcap_{U \in \mathcal{U}} = \bigcup_{U \in \mathcal{U}} S \setminus U
+    \]
+    Since each $U \in \mathcal{U}$ is closed, it follows that $S \setminus U$ is open. Therefore the right hand side is a union of open sets, which itself is open. Therefore the left hand side is open meaning the intersection of the closed sets must be closed.
+\end{proof}
+
+\subsection*{13.6}
+\begin{proof}
+    Let $E$ be a subset of a metric space $(S,d)$.
+    \begin{enumerate}
+        \item
+        \begin{enumerate}
+            \item[$\Rightarrow)$] %--------------------------------------------
+                Assume that $E$ is closed. Then $\displaystyle \overline{E} = \subset\bigcap_{\substack{E \subset F \subset S \\ F \text{ closed}}} F \subset E$ since $E$ is a subset of itself and is the smallest closed subset that contains itself. Since $E \subset \overline{E}$, it follows that $E = \overline{E}$.
+            \item[$\Leftarrow)$] %---------------------------------------------
+                Assume that $E = \overline{E}$. Since $\overline{E}$ is the intersection of closed sets, it itself is closed. Therefore $E$ must also be closed.
+        \end{enumerate}
+        \item
+        \begin{enumerate}
+            \item[$\Rightarrow)$] %--------------------------------------------
+                Assume that $E$ is closed. Let $(x_n)$ be a sequence in $E$ that converges to some $x \in S$. Assume towards contradiction that $x \not\in E$. Then $x \in S\setminus E$, meaning $\exists r > 0$ such that $\mathbb{B}(x,r) \subset S\setminus E$. However, this means that choosing an $\epsilon < r$ means $\exists N \in \mathbb{N}$ such that $d(x, x_n) < \epsilon < r$ for all $n > N$. Therefore $x_n \in \mathbb{B}(x,r)$ for $n > N$. But that means there are infinitely many terms of the sequence outside of $E$, a contradiction.
+            \item[$\Leftarrow)$] %---------------------------------------------
+                Assume that $E$ contains the limits of every convergent sequence in $E$. Let $x \in S \setminus E$. Suppose that for any $r > 0$ that $\mathbb{B}(x,r) \cap E \neq \varnothing$. Then it is possible to construct a sequence $(x_n)$ where $x_n \in \mathbb{B}(x,\frac{1}{n}) \cap E$. Note that $(x_n) \to x$ since $d(x_n ,x) < \frac{1}{n}$ for each $n$. However, this sequence is in $E$ but the limit point $x$ is not in $E$, hence a contradiction. Therefore there must be some $r >0$ such that $\mathbb{B}(x,r) \cap E = \varnothing$ which is the same as saying $\mathbb{B}(x,r) \subset S \setminus E$. This means that $S \setminus E$ is equal to its interior and therefore $S \setminus E$ is open. Therefore $E$ is closed.
+        \end{enumerate}
+        \item 
+        \begin{enumerate}
+            \item[$\Rightarrow)$] %--------------------------------------------
+                Assume that $x \in \overline{E}$. Note that it is sufficient to show that for any $r>0$ that $\mathbb{B}(x,r) \cap E \neq \varnothing$. If this is true, then by the same logic in $(b)$ it is possible to construct a sequence in $E$ that will approach $x$. Take $r > 0$ and assume towards contradiction that $\mathbb{B}(x,r) \cap E = \varnothing$. Then $E \subset S \setminus \mathbb{B}(x,r)$. Since open balls are open, then $S \setminus \mathbb{B}(x,r)$ is a closed set containing $E$ which means that $\overline{E} \subset S \setminus \mathbb{B}(x,r)$. But then by the assumption, $x \in S \setminus \mathbb{B}(x,r)$ and $x \in \mathbb{B}(x,r)$ which is a contradiction.
+            \item[$\Leftarrow)$] %---------------------------------------------
+                Assume that $x$ is the limit of a sequence $(x_n)$ of points in $E$. By part $(a)$, $\overline{E}$ is closed and by $(b)$, $\overline{E}$ must contain the limit of any sequence of points in $\overline{E}$. Since $x_n \in E$ for all $n$, $x_n \in \overline{E}$ for all $n$. Therefore $(x_n)$ is a sequence of points in $\overline{E}$ and hence its limit must also be in $\overline{E}$.
+        \end{enumerate}
+        \item
+        \begin{enumerate}
+            \item[$\Rightarrow)$] %--------------------------------------------
+                Assume that $x \in \partial E$. Therefore $x \in \overline{E}$ and $x \notin \mathring{E}$. Therefore it is sufficient to show that $x \in \overline{S \setminus E}$. Let $F \supset S \setminus E$ be a closed set. Note that then $S \setminus F$ is open and that $S \setminus F \subset E$. If $x \in S \setminus F$, then there is some $r > 0$ such that $\mathbb{B}(x,r) \subset S \setminus F$. Since $S \setminus F \subset E$, it follows that $\mathbb{B}(x,r) \subset E$. However, this implies that $x$ is in the interior and is therefore a contradiction. Therefore $x \notin S \setminus F$ meaning $x \in F$. Since $F$ was an arbitrary closed set containing $S \setminus E$, $x$ is in every closed set containing $S \setminus E$ and therefore $x \in \overline{S \setminus E}$.
+            \item[$\Leftarrow)$] %---------------------------------------------
+                Assume that $x \in \overline{E}$ and $x \in \overline{S \setminus E}$. It is sufficient to show that $x \notin \mathring{E}$ since $x$ is assumed to be in the closure. Assume towards contradiction that $x \in \mathring{E}$. Then there exists some $r > 0$ such that $\mathbb{B}(x,r) \subset E$. This means that $S \setminus \mathbb{B}(x,r)$ is closed set with $S \setminus \mathbb{B}(x,r) \supset S \setminus E$ which requires that $x \in S \setminus \mathbb{B}(x,r)$. However this is not possible since $x$ is contained in any ball centered around it. Therefore $x$ cannot be interior to $E$.
+        \end{enumerate}
+    \end{enumerate}
+\end{proof}
+
+\subsection*{13.8}
+\subsubsection*{Part A}
+\begin{proof}[$(a,b)$ is Open]
+    Note that to show a set is open is the same as showing the set is a subset of its interior. Let $x \in (a,b)$. Let $r_1 = b-x$ and $r_2 = x - a$ and take $r = \frac{1}{2} \min\qty{r_1, r_2}$. Then $a < x - r < x + r < b$. Therefore $\mathbb{B}(x,r) \subset (a,b)$ meaning $x$ is an interior point. Therefore $(a,b)$ is a subset of its interior points and therefore is open.
+\end{proof}
+
+\begin{proof}
+    Note that $[a,b]^\complement = (-\infty, a)\cup(b, \infty)$ which is the union of open sets. Therefore the complement of $[a,b]$ is open and therefore $[a,b]$ is closed.
+\end{proof}
+
+\begin{proof}
+    Consider the interior of $[a,b]$. Note that $a,b$ are not in the interior as for any $r > 0$, $a - r \notin [a,b]$ and $b + r \notin [a,b]$. Therefore the candidates for its interiorare $(a,b)$. However, since $(a,b)$ is open, it is equal to its interior and therefore the interior of $[a,b]$ is $(a,b)$.
+\end{proof}
+
+\begin{proof}
+    Note that the smallest closed superset of $(a,b)$ is $[a,b]$. Therefore the set subtraction of $[a,b]$ and $(a,b)$ gives $\qty{a,b}$. Therefore the boundary of $(a,b)$ is $\qty{a,b}$. Since $[a,b]$ is closed, its closure is the same. Its interior is also $(a,b)$ and so using the same logic as before its boundary is $\qty{a,b}$.
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}[Open Balls are Open]
+    Let $(S,d)$ be a metric space. Let $x \in S$ and $r > 0$. Consider the open ball $\qty{s \in S : d(s,x) < r}$. Let $y \in \mathbb{B}(x,r)$. Choose $r' = r - d(x,y)$. Then if $z \in \mathbb{B}(y,r')$,
+    \[
+        d(z,x) \leq d(z, y) + d(y, x) < r' + d(y,x) = r
+    \]
+    Therefore $\mathbb{B}(y, r') \subset \mathbb{B}(x,r)$ hence the original ball is open.
+\end{proof}
+
+\begin{proof}[Closed Balls are Closed]
+    Let $(S,d)$ be a metric space. Let $x \in S$ and $r > 0$. Consider the closed ball $D(x,r) = \qty{s \in S : d(s,x) \leq r}$. Let $y \in S \setminus D(x,r)$. Then $d(y,s) > r$ and therefore $d(y,s) - r > 0$. Let $r' = d(y, s) - r$. Let $z \in \mathbb{B}(y, r')$. Then
+    \[
+        d(s,y) \leq d(s,z) + d(z,y) \implies d(z, s) \geq d(s,y) - d(z,y) > d(s,y)
+    \]
+    Therefore $z \in S \setminus D(s,r)$ which means $S \setminus D(s,r)$ is open and hence $D(s,r)$ is closed.
+\end{proof}
+
+\subsection*{13.9}
+\begin{enumerate}[label=\alph*)]
+    \item The closure is the set itself unioned with $\qty{0}$
+    \item $\overline{\mathbb{Q}} = \mathbb{R}$
+    \item The closure is $[-\sqrt{2}, \sqrt{2}]$
+\end{enumerate}
+
+\subsection*{13.11}
+\begin{proof}
+    Let $E \subset \mathbb{R}^k$.
+    \begin{enumerate}
+        \item[$\Rightarrow)$]
+            Assume that $E$ is compact. By the Heine-Borel theorem, $E$ is bounded and closed. Therefore for any sequence in $E$, it is also bounded meaning the sequence has a convergent subsequence. Since $E$ is also closed, it contains all its limit points and therefore the subsequence converges to a point in $E$.
+        \item[$\Leftarrow)$]
+            Assume that every sequence in $E$ has a subsequence that converges to a point in $E$. Note that $E$ must be bounded otherwise there exists sequences that will have no subsequential limit in $\mathbb{R}^k$. Let $(x_n)$ be a sequence in $E$ that converges to some $x \in \mathbb{R}^k$. By the assumption, there exists a subsequence that converges to some $y \in E$. However since $(x_n)$ converges, its subsequence also has the same limit and therefore $y = x \in E$. Therefore $E$ contains its limit points and is closed. Since $E$ is closed and bounded, by the Heine-Borel theorem it is compact.
+    \end{enumerate}
+\end{proof}
+
+\end{document}
