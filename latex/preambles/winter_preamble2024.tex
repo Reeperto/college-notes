@@ -24,6 +24,11 @@
 \usepackage{xpatch}
 \usepackage{xparse}
 
+\definecolor{gBlue}{HTML}{7daea3}
+\definecolor{gOrange}{HTML}{e78a4e}
+\definecolor{gGreen}{HTML}{a9b665}
+\definecolor{gPurple}{HTML}{d3869b}
+
 \definecolor{links}{HTML}{1c73a5}
 \definecolor{bar}{HTML}{584AA8}
 
@@ -77,6 +82,7 @@
 	boxrule = 0pt,
 	boxsep = 0pt,
 	borderline west={3pt}{0pt}{bar},
+	% borderline west={3pt}{0pt}{gPurple},
 	sharp corners = all,
 	enhanced,
 }
@@ -89,6 +95,7 @@
 	frame hidden,
 	coltitle = black,
 	colback = blue!7,
+	% colback = gBlue!30,
 	left = 0.5em,
 	sharp corners = all,
 }
@@ -126,6 +133,7 @@
 	boxsep = 0pt,
 	boxrule = 0pt,
 	borderline west = {3pt}{0pt}{orange},
+	% borderline west = {3pt}{0pt}{gOrange},
 	sharp corners = all,
 	enhanced,
 }
@@ -142,6 +150,7 @@
 	boxrule = 0pt,
 	boxsep = 0pt,
 	borderline west={3pt}{0pt}{green!70!black},
+	% borderline west={3pt}{0pt}{gGreen},
 	sharp corners = all,
 	enhanced,
 }
