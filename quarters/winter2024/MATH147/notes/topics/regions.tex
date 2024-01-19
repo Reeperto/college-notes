@@ -1,0 +1,53 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+
+\banner{Complex Regions}
+
+\begin{definition}[$\epsilon$-Neighborhood]
+    An $\epsilon$-neighborhood of a point $z_0 \in \C$ is the set of points given by
+    \[
+        |z - z_0| < \epsilon
+    .\]
+    This is often denoted by $B_\epsilon (z_0)$ or $B(z_0, \epsilon)$.
+\end{definition}
+
+\begin{definition}[Interior, Exterior, and Boundary Points]
+    Given a set $S \subset \C$ and a point $z_0 \in \C$, there are 3 possibilities in how it sits in relation to $S$.
+
+    \begin{enumerate}
+        \item There is an $\epsilon$-neighborhood of $z_0$ that is contained entirely in $S$. In this case, $z_0$ is an \textbf{interior point}
+        \item There is an $\epsilon$-neighborhood of $z_0$ that is disjoint from $S$. In this case, $z_0$ is an \textbf{exterior point}
+        \item For all $\epsilon$-neighborhood's of $z_0$, there are points that are in $S$ and not in $S$. In this case, $z_0$ is a \textbf{boundary point}
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}[Open and Closed Sets]
+    Let $S \subset \C$. $S$ is \textbf{open} if all its points are interior points. That is
+    \[
+        \forall z \in S, \exists \epsilon > 0 \text{ s.t. } B_\epsilon(z) \subset S
+    .\]
+    $S$ is \textbf{closed} if it contains its boundary points.
+\end{definition}
+
+\begin{theorem}[Closure and Complement]
+    A set $S \subset \C$ is open iff $\C \setminus S$ is closed.
+\end{theorem}
+
+\begin{proof}
+    \hfill\begin{enumerate}
+        \item[$\Rightarrow)$] %-------------------------------------------------
+        Suppose $S$ is open. Let $z_0$ be a boundary point of $\C \setminus S$. This means that for every $\epsilon$-neighborhood of $z_0$, there is a point in $\C \setminus S$ and a point outside of $\C \setminus S$. This means that there is a point always in $S$ and a point outside of $S$, hence $z_0$ is also a boundary point of $S$. Since $S$ is open, $z_0$ is not in $S$ and therefore it is in $\C \setminus S$ and therefore $\C \setminus S$ contains it's boundary. Hence it is closed.
+        \item[$\Leftarrow)$] %-------------------------------------------------
+        Suppose that $\C \setminus S$ is closed. Let $z_0 \in S$. Since $z_0$ is always in any $\epsilon$-neighborhood around itself, it cant be an exterior point. Assume towards contradiction that $z_0$ is a boundary point of $S$. Then by the previous direction, it is also a boundary point of $\C \setminus S$. Since $\C \setminus S$ is closed, it contains $z_0$ and hence a contradiction. Therefore $z_0$ is neither an exterior or boundary point and must be an interior point of $S$.
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}[Connectedness]
+    A set $S \subset \C$ is connected if for all $z_1, z_2 \in S$ there is a finite sequence of line segments in $S$ that join $z_1$ and $z_2$.
+\end{definition}
+
+\end{document}

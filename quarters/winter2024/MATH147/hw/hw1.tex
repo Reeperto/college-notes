@@ -110,11 +110,14 @@ Since
     5i &\Leftrightarrow 5 e^{i \frac{\pi}{2}} \\
     2 + i &\Leftrightarrow \sqrt{5} e^{i \arctan(\frac{1}{2})}
 \end{align*}
-it follows
+Let $\theta = \arctan(\frac{1}{2})$. It follows
 \begin{align*}
-    \frac{5i}{2+i} &= 5e^{\pi \frac{\pi}{2}} \cdot \sqrt{5} e^{-i \arctan(\frac{1}{2})} \\
-                   &= 5 \sqrt{5} e^{i \qty(\frac{\pi}{2} - \arctan{\frac{1}{2}})} \\
-                   &= 5 \sqrt{5} e^{i \qty(\frac{\pi}{2} - \arctan{\frac{1}{2}})}
+    \frac{5i}{2+i} &= 5e^{\pi \frac{\pi}{2}} \cdot \frac{1}{\sqrt{5}} e^{-i \theta} \\
+                   &= \frac{5}{\sqrt{5}} e^{i \qty(\frac{\pi}{2} - \theta)} \\
+                   &= \frac{5}{\sqrt{5}} (\cos(\frac{\pi}{2} - \theta) + i \sin(\frac{\pi}{2} - \theta)) \\
+                   &= \frac{5}{\sqrt{5}} (\sin \theta - i \cos \theta) \\
+                   &= \frac{5}{\sqrt{5}} (\sin \theta - i \cos \theta) \\
+                   &= \frac{5}{\sqrt{5}} (\sin \theta - i \cos \theta) \\
 \end{align*}
 
 \subsubsection*{Part C}

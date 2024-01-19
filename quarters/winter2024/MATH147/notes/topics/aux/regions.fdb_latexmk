@@ -1,11 +1,12 @@
 # Fdb version 4
-["xdvipdfmx"] 1705615766.06629 "aux/hw1.xdv" "hw1.pdf" "hw1" 1705615766.16764 0
-  "aux/hw1.xdv" 1705615765.9966 26648 6529a3655f112cef7a226e6beb83c9c3 "xelatex"
+["xdvipdfmx"] 1705617585.42924 "aux/regions.xdv" "regions.pdf" "regions" 1705617585.55052 0
+  "aux/regions.xdv" 1705617585.35519 30420 363d8c8fdb37f41858f3d90a383dbac3 "xelatex"
   (generated)
-  "hw1.pdf"
+  "regions.pdf"
   (rewritten before read)
-["xelatex"] 1705615765.38939 "hw1.tex" "aux/hw1.xdv" "hw1" 1705615766.16577 0
-  "../preamble.tex" 1705268085.57986 3915 382bc7458a5a622b20b977b9372b9d57 ""
+["xelatex"] 1705617584.69846 "regions.tex" "aux/regions.xdv" "regions" 1705617585.54864 0
+  "..//../preamble.tex" 1705268085.57986 3915 382bc7458a5a622b20b977b9372b9d57 ""
+  "../notes.tex" 1705615826.8699 567 266534076b07dd5ca861c625343d464e ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -240,6 +241,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/scholax/T1TeXGyreScholaX-OsF.fd" 1577830653 2468 2e6b1bfedd4c4896c6d9ca9d1fc4cebf ""
   "/usr/share/texlive/texmf-dist/tex/latex/scholax/omlzncfmi.fd" 1583704208 786 67525aad517eccf0db1a26b55d0463da ""
   "/usr/share/texlive/texmf-dist/tex/latex/scholax/scholax.sty" 1643753094 7698 7bbb83f4e504fc1c0e8863417fb14f7a ""
+  "/usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.cls" 1605478891 1507 57de335d88fde4e5c924dfed577fdb74 ""
   "/usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.sty" 1605478891 5262 70ab9987ec94ed2beeb5c2d951d465f6 ""
   "/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex" 1679417270 34642 fe3992acc7371a490bcf8e6f5088d89c ""
   "/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbexternal.code.tex" 1679417270 9035 4b513840c732c6c5b8144fc5723eb425 ""
@@ -282,13 +284,12 @@
   "/usr/share/texlive/texmf-dist/tex/latex/xpatch/xpatch.sty" 1585258158 8314 7803f78066c4f9d008405191a4b43073 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1689984000 40900 887e0dc8cac988a9e9c574af364cf837 ""
   "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1705269723 10497625 9650280afda6c0b2272f9e2191fe8b92 ""
-  "aux/hw1.aux" 1705615765.9966 520 85cfbbd777cb3b895bc1c68822bfbed1 "xelatex"
-  "aux/hw1.out" 1705615765.9746 0 d41d8cd98f00b204e9800998ecf8427e "xelatex"
-  "hw1.tex" 1705615763.05659 4278 27050a7b214e07eb16712ddb093eeca2 ""
-  "hw_preamble.tex" 1705268085.57986 151 31483818c111138cbbd0fc6651309216 ""
+  "aux/regions.aux" 1705617585.35519 1694 f858fa4171e8ce5a304157c7428f8ade "xelatex"
+  "aux/regions.out" 1705617585.35519 121 85ee8e486a865883f28b73c2fb08a159 "xelatex"
+  "regions.tex" 1705617582.11416 2916 238de53fdf15f5132598f2354681cf21 ""
   (generated)
-  "aux/hw1.aux"
-  "aux/hw1.log"
-  "aux/hw1.out"
-  "aux/hw1.xdv"
+  "aux/regions.aux"
+  "aux/regions.log"
+  "aux/regions.out"
+  "aux/regions.xdv"
   (rewritten before read)
