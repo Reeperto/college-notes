@@ -220,4 +220,102 @@ An initial, but weak, formulation of functional sequence convergence is by apply
     Since $0 < x \leq \frac{1}{n}$ the value is $1$, it is not possible to get arbitrarily close to the pointwise convergence across all $x$.
 \end{example}
 
+\begin{theorem}
+    A sequence of functions $f_n$ uniformly converges to $f$ on $S \subset \R$ iff
+    \[
+        \lim_{n\to \infty} \sup_{x \in S} \qty{f_n(x) - f(x)}
+    .\]
+\end{theorem}
+
+\begin{theorem}
+    If $f_n \to f$ uniformly on $[a,b]$ and $f_n$ is continuous on $[a,b]$ for all $n$, then
+    \[
+        \lim_{n\to \infty} \int_a^b f_n(x) dx = \int_a^b f(x) dx
+    .\]
+\end{theorem}
+\begin{proof}
+    We want to show that 
+    \[
+        \forall \epsilon > 0, \exists N, \text{ s.t. } \qty|\int_a^b f_n(x) \dd x - \int_a^b f(x) dx| < \epsilon
+    .\]
+    Fix $\epsilon > 0$. Then
+    \begin{align*}
+        \qty|\int_a^b f_n(x) \dd x - \int_a^b f(x) dx| &= \qty|\int_a^b f_n(x) - f(x) \dd x| \\
+                               &\leq \int_a^b |f_n(x) - f(x)| \dd x
+    \end{align*}
+    Since $f_n \to f$ uniformly on $[a,b]$, there is a $N$ such that $|f_n(x) - f(x)| < \frac{\epsilon}{b - a}$ for $n > N$ and $x \in [a,b]$. Note then that
+    \[
+        \int_a^b |f_n(x) - f(x)| \dd x < \int_a^b \frac{\epsilon}{b - a} \dd x = \epsilon
+    .\]
+    Therefore for $n > N$,
+    \[
+        \qty|\int_a^b f_n(x) \dd x - \int_a^b f(x) dx| \leq  \int_a^b |f_n(x) - f(x)| \dd x < \epsilon
+    .\]
+\end{proof}
+
+\subsection{Cauchy Function Sequences}
+
+\begin{definition}[Uniformly Cauchy]
+    A sequence of real valued functions $f_n$ is called unfiormly Cauchy if
+    \[
+        \forall \epsilon > 0, \exists N \text{ s.t. } |f_n(x) - f_m(x)| < \epsilon, \forall x \in S, n > m > N
+    .\]
+\end{definition}
+
+\begin{theorem}
+    If a sequence of real valued functions $f_n$ is uniformly Cauchy on $S \subset \R$, then there exists some function $f(x)$ on $S$ such that $f_n \to f$ uniformly on $S$.
+\end{theorem}
+
+\begin{proof}
+    Fix $x \in S$ and let $y_n = f_n(x)$. Note that this gives a Cauchy sequence since $f_n$ is uniformly Cauchy. Therefore $y_n$ converges to some $y \in \R$. Define $F(x) = y$. By construction, $f_n \to F$ pointwise. Fix $\epsilon > 0$. Since $f_n$ is uniformly Cauchy
+    \[
+        |f_n(x) - f_m(x)| < \frac{\epsilon}{2} \implies -\frac{\epsilon}{2} + f_m(x) < f_n(x) < f_m(x) + \frac{\epsilon}{2}
+    .\]
+    Since $n > m$, $n$ can be sent to infinity while fixing $m$, giving
+    \[
+        -\frac{\epsilon}{2} + f_m(x) < F(x) < f_m(x) + \frac{\epsilon}{2} \implies -\frac{\epsilon}{2} < F(x) - f_m(x) < \frac{\epsilon}{2}
+    .\]
+    Therefore
+    \[
+        |f_m(x) - F(x)| < \frac{\epsilon}{2} < \epsilon
+    .\]
+    Therefore $f_m$ converges uniformly to $F$ on $S$.
+\end{proof}
+
+\begin{example}
+    Consider the series $f_n(x) = \displaystyle\sum_{k=0}^n \frac{1}{1 + x^k}$ on $[2, \infty)$. Trying to determine if this uniformy converges with a direct approach will not work as it requires knowledge about the function the infinite series represents. However, notice that for $n > m$
+    \begin{align*}
+        |f_n(x) - f_m(x)| &= \qty|\sum_{k=0}^n \frac{1}{1+x^k} - \sum_{j=0}^m \frac{1}{1+x^j}| \\
+        &= \qty|\sum_{k=m+1}^n \frac{1}{1+x^k}| \\
+        &\leq \qty|\sum_{k=m+1}^n \frac{1}{1+2^k}| \\
+        &\leq \qty|\sum_{k=m+1}^n \frac{1}{2^k}|  \\
+        &= \cfrac{\cfrac{1}{2^{m+1}} - \cfrac{1}{2^n+1}}{1 - \frac{1}{2}} \\
+        &= \frac{1}{2^m} - \frac{1}{2^n} < \frac{1}{2^m}
+    \end{align*}
+    Take $\epsilon > 0$. Choose $N \in \N$ such that $\frac{1}{2^N} < \epsilon$. Then
+    \[
+        |f_n(x) - f_m(x)| < \frac{1}{2^m} < \frac{1}{2^N} < \epsilon, n > m > N
+    .\]
+    Therefore $f_n$ is uniformly Cauchy on $[2, \infty)$. This means that $f_n \to f$ uniformly on $[2, \infty)$.
+\end{example}
+
+\begin{example}
+    Consider a power series $f(x) = \displaystyle\sum_{k=0}^\infty a_k x^k$ with the sequence of polynomials $f_n(x) = \displaystyle\sum_{k=0}^n a_k x^k$. Let $\beta = \limsup |a_n|^{\frac{1}{n}}$ and $R = \frac{1}{\beta}$. Consider some $0 < \tilde{R} < R$ and $S = (-\tilde{R}, \tilde{R})$. Then
+    \begin{align*}
+        |f_n(x) - f_m(x)| &= \qty|\sum_{k=m+1}^n a_k x^k| \\
+                      &\leq \sum_{k=m+1}^n \qty|a_k x^k| \\
+                      &= \sum_{k=m+1}^n \qty(|a_k|^{\frac{1}{k}} |x|)^k \\
+                      &\leq \sum_{k=m+1}^n \qty(|a_k|^{\frac{1}{k}} \tilde{R})^k \\
+    \end{align*}
+    Since $\limsup |a_n|^{\frac{1}{n}} = \beta = \frac{1}{R}$, it is possible to find some $K \in \N$ such that
+    \[
+        \qty||a_k|^{\frac{1}{k}} - \beta| < \epsilon_1 \text{ with } (\beta + \epsilon_1) \tilde{R} < 1, k > K
+    .\]
+    Let $\alpha = (\beta + \epsilon_1) \tilde{R} < 1$. Then
+    \[
+        \sum_{k=m+1}^n \qty(|a_k|^{\frac{1}{k}} \tilde{R})^k < \sum_{k=m+1}^n \alpha^k \leq \frac{a^{m+1}}{1 - \alpha} < \epsilon
+    .\]
+    with $n > m > K$. This means that $f_n$ is uniformly Cauchy and hence uniformly converges to $f$ in the interval $(-\tilde{R}, \tilde{R})$. This result means that many useful properties about unfirom convergence apply to the interior of the interval of convergence.
+\end{example}
+
 \end{document}

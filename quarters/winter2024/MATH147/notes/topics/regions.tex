@@ -46,8 +46,51 @@
     \end{enumerate}
 \end{proof}
 
-\begin{definition}[Connectedness]
-    A set $S \subset \C$ is connected if for all $z_1, z_2 \in S$ there is a finite sequence of line segments in $S$ that join $z_1$ and $z_2$.
+Something important to note is that sets are not in a binary of open or closed. Sets can fall into 4 different categories
+
+\[
+    \setlength{\tabcolsep}{30pt}
+    \renewcommand\arraystretch{1.5}
+    \begin{array}{c|c|c}
+               & \text{Closed} & \text{Not Closed} \\\hline
+        \text{Open}   & \varnothing, \C & B_\epsilon(z_0) \\\hline
+        \text{Not Open} & \conj{B}_\epsilon(z_0) & \qty{z \in \C : r < |z| \leq R}
+    \end{array}
+.\]
+
+\begin{definition}[Closure]
+    Let $S \subset \C$. Then the closure of $S$ is $\conj{S} = S \cup \partial S$
 \end{definition}
+
+
+\begin{definition}[Connectedness]
+    An open set $S \subset \C$ is connected if given $u,v \in S$ there exists a finite set of points $u = w_1, w_2, \ldots, w_n = v$ such that $\conj{w_i w_{i+1}} \subset S$ for $i = 1,2,\ldots,n-1$. That is there exists a path of finite line segments between the two points contained in $S$.
+\end{definition}
+
+\begin{definition}[Domain]
+    A set $S \subset \C$ is a domain if it is a connected open set.
+\end{definition}
+
+\begin{definition}[Region]
+    $S \subset \C$ is a region if it is a domain unioned with a subset of its boundary.
+\end{definition}
+
+\begin{definition}[Boundedness]
+    A set $S \subset \C$ is bounded if there is an $R \in \R$ such that $S \subset B_R(0)$.
+\end{definition}
+
+\begin{example}
+    Consider the set $S = \qty{z \in \C : \frac{\pi}{4} < \arg z < \frac{\pi}{2}}$
+\end{example}
+
+\begin{definition}[Accumulation Point]
+    Let $S \subset \C$. $z_0$ is an accumulation point of $S$ if
+    \[
+        (B_\epsilon(z_0) \setminus z_0) \cap S \neq \varnothing, \forall \epsilon > 0
+    .\]
+    That is, $z_0$ is an accumulation point if every neighborhood contains a point in $S$ that isnt $z_0$.
+\end{definition}
+
+An accumulation point can be thought of as a point that can be continually well approximated by points inside some set $S$. This idea also applies to things such as the suprememum on $\R$ or the limit of a sequence over a toplogy.
 
 \end{document}

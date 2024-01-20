@@ -373,8 +373,14 @@
         \item[$\Rightarrow)$] %------------------------------------------------
         Assume that $s_n$ converges. By Theorem \ref{thm:cauchyproperties}, $s_n$ is Cauchy.
         \item[$\Leftarrow)$] %------------------------------------------------
-        Assume that $s_n$ is Cauchy. By Theorem \ref{thm:cauchyproperties}, $s_n$ is bounded. Since $s_n$ is Cauchy, $\forall \epsilon > 0, \exists N \in \mathbb{N}$ such that $|s_n - s_m| < \epsilon$ for all $m,n > N$. This means that $s_n < s_m + \epsilon$ for all $m,n > N$.
-        % TODO: Finish the proof by looking at prof's notes
+        Assume that $s_n$ is Cauchy. By Theorem \ref{thm:cauchyproperties}, $s_n$ is bounded and therefore there is a convergent subsequence $s_{n_k}$ by \ref{thm:bolzanoweirstrass}. Let $L = \lim s_{n_k}$. Note then that
+        \[
+            \forall \epsilon > 0, \exists K \text{ s.t. } |c_{n_k} - L | < \epsilon, k > K
+        .\]
+        Since $s_n$ is Cauchy, $\forall \epsilon > 0, \exists N_1 \in \mathbb{N}$ such that $|s_n - s_m| < \epsilon$ for all $m,n > N$. If $n > \max\qty{N_1, N_{K+1}}$, then
+        \[
+            |s_n - L| \leq |c_n - c_{N_{k+1}}| + |c_{N_{k+1}} - L| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon
+        .\]
     \end{enumerate}
 \end{proof}
 

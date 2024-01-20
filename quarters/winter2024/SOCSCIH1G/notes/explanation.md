@@ -46,6 +46,8 @@ This model is similar to the DN model, however in replacement of laws of nature,
 
 This is a weakening of the laws of nature and means that the connection is not a true logical deduction, but rather a deduction of a probable connection.
 
+**NOTE:** A deduction is a connection that establishes the conclusion follows logically from it's premises
+
 ### Functional (Existence) Explanation
 
 This model differs significantly from the other two. It diagrammatically is

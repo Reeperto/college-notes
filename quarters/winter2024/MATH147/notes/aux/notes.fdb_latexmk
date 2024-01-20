@@ -1,10 +1,10 @@
 # Fdb version 4
-["xdvipdfmx"] 1705270022.20607 "aux/notes.xdv" "notes.pdf" "notes" 1705270022.32021 0
-  "aux/notes.xdv" 1705270022.13382 117444 9d8d1735832b24e83ef6ccbb8e3cc71e "xelatex"
+["xdvipdfmx"] 1705687359.76961 "aux/notes.xdv" "notes.pdf" "notes" 1705687359.88618 0
+  "aux/notes.xdv" 1705687359.60938 169072 3d0b4928b73c73c70620021e7f3c2fdf "xelatex"
   (generated)
   "notes.pdf"
   (rewritten before read)
-["xelatex"] 1705270021.38689 "notes.tex" "aux/notes.xdv" "notes" 1705270022.31824 0
+["xelatex"] 1705687358.69712 "notes.tex" "aux/notes.xdv" "notes" 1705687359.88423 0
   "../preamble.tex" 1705268085.57986 3915 382bc7458a5a622b20b977b9372b9d57 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
@@ -282,12 +282,14 @@
   "/usr/share/texlive/texmf-dist/tex/latex/xpatch/xpatch.sty" 1585258158 8314 7803f78066c4f9d008405191a4b43073 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1689984000 40900 887e0dc8cac988a9e9c574af364cf837 ""
   "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1705269723 10497625 9650280afda6c0b2272f9e2191fe8b92 ""
-  "aux/notes.aux" 1705270022.13382 6783 1d3e40b98f5f65a88ef2ef12c230f84f "xelatex"
-  "aux/notes.loe" 1705270022.13382 3681 9fd7f887a275fcbb7b18fba16c69e1b5 "xelatex"
-  "aux/notes.out" 1705270022.13382 1403 a9a0c5c9cce7d4069ecdbec8d71ca87a "xelatex"
-  "aux/notes.toc" 1705270022.13382 694 552a44646ed9c0f6a7d94d3f6f1101df "xelatex"
-  "notes.tex" 1705268085.57986 538 67d34f9f0122b83f243c3c70737e3ae9 ""
-  "topics/complexnumbers.tex" 1705268085.57986 15271 484b118d04ce3b4d260e90cd471d5b75 ""
+  "aux/notes.aux" 1705687359.60838 9778 e2ca45843f10bdd0d8c3930b77066b47 "xelatex"
+  "aux/notes.loe" 1705687359.60938 5802 67585fbfa98723ec1833454c58ac2e51 "xelatex"
+  "aux/notes.out" 1705687359.60938 1810 9572d4b3de9d080763900641f3cb15c6 "xelatex"
+  "aux/notes.toc" 1705687359.60938 899 e36c3676a8e4c08c205115d8d744f442 "xelatex"
+  "notes.tex" 1705686336.20634 606 9c315eebe16c081ae99c67ec6367aae0 ""
+  "topics/analyticfunctions.tex" 1705687356.95599 890 60f1e7d4928bfe2027a0aa70ffb6ab69 ""
+  "topics/complexnumbers.tex" 1705292526.29745 15271 484b118d04ce3b4d260e90cd471d5b75 ""
+  "topics/regions.tex" 1705686280.66485 4709 e863ba83d5a8d97ef64214e55d74accb ""
   (generated)
   "aux/notes.aux"
   "aux/notes.loe"

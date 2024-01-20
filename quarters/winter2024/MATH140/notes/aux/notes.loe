@@ -155,3 +155,9 @@
 \contentsline {example}{\ifthmt@listswap Example\nobreakspace {}8.52\else \numberline {8.52}Example\fi }{50}{example.8.52}%
 \contentsline {example}{\ifthmt@listswap Example\nobreakspace {}8.53\else \numberline {8.53}Example\fi }{51}{example.8.53}%
 \contentsline {example}{\ifthmt@listswap Example\nobreakspace {}8.54\else \numberline {8.54}Example\fi }{51}{example.8.54}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}8.53\else \numberline {8.53}Theorem\fi }{52}{theorem.8.53}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}8.54\else \numberline {8.54}Theorem\fi }{52}{theorem.8.54}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}8.36\else \numberline {8.36}Definition\fi \thmtformatoptarg {Uniformly Cauchy}}{53}{definition.8.36}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}8.55\else \numberline {8.55}Theorem\fi }{53}{theorem.8.55}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}8.55\else \numberline {8.55}Example\fi }{53}{example.8.55}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}8.56\else \numberline {8.56}Example\fi }{54}{example.8.56}%

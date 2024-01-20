@@ -1,0 +1,25 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+
+\banner{Analytic Functions}
+
+\subsection{Complex Functions}
+
+\begin{definition}[Complex Function]
+    A complex function on $S \subset \C$ is a rule that assigns to each $z \in S$ a value $f(z) = w \in \C$, denoted by $f : S \to \C$.
+\end{definition}
+
+\begin{example}
+    There are (surprise!) many complex functions.
+    \begin{enumerate}
+        \item The function $f(z) = \frac{1}{z}$ is well defined everywhere except $z = 0$, therefore it's domain of definition is $\C \setminus \qty{0}$.
+        \item Any complex polynomial $f(z) = c_n z^n + \ldots + c_1 z + c_0$ with $c_i \in \C$ is a complex function over all of $\C$.
+        \item Any rational function $\frac{f(x)}{g(x)}$ where the domain is $\C \setminus \qty{z \in \C : g(z) = 0}$
+    \end{enumerate}
+\end{example}
+
+\end{document}

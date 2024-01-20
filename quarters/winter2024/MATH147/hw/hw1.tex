@@ -58,10 +58,12 @@ Let $z = x + iy$ such that $\Re(z) = x$ and $\Im(z) = y$.
     &= \qty|\frac{4 + z + \overline{z} + z^3 + 2}{2}| \\
     &\leq \frac{2 + |z| + |\overline{z}| + |z|^3 + |\overline{z}|^3}{2} \\
     &= \frac{2 + 2|z| + 2|z|^3}{2} \\
+\intertext{Since $|z| \leq 1$, this quantity is bounded above and therefore}
     &\leq \frac{2 + 2 + 2}{2} = 3 \leq 4
 \end{align*}
 
 \subsection*{6.10}
+\subsubsection*{Part A}
 \begin{proof}
     Let $z = x + iy$.
     \begin{enumerate}
@@ -76,6 +78,39 @@ Let $z = x + iy$ such that $\Re(z) = x$ and $\Im(z) = y$.
     \end{enumerate}
     Both directions hence prove the if and only if.
 \end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    Let $z = x + iy$.
+    \begin{enumerate}
+        \item[$\Rightarrow)$]
+            Assume that $z$ is real or pure imaginary. Consider the case that $z$ is real. That is $y = 0$ and $x \neq 0$. Then
+            \[
+                \conj{z}^2 = (x-iy)^2 = x^2 = (x + iy)^2 = z^2
+            .\]
+            In the case $z$ is purely imaginary, then $x = 0$ and $y \neq 0$ meaning
+            \[
+                \conj{z}^2 = (x - iy)^2 = -y^2 = (x + iy)^2 = z
+            .\]
+            Hence $\conj{z} = z$ when $z$ is purely imaginary or real.
+
+        \item[$\Leftarrow)$]
+            Assume towards contradiction that $z$ is not purely real or imaginary and that $\conj{z}^2 = z^2$. That is $x,y \neq 0$. Note then that
+            \begin{align*}
+                z^2       &= (x + iy)^2 = x^2 - y^2 + 2ixy \\
+                \conj{z}^2 &= (x - iy)^2 = x^2 + y^2 - 2ixy
+            \end{align*}
+            Since $\conj{z}^2 = z^2$,
+            \begin{align*}
+                x^2 - y^2 + 2ixy &= x^2 + y^2 - 2ixy \\
+                4ixy &= 2y^2 \\
+                ix &= 2y \\
+                2 \cdot \frac{y}{x} &= i
+            \end{align*}
+            However, this is a contradiction since $x,y \in \R$ and therefore $2 \cdot \frac{y}{x}$ cannot be imaginary.
+    \end{enumerate}
+\end{proof}
+
 
 \subsection*{6.13}
 \begin{align*}
@@ -115,24 +150,281 @@ Let $\theta = \arctan(\frac{1}{2})$. It follows
     \frac{5i}{2+i} &= 5e^{\pi \frac{\pi}{2}} \cdot \frac{1}{\sqrt{5}} e^{-i \theta} \\
                    &= \frac{5}{\sqrt{5}} e^{i \qty(\frac{\pi}{2} - \theta)} \\
                    &= \frac{5}{\sqrt{5}} (\cos(\frac{\pi}{2} - \theta) + i \sin(\frac{\pi}{2} - \theta)) \\
-                   &= \frac{5}{\sqrt{5}} (\sin \theta - i \cos \theta) \\
-                   &= \frac{5}{\sqrt{5}} (\sin \theta - i \cos \theta) \\
-                   &= \frac{5}{\sqrt{5}} (\sin \theta - i \cos \theta) \\
+                   &= \frac{5}{\sqrt{5}} (\sin \theta + i \cos \theta) \\
+                   &= \frac{5}{\sqrt{5}} \qty(\frac{1}{\sqrt{5}} + i\cdot \frac{2}{\sqrt{5}}) \\
+                   &= 1 + 2i
 \end{align*}
 
 \subsubsection*{Part C}
+Let $z = \sqrt{3} + i$ and $r = |z| = \sqrt{3 + 1^2} = 2$. Since
+\[
+    \frac{z}{|z|} = \frac{\sqrt{3}}{2} + \frac{i}{2} \implies \theta = \frac{\pi}{6}
+.\]
+
+Therefore
+\[
+    z^6 = \qty(2e^{i \frac{\pi}{6}})^6 = 2^6 e^{i \pi} = -64
+.\]
 
 
 \subsubsection*{Part D}
+Let $z = 1 + i \sqrt{3}$ and $r = |z| = \sqrt{1 + 3^2} = 2$. Since
+\[
+    \frac{z}{|z|} = \frac{1}{2} + i\frac{\sqrt{3}}{2} \implies \theta = \frac{\pi}{3}
+.\]
+Therefore
+\[
+    z^{-11} = (2 e^{i \frac{\pi}{3}})^{-10} = 2^{-10} e^{-i \frac{10 \pi}{3}} = 2^{-10} e^{-i \frac{\pi}{3}} = 2^{-10} \qty(\frac{1}{2} - i\frac{\sqrt{3}}{2}) = 2^{-11} (1 - i\sqrt{3})
+.\]
+
 
 \subsection*{9.6}
+Since $\Re z_1$ and $\Re z_2$, both their principal arguments lie in the right half of the unit circle and therefore $\Arg z_1, \Arg z_2 \in \qty(-\frac{\pi}{2}, \frac{\pi}{2})$. This means that their sum is bounded by
+\[
+    -\frac{\pi}{2} - \frac{\pi}{2} = -\pi < \Arg z_1 + \Arg z_2 < \pi = \frac{\pi}{2} + \frac{\pi}{2}
+.\]
+
+Therefore since their sum lies in the interval for the principal arguement of $z_1z_2$, it follows that
+\[
+    \Arg z_1 z_2 = \Arg z_1 + \Arg z_2
+.\]
+
 \subsection*{9.8}
+\begin{proof}
+    Let $z_1, z_2 \in \C$ with $r_1 = |z_1|, r_2 = |z_2|$ and $\theta_1 = \Arg z_1, \theta_2 = \Arg z_2$.
+    \begin{enumerate}
+        \item[$\Rightarrow)$]
+            Assume that $z_1$ and $z_2$ have the same moduli. That is $r_1 = r_2$. Let
+            \begin{align*}
+                c_1 &= r_1 \exp\qty(i \frac{\theta_1 + \theta_2}{2}) \\
+                c_2 &= \exp\qty(i \frac{\theta_1 - \theta_2}{2})
+            \end{align*}
+            Note that $c_1 c_2 = r_1 e^{i \theta_1} = z_1$ and $c_1 \conj{z_2} = r_1 e^{i \theta_2} = r_2 e^{i \theta_2} = z_2$. Therefore $z_1 = c_1 c_2$ and $z_2 = z_1 \conj{z_2}$.
+        \item[$\Leftarrow)$]
+            Assume that there are complex numbers $c_1, c_2$ such that $z_1 = c_1 c_2$ and $z_2 = c_1 \conj{z_2}$. Then
+            \[
+                |z_1| = |c_1 c_2| = |c_1| |c_2| = |c_1||\conj{c_2}| = |c_1 \conj{c_2}| = |z_2|
+            .\]
+            Therefore $|z_1| = |z_2|$.
+    \end{enumerate}
+\end{proof}
 
 \subsection*{11.3}
+First, convert $z = -8 - 8 \sqrt{3}i$ to exponential form. Then
+\[
+    |z| = \sqrt{8^2 + 3\cdot 8^2} = \sqrt{4 \cdot 8^2} = 2\cdot 8 = 16
+\]
+Note that $\frac{z}{|z|} = -\frac{1}{2} - \frac{\sqrt{3}}{2} i$ which corresponds to the angle $\theta = - \frac{2 \pi}{3}$ on the unit circle. Since $2 = \sqrt[4]{16}$, the the roots of $z$ are
+\begin{alignat*}{3}
+    c_0 &= 2 e^{-i \frac{\pi}{6}} = 2\qty(\frac{\sqrt{3}}{2} - i\frac{1}{2}) &&= \sqrt{3} - i \\
+    c_1 &= c_0 e^{i\frac{\pi}{2}} = 2 e^{i \frac{\pi}{3}} = 2\qty(\frac{1}{2} + i \frac{\sqrt{3}}{2}) &&= 1 + i\sqrt{3} \\
+    c_2 &= c_0 e^{i\pi} = -c_0 &&= - \sqrt{3} + i \\
+    c_3 &= c_0 e^{i \frac{3 \pi}{2}} = 2 e^{-i \frac{2 \pi}{3}} = 2\qty(-\frac{1}{2} - i\frac{\sqrt{3}}{2}) &&= -1 - i\sqrt{3} \\
+\end{alignat*}
+
+Therefore the roots are $\pm(\sqrt{3} - i)$ and $\pm(1 + i \sqrt{3})$.
+
 \subsection*{11.5}
+Let $z_0 = - 4\sqrt{2} + 4 \sqrt{2}i$. Then $r = |z_0| = \sqrt{2(4 \sqrt{2})^2} = \sqrt{64} = 8$. It follows that
+\[
+    \frac{z}{|z_0|} = -\frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}i \implies \theta = \frac{3 \pi}{4}
+.\]
+
+Therefore the principal cube root of $z_0$ is
+\[
+    c_0 = 2 e^{i \frac{\pi}{4}} = 2\qty(\frac{\sqrt{2}}{2} + i \frac{\sqrt{2}}{2}) = \sqrt{2}(1+i)
+.\]
+
+The other cube roots are $c_0 \omega_3$ and $c_0 \omega_3^2$. Hence
+\begin{align*}
+    c_0 \omega_3 = 
+    2 e^{i \frac{\pi}{4}} e^{i \frac{2 \pi}{3}} = 
+    2 \qty(\frac{1}{\sqrt{2}} + i \frac{1}{\sqrt{2}}) \qty(-\frac{1}{2} + \frac{i\sqrt{3}}{2})
+    &= \qty(\frac{1}{\sqrt{2}} + \frac{i}{\sqrt{2}})\qty(-1 + i\sqrt{3}) \\
+    &= \frac{-(\sqrt{3} + 1) + (\sqrt{3} - 1)i}{\sqrt{2}} \\\\
+    c_0 \omega_3^2 = 2 e^{i \frac{\pi}{4}} e^{i \frac{4 \pi}{3}} = 2 \qty(\frac{1}{\sqrt{2}} + i \frac{1}{\sqrt{2}}) \qty(-\frac{\sqrt{3}}{2} - i \frac{1}{2}) = \qty(\frac{1}{\sqrt{2}} + i \frac{1}{\sqrt{2}}) ( -\sqrt{3} - i) &= -c_0 \omega_3 \\
+    &= \frac{(\sqrt{3} + 1) - (\sqrt{3} - 1)i}{\sqrt{2}} \\
+\end{align*}
 
 \subsection*{12.1}
-\subsection*{12.4}
+Let $z = x +iy$.
 
+\subsubsection*{Part A}
+\begin{center}
+\begin{tikzpicture}
+    \draw (-1.5,0) -- (3.5,0) node[anchor=west] {$\Re$};
+    \draw (0,-3.5) -- (0,1.5) node[anchor=south] {$\Im$};
+    \draw[pattern=north west lines, pattern color=gray] (2, -1) circle [radius=1];
+    \draw[fill, color=black] (2, -1) circle [radius=2pt];
+\end{tikzpicture}
+\end{center}
+
+This is not a domain since it is a closed set (closed disk).
+
+\subsubsection*{Part B}
+
+% |2(x+iy) + 3| = |2x + 2iy + 3| = ⎷[(2x + 3)^2 + 2y^2] > 4
+
+Since
+\begin{align*}
+    |2z + 3| &= |2x + 2iy + 3| \\
+    &= \sqrt{(2x+3)^2 + (2y)^2}
+\end{align*}
+it follows that
+\begin{align*}
+    |2z + 3| > 4 \implies (2x+3)^2 + (2y)^2 &> 16 \\
+            4x^2 + 12x + 9 + 4y^2 &> 16 \\
+            x^2 + 3x + \frac{9}{4} + y^2 &> 4 \\
+            \qty(x + \frac{3}{2})^2 + y^2 &> 4 \\
+\end{align*}
+
+\begin{center}
+\begin{tikzpicture}
+    \fill[pattern=north west lines, pattern color=gray] (-3.95, -2.45) rectangle (0.95, 2.45);
+    \fill[color=white] (-1.5,0) circle [radius = 2];
+    \draw (-4,0) -- (1,0) node[anchor=west] {$\Re$};
+    \draw (0,-2.5) -- (0,2.5) node[anchor=south] {$\Im$};
+    \fill[color=black] (-1.5,0) circle [radius=2pt];
+    \draw[dashed] (-1.5,0) circle [radius=2];
+\end{tikzpicture}
+\end{center}
+
+This is a domain since it is open and connected.
+
+\subsubsection*{Part C}
+\begin{center}
+\begin{tikzpicture}
+    \fill[pattern=north west lines, pattern color=gray] (-3.5, 1) rectangle (3.5, 3.5);
+    \draw (-3.5,0) -- (3.5,0) node[anchor=west] {$\Re$};
+    \draw (0,-1.5) -- (0,3.5) node[anchor=south] {$\Im$};
+    \draw[dashed] (-3.5, 1) -- (3.5, 1) node[anchor=west] {$\Im z = 1$};
+\end{tikzpicture}
+\end{center}
+
+It is a domain since it is open and connected.
+
+\subsubsection*{Part D}
+\begin{center}
+\begin{tikzpicture}
+    \draw (-3.5,0) -- (3.5,0) node[anchor=west] {$\Re$};
+    \draw (0,-1.5) -- (0,3.5) node[anchor=south] {$\Im$};
+    \draw (-3.5, 1) -- (3.5, 1) node[anchor=west] {$\Im z = 1$};
+\end{tikzpicture}
+\end{center}
+
+It is not a domain since it is not open.
+
+\subsubsection*{Part E}
+
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro{\cx}{4.0 * sqrt(2) / 2}
+    \pgfmathsetmacro{\cy}{4.0 * sqrt(2) / 2}
+
+    \fill[pattern=north west lines, pattern color=gray] (0, 0) -- (\cx, \cy) arc[start angle=45, end angle=0, radius=4] -- (0,0);
+    \draw (-1,0) -- (4,0) node[anchor=west] {$\Re$};
+    \draw (0,-1) -- (0,4) node[anchor=south] {$\Im$};
+    \draw (0, 0) -- (\cx, \cy);
+\end{tikzpicture}
+\end{center}
+
+It is not a domain since it is closed.
+
+\subsubsection*{Part F}
+% |z - 4| >= |z| => (x - 4)^2 + y^2 >= x^2 + y^2 => x^2 - 8x + 16 >= x^2 => 16 - 8x >= 0 => 16 >= 8x => x <= 2
+
+\begin{align*}
+    |z-4| \geq |z| \implies |(x-4) + iy| &\geq |x + iy| \\
+    \sqrt{(x-4)^2 + y^2} &\geq \sqrt{x^2 + y^2} \\
+    (x-4)^2 + y^2 &\geq x^2 + y^2 \\
+    (x-4)^2 &\geq x^2 \\
+    x^2 - 8x + 16 &\geq x^2 \\
+    8x \leq 16 \\
+    x \leq 2
+\end{align*}
+
+Therefore the set looks like
+
+\begin{center}
+\begin{tikzpicture}
+    \fill[pattern=north west lines, pattern color=gray] (2, -1.5) rectangle (-3.5, 3.5);
+    \draw (-3.5,0) -- (3.5,0) node[anchor=west] {$\Re$};
+    \draw (0,-1.5) -- (0,3.5) node[anchor=south] {$\Im$};
+    \draw (2, -1.5) -- (2, 3.5);
+\end{tikzpicture}
+\end{center}
+
+It is not a domain since it is closed
+
+\subsection*{12.4}
+\subsubsection*{Part A}
+The original set is every complex number except those with a principal argument of $\pi$ which means the set is the complex plane minus the negative real line. Therefore it's closure is the entire complex plane.
+
+\begin{center}
+\begin{tikzpicture}
+    \fill[pattern=north west lines, pattern color=gray] (-2.45, -2.45) rectangle (2.45, 2.45);
+    \draw (-2.5,0) -- (2.5,0) node[anchor=west] {$\Re$};
+    \draw (0,-2.5) -- (0,2.5) node[anchor=south] {$\Im$};
+\end{tikzpicture}
+\end{center}
+
+\subsubsection*{Part B}
+Since the inequality is true for all $z \in \C$, its closure is $\C$ since $\C$ is closed.
+
+\begin{center}
+\begin{tikzpicture}
+    \fill[pattern=north west lines, pattern color=gray] (-2.45, -2.45) rectangle (2.45, 2.45);
+    \draw (-2.5,0) -- (2.5,0) node[anchor=west] {$\Re$};
+    \draw (0,-2.5) -- (0,2.5) node[anchor=south] {$\Im$};
+\end{tikzpicture}
+\end{center}
+
+\subsubsection*{Part C}
+Since
+\begin{align*}
+    \Re \frac{1}{z} &= \Re \frac{\conj{z}}{|z|^2} \\
+    &= \Re\qty(\frac{x}{x^2+y^2} - i \cdot \frac{y}{x^2+y^2}) \\
+    &= \frac{x}{x^2+y^2}
+\end{align*}
+The inequality is the same as
+\begin{align*}
+    \frac{x}{x^2 + y^2} \leq \frac{1}{2} \implies x^2 + y^2 &\geq 2x \\
+    x^2 - 2x + 1 + y^2 &\geq 1 \\
+    (x-1)^2 + y^2 &\geq 1 \\
+\end{align*}
+
+This is all the points outside an open unit disk centered at $z=1$. Since it is the complement of an open disk, it is a closed set and hence the closure is itself
+
+\begin{center}
+\begin{tikzpicture}
+    \fill[pattern=north west lines, pattern color=gray] (-2.45, -2.45) rectangle (2.45, 2.45);
+    \fill[color=white] (1,0) circle [radius = 1];
+    \draw (-2.5,0) -- (2.5,0) node[anchor=west] {$\Re$};
+    \draw (0,-2.5) -- (0,2.5) node[anchor=south] {$\Im$};
+    \draw[] (1,0) circle [radius=1];
+\end{tikzpicture}
+\end{center}
+
+\subsubsection*{Part D}
+\begin{align*}
+    \Re z^2 = \Re\qty(x^2 + 2ixy - y^2) = x^2 - y^2
+\end{align*}
+Therefore
+\[
+    \Re z^2 > 0 \implies x^2 - y^2 > 0 \implies -x < y < x
+.\]
+
+The boundary of this set are the points where $y = x$ and $y = -x$. Hence the closure of the set is $-x \leq y \leq x$.
+
+\begin{center}
+\begin{tikzpicture}
+    \fill[pattern=north west lines, pattern color=gray] 
+        (-2.45, -2.45) -- (-2.45, 2.45) -- (2.45, -2.45) -- (2.45, 2.45);
+    \draw (-2.5,0) -- (2.5,0) node[anchor=west] {$\Re$};
+    \draw (0,-2.5) -- (0,2.5) node[anchor=south] {$\Im$};
+    \draw (-2.45, 2.45)  -- (2.45, -2.45);
+    \draw (-2.45, -2.45) -- (2.45, 2.45);
+\end{tikzpicture}
+\end{center}
 
 \end{document}
