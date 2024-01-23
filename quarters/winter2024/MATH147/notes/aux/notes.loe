@@ -36,3 +36,7 @@
 \contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}2.17\else \numberline {2.17}Definition\fi \thmtformatoptarg {Accumulation Point}}{10}{definition.2.17}%
 \contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}3.18\else \numberline {3.18}Definition\fi \thmtformatoptarg {Complex Function}}{11}{definition.3.18}%
 \contentsline {example}{\ifthmt@listswap Example\nobreakspace {}3.6\else \numberline {3.6}Example\fi }{11}{example.3.6}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}3.19\else \numberline {3.19}Definition\fi \thmtformatoptarg {Limits in $\vvmathbb {C}$}}{11}{definition.3.19}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}3.7\else \numberline {3.7}Example\fi }{11}{example.3.7}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}3.8\else \numberline {3.8}Example\fi }{12}{example.3.8}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.11\else \numberline {3.11}Theorem\fi \thmtformatoptarg {Limit Equivalence}}{12}{theorem.3.11}%

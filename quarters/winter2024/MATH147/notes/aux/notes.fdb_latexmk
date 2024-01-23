@@ -1,11 +1,11 @@
 # Fdb version 4
-["xdvipdfmx"] 1705687359.76961 "aux/notes.xdv" "notes.pdf" "notes" 1705687359.88618 0
-  "aux/notes.xdv" 1705687359.60938 169072 3d0b4928b73c73c70620021e7f3c2fdf "xelatex"
+["xdvipdfmx"] 1705945852.69471 "aux/notes.xdv" "notes.pdf" "notes" 1705945852.80979 0
+  "aux/notes.xdv" 1705945852.5312 185356 63d333b150dd143c478e696e36887f9e "xelatex"
   (generated)
   "notes.pdf"
   (rewritten before read)
-["xelatex"] 1705687358.69712 "notes.tex" "aux/notes.xdv" "notes" 1705687359.88423 0
-  "../preamble.tex" 1705268085.57986 3915 382bc7458a5a622b20b977b9372b9d57 ""
+["xelatex"] 1705945851.64013 "notes.tex" "aux/notes.xdv" "notes" 1705945852.80789 0
+  "../preamble.tex" 1705700467.46883 3963 0c405c301960e0e31c3b7d0064a8d1b0 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -61,6 +61,7 @@
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex" 1601326656 35249 abd4adf948f960299a4b3d27c5dddf46 ""
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex" 1673816307 22012 81b34a0aa8fa1a6158cc6220b00e4f10 ""
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex" 1601326656 8893 e851de2175338fdf7c17f3e091d94618 ""
+  "/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex" 1601326656 15929 463535aa2c4268fead6674a75c0e8266 ""
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex" 1673816307 5628 dc0ee4ba7f3e40acae5600067ce833de ""
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex" 1601326656 321 cdd11262840e01e25374a2d458f15e99 ""
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex" 1601326656 1319 0b2de5126c6cbc295f0eb77f7344b34d ""
@@ -68,6 +69,7 @@
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfpu.code.tex" 1601326656 283 0802c14f542ec5204d2d1cc89f08a4d2 ""
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymath.code.tex" 1673816307 25524 2af29d68cc00165e3ca68a2c4992055b ""
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatrix.code.tex" 1673816307 4228 c39d423dc1a80da31c8c67bf1067f384 ""
+  "/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypatterns.code.tex" 1601326656 770 82e332cc9cc48e06b8070d74393a185a ""
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex" 1601326656 325 36322b0789619b270aec5993d5a9ed08 ""
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryquotes.code.tex" 1673816307 3970 c199216b190c70e45bff870bacf0da00 ""
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex" 1608933718 11518 738408f795261b70ce8dd47459171309 ""
@@ -77,6 +79,7 @@
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex" 1601326656 58801 1e750fb0692eb99aaac45698bbec96b1 ""
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.tex" 1601326656 2563 d5b174eb7709fd6bdcc2f70953dbdf8e ""
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex" 1608933718 85938 8e4ba97c5906e1c0d158aea81fe29af7 ""
+  "/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibrarypatterns.code.tex" 1601326656 7936 49e55444d57eb69a380c6baa35094828 ""
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex" 1601326656 32995 ac577023e12c0e4bd8aa420b2e852d1a ""
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex" 1673816307 14526 4bc184b12436aa7f6490b2d2036870ef ""
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex" 1557692582 3063 8c415c68a0f3394e45cfeca0b65f6ee6 ""
@@ -282,12 +285,12 @@
   "/usr/share/texlive/texmf-dist/tex/latex/xpatch/xpatch.sty" 1585258158 8314 7803f78066c4f9d008405191a4b43073 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1689984000 40900 887e0dc8cac988a9e9c574af364cf837 ""
   "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1705269723 10497625 9650280afda6c0b2272f9e2191fe8b92 ""
-  "aux/notes.aux" 1705687359.60838 9778 e2ca45843f10bdd0d8c3930b77066b47 "xelatex"
-  "aux/notes.loe" 1705687359.60938 5802 67585fbfa98723ec1833454c58ac2e51 "xelatex"
-  "aux/notes.out" 1705687359.60938 1810 9572d4b3de9d080763900641f3cb15c6 "xelatex"
-  "aux/notes.toc" 1705687359.60938 899 e36c3676a8e4c08c205115d8d744f442 "xelatex"
+  "aux/notes.aux" 1705945852.5302 10615 706fd59ed3beac358bf7c6a4d829ceda "xelatex"
+  "aux/notes.loe" 1705945852.5312 6386 7ffdcc3199bc46b18fe5fc1f34fe6390 "xelatex"
+  "aux/notes.out" 1705945852.5312 1815 61e335bc2e243414b05cc3736f069f92 "xelatex"
+  "aux/notes.toc" 1705945852.5312 904 aae505b591ab2471b7e9a8cf07345bd5 "xelatex"
   "notes.tex" 1705686336.20634 606 9c315eebe16c081ae99c67ec6367aae0 ""
-  "topics/analyticfunctions.tex" 1705687356.95599 890 60f1e7d4928bfe2027a0aa70ffb6ab69 ""
+  "topics/analyticfunctions.tex" 1705945850.52318 3082 7fdaa4309def938f372f3aee3c1a9c19 ""
   "topics/complexnumbers.tex" 1705292526.29745 15271 484b118d04ce3b4d260e90cd471d5b75 ""
   "topics/regions.tex" 1705686280.66485 4709 e863ba83d5a8d97ef64214e55d74accb ""
   (generated)

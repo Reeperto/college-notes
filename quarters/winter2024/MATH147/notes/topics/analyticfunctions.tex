@@ -22,4 +22,59 @@
     \end{enumerate}
 \end{example}
 
+A complex function can also often be represented in the form
+\[
+    f(x+iy) = u(x,y) + i v(x, y)
+.\]
+Consider the case of $\frac{1}{z}$. Then
+\[
+    \frac{1}{x+iy} = \frac{x-iy}{x^2+y^2} = \frac{x}{x^2+y^2} - i \cdot \frac{y}{x^2+y^2}
+.\]
+Therefore in this case $u(x,y) = \frac{x}{x^2+y^2}$ and $v(x,y) = \frac{y}{x^2+y^2}$.
+
+\begin{definition}[Limits in $\C$]
+    The limit of a function $f:\dom f \to \C$
+    \[
+        \lim_{z \to z_0} f(z) = w_0
+    \]
+    means that for any $\epsilon > 0$, there is some $\delta > 0$ such that
+    \[
+        |z-z_0| < \delta \implies |f(z) - w_0| < \epsilon
+    .\]
+    That is, for any $\epsilon$ neighborhood of $w_0$, there is some deleted $\delta$ neighborhood around $z_0$ such that every $z$ in the $\delta$ neighborhood maps into the $\epsilon$ neighborhood.
+\end{definition}
+
+\begin{example}
+    Consider the function $f(z) = \frac{i}{2} \conj{z}$. One can guess that
+    \[
+        \lim_{z \to 1} f(z) = \frac{i}{2} 1 = \frac{i}{2}
+    .\]
+    For this to happen,
+    \begin{align*}
+        \qty|\frac{i}{2} \conj{z} - \frac{i}{2}| < \epsilon \implies \qty|\frac{i}{2}| |\conj{z} - 1| &< \epsilon \\
+        \frac{1}{2} |\conj{z} - 1| &< \epsilon \\
+        \frac{1}{2} |z - 1| &< \epsilon \\
+        |z - 1| &< 2 \epsilon
+    \end{align*}
+    Therefore choosing $\delta = 2 \epsilon$ gives the desired result.
+\end{example}
+
+\begin{example}
+    Consider $f(z) = \frac{\conj{z}}{z}$. Does $f(z)$ have a limit at $z_0 = 0$? Note that along the real axis, $z = x$ and $\conj{z} = x$, hence the limit is $\lim_{x\to 0}\frac{x}{x} = 1$. Along the imaginary axis, $z = y$ and $\conj{z} = -y$, meaning the limit is $\lim_{y\to 0} \frac{-y}{y} = -1$. Therefore there is no limit.
+\end{example}
+
+\begin{theorem}[Limit Equivalence]
+    \label{thm:limitequivalence}
+    If $f(z) = u(z) + iv(z)$ where $u$ and $v$ are real valued functions, then
+    \[
+        \renewcommand{\arraystretch}{1.5}
+        \lim_{z \to z_0} f(z) = u_0 + iv_0 \Longleftrightarrow \begin{array}{rl}
+            \displaystyle
+            \lim_{z\to z_0} u(z) &= u_0 \\
+            \displaystyle
+            \lim_{z\to z_0} v(z) &= v_0
+        \end{array}
+    .\]
+\end{theorem}
+
 \end{document}
