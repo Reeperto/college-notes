@@ -40,3 +40,10 @@
 \contentsline {example}{\ifthmt@listswap Example\nobreakspace {}3.7\else \numberline {3.7}Example\fi }{11}{example.3.7}%
 \contentsline {example}{\ifthmt@listswap Example\nobreakspace {}3.8\else \numberline {3.8}Example\fi }{12}{example.3.8}%
 \contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.11\else \numberline {3.11}Theorem\fi \thmtformatoptarg {Limit Equivalence}}{12}{theorem.3.11}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}3.20\else \numberline {3.20}Definition\fi \thmtformatoptarg {Continuity}}{12}{definition.3.20}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}3.9\else \numberline {3.9}Example\fi }{12}{example.3.9}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}3.10\else \numberline {3.10}Example\fi }{12}{example.3.10}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.12\else \numberline {3.12}Theorem\fi \thmtformatoptarg {Continuity Results}}{13}{theorem.3.12}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.13\else \numberline {3.13}Theorem\fi }{13}{theorem.3.13}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.14\else \numberline {3.14}Theorem\fi }{13}{theorem.3.14}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.15\else \numberline {3.15}Theorem\fi }{13}{theorem.3.15}%

@@ -37,9 +37,9 @@ Therefore in this case $u(x,y) = \frac{x}{x^2+y^2}$ and $v(x,y) = \frac{y}{x^2+y
     \[
         \lim_{z \to z_0} f(z) = w_0
     \]
-    means that for any $\epsilon > 0$, there is some $\delta > 0$ such that
+    means that 
     \[
-        |z-z_0| < \delta \implies |f(z) - w_0| < \epsilon
+        \forall \epsilon > 0, \exists \delta > 0, \st |z-z_0| < \delta \implies |f(z) - w_0| < \epsilon, \forall z
     .\]
     That is, for any $\epsilon$ neighborhood of $w_0$, there is some deleted $\delta$ neighborhood around $z_0$ such that every $z$ in the $\delta$ neighborhood maps into the $\epsilon$ neighborhood.
 \end{definition}
@@ -76,5 +76,76 @@ Therefore in this case $u(x,y) = \frac{x}{x^2+y^2}$ and $v(x,y) = \frac{y}{x^2+y
         \end{array}
     .\]
 \end{theorem}
+
+\subsection{Continuity}
+
+\begin{definition}[Continuity]
+    A function $f : \dom f \to \C$ is continuous at $z_0 \in \C$ if
+    \[
+        \lim_{z \to z_0} f(z) = f(z_0)
+    .\]
+    That is, the limit exists, $f(z_0)$ exists, and that they are equal. The epsilon-delta form is
+    \[
+        \forall \epsilon > 0, \exists \delta > 0 \st |z - z_0| < \delta \implies |f(z) - f(z_0)| < \epsilon
+    .\]
+\end{definition}
+
+\begin{example}
+    Is $f(z) = \conj{z}$ continuous? That is does $\lim_{z \to z_0} f(z) = \conj{z_0}$? Fix $\epsilon > 0$ and take $\delta = \epsilon$. Note then that
+    \[
+        |z - z_0| < \delta \implies |\conj{z - z_0}| < \epsilon \implies |\conj{z} - \conj{z_0}| < \epsilon
+    .\]
+    Therefore $f(z)$ is continuous for all $z \in \C$.
+\end{example}
+
+\begin{example}
+    Consider $f(z) = \Arg z$. Intuitively, it is not continuous since it is always possible to find two points on opposites side the real axis that get arbitrarily close but will have a difference of $2 \pi$.
+\end{example}
+
+\begin{theorem}[Continuity Results]
+    \label{thm:continuityresults}
+    Let $f, g$ be continuous functions at $z_0$. Then
+    \begin{enumerate}
+        \item $f+g$ is continuous at $z_0$
+        \item $f\cdot g$ is continuous at $z_0$
+        \item $\frac{f}{g}$ is continuous at $z_0$ if $g(z_0) \neq 0$
+        \item If $g$ is continuous at $f(z_0)$, then $g\circ f$ is continuous at $z_0$
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+    If $f(z)$ is continuous at $z_0$ and $f(z_0) \neq 0$, then there is some neighborhood of $z_0$ where $f(z) \neq 0$.
+\end{theorem}
+
+\begin{proof}
+    Let $\epsilon = \frac{|f(z_0)|}{2}$. Since $f$ is continuous at $z_0$, there is some $\delta > 0$ such that $|z - z_0| < \delta \implies |f(z) - f(z_0)| < \epsilon$. Assume towards contradiction that $f(z) = 0$ for some $z$ where $|z - z_0| < \delta$. Then
+    \[
+        |f(z) - f(z_0)| = |f(z_0)| < \epsilon = \frac{|f(z_0)|}{2} \implies 1 < \frac{1}{2}
+    .\]
+    This is a contradiction. Therefore $f(z) \neq 0$ when $|z-z_0| < \delta$. 
+\end{proof}
+
+\begin{theorem}
+    If $f(z) = u(z) + iv(z)$ and $z_0 = x_0 + i y_0$, then $f$ is continuous at $f(z_0)$ iff $u(z)$ and $v(z)$ are continuous at $z_0$.
+\end{theorem}
+
+\begin{theorem}
+    Suppose $f$ is continuous on a closed and bounded region $\mathcal{D}$. Then there is some $M \geq 0$ such that
+    \[
+        |f(z)| \leq M, \forall z \in \mathcal{D}
+    \]
+    and there is some $z \in \mathcal{D}$ such that $|f(z)| = M$.
+\end{theorem}
+\begin{proof}
+    Let $f(z) = u(x,y) + i v(x,y)$ be continuous on a closed and bounded region $\mathcal{D}$. Therefore
+    \[
+        (x, y) \mapsto \sqrt{u(x,y)^2 + v(x,y)^2}
+    \]
+    is also continuous from $\mathcal{D} \to \R$. Since this is a real function on a closed and bounded region, then there is some maximum value $M \geq 0$ that it obtains. Since the function is the modulus, then
+    \[
+        |f(z)| \leq M, \forall z \in \mathcal{D}
+    \]
+    and there is a $z \in \mathcal{D}$ where $|f(z)| = M$.
+\end{proof}
 
 \end{document}

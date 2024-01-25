@@ -161,3 +161,11 @@
 \contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}8.55\else \numberline {8.55}Theorem\fi }{53}{theorem.8.55}%
 \contentsline {example}{\ifthmt@listswap Example\nobreakspace {}8.55\else \numberline {8.55}Example\fi }{53}{example.8.55}%
 \contentsline {example}{\ifthmt@listswap Example\nobreakspace {}8.56\else \numberline {8.56}Example\fi }{54}{example.8.56}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}8.56\else \numberline {8.56}Theorem\fi \thmtformatoptarg {Continuity of Power Series}}{55}{theorem.8.56}%
+\contentsline {corollary}{\ifthmt@listswap Corollary\nobreakspace {}8.4\else \numberline {8.4}Corollary\fi }{56}{corollary.8.4}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}8.57\else \numberline {8.57}Example\fi }{56}{example.8.57}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}8.58\else \numberline {8.58}Example\fi }{56}{example.8.58}%
+\contentsline {lemma}{\ifthmt@listswap Lemma\nobreakspace {}8.3\else \numberline {8.3}Lemma\fi }{57}{lemma.8.3}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}8.57\else \numberline {8.57}Theorem\fi }{57}{theorem.8.57}%
+\contentsline {lemma}{\ifthmt@listswap Lemma\nobreakspace {}8.4\else \numberline {8.4}Lemma\fi }{58}{lemma.8.4}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}8.58\else \numberline {8.58}Theorem\fi }{58}{theorem.8.58}%

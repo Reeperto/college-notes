@@ -318,4 +318,118 @@ An initial, but weak, formulation of functional sequence convergence is by apply
     with $n > m > K$. This means that $f_n$ is uniformly Cauchy and hence uniformly converges to $f$ in the interval $(-\tilde{R}, \tilde{R})$. This result means that many useful properties about unfirom convergence apply to the interior of the interval of convergence.
 \end{example}
 
+\subsection{Differentiation and Integration of Power Series}
+
+\begin{theorem}[Continuity of Power Series]
+    If $f(x) = \displaystyle\sum_{n=0}^\infty a_n x^n$ is a power series with radius of convergence $R > 0$, then for any $0 < R' < R$ $f_n = \displaystyle\sum_{k=0}^n a_k x^k$ converges uniformly and $f$ is continuous on $ S = [-R', R']$.
+\end{theorem}
+
+\begin{proof}
+    Let $f_n(x) = \displaystyle\sum_{k = 0}^n g_k(x)$ with $g_k(x) = a_k x^k$. Applying the $M$ test gives
+    \[
+        M_k = \sup_{x\in S} |g_k(x)| = |a_k| (R')^k
+    .\]
+    Appying the root test to the series $\sum |a_k|(R')^k$,
+    \[
+        \lim_{k\to \infty} |M_k|^{\frac{1}{k}} = \lim_{k \to \infty} |a_k|^{\frac{1}{k}} R' \leq \beta R' = \frac{1}{R} R' < 1
+    .\]
+    Therefore this series converges and hence $f_n$ converges uniformly on $S$ by the $M$-test. This means that $f$ itself is also continuous on $S$.
+\end{proof}
+
+\begin{corollary}
+    If $f(x) = \displaystyle \sum_{n=0}^\infty a_n x^n$ has a radius of convergence $R > 0$, then $f$ is continuous on $(-R, R)$.
+\end{corollary}
+
+\begin{example}
+    Consider $f(x) = \displaystyle \sum_{n=1}^\infty \frac{x^n}{n^2 2^n}$. Applying the root test gives
+    \[
+        \beta = \limsup |a_n|^\frac{1}{n} = \limsup \qty|\frac{1}{n^2 2^n}|^\frac{1}{n} = \limsup \frac{1}{2 \sqrt[n]{n^2}} = \frac{1}{2}
+    .\]
+    Therefore $R = \frac{1}{\beta} = 2$ meaning $f$ is continuous on $(-2, 2)$. Note that
+    \begin{alignat*}{2}
+        f(2) &= \sum_{n=1}^\infty \frac{2^n}{n^2 2^n} = \sum_{n=1}^\infty \frac{1}{n^2} &&\implies \text{Converges} \\
+        f(-2) &= \sum_{n=1}^\infty \frac{(-2)^n}{n^2 2^n} = \sum_{n=1}^\infty \frac{(-1)^n}{n^2} &&\implies \text{Converges}
+    \end{alignat*}
+    Therefore the interval of convergence is $[-2, 2]$. Important to note that there is no guarantee about continuity at the endpoints even though convergence is established.
+\end{example}
+
+\begin{example}
+    Consider $g(x) = \displaystyle \sum_{n=0}^\infty 3^{-n} x^n$. Then
+    \[
+        \beta = \limsup |a_n|^\frac{1}{n} = \limsup \qty|3^{-n}|^\frac{1}{n} = \frac{1}{3}
+    .\]
+    Therefore $R = \frac{1}{\beta} = 3$ and hence $g$ is continuous on $(-3, 3)$. Note that
+    \begin{alignat*}{2}
+        g(3) &= \sum_{n=0}^\infty 3^{-n} 3^n = \sum_{n=0}^\infty 1 &&\implies \text{Diverges} \\
+        g(-3) &= \sum_{n=0}^\infty 3^{-n} (-3)^n = \sum_{n=0}^\infty (-1)^n &&\implies \text{Diverges} \\
+    \end{alignat*}
+    Hence the interval of convergence is $(-3, 3)$.
+\end{example}
+
+\begin{lemma}
+    If $\sum a_n x^n$ has a radius of convergence $R$, then $\sum \frac{a_n}{n+1} x^{n+1}$ has a radius of convergence $R$.
+\end{lemma}
+
+\begin{proof}
+    Let $\beta = \frac{1}{R}$. The second series can be rewritten as
+    \[
+        \sum \frac{a_n}{n+1} x^{n+1} = x \sum \frac{a_n}{n+1} x^n = x \sum b_n x^n
+    .\]
+    Applying the root test to this new series gives
+    \[
+        \tilde{\beta} = \limsup |b_n|^\frac{1}{n} = \limsup \qty|\frac{a_n}{n+1}|^\frac{1}{n} = \frac{\limsup |a_n|^\frac{1}{n}}{\limsup |n+1|^\frac{1}{n}} = \frac{\beta}{1} = \beta
+    .\]
+    Therefore $\tilde{R} = \frac{1}{\tilde{\beta}} = \frac{1}{\beta} = R$.
+\end{proof}
+
+\begin{theorem}
+    If $f(x) = \displaystyle \sum_{n=0}^\infty a_n x^n$ has radius of convergence $R$, then
+    \[
+        \int_0^x f(t) dt = \sum_{n=0}^\infty \frac{a_n}{n+1} x^{n+1}
+    \]
+    for all $|x| < R$.
+\end{theorem}
+
+\begin{proof}
+    First note that
+    \[
+        \int_0^x f(t) \dd t = \int_0^x \sum_{k=0}^\infty a_k t^k \dd t = \int_0^x \lim_{n \to \infty} \sum_{k=0}^n a_k t^k \dd t
+    .\]
+    For $|x| < R$, the power series will uniformly converge so the limit can be swapped giving
+    \begin{align*}
+        \int_0^x \lim_{n \to \infty} \sum_{k=0}^n a_k t^k \dd t = 
+        \lim_{n\to \infty} \int_0^x \sum_{k=0}^n a_k t^k \dd t &= 
+        \sum_{k=0}^n \int_0^x a_k t^k \dd t \\
+       &= \lim_{n\to \infty} \sum_{k=0}^\infty a_k \cdot \frac{x^{k+1}}{k+1} \\
+       &= \sum_{k=0}^\infty \frac{a_k}{k+1} x^{k+1}
+    \end{align*}
+\end{proof}
+
+\begin{lemma}
+    If $\sum a_n x^n$ has a radius of converge $R$, then $\sum na_n x^{n-1}$ has a radius of convergence $R$.
+\end{lemma}
+\begin{proof}
+    Let $b_n = (n+1) a_{n+1}$ and $\beta = \frac{1}{R}$. Then
+    \begin{align*}
+        \tilde{\beta} = \limsup |b_n|^\frac{1}{n} &= 
+        \limsup \qty|(n+1)a_n+1|^\frac{1}{n}  \\
+        &= \lim (n+1)^\frac{1}{n} \limsup |a_n+1|^\frac{1}{n} \\
+        &= 1 \cdot \limsup \qty(|a_{n+1}|^\frac{1}{n})^\frac{n+1}{n} \\
+        &= \limsup |a_{n+1}|^\frac{1}{n+1} \cdot \limsup \qty(|a_{n+1}|^\frac{1}{n+1})^\frac{1}{n} = \beta \cdot 1 = \beta
+    \end{align*}
+    Therefore their radius of convergence are the same.
+\end{proof}
+
+\begin{theorem}
+    If $f(x) = \displaystyle \sum_{n=0}^\infty a_n x^n$ has radius of convergence $R$, the $f$ is differentiable on $(-R, R)$ and $f'(x) = \displaystyle \sum_{n=1}^\infty n a_n x^{n-1}$.
+\end{theorem}
+
+\begin{proof}
+    Let $g(x) = \sum_{n=1}^\infty n a_n x^{n-1}$. Then
+    \[
+        G(x) = \int_0^x g(t) \dd t = \int_0^x \sum_{n=1}^\infty n a_n t^{n-1} \dd t = \sum_{n=1}^\infty n a_n \cdot \frac{x^n}{n} = \sum_{n=1}^\infty a_n x^n = f(x) - f(0)
+    .\]
+    Therefore $G'(x) = g(x) \implies f'(x) = g(x)$ for all $|x| < R$.
+\end{proof}
+
 \end{document}

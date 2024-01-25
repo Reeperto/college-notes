@@ -1,6 +1,7 @@
 .scratchpad
 **/.DS_Store
 **/.aux
+**/aux
 **/*.out
 **/*.auxlock
 **/*.aux

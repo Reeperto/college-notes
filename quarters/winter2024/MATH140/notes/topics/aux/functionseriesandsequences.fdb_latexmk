@@ -1,10 +1,10 @@
 # Fdb version 4
-["xdvipdfmx"] 1705697383.63507 "aux/functionseriesandsequences.xdv" "functionseriesandsequences.pdf" "functionseriesandsequences" 1705697383.76622 0
-  "aux/functionseriesandsequences.xdv" 1705697383.48678 104980 b919d3fc0c1b233de1fb4c2703663931 "xelatex"
+["xdvipdfmx"] 1706128499.44438 "aux/functionseriesandsequences.xdv" "functionseriesandsequences.pdf" "functionseriesandsequences" 1706128499.57645 0
+  "aux/functionseriesandsequences.xdv" 1706128499.29163 147624 be22f54f8ee0e2bef45c4397e3fb7740 "xelatex"
   (generated)
   "functionseriesandsequences.pdf"
   (rewritten before read)
-["xelatex"] 1705697382.67032 "functionseriesandsequences.tex" "aux/functionseriesandsequences.xdv" "functionseriesandsequences" 1705697383.76426 0
+["xelatex"] 1706128498.38368 "functionseriesandsequences.tex" "aux/functionseriesandsequences.xdv" "functionseriesandsequences" 1706128499.57445 0
   "..//../preamble.tex" 1705315815.02265 4201 3ca1f7a520e80452925d101dc0614da8 ""
   "../notes.tex" 1705268085.57686 804 0a52513ad0599cb3aa5b5740ec8847b2 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -284,9 +284,9 @@
   "/usr/share/texlive/texmf-dist/tex/latex/xpatch/xpatch.sty" 1585258158 8314 7803f78066c4f9d008405191a4b43073 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1689984000 40900 887e0dc8cac988a9e9c574af364cf837 ""
   "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1705269723 10497625 9650280afda6c0b2272f9e2191fe8b92 ""
-  "aux/functionseriesandsequences.aux" 1705697383.48678 4620 41b2c2d5d406fedd9380f934c8ebcb73 "xelatex"
-  "aux/functionseriesandsequences.out" 1705697383.48678 683 771f0cd087467a5741a37684f3b24b09 "xelatex"
-  "functionseriesandsequences.tex" 1705697381.51677 14593 b6f4c9acd22b6b74dd3c7489d72661dc ""
+  "aux/functionseriesandsequences.aux" 1706128499.29063 6119 5137e703d792ee95ff5325e9a1217998 "xelatex"
+  "aux/functionseriesandsequences.out" 1706128499.29163 990 50b67e1fc17a68e0e6e8939234e017b7 "xelatex"
+  "functionseriesandsequences.tex" 1706128497.50562 19880 aa9b8bdc13c7ea9fe0d8f9f217b5d542 ""
   (generated)
   "aux/functionseriesandsequences.aux"
   "aux/functionseriesandsequences.log"

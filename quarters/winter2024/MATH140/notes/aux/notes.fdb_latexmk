@@ -1,10 +1,10 @@
 # Fdb version 4
-["xdvipdfmx"] 1705697721.03522 "aux/notes.xdv" "notes.pdf" "notes" 1705697721.19002 0
-  "aux/notes.xdv" 1705697720.91665 830256 001973f7250db7600c0414049ff94795 "xelatex"
+["xdvipdfmx"] 1706128500.2605 "aux/notes.xdv" "notes.pdf" "notes" 1706128500.44199 0
+  "aux/notes.xdv" 1706128500.08864 875100 85a2449ac85741443643789229178b3c "xelatex"
   (generated)
   "notes.pdf"
   (rewritten before read)
-["xelatex"] 1705697381.80964 "notes.tex" "aux/notes.xdv" "notes" 1705697721.18798 0
+["xelatex"] 1706128497.82837 "notes.tex" "aux/notes.xdv" "notes" 1706128500.44 0
   "../preamble.tex" 1705315815.02265 4201 3ca1f7a520e80452925d101dc0614da8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
@@ -286,15 +286,15 @@
   "/usr/share/texlive/texmf-dist/tex/latex/xpatch/xpatch.sty" 1585258158 8314 7803f78066c4f9d008405191a4b43073 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1689984000 40900 887e0dc8cac988a9e9c574af364cf837 ""
   "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1705269723 10497625 9650280afda6c0b2272f9e2191fe8b92 ""
-  "aux/notes.aux" 1705697720.91565 36979 08bf844323d07d66b2149f3e10548bfa "xelatex"
-  "aux/notes.loe" 1705697720.91665 23618 5b4f1bb4536d001af41bb8fe90545643 "xelatex"
-  "aux/notes.out" 1705697720.91665 4770 4f5e1ea3af3869e2e73c6b6c1c591864 "xelatex"
-  "aux/notes.toc" 1705697720.91665 2497 dc99e1e1c07b2ddfd3788edf376b2a76 "xelatex"
+  "aux/notes.aux" 1706128500.08764 38491 9762038e708783d43c46d4caf00937ba "xelatex"
+  "aux/notes.loe" 1706128500.08864 24639 902cbdd084c9258cc129e8aa99de8c64 "xelatex"
+  "aux/notes.out" 1706128500.08864 5079 06eea4ea0ccf9a83142189cb2fefb487 "xelatex"
+  "aux/notes.toc" 1706128500.08864 2611 99f7a0f30861f76e23d7d5e4cb475bb1 "xelatex"
   "notes.tex" 1705268085.57686 804 0a52513ad0599cb3aa5b5740ec8847b2 ""
   "topics/completeness.tex" 1705268085.57786 6676 9f88f07d2f616b72729312e543eb6abf ""
   "topics/continuity.tex" 1705268085.57786 24134 078038782c18b8ebe8a560a5a701a16b ""
   "topics/extending_naturals.tex" 1705268085.57886 8660 da663cc87cf5428035b8139b0fef3eef ""
-  "topics/functionseriesandsequences.tex" 1705697381.51677 14593 b6f4c9acd22b6b74dd3c7489d72661dc ""
+  "topics/functionseriesandsequences.tex" 1706128497.50562 19880 aa9b8bdc13c7ea9fe0d8f9f217b5d542 ""
   "topics/introduction.tex" 1705268085.57886 3481 e771f754a32efbd548e773664d47049e ""
   "topics/metricspaces.tex" 1705268085.57886 22753 c7b7551bcacf3f334f4468747ff46c89 ""
   "topics/sequences.tex" 1705695597.50454 28340 324d0a452946da404d65d421ca1458aa ""
