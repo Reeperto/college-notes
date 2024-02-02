@@ -1,11 +1,11 @@
 # Fdb version 4
-["xdvipdfmx"] 1706050078.6886 "aux/notes.xdv" "notes.pdf" "notes" 1706050078.80548 0
-  "aux/notes.xdv" 1706050078.52302 211960 8b9c2b86d1aeece0e1da4258cf0ef525 "xelatex"
+["xdvipdfmx"] 1706827287.91594 "aux/notes.xdv" "notes.pdf" "notes" 1706827288.05636 0
+  "aux/notes.xdv" 1706827287.83294 280056 98efa088891dffa9e3b4435217c49c88 "xelatex"
   (generated)
   "notes.pdf"
   (rewritten before read)
-["xelatex"] 1706050077.57362 "notes.tex" "aux/notes.xdv" "notes" 1706050078.80356 0
-  "../preamble.tex" 1706047567.25562 3994 12a22d6166caef88b7e33495009dedf8 ""
+["xelatex"] 1706827286.70893 "notes.tex" "aux/notes.xdv" "notes" 1706827288.05432 0
+  "../preamble.tex" 1706825380.25654 4059 5dbeded65f029ca1596e6493c2f64a03 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -176,6 +176,9 @@
   "/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo" 1689984000 8449 c314623021fbddd0180c05345324933c ""
   "/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty" 1689984000 2894 f2f8ee7d4fb94263f9f255fa22cab2d3 ""
   "/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd" 1689984000 2430 8418b3f1835e588625becbcac4dbce56 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty" 1678653221 55778 14d5c99aa26410e440820bb9ea5b8b3a ""
+  "/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty" 1678653221 71836 1a735454ad10692452eb2f2fc37f3865 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty" 1678653221 12462 ecf33913ce1e8012075d24e1f47f0d9b ""
   "/usr/share/texlive/texmf-dist/tex/latex/carlisle/scalefnt.sty" 1137109962 1360 df2086bf924b14b72d6121fe9502fcdb ""
   "/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty" 1659300143 12441 3b2a708337608012a865c7d9b7f05d28 ""
   "/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty" 1561238569 51697 f8f08183cd2080d9d18a41432d651dfb ""
@@ -284,14 +287,15 @@
   "/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty" 1655411236 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "/usr/share/texlive/texmf-dist/tex/latex/xpatch/xpatch.sty" 1585258158 8314 7803f78066c4f9d008405191a4b43073 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1689984000 40900 887e0dc8cac988a9e9c574af364cf837 ""
-  "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1705269723 10497625 9650280afda6c0b2272f9e2191fe8b92 ""
-  "aux/notes.aux" 1706050078.52202 12053 c17ae5b6576f6654f6c5e135f062c604 "xelatex"
-  "aux/notes.loe" 1706050078.52302 7331 63e793e4879173fc93d659b68db5a5ce "xelatex"
-  "aux/notes.out" 1706050078.52302 1923 666cc6a937010b02049eba1769c2aa37 "xelatex"
-  "aux/notes.toc" 1706050078.52302 981 1cf598bf98e229ee8eac3fa537d04d9f "xelatex"
-  "notes.tex" 1705686336.20634 606 9c315eebe16c081ae99c67ec6367aae0 ""
-  "topics/analyticfunctions.tex" 1706050075.636 6125 22942160b239389d34612977695d74da ""
+  "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1706395712 10497656 49fb4a3791363ea52ce4db5272a66deb ""
+  "aux/notes.aux" 1706827287.83194 16023 07d751f8cea59cf4b33e4c0dd85cf056 "xelatex"
+  "aux/notes.loe" 1706827287.83294 9446 eb8c874a1375c95190ba73544a62e8c4 "xelatex"
+  "aux/notes.out" 1706827287.83294 3235 786a73b3facf2a82f1d3b1d0b39a93a6 "xelatex"
+  "aux/notes.toc" 1706827287.83294 1758 c3b11165c571ee319b844dcbcee2eb18 "xelatex"
+  "notes.tex" 1706720592.76855 647 81a1959c6effb627aa7ef2954eebf648 ""
+  "topics/analyticfunctions.tex" 1706827285.01692 11873 eeadf9871aa5b96b31e79ed61e59a55d ""
   "topics/complexnumbers.tex" 1705292526.29745 15271 484b118d04ce3b4d260e90cd471d5b75 ""
+  "topics/elementaryfunctions.tex" 1706825263.03771 4979 f4f8f363a9236b135f1a6a310822d292 ""
   "topics/regions.tex" 1705686280.66485 4709 e863ba83d5a8d97ef64214e55d74accb ""
   (generated)
   "aux/notes.aux"

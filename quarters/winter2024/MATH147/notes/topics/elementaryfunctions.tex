@@ -1,0 +1,137 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+
+\banner{Elementary Functions}
+
+\subsection{Logarithm}
+
+Consider an angle subset of the logarithm. That is taking a specific "principal value" to base it around. Then for some $z = re^{i \theta}$ with $r > 0$ and $\alpha \in \R$,
+\[
+    \log z = \ln r + i \theta \tag{$\theta \in (a, \alpha + 2 \pi)$}
+.\]
+
+The problem with this formulation of $\log$ is that the line $\theta = \alpha$ represents a discontinuous section. This discontinuity is specifically a "branch" of $\log z$ and must be excluded for $\log z$ to be analytical on some domain. Applying the Cauchy Riemann equations to $\log$ on this branch cut, then
+\begin{alignat*}{2}
+    u_r &= \frac{1}{r}, v_r &&= 0 \\
+    u_\theta &= 0, v_{\theta} &&= 1
+\end{alignat*}
+which when applied gives statements that hold everywhere with continuous partials. Therefore $\log z$ is analytic on this domain or "branch". Therefore
+\[
+    \dv{x} \log z = e^{-i \theta} \qty(\frac{1}{r} + i \theta) = \frac{1}{re^{i \theta}}= \frac{1}{z}
+.\]
+
+\begin{remark}
+    When $\alpha = \pi$, the values of theta are $(-\pi, \pi)$ which is called the principal branch of $\log z$ or the principal logarithm $\Log z$
+\end{remark}
+
+\subsubsection{Identities with Logs}
+
+\begin{theorem}[Properties of Logs]
+    Let $z_1, z_2 \in \C$. Then
+    \begin{enumerate}
+        \item $\log z_1 z_2 = \log z_1 + \log z_2$ \hfill ($\star$)
+        \item $\log \frac{z_1}{z_2} = \log z_1 - \log z_2$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \hfill\begin{enumerate}
+        \item Note that
+            \begin{align*}
+                \log z_1 z_2 &= \ln |z_1 z_2| + i \arg z_1 z_2 \\
+                &= (\ln |z_1| + \ln|z_2|) + i(\arg z_1 + \arg z_2) \\
+                &= \log z_1 + \log z_2
+            \end{align*}
+    \end{enumerate}
+\end{proof}
+
+\begin{remark}
+    It is important that for $(\star)$ that the principal logarithm is not used (same as with $\arg$ vs $\Arg$). Consider $z_1 = z_2 = -1$. Then
+    \[
+        \Log z_1 z_2 = \Log 1 = 0
+    \]
+    but
+    \[
+        \Log z_1 + \Log z_2 = i \pi + i \pi = i 2 \pi
+    .\]
+\end{remark}
+
+\subsection{Power's}
+
+At this point, $z^n$, $z^{-n}$ and $z^{\frac{1}{n}}$ is well defined only when $n \in \N$. Therefore it is natural to ask what $z^c$ looks like when $c \in \C$. The trick to finding the answer is to employ the logarithm.
+
+\begin{theorem}
+    For $n \in \Z$ and $z \in \C$, the following equalities hold
+    \begin{align*}
+        z^n &= e^{n \log z} \\
+        z^{\frac{1}{n}} &= e^{\frac{1}{n} \log z}
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    Pick $z \neq 0$ and $n \in \Z$. Consider $e^{n \log z}$. Let $z = r e^{i \theta}$ for some $\theta \in \arg z$. Then
+    \[
+        z^n = r^n e^{in \theta}
+    .\]
+    From the previous formulation of $\log$,
+    \begin{align*}
+        \log z = \ln r + i \theta &\implies n \log z = \ln r^n + in \theta \\
+                                  &\implies e^{n \log z} = r^n \cdot e^{in \theta} = z^n
+    \end{align*}
+    Consider now $e^{\frac{1}{n} \log z}$. Then
+    \begin{align*}
+        \exp(\frac{1}{n} \log z) &= \exp(\frac{1}{n} (\ln r + i(\theta + 2k \pi))) \\
+                                 &= \exp(\ln r^{\frac{1}{n}} + i \qty(\frac{\theta + 2k \pi}{n})) \\
+                                 &= z^{\frac{1}{n}}
+    \end{align*}
+\end{proof}
+
+This reformulation of the previous idea of powers motivates the following definition to fill in the "gaps" for powers.
+
+\begin{definition}[Complex Power]
+    Let $c \in \C$ and $z \in \C \neq 0$. Then
+    \[
+        z^c \coloneq e^{c \log z}
+    .\]
+    \begin{remark}
+        This is a multivalued definition since $\log z$ is used.
+    \end{remark}
+\end{definition}
+
+This definition behaves in ways that are expected. For example
+\[
+    \frac{1}{z} = \frac{1}{\exp(c \log z)} = \exp(-c \log z) = z^{-c}
+.\]
+
+Just like $\log z$ having a branch based on some $\alpha$, $z^c$ can be taken to be on a branch based on some $\alpha$, and on such a branch it will be analytic due to the chain rule.
+
+\begin{align*}
+    \dv{z} z^c &= \dv{z} \exp(c \log z) \\
+    &= \exp(c \log z) \cdot c \cdot \frac{1}{z} \\
+    &= \exp(c \log z) \cdot c \cdot \exp(-\log z) \\
+    &= \exp((c-1) \log z) \cdot c \\
+    &= c e^{(c-1) \log z} \\
+    &= c z^{c-1}
+\end{align*}
+
+If working with $\Log z$, then this is called the principal value of $z^c$.
+
+\begin{definition}[Exponential with Base]
+    Let $c \in \C \neq 0$ and $z \in \C$. Then
+    \[
+        c^z \coloneq e^{z \log c}
+    \]
+    \begin{remark}
+        Note for $c = e$, this definition would imply $e^z$ is multivalued. By choosing the principal branch of $\log$, this fixes the problem.
+    \end{remark}
+\end{definition}
+
+If one fixes $\log c$ in some manner, then the derivative of the exponential is single valued and entire. That is due to
+\[
+    \dv{z} c^z = \dv{z} e^{z \log c} = e^{z \log c} \log c = c^z \log c
+.\]
+
+\end{document}

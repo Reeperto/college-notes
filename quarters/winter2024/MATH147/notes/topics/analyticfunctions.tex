@@ -148,4 +148,135 @@ Therefore in this case $u(x,y) = \frac{x}{x^2+y^2}$ and $v(x,y) = \frac{y}{x^2+y
     and there is a $z \in \mathcal{D}$ where $|f(z)| = M$.
 \end{proof}
 
+\subsection{Differentiability}
+
+\begin{theorem}[Cauchy Riemann Equations]
+    \label{thm:cauchyriemann}
+    Let $f(z) = u + iv$. If $f$ is differentiable at $z_0$, then
+    \begin{alignat*}{2}
+        \pdv{u}{x} &= &&\pdv{v}{y} \\
+        \pdv{u}{y} &= -&&\pdv{v}{x}
+    \end{alignat*}
+    at $z_0$.
+\end{theorem}
+
+\begin{example}
+    Consider $f(x+iy) = 2x + ixy^2$. Then
+    \begin{align*}
+        u(x,y) &= 2x \\
+        v(x,y) &= xy^2
+    \end{align*}
+    Therefore
+    \begin{alignat*}{2}
+        \pdv{u}{x} &= 2, &&\pdv{u}{y} = 0 \\
+        \pdv{v}{x} &= y^2, &&\pdv{v}{y} = 2xy
+    \end{alignat*}
+    From the first Cauchy Riemann equation, $2 = 2xy \implies xy = 1$. From the second, $0 = -y^2 \implies y = 0$. Notice then that $xy = 0$ for all $x$. Hence the equations are never satisfied and $f$ is differentiable nowhere.
+\end{example}
+
+\begin{example}
+    Consider $f(z) = e^{\conj{z}}$. Let $z = x + iy$. Then
+    \[
+        e^{\conj{z}} = e^{x - iy} = e^x e^{-iy} = e^x (\cos (-y) + i \sin (-y)) = e^x (\cos y - i \sin y)
+    \]
+    Therefore
+    \begin{align*}
+        u(x,y) &= e^x \cos y \\
+        v(x,y) &= -e^x \sin y
+    \end{align*}
+    The partials are
+    \begin{alignat*}{2}
+        \pdv{u}{x} &= e^x \cos y, &&\pdv{u}{y} = -e^x\sin y \\
+        \pdv{v}{x} &= -e^x \sin y, &&\pdv{v}{y} = -e^x \cos y
+    \end{alignat*}
+    Checking the first Cauchy Riemann equation gives
+    \[
+        e^x \cos y = -e^x \cos y \implies 2e^x \cos y = 0 \implies \cos y = 0
+    .\]
+    Therefore $y = \frac{\pi}{2} + k \pi$ for $k \in \Z$. Checking the second equation gives
+    \[
+        -e^x \sin y = e^x \sin y \implies 2e^x \sin y = 0 \implies \sin y = 0
+    .\]
+    This is only true when $y = k \pi$ for $k \in \Z$. However there is no $y$ that satisifies both conditions so $f$ is differentiable nowhere.
+\end{example}
+
+\subsubsection{Polar Cauchy Riemann Equations}
+
+\begin{proof}
+    Let $f(x + iy) = u(x,y) + iv(x,y)$ and $z_0 \in \C \neq 0$. Subsitute $x = r \cos \theta$ and $y = r \sin \theta$. Thus $u$ and $v$ can be considered functions of $r$ and $\theta$. Using the multivariable chain rule gives
+    % TODO: Fix this
+    \begin{align*}
+        \pdv{u}{r} &= \pdv{u}{x} \pdv{x}{r} + \pdv{u}{y} \pdv{y}{r} \\
+                   &= \pdv{u}{x} \cos \theta + \pdv{u}{y} \sin \theta \\ 
+                   \\
+        \pdv{u}{\theta} &= \pdv{u}{x} \pdv{x}{\theta} + \pdv{u}{y} \pdv{y}{\theta} \\
+                   &= \pdv{u}{x} (-r\sin \theta)  + \pdv{u}{y} (r \cos \theta)
+    \end{align*}
+    Suppose that the Cauchy Riemann equations are satisfied for $f$. Then
+    \begin{alignat*}{2}
+        \pdv{u}{x} &= &&\pdv{v}{y} \\
+        \pdv{u}{y} &= -&&\pdv{v}{x}
+    \end{alignat*}
+    Therefore
+    \begin{alignat*}{2}
+        \pdv{v}{r} &= -\pdv{u}{y} \cos \theta + \pdv{u}{x} \sin \theta &&= r \pdv{u}{r} \\
+        \pdv{v}{\theta} &= \pdv{u}{y} r\sin \theta + \pdv{u}{x} r\cos \theta &&= -\frac{1}{r} \pdv{u}{\theta}
+    \end{alignat*}
+    Therefore the following are equivalent to the Cauchy Riemann equations
+    \begin{alignat*}{2}
+        \pdv{v}{r} &= \;\;\; r&&\pdv{u}{y} \\
+        \pdv{v}{\theta} &= -\frac{1}{r}&&\pdv{u}{\theta}
+    \end{alignat*}
+\end{proof}
+
+\subsubsection{Converse of Cauchy Riemann}
+
+\begin{theorem}[Converse of C.R.]
+    If $f = u + iv$ is defined in an $\epsilon$-neighborhood of some $z_0 = x_0 + iy_0$ and
+    \begin{enumerate}
+        \item The Cauchy Riemann equations hold at $z_0$
+        \item $u_x, u_y, v_x, v_y$ exist in the $\epsilon$-neighborhood and are continuous at $z_0$
+    \end{enumerate}
+    then $f$ is differentiable at $z_0$ and $f'(z_0) = u_x(z_0) + iv_x(z_0)$.
+\end{theorem}
+
+% \begin{proof}
+%     Note that the change is $u$ is
+%     \begin{align*}
+%         \Delta u &= u(x_0 + \Delta x, y_0 + \Delta y_0) - u(x_0, y_0) \\
+%                  &= \qty[u(x_0 + \Delta x, y_0 + \Delta y_0) - u(x_0, y_0 + \Delta y)] + \qty[u(x_0, y_0 + \Delta y) - u(x_0, y_0)] \\
+%     \end{align*}
+% \end{proof}
+
+\subsubsection{} %XXX: z bar differential
+
+\subsection{Uniqueness Theorem}
+
+\begin{theorem}[Unqiueness Theorem]
+    Suppose $f$ is defined in a domain $\mathcal{D}$ and
+    \begin{enumerate}
+        \item $f$ is analytic in $\mathcal{D}$
+        \item $f(z) = 0$ for all $z$ in some $\ball{z_0, \delta} \subset \mathcal{D}$ or a line segment $L \subset\mathcal{D}$
+    \end{enumerate}
+    Then $f(z) = 0$ for all $z \in \mathcal{D}$.
+\end{theorem}
+\begin{proof}[Open Neighborhood]
+    % TODO: Make a picture?
+    Let $p \in \mathcal{D}$. Since $\mathcal{D}$ is connected, there is a piecewise linear curve $\gamma$ connecting $z_0$ and $p$. Let $ d = \min\qty{\delta, \text{distance from }\gamma\text{ to }\partial\mathcal{D}}$. Construct a finite sequence of points $\qty{z_n} \subset \gamma$ that starts at $z_0$ and ends at $p$ such that
+    \[
+        |z_k - z_{k-1}| < d, k > 1
+    .\]
+    For each point $z_i$, let $N_i = \ball{z_i, d}$. Since $d \leq \delta$, $N_0 \subset \ball{z_0, \delta}$ and therefore $f$ is zero on $N_0$. Since $|z_1 - z_0| < \delta$, $z_1 \in \ball{z_0, \delta}$ and therefore $f(z_1) = 0$. There is a later result that will finish this proof.
+
+    \begin{theorem}
+        If $f$ is analytic in a neighborhood $N_0$ of some $z_0$ and $f \equiv 0$ on a domain $\mathcal{D}$ or line segment $L$ in $N_0$, then $f \equiv 0$ on $N_0$.
+    \end{theorem}
+
+    Therefore $f(z)$ is zero on $N_1$. This same process can be applied iteratevly, and since $p$ is in the last constructed neighborhood, $f(p) = 0$.
+\end{proof}
+
+\begin{corollary}
+    Suppose $f,g$ are analytic functions on some domain $\mathcal{D}$ and $f \equiv g$ in some domain $\mathcal{D}' \subset \mathcal{D}$ or line segment $L \subset \mathcal{D}$. Then $f \equiv g$ on $\mathcal{D}$.
+\end{corollary}
+
 \end{document}

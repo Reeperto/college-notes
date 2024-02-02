@@ -78,3 +78,73 @@ How can we make causal claims that refer to factors that we cannot control. For 
 Woodward handles these situations through counterfactuals: if (perhaps contrary to fact) the manipulation of the factors are possible, then there is a way to alter the phenomena in question.
 
 That is, one must be able to associate with any successful explanation a **hypothetical or counterfactual experiment**.
+
+### Structure of Causal Relationships
+
+Variables are the relata of causal relationships
+
+- Variables (X, Y, Z) represent the properties
+- Values represent the different states that properties can take
+
+The explanans must have associated hypothetical experiments that show how their manipulation would be a way of altering the explanandum.
+
+Robert Koch
+
+- Studied whether certain bacteria caused diseases with animal inoculation's
+- When studying Cholera, he was unable to inoculate animals and for ethical reasons could not experiment on humans
+    - Koch turns to "natural experiments"
+    - A person in a village has Cholera and washes their clothes in the community water supply, after which a Cholera outbreak occurs
+
+The experiments for causal relationships have to be "surgical" or "ideal" interventions. That is an intervention that changes only a single variable.
+
+## Other Accounts
+
+The interventionist account is the current modern standard, but there were 2 major earlier accounts of causation
+
+1. Regularity theory of causation (Hume)
+2. Connected process account of causation (Salmon)
+
+### Regularity Theory
+
+Hume claims that causation is *constant conjunction*. That is effects regularly follow from their causes. This suffers from a major issue
+
+\begin{center}
+    Correlation does not equal causation
+\end{center}
+
+Correlation under this sense of regularity would be falsely identified as causality. For example, a storm occurring and a barometer changing it's reading are correlated, but the storm doesn't cause a change in the reading and vice versa. But since they occur regularly, they would be considered causally related under this theory.
+
+### Connected Process Account
+
+Salmon describes this account as having 2 main features
+
+1. There's a physical connection between the cause and effect
+2. The cause transmits some "mark" to its effects
+
+That is, X is a cause of Y only when
+- X is spatio-temporally connected to Y
+- X transmits a mark or structure to Y
+    - Mark can be momentum, energy, electric charge, etc.
+
+There are 3 major problems with this account
+
+1. Absence causation
+    - There are many causal relationships where the absence of something leads to the effect (ex. Scurvy, missing an alarm, forgetting to do something, lack of resources or policies, etc.)
+    - This cannot be captured as there is no physical thing you can associate with the absence of something
+2. Causal experiments in science
+    - Koch discovered that intervening on a bacteria caused a bacteria. However he never showed what the physical process was that connected them
+3. Some connected processes don't seem causal
+    - There can be many things that seem physically connected to outcomes of interest but are not causal
+    - Touching a "magic" stone in the morning causes someone to do good at their job
+4. Problems for the social sciences
+    - It is hard to determine the physical processes behind social behavior that has causal relationships
+
+## Normativity of Causality
+
+The focus on the previous accounts has been about being descriptive. The question is if these accounts can help clarify causation in science. For the interventionist account, can it help scientists. Consider the following causal relationship
+
+\begin{center}
+    One of the causes of lung cancer is having lungs
+\end{center}
+
+This statement would be hard to argue as misleading or incorrect without some conceptualization of causality. Using the interventionist account, it is clear that controlling the presence of lungs just controls if the patient is alive or dead. It doesn't effect if the patient will develop lung cancer. That is why lungs are included in the background conditions when asking questions about lung cancer. We are interested in the causes of lung cancer in *people with lungs*.

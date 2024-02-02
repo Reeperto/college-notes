@@ -47,3 +47,18 @@
 \contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.13\else \numberline {3.13}Theorem\fi }{13}{theorem.3.13}%
 \contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.14\else \numberline {3.14}Theorem\fi }{13}{theorem.3.14}%
 \contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.15\else \numberline {3.15}Theorem\fi }{13}{theorem.3.15}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.16\else \numberline {3.16}Theorem\fi \thmtformatoptarg {Cauchy Riemann Equations}}{14}{theorem.3.16}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}3.11\else \numberline {3.11}Example\fi }{14}{example.3.11}%
+\contentsline {example}{\ifthmt@listswap Example\nobreakspace {}3.12\else \numberline {3.12}Example\fi }{14}{example.3.12}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.17\else \numberline {3.17}Theorem\fi \thmtformatoptarg {Converse of C.R.}}{16}{theorem.3.17}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.18\else \numberline {3.18}Theorem\fi \thmtformatoptarg {Unqiueness Theorem}}{16}{theorem.3.18}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}3.19\else \numberline {3.19}Theorem\fi }{16}{theorem.3.19}%
+\contentsline {corollary}{\ifthmt@listswap Corollary\nobreakspace {}3.1\else \numberline {3.1}Corollary\fi }{16}{corollary.3.1}%
+\contentsline {remark}{\ifthmt@listswap \else \numberline {\let \autodot \@empty }\fi Remark}{17}{thmt@dummyctr.dummy.57}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.20\else \numberline {4.20}Theorem\fi \thmtformatoptarg {Properties of Logs}}{17}{theorem.4.20}%
+\contentsline {remark}{\ifthmt@listswap \else \numberline {\let \autodot \@empty }\fi Remark}{17}{thmt@dummyctr.dummy.59}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}4.21\else \numberline {4.21}Theorem\fi }{18}{theorem.4.21}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}4.21\else \numberline {4.21}Definition\fi \thmtformatoptarg {Complex Power}}{18}{definition.4.21}%
+\contentsline {remark}{\ifthmt@listswap \else \numberline {\let \autodot \@empty }\fi Remark}{18}{thmt@dummyctr.dummy.62}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}4.22\else \numberline {4.22}Definition\fi \thmtformatoptarg {Exponential with Base}}{19}{definition.4.22}%
+\contentsline {remark}{\ifthmt@listswap \else \numberline {\let \autodot \@empty }\fi Remark}{19}{thmt@dummyctr.dummy.64}%
