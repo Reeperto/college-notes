@@ -1,0 +1,147 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+
+\banner{Integration}
+
+\subsection{Contours}
+
+\begin{definition}[Arc]
+    An arc is a \textit{function} $z(t) = x(t) + i y(t)$ on some interval $t \in [a,b]$. Some further classifications of these arcs
+    \begin{enumerate}
+        \item An arc is \textbf{simple} if $z(t_1) \neq z(t_2)$ if $t_1 \neq t_2$. That is it not self intersecting
+        \item An arc is \textbf{simple closed} if it is simple except for $z(a) = z(b)$.
+        \item An arc is \textbf{positively oriented} if it travels "counterclockwise"
+        \item An arc is \textbf{negatively oriented} if it travels "clockwise"
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    Consider $z(\theta) = e^{i \theta}$ on the interval $\theta \in [0, 2 \pi)$. Pictorally
+    \begin{center}
+        \begin{tikzpicture}
+            \draw (-2.2, 0) -- (2.2, 0);
+            \draw (0, -2.2) -- (0, 2.2);
+            \draw (0, 0) circle[radius=1];
+        \end{tikzpicture}
+    \end{center}
+    Note that for a \textit{different arc} $z(\theta) = e^{i \neq \theta}$ gives the same general image, but it is negatively oriented. Even further, $z(\theta) = e^{i 2 \theta}$ gives the same image but travels around the circle twice. This arc is not simple.
+\end{example}
+
+\begin{definition}[Arc Differentiability]
+    An arc $z(t) = x(t) + i y(t)$ on $t \in [a,b]$ is differentiable if
+    \begin{enumerate}
+        \item $x'(t)$ and $y'(t)$ exist
+        \item $x'(t)$ and $y'(t)$ are continuous
+    \end{enumerate}
+    on $t \in [a,b]$. Furthermore, if $z(t) \neq 0$ for all $t \in [a,b]$, then $z$ is \textbf{smooth}.
+
+    \begin{remark}
+        If an arc is differentiable, then $|z'(t)| = \sqrt{x'(t)^2 + y'(t)^2}$ is a continuous function and therefore
+        \[
+            L = \int_a^b |z'(t)| \dd t
+        \]
+        exists and is the arc length of $z(t)$. Furthermore, this $L$ is invariant under reparameterization. If $z(t)$ is smooth, then 
+        \[
+            T(t) = \frac{z(t)}{|z'(t)|}
+        \]
+        represents the unit tangent at $t$.
+    \end{remark}
+\end{definition}
+
+\begin{definition}[Contour]
+    A contour is a piecewise smooth arc. That is it is finitely many smooth arcs that are end to end.
+\end{definition}
+
+\begin{theorem}[Jordan Curve Theorem]
+    If $C$ is a simple closed curve or contour, then $C$ has a bounded inside and unbounded outside.
+\end{theorem}
+
+\subsection{Contour Integrals}
+
+\begin{definition}
+    Let $z(t)$ with $t \in [a,b]$ be a contour $C$ and $f: C \to \C$ be a function. Assume that $f(z(t))$ is piecewise continuous on $[a,b]$. Then the contour integral is defined as
+    \[
+        \int_C f\dd z \coloneq \int_a^b f(z(t)) z'(t) \dd t
+    .\]
+
+    \begin{remark}
+        The contour integral is unchanged by reparameterization.
+    \end{remark}
+\end{definition}
+
+\begin{theorem}[Properties of Contour Integrals]
+    \label{thm:propsofcontoursint}
+    Let $C$ be a contour and $f,g : C \to \C$. Then
+    \begin{enumerate}
+        \item $\displaystyle \int_C z_0 f \dd z = z_0 \int_C f \dd z$ for all $z_0 \in \C$
+        \item $\displaystyle \int_C (f+g) \dd z = \int_C f \dd z + \int_C g \dd z$
+        \item $\displaystyle \int_{-C} f \dd z = - \int_C f \dd z$
+    \end{enumerate}
+\end{theorem}
+
+\subsubsection{Examples}
+
+\begin{example}
+    Let $C_1 : z = e^{i \theta}, 0 \leq \theta \leq \pi$. Then for $f(z) = \frac{1}{z}$,
+    \[
+        \int_{C_1} \frac{\dd z}{z} = \int_0^\pi \frac{1}{e^{i \theta}} \cdot i e^{i \theta} \dd \theta = \int_0^\pi i \dd \theta = i \pi
+    .\]
+    Consider the "mirror" of $C_1$. Let $C_2 : z = e^{-i \theta}, 0 \leq \theta \leq \pi$. Then
+    \[
+        \int_{C_2} \frac{\dd z}{z} = \int_0^\pi e^{i \theta} \cdot -i e^{-i \theta} \dd \theta = \int_0^\pi -i \dd \theta = -i \pi
+    .\]
+    The integral around the unit circle can be thought of as \[
+        \int_{C_1 - C_2} f \dd z = i \pi - (- i \pi) = 2 \pi i
+    .\]
+    Therefore even though this a simple closed contour, the integral is not $0$ as potentially expected from multivariable calculus.
+\end{example}
+
+\begin{example}
+    Let $C : z(t), a \leq t \leq b$ be some contour. Then
+    \[
+        \int_C z \dd z = \int_a^b z(t) z'(t) \dd t =  \int_a^b \dv{t} \qty(\frac{1}{2} z(t)^2) \dd t = \frac{1}{2} z(t) \eval_a^b = \frac{1}{2} (z(a)^2 - z(b)^2)
+    .\]
+    Importantly, this result doesn't rely \textit{at all} on what the contour actually is. It only relies on the end points of the contour.
+\end{example}
+
+\subsection{Contours Involving Branch Cuts}
+
+One concern with contour integrals is if they contain branch cuts or branch points. Consider the semicircular path
+\[
+    C : z = 3 e^{i \theta}, 0 \leq \theta \leq \pi
+\]
+and the function
+\[
+    f(z) = z^{\frac{1}{2}} = \exp(\frac{1}{2} \log z)
+\]
+defined for $|z| > 0$ and $0 < \arg z < 2 \pi$. Note that $f(3)$ is not defined, but
+\[
+    \int_C z^{\frac{1}{2}} \dd z
+\]
+still exists. Note that
+\[
+    \int_C F(z) \dd z = \int_a^b F(z(\theta)) z'(\theta) \dd \theta
+\]
+and in this specific instance that
+\[
+    f(z(\theta)) z'(\theta) = 3 \sqrt{3} i e^{i \frac{3 \theta}{2}}
+.\]
+This function is well defined everywhere with no branch cuts. Therefore integrating it isnt a problem. Therefore
+\[
+    \int_C f(z) \dd z = 3 \sqrt{3} i \int_0^\pi e^{i \frac{3 \theta}{2}} \dd \theta = \frac{2}{3i} \cdot 3 \sqrt{3} i \qty[e^{i \frac{3 \theta}{2}}]_0^\pi = - i \cdot 2 \sqrt{3}
+.\]
+
+\subsection{Bounds on Contour Integrals}
+
+\begin{theorem}[Contour Integral Bounds]
+    Let $C$ be a contour of length $L$ and $f(z)$ be piecewise continuous on $C$ with $|f(z)| \leq M$ for all $z \in C$. Then
+    \[
+        \qty|\int_C f(z) \dd z| \leq L \cdot M
+    .\]
+\end{theorem}
+
+\end{document}
