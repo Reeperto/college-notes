@@ -1,10 +1,10 @@
 # Fdb version 4
-["xdvipdfmx"] 1707932238.66278 "aux/notes.xdv" "notes.pdf" "notes" 1707932238.81291 0
-  "aux/notes.xdv" 1707932238.58692 326852 a012da5b10c0d2849006ef77cf85e778 "xelatex"
+["xdvipdfmx"] 1708708152.57818 "aux/notes.xdv" "notes.pdf" "notes" 1708708152.69906 0
+  "aux/notes.xdv" 1708708152.50489 337972 e77ed43eb5163c5dff31ec0b0550c1ad "xelatex"
   (generated)
   "notes.pdf"
   (rewritten before read)
-["xelatex"] 1707932237.35493 "notes.tex" "aux/notes.xdv" "notes" 1707932238.81083 0
+["xelatex"] 1708708151.36479 "notes.tex" "aux/notes.xdv" "notes" 1708708152.69704 0
   "../preamble.tex" 1707931281.13276 3918 11e3cf98348c5ba3250715acdf83c75b ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
@@ -288,15 +288,15 @@
   "/usr/share/texlive/texmf-dist/tex/latex/xpatch/xpatch.sty" 1585258158 8314 7803f78066c4f9d008405191a4b43073 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1689984000 40900 887e0dc8cac988a9e9c574af364cf837 ""
   "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1706395712 10497656 49fb4a3791363ea52ce4db5272a66deb ""
-  "aux/notes.aux" 1707932238.58592 19105 f1b9a4268329f938de2fb1f99e1079ba "xelatex"
-  "aux/notes.loe" 1707932238.58692 11205 87e62c6663c4cfdfc85104cf9aed50d6 "xelatex"
-  "aux/notes.out" 1707932238.58692 4099 f3fad7e62c2b7a18de883bd18582d64f "xelatex"
-  "aux/notes.toc" 1707932238.58692 2238 dbe8464b908ff7b891103d42aa3d9bc0 "xelatex"
+  "aux/notes.aux" 1708708152.5039 20152 fb437876944e138fbe38ae21d52046ae "xelatex"
+  "aux/notes.loe" 1708708152.50489 11675 840cb9dcb4a91c213b9ed723c0e1e015 "xelatex"
+  "aux/notes.out" 1708708152.50489 4530 50e65d46e64ddc5f098aa2bbfcdc0e20 "xelatex"
+  "aux/notes.toc" 1708708152.50489 2440 a17b6673bc43f0b228eb8369d4d6adce "xelatex"
   "notes.tex" 1707325227.16765 680 ceb069dd53347147c6c3c10d349a16e9 ""
   "topics/analyticfunctions.tex" 1706827357.28247 11898 1d5e12378f707a7919f877d3c43a86ac ""
   "topics/complexnumbers.tex" 1705292526.29745 15271 484b118d04ce3b4d260e90cd471d5b75 ""
   "topics/elementaryfunctions.tex" 1706825263.03771 4979 f4f8f363a9236b135f1a6a310822d292 ""
-  "topics/integration.tex" 1707932235.73289 5753 64a0f3ffc1028ca87a21443f908d1090 ""
+  "topics/integration.tex" 1708708150.22688 6764 6cde8eabe11c5da8308bbaa5572be427 ""
   "topics/regions.tex" 1705686280.66485 4709 e863ba83d5a8d97ef64214e55d74accb ""
   (generated)
   "aux/notes.aux"

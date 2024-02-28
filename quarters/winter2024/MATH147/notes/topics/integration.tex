@@ -144,4 +144,33 @@ This function is well defined everywhere with no branch cuts. Therefore integrat
     .\]
 \end{theorem}
 
+\subsection{Cauchy Integral Formula}
+\begin{theorem}[Cauchy Integral Formula]
+    \label{thm:cif}
+    If $f$ is analytic on and inside a simple closed positively oriented contour $C$ and $z_0$ is in the interior of $z_0$, then
+    \[
+        f(z_0) = \frac{1}{2 \pi i} \int_C \frac{f(z)}{z - z_0} \dd z
+    .\]
+\end{theorem}
+
+\subsubsection{Generalized Cauchy Integral Formula}
+\begin{theorem}[Generalized Cauchy Integral Formula]
+    \label{thm:generalizedcif}
+    If $f$ is analytic on and inside a simple closed positively oriented contour $C$ and $z_0$ is in the interior of $z_0$, then
+    \[
+        f^{(n)}(z_0) = \frac{n!}{2 \pi i} \int_C \frac{f(z)}{(z - z_0)^{n+1}} \dd z
+    .\]
+\end{theorem}
+
+\begin{example}
+    Consider the integral
+    \[
+        \int_C \frac{e^{2z}}{z^3} \dd z, C : |z| = 1
+    .\]
+    Let $f(z) = e^{2z}$. Note that it is entire. Then the integral can be written as
+    \[
+        \int_C \frac{f(z)}{(z - 0)^{2 + 1}} = \frac{2 \pi i}{2!} f'(0) = 4 \pi i
+    .\]
+\end{example}
+
 \end{document}
