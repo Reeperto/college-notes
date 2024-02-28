@@ -17,9 +17,9 @@
 \subsection*{14.8}
 For $z = re^{i \theta}$, it follows that $z^n = r^n e^{ni \theta}$. Hence for each mapping,
 \begin{alignat*}{2}
-    z^2 &\implies 0 \leq \theta \leq \frac{\pi^2}{16},&& 0 \leq r \leq 1 \\
-    z^3 &\implies 0 \leq \theta \leq \frac{\pi^3}{64}, && 0 \leq r \leq 1 \\
-    z^4 &\implies 0 \leq \theta \leq \frac{\pi^4}{256},\hspace{0.5cm} && 0 \leq r \leq 1
+    z^2 &\implies 0 \leq \theta \leq \frac{\pi}{2},&& 0 \leq r \leq 1 \\
+    z^3 &\implies 0 \leq \theta \leq \frac{3 \pi}{4}, && 0 \leq r \leq 1 \\
+    z^4 &\implies 0 \leq \theta \leq \pi,\hspace{0.5cm} && 0 \leq r \leq 1
 \end{alignat*}
 
 \begin{figure}[h!]
@@ -30,16 +30,16 @@ For $z = re^{i \theta}$, it follows that $z^n = r^n e^{ni \theta}$. Hence for ea
             \pgfmathsetmacro{\ang}{#1}
             \pgfmathsetmacro{\cx}{cos(\ang r)}
             \pgfmathsetmacro{\cy}{sin(\ang r)}
+            \draw[pattern=north west lines, pattern color=gray] (0,0) -- (\cx, \cy) arc[start angle={deg(\ang)}, end angle = 0, radius = 1];
             \draw (-1.3, 0) -- (1.3, 0) node[anchor = west, scale = {1 / 1.5}] {$\Re z$};
             \draw (0, -1.3) -- (0, 1.3) node[anchor = south, scale = {1 / 1.5}] {$\Im z$};
-            \draw[pattern=north west lines, pattern color=gray] (0,0) -- (\cx, \cy) arc[start angle={deg(\ang)}, end angle = 0, radius = 1];
         \end{tikzpicture}
         \caption{$w = z^{#2}$}
     \end{subfigure}
     }
-    \sketch{(pi / 4)^2}{2}
-    \sketch{(pi / 4)^3}{3}
-    \sketch{(pi / 4)^4}{4}
+    \sketch{(pi / 4)*2}{2}
+    \sketch{(pi / 4)*3}{3}
+    \sketch{(pi / 4)*4}{4}
 \end{figure}
 
 \subsection*{18.1}
@@ -48,19 +48,309 @@ For $z = re^{i \theta}$, it follows that $z^n = r^n e^{ni \theta}$. Hence for ea
     Take $\epsilon > 0$ and let $\delta = \epsilon$. Note then that for $z \in C$ in the $\delta$ deleted neighborhood of $0$ (that is $z \neq 0$)
     \begin{align*}
         |z - 0| < \delta &\implies |z| < \delta \\
-                      &\implies \frac{|z|^2}{|z|} < \delta \\ 
+                         &\implies \frac{|z|^2}{|z|} < \delta \tag{Since $|z| \neq 0$} \\ 
                       &\implies \frac{|\conj{z}|^2}{|z|} < \delta \\
-                      &\implies \qty|\frac{\conj{z}^2}{z}| < \delta \\
-                      &\implies \qty|\frac{\conj{z}^2}{z} - 0| < \delta \\
-                      &\implies \qty|\frac{\conj{z}^2}{z} - 0| < \epsilon
+                      &\implies \qty|\frac{\conj{z}^2}{z}| < \delta \implies \qty|\frac{\conj{z}^2}{z} - 0| < \delta = \epsilon
     \end{align*}
-    Therefore $\displaystyle\lim_{z \to 0} \frac{\conj{z}^2}{z} = 0$
+    Therefore by definition $\displaystyle\lim_{z \to 0} \frac{\conj{z}^2}{z} = 0$.
+\end{proof}
+
+\subsection*{18.7}
+\begin{proof}
+    Assume that $\lim_{z\to z_0} f(z) = w_0$. Take $\epsilon > 0$. Then there is some $\delta$ such that $|z - z_0| < \delta \implies |f(z) - w_0| < \epsilon$. Since $||f(z)| - |w_0|| \leq |f(z) - w_0| < \epsilon$. Therefore
+    \[
+        |z - z_0| < \delta \implies ||f(z)| - |w_0|| < \epsilon
+    .\]
+    Therefore by definition $\lim_{z \to z_0} |f(z)| = |w_0|$.
+\end{proof}
+
+\subsection*{20.8}
+\subsubsection*{Part A}
+\begin{proof}
+    Let $z_0 = x_0 + i y_0$. Let $\Delta z = z - z_0$ and $\Delta f = f(z + \Delta z) - f(z)$. Then
+    \[
+        \frac{\Delta f}{\Delta z} = \frac{\Re{z + \Delta z} - \Re{z}}{\Delta z} = \frac{\Re{z} + \Re{\Delta z} - \Re{z}}{\Delta z} = \frac{\Re{\Delta z}}{\Delta z}
+    .\]
+    For $f'(z_0)$ to exist, this quantity must be the same no matter how $\Delta z \to 0$. If $\Delta z$ approaches $0$ along the real axis, then $\Delta z = \Delta x + i 0 = \Delta x$ and $\Re{\Delta z} = \Delta x$. Therefore
+    \[
+        \frac{\Delta f}{\Delta z} = \frac{\Delta x}{\Delta x} = 1
+    .\]
+    If $\Delta z$ approachs $0$ along the imaginary axis, then $\Delta z = 0 + i \Delta y = i \Delta y$ and $\Re{\Delta z} = 0$. Therefore
+    \[
+        \frac{\Delta f}{\Delta z} = \frac{0}{i\Delta y} = 0
+    .\]
+    Therefore since the value is not the same on every path for $\Delta z \to 0$, the limit cannot exist at $z_0$ which was an arbitaray point in $\C$. Therefore $f$ is not differentiable anywhere on $\C$.
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    Let $z_0 = x_0 + i y_0$. Let $\Delta z = z - z_0$ and $\Delta f = f(z + \Delta z) - f(z)$. Then
+    \[
+        \frac{\Delta f}{\Delta z} = \frac{\Im{z + \Delta z} - \Im{z}}{\Delta z} = \frac{\Im{z} + \Im{\Delta z} - \Im{z}}{\Delta z} = \frac{\Im{\Delta z}}{\Delta z}
+    .\]
+    For $f'(z_0)$ to exist, this quantity must be the same no matter how $\Delta z \to 0$. If $\Delta z$ approaches $0$ along the real axis, then $\Delta z = \Delta x + i 0 = \Delta x$ and $\Im{\Delta z} = 0$. Therefore
+    \[
+        \frac{\Delta f}{\Delta z} = \frac{0}{\Delta x} = 0
+    .\]
+    If $\Delta z$ approachs $0$ along the imaginary axis, then $\Delta z = 0 + i \Delta y = i \Delta y$ and $\Im{\Delta z} = \Delta y$. Therefore
+    \[
+        \frac{\Delta f}{\Delta z} = \frac{\Delta y}{i\Delta y} = -i
+    .\]
+    Therefore since the value is not the same on every path for $\Delta z \to 0$, the limit cannot exist at $z_0$ which was an arbitaray point in $\C$. Therefore $f$ is not differentiable anywhere on $\C$.
+\end{proof}
+
+\subsection*{24.1}
+\subsubsection*{Part A}
+\begin{proof}
+    $f(z) = \conj{z}$ will be non-differentiable at all points where $f$ does not satisfy the Cauchy-Riemann equations. For $z = x+iy$, $f(z) = x - iy$. Therefore the partials for $f$ are
+    \begin{alignat*}{2}
+        u_x &= 1 \;\;\; u_y &&= 0 \\
+        v_x &= 0 \;\;\; v_y &&= -1
+    \end{alignat*}
+    Applying the Cauchy Riemann equations, $1 = -1$ and $0 = 0$. Since $1 = -1$ is never true, it follows that the Cauchy Riemann equations dont hold for any $z \in \C$ and hence $f$ is not differentiable anywhere on $\C$.
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    $f(z) = z - \conj{z}$ will be non-differentiable at all points where $f$ does not satisfy the Cauchy-Riemann equations. For $z = x + iy$, $f(z) = 2iy$. The partials for $f$ therefore are
+    \begin{alignat*}{2}
+        u_x &= 0 \;\;\; u_y &&= 0 \\
+        v_x &= 0 \;\;\; v_y &&= 2i
+    \end{alignat*}
+    Applying the Cauchy Riemann equations, $0 = 0$ and $0 = 2i$. Since $0 = 2i$ is never true, it follows that the Cauchy Riemann equations dont hold for any $z \in \C$ and hence $f$ is not differentiable anywhere on $\C$.
+\end{proof}
+
+\subsubsection*{Part C}
+\begin{proof}
+    $f(x+iy) = 2x + ixy^2$ will be non-differentiable at all points where $f$ does not satisfy the Cauchy-Riemann equations. The partials for $f$ are
+    \begin{alignat*}{3}
+        u_x &= 2 \hspace{1cm} && u_y &&= 0 \\
+        v_x &= iy^2 && v_y &&= 2ixy
+    \end{alignat*}
+    Applying the Cauchy Riemann equations, $2 = 2ixy$ and $0 = -iy^2$. Therefore
+    \begin{align*}
+        0 = -iy^2 &\implies y = 0 \\
+        2 = 2ixy &\implies x = 0 \text{ or } y = 0
+    \end{align*}
+    Therefore the only candidate point for differentiability is $x = y = 0$.
+\end{proof}
+
+\subsubsection*{Part D}
+\begin{proof}
+    $f$ will be potentially differentiable only at points where the Cauchy Riemann equations hold. Rewriting $f$ in terms of its components gives
+    \[
+        f(z) = e^x e^{-iy} = e^x \qty[\cos(-y) + i \sin(-y)] = e^x \cos y - i e^x \sin y
+    .\]
+    Therefore the partials are
+    \begin{alignat*}{3}
+        u_x &= e^x \cos y &\quad& u_y &&= -e^x \sin y \\
+        v_x &= -e^x \sin y && v_y &&= -e^x \cos y
+    \end{alignat*}
+    Applying the Cauchy Riemann equations gives
+    \[
+        u_x = v_y \implies e^x \cos y = -e^x \cos y \implies \cos y = -\cos y
+    \]
+    which is true when $y = \frac{\pi}{2} + \pi k$ for $k \in \Z$ and that
+    \[
+        u_y = -v_x \implies -e^x \sin y = e^x \sin y \implies \sin y = -\sin y
+    \]
+    which is true when $y = \pi m$ for $m \in \Z$. However, both equations cannot be satisifed simultaneously since there is no $y$ such that both $\sin y = \cos y = 0$. This means that $f$ is not differentiable at any $x + iy$ and therefore cannot be differentiable anywhere.
+\end{proof}
+
+\subsection*{24.3}
+\subsubsection*{Part A}
+\begin{proof}
+    The candidate points where $f$ is differentiable are those that satisfy the Cauchy Riemann equations. Since $f(z) = \frac{1}{z} = \frac{\conj{z}}{|z|^2} = \frac{x}{x^2 + y^2} - i \frac{y}{x^2 + y^2}$ for $z \neq 0$, the partials are
+    \begin{alignat*}{3}
+        u_x &= \frac{y^2 - x^2}{(x^2 + y^2)^2} &\quad& u_y &&= -\frac{2xy}{(x^2 + y^2)^2} \\
+        v_x &= \frac{2xy}{(x^2 + y^2)^2} && v_y &&= \frac{y^2 - x^2}{(x^2 + y^2)^2}
+    \end{alignat*}
+    Applying the Cauchy Riemann equations gives
+    \[
+        u_x = v_y \implies \frac{y^2 - x^2}{(x^2 + y^2)^2} = \frac{y^2 - x^2}{(x^2 + y^2)^2} \implies 0 = 0
+    \]
+    and
+    \[
+        u_y = -v_x \implies -\frac{2xy}{(x^2 + y^2)^2} = -\frac{2xy}{(x^2 + y^2)^2} \implies 0 = 0
+    .\]
+    Therefore the Cauchy Riemann equations hold for every $z \neq 0$. Since the partials are also conintuous for $x +iy \neq 0$, then $f'$ exists at all $z \neq 0$. Therefore
+    \begin{align*}
+        f'(x+iy) = u_x + iv_x &= \frac{y^2 - x^2}{(x^2 + y^2)^2} + i \frac{2xy}{(x^2 + y^2)^2} \\
+        &= \frac{y^2 - x^2 + i 2xy}{|z|^4} \\
+        &= \frac{(x -iy)^2}{|z|^4}  \\
+        &= \frac{\conj{z}^2}{|z|^4} \\
+        &= \qty(\frac{\conj{z}}{|z|^2})^2 \\
+        &= \qty(z^{-1})^2 = \frac{1}{z^2}
+    \end{align*}
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    The candidate points where $f$ is differentiable are those that satisfy the Cauchy Riemann equations. The partials are
+    \begin{alignat*}{3}
+        u_x &= 2x &\quad& u_y &&= 0 \\
+        v_x &= 0 && v_y &&= 2y
+    \end{alignat*}
+    Therefore applying the Cauchy Riemann equations gives $2x = 2y$ and $0 = 0$. Therefore $f$ is not differentiable anywhere off the line $y = x$. Note that for any $\epsilon$-neighborhood of some $z_0$ on this line, the partials exist and are also continuous at $z_0$ since they exist and are continuous everywhere. Therefore $f$ is differentiable on this line and
+    \[
+        f'(z) = u_x + i v_x = 2x + i 0 = 2x
+    .\]
+\end{proof}
+
+\subsubsection*{Part C}
+\begin{proof}
+    The candidate points where $f$ is differentiable are those that satisfy the Cauchy Riemann equations. Note that $f(x+iy) = (x + iy) y = xy + i y^2$. Therefore the partials are
+    \begin{alignat*}{3}
+        u_x &= y &\quad& u_y &&= x \\
+        v_x &= 0 && v_y &&= 2y
+    \end{alignat*}
+    Therefore applying the Cauchy Riemann equations gives $y = 2y$ and $x = 0$. Therefore $x = y = 0$ is the only possible point that $f$ is differentiable. Since the partials exist and are continuous everywhere, then for any $\epsilon$-neighborhood around $z = 0$ the partials are continuous. Therefore $f'(0) = u_x(0, 0) + iv_x(0,0) = 0$.
+\end{proof}
+
+\subsection*{24.8}
+\subsubsection*{Part A}
+\begin{proof}
+    Since $z = x + iy$ and $\conj{z} = x - iy$, then $x = \frac{z + \conj{z}}{2}$ and $y = \frac{z - \conj{z}}{2i}$. $F(x,y)$ can be changed to a function of a single imaginary input $\conj{z}$. Therefore using the multivariable chain rule gives
+    \[
+        \pdv{F}{\conj{z}} = \pdv{F}{x} \pdv{x}{\conj{z}} + \pdv{F}{y} \pdv{y}{\conj{z}} = \pdv{F}{x} \qty(\frac{1}{2}) + \pdv{F}{y}\qty(-\frac{1}{2i}) = \frac{1}{2} \qty(\pdv{F}{x} + i \pdv{F}{y})
+    .\]
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    Let $f(z) = u(x,y) + iv(x,y)$ satisfy the Cauchy Riemann equations. That is $u_x = v_y$ and $u_y = -v_x$. Applying the operator $\pdv{\conj{z}}$ gives
+    \begin{align*}
+        \pdv{f}{\conj{z}} = \pdv{\conj{z}} f(z) &= \frac{1}{2} \qty(\pdv{x} + i\pdv{y}) (u(x,y) + i v(x,y)) \\
+                            &= \frac{1}{2} \qty[
+                            u_x - v_y + i u_y + i v_x
+                            ] \\
+                            &= \frac{1}{2} \qty[
+                            u_x - v_y + i (u_y + v_x)
+                            ] \\
+        \intertext{By substituting $u_x$ for $v_y$ and $u_y$ for $-v_x$,}
+                            &= \frac{1}{2} \qty[
+                            v_y - v_y + i (-v_x + v_x)
+                            ] \\
+                            &= 0
+    \end{align*}
+    Therefore when $f$ satisfies the Cauchy Riemann equations, $\pdv{f}{\conj{z}} = 0$.
+\end{proof}
+
+\subsection*{26.5} % TODO
+\begin{proof}
+    Note that when $|z| > 0$ and $|\Arg{z}| < \frac{\pi}{2}$, $\Re{z} > 0$. Since $g(z)$ is analytic when $|z| > 0$ and $|\Arg{z}| < \frac{\pi}{2}$, $g(z)$ is analytic when $\Re{z} > 1$. Since $f(z) = 2z - 2 + i$ is analytic everywhere in $\C$, $g(f(z))$ will be analytic when $\Re{f(z)} > 0$. That is,
+    \[
+        \Re f(z) = \Re{2z - 2 + i} = 2x - 2 > 0 \implies x > 1
+    .\]
+    Therefore $g(f(z))$ will be analytic in the half plane $x > 1$. It follows by the chain rule that
+    \[
+        G'(x) = \dv{z} g(f(z)) = g'(f(z)) \cdot f'(z) = 2 \cdot \frac{1}{2\cdot g(2z - 2 + i)} = \frac{1}{g(2z - 2 + i)}
+    .\]
+\end{proof}
+
+\subsection*{26.7}
+\begin{proof}
+    Since $f(z)$ is real valued, then if $f(z) = u + iv$, it follows $v(x,y) = 0$. Since $f$ is also analytic everywhere in $\mathcal{D}$, it satisfies the Cauchy Riemann equations in its entire domain. Therefore
+    \[
+        u_x = v_y \implies u_x = 0
+    .\]
+    Therefore $f'(z) = u_x + i v_x = 0 + i 0 = 0$ on all of $\mathcal{D}$. Therefore $f(z)$ is constant throughout $\mathcal{D}$.
 \end{proof}
 
 \subsection*{27.2}
-
 \begin{proof}
-    
+    Assume that $z_0 = (x_0, y_0) \in \mathcal{D}$ where $u(x_0, y_0) = v(x_0, y_0)$, that $f'(z_0) \neq 0$, and that $f$ is analytic in $\mathcal{D}$. Since $u(x,y)$ and $v(x,y)$ can be considered as real multivariate functions, the techniques of multivariable calculus can be applied to their level curves $u(x,y) = c_1$ and $v(x,y) = c_2$. The tangent lines on both level curves are perpendicular if their normal vectors are also perpendicular. From multivariable calculus, the gradient of a function is always perpendicular to it's level curves and therefore the tangents are perpendicular when the gradients
+    \begin{align*}
+        \nabla u &= \langle u_x, u_y \rangle \\
+        \nabla v &= \langle v_x, v_y \rangle
+    \end{align*}
+    are perpendicular. Since $f'(z_0) \neq 0$, then
+    \begin{alignat*}{3}
+        f'(z_0) = u_x + iv_x &= u_x - i u_y \neq 0 &&\implies \nabla u &&\neq \vec{0} \\
+        f'(z_0) = u_x + iv_x &= v_y + i v_x \neq 0 &&\implies \nabla v &&\neq \vec{0}
+    \end{alignat*}
+    at $z_0$. The gradients are normal when their dot product is zero. Since $f$ is analytic, the Cauchy Riemann equations hold at $z_0$ and therefore
+    \[
+        \nabla u \cdot \nabla v = u_x v_x + u_y v_y = v_x v_y - v_x v_y = 0
+    .\]
+    Therefore the normal vectors of each curve at $z_0$ are perpendicular and hence their tangents are perpendicular at $z_0$.
+\end{proof}
+
+\subsection*{30.1}
+\subsubsection*{Part A}
+By splitting the exponential into a real power and complex power
+\[
+    e^{2 \pm 3 \pi i} = e^2 e^{\pm 3 \pi i}
+.\]
+Note that
+\begin{alignat*}{3}
+    e^{3 \pi i} &= \cos(3 \pi) &&+ i \sin(3 \pi) &&= -1 + i(0) = -1 \\
+    e^{-3 \pi i} &= \cos(-3 \pi) &&+ i \sin(-3 \pi) &&= -1 + i(0) = -1
+\end{alignat*}
+Therefore $e^{\pm 3 \pi i} = -1$ meaning $e^{2 \pm 3 \pi i} = -e^2$.
+
+\subsubsection*{Part B}
+By splitting the exponential into a real power and complex power
+\[
+    e^{\frac{2+\pi i}{4}} = e^{\frac{2}{4}} \cdot e^{\frac{\pi i}{4}} = \sqrt{e} e^{\frac{\pi i}{4}}
+.\]
+Since $e^{\frac{\pi i}{4}} = \cos \frac{\pi}{4} + i \sin \frac{\pi}{4} = \frac{1}{\sqrt{2}} + i \frac{1}{\sqrt{2}}$, it follows
+\[
+    e^{\frac{2+\pi i}{4}} = \sqrt{e} \qty[\frac{1}{\sqrt{2}} + i \frac{1}{\sqrt{2}}] = \sqrt{\frac{e}{2}} (1 + i)
+.\]
+
+\subsubsection*{Part C}
+Let $z = x +iy$. Then
+\[
+    e^{z + \pi i} = e^{x + iy + \pi i} = e^x e^{i(y + \pi)}
+.\]
+Note that $e^{i(y+\pi)} = \cos(y + \pi) + i \sin(y + \pi) = -\cos y - i \sin y = - e^{iy}$. Therefore
+\[
+    e^{z + \pi i} = -e^x e^{iy} = -e^{x+ iy} = -e^z
+.\]
+
+\subsection*{30.3}
+\begin{proof}
+    $f$ will be potentially analytic only at points where the Cauchy Riemann equations hold. Rewriting $f$ in terms of its components gives
+    \[
+        f(z) = e^{\conj{z}} = e^{x - iy} = e^x e^{-iy} = e^x \qty[\cos(-y) + i \sin(-y)] = e^x \cos y - i e^x \sin y
+    .\]
+    Therefore the partials are
+    \begin{alignat*}{3}
+        u_x &= e^x \cos y &\quad& u_y &&= -e^x \sin y \\
+        v_x &= -e^x \sin y && v_y &&= -e^x \cos y
+    \end{alignat*}
+    Applying the Cauchy Riemann equations gives
+    \[
+        u_x = v_y \implies e^x \cos y = -e^x \cos y \implies \cos y = -\cos y
+    \]
+    which is true when $y = \frac{\pi}{2} + \pi k$ for $k \in \Z$ and that
+    \[
+        u_y = -v_x \implies -e^x \sin y = e^x \sin y \implies \sin y = -\sin y
+    \]
+    which is true when $y = \pi m$ for $m \in \Z$. However, both equations cannot be satisifed simultaneously since there is no $y$ such that both $\sin y = \cos y = 0$. This means that $f$ is not analytic at any $x + iy$ and therefore cannot be analytic anywhere.
+\end{proof}
+
+\subsection*{30.10}
+\subsubsection*{Part A}
+\begin{proof}
+    Let $z = x + iy$ and assume $e^z$ is purely real. Splitting the exponential gives
+    \[
+        e^z = e^{x + iy} = e^{x} e^{iy} = e^x \qty[\cos y + i \sin y]
+    .\]
+    Since $e^z$ is real, then $\Im e^z = 0$ meaning $e^x \sin y = 0$. Since $e^x$ is never $0$, this is true when $\sin y = 0$. Therefore $y = n \pi$ for $n \in \Z$. This means that
+    \[
+        \Im z = \Im{x + iy} = \Im{x + i(n \pi)} = n \pi, n \in \Z
+    .\]
+\end{proof}
+
+\subsubsection*{Part B}
+The restriction on $z$ is that $\Im z = \frac{\pi}{2} + n \pi$ for some $n \in \Z$
+\begin{proof}
+    Let $z = x + iy$ and assume $e^z$ is purely imaginary. By part A, $\Re{e^z} = e^x \cos y$. Since $e^z$ is purely imaginary, $\Re{e^z} = 0$. Therefore $e^x \cos y = 0$. Since $e^x$ is never $0$, this is true when $\cos y = 0$. Therefore $y = \frac{\pi}{2} + n \pi$ for $n \in \Z$. This means that
+    \[
+        \Im z = \Im{x + iy} = \Im{x + i\qty( \frac{\pi}{2} + n \pi)} = \frac{\pi}{2} + n \pi, n \in \Z
+    .\]
 \end{proof}
 
 \end{document}

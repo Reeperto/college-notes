@@ -1,0 +1,362 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{3}
+\input{hw_preamble.tex}
+
+\begin{document}
+
+% Section 33: 2, 4, 11
+% Section 34: 1, 2, 5
+% Section 36: 2, 5, 9
+% Section 38: 11, 14
+% Section 42: 2, 3
+% Section 43: 5
+
+\subsection*{33.2}
+\subsubsection*{Part A}
+Since $e = e \cdot e^{2 \pi i n}$ for $n \in \Z$, it follows that
+\[
+    \log e = \ln e + 2 \pi i n = 1 + 2 \pi i n, n \in \Z
+.\]
+
+\subsubsection*{Part B}
+Since $i = e^{i \frac{\pi}{2} + 2 \pi n}$ for $n \in \Z$, it follows that
+\[
+    \log i = \ln 1 + i \qty(\frac{\pi}{2} + 2 \pi n) = \qty(2n + \frac{1}{2}) \pi i, n \in \Z
+.\]
+
+\subsubsection*{Part C}
+Since $-1 + i\sqrt{3} = 2 \qty(-\frac{1}{2} + i \frac{\sqrt{3}}{2}) = 2 e^{i \qty(\frac{2 \pi}{3} + 2 \pi n)}$ for $n \in \Z$, it follows that
+\[
+    \log (-1 + i \sqrt{3}) = \ln 2 + i \qty(\frac{2 \pi}{3} + 2 \pi n) = \ln 2 + 2 \pi i \qty(n + \frac{1}{3}), n \in \Z
+.\]
+
+\subsection*{33.4}
+\begin{proof}
+    Since $i^2 = e^{i \pi}$ and $\pi$ is its argument in the branch, $\log(i^2) = \ln 1 + i \pi = i \pi$. Furthermore, $i = e^{i \frac{\pi}{2}}$ which has argument $\frac{5 \pi}{2}$ in the branch meaning $2 \log i = 2(\ln 1 + i \frac{5 \pi}{2}) = 5 \pi i \neq i \pi$
+\end{proof}
+
+\subsection*{33.11}
+\begin{proof}
+    The second partials of $F(x,y) = \ln (x^2 + y^2)$ are
+    \begin{align*}
+        \pdv[2]{x} \ln(x^2 + y^2) &= \pdv{x} \frac{2x}{x^2 + y^2} = \frac{(x^2 + y^2) \cdot 2 - 2x (2x)}{(x^2 + y^2)^2} = 2\cdot \frac{y^2 - x^2}{(x^2 + y^2)^2} \\
+        \pdv[2]{y} \ln(x^2 + y^2) &= \pdv{y} \frac{2y}{x^2 + y^2} = \frac{(x^2 + y^2)\cdot 2 - 2y (2y)}{(x^2 + y^2)^2} = 2 \cdot \frac{x^2 - y^2}{(x^2 + y^2)^2}
+    \end{align*}
+    Therefore
+    \[
+        F_{xx} + F_{yy} = 2 \qty(\frac{y^2 - x^2 + x^2 - y^2}{(x^2 + y^2)^2}) = 0
+    .\]
+    Hence $\ln(x^2 + y^2)$ is harmonic everywhere excluding the origin.
+\end{proof}
+
+\begin{proof}
+    Note that $\ln(x^2 + y^2)$ is the real component of $2\cdot\log z$ for $z = x + iy$ on any branch and is therefore harmonic on the branches domain. Since the branches
+    \[
+        \alpha = \qty{-\pi, \frac{\pi}{2}}
+    \]
+    together cover all $z \neq 0$ and $\ln(x^2 + y^2)$ is then harmonic on both, it follows that $\ln(x^2 + y^2)$ is harmonic everywhere except the origin.
+\end{proof}
+
+\subsection*{34.1}
+\begin{proof}
+    Let $z_1, z_2 \in \C$ with $z_1 = r_1 e^{i \theta_1}$ and $z_2 = r_2 e^{i \theta_2}$ and $- \pi < \theta_1, \theta_2 < \pi$. Note that $- 2 \pi < \theta_1 + \theta_2 < 2 \pi$. Let
+    \[
+        N = \begin{cases}
+            -1 & \theta_1 + \theta_2 > \pi \\
+            \;\;1 & \theta_1 + \theta_2 \leq -\pi \\
+            \;\;0 & \text{otherwise}
+        \end{cases}
+    .\]
+    and therefore $\Arg{z_1 z_2} = \theta_1 + \theta_2 + 2 \pi N$. It follows that
+    \begin{align*}
+        \Log(z_1 z_2) = \ln (r_1 r_2) + i\Arg{z_1 z_2} &= \ln r_1 + \ln r_2 + i (\theta_1 + \theta_2 + 2 \pi N) \\
+        &= \ln r_1 + i \theta_1 + \ln r_2 + i \theta_2 + 2 \pi N i \\
+        &= \Log z_1 + \Log z_2 + 2 \pi N i \qedhere
+    \end{align*}
+\end{proof}
+
+\subsection*{34.2}
+\begin{proof}
+    Let $z_1, z_2 \in \C$ with $z_2 \neq 0$. First note that for all $z \neq 0$
+    \begin{align*}
+        \log \frac{1}{z} &= \log(\frac{1}{|z|} e^{-i \arg z}) \\
+        &= \ln \frac{1}{|z|} - i \arg z \\
+        &= - \ln |z| - i \arg z \\
+        &= - (\ln|z| + i \arg z) = - \log z
+    \end{align*}
+    Therefore
+    \begin{align*}
+        \log \frac{z_1}{z_2} &= \log(z_1 \cdot \frac{1}{z_2}) \\
+        &= \log(z_1) + \log(\frac{1}{z_2}) \\
+        &= \log(z_1) - \log(z_2) \qedhere
+    \end{align*}
+\end{proof}
+
+\subsection*{34.5}
+\begin{proof}
+    Let $z = r e^{i \theta}$ where $r > 0$ and $\theta \in (-\pi, \pi]$. Then
+    \[
+        z^{\frac{1}{n}} = \qty{r^{\frac{1}{n}} e^{i \frac{\theta + 2 k \pi}{n}} : 0 \leq k \leq n-1}
+    .\]
+    Therefore
+    \begin{align*}
+        \log z^{\frac{1}{n}} &= \qty{
+            \ln(r^{\frac{1}{n}}) + i \qty(\frac{\theta + 2 \pi k}{n} + 2 \pi p) : 0 \leq k \leq n -1, p \in \Z
+        } \\
+        &= \qty{
+        \frac{1}{n} \ln r + i \qty(\frac{\theta + 2 \pi (np + k)}{n}) : 0 \leq k \leq n -1, p \in \Z
+        } \\
+        &= \frac{1}{n} \qty{
+        \ln r + i \qty(\theta + 2 \pi (np + k)) : 0 \leq k \leq n -1, p \in \Z
+        }
+        \intertext{Note that any integer $q \in \Z$ can be written as $p \equiv k \;\text{(mod $n$)}$ and therefore $q = np + k$ meaning}
+        &= \frac{1}{n} \qty{
+            \ln r + i \qty(\theta + 2 \pi q) : q \in \Z
+        } \\
+        &= \frac{1}{n} \log z \qedhere
+    \end{align*}
+\end{proof}
+
+\subsection*{36.2}
+\subsubsection*{Part A}
+
+\[
+    (-i)^i = \exp(i \Log(-i)) = \exp(i \Log(e^{- i \frac{\pi}{2}})) = \exp(i \qty(\ln 1 - i \frac{\pi}{2})) = e^{\frac{\pi}{2}}
+.\]
+
+\subsubsection*{Part B}
+\begin{align*}
+    \qty(\frac{e}{2} (-1 - \sqrt{3} i))^{3 \pi i} &= \exp[3 \pi i \cdot \Log\qty(\frac{e}{2} (-1 - i\sqrt{3}))] \\
+    &= \exp[
+        3 \pi i (\Log\qty(\frac{e}{2}) + \Log(-1 - i\sqrt{3}))
+    ] \\
+    &= \exp[
+    3 \pi i \qty(1 - \ln 2 + \Log\qty(2 \qty(-\frac{1}{2} - i \frac{\sqrt{3}}{2})))
+    ] \\
+    &= \exp[
+    3 \pi i \qty(1 - \ln 2 + \ln 2 + i\qty(- \frac{2 \pi}{3}))
+    ] \\
+    &= \exp[
+    3 \pi i \qty(1 - i\frac{2 \pi}{3})
+    ] \\
+    &= \exp[
+    2 \pi^2 + 3 \pi i
+    ] \\
+    &= \exp[2 \pi^2] \cdot \exp[3 \pi i] = -\exp(2 \pi^2)
+\end{align*}
+
+\subsubsection*{Part C}
+\begin{align*}
+    (1-i)^{4i} &= \exp[4i \Log(1 - i)] \\
+               &= \exp[4i \Log\qty(\sqrt{2} \qty(\frac{1}{\sqrt{2}}) - \frac{1}{\sqrt{2}} i)]\\
+               &= \exp[4i \qty(\frac{1}{2} \ln 2 - i\qty(\frac{\pi}{4}))] \\
+               &= \exp[\pi + 2 i \ln 2] \\
+               &= \exp[\pi] \exp[2 i \ln 2] \\
+               &= \exp[\pi] \qty(\cos(2 \ln 2) + i \sin(2 \ln 2))
+\end{align*}
+
+\subsection*{36.5}
+\begin{proof}
+    Let $z_0 = r e^{i \theta} \in \C$ with $\theta \in (-\pi, \pi]$. Then the principal root of $z_0^{\frac{1}{n}}$ from Section 10 is
+    \[
+        c_0 = r^{\frac{1}{n}} e^{i\frac{\theta}{n}}
+    .\]
+    Using the complex power function,
+    \begin{align*}
+        z_0^{\frac{1}{n}} = \exp[\frac{1}{n} \Log z_0] &= \exp[\frac{1}{n} (\ln r + i \theta)] \\
+        &= \exp[\ln r^{\frac{1}{n}} + i \frac{\theta}{n}] \\
+        &= \exp[\ln r^{\frac{1}{n}}] \cdot \exp[i \frac{\theta}{n}] = r^{\frac{1}{n}} e^{i \frac{\theta}{n}} = c_0 \qedhere
+    \end{align*}
+\end{proof}
+
+\subsection*{36.9}
+\[
+    \dv{z} c^{f(z)} = \dv{z} \exp[f(z) \log c] = \exp[f(z) \log c] f'(z) \log c = \boxed{c^{f(z)} \cdot f'(z) \log c}
+.\]
+
+\subsection*{38.11}
+\begin{proof}
+    Let $z = x + iy$. Since
+    \begin{align*}
+        \sin \conj{z} &= \frac{e^{i \conj{z}} - e^{- i \conj{z}}}{2i} \\
+                      &= \frac{e^{i(x - iy)} - e^{-i(x - iy)}}{2i} \\
+                      &= \frac{e^{y + ix} - e^{-y - ix}}{2i} \\
+                      &= \frac{e^{y} e^{ix} - e^{-y} e^{-ix}}{2i} \\
+                      &= \frac{e^{y} (\cos x + i \sin x) - e^{-y} (\cos(-x) + i \sin(-x))}{2i} \\
+                      &= \frac{e^{y} (\cos x + i \sin x) - e^{-y} (\cos x - i \sin x)}{2i} \\
+                      &= \frac{(e^y - e^{-y})\cos x  + i (e^y + e^{-y}) \sin x }{2i} \\
+                      &= \frac{1}{2} (e^y + e^{-y}) \sin x - \frac{i}{2} (e^y - e^{-y}) \cos x
+    \end{align*}
+    Therefore the partials are
+    \begin{alignat*}{3}
+        u_x &= \frac{1}{2} (e^y + e^{-y}) \cos x \hspace{1cm} && u_y &&= \frac{1}{2} (e^y - e^{-y}) \sin x \\
+        v_x &= \frac{1}{2} (e^y - e^{-y}) \sin x && v_y &&= -\frac{1}{2} (e^y + e^{-y}) \cos x
+    \end{alignat*}
+    Applying the C.R. equations gives
+    \[
+        u_x = v_y \implies (e^y + e^{-y}) \cos x = 0 \implies \cos x = 0
+    \]
+    and
+    \[
+        u_y = -v_x \implies (e^y - e^{-y}) \sin x = 0 \implies y = 0 \text{ or } \sin x = 0
+    \]
+    Since there is no $x$ such that $\cos x = \sin x = 0$, the only places where C.R. holds is when $y = 0$ and $\cos x = 0$. However, there are only countably distinct points that satsify this and therefore no neighborhood around them can be differentiable. Hence the function is nowhere analytic.
+\end{proof}
+\begin{proof}
+    Let $z = x + iy$. Since
+    \begin{align*}
+        \cos \conj{z} &= \frac{e^{i \conj{z}} + e^{- i \conj{z}}}{2} \\
+                      &= \frac{e^{i(x - iy)} + e^{-i(x - iy)}}{2} \\
+                      &= \frac{e^{y + ix} + e^{-y - ix}}{2} \\
+                      &= \frac{e^{y} e^{ix} + e^{-y} e^{-ix}}{2} \\
+                      &= \frac{e^{y} (\cos x + i \sin x) + e^{-y} (\cos(-x) + i \sin(-x))}{2} \\
+                      &= \frac{e^{y} (\cos x + i \sin x) + e^{-y} (\cos x - i \sin x)}{2} \\
+                      &= \frac{1}{2} (e^y + e^{-y}) \cos x + \frac{i}{2} (e^y - e^{-y}) \sin x
+    \end{align*}
+    Therefore the partials are
+    \begin{alignat*}{3}
+        u_x &= -\frac{1}{2} (e^y + e^{-y}) \sin x \hspace{1cm} && u_y &&= \frac{1}{2} (e^y - e^{-y}) \cos x \\
+        v_x &= \frac{1}{2} (e^{y} + e^{-y}) \cos x && v_y &&= \frac{1}{2} (e^y + e^{-y}) \sin x
+    \end{alignat*}
+    Applying the C.R. equations gives
+    \[
+        u_x = v_y \implies (e^y + e^{-y}) \cos x = 0 \implies \cos x = 0
+    \]
+    and
+    \[
+        u_y = -v_x \implies (e^y - e^{-y}) \sin x = 0 \implies y = 0 \text{ or } \sin x = 0
+    \]
+    Since there is no $x$ such that $\cos x = \sin x = 0$, the only places where C.R. holds is when $y = 0$ and $\cos x = 0$. However, there are only countably distinct points that satsify this and therefore no neighborhood around them can be differentiable. Hence the function is nowhere analytic.
+\end{proof}
+
+\subsection*{38.14}
+\subsubsection*{Part A}
+\begin{proof}
+    Note that
+    \begin{align*}
+        \conj{\cos(iz)} &= \conj{\frac{e^{i(iz)} + e^{-i(iz)}}{2}} \\
+                        &= \conj{\frac{e^{-z} + e^z}{2}} \\
+                        &= \frac{e^{\conj{-z}} + e^{\conj{z}}}{2} \\
+                        &= \frac{e^{-\conj{z}} + e^{\conj{z}}}{2}
+    \end{align*}
+    and
+    \begin{align*}
+        \cos(i \conj{z}) &= \frac{e^{i (i \conj{z})} + e^{-i (i \conj{z})}}{2} \\
+                         &= \frac{e^{-\conj{z}} + e^{\conj{z}}}{2}
+    \end{align*}
+    Therefore $\conj{\cos(iz)} = \cos(i \conj{z})$.
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    Note that
+    \begin{align*}
+        \conj{\sin(iz)} &= \conj{\qty(\frac{e^{i(iz)} - e^{-i(iz)}}{2i})} \\
+                        &= \conj{\qty(\frac{e^{-z} - e^z}{2i})} \\
+                        &= -\frac{e^{\conj{-z}} - e^{\conj{z}}}{2i} \\
+                        &= \frac{e^{\conj{z}} - e^{-\conj{z}}}{2i}
+    \end{align*}
+    and
+    \begin{align*}
+        \sin(i \conj{z}) &= \frac{e^{i (i \conj{z})} - e^{-i (i \conj{z})}}{2i} \\
+                         &= \frac{e^{-\conj{z}} - e^{\conj{z}}}{2i}
+    \end{align*}
+    Therefore $\conj{\sin(iz)} = \sin(i \conj{z})$ when
+    \begin{align*}
+        \frac{e^{\conj{z}} - e^{-\conj{z}}}{2i} &= \frac{e^{-\conj{z}} - e^{\conj{z}}}{2i} \\
+        2e^{\conj{z}} &= 2e^{-\conj{z}} \\
+        2e^{\conj{z}} &= 2e^{-\conj{z}} \\
+        e^{\conj{z}} &= e^{-\conj{z}} \\
+        e^{z} &= e^{-z}
+    \end{align*}
+    Let $z = x + iy$. Then
+    \begin{align*}
+        e^z &= e^{-z} \\
+        e^x (\cos y + i \sin y) &= e^{-x} (\cos y - i \sin y)
+    \end{align*}
+    which is true when $e^x \cos y = e^{-x} \cos y$ and $e^x \sin y = -e^{-x} \sin y$ meaning $x = 0$ and
+    \begin{align*}
+        \sin y = - \sin y \implies \sin y = 0 \implies y = n \pi i, n \in \Z
+    \end{align*}
+    Hence $z$ must be $n \pi i$ for $n \in \Z$.
+\end{proof}
+
+\subsection*{42.2}
+\subsubsection*{Part A}
+\begin{align*}
+    \int_0^1 (1 + it)^2 \dd t &= \int_0^1 (1 - t^2 + 2it) \dd t \\
+    &= \int_0^1 (1-t^2) \dd t + i \int_0^1 2t \dd t \\
+    &= \qty[t - \frac{t^3}{3}]_0^1 + i \qty[t^2]_0^1 \\
+    &= \frac{2}{3} + i
+\end{align*}
+
+\subsubsection*{Part B}
+\begin{align*}
+    \int_1^2 \qty(\frac{1}{t} - i)^2 \dd t &= \int_1^2 \qty(\frac{1}{t^2} - \frac{2i}{t} - 1) \dd t \\
+    &= \int_1^2 \qty(\frac{1}{t^2} - 1) \dd t - 2i \int_1^2 \frac{1}{t} \dd t \\
+    &= \qty[-\frac{1}{t} - t]_1^2 - 2i \qty[\ln t]_1^2 \\
+    &= -\frac{1}{2} - 2 i \ln 2 = -\frac{1}{2} - i \ln 4
+\end{align*}
+
+\subsubsection*{Part C}
+\[
+    \int_0^{\frac{\pi}{6}} e^{i 2t} \dd t = \frac{1}{2i} e^{i 2 t} \eval_0^{\frac{\pi}{6}} = \frac{1}{2i} e^{i \frac{\pi}{3}} - \frac{1}{2i} e^{0} = \frac{1}{2i} \qty(\frac{1}{2} + i\frac{\sqrt{3}}{2} - 1) = - \frac{i}{2} \qty(- \frac{1}{2} + i \frac{\sqrt{3}}{2}) = \frac{\sqrt{3}}{4} + \frac{i}{4}
+.\]
+
+\subsubsection*{Part D}
+Since $\Re z > 0$, $z \neq 0$. Then
+\[
+    \int_0^\infty e^{-z t} = -\frac{1}{z} e^{-z t} \eval_0^\infty = \frac{1}{z}\qty(1 - \lim_{t \to \infty} e^{-zt}) = \frac{1}{z}\qty(1 - 0) = \frac{1}{z}
+.\]
+
+\subsection*{42.3}
+\begin{proof}
+    Let $m,n \in \Z$. Note that $e^{i m \theta} e^{- i n \theta} = e^{i \theta (m - n)}$ Consider two cases
+    \begin{enumerate}[leftmargin=2cm]
+        \item[$(m = n)$]
+            Since $m = n$, $e^{i \theta (m - n)} = e^{0} = 1$. Therefore
+            \[
+                \int_0^{2 \pi} e^{i m \theta} e^{- i n \theta} \dd \theta = \int_0^{2 \pi} 1 \dd \theta = 2 \pi
+            .\]
+        \item[$(m \neq n)$]
+            Since $m \neq n$, $e^{i \theta (m-n)}$ is non constant and $\frac{1}{m-n}$ is defined. Therefore
+            \begin{align*}
+                \int_0^{2 \pi} e^{i m \theta} e^{- i n \theta} \dd \theta
+                &= \int_0^{2 \pi} e^{i \theta (m-n)} \dd \theta \\ 
+                &= -\frac{i}{\theta(m - n)} e^{i \theta (m-n)} \eval_0^{2 \pi} \\
+                &= -\frac{i}{\theta(m - n)} \qty(e^{2 \pi i (m-n)} - e^{0})
+                \intertext{Since $m - n \in \Z \setminus \qty{0}$, $e^{2 \pi i (m-n)} = e^{2 \pi i}$ which is $1$ it follows that}
+                &= -\frac{i}{\theta(m - n)} \qty(1 - 1) = 0
+            \end{align*}
+    \end{enumerate}
+    Hence
+    \[
+        \int_0^{2 \pi} e^{i m \theta} e^{- i n \theta} \dd \theta = \begin{cases}
+            0 & m \neq n \\
+            2 \pi & m = n \\
+        \end{cases} \qedhere
+    \]
+\end{proof}
+
+\subsection*{43.5}
+\begin{proof}
+    Let $f(z) = u(x,y) + i v(x,y)$ and $z(t) = x(t) + i y(t)$ for $a \leq t \leq b$. Then
+    \[
+        w(t) = f(z(t)) = u(x(t), y(t)) + i v(x(t), y(t))
+    .\]
+    Therefore by the multivariable chain rule,
+    \[
+        w'(t) = (u_x x' + u_y y') + i (v_x x' + v_y y')
+    .\]
+    Since $w(t_0) = f(z(t_0))$ is analytic, then the C.R. equations hold at $t_0$ meaning at $t_0$
+    \begin{align*}
+        w'(t) &= u_x x' + u_y y' + i (v_x x' + v_y y') \\
+        &= u_x x' - v_x y' + i (v_x x' + u_x y') \\
+        &= (u_x + iv_x)(x'(t) + i y'(t)) \\
+        &= f'(z(t)) z'(t) \qedhere
+    \end{align*}
+\end{proof}
+
+\end{document}
