@@ -1,0 +1,23 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+\renewcommand*\contentsname{Table of Contents}
+
+\title{MATH 120B: Rings and Fields}
+\author{Eli Griffiths}
+
+\begin{document}
+\maketitle
+\pagebreak
+\thispagestyle{empty}
+\tableofcontents
+\pagebreak
+
+\subfile{topics/rings.tex}
+
+\newpage
+\pagestyle{empty}
+\addcontentsline{toc}{section}{List of Theorems}
+\listoftheorems[ignoreall,onlynamed={theorem}]
+\addcontentsline{toc}{section}{List of Definitions}
+\listoftheorems[ignoreall,onlynamed={definition},title={List of Definitions}]
+\end{document}

@@ -5,7 +5,6 @@
 \usepackage{enumitem}	
 \usepackage{wrapfig}
 \usepackage{multicol}
-\usepackage{caption, subcaption}
 
 \usepackage[p,osf]{scholax}
 
@@ -18,12 +17,20 @@
 \setlength{\headheight}{17pt}
 \hfuzz=9pt
 
+% Figures
+\usepackage{svg}
+
 % Utility Management
 \usepackage{color}
 \usepackage{colortbl}
 \usepackage{xcolor}
 \usepackage{xpatch}
 \usepackage{xparse}
+
+\definecolor{gBlue}{HTML}{7daea3}
+\definecolor{gOrange}{HTML}{e78a4e}
+\definecolor{gGreen}{HTML}{a9b665}
+\definecolor{gPurple}{HTML}{d3869b}
 
 \definecolor{links}{HTML}{1c73a5}
 \definecolor{bar}{HTML}{584AA8}
@@ -32,7 +39,7 @@
 \usepackage{mathtools, amsmath, amsthm, thmtools, amssymb, physics}
 \usepackage[scaled=1.075,ncf,vvarbb]{newtxmath}
 
-\newcommand\B{\mathbb{B}}
+\newcommand\B{\mathbb{C}}
 \newcommand\C{\mathbb{C}}
 \newcommand\R{\mathbb{R}}
 \newcommand\Q{\mathbb{Q}}
@@ -43,19 +50,14 @@
 \newcommand\Var[1]{\text{Var}\qty(#1)}
 \newcommand\Exp[1]{\mathbb{E}\qty[#1]}
 \newcommand\ball[1]{\B\qty(#1)}
-\newcommand\res[1]{\underset{#1}{\operatorname{Res}}\;}
-\renewcommand\pv{\mathrm{p.v.}}
 
 \newcommand\conj[1]{\overline{#1}}
 \DeclareMathOperator{\Arg}{Arg}
-\DeclareMathOperator{\Log}{Log}
 \DeclareMathOperator{\cis}{cis}
 
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\spann}{span}
 \DeclareMathOperator{\nullity}{nullity}
-
-\newcommand\st{\text{ s.t. }}
 
 % TIKZ
 \usepackage{tikz}
@@ -63,8 +65,6 @@
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{math}
 \usetikzlibrary{cd}
-\usetikzlibrary{patterns}
-\usetikzlibrary{calc}
 
 % Boxes and Theorems
 \usepackage[most]{tcolorbox}
@@ -85,6 +85,7 @@
 	boxrule = 0pt,
 	boxsep = 0pt,
 	borderline west={3pt}{0pt}{bar},
+	% borderline west={3pt}{0pt}{gPurple},
 	sharp corners = all,
 	enhanced,
 }
@@ -97,6 +98,7 @@
 	frame hidden,
 	coltitle = black,
 	colback = blue!7,
+	% colback = gBlue!30,
 	left = 0.5em,
 	sharp corners = all,
 }
@@ -134,6 +136,7 @@
 	boxsep = 0pt,
 	boxrule = 0pt,
 	borderline west = {3pt}{0pt}{orange},
+	% borderline west = {3pt}{0pt}{gOrange},
 	sharp corners = all,
 	enhanced,
 }
@@ -150,6 +153,7 @@
 	boxrule = 0pt,
 	boxsep = 0pt,
 	borderline west={3pt}{0pt}{green!70!black},
+	% borderline west={3pt}{0pt}{gGreen},
 	sharp corners = all,
 	enhanced,
 }
@@ -188,3 +192,7 @@
 	linkcolor=links,
 	bookmarksopen=true
 }
+
+% Error Handling
+\PackageWarningNoLine{ExtSizes}{It is better to use one of the extsizes 
+                          classes,^^J if you can}
