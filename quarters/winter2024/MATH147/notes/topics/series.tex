@@ -1,0 +1,63 @@
+\documentclass[../notes.tex]{subfiles}
+\graphicspath{
+    {'../figures'}
+}
+
+\begin{document}
+
+\banner{Series}
+
+\subsection{Complex Sequences}
+
+The concept of a complex sequence is a direct translation of a real sequence and due to the next theorem, the can be treated as component wise sequences.
+
+\begin{definition}[Sequence Convergence]
+    A sequence $\qty{z_n} \subset \C$ converges to some $z \in \C$ if
+    \[
+        \forall \epsilon > 0, \exists N \in \N \st |z_n - z| < \epsilon, n > N
+    .\]
+    This is written as $\lim_{n\to \infty} z_n = z$.
+\end{definition}
+
+\begin{theorem}[Sequence Component Convergence]
+    A complex sequence $\qty{z_n}$ converges to $z$ if and only if
+    \[
+        \lim_{n \to \infty} \Re{x_n} = \Re z \hspace{1cm} \lim_{n \to \infty} \Im{z_n} = \Im z
+    .\]
+\end{theorem}
+
+\subsection{Series}
+
+\begin{definition}[Series Convergence]
+    A series
+    \[
+        \sum_{n = 0}^\infty z_n = z_1 + z_2 + z_3 + \ldots
+    .\]
+    converges to some $z \in \C$ if $\lim S_N = z$ where
+    \[
+        S_N = \sum_{n = 0}^N z_n
+    \]
+    is the sequence of partial sums. Often, it is useful to define
+    \[
+        \rho_N \coloneq z - S_N
+    \]
+    which is the remainder.
+\end{definition}
+
+\begin{theorem}[Series Component Convergence]
+    A infinite complex series $\sum z_n$ converges if and only if $\sum x_n$ and $\sum y_n$ converges.
+\end{theorem}
+
+\subsubsection{Power Series}
+
+\begin{definition}[Power Series]
+    A power series is a series of the form
+    \[
+        \sum_{n = 0}^\infty a_n (z - z_0)^n
+    \]
+    where $\qty{a_n} \subset \C$ and $z_0 \in \C$. When the series converges, the power series is a function of $z$.
+\end{definition}
+
+
+
+\end{document}

@@ -77,3 +77,7 @@
 \contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}5.25\else \numberline {5.25}Theorem\fi \thmtformatoptarg {Cauchy Integral Formula}}{23}{theorem.5.25}%
 \contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}5.26\else \numberline {5.26}Theorem\fi \thmtformatoptarg {Generalized Cauchy Integral Formula}}{23}{theorem.5.26}%
 \contentsline {example}{\ifthmt@listswap Example\nobreakspace {}5.16\else \numberline {5.16}Example\fi }{23}{example.5.16}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}6.27\else \numberline {6.27}Definition\fi \thmtformatoptarg {Sequence Convergence}}{24}{definition.6.27}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}6.27\else \numberline {6.27}Theorem\fi \thmtformatoptarg {Sequence Component Convergence}}{24}{theorem.6.27}%
+\contentsline {definition}{\ifthmt@listswap Definition\nobreakspace {}6.28\else \numberline {6.28}Definition\fi \thmtformatoptarg {Series Convergence}}{24}{definition.6.28}%
+\contentsline {theorem}{\ifthmt@listswap Theorem\nobreakspace {}6.28\else \numberline {6.28}Theorem\fi \thmtformatoptarg {Series Component Convergence}}{24}{theorem.6.28}%
