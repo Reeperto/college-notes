@@ -1,3 +1,6 @@
 [submodule "quarters/winter2024/ICS45C"]
 	path = quarters/winter2024/ICS45C
 	url = https://github.com/Reeperto/ICS45C
+[submodule "quarters/spring2024/ics46-Reeperto"]
+	path = quarters/spring2024/ics46-Reeperto
+	url = https://github.com/klefstad-teaching/ics46-Reeperto

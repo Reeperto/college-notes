@@ -9,16 +9,130 @@
 % §18:  8, 10, 12, 18, 19, 24, 25, 37, 40, 48, 50;
 
 \subsection*{8}
+It does not form a ring because $\langle \Z_+, + \rangle$ doesn't have an identity and therefore cannot be a group.
 
 \subsection*{10}
-\subsection*{12}
+It does form a ring since $n \Z$ is a ring for $n \geq 1$ and the direct product of rings is also a ring. $n \Z$ is commutative for $n \geq 1$, meaning $2 \Z \times \Z$ is also commutative. It does not have unity since $2 \Z$ doesn't have unity. Since $2 \Z \times \Z$ doesn't have unity, it cannot be a field.
+
+\subsection*{12} % TODO
+Let $\mathcal{R} = \qty{a + b \sqrt{2} : a,b \in \Q}$. First, check that the binary operations are closed. Let $a,b,c,d \in \Q$. Then
+\[
+    \qty(a + b \sqrt{2}) + \qty(c + d \sqrt{2} ) = (a + c) + (b + d)\sqrt{2}
+\]
+and
+\[
+    \qty(a + b \sqrt{2}) \qty(c + d \sqrt{2} ) = ac + ad \sqrt{2} + bc \sqrt{2} + 2 bd = (ac + 2bd) + (ad + bc) \sqrt{2}
+.\]
+Since the resulting components are also rational numbers, both operations are closed. Next, check if $\langle \mathcal{R}, + \rangle$ is an abelian group.
+
+\begin{enumerate}[leftmargin=2cm]
+    \item[$\mathcal{G}_1)$]
+        The given addition operation is associative and hence is also associative on $\mathcal{R}$
+    \item[$\mathcal{G}_2)$]
+        The additive identity $0 = 0 + 0 \sqrt{2}$ is in $\mathcal{R}$
+
+    \item[$\mathcal{G}_3)$]
+        Since for any $a + b \sqrt{2}$ $-a,-b \in \Q$, every element has an inverse
+    \item[Abelian)]
+        The given addition is commutative and therefore the group is abelian
+\end{enumerate}
+
+Since multiplication of real numbers is associative and $\mathcal{R} \subset \R$, multiplication is also associative. The given multiplication is also commutative and satisfies the distributive laws. $\mathcal{R}$ has unity since $1 + 0 \sqrt{2} \in \mathcal{R}$. Let $a,b \in \Q$ such that $a + b \sqrt{2} \neq 0$. Note that
+\[
+    \frac{1}{a + b \sqrt{2}} = \frac{1}{a + b \sqrt{2}} \cdot \frac{a - b \sqrt{2}}{a - b \sqrt{2}} = \frac{a - b \sqrt{2}}{a^2 - 2b^2} = \frac{a}{a - 2b^2} - \frac{b}{a^2 -2b^2} \sqrt{2}
+.\]
+Therefore every element is a unit. Therefore, in total $\mathcal{R}$ is a commutative division ring with unity and also a field.
+
 \subsection*{18}
+$1$ and $-1$ are the only units of $\Z$, and every non zero element in $\Q$ is a unit meaning the units of $\Z \times \Q \times \Z$ are of the form $(\pm 1, q, \pm 1)$ with $q \in \Q^*$.
+
 \subsection*{19}
+The units are $1$ and $3$ since $1\cdot 1 = 1$ and $3 \cdot 3 = 1$
+
 \subsection*{24}
+If $\phi : \Z \to \Z \times \Z$ is a ring homomorphism, then $\phi(1)^2 = \phi(1) \phi(1) = \phi(1^2) = \phi(1)$. Therefore $\phi(1)$ must be an element in $\Z \times \Z$ where its square is itself. Since $(0,0)$, $(1, 0)$, $(0,1)$ and $(1,1)$ are the only elements with this property in $\Z \times \Z$, the possible ring homomorphisms are
+\begin{align*}
+    \phi_{(0,0)} (n) = (0,0) \\
+    \phi_{(1,0)} (n) = (n,0) \\
+    \phi_{(0,1)} (n) = (0,n) \\
+    \phi_{(1,1)} (n) = (n,n)
+\end{align*}
+
+$\phi_{(0,0)}$ is trivially a ring homorphism. For $\phi_{(1,0)}$,
+\begin{alignat*}{5}
+    \phi_{(1,0)}(a + b) &= (a + b&&, 0) &&= \phi_{(1,0)}(a) + \phi_{(1,0)}(b)) \\
+    \phi_{(1,0)}(ab) &= (ab&&, 0) &&= \phi_{(1,0)}(a) \phi_{(1,0)}(b)
+\end{alignat*}
+Therefore $\phi_{(1,0)}$ is a homorphism and by a similar argument so is $\phi_{(0,1)}$. In the case of $\phi_{(1,1)}$
+\begin{alignat*}{5}
+    \phi_{(1,1)}(a + b) &= (a + b&&, a + b) &&= \phi_{(1,1)}(a) + \phi_{(1,1)}(b) \\
+    \phi_{(1,1)}(ab) &= (ab&&, ab) &&= \phi_{(1,1)}(a) \phi_{(1,1)}(b)
+\end{alignat*}
+
 \subsection*{25}
+If $\phi : \Z \times \Z \to \Z$ is a ring homomorphism, then the elements $(1,0)$ and $(0,1)$ (which are squares of themselves) must map to an element in $\Z$ whose square is itself. Since $0$ and $1$ satisfy this condition, there are 4 candidate homomorphisms.
+
+\begin{align*}
+    \phi_1((1,0)) = 1, \phi_1((0,1)) = 1 &\implies \phi_1((a,b)) = a+b \\ 
+    \phi_2((1,0)) = 1, \phi_2((0,1)) = 0 &\implies \phi_2((a,b)) = a \\ 
+    \phi_3((1,0)) = 0, \phi_3((0,1)) = 1 &\implies \phi_3((a,b)) = b \\ 
+    \phi_4((1,0)) = 0, \phi_4((0,1)) = 0 &\implies \phi_4((a,b)) = 0
+\end{align*}
+
+$\phi_4$ is trivially a ring homomorphism. For $\phi_2$,
+\[
+    \phi_2((a,b) \cdot (c,d)) = \phi_2((ac, bd)) = ac = \phi((a,b)) \phi((c,d))
+\]
+therefore $\phi_2$ is also a ring homomorphism. By the same argument, $\phi_3$ is as well. However, note that
+\[
+    \phi_1((1,2) \cdot (2,3)) = \phi_1((2,6)) = 8 \neq 10 = \phi((1,2)) \phi((2,3))
+\]
+therefore $\phi_1$ is not a ring homomorphism. Hence the only ring homomorphisms from $\Z \times \Z$ to $\Z$ are $\phi_2, \phi_3$ and $\phi_4$.
+
 \subsection*{37}
+\begin{proof}
+    Let $x,y \in U$. Assume towards contradiction that $xy \notin U$. Then $xy$ is not a unit and therefore has no multiplicative inverse. However, since $x$ and $y$ are units, they have multiplicative inverses. Therefore $(xy)(y^{-1}x^{-1}) = 1$. However this is a contradiction meaning $xy \in U$, hence $U$ is closed under $\cdot$. Examining the group axioms
+    \begin{enumerate}
+        \item[$\mathcal{G}_1.)$]
+            Since $R$ is a ring, the operator $\cdot$ is associative and therefore is associative over $U$.
+        \item[$\mathcal{G}_2.)$]
+            Since $R$ is a ring with unity, it has a multiplicative identity $1$ meaning that $U$ will have an identity (specifically $1$).
+        \item[$\mathcal{G}_3.)$]
+            Let $x \in U$. Since it is a unit, it has a multiplicative inverse $x^{-1}$. But since $x$ is the inverse of $x^{-1}$, $x^{-1}$ is also a unit and so $x^{-1} \in U$. Therefore every element in $U$ has an inverse.
+    \end{enumerate}
+    Since $U$ is closed under $\cdot$ and satisfies the group axioms, $\langle G, \cdot \rangle$ is a group.
+\end{proof}
+
 \subsection*{40}
+Take $\phi : 2 \Z \to 3 \Z$ to be a ring isomorphism. Since $\phi$ must be a group homorphism over addition, $\phi(2)$ must be equal to either $3$ or $-3$. Therefore $\phi(2n) = \phi(3n)$ or $\phi(2n) = \phi(-3n)$. Consider
+\[
+    \phi(2 \cdot 2) = \phi(4) = \pm 6 \neq 9 = \phi(2) \cdot \phi(2)
+.\]
+Therefore $\phi$ cannot be a ring homomorphism and hence cannot be a ring isomorphism. $\R$ and $\C$ are not isomorphic since every element in $\C$ can be written as the square of another element in $\C$, but the same does not hold in $\R$.
+
 \subsection*{48}
+\begin{proof}
+    \hfill\begin{enumerate}
+        \item[$\Rightarrow)$]
+            Assume $S$ is a subring of $R$. Then the $S$ is an abelian group under $+$ meaning it must have the additive identity $0$. Furthermore, every element has an additive inverse and $S$ is closed under $+$ meaning $(a - b) \in S$ for all $a,b \in S$. $S$ must be closed under $\cdot$ by the assumption and therefore it follows $ab \in S$ for all $a,b \in S$.
+        \item[$\Leftarrow)$]
+            Examine the condtions for $S$ to be a subring of $R$
+            \begin{enumerate}
+                \item[Closure)]
+                    Multiplication is closed since $ab \in S$ for all $a,b \in S$. Since $0 \in S$ and $a - b \in S$, $-b \in S$ for all $b \in S$ meaning $S$ contains its additive inverses. Therefore $a - (-b) \in S$ and hence $a + b \in S$ for all $a,b \in S$.
+                \item[$\mathcal{R}_1)$]
+                    Since addition from $R$ is associative and commutative and $S$ contains an additive identity and inverses, $\langle S, + \rangle$ is an abelian group.
+                \item[$\mathcal{R}_2)$]
+                    Multiplication from $R$ is associative meaning it is associative on $S$
+                \item[$\mathcal{R}_3)$]
+                    The left and right distributive laws hold for the multiplication operator and hence they hold on $S$.
+            \end{enumerate}
+    \end{enumerate}
+\end{proof}
+
 \subsection*{50}
+\begin{proof}
+    Since $a\cdot 0 = 0$ for any $a$, $0 \in I_a$. Let $x,y \in I_a$. Then $ax = 0$ and $ay = 0$. Therefore $ax - ay = 0 \implies a(x-y) = 0$ meaning $x-y \in I_a$. Furthermore, $a(xy) = (ax)y = 0y = 0$, meaning $xy \in I_a$. Therefore by Exercise $48$, $I_a$ is a subring of $R$.
+\end{proof}
 
 \end{document}
