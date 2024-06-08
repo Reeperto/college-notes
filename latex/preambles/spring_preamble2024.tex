@@ -4,6 +4,7 @@
 \usepackage{fancyhdr}
 \usepackage{enumitem}	
 \usepackage{wrapfig}
+\usepackage{float}
 \usepackage{multicol}
 
 \usepackage[p,osf]{scholax}
@@ -46,15 +47,20 @@
 \newcommand\N{\mathbb{N}}
 \newcommand\Z{\mathbb{Z}}
 
+\DeclareMathOperator{\lcm}{lcm}
+
+% Probability Theory
 \newcommand\Prob[1]{\mathbb{P}\qty(#1)}
 \newcommand\Var[1]{\text{Var}\qty(#1)}
 \newcommand\Exp[1]{\mathbb{E}\qty[#1]}
-\newcommand\ball[1]{\B\qty(#1)}
 
+% Analysis
+\newcommand\ball[1]{\B\qty(#1)}
 \newcommand\conj[1]{\overline{#1}}
 \DeclareMathOperator{\Arg}{Arg}
 \DeclareMathOperator{\cis}{cis}
 
+% Linear Algebra
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\spann}{span}
 \DeclareMathOperator{\nullity}{nullity}

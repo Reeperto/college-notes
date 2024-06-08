@@ -1,0 +1,96 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{5}
+\input{hw_preamble.tex}
+
+\begin{document}
+
+\subsection*{26.4}
+\[
+    \def\arraystretch{1.5}
+    \begin{array}{c|c|c|c|c}
+        +        & 8 \Z     & 2 + 8 \Z & 4 + 8 \Z & 6 + 8 \Z \\\hline
+        8 \Z     & 8 \Z     & 2 + 8 \Z & 4 + 8 \Z & 6 + 8 \Z \\\hline
+        2 + 8 \Z & 2 + 8 \Z & 4 + 8 \Z & 6 + 8 \Z & 8 \Z     \\\hline
+        4 + 8 \Z & 4 + 8 \Z & 6 + 8 \Z & 8 \Z     & 2 + 8 \Z \\\hline
+        6 + 8 \Z & 6 + 8 \Z & 8 \Z     & 2 + 8 \Z & 4 + 8 \Z \\
+    \end{array}
+    \hspace{1cm}
+    \begin{array}{c|c|c|c|c}
+        \times   & 8 \Z     & 2 + 8 \Z & 4 + 8 \Z & 6 + 8 \Z \\\hline
+        8 \Z     &     8 \Z &     8 \Z &     8 \Z &     8 \Z \\\hline
+        2 + 8 \Z &     8 \Z & 4 + 8 \Z &     8 \Z & 4 + 8 \Z \\\hline
+        4 + 8 \Z &     8 \Z &     8 \Z &     8 \Z &     8 \Z \\\hline
+        6 + 8 \Z &     8 \Z & 4 + 8 \Z &     8 \Z & 4 + 8 \Z \\
+    \end{array}
+\]
+
+The rings cannot be isomorphic since $2 \Z / 8 \Z$ doesn't have unity but $\Z_4$ does.
+
+\subsection*{26.9}
+Let $\phi : \Z \to \Z \times \Z : n \mapsto (n, 0)$. $\phi$ is a homormorphism, however the unity of $\Z$ is $1$ and $\phi(1) = (1, 0)$ which is not the unity of $\Z \times \Z$.
+
+\subsection*{26.12}
+The factor ring $\Z / 2 \Z$ is a field since $\Z / 2 \Z$ is isomorphic to $\Z_2$ which is a field.
+
+\subsection*{26.13}
+The factor ring $\Z / 6 \Z$ is isomorphic to $\Z_6$ which has the zero divisor $3$.
+
+\subsection*{26.14}
+In $\Z \times \Z$, $(1,0)(0,1) = 0$ meaning it has zero divisors, however the factor ring $(\Z \times \Z) / (\Z \times \qty{0})$ is isomorphic to $\Z$ which has no zero divisors.
+
+\subsection*{26.15}
+The subring $\qty{(n, n) : n \in \Z}$ is a subring, however $(a,b)(n,n) = (an, bn)$ will not be an element in the subring if $a \neq b$.
+
+\subsection*{26.18}
+\begin{proof}
+    Let $\phi : F \to R$ be a ring homorphism and $N = \ker \phi$. Assume that $N \neq \qty{0}$. Then there is some element $a \in F$ and $a \in N$. Since $F$ is a field, $a$ is a unit, meaning $a^{-1} \in F$. Since $N$ is also an ideal, then $a^{-1} a \in N$ meaning $N$ contains unity. Therefore $x 1 = x \in N$ for all $x \in F$, hence $N = F$. Therefore every element of $F$ is mapped to $0$. If $N = \qty{0}$, then $\phi$ must be one-to-one.
+\end{proof}
+
+\subsection*{26.20}
+\begin{proof}
+    By the binomial theorem,
+    \[
+        (a+b)^p = \sum_{n=0}^p \binom{p}{n} a^{n} b^{p-n}
+    .\]
+    Since $p$ is prime, the coefficients $\binom{p}{n}$ for $1 \leq n \leq p - 1$ will all be multiples of $p$. Since $R$ is of characteristic $p$, these terms all will go to zero. Therefore for any $a,b \in R$, it follows $(a+b)^p = a^p + b^p$. Therefore 
+    \[
+        \phi_p(a+b) = (a+b)^p = a^p + b^p = \phi_p(a) + \phi_p(b)
+    .\]
+    Trivially $\phi_p(ab) = (ab)^p = a^p b^p = \phi_p(a) \phi_p(b)$. Therefore $\phi_p$ is a ring homomorphism.
+\end{proof}
+
+\subsection*{26.22}
+\subsubsection*{Part A}
+\begin{proof}
+    Since an ideal is also a subring, then $\phi[N]$ is a subring of $R'$. Let $r \in R$ and $n \in N$. Since $N$ is an ideal, then $rn \in N$ and $nr \in N$. Since $\phi$ is a ring homomorphism
+    \begin{align*}
+        \phi(r) \phi(n) &= \phi(rn) \in \phi[N] \\
+        \phi(n) \phi(r) &= \phi(nr) \in \phi[N]
+    \end{align*}
+    Therefore $\phi[N]$ is an ideal of $\phi[R]$.
+\end{proof}
+
+\subsubsection*{Part B}
+Take $\phi : \Z \to \Q : x \mapsto x$ and the ideal $3 \Z$ of $\Z$. Since 
+\[
+    \frac{1}{3} \cdot 3 = 1
+\]
+then if $3 \Z$ was an ideal of $\Q$, it would have to contain unity but it does not. So $3 \Z$ is an ideal of $\Z$ but $\phi[3 \Z]$ is not an ideal of $\Q$.
+
+\subsubsection*{Part C}
+\begin{proof}
+    Note that $N'$ is a subring of $R$. Let $r \in R$ and $n \in \phi^{-1}[N']$. That is $\phi(n) \in N'$. Then $\phi(rn) = \phi(r) \phi(n)$. Since $N'$ is an ideal of $\phi[R]$ or $R'$, then $\phi(r) \phi(n) \in N'$ and the same argument shows $\phi(nr) \in N'$. Therefore $\phi^{-1}[N']$ is an ideal of $R$.
+\end{proof}
+
+\subsection*{26.26}
+\begin{proof}
+    Let $x,y \in I_a$. Then $ax = 0$ and $ay = 0$. Note that then
+    \[
+        ax + ay = 0 \implies a(x + y) = 0
+    .\]
+    Therefore $x + y \in I_a$. Since $a0 = 0$, $I_a$ contains the additive identity. Furthermore, $a(-x) = -(ax) = 0$, therefore $I_a$ contains additive inverses. Let $r \in R$. Note that $rax = r 0 = 0$ and $axr = 0 r = 0$ meaning $rI_a \subseteq I_a$ and $I_a r \subseteq I_a$. Therefore $I_a$ is an ideal of $R$.
+\end{proof}
+
+\end{document}

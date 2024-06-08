@@ -46,3 +46,22 @@ What *should* we want, and *why*?
 
 - One is only in control of their own actions, and all else is to be considered as nothing
     - Provides full control over one's internal state
+
+# Confucius
+
+- Philosopher during 600-500 BCE
+- Arguably the most influential philosopher
+    - Profoundly important for Chinese philosophy and Chinese Cultural Sphere
+- The *Analects* is a posthumous collection of sayings and stories about Confucius
+
+## Confucius in Context
+
+- Lived at the end of the "Spring and Autumn" period near the end of Zhou dynasty
+    - The name is taken from the *Annals* the outlines the time period
+    - Characterized by a progressive weakening of the central government
+    - Followed by the "Warring States" period
+
+## Confucian Canon
+
+- The 5 Great Classics
+- The 4 Books

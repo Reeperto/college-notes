@@ -1,0 +1,101 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{6}
+\input{hw_preamble.tex}
+
+\begin{document}
+
+\subsection*{27.4}
+The prime and maximal ideals of $\Z_2 \times \Z_4$ will be the same. Furthermore the possible ideals for $\Z_2 \times \Z_4$ will be of the form $I \times J$ where $I$ is an ideal of $\Z_2$ and $J$ an ideal of $\Z_4$. The possible prime ideal choices for $I$ are $\langle 1 \rangle$ and $\langle 0 \rangle$. For $J$ the possible choices are $\langle 1 \rangle$ and $\langle 2 \rangle$. By eliminating non-prime candidates it leaves
+\[
+    \langle (0,1) \rangle, \langle (1,2) \rangle
+.\]
+
+\subsection*{27.8}
+Note that $\Z_5[x] / \langle x^2 + x + c \rangle$ will be a field when $\langle x^2 + x + c \rangle$ is maximal since $\Z_5[x]$ is a commutative ring with unity. Furthermore $\langle x^2 + x + c \rangle$ will be maximal when it is irreducible over $\Z_5$. Therefore the values of $c$ are those that make $x^2 + x + c$ irreducible in $\Z_5$. Let $f(x) = x^2 + x$. Note that
+\begin{align*}
+    f(0) &= 0 \\
+    f(1) &= 2 \\
+    f(2) &= 1 \\
+    f(-2) &= 2 \\
+    f(-1) &= 0
+\end{align*}
+
+Therefore $c$ has to be chosen such that $f(x) + c \neq 0$ for all $x \in \Z_5$. This is only possible for $c = 1$ and $c = 2$. Therefore $c = 1$ or $2$ makes $\Z_5[x] / \langle x^2 + x + c \rangle$ a field.
+
+\subsection*{27.15}
+Since $\Z \times \Z$ is a commutative ring with unity, any maximal ideal lends itself to a factor ring that is a field and vice versa. Therefore $\Z \times 3 \Z$ is a maximal ideal of $\Z \times \Z$ since $\Z \times \Z / \Z \times 3 \Z \simeq \Z_3$ which is a field.
+
+\subsection*{27.16}
+Note that $\Z \times \qty{0}$ is a prime ideal. However $\Z \times \Z / \Z \times \qty{0} \simeq \Z$ which is not a field and therefore $\Z \times \qty{0}$ cannot be maximal.
+
+\subsection*{27.17}
+Note that $\Z \times 4 \Z$ is a nontrivial proper ideal of $\Z \times \Z$. However, since $\Z \times \Z / \Z \times 4 \Z \simeq \Z_4$ which is not an integral domain, $\Z \times 4 \Z$ is not a prime ideal.
+
+\subsection*{27.18}
+$\Q[x] / \langle x^2 - 5x + 6 \rangle$ will be a field if $x^2 - 5x + 6$ is irreducible in $\Q$. The roots of the polynomial are
+\[
+    \frac{5 \pm \sqrt{25 - 4(1)(6)}}{2} = \frac{5 \pm 1}{2}
+.\]
+Since both roots are rational numbers, $x^2 - 5x + 6$ is not irreducible in $\Q$ and therefore the original factor ring is not a field.
+
+\subsection*{27.30}
+\begin{proof}
+    Note that every ideal of $F[x]$ must be principal since $F$ is a field. Every proper non-trivial ideal prime ideal will be in the form $\langle f(x) \rangle \neq 0$. Assume towards contradiction that $\langle f(x) \rangle$ is not maximal. Then that means that $f(x)$ is reducible over $F$ meaning there exists some $g(x)$ and $h(x)$ with degrees less than $f(x)$ such that $f(x) = g(x) h(x)$. Since every polynomial in $\langle f(x) \rangle$ has degree greater than or equal to $f(x)$, then $g(x)$ and $h(x)$ cannot be in $\langle f(x) \rangle$. However, since $\langle f(x) \rangle$ is a prime ideal, then since $f(x) = h(x) g(x)$ either $h(x)$ or $g(x)$ must be in $\langle f(x) \rangle$. This is a contradiction and therefore $\langle f(x) \rangle$ must be maximal.
+\end{proof}
+
+\subsection*{27.34}
+\subsubsection*{Part A}
+\begin{proof}
+    Let $x \in A + B$. Then $x = a + b$ for some $a \in A$ and $b \in B$. Since $A$ and $B$ are ideals, then for any $r \in R$ it follows $ra, ar \in A$ and $rb, br \in B$. Therefore both $ra + rb$ and $ar + br$ are in $A + B$. Since
+    \[
+        rx = r(a+b) = ra + rb
+    \]
+    and
+    \[
+        xr = (a+b)r = ar + br
+    \]
+    it follows that $rx, xr \in A+B$. Note for $(a_1 + b_1),(a_2 + b_2) \in A+B$ that
+    \[
+        (a_1 + b_1) + (a_2 + b_2) = (a_1 + a_2) + (b_1 + b_2) \in A + B
+    \]
+    and $0 + 0 \in A + B$. Furthermore $(-a_1 - b_1) \in A + B$ and $(a_1 + b_1) + (-a_1 - b_1) = 0$. Therefore $A + B$ is an ideal of $R$.
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    Since $0 \in R$ and for any ideal $N$ of $R$ it follows $rx \in N$ for any $x \in R$, $0 \in N$ by choosing $r = 0$. Therefore $0 \in A$ and $0 \in B$ meaning
+    \[
+        A = \qty{a + 0 : a \in A} \subseteq \qty{a + b : a \in A, b \in B} = A + B
+    \]
+    and
+    \[
+        B = \qty{0 + b : b \in B} \subseteq \qty{a + b : a \in A, b \in B} = A + B
+    .\qedhere\]
+\end{proof}
+
+\subsection*{27.35}
+\subsubsection*{Part A}
+\begin{proof}
+    $AB$ is closed under addition since 
+    \[
+        \sum_{i = 1}^n a_i b_i + \sum_{j = 1}^m a_j b_j = \sum_{k = 1}^{m +n} a_k b_k \in AB
+    .\]
+    Since $A$ and $B$ are both ideals, then for any $r \in R$
+    \[
+        r \sum_{i = 1}^n a_i b_i = \sum_{i = 1}^n (r a_i) b_i \in AB
+    \]
+    since $r a_i \in A$ and
+    \[
+        \qty(\sum_{i = 1}^n a_i b_i)r = \sum_{i = 1}^n a_i (b_i r) \in AB
+    \]
+    since $b_i r \in B$. Furthermore since $0 \in A, B$ then $(0) (0) = 0 \in AB$ and $-(a_i b_i) = (-a_i) b_i$ then $AB$ has both an additive identity and inverses. Therefore $AB$ is an ideal of $R$.
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    Since $a_i b_i$ must be in $A$ since $A$ is an ideal and must also simultaneously be in $B$ since it is an ideal, then $a_i b_i$ is in $A \cap B$. Since $A$ and $B$ are closed under addition, then any sum of $a_i b_i$ must therefore be in $A$ and $B$ simultaneously meaning any element of $AB$ must be in $A \cap B$. Hence $AB \subseteq A\cap B$.
+\end{proof}
+
+\end{document}

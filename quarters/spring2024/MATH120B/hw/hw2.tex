@@ -1,0 +1,119 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{2}
+\input{hw_preamble.tex}
+
+\begin{document}
+
+% §19: 2, 10, 12, 23, 27, 28, 29, 30;
+
+\subsection*{2}
+For $\Z_7$ the solution is $3$ and in $\Z_{23}$ it is $16$.
+
+\subsection*{10}
+The characteristic of $\Z_6 \times \Z_{15}$ is $\lcm(6,15) = 30$
+
+\subsection*{12}
+Since $\mathcal{R}$ has characteristic $3$, $3\cdot x = 0$ for all $x \in \mathcal{R}$. Therefore
+\begin{align*}
+    (a+b)^9 &= \qty((a+b)^3)^3 \\
+    &= \qty(a^3 + 3a^2 b + 3ab^2 + b^3)^3 \\
+    &= \qty(a^3 + b^3)^3 \\
+    &= a^9 + 3a^6 b^3 + 3a^3 b^6 + b^9 \\
+    &= a^9 + b^9
+\end{align*}
+
+\subsection*{23}
+\begin{proof}
+    Let $\mathcal{R}$ be a division ring. Note that $0^2 = 0$ and $1^2 = 1$, hence $0$ and $1$ are idempotent. Assume towards contradiction there is some $a \in \mathcal{R}$ that is idempotent and $a \neq 0$ and $a \neq 1$. Then $a^2 = a \implies a(a-1) = 0$. Since $\mathcal{R}$ is a division ring and $a \neq 0$, there exists $a^{-1}$ meaning $a - 1 = 0 \implies a = 1$, a contradiction. Hence $\mathcal{R}$ only has 2 idempotents ($0$ and $1$).
+\end{proof}
+
+\subsection*{27}
+By the previous exercise, the unity of an integral domain is the unique non-zero idempotent element of $\mathcal{D}$. Therefore any subdomain of $\mathcal{D}$ has the same unity as $\mathcal{D}$. Therefore since characteristic is defined as the smallest $n \in \Z_+$ such that $n \cdot 1 = 0$ or $0$ if $n$ doesn't exist, then any subdomain will have the same characteristic since it has the same unity.
+
+\subsection*{28}
+\begin{proof}
+    Let $X$ be a subdomain of an integral domain $\mathcal{D}$. Note $X$ contains the same unity as $\mathcal{D}$. Therefore since $X$ is closed under addition, $n \cdot 1 \in X$ for all $n \in \Z$. Hence the set $R = \qty{n \cdot 1 : n \in \Z}$ is a subset of $X$. $R$ is closed under addition since $(n \cdot 1) + (m \cdot 1) = (m + n) \cdot 1$. Since $(-n \cdot 1) + (n \cdot 1) = 0$ and $0 \cdot 1 = 0$, $R$ also contains $0$ and has all additive inverses meaning $\langle R, + \rangle$ is an abelian group. $R$ is closed under multiplication since $(n \cdot 1) (m \cdot 1) = (mn) \cdot 1$. It also follows $1 \cdot 1 = 1$ meaning $R$ must be a commutative ring with unity. Since any product $xy = 0$ in $R$ is also a product in $\mathcal{X}$, $R$ must have no zero divisors. Therefore $R$ is a subdomain of all subdomains $\mathcal{X}$.
+\end{proof}
+
+\subsection*{29}
+\begin{proof}
+    Assume towards contradiction that an integral domain $\mathcal{D}$ has a characteristic of $mn$ where $m,n > 1$. Then by the distributive laws $(m \cdot 1)(n \cdot 1) = (mn) \cdot 1 = 0$. Since $\mathcal{D}$ is an integral domain, this means that either $m \cdot 1 = 0$ or $n \cdot 1 = 0$. However, $m, n < mn$ meaning if either case was true, the characteristic would be smaller than $mn$. This is a contradiction since the characteristic is the smallest possible integer $k$ such that $k \cdot 1 = 0$. Therefore $\mathcal{D}$ must have a zero or prime characteristic.
+\end{proof}
+
+\subsection*{30}
+\subsubsection*{Part A}
+\begin{proof}
+    Examine the axioms for $S$ to be a ring.
+    \begin{enumerate}
+        \item[$\mathcal{R}_1 )$]
+            Since both $\langle R, + \rangle$ and $\langle Z, + \rangle$ (or $\langle \Z_n, + \rangle$) are abelian groups, their direct product is also an abelian group. Since addition on $S$ is defined in the same manner as the direct product, $\langle S, + \rangle$ is an abelian group.
+        \item[$\mathcal{R}_2 )$]
+            Let $(r_1,n_1), (r_2,n_2), (r_3,n_3) \in S$. Then
+            \begin{align*}
+                (r_1, n_1) \qty[(r_2, n_2)(r_3, n_3)] &= (r_1, n_1) \qty[(r_2 r_3 + n_2 \cdot r_3 + n_3 \cdot r_2, n_2 n_3)] \\
+                &= (r_1 r_2 r_3 + n_2 \cdot r_1 r_3 + n_3 \cdot r_1 r_2 \;+ \\
+                &\hspace{0.7cm}n_1 \cdot r_2 r_3 + (n_1 n_2) \cdot r_3 + (n_1 n_3) \cdot r_2 \;+\\
+                &\hspace{0.63cm}(n_2 n_3) \cdot r_1, n_1 n_2 n_3)
+            \end{align*}
+            which equals
+            \[
+                (r_1r_2r_3 + (n_2 n_3) \cdot r_1 + (n_1 n_3) \cdot r_2 + (n_1 n_2) \cdot r_3 + n_3 \cdot r_1 r_2 + n_1 \cdot r_2 r_3 + n_2 \cdot r_1 r_3, n_1 n_2 n_3)
+            .\]
+            Grouping the first two terms gives
+            \begin{align*}
+                \qty[(r_1, n_1) (r_2, n_2)](r_3, n_3) &= \qty[(r_1 r_2 + n_1 \cdot r_2 + n_2 \cdot r_1, n_1 n_2)] (r_3, n_3) \\
+                &= (r_1 r_2 r_3 + n_1 \cdot r_2 r_3 + n_2 \cdot r_1 r_3 \;+ \\
+                &\hspace{0.7cm} n_3 \cdot r_1 r_2 + (n_1 n_3) \cdot r_2 + (n_2 n_3) \cdot r_1 \;+\\
+                &\hspace{0.63cm}(n_1 n_2) \cdot r_3, n_1 n_2 n_3).
+            \end{align*}
+            Since addition is commutative and the distributivity laws hold, it is equal to
+            \[
+                (r_1r_2r_3 + (n_2 n_3) \cdot r_1 + (n_1 n_3) \cdot r_2 + (n_1 n_2) \cdot r_3 + n_3 \cdot r_1 r_2 + n_1 \cdot r_2 r_3 + n_2 \cdot r_1 r_3, n_1 n_2 n_3)
+            .\]
+            Therefore multiplication is associative.
+        \tcbbreak
+        \item[$\mathcal{R}_3 )$]
+            Checking the left distributive law
+            \begin{align*}
+                (r_1, n_1) \qty[(r_2, n_2) + (r_3, n_3)] &= (r_1, n_1) (r_2 + r_3, n_2 + n_3) \\
+                &= (r_1 (r_2 + r_3) + (n_2 + n_3)\cdot r_1 + n_1 \cdot (r_2 + r_3), n_1(n_2 + n_3)) \\
+                &= (r_1 r_2 + n_2 \cdot r_1 + n_1 \cdot r_2, n_1 n_2) + (r_1 r_3 + n_3 \cdot r_2 + n_2\cdot r_3, n_1 n_3) \\
+                &= (r_1, n_1) (r_2, n_2) + (r_1, n_1) (r_3, n_3)
+            \end{align*}
+            Therefore the left distributivity law holds. The right law follows from a similar argument. \qedhere
+    \end{enumerate}
+\end{proof}
+
+\subsubsection*{Part B}
+\begin{proof}
+    Consider $(0, 1) \in S$. Note that
+    \[
+        (0,1) (r, n) = (0r + 1\cdot r + n \cdot 0, 1\cdot n) = (r, n)
+    \]
+    and
+    \[
+        (r, n)(0, 1) = (r0 + n \cdot 0 + 1 \cdot r, n \cdot 1) = (r, n)
+    .\]
+    Therefore $(0,1) \in S$ is unity.
+\end{proof}
+
+\subsubsection*{Part C}
+\begin{proof}
+    By the previous part, $(0, 1)$ is the unity of $S$. Assume that $R$ has characteristic $n \neq 0$. Note $\Z_n$ is a ring of characteristic $n$, meaning $n$ is the smallest integer such that $n \cdot 1_{\Z_{n}} = 0_{\Z_{n}}$. Since $n \cdot 0_{R} = 0_{R}$ for any $n$, it follows $n \cdot (0,1) = (0,0)$. Therefore $n$ is the characteristic of $S$. Assume that $R$ has characteristic $0$. Then $S = R \times \Z$. $\Z$ has characteristic zero meaning there is no $n \in \Z_+$ such that $n \cdot 1 = 0$. Note then that for any $n \in \Z_+$ that $n \cdot (0,1) = (n \cdot 0, n \cdot 1) \neq (0,0)$. Hence $S$ has characteristic $0$.
+\end{proof}
+
+\subsubsection*{Part D}
+\begin{proof}
+    Let $\conj{S} = \qty{(r,0) : r \in \R} \subseteq S$ and $r_1, r_2 \in R$. Note that $(0,0) \in \conj{S}$, $(r_1, 0) - (r_2, 0) = (r_1 - r_2, 0) \in \conj{S}$, and $(r_1, 0)(r_2, 0) = (r_1r_2, 0) \in \conj{S}$. Therefore $\conj{S}$ is a subring of $S$. Consider the requirements for $\phi$ to be an isomorphism between $R$ and $\conj{S}$.
+    \begin{itemize}
+        \item
+            Note that $\phi(r_1 + r_2) = (r_1 + r_2, 0) = (r_1, 0) + (r_2, 0) = \phi(r_1) + \phi(r_2)$ and $\phi(r_1 r_2) = (r_1 r_2, 0) = (r_1, 0) (r_2, 0) = \phi(r_1) \phi(r_2)$. Therefore $\phi$ is a homomorphism.
+        \item
+            Assume that $\phi(r_1) = \phi(r_2)$. Then $(r_1, 0) = (r_2, 0)$ meaning $(r_1 - r_2, 0) = (0, 0)$. Therefore $r_1 = r_2$ hence $\phi$ is injective. Let $(r, 0) \in \conj{S}$. Note that $\phi(r) = (r,0)$, hence $\phi$ is onto. Therefore $\phi$ is a bijection between $R$ and $\conj{S}$
+    \end{itemize}
+    Since $\phi$ is a one-to-one and onto homomorphism between $R$ and $\conj{S}$, the statement holds.
+\end{proof}
+
+\end{document}
