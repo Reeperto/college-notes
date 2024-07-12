@@ -1,6 +1,6 @@
 #/usr/bin/env fish
 
-cd ~/.schoolFiles/
+cd ~/.school_files/
 
 git add .
 git commit -m "Automatic Update"
