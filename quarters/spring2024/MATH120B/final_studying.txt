@@ -1,0 +1,25 @@
+Let E be an extension field of F, and let α ∈ E be algebraic over F. If deg(α, F) = n, then F(α) is an n-dimensional vector space over F with basis {1, α, · · · , α n−1 }. Furthermore, every element β of F(α) is algebraic over F, and deg(β, F) ≤ deg(α, F).
+
+DEFINITIONS:
+
+# Subfield
+
+K ⊆ L is a subfield of a field L if K is a field with respect to the field operations of L. This is denoted by K ⩽ L
+
+# Extension Field
+
+A field E is an extension field of some field F if F ⩽ E
+
+# Algebraic/Transcendental over a field
+
+Let E be an extension field of F and α ∈ E. α is algebraic over F if there exists some non zero f(x) ∈ F[x] such that f(α) = 0. If no such f(x) exists, then α is transcendental over F.
+
+# Degree of algebraic number over a field
+
+Let E be an extension field of F and α ∈ E be algebraic over F. Then irr(α, F) is the irreducible polynomial with α as a root, and deg(α, F) is the degree of such polynomial.
+
+# Simple Extension
+
+Let E be an extension field of F. E is a simple extension of F if E = F(α) for some α ∈ E.
+
+

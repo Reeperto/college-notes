@@ -1,0 +1,527 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{2}
+\input{hw_preamble.tex}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\begin{document}
+
+% 4.1: 3,7,11,13,15,17,27,31,33,43
+
+\subsection*{2.2.1}
+\begin{tasks}
+    \task $A \cap B$ is the set of students within a mile of the school that walk to class 
+    \task $A \cup B$ is the set of students who are within a mile of the school or walk to class
+    \task $A - B$ is the set of students who are within a mile of the school but do not walk to class
+    \task $B - A$ is the set of students who walk to class that are not within a mile of the school
+\end{tasks}
+
+\subsection*{2.2.3}
+\begin{tasks}
+    \task $\qty{0,1,2,3,4,5,6}$
+    \task $\qty{3}$
+    \task $\qty{1,2,4,5}$
+    \task $\qty{0,6}$
+\end{tasks}
+
+\subsection*{2.2.9}
+\begin{tasks}
+    \task We will show that both sets are subsets of each other.
+    \begin{proof}
+        Let $x \in U$. If $x \in A$, then $x \in A \cup \conj{A}$. If $x \notin A$, then $x \in \conj{A}$ and hence $x \in A \cup \conj{A}$. Therefore $U \subseteq A \cup \conj{A}$. Since $A$ and $\conj{A}$ are subsets of $U$ by definition, then $A \cup \conj{A} \subset U$. Therefore $A \cup \conj{A} = U$.
+    \end{proof}
+    \task We will show that $A \cap \conj{A}$ contains no elements.
+    \begin{proof}
+        Let $x \in A$. Then by the definition of the complement, $x \notin \conj{A}$. Therefore none of the elements in $A$ are in  $\conj{A}$ and hence $A \cap \conj{A} = \varnothing$.
+    \end{proof}
+\end{tasks}
+
+\subsection*{2.2.13}
+\begin{proof}
+    Let $x \in A$. Then $x \in A \cup B$ and hence $x \in A \cap (A \cup B)$. Therefore $A \subseteq A \cap (A \cup B)$. Let $x \in A \cap (A \cup B)$. Then $x \in A$ and hence $A \cap (A \cup B) \subseteq A$. Therefore $A \cap (A \cup B) = A$.
+\end{proof}
+
+\subsection*{2.2.21}
+\subsubsection*{Part A}
+\begin{proof}
+    Let $x \in A - B$. Then $x \in A$ and $x \notin B$. Therefore $x \in \conj{B}$ meaning $x \in A \cap \conj{B}$. Hence $A - B \subseteq A \cap \conj{B}$. Let $x \in A \cap \conj{B}$. Then $x \in A$ and $x \in \conj{B}$. Therefore $x \notin B$ meaning $x \in A - B$. Hence $A \cap \conj{B} \subseteq A - B$ giving $A - B = A \cap \conj{B}$.
+\end{proof}
+
+\subsubsection*{Part B} % TODO
+\begin{proof}
+    
+\end{proof}
+
+\subsection*{2.2.27}
+\begin{tasks}
+    \task $\qty{4,6}$
+    \task $\qty{0,1,2,3,4,5,6,7,8,9,10}$
+    \task $\qty{4,5,6,8,10}$
+\end{tasks}
+
+\subsection*{2.2.51}
+\begin{proof}
+    Assume towards contradiction that $A$ is an infinite set and $A \cup B$ is a finite set. Since $A \cup B$ is finite, it has $n$ elements where $n$ is a natural number. However, $A$ has more than $n$ elements since it is infinite. Since all the elements of $A$ are in $A \cup B$, then $A \cup B$ has more than $n$ elements, a contradiction.
+\end{proof}
+
+\subsection*{2.3.7}
+\begin{tasks}
+    \task $\dom(f) = \Z^+ \times \Z^+$ and $\range(f) = \Z^+$
+    \task $\dom(f) = \Z^+$ and $\range(f) = \qty{n \in \Z : 0 \leq n \leq 9}$
+    \task $\dom(f) = $ set of all bit strings and $\range(f) = \N_0$
+    \task $\dom(f) = $ set of all bit strings and $\range(f) = \N_0$
+\end{tasks}
+
+\subsection*{2.3.11}
+Only $(a)$ is onto since every element of $\qty{a,b,c,d}$ is in the range of $f$.
+
+\subsection*{2.3.13}
+Only $(a)$ and $(d)$ are onto. $(b)$ is not onto since it maps integers to strictly positive integers. $(c)$ is not onto since there is no integer whose cube is $2$.
+
+\subsection*{2.3.15}
+\begin{tasks}
+    \task The function is onto since for any $n \in \Z$ we have $f(n, 0) = n$.
+    \task The function is not onto since there is no $m,n \in \Z$ such that $m^2 + n^2 = 10$.
+    \task The function is onto for any $n \in \Z$ we have $f(n, 0) = n$.
+    \task The function is not onto since $f[\Z \times \Z] = \Z^+ \neq \Z$
+\end{tasks}
+
+\subsection*{2.3.23}
+Only $(a)$ and $(c)$ are bijections since the image of the $\R$ under both is $\R$ itself. $(b)$ and $(d)$ are not bijections because they are not onto.
+
+\subsection*{2.3.31}
+\begin{tasks}(2)
+    \task $f(S) = \qty{1, 0, 0, 0, 1, 3}$
+    \task $f(S) = \qty{0, 0, 1, 3, 5, 8}$
+    \task $f(S) = \qty{0, 8, 16, 40}$
+    \task $f(S) = \qty{1, 12, 33, 65}$
+\end{tasks}
+
+\subsection*{2.3.37}
+\begin{proof}
+    It is not true in general. Consider $f : 2 \Z \to \Z : n \mapsto \frac{n}{2}$ and $g : \Z \to \Z : n \mapsto 2n$. Note that $f$ is onto and $(f \circ g)(n) = n$ and is also onto. However $g$ is not onto.
+\end{proof}
+
+\subsection*{2.3.47}
+\begin{proof}
+    Note that
+    \[
+        f^{-1}(\conj{S}) = \qty{a \in A : f(a) \notin S} = \conj{\qty{a \in A : f(a) \in S}} = \conj{f^{-1}(S)}
+    .\]
+    Hence both are equal.
+\end{proof}
+
+\subsection*{2.3.73}
+\begin{proof}
+    Let $x \in U$ and $f_S$ be defined as given.
+    \begin{enumerate}[label=\alph*)]
+        \item % ----------------------------------------------------------------
+        If $x \in A \cap B$, then $x \in A$ and $x \in B$. Therefore $f_{A \cap B}(x) = 1$ and $f_{A}(x) \cdot f_{B}(x) = 1 \cdot 1 = 1$. If $x \notin A \cap B$, then $x \notin A$ or $x \notin B$. Therefore $f_{A \cap B}(x) = 0$ and since one of $f_{A}(x)$ or $f_{B}(x)$ are zero meaning $f_{A}(x) \cdot f_{B}(x) = 0$. Therefore in either case $f_{A \cap B}(x) = f_{A}(x) \cdot f_{B}(x)$.
+        \item % ----------------------------------------------------------------
+        There are three cases to consider.
+        \begin{itemize}
+            \item Assume that $x \in A \cup B$ and $x \in A \cap B$. Then $f_{A \cup B}(x) = 1$ and 
+            \[
+                f_A(x) + f_B(x) - f_A(x) \cdot f_B(x) = 1 + 1 - f_{A\cap B}(x) = 1 + 1 - 1 = 1
+            .\]
+        \item Assume that $x \in A \cup B$ and $x \notin A \cap B$. Then $f_{A \cup B}(x) = 1$. Since $x \notin A \cap B$, then either $x \notin A$ or $x \notin B$. Therefore
+            \[
+                f_A(x) + f_B(x) - f_A(x) \cdot f_B(x) = 0 + 1 + f_{A \cap B}(x) = 0 + 1 + 0 = 1
+            .\]
+        \item Assume that $x \notin A \cup B$. Then $f_{A \cup B}(x) = 0$. Since $x \notin A \cup B$, $x \notin A$ and $x \notin B$ meaning
+            \[
+                f_A(x) + f_B(x) - f_A(x) \cdot f_B(x) = 0 + 0 - 0 \cdot 0 = 0
+            .\]
+        \end{itemize}
+        In all possible cases, the two sides are equal.
+        \item % ----------------------------------------------------------------
+        Let $x \in \conj{A}$. Then $f_{\conj{A}}(x) = 1$. Since $x \in \conj{A}$, $x \notin A$ meaning $1 - f_A(x) = 1 - 0 = 1$. Same holds for $x \notin \conj{A}$.
+        \item % ----------------------------------------------------------------
+        Let $x \in A \bigoplus B$. Then $x \in A, x \notin B$ or $x \notin A, x \in B$. Therefore
+        \[
+            f_A(x) + f_B(x) - 2 f_A(x) \cdot f_B(x) = 1
+        .\]
+        Same holds for $x \notin A \bigoplus B$.
+    \end{enumerate}
+\end{proof}
+
+\subsection*{2.4.3}
+\begin{tasks}(2)
+    \task $a_0 = 2, a_1 = 3, a_2 = 5, a_3 = 9$
+    \task $a_0 = 1, a_1 = 4, a_2 = 27, a_3 = 256$
+    \task $a_0 = 0, a_1 = 0, a_2 = 1, a_3 = 1$
+    \task $a_0 = 0, a_1 = 1, a_2 = 2, a_3 = 3$
+\end{tasks}
+
+\subsection*{2.4.7}
+The sequences $a_n = 2^n$, $a_n = 1 + \left\lfloor \frac{(n+1)^2}{3} \right\rfloor$, and $a_{n+1} = a_{n} + (n-1)$ all satisfy this condition.
+
+\subsection*{2.4.11}
+\begin{tasks}
+    \task $a_0 = 6, a_1 = 17, a_2 = 49, a_3 = 143, a_4 = 421$
+    \task Note that
+    \begin{itemize}
+        \item $a_2 = 49 = 85 - 36 = 5(17) - 6(6) = 5 a_1 - 5 a_0$ 
+        \item $a_3 = 143 = 245 - 102 = 5(49) - 6(17) = 5 a_2 - 6 a_1$
+        \item $a_4 = 421 = 715 - 294 = 5(143) - 6(49) = 5 a_3 - 6 a_2$
+    \end{itemize}
+    \task 
+    For $n \geq 2$,
+    \begin{align*}
+        5 a_{n-1} - 6 a_{n-2} &= 5 (2^{n-1} + 5 \cdot 3^{n-1}) - 6(2^{n-2} + 5\cdot 3^{n-2}) \\
+                              &= 5 \cdot 2^{n-1} + 25 \cdot 3^{n-1} - 6 \cdot 2^{n-2} - 30 \cdot 3^{n-2} \\
+                              &= 5 \cdot 2^{n-1} + 25 \cdot 3^{n-1} - 3 \cdot 2^{n-1} - 10 \cdot 3^{n-1} \\
+                              &= 2 \cdot 2^{n-1} + 15 \cdot 3^{n-1} \\
+                              &= 2^n + 5 \cdot 3^n \\
+                              &= a_n
+    \end{align*}
+\end{tasks}
+
+\subsection*{2.4.13}
+\begin{tasks}(3)
+    \task Yes
+    \task No
+    \task No
+    \task Yes 
+    \task Yes
+    \task Yes
+    \task No
+    \task No
+\end{tasks}
+
+\subsection*{2.4.15} % TODO
+
+\subsection*{2.4.25}
+\begin{tasks}
+    \task 1 one followed by 1 zero, 2 ones followed by 2 zeroes, etc. Next three terms would be $1,1,1$
+    \task Each integer greater than 1 with each even integer repeated twice. Next three terms would be $9, 10, 10$
+    \task $a_n = 2^{\frac{n}{2}}$ for even $n$ and $0$ otherwise. Next three terms would be $32, 0, 64$
+    \task $a_n = 3 \cdot 2^n$. Next three terms would be $384, 768, 1536$
+    \task $a_n = 15 - 7n$. Next three terms would be $-34, -41, -48$
+    \task $a_n = \frac{(n+1)^2 + n + 5}{2}$. Next three terms would be $57, 68, 80$
+    \task $a_n = 2n^3$. Next three terms would be $1024, 1458, 2000$
+    \task $a_n = 1 + n!$. Next three terms would be $362881, 3628801, 39916801$
+\end{tasks}
+
+\subsection*{2.4.29}
+\begin{tasks}(2)
+    \task $\displaystyle \sum_{k=1}^5 k + 1 = 5 + \sum_{k = 1}^5 k = 5 + \frac{5\cdot 6}{2} = 20$
+    \task $\displaystyle \sum_{j=0}^4 (-2)^j = 1 - 2 + 4 - 8 + 16 = 11$
+    \task $\displaystyle \sum_{i=1}^{10} 3 = 30$
+    \task $\displaystyle \sum_{j=0}^8 2^{j+1} - 2^j = \sum_{j=0}^8 2^j = 2^9 - 1$
+\end{tasks}
+
+\subsection*{2.4.31}
+\begin{tasks}(2)
+    \task $S_8 = 1533$
+    \task $S_8 - 1 = 510$
+    \task $S_8 - (1 - 3) = 4923$
+    \task $S_8 = 9842$
+\end{tasks}
+
+\subsection*{2.4.33}
+\begin{tasks}(2)
+    \task $21$
+    \task $78$
+    \task $18$
+    \task $18$
+\end{tasks}
+
+\subsection*{2.4.35}
+Since for every term $a_i$ with $0 < i < n$ appears both as a positive and negative term in the sum, they all cancel out leaving behind just $a_n - a_0$.
+
+\subsection*{2.4.39}
+\[
+    \sum_{k=100}^{200} k = \sum_{k=0}^{100} (k+100) = 100 \cdot 101 + \frac{100(101)}{2} = 15150
+.\]
+
+\subsection*{2.5.1}
+\begin{tasks}(2)
+    \task Countably infinite; $−1, −2, −3, −4, \ldots$
+    \task Countably infinite; $0, 2, -2, 4, -4,\ldots$
+    \task Countably infinite; $99, 98, 97, \ldots$
+    \task Uncountable 
+    \task Finite 
+    \task Countably infinite; $0, 7, −7, 14, −14, \ldots$
+\end{tasks}
+
+\subsection*{2.5.3}
+\begin{tasks}(2)
+    \task Countable; map $n$ to the bit string contain $n$ ones
+    \task Countable; follow the diagonalization arguement excluding top three rows
+    \task Uncountable 
+    \task Uncountable
+\end{tasks}
+
+\subsection*{2.5.7}
+For each $n$, take the guest in room $2n$ and put them in room $n$ of the original building and the guest in room $2n + 1$ into room $n$ of the new building.
+
+\subsection*{2.5.11}
+\begin{tasks}
+    \task $[-1,0] \cap [0,1] = \qty{0}$
+    \task $([-2,-1] \cup \Z) \cap ([1,2] \cup \Z) = \Z$
+    \task $[-2, 2] \cap [-1, 1] = [-1, 1]$
+\end{tasks}
+
+\subsection*{2.5.17}
+No. Notice that $[-4, 4] - [-1, 1] = [-4, -1) \cup (1, 4]$ which is still uncountable.
+
+\subsection*{2.5.27}
+\begin{proof}
+    Let $A_1, A_2, A_3, \ldots$ be a list of countably countable sets. For a given set $A_i$, its elements can be listed out since it is countable in the manner
+    \[
+        a_{i1}, a_{i 2}, a_{i 3}, \ldots
+    .\]
+    Listing out the elements of $\bigcup A_i$ is simply listing out all elements $a_{ij}$ where $i + j = 2$, then $i + j = 3$, and so forth.
+\end{proof}
+
+\subsection*{2.5.31} % TODO
+
+\subsection*{2.6.1}
+\begin{tasks}(3)
+    \task $A$ is a $3\times 4$ matrix
+    \task $\mqty[1 \\ 4 \\ 3]$
+    \task $\mqty[2 & 0 & 4 & 6]$
+    \task $1$
+    \task $A^t = \mqty[
+    1 & 2 & 1 \\
+    1 & 0 & 1 \\
+    1 & 4 & 3 \\
+    3 & 6 & 7 \\
+    ]$
+\end{tasks}
+
+\subsection*{2.6.5}
+\[
+    A = \mqty[
+    \frac{9}{5} & -\frac{6}{5} \\
+    -\frac{1}{5} & \frac{4}{5}
+    ]
+.\]
+
+\subsection*{2.6.7}
+Note that for any entry in $A_{ij}$ that
+\[
+    A_{ij} + \mathbf{0}_{ij} = \mathbf{0}_{ij} + A_{ij} = A_{ij} + 0 = A_{ij}
+.\]
+Therefore the resultant matrix remains unchanged.
+
+\subsection*{2.6.11}
+If $AB$ has size $m \times n$, then $BA$ has size $n \times m$.
+
+\subsection*{2.6.15}
+\[
+    A^n = \mqty[
+    1 & n \\
+    0 & 1 \\
+    ]
+.\]
+
+This can be shown via induction using the base case
+\[
+    A^2  = AA = \mqty[
+    1 & 1 \\
+    0 & 1 \\
+    ] \mqty[
+    1 & 1 \\
+    0 & 1 \\
+    ] = \mqty[
+    1 & 2 \\
+    0 & 1 \\
+    ]
+.\]
+
+\subsection*{2.6.25}
+The system can be expressed as a matrix linear equation
+\[
+    \underbrace{\mqty[
+    7 & -8 & 5 \\
+    -4 & 5 & -3 \\
+    1 & -1 & 1
+    ]}_A 
+    \underbrace{\mqty[
+    x_1 \\
+    x_2 \\
+    x_3
+    ]}_x =
+    \underbrace{\mqty[
+    5 \\
+    -3 \\
+    0
+    ]}_b
+.\]
+
+The solution is then $A^{-1} b$ where $A^{-1}$ is given in exercise 18. Hence
+\[
+    x_1 = 1, x_2 = -1, x_3 = -2
+.\]
+
+\subsection*{2.6.27}
+\begin{tasks}(3)
+    \task
+    \[
+        A \lor B = \mqty[
+        1 & 1 & 1 \\
+        1 & 1 & 1 \\
+        1 & 0 & 1 \\
+        ]
+    .\]
+    \task
+    \[
+        A \land B = \mqty[
+        0 & 0 & 1 \\
+        1 & 0 & 0 \\
+        0 & 0 & 1 \\
+        ]
+    .\]
+    \task
+    \[
+        A \odot B = \mqty[
+        1 & 1 & 1 \\
+        1 & 1 & 1 \\
+        1 & 0 & 1 \\
+        ]
+    .\]
+\end{tasks}
+
+\subsection*{2.6.29}
+\begin{tasks}(3)
+    \task
+    \[
+        A^{[2]} = \mqty[
+        1 & 0 & 0 \\
+        1 & 1 & 0 \\
+        1 & 0 & 1
+        ]
+    .\]
+    \task
+    \[
+        A^{[3]} = \mqty[
+        1 & 0 & 0 \\
+        1 & 0 & 1 \\
+        1 & 1 & 0
+        ]
+    .\]
+    \task
+    \[
+        A \lor A^{[2]} \lor A^{[3]} = \mqty[
+        1 & 0 & 0 \\
+        1 & 1 & 1 \\
+        1 & 1 & 1
+        ]
+    .\]
+\end{tasks}
+
+\subsection*{3.1.1}
+max := 1 $\to$
+i := 2 $\to$
+max := 8 $\to$
+i := 3 $\to$
+max := 12 $\to$
+i := 4 $\to$
+i := 5 $\to$
+i := 6 $\to$
+i := 7 $\to$
+max := 14 $\to$
+i := 8 $\to$
+i := 9 $\to$
+i := 10 $\to$
+i := 11
+
+\subsection*{3.1.3}
+\begin{algorithm}[H]
+    \caption{Sum of sequece of integers $a_1, \ldots, a_n$}
+    \begin{algorithmic}[1]
+        \Function{sum\_sequence}{$a_1, \ldots, a_n$}
+            \State sum $\coloneq a_1$
+            \For{$i = 2$ to ${n}$}
+                \State $\text{sum} = \text{sum} + a_i$
+            \EndFor
+            \State\Return sum
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection*{3.1.9}
+\begin{algorithm}[H]
+    \caption{Determine if a given string is a palindrome}
+    \begin{algorithmic}[1]
+        \Function{is\_palindrome}{$s_0 s_1 \ldots s_{n-1}:$ string}
+            \For{$i = 0$ to $\left\lfloor \frac{n}{2} \right\rfloor - 1$}
+            \If{$s_i \neq s_{n - i - 1}$}
+                \State \Return False
+            \EndIf
+            \EndFor
+            \State\Return True
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection*{3.1.13}
+\begin{enumerate}[leftmargin=3cm]
+    \item[Linear Search)] i := 1 $\to$ i := 2 $\to$ i := 3 $\to$ i := 4 $\to$ i := 5 $\to$ i := 6 $\to$ i := 7 $\to$ location := 7
+    \item[Binary Search)] i := 1 $\to$ j := 8 $\to$ m := 4 $\to$ i := 5 $\to$ m := 6 $\to$ i := 7 $\to$ m := 7 $\to$ j := 7 $\to$ location := 7
+\end{enumerate}
+
+\subsection*{3.2.1}
+\begin{tasks}(3)
+    \task $C = 1, k = 10$
+    \task $C = 4, k = 7 $
+    \task Is not $O(x)$ 
+    \task $C = 5, k = 1 $
+    \task $C = 1, k = 0 $
+    \task $C = 1, k = 2 $
+\end{tasks}
+
+\subsection*{3.2.3}
+Since $x^4 + 9x^3 + 4x + 7 \leq 10000x^3$ for $x > 10$, we have witness $C = 10000, k = 10$.
+
+\subsection*{3.2.7}
+\begin{tasks}(2)
+    \task $n = 3$
+    \task $n = 3$
+    \task $n = 1$
+    \task $n = 0$
+\end{tasks}
+
+\subsection*{3.2.11}
+Since we are dealing with polynomials,
+\[
+    O\qty(3x^4 + 1) = O\qty(x^4) = O\qty(\frac{x^4}{2})
+.\]
+
+\subsection*{3.3.3}
+It is $O\qty(n^2)$ since 
+\[
+    \sum_{i=0}^n \sum_{k=i}^n 1 \sim n^2
+.\]
+
+\subsection*{3.3.11}
+\subsubsection*{Part A}
+\begin{algorithm}[H]
+    \caption{Determine if a disjoint subset pair exists}
+    \begin{algorithmic}[1]
+        \Function{exists\_disjoint}{$S_1, \ldots, S_n$: subsets of $\qty{1, \ldots, n}$}
+        \State disjoint $\coloneq$ False
+        \For{$i = 1$ to $n$}
+            \For{$j = i+1$ to $n$}
+                \State disjoint = True 
+                \For{$k = 1$ to $n$}
+                \If{$k \in S_i \land k \in S_j$}
+                    \State disjoint = False
+                \EndIf
+                \EndFor
+            \EndFor
+        \EndFor
+        \State \Return disjoint
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\subsubsection*{Part B}
+Since there are $O\qty(n^2)$ sets considered and $O\qty(n)$ integers tested for each, then in total the answer is on the order of $O\qty(n^3)$.
+
+\end{document}

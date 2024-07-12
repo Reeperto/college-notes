@@ -1,0 +1,3 @@
+# Chapter 1 QA
+
+In section 1.4 there is a discussion about how quantifiers bind variables, but it's mentioned that statements can have unbound variables. An example given is ∃x(x+y=1) in which y is unbound. I also saw it mentioned that a proposition requires that all variables be bound. Is there then a use to statements involving free variables? Or are those statements just malformed and not of use. And maybe a little out of scope, but it seems from some research that the idea of binding when it comes to variables and quantifiers in math has an identical parallel concept in linguistics (ex. pronouns in a sentence like "Lisa found his book". His in this instance is the free term).

@@ -1,0 +1,70 @@
+%% Creator: Inkscape 1.3.2 (091e20ef0f, 2023-11-25), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'monthsvenn_svg-tex.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1011.85006714bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.76920126)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{monthsvenn_svg-tex.pdf}}%
+    \put(0.36454316,0.67317558){\color[rgb]{0.11764706,0.11764706,0.11764706}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}January\end{tabular}}}}%
+    \put(0.51130404,0.55680459){\color[rgb]{0.11764706,0.11764706,0.11764706}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}February\end{tabular}}}}%
+    \put(0.64336411,0.40707885){\color[rgb]{0.11764706,0.11764706,0.11764706}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}March\end{tabular}}}}%
+    \put(0.64039924,0.13727603){\color[rgb]{0.11764706,0.11764706,0.11764706}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}April\end{tabular}}}}%
+    \put(0.21642338,0.41893832){\color[rgb]{0.11764706,0.11764706,0.11764706}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}May\end{tabular}}}}%
+    \put(0.1319247,0.34481666){\color[rgb]{0.11764706,0.11764706,0.11764706}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}June\end{tabular}}}}%
+    \put(0.24755448,0.26624771){\color[rgb]{0.11764706,0.11764706,0.11764706}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}July\end{tabular}}}}%
+    \put(0.31278153,0.35074639){\color[rgb]{0.11764706,0.11764706,0.11764706}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}August\end{tabular}}}}%
+    \put(0.52476946,0.27069501){\color[rgb]{0.11764706,0.11764706,0.11764706}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}September\end{tabular}}}}%
+    \put(0.41198102,0.10243885){\color[rgb]{0.11764706,0.11764706,0.11764706}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}October\end{tabular}}}}%
+    \put(0.74849333,0.30849705){\color[rgb]{0.11764706,0.11764706,0.11764706}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}November\end{tabular}}}}%
+    \put(0.73515143,0.54123904){\color[rgb]{0.11764706,0.11764706,0.11764706}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}December\end{tabular}}}}%
+  \end{picture}%
+\endgroup%
