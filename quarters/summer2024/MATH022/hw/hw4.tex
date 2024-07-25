@@ -1,0 +1,103 @@
+\documentclass[12pt,titlepage]{extarticle}
+\input{../preamble.tex}
+
+\def\homeworknumber{4}
+\input{hw_preamble.tex}
+
+% \usepackage{algorithm}
+% \usepackage{algpseudocode}
+
+\begin{document}
+
+% 6.4: 1,7,9,11
+% 9.1: 1,3,7,9,53,55,57
+% 9.2: 1,5,,7,9,11,17,19
+% 9.4: 1,5,7,9,19,25,27
+% 9.5: 1,9,27
+% 9.6: 1,7,23
+% 10.1: 1,5,9 (light overview of the concept)
+
+\subsection*{6.1.5}
+Once at Denver, I have 6 choices of flights to get to San Francisco from which I have an independent choice of 7 more flights to get to New York. Therefore there are $6 \cdot 7 = 42$ ways for me to get to New York from Denver.
+
+\subsection*{6.1.7}
+There are 26 choices for each letter meaning there are $26^3 = 17576$ three letter initials.
+
+\subsection*{6.1.9}
+There is only 1 choice for the the first letter (the letter A) and then 26 choices for each remaining initial, hence there are $1 \cdot 26^2 = 676$ such initials.
+
+\subsection*{6.1.23}
+\begin{tasks}
+    \task $\left\lfloor \frac{999}{7} \right\rfloor - \left\lceil \frac{100}{7} \right\rceil + 1 = 128$
+    \task $(999 - 100 + 1) - \qty(\left\lfloor \frac{999}{7} \right\rfloor - \left\lceil \frac{100}{7} \right\rceil + 1) = 450$
+    \task $\frac{999}{111} = 9$
+    \task $(999 - 100 + 1) - \qty(\left\lfloor \frac{999}{4} \right\rfloor - \left\lceil \frac{100}{4} \right\rceil + 1) = 900 - (249 - 25 + 1) = 675$
+    \task By the inclusion exclusion principle,
+    \[
+        \qty[\left\lfloor \frac{999}{3} \right\rfloor - \left\lceil \frac{100}{3} \right\rceil + 1] + \qty[\left\lfloor \frac{999}{4} \right\rfloor - \left\lceil \frac{100}{4} \right\rceil + 1] - \qty[\left\lfloor \frac{999}{12} \right\rfloor - \left\lceil \frac{100}{12} \right\rceil + 1] = 450
+    .\]
+    \task $(999 - 100 + 1) - 450 = 450$
+    \task $\qty[\left\lfloor \frac{999}{3} \right\rfloor - \left\lceil \frac{100}{3} \right\rceil + 1] - \qty[\left\lfloor \frac{999}{12} \right\rfloor - \left\lceil \frac{100}{12} \right\rceil + 1] = 225$
+    \task $\qty[\left\lfloor \frac{999}{12} \right\rfloor - \left\lceil \frac{100}{12} \right\rceil + 1] = 75$
+\end{tasks}
+
+\subsection*{6.1.27}
+There are 3 choices of representative for each of the 50 states, hence $3^{50}$ choices.
+
+\subsection*{6.1.29}
+There are $26^2 \cdot 10^4 + 10^2 \cdot 26^4 = 52,457,600$ such license plates.
+
+\subsection*{6.1.33}
+\begin{tasks}(2)
+    \task $(26-5)^8 = 37,822,859,361$
+    \task $\frac{21!}{(21-8)!} = 8,204,716,800$
+    \task $5 \cdot 26^7 = 40,159,050,880$
+    \task $5 \cdot \frac{25!}{(25-7)!} = 12,113,640,000$
+    \task $26^8 - 21^8 = 171,004,205,215$
+    \task $8 \cdot 5 \cdot 21^7 = 72,043,541,640$
+    \task $26^7 - 21^7 = 6,230,721,635$
+    \task $26^6 - 21^6 = 223,149,655$
+\end{tasks}
+
+\subsection*{6.1.35}
+\begin{tasks}(2)
+    \task There are none
+    \task $5! = 120$
+    \task $\frac{6!}{(6-5)!} = 6! = 720$
+    \task $\frac{7!}{(7-5)!} = 2520$
+\end{tasks}
+
+\subsection*{6.3.1}
+\[
+    \begin{array}{ccc}
+        \qty{a,b,c} & \qty{b,a,c} & \qty{c,a,b} \\
+        \qty{c,b,a} & \qty{b,c,a} & \qty{a,c,b}
+    \end{array}
+\]
+
+\subsection*{6.3.3}
+There are $6! = 720$ permutations.
+
+\subsection*{6.3.5}
+\begin{tasks}(2)
+    \task $P(6,3) = \frac{6!}{3!} = 120$
+    \task $P(6,5) = 6! = 720$
+    \task $P(8,1) = 8$
+    \task $P(8,5) = 8(7)(6)(5)(4) = 6720$
+    \task $P(8,8) = 8! = 40,320$
+    \task $P(10,9) = 10! = 3,628,800$
+\end{tasks}
+
+\subsection*{6.3.9}
+\begin{tasks}
+    \task $C(5,1) = 5$
+    \task $C(5,3) = \frac{5(4)(3)}{3!} = 10$
+\end{tasks}
+
+\subsection*{6.3.13}
+\subsection*{6.3.17}
+\subsection*{6.3.21}
+\subsection*{6.3.23}
+\subsection*{6.3.29}
+
+\end{document}
