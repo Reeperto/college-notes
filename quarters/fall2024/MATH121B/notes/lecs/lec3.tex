@@ -1,0 +1,104 @@
+\documentclass{subfiles}
+
+\begin{document}
+
+\section{A General Notion of Norms}
+
+It is important to note that while every inner product gives rise to a norm, not every norm can be reverse engineered into a inner product.
+
+\begin{example}
+    On the vector space $M_{n\times n}(\R)$,
+    \[
+        \norm{A} = \sup_{\substack{x \in \R^n \\ \norm{x} \leq 1}} A x
+    \]
+    defines a norm, but there exists no inner product that gives rise to it.
+\end{example}
+
+\begin{definition}[Generalized Norm]
+    Let $V$ be a vector space. Then a norm $\norm{\cdot} : V \to \R$ satisfies $\forall x,y \in V$ and $s \in C$
+    \begin{enumerate}
+        \item $\norm{x} \geq 0$ and $\norm{x} = 0 \Leftrightarrow x = 0$
+        \item $\norm{sx} = |s| \norm{x}$
+        \item $\norm{x + y} \leq \norm{x} + \norm{y}$ \hfill $(\star)$
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    The map
+    \[
+        \norm{x}_{\infty} \coloneq \max_{i \in \qty{1, \ldots, n}} |x_i|
+    \]
+    on $\R^n$ is a norm. Consider the requirements to be a norm
+    \begin{enumerate}
+        \item Since the norm takes the maximum of the absolute value of each component, the norm will be a non negative result, meaning $\norm{x}_{\infty} \geq 0$. If the norm is $0$, then the largest term in magnitude was $0$, hence $x = 0$. The reverse follows easily.
+        \item With $s \in C$
+            \begin{align*}
+                \norm{sx}_{\infty} &= \max_{i \in \qty{1,\ldots,n}} |sx_i| \\
+                &= |s| \max_{i \in \qty{1,\ldots,n}} |x_i| \\
+                &= |s| \norm{x}_{\infty}.
+            \end{align*}
+        \item The triangle inequality follows from the triangle inequality on the reals and the linearity of the maximum function.
+    \end{enumerate}
+\end{example}
+
+There is a famous and important class of norms defined on euclidean space known as the $p$-norms. They give rise to $L^p$ spaces which are crucial to functional analysis.
+
+\begin{definition}[$L_p$ Norm]
+    Given $p \in \N$, the map
+    \[
+        L_p(x) \coloneq \sum_{i} \qty\Big(|x_i|^p)^\frac{1}{p}
+    \]
+    is a norm for any $\R^n$.
+\end{definition}
+
+\chapter{Orthogonality}
+
+When a vector space has an inner product, there is a notion of orthgonality as was defined in \nameref{def:orthogonal_vectors}. Orthogonality of vectors tends to make computations and proofs simpler, hence building and working in an orthogonal basis is advantageous. Imposing normality of the basis further improves the situation.
+
+\begin{definition}[Orthogonal Basis]
+    A basis $\beta = \qty{v_1, \ldots, v_n}$ of a vector space $V$ with inner product $\langle \cdot, \cdot \rangle$ is an \textbf{orthonormal basis} if $\norm{v_i} = 1$ and $\langle v_i, v_j \rangle = 0$ for $i \neq j$.
+\end{definition}
+
+\begin{theorem}
+    Suppose $\beta = \qty{v_1, \ldots, v_n}$ is an orthonormal basis of some vector space $V$. Then for any $x \in V$
+    \[
+        x = \sum_{i} \langle x, v_i \rangle v_i
+    .\]
+\end{theorem}
+
+\begin{proof}
+    Since $\beta$ is a basis, $x \in V$ can be written as
+    \[
+        x = \sum_{i} a_i v_i
+    \]
+    for scalars $a_i$. Then note
+    \begin{align*}
+        \langle x, v_i \rangle = \left\langle \sum_{j} a_j v_j, v_i \right\rangle &= \sum_{j} \langle a_j v_j, v_i \rangle \\
+        &= \sum_j a_j \langle v_j, v_i \rangle \\
+        &= a_i \langle v_i, v_i \rangle \\
+        &= a_i
+    \end{align*}
+     Substituting the expression for each $a_i$ gives the desired result.
+\end{proof}
+
+\begin{theorem}
+    Any set of non-zero orthogonal vectors is linearly independent.
+\end{theorem}
+
+\begin{proof}
+    Let $\qty{v_1, \ldots, v_k}$ be a set of orthogonal vectors with $v_i \neq 0$. Assume towards contradiction that this set is not linearly independent. Then there exists scalars $a_i$ such that
+    \[
+        \sum_i a_i v_i = 0
+    .\]
+    Therefore at least one $a_i$ is non-zero. Note that for any $v_j$
+    \[
+        \left\langle \sum_i a_i v_i, v_j \right\rangle = a_j \norm{v_j}^2
+    \]
+    from the previous proof. But at the same time
+    \[
+        \left\langle \sum_i a_i v_i, v_j \right\rangle = \langle 0, v_j \rangle = 0
+    \]
+    meaning $a_j \norm{v_j}^2 = 0$. Since $v_j$ is non-zero, then $a_j = 0$. However, this is true for any $j$ meaning all $a_i$ must be zero, a contradiction.
+\end{proof}
+
+\end{document}

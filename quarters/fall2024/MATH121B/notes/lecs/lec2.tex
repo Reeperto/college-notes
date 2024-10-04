@@ -1,0 +1,92 @@
+\documentclass{subfiles}
+
+\begin{document}
+
+\chapter{Inner Products and Norms}
+
+When working in $\R^n$, there is the familar idea of the scalar/dot product. Given two vectors $\mathbb{x}$ and $\mathbb{y}$ then their scalar product is
+\[
+    x \cdot y = \sum_{i=1}^n x_i y_i
+.\]
+The concept of euclidean length is also captured by scalar products via
+\[
+    \sqrt{x \cdot x} = \sqrt{\sum_{i=1}^n x_i^2}
+.\]
+
+This scalar product on $\R^n$ does not generalize to other vector spaces, or it may not be a useful notion of length/product of vectors even when working in $\R^n$. Therefore it is useful to generalize this notion of a scalar product.
+
+\begin{definition}[Inner Product]
+    A mapping $\langle \cdot , \cdot \rangle : V \times V \to F$ is an inner product if for all $x,y \in V$ and $s \in F$
+    \begin{enumerate}
+        \item $\langle x + z, y \rangle = \langle x, y \rangle + \langle z, y \rangle$ for all $z \in V$
+        \item $\langle sx, y \rangle = s \langle x, y \rangle$
+        \item $\conj{ \langle x, y \rangle } = \langle y, x \rangle$
+        \item $\langle x, x \rangle > 0$ when $x \neq 0$
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    The vector space $M_{n\times n}(\R)$ of real $n$ by $n$ matrices can be endowed with an inner product where $\langle A, B \rangle = \trace{B^t A}$.
+\end{example}
+
+\begin{example}
+    \label{ex:C_inner_product}
+    The vector space $C([0, 2 \pi])$ of continuous complex functions on the interval $0$ to $2 \pi$ can be endowed with an inner product where 
+    \[
+        \langle f, g \rangle = \int_0^{2\pi} f(t) \conj{g(t)} \dd t
+    .\]
+\end{example}
+
+An important concept that can be generalized from $\R^n$ is orthogonality. It is common to compare the scalar product of two vectors to $0$ to determine if they are orthogonal or not. This motivates a generalized notion of orthogonality.
+
+\begin{definition}[Orthogonal Vectors]
+    \label{def:orthogonal_vectors}
+    Let $V$ be a vector space equipped with an inner product $\langle \cdot, \cdot \rangle$. Then $x,y \in V$ are orthogonal if $\langle x, y \rangle = 0$.
+\end{definition}
+
+\begin{example}
+    Consider from \ref{ex:C_inner_product} the family of functions $f_m(t) = e^{i m t}$. Then for any $f_m, f_n$
+    \begin{align*}
+        \langle f_m, f_n \rangle &= \int_0^{2 \pi} f_m(\tau) \conj{f_n(\tau)} \dd \tau \\
+                                 &= \int_0^{2 \pi} e^{i (m - n) \tau} \dd \tau \\
+                                 &= \eval{\frac{e^{i (m-n) \tau}}{i (m-n)}}_0^{2 \pi} = 0.
+    \end{align*}
+    Hence all $f_m$ are orthogonal to each other.
+\end{example}
+
+\begin{definition}[Vector Norm]
+    Let $V$ be a vector space equipped with an inner product $\langle \cdot, \cdot \rangle$. Then the \textbf{norm or length} of $x$ is
+    \[
+        \norm{x} = \sqrt{ \langle x, x \rangle }
+    .\]
+\end{definition}
+
+\begin{theorem}[Cauchy-Schwarz Inequality]
+    \label{thm:cauchyshwartz}
+    For any vector space $V$ with an inner product $\langle \cdot , \cdot \rangle$ and $x,y \in V$,
+    \[
+        \abs{\langle x, y \rangle} \leq \norm{x} \norm{y}
+    .\]
+\end{theorem}
+
+\begin{proof}
+    % TODO: Write out the proof.
+    % The general idea is to consider || x - 𝛌y ||^2 and to expand using
+    % the rules of the inner product. Then one can minimize as a function of lambda
+    % to get 0 <= <x,x> - |<x,y>|^2 / <y, y>.
+\end{proof}
+
+\noindent
+The triangle inequality then follows quickly from Cauchy-Schwarz.
+
+\begin{theorem}[Triangle Inequality]
+    \label{thm:tri_inquality}
+    For any vector space $V$ with an inner product $\langle \cdot , \cdot \rangle$ and $x,y \in V$,
+    \[
+        \norm{x + y} \leq \norm{x} + \norm{y}
+    .\]
+\end{theorem}
+
+This means that for any inner product on a space, it has its own version of a triangle inequality. This offloads the burden of proving directly that a norm satisfies the triangle inequality to finding some notion of an inner product that gives rise to that norm. 
+
+\end{document}
