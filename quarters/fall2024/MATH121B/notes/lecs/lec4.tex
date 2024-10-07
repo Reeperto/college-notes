@@ -1,0 +1,50 @@
+\documentclass{subfiles}
+
+\begin{document}
+
+\begin{theorem}[Grahm-Schmidt]
+    Let $V$ be an inner product space and $S = \qty{w_1, \ldots, w_n}$ a set of linearly independent vectors. Then the set $\tilde{S} = \qty{v_1, \ldots, v_n}$ where
+    \begin{align*}
+        v_1 = w_1 \hspace{1cm} v_k = w_k - \sum_{j=1}^{k-1} \frac{\langle w_k, v_j \rangle}{\norm{v_j}^2} v_j
+    \end{align*}
+    is an orthogonal set with $\spann{S} = \spann{\tilde{S}}$.
+\end{theorem}
+
+\begin{proof}
+    % TODO: Finish this proof
+    We proceed with induction on the dimension of $V$. The base case is trivial as a set of a single vector is orthogonal and no process needs to be done. Let $k \in \mathbb{N}$ and assume that Gram-Schmit is possible for any inner product space with dimension $k-1$. Consider a $k$ dimensional inner product space $V$ and let $S = \qty{w_1, \ldots, w_{k-1}}$ be a linearly independent set of vectors. The span of these vectors form a subspace of $V$ of dimension $k-1$ with the same induced inner product and therefore it is possible to produce the set $\tilde{S} = \qty{w_1, \ldots, w_{k-1}}$ of orthogonal vectors.
+\end{proof}
+
+\begin{corollary}
+    Every basis of an inner product space can be turned into an orthonormal basis.
+\end{corollary}
+
+\begin{definition}[Orthogonal Complement]
+    Given a set of vectors $S$ in an inner product space $V$, the orthogonal complement is
+    \[
+        S^\perp \coloneq \qty{v \in V : \langle v, s \rangle = 0 \text{ for all $s \in S$}}
+    .\]
+\end{definition}
+
+\begin{theorem}[Orthogonal Decomposition]
+    Let $W \subseteq V$ be a subspace. Given $y \in V$, there is a unique $w \in W$ and $z \in W^\perp$ such that $y = w + z$. Equivalently, $V = W \oplus W^\perp$.
+\end{theorem}
+
+\begin{proof}
+    Let $\beta = \qty{v_1, \ldots, v_n}$ be an orthonormal basis of $W$ and $k = \dim W$. Note that
+    \[
+        w = \sum_i \langle v_i, w \rangle v_i
+    .\]
+    Let $z = y - w$. Note that
+    \begin{align*}
+        \langle z, v_j \rangle &= \left\langle y - \sum_i \langle v_i, w \rangle v_i, v_j \right\rangle \\ 
+        &= \langle y, v_j \rangle - \langle y, v_j \rangle \langle v_j, v_j \rangle \\
+        &= \langle y, v_j \rangle - \langle y, v_j \rangle = 0.
+    \end{align*}
+    Therefore $z$ is orthogonal to all the vectors in $\beta$. It is orthogonal to every vector in $W$ since taking $v \in W$ gives
+    \[
+        \langle z, v \rangle = \left\langle z, \sum_i \langle v, v_i \rangle v_i \right\rangle  = \sum_i \left\langle \langle v, v_i \rangle v_i, z \right\rangle = 0
+    .\]
+\end{proof}
+
+\end{document}

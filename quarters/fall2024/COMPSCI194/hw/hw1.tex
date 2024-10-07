@@ -1,0 +1,97 @@
+\documentclass{eeleyes}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[R]{\textbf{CS 164: Homework \#1}}
+\fancyhead[L]{Eli Griffiths}
+
+\usepackage{algorithm}
+\usepackage{physics}
+\usepackage{algpseudocode}
+
+\newtcolorbox{problem}{
+    colback  = white,
+    frame hidden,
+    borderline = {1.5pt}{0pt}{black},
+    sharp corners,
+}
+
+\begin{document}
+
+\subsection*{Problem 1}
+
+\begin{problem}
+    \subsubsection*{Part A}
+    Prove that the intersection of two convex sets is again convex. This implies that the intersection of a finite family of convex sets is convex as well.
+\end{problem}
+
+\begin{proof}
+    Let $A$ and $B$ be convex sets. Take $p,q \in A \cap B$. Note that both $p,q$ must be in $A$ and $B$, and since both are convex it follows $\overline{pq} \in A$ and $\overline{pq} \in B$. But this just means $\overline{pq} \in A \cap B$.
+\end{proof}
+
+\begin{problem}
+    \subsubsection*{Part B}
+    Prove that the smallest perimeter polygon $\mathcal{P}$ containing a set of points $P$ is convex.
+\end{problem}
+
+\begin{proof}
+    Assume towards contradiction that $\mathcal{P}$ is the smallest perimeter polygon containing $P$ but is not convex. Then there must exist two points with their line $L$ not contained in $\mathcal{P}$. We can pick $p,q \in L$ such that $p,q$ are on the boundary of $\mathcal{P}$. Note that the boundary path connecting $p$ and $q$ cannot be a straight line, otherwise non-convexity would be violated. Therefore the line $\overline{pq}$ provides a strict lower bound on the distance between $p$ and $q$ compared to all other paths, including the current boundary. Therefore by replacing the boundary path between $p$ and $q$ with the line $\overline{pq}$, the overall perimeter of $\mathcal{P}$ would decrease. However, this means $\mathcal{P}$ could not have been the minimum perimeter polygon, a contradiction.
+\end{proof}
+
+\begin{problem}
+    \subsubsection*{Part C}
+    Prove that any convex set containing the set of points $P$ contains the smallest perimeter polygon $\mathcal{P}$.
+\end{problem}
+
+\begin{proof}
+    Assume towards contradiction that $A$ is a convex set containing $P$ that does not contain $\mathcal{P}$. Consider $A \cap \mathcal{P}$. Since $A$ does not contain $\mathcal{P}$, there must be a portion of $\mathcal{P}$ outside of $A$. This portion can be replaced by the corresponding portion of $A \cap \mathcal{P}$. Using (a) and (b) we know that $A \cap \mathcal{P}$ must be a convex polygon. Since it is an intersection of polygons, the perimeter must also be smaller than $\mathcal{P}$, a contradiction.
+\end{proof}
+
+\subsection*{Problem 2}
+
+\begin{problem}
+    Describe an $O(n \log n)$ time method for determining if two sets, $A$ and $B$, of $n$ points in the plane can be separated by a line.
+\end{problem}
+The main idea for the following algorithm is that two sets of points are separable by a line if and only if the their convex hulls (with their interiors) do not intersect. Since the computed convex hulls are just their boundary, testing for this intersection means checking that
+\begin{enumerate}
+    \item None of the edges intersect
+    \item Neither convex hull is contained within the other
+\end{enumerate}
+
+If it is determined that none of the edges intersect, then the convex hulls can only be in 2 configurations: one is contained entirely inside the other, or they are separated. 
+\marginpar{$(\star)$}
+This means that checking if a convex hull is contained in another simplifies to checking if a single point is contained. In total then, the algorithm is 
+
+\begin{algorithm}[H]
+\caption{Determine if two point sets $A$ and $B$ are separable}
+\begin{algorithmic}[1]
+    \Procedure{CanSeperate}{$A,B$}
+        \State $\mathcal{H}_1 \gets \Call{ConvexHull}{A}$
+        \State $\mathcal{H}_2 \gets \Call{ConvexHull}{B}$
+
+        \If{\Call{EdgesIntersect}{$\mathcal{H}_1, \mathcal{H}_2$}}
+            \State \Return{False}
+        \ElsIf{$\exists p \in \mathcal{H}_1$ in $\mathcal{H}_2$}
+            \State \Return{False}
+        \ElsIf{$\exists p \in \mathcal{H}_2$ in $\mathcal{H}_1$}
+            \State \Return{False}
+        \Else
+            \State \Return{True}
+        \EndIf
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+The time complexity can be broken down by examining each major line of the algorithm.
+
+\begin{enumerate}
+    \item[\textbf{2 and 3})] 
+        Finding the convex hull per set of points takes $O(n \log n)$ using the Graham Scan algorithm.
+    \item[\textbf{4})] 
+        Determining if any of the edges intersect can be done via a sweeping line algorithm in $O(e \log e)$ where $e$ is the total number of edges in both $\mathcal{H}_1$ and $\mathcal{H}_2$. Since the number of edges per convex hull is $O(n)$, $\textsc{EdgesIntersect}$ is $O(n \log n)$.
+    \item[\textbf{6 and 8})]
+        As previously discussed (see $(\star)$ above), checking if such a point $p$ exists in either case can be done by just picking any point from one set and then checking if it is contained in the other. This boils down to a winding number problem which can be solved in a single pass over the edges. Therefore the time complexity is just $O(n)$.
+\end{enumerate}
+The total time complexity then is $O(2 n \log n + n \log n + 2n) = O(n \log n)$.
+
+\end{document}
