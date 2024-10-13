@@ -1,0 +1,84 @@
+\documentclass{article}
+
+\include{hw1_preamble}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[lcr]{}
+\fancyhead[l]{Eli Griffiths}
+\fancyhead[c]{MATH $121$B}
+\fancyhead[r]{HW \#$1$}
+
+\newcommand{\iprd}[1]{\left\langle #1 \right\rangle}
+
+\begin{document}
+
+\section*{Problem 1}
+\begin{proof}
+    Let $n$ denote the size of $C$. We proceed with induction on $n$. Consider the base case $n = 1$. Then
+    \[
+        \det(C - t I) = \mqty| -a_0 - t | = (-1)^n (t + a_0)
+    \]
+    hence the base case holds. If we therefore we consider the case of $n+1$ expanding along the first row gives
+    \[
+        \det (C - t I) = -t \mqty|
+            -t & 0 & \cdots & -a_1 \\
+            1  & -t & \cdots & -a_2 \\
+            \vdots & \ddots & \ddots & \vdots \\
+            0 & 0 & 1 & -a_{n-1} - t \\
+        | - a_0 I
+    .\]
+\end{proof}
+
+\section*{Problem 2}
+It is true for all matrices $A$. 
+
+\begin{proof}
+    Assume that $a_0 \neq 0$. Note that
+    \[
+        p_{A}(0) = (-1)^n (0^n + a_{n-1} \cdot 0^{n-1} + \ldots + a_0) = (-1)^n a_0 \neq 0
+    .\]
+    By the definition of the characteristic polynomial, we know $p_A(t) = \det(A - t I)$. Therefore
+    \[
+        p_A(0) = \det(A - 0(I)) = \det A = (-1)^n a_0 \neq 0
+    .\]
+    Since the determinant of $A$ is non-zero, it must be invertible.
+\end{proof}
+
+\section*{Problem 3}
+\subsection*{Part A}
+\begin{proof}
+    We will show $\iprd{A,B}_{F}$ satisfies the 4 requirements of being an inner product. Let $A,B \in M_{n\times n}(\R)$ and $s \in \R$.
+    \begin{enumerate}
+        \item 
+        We want to show linearity of the inner product. Take $C \in M_{n\times n}(\R)$. Note that both the transpose and trace are linear maps, therefore
+        \begin{align*}
+            \iprd{A + C, B}_F &= \tr((A+C)^T B) \\
+            &= \tr((A^T + C^T) B) \\
+            &= \tr(A^T B + C^T B) \\
+            &= \tr(A^T B) + \tr(C^T B) = \iprd{A,B}_F + \iprd{C,B}_F
+        \end{align*}
+        Therefore $\iprd{\cdot, \cdot}_F$ satisfies linearity.
+        \item
+            We want to show $\iprd{sA,B} = s \iprd{A,B}$.
+    \end{enumerate}
+\end{proof}
+
+\subsection*{Part B}
+\begin{proof}
+    Let $A \in M_{n \times n}(\R)$ and assume that $A$ is diagonalizable. Then $A = P D P^{-1}$ where $P$ is unitary and $D$ is a diagonal matrix with its entries being the eigenvalues of $A$. Note that
+    \begin{align*}
+        A^T A &= \qty(P D P^{-1})^T \qty(P D P^{-1}) \\
+              &= \qty(P^{-1})^T D^{T} P^T P D P^{-1}
+              \intertext{Since $P$ is unitary, its transpose is its inverse giving}
+              &= P D^T I D P^{-1} \\
+              &= P D^2 P^{-1}.
+    \end{align*}
+    Therefore $A^T A$ is also diagonalizable. Note that $D^2$ will be a diagonal matrix as well with entries $\lambda_i^2$ where $\lambda_i$ are the original entries from $D$. Since $D^2$ is the diagonal matrix in the decomposition of $A^T A$, its entries $\lambda_i^2$ are the eigenvalues of $A^T A$. Since the trace of a matrix is equal to the sum of its eigenvalues, it follows
+    \[
+        \tr (A^T A) = \sum_{i=1}^n \lambda_i^2 \implies \norm{A}_{F} = \sqrt{\sum_{i=1}^n \lambda_i^2}
+    \]
+    which was to be shown.
+\end{proof}
+
+\end{document}
