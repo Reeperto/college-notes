@@ -18,28 +18,28 @@
 
 \begin{document}
 
-\subsection*{Problem 1}
+\section*{Problem 1}
 
 \begin{problem}
-    \subsubsection*{Part A}
+    \subsection*{Part A}
     Prove that the intersection of two convex sets is again convex. This implies that the intersection of a finite family of convex sets is convex as well.
 \end{problem}
 
 \begin{proof}
-    Let $A$ and $B$ be convex sets. Take $p,q \in A \cap B$. Note that both $p,q$ must be in $A$ and $B$, and since both are convex it follows $\overline{pq} \in A$ and $\overline{pq} \in B$. But this just means $\overline{pq} \in A \cap B$.
+    Let $A$ and $B$ be convex sets. Take $p,q \in A \cap B$. Note that both $p,q$ must then be in $A$ and $B$, and since both are convex it follows $\overline{pq} \in A$ and $\overline{pq} \in B$. But this just means $\overline{pq} \in A \cap B$.
 \end{proof}
 
 \begin{problem}
-    \subsubsection*{Part B}
+    \subsection*{Part B}
     Prove that the smallest perimeter polygon $\mathcal{P}$ containing a set of points $P$ is convex.
 \end{problem}
 
 \begin{proof}
-    Assume towards contradiction that $\mathcal{P}$ is the smallest perimeter polygon containing $P$ but is not convex. Then there must exist two points with their line $L$ not contained in $\mathcal{P}$. We can pick $p,q \in L$ such that $p,q$ are on the boundary of $\mathcal{P}$. Note that the boundary path connecting $p$ and $q$ cannot be a straight line, otherwise non-convexity would be violated. Therefore the line $\overline{pq}$ provides a strict lower bound on the distance between $p$ and $q$ compared to all other paths, including the current boundary. Therefore by replacing the boundary path between $p$ and $q$ with the line $\overline{pq}$, the overall perimeter of $\mathcal{P}$ would decrease. However, this means $\mathcal{P}$ could not have been the minimum perimeter polygon, a contradiction.
+    Assume towards contradiction that $\mathcal{P}$ is the smallest perimeter polygon containing $P$ but is not convex. Then there must exist two points in $\mathcal{P}$ with their line $L$ not contained in $\mathcal{P}$. We can pick $p,q \in L$ such that $p,q$ are on the boundary of $\mathcal{P}$ since $L$ must intersect the boundary in at least $2$ spots. Note that the boundary path connecting $p$ and $q$ cannot be a straight line, otherwise non-convexity would be violated. Therefore the line $\overline{pq}$ provides a strict lower bound on the distance between $p$ and $q$ compared to all other paths, including the current boundary. By replacing the boundary path between $p$ and $q$ with the line $\overline{pq}$, the overall perimeter of $\mathcal{P}$ would decrease. However, this means $\mathcal{P}$ could not have been the minimum perimeter polygon, a contradiction.
 \end{proof}
 
 \begin{problem}
-    \subsubsection*{Part C}
+    \subsection*{Part C}
     Prove that any convex set containing the set of points $P$ contains the smallest perimeter polygon $\mathcal{P}$.
 \end{problem}
 
@@ -47,12 +47,12 @@
     Assume towards contradiction that $A$ is a convex set containing $P$ that does not contain $\mathcal{P}$. Consider $A \cap \mathcal{P}$. Since $A$ does not contain $\mathcal{P}$, there must be a portion of $\mathcal{P}$ outside of $A$. This portion can be replaced by the corresponding portion of $A \cap \mathcal{P}$. Using (a) and (b) we know that $A \cap \mathcal{P}$ must be a convex polygon. Since it is an intersection of polygons, the perimeter must also be smaller than $\mathcal{P}$, a contradiction.
 \end{proof}
 
-\subsection*{Problem 2}
+\section*{Problem 2}
 
 \begin{problem}
     Describe an $O(n \log n)$ time method for determining if two sets, $A$ and $B$, of $n$ points in the plane can be separated by a line.
 \end{problem}
-The main idea for the following algorithm is that two sets of points are separable by a line if and only if the their convex hulls (with their interiors) do not intersect. Since the computed convex hulls are just their boundary, testing for this intersection means checking that
+The main idea for the following algorithm is that two disjoint convex sets always have a line that separates them (hyperplane separation theorem). Therefore if $A$ and $B$ have convex hulls that are disjoint, there must be a line that can separate the hulls and therefore the original sets of points. Since the computed convex hulls return just the boundary, testing for the set intersection requires checking
 \begin{enumerate}
     \item None of the edges intersect
     \item Neither convex hull is contained within the other
@@ -60,7 +60,7 @@ The main idea for the following algorithm is that two sets of points are separab
 
 If it is determined that none of the edges intersect, then the convex hulls can only be in 2 configurations: one is contained entirely inside the other, or they are separated. 
 \marginpar{$(\star)$}
-This means that checking if a convex hull is contained in another simplifies to checking if a single point is contained. In total then, the algorithm is 
+This means that checking if a convex hull is contained in another simplifies to checking if any point of one is contained in the other. In total then, the algorithm is 
 
 \begin{algorithm}[H]
 \caption{Determine if two point sets $A$ and $B$ are separable}
@@ -71,9 +71,9 @@ This means that checking if a convex hull is contained in another simplifies to 
 
         \If{\Call{EdgesIntersect}{$\mathcal{H}_1, \mathcal{H}_2$}}
             \State \Return{False}
-        \ElsIf{$\exists p \in \mathcal{H}_1$ in $\mathcal{H}_2$}
+        \ElsIf{$\mathcal{H}_1$ is contained in $\mathcal{H}_2$}
             \State \Return{False}
-        \ElsIf{$\exists p \in \mathcal{H}_2$ in $\mathcal{H}_1$}
+        \ElsIf{$\mathcal{H}_2$ is contained in $\mathcal{H}_1$}
             \State \Return{False}
         \Else
             \State \Return{True}
@@ -82,6 +82,7 @@ This means that checking if a convex hull is contained in another simplifies to 
 \end{algorithmic}
 \end{algorithm}
 
+\noindent
 The time complexity can be broken down by examining each major line of the algorithm.
 
 \begin{enumerate}
@@ -90,8 +91,153 @@ The time complexity can be broken down by examining each major line of the algor
     \item[\textbf{4})] 
         Determining if any of the edges intersect can be done via a sweeping line algorithm in $O(e \log e)$ where $e$ is the total number of edges in both $\mathcal{H}_1$ and $\mathcal{H}_2$. Since the number of edges per convex hull is $O(n)$, $\textsc{EdgesIntersect}$ is $O(n \log n)$.
     \item[\textbf{6 and 8})]
-        As previously discussed (see $(\star)$ above), checking if such a point $p$ exists in either case can be done by just picking any point from one set and then checking if it is contained in the other. This boils down to a winding number problem which can be solved in a single pass over the edges. Therefore the time complexity is just $O(n)$.
+        As previously discussed (see $(\star)$ above), checking if either convex hull contains the other can be done by just picking any point from one set and then checking if it is contained in the other. This can be solved multiple ways, but an example is using the winding number which can be found in a single pass over the edges. Therefore the time complexity is just $O(n)$.
 \end{enumerate}
+
+\noindent
 The total time complexity then is $O(2 n \log n + n \log n + 2n) = O(n \log n)$.
+
+\section*{Problem 3}
+\begin{problem}
+    \subsection*{Part A}
+    Show that the sign of the determinant
+    \[
+        D = \mqty|
+            1 & p_x & p_y \\
+            1 & q_x & q_y \\
+            1 & r_x & r_y
+        |
+    \]
+    determines whether $r$ lies left or right of the line.
+\end{problem}
+
+\begin{proof}
+    First note that
+    \begin{align*}
+        D &=
+        \mqty|
+            q_x & q_y \\
+            r_x & r_y \\
+        | + 
+        \mqty|
+            p_x & p_y \\
+            r_x & r_y \\
+        | + 
+        \mqty|
+            p_x & p_y \\
+            q_x & q_y \\
+        | \\
+        &= (q_x r_y - r_x q_y) + (p_x r_y - r_x p_y) + (p_x q_y - q_x p_y).
+    \end{align*}
+    If we let $u$ be the vector from $p$ to $q$ and $v$ be the vector from $q$ to $r$, then
+    \[
+        u = \mqty[q_x - p_x \\ q_y - p_y \\ 0], v = \mqty[r_x - q_x \\ r_y - q_y \\ 0]
+    \]
+    and
+    \begin{align*}
+        u \times v &= \mqty[
+            \hat{i} & \hat{j} & \hat{k} \\
+            q_x - p_x & q_y - p_y & 0 \\
+            r_x - q_x & r_y - q_y & 0 \\
+            ] \\
+                      &= \hat{k} \qty[(q_x - p_x)(r_y - q_y) - (r_x - q_x)(q_y - p_y)] \tag{Expand on col. 3} \\
+      &= \hat{k} \qty(q_x r_y - r_x q_y + p_x r_y - r_x p_y + p_x q_y - q_x p_y) \\
+      &= D \hat{k}.
+    \end{align*}
+    When discussing the cross product, the direction in which the vector points is determined by the right hand rule. Since $u$ and $v$ lie in the $xy$-plane, then the direction of the cross product is exactly the sign of the $\hat{k}$ component which is $D$. Applying the right hand rule implies that $D$ is positive when $r$ is on the left of $\overline{pq}$ and to the right when $D$ is negative.
+\end{proof}
+
+\begin{problem}
+    \subsection*{Part B}
+    Show that $|D|$ in fact is twice the surface of the triangle determined by $p$, $q$, and $r$.
+\end{problem}
+
+\begin{proof}
+    The cross product $u \times v$ has the property that its magnitude equals the area of the parallelogram where its two sides are $u$ and $v$. Note that the choices of $u$ and $v$ from (a) are sides of the triangle $\triangle pqr$. Since the parallelogram is two copies of this triangle and the magnitude of the cross product is the area of this parallelogram, $\sqrt{0^2 + 0^2 + D^2} = |D|$ would equal twice the area of the triangle $\triangle pqr$.
+\end{proof}
+
+\begin{problem}
+    \subsection*{Part C}
+    Why is this an attractive way to implement the basic test in algorithm \textsc{ConvexHull}? Give an argument for both integer and floating point coordinates.
+\end{problem}
+
+\begin{enumerate}
+    \item For either integer or floating point, the calculation is a fixed number of math operations meaning it can be done in constant time.
+    \item There is no need for angles or trig functions which would have required integer coordinates to be converted to floating point and could introduce potential numerical inaccuracies/be less robust
+    \item With integer arithmetic, the expression is well defined and \textbf{exact} as long as it doesn't overflow or underflows
+    \item Multiplication and addition are simple enough that it is possible to leverage arbitrary precision floating point numbers without incurring a high overhead cost
+\end{enumerate}
+
+\section*{Problem 4}
+
+\begin{problem}
+    Let $S$ be a set of $n$ line segments in the plane. Prove that the convex hull of $S$ is exactly the same as the convex hull of the $2n$ endpoints of the segments.
+\end{problem}
+
+\begin{proof}
+    Let $\mathcal{H}_s$ be the convex hull of the the line segments $S$ and $\mathcal{H}_p$ the convex hull of the endpoints of the segments of $S$. For a line segment $L \in S$, it has endpoints $p$ and $q$. Since $\mathcal{H}_p$ must contain these points and is convex, then $L$ must be in $\mathcal{H}_p$. Hence $\mathcal{H}_s \subseteq \mathcal{H}_p$. Note that any endpoint $p$ must be contained in a line segment from $S$, meaning $\mathcal{H}_p \subseteq \mathcal{H}_s$. Since both convex hulls are subsets of each other, they must be equal.
+\end{proof}
+
+\section*{Problem 5}
+
+\begin{problem}
+    Let $\mathcal{P}_1$ and $\mathcal{P}_2$ be two disjoint convex polygons with n vertices in total. Give an $O(n)$ time algorithm that computes the convex hull of $\mathcal{P}_1 \cup \mathcal{P}_2$.
+\end{problem}
+
+The key idea is that two convex polygon have two tangent lines, an upper and lower, that can be used to connect them together to be a larger convex polygon. Therefore the following algorithm finds the two tangents and then creates the new polygon by walking around the polygons starting at the end of the upper tangent and going around, across the lower tangent, and then around until the starting point of the upper tangent adding the points along the way.
+
+\algnewcommand\algorithmicin{\textbf{Input:}}
+\algnewcommand\algorithmicout{\textbf{Output:}}
+\algnewcommand\Input{\item[\algorithmicin]}
+\algnewcommand\Output{\item[\algorithmicout]}
+
+\begin{algorithm}[H]
+    \caption{Merge two convex polygons into their convex hull}
+    \begin{algorithmic}[1]
+        \Input Convex polygons $\mathcal{P}_1$ and $\mathcal{P}_2$ with vertices in clockwise order
+        \Output The convex hull $\mathcal{H}$ of $\mathcal{P}_1$ and $\mathcal{P}_2$ in clockwise order.
+        \Procedure{ConvexUnion}{$\mathcal{P}_1, \mathcal{P}_2$}
+            \State $\mathcal H \gets $ Empty point list
+            \State $T_{\text{upper}} \gets$ \Call{UpperTangent}{$\mathcal{P}_1, \mathcal{P}_2$}
+            \State $T_{\text{lower}} \gets$ \Call{LowerTangent}{$\mathcal{P}_1, \mathcal{P}_2$}
+            \State Append the points of $\mathcal{P}_2$ to $\mathcal{H}$ starting from the endpoint of $T_\text{upper}$ and going clockwise until and including the starting point of $T_\text{lower}$
+            \State Append the points of $\mathcal{P}_1$ to $\mathcal{H}$ starting from the endpoint of $T_\text{lower}$ and going clockwise until and including the starting point of $T_\text{upper}$
+            \State \Return{$\mathcal{H}$}
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+\noindent
+The upper tangent algorithm is as follows. The lower one is essentially identical except the turns considered just need to be reversed when checking lower tangency.
+
+\begin{algorithm}[H]
+    \caption{Find the upper tangent starting at $\mathcal{P}_1$ and ending at $\mathcal{P}_2$}
+\begin{algorithmic}[1]
+    \Procedure{UpperTangent}{$\mathcal{P}_1, \mathcal{P}_2$}
+        \State $v_i \gets $ vertex of $\mathcal{P}_1$
+        \State $q_j \gets $ vertex of $\mathcal{P}_2$
+        \While{$\overline{p_i q_i}$ is not an upper tangent}
+            \While{$p_i q_j$ is not tangent to $\mathcal{P}_1$}
+                \State $p_i \gets p_{i-1}$ \Comment{Move counter clockwise on $\mathcal{P}_1$}
+            \EndWhile
+            \While{$p_i q_i$ is not tangent to $\mathcal{P}_2$}
+                \State $q_j \gets q_{j+1}$ \Comment{Move clockwise on $\mathcal{P}_2$}
+            \EndWhile
+        \EndWhile
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\noindent
+Breaking down the time complexity:
+
+\begin{enumerate}
+    \item Checking if a line forms a tangent to a convex polygon can be done in constant time. In the context of the \textsc{UpperTangent} algorithm, this can be done by considering the turns $p_i \to q_j \to q_{j+1}$ and $p_i \to q_j \to q_{j-1}$ and seeing if they are the same kind of turn. If they are not, then the line cannot be tangent as it would therefore have two points on opposite sides of it and must be going through the polygon. Checking the turn directions is constant time so checking tangency is constant time.
+    \item For the while loop that checks for the upper tangent, the worst case scenario is that all points of $\mathcal{P}_1$ and $\mathcal{P}_2$ must be cycled through each time until the upper tangent is found. Since we are guaranteed that an upper tangent does exist and can bound the number of iterations, this worst case does terminate. Therefore \textsc{UpperTangent} and \textsc{LowerTangent} are $O(n)$.
+    \item For \textsc{ConvexUnion}, the appending process only visits a given vertex at most $1$ time. Since there is at most $n$ vertices, it is bounded by $n$ and is $O(n)$.
+\end{enumerate}
+
+\noindent
+In total then, the call to find both tangents and then walk the polygons and tangents to produce the final hull takes $O(n + n + n) = O(n)$
 
 \end{document}

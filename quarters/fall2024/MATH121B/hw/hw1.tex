@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\include{hw1_preamble}
+\input{hw1_preamble.tex}
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -19,16 +19,55 @@
     \[
         \det(C - t I) = \mqty| -a_0 - t | = (-1)^n (t + a_0)
     \]
-    hence the base case holds. If we therefore we consider the case of $n+1$ expanding along the first row gives
+    hence the base case holds. Assume that for a matrix of size $m \geq 1$ the given equation for the characteristic polynomial is correct. Consider the $(m+1) \times (m+1)$ matrix
     \[
-        \det (C - t I) = -t \mqty|
-            -t & 0 & \cdots & -a_1 \\
-            1  & -t & \cdots & -a_2 \\
-            \vdots & \ddots & \ddots & \vdots \\
-            0 & 0 & 1 & -a_{n-1} - t \\
-        | - a_0 I
+        C = \mqty(
+        0 & 0 & \cdots & 0 & -a_0 \\
+        1 & 0 & \cdots & 0 & -a_1 \\
+        0 & 1 & \cdots & 0 & -a_2 \\
+        \vdots & \vdots & & \vdots & \vdots \\
+        0 & 0 & \cdots & 0 & -a_{m-1} \\
+        0 & 0 & \cdots & 1 & -a_{m} \\
+        )
     .\]
+    Then finding the characteristic polynomial and expanding along the first row gives
+    \begin{align*}
+        \det(C - tI) &= \mqty|
+        -t & 0 & \cdots & 0 & -a_0 \\
+        1 & -t & \cdots & 0 & -a_1 \\
+        0 & 1 & \cdots & 0 & -a_2 \\
+        \vdots & \vdots & & \vdots & \vdots \\
+        0 & 0 & \cdots & -t & -a_{m-1} \\
+        0 & 0 & \cdots & 1 & -t - a_{m} \\
+        | \\
+        &= (-t)\mqty|
+        -t & 0 & \cdots & -a_1 \\
+        1 & -t & \cdots & -a_2 \\
+        \vdots & \ddots & \ddots & \vdots \\
+        0 & \cdots & 1 & -a_m - t
+        | + (-1)^{m} (-a_0) \det \mathcal{I}_{-t} \\
+        \intertext{By the induction hypothesis,}
+          &= (-t)(-1)^{m} (t^m + a_{m} t^{m-1} + \ldots + a_2 t + a_1) + (-1)^{m+1} a_0 \det \mathcal{I}_{-t} \\
+          &= (-1)^{m+1} (t^{m+1} + a_{m} t^{m} + \ldots + a_2 t^2 + a_1 t) + (-1)^{m+1} a_0 \det \mathcal{I}_{-t}
+    \end{align*}
+    where $\mathcal{I}_{-t}$ is the $m\times m$ identitiy matrix with the next upper diagonal as all $-t$. That is
+    \[
+        \mathcal{I}_{-t} = \mqty(
+        1 & -t & 0 & \cdots & 0 \\
+        0 & 1 & -t & \cdots & 0 \\
+        0 & 0 & 1 & \ddots & \vdots \\
+        \vdots & \vdots &  & \ddots  & -t \\
+         0 & 0 & \cdots & 0 & 1 \\
+        )
+    .\]
+    Since $\mathcal{I}_{-t}$ is an upper triangular matrix, its determinant is equal to the product of its diagonal which is simply $1$. Therefore
+    \begin{align*}
+        \det(C - tI) &= (-1)^{m+1} (t^{m+1} + a_{m} t^{m} + \ldots + a_2 t^2 + a_1 t) + (-1)^{m+1} a_0 \\
+        &= (-1)^{m+1} (t^{m+1} + a_{m} t^m + \ldots + a_1 t + a_0)
+    \end{align*}
+    which was to be shown.
 \end{proof}
+\newpage
 
 \section*{Problem 2}
 It is true for all matrices $A$. 
@@ -48,20 +87,46 @@ It is true for all matrices $A$.
 \section*{Problem 3}
 \subsection*{Part A}
 \begin{proof}
-    We will show $\iprd{A,B}_{F}$ satisfies the 4 requirements of being an inner product. Let $A,B \in M_{n\times n}(\R)$ and $s \in \R$.
+    We will show $\iprd{\cdot,\cdot}_{F}$ satisfies the requirements of being an inner product. Let $A,B \in M_{n\times n}(\R)$ and $s \in \R$. Some useful tools are
+    \begin{itemize}
+        \item The trace and transpose are linear operators. 
+        \item $(A^T A)_{ij} = \displaystyle\sum_{k=1}^n A_{ki} A_{kj} \implies \tr(A^T A) = \sum_{i=1}^n \sum_{j=1}^n A_{ij}^2$
+    \end{itemize}
+    We proceed with the 4 requirements of being an inner product.
     \begin{enumerate}
         \item 
-        We want to show linearity of the inner product. Take $C \in M_{n\times n}(\R)$. Note that both the transpose and trace are linear maps, therefore
+        We want to show linearity of the inner product. Take $C \in M_{n\times n}(\R)$. Note that
         \begin{align*}
             \iprd{A + C, B}_F &= \tr((A+C)^T B) \\
             &= \tr((A^T + C^T) B) \\
             &= \tr(A^T B + C^T B) \\
             &= \tr(A^T B) + \tr(C^T B) = \iprd{A,B}_F + \iprd{C,B}_F
         \end{align*}
-        Therefore $\iprd{\cdot, \cdot}_F$ satisfies linearity.
+        as a consequence of the linearity of the trace and transpose. Therefore $\iprd{\cdot, \cdot}_F$ satisfies linearity.
         \item
-            We want to show $\iprd{sA,B} = s \iprd{A,B}$.
+            We want to show $\iprd{sA,B}_{F} = s \iprd{A,B}_F$. This is the case since
+            \[
+                \iprd{sA,B}_F = \tr((sA)^T B) = \tr(sA^T B) = s \tr(A^T B) = s \iprd{A,B}_F
+            \]
+            using the fact the trace and transpose are linear operators.
+        \item
+            We want to show $\iprd{A, B}_F = \iprd{B, A}_F$. That is,
+            \[
+                \tr(A^T B) = \tr(B^T A)
+            .\]
+            Note that the trace of a matrix is the same as the trace of its transpose as the entries on the diagonal do not change. Therefore
+            \[
+                \tr(A^T B) = \tr(\qty(A^T B)^T) = \tr(B^T A)
+            \]
+            which was to be shown.
+        \item 
+            Assume that $A \neq 0$. Then there must be some entry of $A$ that is non zero. Therefore
+            \[
+                \iprd{A, A}_F = \tr(A^T A) = \sum_{i = 0}^n \sum_{j=0}^n A_{ij}^2 > 0
+            \]
+            since some $A_{ij}$ is non zero meaning its square must be larger than $0$ and every other term is greater than or equal to $0$.
     \end{enumerate}
+    $\iprd{\cdot, \cdot}_F$ satisifies the required conditions meaning it is an inner product.
 \end{proof}
 
 \subsection*{Part B}
@@ -76,9 +141,8 @@ It is true for all matrices $A$.
     \end{align*}
     Therefore $A^T A$ is also diagonalizable. Note that $D^2$ will be a diagonal matrix as well with entries $\lambda_i^2$ where $\lambda_i$ are the original entries from $D$. Since $D^2$ is the diagonal matrix in the decomposition of $A^T A$, its entries $\lambda_i^2$ are the eigenvalues of $A^T A$. Since the trace of a matrix is equal to the sum of its eigenvalues, it follows
     \[
-        \tr (A^T A) = \sum_{i=1}^n \lambda_i^2 \implies \norm{A}_{F} = \sqrt{\sum_{i=1}^n \lambda_i^2}
+        \tr (A^T A) = \sum_{i=1}^n \lambda_i^2 \implies \norm{A}_{F} = \sqrt{\sum_{i=1}^n \lambda_i^2} \qedhere
     \]
-    which was to be shown.
 \end{proof}
 
 \end{document}

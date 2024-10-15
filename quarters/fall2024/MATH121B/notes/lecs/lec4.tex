@@ -12,7 +12,9 @@
 
 \begin{proof}
     % TODO: Finish this proof
-    We proceed with induction on the dimension of $V$. The base case is trivial as a set of a single vector is orthogonal and no process needs to be done. Let $k \in \mathbb{N}$ and assume that Gram-Schmit is possible for any inner product space with dimension $k-1$. Consider a $k$ dimensional inner product space $V$ and let $S = \qty{w_1, \ldots, w_{k-1}}$ be a linearly independent set of vectors. The span of these vectors form a subspace of $V$ of dimension $k-1$ with the same induced inner product and therefore it is possible to produce the set $\tilde{S} = \qty{w_1, \ldots, w_{k-1}}$ of orthogonal vectors.
+    We induct on the number of vectors in $S$. The base case is trivial for $n = 1$. Let $k \in \mathbb{N}$ and assume that $\tilde{S}_{k-1}$ can be constructed. If $S$ has $k$ linearly indpenedent vectors, then we can consider just $k-1$ of them. By the induction hypothesis, we can produce $\tilde{S}_{k-1}$ that is an orthogonal set. 
+
+    % We proceed with induction on the dimension of $V$. The base case is trivial as a set of a single vector is orthogonal and no process needs to be done. Let $k \in \mathbb{N}$ and assume that Gram-Schmit is possible for any inner product space with dimension $k-1$. Consider a $k$ dimensional inner product space $V$ and let $S = \qty{w_1, \ldots, w_{k-1}}$ be a linearly independent set of vectors. The span of these vectors form a subspace of $V$ of dimension $k-1$ with the same induced inner product and therefore it is possible to produce the set $\tilde{S} = \qty{w_1, \ldots, w_{k-1}}$ of orthogonal vectors.
 \end{proof}
 
 \begin{corollary}
