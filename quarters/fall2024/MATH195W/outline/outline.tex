@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vmargin=1.5in]{geometry}
+
+\usepackage{amsmath, amssymb, amsthm}
+
+\usepackage{biblatex}
+\addbibresource{sources.bib}
+
+\title{The Graph Laplacian and Determining the Connectivity of Meshes}
+\author{Eli Griffiths}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    Beyond traditional combinatoric approaches, we can analyze the properties of graphs using the eigenvalues and eigenvectors of their matrix representations. We first show that a given graph's Laplacian matrix eigenvalues encodes the connectedness of the graph. We then use this fact to solve a problem of mesh connectedness in computational geometry through a natural dual correspondence between meshes and graphs.
+
+    % Write your abstract here.  It should be about 3-5 sentences long.  The first sentence or two describes your topic in general terms and why it's important.  The next 2 or so sentences describe what you will do in your paper
+\end{abstract}
+
+\bigskip
+
+\noindent \textbf{Main Goal:} Show that the graph Laplacian encodes both the connectivity of a graph and the graph Laplacian of each subcomponent, and how these properties can be leveraged when dealing with meshes and their corresponding dual graphs in computational geometry.
+
+
+\section{Introduction}
+
+This section will be used to provide some general background to your topic (eg. the history of it or its importance). Then, you will discuss some of the major ideas of your paper.  Your last paragraph should be a ``narrated table of contents" for what happens in Sec 2, Sec 3, etc.
+
+\begin{itemize}
+    \item Discuss the generality of graphs in many different fields/applications, motivating why understanding their properties gives more universal insights
+    \item Focus on how graph theory often is associated with combinatorics (cite major results from graph theory that are combinatorial in nature)
+    \item Describe how there are matrices associated to finite graphs that have well behaved spectra that are deeply connected to the properties of the graph
+    \item Describe how in computational geometry there is a nice correspondence between many of the geometric objects (planar subdivisions, meshes, etc) and graphs, meaning techniques and results from spectral graph theory can be applied to solve computational geometric problems
+\end{itemize}
+
+\bigskip
+
+\section{Background}
+
+This section will cover basic graph theory and provide visual examples to illustrate each concept. Near the end will representations of graphs be discussed such as the adjacency matrix, setting up the next section to discuss the graph Laplacian and eigenvalues.
+
+\begin{itemize}
+    \item Definitions: The "whats" of a graph
+        \begin{itemize}
+            \item Vertices and edges $\implies$ Graph structure
+            \item Degree of a vertex
+            \item Undirected and unweighted graph
+        \end{itemize}
+    \item Definitions: Graph Connectivity and Graph homomorphisms
+    \item Definition: Adjacency and Degree Matrix
+    \item Example/Diagram: Introduce a graph that will be referred back to when new concepts are introduced and illustrates them well
+\end{itemize}
+\bigskip
+
+\section{A Graph's Spectra}
+
+This section addresses the actual spectral theory of graphs by introducing the graph Laplacian and the main property we seek to use in the problem posed in the next section.
+
+\begin{itemize}
+    \item Definition: Laplacian matrix $L$ of a graph $G$
+    \item Example: Laplacian matrix of graph example introduced in previous section
+    \item Lemma: Laplacian matrix is symmetric
+    \item Remark/Definition: Quadratic form of a symmetric matrix
+    \item Theorem: The eigenvalue $\lambda = 0$ of $L$ has algebraic multiplicity equal to the number of connected components of $G$
+    \item Theorem: The graph Laplacian is block diagonal with the blocks being the graph Laplacian of each connected subgraph
+\end{itemize}
+\bigskip
+
+\section{Relation to Computational Geometry}
+
+This section will be focused on taking the ideas about connectivity of graphs developed in the prior section and reframing them in the context of computational geometry to solve a simple problem: given a mesh, how many submeshes does it have?
+
+\begin{itemize}
+    \item Definition: Triangulation of planar subdivision and a mesh
+    \item Definition: Dual graph of a planar subdivision
+    \item Definition: Dual graph of a 3d mesh/triangulation
+        \begin{itemize}
+            \item Remark: Dual graphs are not generally defined for non-planar graphs but working with a triangulation imposes enough structure to allow this extension of duality
+        \end{itemize}
+    \item Example: Introduce some toy mesh with multiple components all grouped into one data structure
+    \item Lemma: Connectedness of the dual graph corresponds to connectedness in the mesh
+    \item Theorem: Number of components of a mesh equals the algebraic multiplicity of the zero eigenvalue of its dual graph's Laplacian.
+    \item Discussion: Computational complexity and block diagonal matrix structure
+\end{itemize}
+
+\begin{center}\textsc{\Large Annotated Bibliography}\end{center}
+
+\begin{enumerate}
+    \item \fullcite{diestelGraphTheory2017}
+
+    \medskip
+
+    This textbook serves as the main reference for the introductory/background graph theory that is discussed near the beginning of this paper. It provides the needed definitions and basic non-spectral results that would otherwise take up too much space. The most relevant information from the book is the definition of an unweighted and undirected graph, the degree of a vertex, connectedness, sub graph, and dual graph. The book also serves as a representation of how graph theory is often done via combinatorial or set theoretic arguments, and hence highlighting the unexpectedness but usefulness of spectral theory to analyze a graph.
+
+    \item \fullcite{merrisLaplacianMatricesGraphs1994}
+
+    \medskip
+
+    This paper offers a nice overview of many results about the graph Laplacian. It outlines the quadratic form of the Laplacian matrix which proves to be very useful when proving results such as the relationship between connectivity and its eigenvalues. Furthermore it establishes the independence of the graph Laplacian from vertex orderings. This independence allows us to discuss the spectra of the graph Laplacian irrespective of the ordering of a graph as well as make results like "the graph Laplacian is block diagonal" simpler to prove by imposing a favorable vertex ordering.
+
+    \item \fullcite{kimSpectralCodingThreeDimensional2005}
+
+    \medskip
+
+    This paper serves as a reference to both how duality of a mesh can be defined and further applications of both the graph Laplacian and mesh duality in computational geometry. The focus of the paper is methods in encoding the information of a mesh in a more compact way than simply storing vertices and faces. The paper discusses why dual graphs of meshes are well defined even when a non-planar embedding exists and how this has been historically used to encode the geometric information of a mesh in terms of the basis of eigenvectors of the dual's Laplacian. The paper then builds on these previous ideas to provide a newer encoding mechanism that itself relies on sub meshing and splitting meshes into their connected components (which is related to the identification of the number of connected components).
+\end{enumerate}
+
+\end{document}
