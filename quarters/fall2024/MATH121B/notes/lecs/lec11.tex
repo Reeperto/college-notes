@@ -1,0 +1,32 @@
+\documentclass{subfiles}
+
+\begin{document}
+
+\begin{theorem}
+    A linear operator $T : V \to V$ is an orthogonal projection if and only if $T^*$ exists and $T^2 = T^* = T$.
+\end{theorem}
+
+\begin{proof}
+    We consider both directions.
+    \begin{enumerate}
+        \item[$\Rightarrow)$]
+            Assume that $T$ is an orthogonal projection. Then note that $V = R(T) \oplus N(T)$. Therefore for any $x,y \in V$, there are decompositions
+            \begin{align*}
+                x &= x_R + x_N \\
+                y &= y_R + y_N
+            \end{align*}
+            where $x_R, y_R$ are from the range and $x_N, y_N$ are from the null space. Note then
+            \[
+                \iprd{x, Ty} = \iprd{x_R + x_N, y_R} = \iprd{x_R, y_R} + \cancelto{0}{\iprd{x_N, y_R}} = \iprd{x_R, y_R}
+            .\]
+            By similar logic, $\iprd{Tx, y} = \iprd{x_R, y_R}$. Therefore $\iprd{x, Ty} = \iprd{Tx, y} = \iprd{x, T^* y}$ meaning $T = T^*$.
+        \item[$\Leftarrow)$]
+            Suppose $T^2 = T = T^*$. Take $x \in R(T)$ and $y \in R(T)$. By definition of the range, we have $x = Tx'$. But then $T^*x = Tx = T^2 x' = T x' = x$. Therefore
+            \[
+                \iprd{x,y} = \iprd{T^* x, y} = \iprd{x, Ty} = \iprd{x, 0} = 0
+            \]
+            meaning $x \in R(T)^\perp$.
+    \end{enumerate}
+\end{proof}
+
+\end{document}

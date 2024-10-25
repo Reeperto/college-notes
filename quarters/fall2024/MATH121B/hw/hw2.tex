@@ -1,0 +1,112 @@
+\documentclass{article}
+
+\input{hw1_preamble.tex}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[lcr]{}
+\fancyhead[l]{Eli Griffiths}
+\fancyhead[c]{MATH $121$B}
+\fancyhead[r]{HW \#$1$}
+
+\DeclareMathOperator*{\argmin}{argmin}
+
+\NewDocumentCommand\iprd{ s m }{% s = star, m = mandatory arg
+   \IfBooleanTF{#1}{%
+    \langle #2 \rangle
+   }{%
+    \left\langle #2 \right\rangle
+   }%
+}
+
+\begin{document}
+
+\section*{Problem 1}
+\begin{proof}
+    We can first rewrite the norm in terms of the inner product,
+    \begin{align*}
+        \norm{\sum_i a_i v_i}^2 &= \qty(\sqrt{
+            \iprd{\sum_i a_i v_i, \sum_i a_i v_i}
+        })^2 \\
+        &= \iprd{\sum_i a_i v_i, \sum_i a_i v_i} \\
+    \intertext{Since the inner product is linear, we can pass the sums through}
+        &= \sum_i \iprd{a_i v_i, \sum_j a_j v_j} \\
+        &= \sum_i a_i \sum_j \iprd{v_i, a_j v_j} \\
+    \intertext{$S$ is orthogonal as well meaning $\iprd{v_i, v_j} = 0$ if $i = j$, hence}
+        &= \sum_i a_i \iprd{v_i, a_i v_i} \\
+        &= \sum_i a_i \conj{a_i} \iprd{v_i, v_i} \\
+        &= \sum_i |a_i|^2 \norm{v_i}^2 \qedhere
+    \end{align*}
+\end{proof}
+
+\section*{Problem 2}
+\begin{proof}
+   Since we are dealing with a norm induced by an inner product, we can rewrite the left hand side as
+   \begin{align*}
+       \norm{x+y}^2 + \norm{x-y}^2 &= \iprd{x+y, x+y} + \iprd{x-y, x-y}
+       \intertext{We can use the linearity of the inner product to split apart the terms,}
+                                   &= \iprd{x, x+y} + \iprd{y, x+y} + \iprd{x, x-y} + \iprd{-y,x-y} \\
+       \intertext{and the $-1$ attached to $-y$ can be moved into the second position since $\conj{-1} = -1$,}
+                                   &= \iprd{x, x+y} + \iprd{y, x+y} + \iprd{x, x-y} + \iprd{y,y-x} \\
+                                   &= \iprd{x, (x+y) + (x-y)} + \iprd{y, (x+y) + (y-x)} \\
+                                   &= \iprd{x, 2x} + \iprd{y, 2y} \\
+                                   &= 2 \iprd{x, x} + 2\iprd{y, y} \\
+                                   &= 2 \norm{x}^2 + 2\norm{y}^2.
+   \end{align*}
+   Hence the equality holds.
+\end{proof}
+
+\section*{Problem 3}
+No, it does not hold in general. Consider $\R^2$ with the infinity norm $\norm{x}_{\infty} = \displaystyle\max_i |x_i|$. Then if $x = (1,0)$ and $y = (0, 1)$ we have
+\[
+    \norm{x + y}_{\infty}^2 + \norm{x - y}_{\infty}^2 = 1^2 + 1^2 = 2 \neq 4 = 2 + 2 = 2 \norm{x}_{\infty}^2 + 2 \norm{y}_{\infty}^2
+.\]
+
+\section*{Problem 4}
+\begin{proof}
+    Let $y \in V$ and
+    \[
+        y_{\parallel} \coloneq \sum_{i=1}^k \iprd{y, w_i} w_i
+    .\]
+    We will show that
+    \[
+        \argmin_{x \in W} \norm{y - x} = y_\parallel
+    \]
+    Let $z = y - y_{\parallel}$. Then for any $w_j \in S$
+    \begin{align*}
+        \iprd{z, w_j} &= \iprd{\qty(y - \sum_{i=1}^k \iprd{y, w_i} w_i), w_j} \\
+                      &= \iprd{y, w_j} - \iprd{\sum_{i=1}^k \iprd{y, w_i} w_i, w_j} \\
+                      &= \iprd{y, w_j} - \sum_{i=1}^k \iprd{\iprd{y, w_i} w_i, w_j} \\
+                      &= \iprd{y, w_j} - \sum_{i=1}^k \iprd{y, w_i} \iprd{w_i, w_j}.
+    \end{align*}
+    Since $S$ is orthonormal, we have $\iprd{w_i, w_j} = \delta_{ij}$ and
+    \[
+        \iprd{z, w_j} = \iprd{y, w_j} - \sum_{i=1}^k \iprd{y, w_i} \iprd{w_i, w_j} = \iprd{y, w_j} - \iprd{y, w_j} = 0
+    .\]
+    Therefore $z \in W^\perp$. Now consider some $x \in W$. Since $y_{\parallel}$ is defined as a linear combination of vectors from $W$, it must also be in $W$ meaning $y_\parallel - x \in W$. Then $y_{\parallel} - x$ is orthogonal to $z$. With this orthogonality,
+    \begin{align*}
+        \norm{y - x}^2 &= \norm{y_{\parallel} + z - x}^2 \\
+                       &= \norm{(y_{\parallel} - x) + z} \\
+                       &= \norm{y_{\parallel} - x}^2 + \norm{z}^2 \geq \norm{z}^2 = \norm{y - y_{\parallel}}.
+    \end{align*}
+    Reading the extreme ends of both sides and taking the square root gives $\norm{y-x} \geq \norm{y - y_\parallel}$. Thus any choice of $x$ will give a value greater than or equal to the proposed $y_{\parallel}$. Therefore we know that at least $y_\parallel$ is in the $\argmin$. If $\norm{y-x} = \norm{y-y_{\parallel}}$ then we have from the previous derivation equality and
+    \[
+        \norm{y_{\parallel} - x}^2 + \norm{x}^2 = \norm{x}^2 \implies \norm{y_\parallel - x} = 0
+    .\]
+    But this means $y_{\parallel} = x$. Therefore we have $y_\parallel$ as the unique vector in the $\argmin$.
+\end{proof}
+
+\section*{Problem 5}
+\begin{proof}
+    Let $x \in R(T^*)^\perp$. Then for any $y = T^* y' \in R(T^*)'$ with $y' \in V_1$ it follows
+    \[
+        0 = \iprd{x,y} = \iprd{x, T^* y'} = \iprd{Tx, y'}
+    .\]
+    Therefore $Tx$ must be zero since it holds for any $y'$ meaning $x \in N(T)$. Now let $x \in N(T)$. Then
+    \[
+        0 = \iprd{0, y} = \iprd{Tx, y} = \iprd{x, T^* y}
+    \]
+    for any $y \in V_1$. Therefore $x \in R(T^*)^\perp$, hence $R(T^*)^\perp = N(T)$. Since $V_1$ and $V_2$ are finite dimensional, then we have $\qty(W^\perp)^\perp = W$ for any subspace $W$ in both spaces which gives $N(T)^\perp = (R(T^*)^\perp)^\perp = R(T^*)$.
+\end{proof}
+
+\end{document}

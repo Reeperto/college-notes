@@ -6,7 +6,7 @@
 
 \begin{lemma}
     \label{lemma:schur_lem}
-    Let $T$ be a linear operator on a finite dimensional inner product space $V$. If $T$ has an eigenvector, then $T*$ does as well.
+    Let $T$ be a linear operator on a finite dimensional inner product space $V$. If $T$ has an eigenvector, then $T^*$ does as well.
 \end{lemma}
 
 \begin{proof}
@@ -33,9 +33,5 @@
     \end{align*}
     Therefore $Ty \in W^\perp$ meaning $W^\perp$ is $T$-invariant, meaning the characteristic polynomial of $T \vert_{W^\perp}$ divides the one of $T$. Since the characteristic polynomial of $T$ splits, $T \vert_{W^\perp}$ must also split. Additionally, $\dim W^\perp = n - 1$ since $\dim W = 1$. Therefore the induction hypothesis can be applied to $W^\perp$ to get an orthonormal basis $\gamma$ such that $[T \vert_{W^\perp}]_{\gamma}$ is upper triangular. Choosing $\beta = \gamma \cup \qty{z}$ gives an orthonormal basis for $V$ since $z$ is a unit vector and $z$ is from $W$ and hence orthogonal to the basis $\gamma$ of $W^\perp$. It is clear then the matrix $[T]_\beta$ is upper triangular.
 \end{proof}
-
-\begin{definition}[Normal Operator]
-    Let $V$ be an inner product space. A linear operator $T$ (or matrix $A$) is \textbf{normal} if $T T^* = T^* T$ (or $A A^* = A^* A$).
-\end{definition}
 
 \end{document}

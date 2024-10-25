@@ -1,0 +1,40 @@
+\documentclass{article}
+
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{physics}
+
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+
+\section*{Null Space of Block Diagonal Matrix}
+\begin{theorem}
+    Given a block diagonal matrix
+    \[
+        M = \mqty(
+        A_1 & & 0 \\
+        & \ddots & \\
+        0 & & A_m
+        )
+    \]
+    then $\ker(M) = \displaystyle\bigcap_{i=1}^m \ker(A_i)$
+\end{theorem}
+
+\begin{proof}
+    Consider $v \in \ker(M)$. Then $Mv = 0$ and
+    \[
+        M v = \mqty(
+        A_1 v \\
+        \vdots \\
+        A_m v
+        ) = \mqty(
+        0 \\
+        \vdots \\
+        0 \\
+        )
+    .\]
+    Therefore $A_i v = 0$ for each $A_i$, hence $v \in \ker(A_i)$.
+\end{proof}
+
+\end{document}

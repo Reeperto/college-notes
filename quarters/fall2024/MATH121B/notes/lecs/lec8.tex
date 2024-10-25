@@ -1,0 +1,35 @@
+\documentclass{subfiles}
+
+\begin{document}
+
+\section{Normal Operators}
+
+\begin{definition}[Normal Operator]
+    Let $V$ be an inner product space. A linear operator $T$ (or matrix $A$) is \textbf{normal} if $T T^* = T^* T$ (or $A A^* = A^* A$).
+\end{definition}
+
+\begin{theorem}
+    If $T$ is a normal operator on a complex vector space $V$, then there exists an orthonormal basis of $V$ consisting of eigenvectors of $T$.
+\end{theorem}
+
+\begin{proof}
+    Since $V$ is a complex vector space, the characteristic polynomial of $T$ splits by the fundamental theorem of algebra. Therefore by \ref{thm:schurs} there exists an orthonormal basis $\beta$ with $[T]_\beta$ upper triangular. Since $[T]_{\beta}$ is upper triangular, the first basis vector $v_1$ is an eigenvector of $T$. We can then consider an induction argument over the basis vectors to show that all are eigenvectors. Assume that $\qty{v_1, \ldots, v_{k-1}}$ are eigenvectors of $T$. Note that $T^* v_j = \conj{\lambda_j} v_j$ for any $j < k$. Since $[T]_{\beta}$ is upper triangular,
+    \[
+        T v_k = A_{1k} v_1 + A_{2k} v_2 + \ldots + A_{kk} v_k
+    .\]
+    But note that
+    \[
+        A_{jk} = \iprd{T v_k, v_j} = \iprd{v_k, T^* v_j} = \iprd{v_k, \conj{\lambda_j} v_j} = \conj{\lambda} \iprd{v_k, v_k} = 0
+    \]
+    for $j < k$ since $v_k$ and $v_j$ come from an orthonormal basis. Therefore
+    \[
+        T v_k = A_{kk} v_k
+    \]
+    and $A_{kk} \neq 0$ meaning $v_k$ must be an eigenvector of $T$. Therefore $\beta$ is an orthonormal basis consisting of eigenvectors of $T$.
+\end{proof}
+
+\begin{definition}[Self Adjoint]
+    A linear operator $T$ on a space $V$ (or square matrix $A$) is \textbf{self-adjoint} if $T = T^*$ (or $A = A^*$)
+\end{definition}
+
+\end{document}

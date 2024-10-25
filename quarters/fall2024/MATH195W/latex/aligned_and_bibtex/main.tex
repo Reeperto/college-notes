@@ -1,0 +1,63 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage{amsmath, amssymb, amsthm}
+
+\begin{document}
+
+{\Large This sentence is abnormally big! But it can also}
+{\small become really tiny as well!}
+{\scriptsize Even tinier :3.}
+
+\textbf{\color{red}\Large This sentence is abnormally big! But it can also}
+\textbf{\color{blue}\small become really tiny as well!}
+\textbf{\color{green}\scriptsize Even tinier :3.}
+
+\vspace{2cm}
+
+Let $G = (V,E)$ be a finite graph and $H$ be a subgraph of $G$. We know from \cite{DAS2004715} that the eigenvalues of $L_G$ and $L_H$ are interwoven. That is
+\[
+    \lambda_1(G) \geq \lambda_1(H) \geq \lambda_2(G) \geq \lambda_2(H) \geq \ldots \geq \lambda_n(G) = \lambda_n(H) = 0
+.\]
+
+\vspace{2cm}
+\noindent
+An example of a quotient space in topolgy is $[0,1] / \{0,1\} \sim S^1$. Pictorally
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[
+        c/.style={insert path={circle[radius=2pt,fill=black]}}
+        ]
+        \filldraw (-4,1) [c] -- ++(3,0) [c] node[pos=0.5,anchor=south] {$[0,1]$};
+        \filldraw[dashed] (0,0) [c] -- ++(3,0) [c] node[pos=0.5,anchor=south] {$[0,1]$};
+        \filldraw (-2, -1) -- ++(3,3);
+        \node at (4, 0.5) {\Large $\simeq$};
+        \draw (7,0.5) arc (0:360:1);
+        \fill[fill=black] (5, 0.5) circle[radius=2pt] node[anchor=west] {$S^1$};
+    \end{tikzpicture}
+    \caption{Quotient Space of $[0,1] / \{0,1\}$}
+\end{figure}
+
+\vspace{2cm}
+
+\noindent
+The following truth table establishes logical equivalency between an implication and its contrapositive.
+\[
+    \begin{array}{|c|c||c|c|c|c|}
+        \hline
+        P & Q & P \implies Q & \lnot Q & \lnot P & \lnot Q \implies P \\
+        \hline \hline
+        T & T & T & F & F & T \\
+        T & F & F & T & F & F \\
+        F & T & T & F & T & T \\
+        F & F & T & T & T & T \\\hline
+    \end{array}
+\]
+
+\newpage
+\bibliographystyle{alpha}
+\bibliography{citations.bib}
+\end{document}

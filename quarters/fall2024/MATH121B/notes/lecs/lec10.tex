@@ -1,0 +1,40 @@
+\documentclass{subfiles}
+
+\begin{document}
+
+\newpage
+
+% \begin{theorem}
+%     Let $A$ be a $n \times n$ matrix over $\mathbb{R}$ that is symmetric. Then there exists an orthonormal basis $\beta = \qty{v_1, \ldots, v_n}$ of eigenvectors such that
+% \end{theorem}
+
+\begin{align*}
+    \newcommand{\horiz}{\rule[0.5ex]{1em}{0.4pt}}
+    AQ = \mqty(
+    \horiz & A e_1 & \horiz \\
+           & \vdots & \\
+    \horiz & A e_n & \horiz \\
+    ) \mqty(
+    \vert & & \vert \\
+    v_1 & \cdots & v_n \\
+    \vert & & \vert \\
+    ) &=
+    \mqty(
+    \iprd{Ae_1, v_1} & \ldots & \iprd{Ae_1, v_n} \\
+    \vdots & & \vdots \\
+    \iprd{Ae_n, v_1} & \ldots & \iprd{Ae_n, v_n} \\
+    ) \\
+    &= \mqty(
+    \lambda_1 \iprd{v_1, e_1} & \cdots & \lambda_n \iprd{v_n, e_1} \\
+    \vdots & & \vdots \\
+    \lambda_1 \iprd{v_1, e_n} & \cdots & \lambda_n \iprd{v_n, e_n}
+    ) \tag{$\star$} \\
+    &= \mqty(
+    \vert & & \vert \\
+    \lambda_1 v_1 & \cdots & \lambda_n v_n \\
+    \vert & & \vert
+    ) \\
+    &= QD
+\end{align*}
+
+\end{document}
