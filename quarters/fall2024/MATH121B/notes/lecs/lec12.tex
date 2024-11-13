@@ -1,0 +1,17 @@
+\documentclass{subfiles}
+
+\begin{document}
+
+\begin{theorem}[Spectral Theorem]
+    \label{thm:spectralthm}
+    Let $T : V \to V$ be a linear operator over a finite dimensional inner product space with underlying field $\C$ or $\R$. Assume $T$ has eigenvalues $\lambda_1, \ldots, \lambda_n$ and that $T$ is normal/self-adjoint. Let $W_i$ be the $i$th eigenspace and $T_i$ the orthogonal projection onto $W_i$. Then all of the following are true
+    \begin{tasks}(3)
+        \task $V = \displaystyle\bigoplus_{i=1}^n W_i$
+        \task $W_i^\perp = \displaystyle\bigoplus_{j\neq i} W_j$
+        \task $T_i T_j = \displaystyle\delta_{ij} T_i$
+        \task $I = \displaystyle\sum_{i=1}^n T_i$
+        \task $T = \displaystyle\sum_{i=1}^n \lambda_i T_i$
+    \end{tasks}
+\end{theorem}
+
+\end{document}

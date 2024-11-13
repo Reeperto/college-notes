@@ -1,0 +1,174 @@
+\documentclass[12pt]{extarticle}
+
+\input{hw_preamble.tex}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[R]{\textbf{CS 164: Homework \#5}}
+\fancyhead[L]{Eli Griffiths}
+
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{physics}
+
+\usepackage{svg}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\DeclareMathOperator*{\argmax}{argmax}
+
+\newtcolorbox{solution}{
+	breakable,
+	coltitle = black,
+	colback = white,
+	frame hidden,
+	boxrule = 0pt,
+	boxsep = 0pt,
+	borderline west={2pt}{0pt}{black},
+	sharp corners = all,
+	enhanced,
+}
+
+\begin{document}
+
+\section*{Problem 1}
+Describe algorithms to insert and delete points from a kd-tree. In your algorithm you do not need to take care of rebalancing the structure.
+
+\begin{solution}
+    \begin{algorithm}[H]
+        \caption{\textsc{AddPoint}($v$: root node, $p$: new point, $d$: current depth)}
+        \begin{algorithmic}
+            \If{$v$ is a leaf node}
+                \State Determine current hyperplane direction from $d$
+                \State $L \gets $ Hyperplane in this direction at $v$
+                \State Replace $v$ with $L$
+
+                \If{$p$ is left of $L$}
+                    \State Add $v$ to right of $L$ and $p$ to left of $L$
+                \Else
+                    \State Add $v$ to left of $L$ and $p$ to right of $L$
+                \EndIf
+            \Else
+                \If{$p$ is left of $v$}
+                    \State $\textsc{AddPoint}(v_{\text{left}}, p, d+1)$
+                \Else 
+                    \State $\textsc{AddPoint}(v_{\text{right}}, p, d+1)$
+                \EndIf
+            \EndIf
+        \end{algorithmic}
+    \end{algorithm}
+    \begin{algorithm}[H]
+        \caption{\textsc{RemovePoint}($v$: root node, $p$: point)}
+        \begin{algorithmic}
+            \If{$v$ is a leaf node}
+                \State Delete $v$ and replace with the other child of the parent node
+            \Else
+                \If{$p$ is left of $v$}
+                    \State $\textsc{RemovePoint}(v_{\text{left}}, p)$
+                \Else 
+                    \State $\textsc{RemovePoint}(v_{\text{right}}, p)$
+                \EndIf
+            \EndIf
+        \end{algorithmic}
+    \end{algorithm}
+    Both algorithms are $O(\log n)$ (assuming the tree remains balanced) since both are traversals and do constant work at each point.
+\end{solution}
+
+\section*{Problem 2}
+Describe an algorithm to construct a $d$-dimensional kd-tree for the points in $P$. Prove that the tree uses linear storage and that your algorithm takes $O(n \log n)$ time.
+
+\begin{solution}
+    \begin{algorithm}[H]
+        \caption{\textsc{BuildTree($P$: points, $D$: current depth)}}
+        \begin{algorithmic}
+            \If{$|P| = 1$}
+                \State \Return leaf node storing unique point in $P$
+            \Else
+                \State $D \gets D \pmod{d}$
+                \State $L \gets$ hyperplane based on median of $D$'th coordinate in $P$ 
+                \State Split $P$ into $P_L$ and $P_R$ via $L$
+                \State $v_{\text{left}} \gets $ \textsc{BuildTree}($P_L$, $D+1$)
+                \State $v_{\text{right}} \gets $ \textsc{BuildTree}($P_R$, $D+1$)
+                \State \Return node containing $L$ with $v_{\text{left}}$ and $v_{\text{right}}$ as children
+            \EndIf
+        \end{algorithmic}
+    \end{algorithm}
+
+    The running time of the algorithm can be recursively expressed as
+    \begin{align*}
+        T(1) &= O(1) \\
+        T(n) &= 2 T\qty(\frac{n}{2}) + O(1)
+    \end{align*}
+    This recursive running time is then simply $T(n) = O(n \log n)$. For storage complexity, the number of leaf nodes will be $n$ and the number of inner hyperplanes will be $n - 1$. Therefore the storage complexity is $O(n + n - 1) = O(n)$.
+\end{solution}
+
+\section*{Problem 3}
+In some applications one is interested only in the number of points that lie in a range rather than in reporting all of them. Such queries are often referred to as range counting queries. In this case one would like to avoid having an additive term of $O(k)$ in the query time.
+
+\subsection*{Part A}
+Describe how a 1-dimensional range tree can be adapted such that a range counting query can be performed in $O(\log n)$ time. Prove the query time bound.
+
+\begin{solution}
+    To adapt a $1$-dimensional range tree, add a count variable to every node and initialize it to $0$ when constructing the tree. Then after the tree is made, each point in the tree can be queried and, while passing through the tree, increment the count variables of nodes that were passed through. By doing this, the count variable will equal the number of leaf nodes below that node.
+    \\
+
+    To perform the counting query, first find the split node $v_{\text{split}}$. Then we can simply traverse down both sides of $v_\text{split}$, accumulating the sizes of every subtree to the opposite side of our traversal until we hit a leaf. That is, we continually go left of $v_{\text{split}}$, adding the size of the right node to our total each iteration and vice versa. The final total is the number nodes within the query bounds.
+    \\
+
+    Adding in the count variable to the construction phase does not affect the preprocessing time complexity since it takes $O(n \log n)$ time which is the same as before. Since the query only has to do exactly $2$ full root to leaf traversals, the time complexity is $O(\log n + \log n) = O(\log n)$.
+\end{solution}
+
+\subsection*{Part B}
+Using the solution to the 1-dimensional problem, describe how $d$-dimensional range counting queries can be answered in $O(\log^d n)$ time. Prove the query time.
+
+\begin{solution}
+    We endow the $d$-dimensional tree with the same count variable for all the nodes. A similar pre processing step can then be used in which each node's count tracks the number of node's in contains. Importantly, for each subtree it should only keep track of the number of nodes that it is sorting by as determined by the depth of the subtree compared to the original tree. We can then, like the original $d$-dimensional query algorithm, pick $O(\log n)$ canonical subsets of points in the correct first coordinate range. This can then be done again after finding the split node, leading to another $O(\log n)$ subsets. This process is done recursively for every coordinate except the last. For the last coordinate, the counting query outlined in (A) can be done to the get desired answer. In total then the time complexity for the counting query is $O(\log^d n)$.
+\end{solution}
+
+\subsection*{Part C}
+Describe how fractional cascading can be used to improve the running time with a factor of $O(\log n)$ for 2-and higher-dimensional range counting queries.
+
+\begin{solution}
+    Fractional cascading allows replacing the second to last range tree query followed by $1$-d counting query with a $2$-d range counting query that can be done in $O(\log n)$ time. This means that the time complexity decreases from $O(\log^2 n)$ to $O(\log n)$. That is, it decreases it by a factor of $O(\log n)$.
+\end{solution}
+
+\section*{Problem 4}
+Let $S_1$ be a set of $n$ disjoint horizontal line segments and let $S_2$ be a set of $m$ disjoint vertical line segments. Give a plane-sweep algorithm that counts in $O((n+m)\log(n+m))$ time how many intersections there are in $S_1 \cup S_2$.
+
+\begin{solution}
+    If we keep track of the lines intersecting the sweep line, once a vertical line is reached all intersecting horizontal lines can be found by doing a 1-dimensional range query based on the $y$-coordinates of the vertical line. This is because every horizontal line currently intersecting the plane sweep line is guranteed to intersect the vertical line if its $y$-coordinates are within the range of the current vertical line. Therefore the plane sweep algorithm is as follows
+    \begin{algorithm}[H]
+        \caption{\textsc{CountIntersections}($S_1$, $S_2$)}
+        \begin{enumerate}
+            \item Initialize an intersection count to 0
+            \item Sort all endpoints of horizontal lines in $S_1$
+            \item Sort all vertical lines in $S_2$ by their $x$-coordinate
+            \item Add all sorted points into the event queue $Q$
+            \item Initialize the status structure $S$ and add the first event point 
+            \item Do the following while $Q$ is not empty
+                \begin{enumerate}
+                    \item Pop the next event point $p$ from $Q$
+                    \item If $p$ is the start of a horizontal segment, track the $y$-coordinate of the segment in $S$
+                    \item Else if $p$ is the end of a horizontal segment, remove its $y$-coordinate from $S$
+                    \item Otherwise, $p$ is a vertical line segment so do a range-query on $S$ between the $y$-values of its endpoints. Add these to the running total of intersections.
+                \end{enumerate}
+        \end{enumerate}
+    \end{algorithm}
+
+    As for time complexity, handling either type of segment takes $O(\log(n + m))$ time since modifying the BST for horizontal segments takes that much time and the range query for vertical segments does as well. The plane sweep is also processing $O(n + m)$ points so the total running time is simply $O((n + m) \log (n + m)$.
+\end{solution}
+
+\section*{Problem 5}
+Let $S$ be a set of n axis-parallel rectangles in the plane. We want to be able to report all rectangles in $S$ that are completely contained in a query rectangle $[x : x']\times [y : y']$. Describe a data structure for this problem that uses $O(n \log^3 n)$ storage and has $O(\log^4 n + k)$ query time, where $k$ is the number of reported answers.
+
+\begin{solution}
+    The important thing to note is that since each rectangle is axis aligned, they can each be identified by just two corner points. Therfore each pair of corner points $(x_1, y_1)$ and $(x_2, y_2)$ can be identified as a point in $4$-dimensions of the form $(x_1, x_2, y_1, y_2)$. We can then construct a $4$-dimensional range tree that sorts in the $x$-direction first for $x_1$ and $x_2$ and then in the $y$-direction for $y_1$ and $y_2$. The original range query is then transformed into
+    \[
+        [x : x'] \times [x : x'] \times [y : y'] \times [y : y']
+    .\]
+    A $d$-dimensional range tree can be constructed to use $O(n \log^{d-1} n)$ storage and $O(\log^d n + k)$ query time. Therefore in this instance the storage complexity is $O(n \log^3 n)$ and time complexity is $O(\log^4 n + k)$ which was to be shown.
+\end{solution}
+
+\end{document}

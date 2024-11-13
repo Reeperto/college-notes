@@ -1,0 +1,118 @@
+\documentclass{article}
+
+\input{hw1_preamble.tex}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[lcr]{}
+\fancyhead[l]{Eli Griffiths}
+\fancyhead[c]{MATH $121$B}
+\fancyhead[r]{HW \#$3$}
+
+\DeclareMathOperator*{\argmin}{argmin}
+
+\NewDocumentCommand\iprd{ s m }{% s = star, m = mandatory arg
+   \IfBooleanTF{#1}{%
+    \langle #2 \rangle
+   }{%
+    \left\langle #2 \right\rangle
+   }%
+}
+
+\begin{document}
+
+\section*{Problem 1}
+
+\begin{enumerate}[label=\alph*)]
+    \item True. Since all entries are real, $A^T = A^*$ and hence $A A^* = A A^T = A^T A = A^* A$. Therefore real symmetric matrices are normal.
+    \item False. Consider
+        \[
+            A = \mqty(0 & i \\ i & 1)
+        .\]
+        $A$ is symmetric but
+        \[
+            A A^* = \mqty(
+            1 & i \\
+            -i & 2 \\
+            ) \neq \mqty(
+            1 & -i \\
+            i & 2 \\
+            ) = A^* A
+        .\]
+    \item True. All entries being real means $A^T = A^*$ and hence $A = A^T = A^*$ meaning $A$ is self adjoint.
+    \item False. Take the counterexample $A$ from (b). $A^*$ will have $-i$ instead of $i$ meaning $A \neq A^*$.
+\end{enumerate}
+
+\section*{Problem 2}
+\begin{proof}
+    We prove each direction individually
+    \begin{enumerate}
+        \item[$\Rightarrow)$] Suppose $T_1 T_2$ is self adjoint. Then clearly $T_1 T_2 = (T_1 T_2)^* = T_2^* T_1^* = T_2 T_1$. Hence they commute
+        \item[$\Leftarrow)$] Suppose $T_1$ and $T_2$ commute. Then $(T_1 T_2)^* = T_2^* T_1^*$. Since $T_1$ and $T_2$ are self adjoint, then $(T_1 T_2)^* = T_2 T_1$. But they also commute giving $(T_1 T_2)^* = T_1 T_2$.
+    \end{enumerate}
+    Hence $T_1 T_2$ is self adjoint if and only if $T_1$ and $T_2$ commute. 
+\end{proof}
+
+\section*{Problem 3}
+The statement is true.
+\begin{proof}
+    Suppose $\iprd{Tx, x} = 0$ for all $x \in V$. Let $u,v \in V$ and $a \in \C$. Note then
+    \begin{align*}
+        0 = \iprd{T(u + av), u + av} &= \iprd{Tu + aTv, u + av} \\
+                                 &= \iprd{Tu, u + av} + \iprd{aTv, u + av} \\
+                                 &= \iprd{Tu, u} + \iprd{Tu, av} + \iprd{aTv, u} + \iprd{aTv, av} \\
+                                 &= \conj{a}\iprd{Tu, v} + a\iprd{Tv, u}
+    \end{align*}
+    Therefore we have $\conj{a} \iprd{Tu,v} + a \iprd{Tv, u} = 0$ for any $a \in C$. By setting $a = 1$ and $a = i$ we then get that
+    \begin{align*}
+        \iprd{T u, v } + \iprd{T v, u} &= 0 \\
+        \iprd{T u, v } - \iprd{T v, u} &= 0
+    \end{align*}
+    But these can be added to get $\iprd{Tu, v} = 0$ for any $u,v \in V$. Therefore
+    \[
+        \iprd{Tu, Tu} = 0 \implies \norm{Tu} = 0
+    \]
+    for any $u \in V$, hence $T$ must be the zero operator.
+\end{proof}
+
+\section*{Problem 4}
+It is not the case for either (a) or (b). Consider
+\[
+    T : \R^2 \to \R^2 : (a,b) \mapsto \qty(\frac{b}{\sqrt{2}}, a + \frac{b}{\sqrt{2}})
+.\]
+Note that
+\begin{alignat*}{3}
+    \norm{T (1, 0)} &= \norm{\qty(0, 1)} &&= 1 &&= \norm{(1,0)} \\
+    \norm{T (0, 1)} &= \norm{\qty(\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}})} &&= 1 &&= \norm{(0,1)}
+\end{alignat*}
+Therefore $T$ satisfies the condition on the standard basis of $\R^2$ which is orthonormal. However, $T$ is not orthogonal because
+\[
+    \iprd{T(1,0), T(0,1)} = \frac{1}{\sqrt{2}} \neq 0 = \iprd{(1,0), (0,1)}
+.\]
+
+\section*{Problem 5}
+\begin{proof}
+    Let $T$ be a normal operator on a finite complex vector space $V$. Then it has a matrix repsentation $A$ that is diagonalizable. That is $A = X \Lambda X^T$ with $X$ unitary and $\Lambda$ diagonal. Note
+    \[
+        p_{T}(t) = \det(A - tI) = \det(X \Lambda X^T - t XX^T ) = \det(X (\Lambda - tI) X^T) = \det(\Lambda - tI)
+    .\]
+    Since $\Lambda$ is just a diagonal matrix with the eigenvalues of $T$, if $\lambda_1, \ldots, \lambda_n$ are the eigenvalues of $T$ we have
+    \[
+        p_{T}(t) = \prod_{i=1}^n (\lambda_i - t)
+    .\]
+    Therefore $p_T(\Lambda) = \mathbf{0}$ since for each $\lambda_i I - \Lambda$ term there will be a zero on the $i$th diagonal position and hence the product across all $i$ terms will give the zero matrix. Note that
+    \[
+        A^k = (X \Lambda X^T)^k = (X \Lambda X^T) (X \Lambda X^T) \ldots (X \Lambda X^T) = X \Lambda^k X^T
+    \]
+    and hence for any polynomial $f(t) = a_0 + a_1 t + \ldots a_{n-1} t^{n-1}$
+    \[
+        f(A) = X(a_0 + a_1 \Lambda + \ldots + a_{n-1} \Lambda^{n-1}) X^T = X f(\Lambda) X^T
+    .\]
+    But then we have
+    \[
+        p_T(A) = X p_T(\Lambda) X^T = X \mathbf{0} X^T = \mathbf{0}
+    .\]
+    Therefore since $T$ has a zero matrix representation, it must be the zero transformation.
+\end{proof}
+
+\end{document}
