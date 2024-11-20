@@ -4,6 +4,7 @@
 \usepackage{xcolor}
 
 \usepackage{wrapfig}
+\usepackage{subcaption}
 \usepackage{amsmath, amsthm, amssymb, mathtools}
 \usepackage{newpxtext, newpxmath}
 
@@ -19,22 +20,12 @@
 \declaretheorem{lemma}
 \declaretheorem[style=definition]{definition}
 
-\declaretheorem{example}
+\declaretheorem[style=remark]{example}
 \declaretheorem[style=remark]{remark}
 
 \usepackage{tikz}
-\usepackage{tcolorbox}
-\tcbuselibrary{skins}
-
-% \tcolorboxenvironment{theorem}{
-%     empty,
-%     borderline west={2pt}{0pt}{black}
-% }
-
-% \tcolorboxenvironment{definition}{
-%     empty,
-%     borderline west={2pt}{0pt}{black}
-% }
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta}
 
 \usepackage[style=alphabetic]{biblatex}
 \addbibresource{sources.bib}
@@ -78,25 +69,55 @@ We first outline the basic structure of a graph and related definitions that wil
     Edges importantly are defined here as two element sets and not as ordered pairs. This makes the graph \textit{undirected}. If the graph was to be directed (that is the edges were to be ordered pairs) the further results of this paper would not hold in general and would require more restrictions.
 \end{remark}
 
-For the purposes of this paper, we will assume that every graph has finitely many vertices (and hence finitely many edges). A way to visualize a finite graph is by representing vertices as points in the plane and edges as line segments between these points as seen in Figure \ref{fig:basic_graph}.
+For the purposes of this paper, we will assume that every graph has finitely many vertices (and hence finitely many edges). A way to visualize a finite graph is by representing vertices as points in the plane and edges as line segments between these points as seen in Figure \ref{fig:graph_visual}.
 
-\begin{figure}[H]
+\begin{figure}[ht]
     \centering
-    \begin{tikzpicture}[
-        vertex/.style={
-            inner sep=2pt,
-            circle,
-            draw,
-            fill=blue!20,
-        },
-        edge/.style={}
-        ]
-        \directlua{graph.graph_tikz(examples.example1)}
-    \end{tikzpicture}   
-    \caption{A graph with $7$ nodes and $15$ edges}
-    \label{fig:basic_graph}
+    \caption{Two example graphs in the plane}
+    \label{fig:graph_visual}
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[
+            scale=0.8,
+            vertex/.style={
+                inner sep=2pt,
+                circle,
+                draw,
+                fill=blue!20,
+            },
+            edge/.style={}
+            ]
+            \directlua{graph.graph_tikz(examples.example1)}
+        \end{tikzpicture}   
+        \caption{A graph with $7$ vertices and $15$ edges}
+        \label{fig:basic_graph}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[
+            scale=0.8,
+            vertex/.style={
+                inner sep=2pt,
+                circle,
+                draw,
+                fill=blue!20,
+            },
+            edge/.style={}
+            ]
+            \directlua{graph.graph_tikz(examples.example2)}
+        \end{tikzpicture}   
+        \caption{A graph with $2$ connected componenets}
+        \label{fig:connected_components}
+    \end{subfigure}
 \end{figure}
 
+\begin{definition}[Connectedness]
+    A \textbf{path} is a non-empty graph $P = (V,E)$ where
+    \[
+        V = \qty{v_0, v_1, \ldots, v_k}, E = \qty{\qty{v_0,v_1}, \ldots, \qty{v_{k-1}, v_k}}
+    .\]
+    A graph $G$ is then \textbf{connected} if between any two vertices $v_0$ and $v_f$ there exists a path $P \subseteq G$ starting at $v_0$ and ending at $v_f$.
+\end{definition}
 
 \begin{definition}[Adjacency and Degree Matrix]
     The adjacency matrix $A_G$ and degree matrix $D_G$ of a finite graph $G$ with $n$ vertices are the $n \times n$ matrices such that
@@ -112,15 +133,20 @@ For the purposes of this paper, we will assume that every graph has finitely man
     \end{align*}
 \end{definition}
 
-\begin{align*}
-    A_G =    
-    \begin{bmatrix}
-        \directlua{graph.adj_matrix(examples.example1)}
-    \end{bmatrix} & &
-    D_G = \begin{bmatrix}
-        \directlua{graph.deg_matrix(examples.example1)}
-    \end{bmatrix}
-\end{align*}
+\begin{example}
+    The adjacency and degree matrices for the graph in Figure \ref{fig:basic_graph} are
+
+    \begin{align*}
+        A_G =    
+        \begin{bmatrix}
+            \directlua{graph.adj_matrix(examples.example1)}
+        \end{bmatrix} & &
+        D_G = \begin{bmatrix}
+            \directlua{graph.deg_matrix(examples.example1)}
+        \end{bmatrix}
+    \end{align*}
+\end{example}
+
 
 An important observation is that the adjacency matrix is symmetric. That is because for any vertices $v_i$ and $v_j$ we have both $v_i \sim v_j$ and $v_j \sim v_i$ meaning $(A_G)_{ij} = (A_G)_{ji}$. Since the adjacency matrix is symmetric, we know that it must have an orthonormal basis of eigenvectors and corresponding set of eigenvalues. Since $A_G$ is symmetric for any graph $G$, it begs the question: what can we determine about a graph based on these eigenvalues and eigenvectors?
 
@@ -162,23 +188,48 @@ An important observation is that the adjacency matrix is symmetric. That is beca
     \]
 \end{proof}
 
+In order to make the connection between the eigenvalues of $L$, its quadratic form, and the connectivity of $G$, we will need some results from linear algebra. While we wont prove these here, a proof for Lemma \ref{lem:eig_multiplicity} can be found in \cite{} and a proof for Lemma \ref{lem:block_det} in \cite{silvester2000determinants}.
+
+\begin{lemma}
+    \label{lem:eig_multiplicity}
+    If $\lambda$ is an eigenvalue of a symmetric matrix with algebraic multiplicity $k$, it has $k$ linearly independent associated eigenvectors.
+\end{lemma}
+
+\begin{lemma}
+    \label{lem:block_det}
+    For a block diagonal matrix $A$ with blocks $A_i$, $\det(A) = \det(A_1) \det(A_2) \cdots \det(A_n)$
+\end{lemma}
+
 \begin{lemma}
     A connected graph $G$ is connected if and only if the $0^\text{th}$ eigenvalue of $L_G$ has algebraic multiplicity $1$.
 \end{lemma}
+\begin{proof}
+\end{proof}
 
 \begin{theorem}
     A graph $G$ has $k$ connected components if and only if the $0^\text{th}$ eigenvalue of $L_G$ has algebraic multiplicity $k$.
 \end{theorem}
 
+\begin{proof}
+    
+\end{proof}
+
 \section{Application to Computational Geometry}
-\begin{wrapfigure}[7]{r}{0.3\textwidth}
-    \centering\vspace{-2cm}
-    \includegraphics[width=0.5\pagewidth]{figures/cat.png}
+\begin{wrapfigure}{r}{0.25\textwidth}
+    \centering
+    \begin{tikzpicture}
+        \node[anchor = south] (mesh) at (0,0.5) {
+            \includegraphics[width=0.25\textwidth]{figures/vase_dual.png}
+        };
+        \node[anchor = north] (dual) at (0,-0.5) {
+            \includegraphics[width=0.25\textwidth]{figures/vase_dual.png}
+        };
+    \draw[-implies,double equal sign distance, very thick] (mesh) -- (dual) node[pos=0.5, anchor=west,right=4mm] {\text{Dual}};
+    \end{tikzpicture}
 \end{wrapfigure}
 
 In computer graphics, modeling, simulation, etc. we often want a representation of some real world geometry that we can perform computations on. A common way to of doing so is via a mesh. Consider the example mesh of a cat to the right. From some basic observations, the mesh appears to be comprised of points connected by segments/edges which outline faces. We formalize these observations in Definition \ref{def:tri_mesh}.
 
-\newpage
 \begin{definition}[Triangular Mesh]
     \label{def:tri_mesh}
     A \textbf{triangular mesh} is a triple $K = (V, E, F)$ such that
@@ -195,14 +246,11 @@ Notice that a triangular mesh lends itself to some very natural graph structures
     The dual mesh of a triangular mesh $K = (V_K, E_K, F_K)$ is the graph $G = (V, E)$ such that $V = F_K$ and $f_1 \sim f_2$ if $f_1 \cap f_2 = \qty{e}$ for some in $e \in E_K$.
 \end{definition}
 
-% The above definition indeed defines a valid graph since a face cannot be a neighbor to itself since its intersection with itself is an edge set with more than just one edge. 
-
 \begin{theorem}
     A Triangular Mesh has $k$ connected components if and only the $0^\text{th}$ eigenvalue of the Laplace matrix of its dual mesh has algebraic multiplicity $k$.
 \end{theorem}
 
 \newpage
-
 \nocite{merrisLaplacianMatricesGraphs1994}
 \printbibliography
 

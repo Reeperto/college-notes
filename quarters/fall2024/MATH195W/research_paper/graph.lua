@@ -67,7 +67,7 @@ function M.graph_tikz(G)
 
     for v, coord in pairs(G.vertices) do
         nodes[#nodes + 1] = string.format(
-            [[\node[vertex] (%d) at (%f, %f) {$v_%d$};]],
+            [[\node[vertex] (%d) at (%f, %f) {$v_{%d}$};]],
             v,
             coord[1] * scale, coord[2] * scale,
             v

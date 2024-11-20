@@ -1,0 +1,118 @@
+\documentclass{article}
+
+\input{hw1_preamble.tex}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[lcr]{}
+\fancyhead[l]{Eli Griffiths}
+\fancyhead[c]{MATH $121$B}
+\fancyhead[r]{HW \#$4$}
+
+\DeclareMathOperator*{\argmin}{argmin}
+
+\NewDocumentCommand\iprd{ s m }{% s = star, m = mandatory arg
+   \IfBooleanTF{#1}{%
+    \langle #2 \rangle
+   }{%
+    \left\langle #2 \right\rangle
+   }%
+}
+
+\begin{document}
+
+\section*{Problem 1}
+\subsection*{Part A}
+\begin{proof}
+    Let $v$ be an eigenvector of $M$ with associated eigenvalue $\lambda \in \R$ (since $M$ is self adjoint). Since $M$ is positive definite, we have
+    \[
+        0 < v^* M v = v^*(Mv) = v^* (\lambda v) = \lambda (v^* v)
+    \]
+    Note that $v^* v$ is the standard inner product on $\R^n$ or $\C^n$ of $v$ with itself. Since $v$ is non-zero we must have $v^* v > 0$. But this means that $\lambda > 0$. Therefore all the eigenvalues of $M$ must be strictly positive.
+\end{proof}
+
+\subsection*{Part B}
+\begin{proof}
+    Suppose $M$ is self adjoint and has $n$ positive eigenvalues. Since $M$ is self adjoint, there exists an orthonormal basis $\beta = \qty{v_1, \ldots, v_n}$ of eigenvectors of $M$. Let $x \in V$. We can write $x$ as
+    \[
+        x = \sum_{i=1}^n a_i v_i
+    .\]
+    Note that we can rewrite $x^* M x = \iprd{x, Mx} = \iprd{Mx, x}$ since $M$ is self adjoint. Furthermore
+    \[
+        \iprd{Mx,x} = \iprd{M \sum_{i=1}^n a_i v_i, \sum_{i=1}^n a_i v_i} = \iprd{\sum_{i=1}^n a_i \lambda_i v_i, \sum_{i=1}^n a_i v_i} = \sum_{i=1}^n |a_i|^2 \lambda_i
+    .\]
+    Since each $|a_i| \geq 0$ and $\lambda_i > 0$, this sum must be non-negative. Furthermore, since $x$ is non zero, there is at least one $a_i$ such that $|a_i| > 0$, hence the sum must itself be strictly positive. Therefore $x^* M x = \iprd{Mx, x} > 0$, hence $M$ is positive definite.
+\end{proof}
+
+\subsection*{Part C}
+
+\newtcolorbox{minithm}{
+	breakable,
+	coltitle = black,
+	colback = blue!7,
+	frame hidden,
+	sharp corners = all,
+    box align = center,
+	enhanced,
+}
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}[label=\alph*)]
+        \item
+            \begin{minithm}
+                The eigenvalues of a positive semidefinite matrix $M$ are non-negative.
+            \end{minithm}
+            Let $v$ be an eigenvector of $M$ with associated eigenvalue $\lambda \in \R$ (since $M$ is self adjoint). Since $M$ is positive semidefinite, we have
+            \[
+                0 \leq v^* M v = v^*(Mv) = v^* (\lambda v) = \lambda (v^* v)
+            \]
+            Note that $v^* v$ is the standard inner product on $\R^n$ or $\C^n$ of $v$ with itself. Since $v$ is non-zero we must have $v^* v > 0$. But this means that $\lambda \geq 0$. Therefore all the eigenvalues of $M$ must be non-negative.
+        \item
+            \begin{minithm}
+                If a matrix $M$ is self adjoint and has $n$ non-negative eigenvalues, it is positive semidefinite.
+            \end{minithm}
+        Suppose $M$ is self adjoint and has $n$ non-negative eigenvalues. Since $M$ is self adjoint, there exists an orthonormal basis $\beta = \qty{v_1, \ldots, v_n}$ of eigenvectors of $M$. Let $x \in V$. We can write $x$ as
+        \[
+            x = \sum_{i=1}^n a_i v_i
+        .\]
+        Note that we can rewrite $x^* M x = \iprd{x, Mx} = \iprd{Mx, x}$ since $M$ is self adjoint. Furthermore
+        \[
+            \iprd{Mx,x} = \iprd{M \sum_{i=1}^n a_i v_i, \sum_{i=1}^n a_i v_i} = \iprd{\sum_{i=1}^n a_i \lambda_i v_i, \sum_{i=1}^n a_i v_i} = \sum_{i=1}^n |a_i|^2 \lambda_i
+        .\]
+        Since each $|a_i| \geq 0$ and $\lambda_i \geq 0$, this sum must be non-negative. Therefore $x^* M x = \iprd{Mx, x} \geq 0$, hence $M$ is positive semidefinite.
+    \end{enumerate}
+    \renewcommand{\qedsymbol}{}
+\end{proof}
+
+\section*{Problem 2}
+\begin{proof}
+    Suppose $M$ is positive semidefinite. Then $M$ is self adjoint and from $(1c)$ all of its eigenvalues are non-negative. Because it is self adjoint, $M$ can be decomposed as $M = UDU^*$ where $U$ is unitary and $D$ is the diagonal matrix of its eigenvalues. Since all of the eigenvalues are real and non-negative, we can define the matrix $\widetilde{D}$ as the diagonal matrix with the square root of the entries of $D$ on the diagonal. Note then that $\widetilde{D}^2 = D$. Choosing $Q = \widetilde{D} U^*$ we have $Q^* Q = (\widetilde{D} U^*)^* (\widetilde{D} U^*) = (U \widetilde{D}) (\widetilde{D} U^*) = U D U^* = M$. 
+    \\
+
+    Suppose that we can write $M = Q^* Q$ for some matrix $Q$. Let $x$ be a non zero vector in the appropriate space $\R^n$ or $\C^n$. Then we have
+    \[
+        \iprd{Mx, x} = \iprd{Q^* Q x, x} = \iprd{Qx, Qx} = \norm{Qx} \geq 0
+    .\]
+    Therefore $M$ is positive semidefinite.
+\end{proof}
+
+\section*{Problem 3}
+\begin{proof}
+    By SVD, there exists a decomposition of $A = U \Sigma V^*$ where $U$ and $V$ are unitary and $\Sigma$ is a diagonal matrix of the singular values $\sigma_1, \sigma_2, \ldots, \sigma_n$ of $A$. Since $V$ is unitary, we can rewrite
+    \[
+        A = U \Sigma V^* = U V^* V \Sigma V^* = M P
+    \]
+    where $M = UV^*$ and $P = V \Sigma V^*$. Since $\sigma_i \geq 0$ and is real, we can construct the matrix $\widetilde{\Sigma}$ as a diagonal matrix with entries $\sqrt{\sigma_i}$. Note that $\widetilde{\Sigma}^* = \widetilde{\Sigma}$ and $\widetilde{\Sigma}^2 = \Sigma$. Therefore
+    \[
+        P = V \Sigma V^* = V \widetilde{\Sigma}^* \widetilde{\Sigma} V^* = V \widetilde{\Sigma}^* V^* V \widetilde{\Sigma} V^* = (V \widetilde{\Sigma} V^*)^* (V \widetilde{\Sigma} V^*)
+    .\]
+    By $(2)$, $P$ must then be positive semidefinite. Since $M$ is a product of unitary matrices, it must also be unitary. Therefore $A = MP$ where $M$ is unitary and $P$ is positive semidefinite.
+\end{proof}
+
+\section*{Problem 4}
+\begin{proof}
+    Suppose $M$ is an $n\times n$ positive semidefinite matrix with rank $r$. Since $M$ is self adjoint, we can rewrite $M = UDU^*$ where $U$ is unitary and $D$ is the diagonal matrix of the eigenvalues $\lambda_i$ of $M$. Note then that $M^* M = M M = M^2$ and $M^* M = U D^2 U^*$. Therefore we know that $M^2 = U D^2 U^*$ and hence the eigenvalues of $M^2$ are $\lambda_i^2$. Consider the positive singular values $\sigma_1, \ldots, \sigma_r$. These are equal to the square root of the positive eigenvalues of $M^* M = M^2$. But this means that if $\lambda_j^2 > 0$, then $\sigma_j = \sqrt{\lambda_j^2} = |\lambda_j|$. Since $M$ is positive semidefinite, we know that each $\lambda_i \geq 0$ therefore we can conclude that $\sigma_j = |\lambda_j| = \lambda_j$. Consider the singular values that are zero $\sigma_r+1, \ldots, \sigma_n$. In this instance there are $n - r$ zero singular values. Since $M$ has rank $r$ and is positive semidefinite, it must have $0$ as an eigenvalue repeated $n-r$ times. Therefore we have that the positive singular values of $M$ coincide with its positive eigenvalues, and the singular values that are zero is the same count as the times $0$ is an eigenvalue for $M$, and this in total covers all the eigenvalue of $M$. Hence the eigenvalues of $M$ are its singular values.
+\end{proof}
+
+\end{document}
