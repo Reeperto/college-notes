@@ -28,7 +28,19 @@
 \usetikzlibrary{arrows.meta}
 
 \usepackage[style=alphabetic]{biblatex}
-\addbibresource{sources.bib}
+\addbibresource{sources/library.bib}
+
+\tikzset{
+    vertex/.style={
+        font = \scriptsize,
+        fill=blue!20,
+        draw,
+        circle,
+        inner sep=0pt,
+        minimum size=20pt,
+    },
+    edge/.style={}
+}
 
 \usepackage{hyperref}
 
@@ -52,41 +64,36 @@
 \maketitle
 
 \begin{abstract}
-    Beyond traditional combinatoric approaches, we can analyze the properties of graphs using the eigenvalues and eigenvectors of their matrix representations. We first show that a given graph’s Laplacian matrix eigenvalues encodes the connectedness of the graph. We then use this fact to solve a problem of mesh connectedness in computational geometry through a natural dual correspondence between meshes and graphs.   
+    Graphs lend themselves naturally to matrices that encode properties such as which vertices are connected to others and how many vertices are connected to a given vertex. These matrix representations allow us to analyze graphs outside of traditional combinatoric approachs by considering their eigenvalues and eigenvectors. Key to our study is the Laplacian matrix representation of a graph. We first show that the eigenvalues of the Laplacian matrix give insight into if every vertex of a graph is connected to each other via some path through edges, and if not how many separate components there are in which this is the case. We then frame this result within the context of of computational geometry and discuss how more advanced problems in computational geometry can be approached with this spectral framework.
 \end{abstract}
 
 \section{Introduction}
+
+Graphs at their core encode the concept of connectivity. A graph is simply vertices and edges where vertices are objects or nodes and edges are connections between these vertices. While simple in concept, this means graphs appear in different fields and applications such modeling friend networks on a social media platform, determining flight schedules for optimal transport, model the structure of chemical compounds, and much more.
+
+Graph theory has always been deeply tied to the field of combinatorics. One of the earliest problems in what we now consider graph theory, Euler's famous K\"onigsberg bridge problem, was solved via methods of counting, a fundamental technique in combinatorics \cite{wilson2013combinatorics}.
+
+
 
 \section{Background}
 
 We first outline the basic structure of a graph and related definitions that will be used throughout the paper, following the formalism and notation from \cite{diestelGraphTheory2017}. We adopt the notation that $[S]^n$ is the set of all $n$-element sized subsets of $S$.
 
 \begin{definition}[Graph Structure]
-    A \textbf{graph} is a pair $G = (V, E)$ of sets where $E \subseteq [V]^2$. The elements of $V$ are \textbf{vertices} and the elements of $E$ are \textbf{edges}. A vertex $v$ is said to be \textbf{incident} to an edge $e$ if $v \in e$. Two vertices $v_1$ and $v_2$ are \textbf{neighbors} if $\qty{v_1, v_2} \in E$. We denote $\qty{v_1, v_2} \in E$ by $v_1 \sim v_2$. The \textbf{set of neighbors} of a vertex $v$ is denoted by $N(v) \coloneq \qty{w \in V : v \sim w}$. The \textbf{degree} of a vertex $v$ is $\deg(v) \coloneq |N(v)|$.
+    A \textbf{graph} is a pair $G = (V, E)$ of sets where $E \subseteq [V]^2$. The elements of $V$ are \textbf{vertices} and the elements of $E$ are \textbf{edges}. A vertex $v$ is said to be \textbf{incident} to an edge $e$ if $v \in e$. Two vertices $v_1$ and $v_2$ are \textbf{neighbors} if $\qty{v_1, v_2} \in E$. We denote $\qty{v_1, v_2} \in E$ by $v_1 \sim v_2$. The \textbf{set of neighbors} of a vertex $v$ is denoted by $N(v) \coloneq \qty{w \in V : v \sim w}$. The \textbf{degree} of a vertex $v$ is $\deg(v) \coloneq |N(v)|$. A \textbf{subgraph} $H$ of $G$, denoted by $H \subseteq G$, is a graph whose vertex and edge sets are subsets of $G$'s.
 \end{definition}
 
 \begin{remark}
     Edges importantly are defined here as two element sets and not as ordered pairs. This makes the graph \textit{undirected}. If the graph was to be directed (that is the edges were to be ordered pairs) the further results of this paper would not hold in general and would require more restrictions.
 \end{remark}
 
-For the purposes of this paper, we will assume that every graph has finitely many vertices (and hence finitely many edges). A way to visualize a finite graph is by representing vertices as points in the plane and edges as line segments between these points as seen in Figure \ref{fig:graph_visual}.
-
-\begin{figure}[ht]
+\begin{figure}
     \centering
     \caption{Two example graphs in the plane}
     \label{fig:graph_visual}
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
-        \begin{tikzpicture}[
-            scale=0.8,
-            vertex/.style={
-                inner sep=2pt,
-                circle,
-                draw,
-                fill=blue!20,
-            },
-            edge/.style={}
-            ]
+        \begin{tikzpicture}[scale=0.8]
             \directlua{graph.graph_tikz(examples.example1)}
         \end{tikzpicture}   
         \caption{A graph with $7$ vertices and $15$ edges}
@@ -94,33 +101,26 @@ For the purposes of this paper, we will assume that every graph has finitely man
     \end{subfigure}\hfill
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
-        \begin{tikzpicture}[
-            scale=0.8,
-            vertex/.style={
-                inner sep=2pt,
-                circle,
-                draw,
-                fill=blue!20,
-            },
-            edge/.style={}
-            ]
+        \begin{tikzpicture}[scale=0.8]
             \directlua{graph.graph_tikz(examples.example2)}
         \end{tikzpicture}   
-        \caption{A graph with $2$ connected componenets}
+        \caption{A graph with $2$ connected components}
         \label{fig:connected_components}
     \end{subfigure}
 \end{figure}
+
+For the purposes of this paper, we will assume that every graph has finitely many vertices (and hence finitely many edges). A way to visualize a finite graph is by representing vertices as points in the plane and edges as line segments between these points as seen in Figure \ref{fig:graph_visual}. Notice that the graphs in Figure \ref{fig:graph_visual} differ in terms of how connected the vertices are to one other. If each vertex was a city and the edges roads, a car on the graph in \ref{fig:basic_graph} could get to any city, but cars on the outer ring in \ref{fig:connected_components} are stuck there. Intuitively, \ref{fig:connected_components} appears to be in two separate pieces. This idea of connectedness and connected sections of a graph is the key property of graphs we are interested in.
 
 \begin{definition}[Connectedness]
     A \textbf{path} is a non-empty graph $P = (V,E)$ where
     \[
         V = \qty{v_0, v_1, \ldots, v_k}, E = \qty{\qty{v_0,v_1}, \ldots, \qty{v_{k-1}, v_k}}
     .\]
-    A graph $G$ is then \textbf{connected} if between any two vertices $v_0$ and $v_f$ there exists a path $P \subseteq G$ starting at $v_0$ and ending at $v_f$.
+    A graph $G$ is then \textbf{connected} if between any two vertices $v_0$ and $v_f$ there exists a path $P \subseteq G$ starting at $v_0$ and ending at $v_f$. A \textbf{connected component} of a graph is a subgraph $H \subseteq G$ that is connected and is not contained in any larger connected subgraph.
 \end{definition}
 
-\begin{definition}[Adjacency and Degree Matrix]
-    The adjacency matrix $A_G$ and degree matrix $D_G$ of a finite graph $G$ with $n$ vertices are the $n \times n$ matrices such that
+\begin{definition}
+    The \textbf{adjacency matrix} $A_G$ and \textbf{degree matrix} $D_G$ of a finite graph $G$ with $n$ vertices are the $n \times n$ matrices such that
     \begin{align*}
         (A_G)_{ij} = \begin{cases}
             1 & v_i \sim v_j \\
@@ -148,11 +148,10 @@ For the purposes of this paper, we will assume that every graph has finitely man
 \end{example}
 
 
-An important observation is that the adjacency matrix is symmetric. That is because for any vertices $v_i$ and $v_j$ we have both $v_i \sim v_j$ and $v_j \sim v_i$ meaning $(A_G)_{ij} = (A_G)_{ji}$. Since the adjacency matrix is symmetric, we know that it must have an orthonormal basis of eigenvectors and corresponding set of eigenvalues. Since $A_G$ is symmetric for any graph $G$, it begs the question: what can we determine about a graph based on these eigenvalues and eigenvectors?
-
 \section{A Graph's Spectra}
 
-\begin{definition}[Laplace Matrix]
+
+\begin{definition}
     The \textbf{Laplacian Matrix} of a graph $G$ is $L_G \coloneq D_G - A_G$. If $G$ is understood via context, we simply refer to it as $L$.
 \end{definition}
 
@@ -230,7 +229,7 @@ In order to make the connection between the eigenvalues of $L$, its quadratic fo
 
 In computer graphics, modeling, simulation, etc. we often want a representation of some real world geometry that we can perform computations on. A common way to of doing so is via a mesh. Consider the example mesh of a cat to the right. From some basic observations, the mesh appears to be comprised of points connected by segments/edges which outline faces. We formalize these observations in Definition \ref{def:tri_mesh}.
 
-\begin{definition}[Triangular Mesh]
+\begin{definition}
     \label{def:tri_mesh}
     A \textbf{triangular mesh} is a triple $K = (V, E, F)$ such that
     \begin{itemize}
@@ -240,14 +239,14 @@ In computer graphics, modeling, simulation, etc. we often want a representation 
     \end{itemize}
 \end{definition}
 
-Notice that a triangular mesh lends itself to some very natural graph structures. One is simply using the vertices as the graph vertices and the edges as graph edges. The other one which is of use to us is using the faces as graph vertices and faces sharing a common edge as the edge set. This is often referred to as the dual graph of a mesh and has many uses in computational geometry \cite{kimSpectralCodingThreeDimensional2005}.
+Notice that a triangular mesh lends itself to some very natural graph structures. One is simply using the vertices as the graph vertices and the edges as graph edges. The other one which is of use to us is using the faces as graph vertices and faces sharing a common edge as the edge set. This is often referred to as the dual graph of a mesh and appears in computational geometry problems such as mesh based signal processing \cite{taubinDualMeshResampling2002} and refinement of meshed implicit surfaces \cite{10.1145/566282.566308}. 
 
-\begin{definition}[Dual Mesh]
-    The dual mesh of a triangular mesh $K = (V_K, E_K, F_K)$ is the graph $G = (V, E)$ such that $V = F_K$ and $f_1 \sim f_2$ if $f_1 \cap f_2 = \qty{e}$ for some in $e \in E_K$.
+\begin{definition}
+    The \textbf{dual mesh} of a triangular mesh $K = (V_K, E_K, F_K)$ is the graph $G = (V, E)$ such that $V = F_K$ and $f_1 \sim f_2$ if $f_1 \cap f_2 = \qty{e}$ for some in $e \in E_K$.
 \end{definition}
 
 \begin{theorem}
-    A Triangular Mesh has $k$ connected components if and only the $0^\text{th}$ eigenvalue of the Laplace matrix of its dual mesh has algebraic multiplicity $k$.
+    A triangular mesh has $k$ connected components if and only the $0^\text{th}$ eigenvalue of the Laplace matrix of its dual mesh has algebraic multiplicity $k$.
 \end{theorem}
 
 \newpage

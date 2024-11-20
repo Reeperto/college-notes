@@ -65,6 +65,8 @@ function M.graph_tikz(G)
     local nodes = {}
     local edges = {}
 
+    local seen_edges = {}
+
     for v, coord in pairs(G.vertices) do
         nodes[#nodes + 1] = string.format(
             [[\node[vertex] (%d) at (%f, %f) {$v_{%d}$};]],
@@ -76,10 +78,16 @@ function M.graph_tikz(G)
 
     for ei, adj in pairs(G.edges) do
         for _, ej in pairs(adj) do
-            edges[#edges + 1] = string.format(
-                [[\draw[edge] (%d) -- (%d);]],
-                ei, ej
-            )
+            local iden = string.format("%d %d", math.min(ei, ej), math.max(ei, ej))
+
+            if seen_edges[iden] == nil then
+                edges[#edges + 1] = string.format(
+                    [[\draw[edge] (%d) -- (%d);]],
+                    ei, ej
+                )
+
+                seen_edges[iden] = true
+            end
         end
     end
 
