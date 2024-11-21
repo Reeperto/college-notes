@@ -1,0 +1,25 @@
+% \begin{proof}
+%     We can rewrite $x^T L x = x^T (D - A) x$ using the definition of the Laplacian matrix. Expanding out we get
+%     \[
+%         x^T L x = x^T D x - x^T A x
+%     .\]
+%     First consider the term $x^T D x$. By the definition of $D$, we know that $(D)_{ij} = \deg(v_i)$ when $i = j$ and $0$ otherwise. Therefore
+%     \[
+%         x^T D x = \sum_{i=1}^n \sum_{j=1}^n x_i (D)_{ij} x_j = \sum_{i=1}^n \deg(v_i) \cdot x_i^2
+%     .\]
+%     Consider some vertex $v \in V$. Then $\deg(v)$ is also the number of edges containing $v$. Therefore we can rewrite the previous sum as a sum over the edges,
+%     \[
+%         \sum_{i=1}^n \deg(v_i) \cdot x_i^2 = \sum_{v_i \sim v_j} x_i^2 + x_j^2
+%     .\]
+%     Now consider $x^T A x$. By the definition of $A$, we know that $(A)_{ij} = 1$ if $v_i \sim v_j$ and $0$ otherwise. Therefore
+%     \[
+%         x^T A x = \sum_{i=1}^n \sum_{j=1}^n x_i (A)_{ij} x_j = 2 \cdot\sum_{v_i \sim v_j} x_i x_j
+%     .\]
+%     Note the factor of $2$ is needed because summing over entries of $A$ double counts edges. We have then
+%     \[
+%         x^T L x = x^T D x - x^T A x = \sum_{v_i \sim v_j} \qty(x_i^2 - 2 x_i x_j + x_j^2) = \sum_{v_i \sim v_j} (x_i - x_j)^2
+%         .\qedhere
+%     \]
+% \end{proof}
+
+% In order to make the connection between the eigenvalues of $L$, its quadratic form, and the connectivity of $G$, we will need some results from linear algebra. While we wont prove these here, a proof for Lemma \ref{lem:eig_multiplicity} can be found in \cite{} and a proof for Lemma \ref{lem:block_det} in \cite{silvester2000determinants}.
