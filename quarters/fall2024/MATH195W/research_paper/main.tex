@@ -18,12 +18,11 @@
 
 \RenewDocumentCommand{\qedsymbol}{}{$\blacksquare$}
 
-\declaretheorem{theorem}
-\declaretheorem{lemma}
-\declaretheorem[style=definition]{definition}
-
-\declaretheorem[style=remark]{example}
-\declaretheorem[style=remark]{remark}
+\declaretheorem[numberwithin=section]{theorem}
+\declaretheorem[numberlike=theorem]{lemma}
+\declaretheorem[numberlike=theorem, style=definition]{definition}
+\declaretheorem[numberlike=theorem, style=definition]{example}
+\declaretheorem[numberlike=theorem, style=definition]{remark}
 
 \usepackage{tikz}
 \usetikzlibrary{arrows}
@@ -175,7 +174,7 @@ By observation, we can see that both the matrices in Example \ref{ex:adj_deg_mat
     By the definition of the degree matrix, the only non zero entries lie on the main diagonal of $D$. Therefore $D$ is a diagonal matrix and hence symmetric. Consider two vertices $v_i, v_j$ of $G$ in which $v_i \sim v_j$. Since the edges of $G$ are undirected we also have $v_j \sim v_i$. Hence $(A)_{ij} = (A)_{ji} = 1$. Likewise, if $v_i \not\sim v_j$ then $v_j \not\sim v_i$ meaning $(A)_{ij} = (A)_{ji} = 0$. Therefore $A$ is symmetric.
 \end{proof}
 
-\section{A Graph's Spectra}
+\section{The Spectra of a Graph}
 
 \begin{definition}
     The \term{Laplacian Matrix} of a graph $G$ is $L_G \coloneq D_G - A_G$. If $G$ is understood via context, we simply refer to it as $L$.
@@ -293,12 +292,10 @@ Notice that a triangular mesh lends itself to some very natural graph structures
 
 When dealing with meshes, we are usually interested in capturing the surface geometry of some object. It is very natural to ask questions about traversing or simulating heat dispersion on the surface of a mesh. Both of these tasks necessitate some concept of when parts of the mesh are connected to ensure paths don't jump between different unconnected parts or heat spreads through empty space. 
 
-Imagine living on the surface of some face of a mesh. Then you can freely walk around the surface of that face. Furthermore, you can walk across edges to adjacent faces in well defined manner as there can only be at most $1$ possible choice due to the last restriction on faces in Definition \ref{def:tri_mesh}. Passing through a vertex is less well defined because there can be an arbitrary number of possible faces to go to.
-
-We will therefore define (quite informally) that a mesh is \term{connected} if for any two points (starting on faces) can be connected via a path on the mesh surface that crosses between faces via edges only. In the same vain as a graph, a \term{connected component} of a mesh is a maximal submesh that is connected. This quickly lends itself to a reframing of Theorem \ref{thm:main_thm}.
+Imagine living on the surface of some face of a mesh. Then one can freely walk around the surface of that face. Furthermore, one can walk across edges to adjacent faces in well defined manner as there can only be at most $1$ possible choice due to the last restriction on faces in Definition \ref{def:tri_mesh}. Passing through a vertex is less well defined because there can be an arbitrary number of possible faces to go to. We will therefore define (quite informally) that a mesh is \term{connected} if for any two points (starting on faces) can be connected via a path on the mesh surface that crosses between faces via edges only. In the same vain as a graph, a \term{connected component} of a mesh is a maximal submesh that is connected. This quickly lends itself to a reframing of Theorem \ref{thm:main_thm}.
 
 \begin{theorem}
-    A triangular mesh has $m$ connected components if and only if the algebraic multiplicity of zero is $m$ Laplacian matrix of its dual mesh has algebraic multiplicity $k$.
+    A triangular mesh has $m$ connected components if and only if the algebraic multiplicity of zero is $m$ for the dual mesh's Laplacian matrix.
 \end{theorem}
 
 \begin{proof}
