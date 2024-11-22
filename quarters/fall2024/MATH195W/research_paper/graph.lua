@@ -61,6 +61,51 @@ function M.adj_matrix(G)
 end
 
 ---@param G Graph
+function M.adj_matrix_tikz(G)
+    local size = #G.vertices
+
+    for i = 1, size do
+        local row = {}
+        for j = 1, size do
+            if contains(G.edges[i], j) then
+                row[#row+1] = [[\node{1};]]
+            else
+                row[#row+1] = [[\node{0};]]
+            end
+        end
+
+        tex.print(table.concat(row, " & ") .. [[\\]])
+    end
+end
+
+---@param G Graph
+function M.adj_grid_tikz(G, fill_cells)
+    local size = #G.vertices
+
+    local header = {""}
+
+    for i = 1, size do
+        header[#header+1] = string.format([[\node{$v_{%d}$};]], i)
+    end
+
+    tex.print(table.concat(header, " & ") .. [[\\]])
+
+    for i = 1, size do
+        local row = { string.format([[\node{$v_{%d}$};]], i) }
+        -- local row = {}
+        for j = 1, size do
+            if contains(G.edges[i], j) and fill_cells then
+                row[#row+1] = [[\node{$\checkmark$};]]
+            else
+                row[#row+1] = [[\node{};]]
+            end
+        end
+
+        tex.print(table.concat(row, " & ") .. [[\\]])
+    end
+end
+
+---@param G Graph
 function M.graph_tikz(G)
     local nodes = {}
     local edges = {}
