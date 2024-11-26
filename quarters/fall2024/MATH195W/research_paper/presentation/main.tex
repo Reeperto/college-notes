@@ -8,6 +8,9 @@
 \usepackage{svg}
 \usepackage{mathtools}
 
+\usepackage{graphicx}
+\graphicspath{{../figures/}}
+
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{calc}
@@ -18,8 +21,8 @@
 \institute[UCI]{University of California, Irvine}
 \date{\today}
 
-\directlua{graph = require("../graph")}
-\directlua{examples = require("../data")}
+\directlua{graph = require("../scripts/graph")}
+\directlua{examples = require("../scripts/data")}
 
 \begin{document}
 
@@ -61,11 +64,19 @@
         \item<3-> Molecules and bonds between atoms in structural chemistry
         \item<4-> Connectivity of meshes in computational geometry
     \end{itemize}
+    \only<4>{
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.3\textwidth]{figurine.png}
+        \includegraphics[width=0.3\textwidth]{figurine_split.png}
+    \end{figure}
+    }
 \end{frame}
 
 \begin{frame}
     \begin{center}
-        \includesvg[width=0.6\pagewidth]{../figures/overlayed.svg}
+        \includesvg[width=0.6\pagewidth]{overlayed.svg}
     \end{center}
 \end{frame}
 
@@ -74,13 +85,13 @@
         \begin{column}{0.5\pagewidth}
             \begin{figure}[t]
                 \centering
-                \includesvg[width=0.9\textwidth]{../figures/overlayed_g1.svg}
+                \includesvg[width=0.9\textwidth]{overlayed_g1.svg}
             \end{figure}
         \end{column}
         \begin{column}{0.5\pagewidth}
             \begin{figure}[t]
                 \centering
-                \includesvg[width=0.9\textwidth]{../figures/overlayed_g2.svg}
+                \includesvg[width=0.9\textwidth]{overlayed_g2.svg}
             \end{figure}
         \end{column}
     \end{columns}
@@ -198,10 +209,10 @@
     \begin{column}{0.3\pagewidth}
         \begin{figure}
             \centering
-            \only<1>{\includegraphics[width=0.3\pagewidth]{../figures/vase_all.png}}
-            \only<2>{\includegraphics[width=0.3\pagewidth]{../figures/vase_vertices.png}}
-            \only<3>{\includegraphics[width=0.3\pagewidth]{../figures/vase_edges.png}}
-            \only<4>{\includegraphics[width=0.3\pagewidth]{../figures/vase_face_highlight.png}}
+            \only<1>{\includegraphics[width=0.3\pagewidth]{vase_all.png}}
+            \only<2>{\includegraphics[width=0.3\pagewidth]{vase_vertices.png}}
+            \only<3>{\includegraphics[width=0.3\pagewidth]{vase_edges.png}}
+            \only<4>{\includegraphics[width=0.3\pagewidth]{vase_face_highlight.png}}
         \end{figure}
     \end{column}
     \end{columns}
@@ -210,7 +221,7 @@
 \begin{frame}{Dual Mesh}
     \begin{figure}
         \centering
-        \includegraphics[width=0.3\textwidth]{../figures/vase_dual.png}
+        \includegraphics[width=0.3\textwidth]{vase_dual.png}
     \end{figure}
 \end{frame}
 
@@ -219,13 +230,13 @@
         \begin{column}{0.3\pagewidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=\textwidth]{../figures/spectral_partitioning.png}
+                \includegraphics[width=\textwidth]{spectral_partitioning.png}
             \end{figure}
         \end{column}
         \begin{column}{0.5\pagewidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=\textwidth]{../figures/fielder_vector_colon.png}
+                \includegraphics[width=\textwidth]{fielder_vector_colon.png}
             \end{figure}
         \end{column}
     \end{columns}
