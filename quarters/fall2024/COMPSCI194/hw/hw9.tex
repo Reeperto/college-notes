@@ -1,0 +1,188 @@
+\documentclass[12pt]{extarticle}
+
+\input{hw_preamble.tex}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[R]{\textbf{CS 164: Homework \#9}}
+\fancyhead[L]{Eli Griffiths}
+
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{physics}
+
+\usepackage{svg}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\lune}{lune}
+
+\newtcolorbox{solution}{
+	breakable,
+	coltitle = black,
+	colback = white,
+	frame hidden,
+	boxrule = 0pt,
+	boxsep = 0pt,
+	borderline west={3pt}{0pt}{black},
+	sharp corners = all,
+	enhanced,
+}
+
+\begin{document}
+
+\section*{Problem 1}
+The degree of a point in a triangulation is the number of edges incident to it. Give an example of a set of $n$ points in the plane such that, no matter how the set is triangulated, there is always a point whose degree is $n-1$.
+
+\begin{solution}
+    We can simply place $n-1$ points in a line and $1$ point off the line. Any triangulation will require that the points on the line connect to the point off the line to make a triangle. This means there are $n-1$ edges for the point off the line and hence a degree of $n-1$.
+\end{solution}
+
+\section*{Problem 2}
+Given four points $p, q, r, s$ in the plane, prove that point $s$ lies in the interior of the circle through $p, q$, and $s$ if and only if the following condition holds. Assume that $p, q, r$ form the vertices of a triangle in clockwise order.
+\[
+    \det\mqty(
+        p_x & p_y &p_x^2 + p_y^2 & 1 \\
+        q_x & q_y &q_x^2 + q_y^2 & 1 \\
+        r_x & r_y &r_x^2 + r_y^2 & 1 \\
+        s_x & s_y & s_x^2 + s_y^2 & 1\
+    ) > 0
+.\]
+
+\begin{solution}
+    We can create a system of linear equations by considering the equation for a circle
+    \[
+        a(x^2 + y^2) + bx + cy + d = 0
+    .\]
+    If we consider $a,b,c,d$ as our variables, we can plug in the coordinates of $p,q,r$ and a free point $(x,y)$ to get a coefficient matrix $A$ for the system where
+    \[
+        A = \mqty(
+        x^2 + y^2 & x & y & 1 \\
+        p_x^2 + p_y^2 & p_x & p_y & 1 \\
+        q_x^2 + q_y^2 & q_x & q_y & 1 \\
+        r_x^2 + r_y^2 & r_x & r_y & 1 \\
+        )
+    .\]
+    If we take $(x,y)$ to be on the circle, then the system is homogeneous. Since we are also guaranteed a non trivial solution since $p,q,r$ lay on a non trivial triangle, the determinant of this system must be $0$. If instead we have $(x,y)$ on the interior,
+    \[
+        a(x^2 + y^2) + bx + cy + d < 0
+    .\]
+    Taking $s$ to be this point, we have $\det A < 0$. Note then that
+    \[
+        \det\mqty(
+        s_x^2 + s_y^2 & s_x & s_y & 1 \\
+        p_x^2 + p_y^2 & p_x & p_y & 1 \\
+        q_x^2 + q_y^2 & q_x & q_y & 1 \\
+        r_x^2 + r_y^2 & r_x & r_y & 1 \\
+        ) = (-1)^5 \det\mqty(
+        p_x & p_y &p_x^2 + p_y^2 & 1 \\
+        q_x & q_y &q_x^2 + q_y^2 & 1 \\
+        r_x & r_y &r_x^2 + r_y^2 & 1 \\
+        s_x & s_y & s_x^2 + s_y^2 & 1\
+        )
+    \]
+    by swapping columns $1 \to 2$, $2\to 3$ and swapping rows $1 \to 2$, $2 \to 3$, and $3 \to 4$ which is $5$ swaps giving the $(-1)^5 = -1$ leading term. This negative flips the $\det A < 0$ inequality giving the desired result.
+\end{solution}
+
+\section*{Problem 3}
+Prove that the set of edges of a Delaunay triangulation of $P$ contains an EMST for $P$.
+
+\begin{proof}
+    Let $T$ be the EMST for $P$ and $w(T)$ denote the total weight of $T$. Consider some edge $\qty{p,q}$ of $T$. Suppose towards contradiction that this is not an edge in the Delaunay triangulation of $P$. Then any circle passing through $p$ and $q$ is not empty. If we take the circle whose diameter is $\overline{pq}$, then there must be some other point $r$ within it. If we remove the edge $\qty{p,q}$ then we get two sub trees $T_1$ and $T_2$ with $p \in T_1$ and $q \in T_2$. Without loss of generality we can pick $r$ to be in $T_1$. Add in the edge $\qty{r,q}$ to reconnect $T_1$ and $T_2$ and form a new tree $T'$. The weight of this new tree is then
+    \[
+        w(T') = w(T) + d(r,q) - d(p,q)
+    .\]
+    Since $\overline{pq}$ is a diameter of the circle and $\overline{rq}$ is a segment contained on or in the circle that isnt itself a diameter, $d(r,q) < d(p,q)$. This means that $w(T') < w(T)$. However $T$ was assumed to be the EMST of $P$ and $T'$ has a strictly smaller weight, a contradiction. Therefore $\qty{p,q}$ is an edge in the Delaunay triangulation of $P$.
+\end{proof}
+
+\section*{Problem 4}
+\NewDocumentCommand{\dg}{}{\mathcal{DG}}
+The \textit{Gabriel graph} of a set $P$ of points in the plane is defined as follows: Two points $p$ and $q$ are connected by an edge of the Gabriel graph if and only if the disc with diameter $pq$ does not contain any other point of $P$.
+
+\subsection*{Part A}
+Prove that $\dg(P)$ contains the Gabriel graph of $P$.
+
+\begin{solution}
+    Consider an edge $\qty{p, q}$ of the Gabriel graph of $P$. We can expand the radius of the circle $C$ with $\overline{pq}$ as it diameter while keeping $p$ and $q$ on it. If we shift the center of the circle along the perpendicular bisector of $\overline{pq}$, we maintain equidistance from the center to $p$ and $q$, hence both remain on this expanded circle. We can continue to expand the circle until it intersects another point in $P$. At this point there are then $3$ points on the circle with none inside of it, hence the triangle $p$, $q$, and this other point are in $\dg(P)$. Hence the edge $\qty{p,q}$ must be in $\dg(P)$.
+\end{solution}
+
+\subsection*{Part B}
+Prove that $p$ and $q$ are adjacent in the Gabriel graph of $P$ if and only if the Delaunay edge between $p$ and $q$ intersects its dual Voronoi edge.
+
+\begin{proof}
+    Consider each direction.
+    \begin{enumerate}
+        \item[$\Rightarrow)$]
+            Suppose $p,q$ are adjacent in the Gabriel graph of $P$. Then the circle with diameter $\overline{pq}$ has no other point of $P$ in it. By (A), we also have that $\qty{p,q}$ is an edge in $\dg(P)$. Suppose towards contradiction that $\qty{p,q}$ and its dual Voronoi edge do not intersect. Then there must be a point in the circle, a contradiction. Hence $\overline{pq}$ must intersect its dual Voronoi edge.
+        \item[$\Leftarrow)$]
+            Suppose the Delaunay edge from $p$ to $q$ intersects its dual Voronoi edge. Therefore $p$ and $q$ are the closest points to the dual Voronoi edge. Consider the circle with $\overline{pq}$ as its diameter. Suppose towards contradiction that a point other than $p$ or $q$ was inside the circle. Then we have that the Voronoi dual edge doesn't intersect the Delaunay edge. However, this was assumed and hence a contradiction meaning this circle must be empty. Therefore $\qty{p,q}$ is an edge in the Gabriel graph of $P$.
+    \end{enumerate}
+\end{proof}
+
+\subsection*{Part C}
+Give an $O(n\log n)$ time algorithm to compute the Gabriel graph of a set of $n$ points.
+
+\begin{solution}
+    Since we know that the Gabriel graph of $P$ must be contained in Delaunay graph of $P$ from Part A, we can use $\dg(P)$ as a starting point. If we have the Voronoi diagram of $P$ as well, we can check if each edge in $\dg(P)$ intersects the dual Voronoi edge between its endpoints to determine if the edge is in the Gabriel graph (as established in Part B). Therefore the algorithm is
+    \begin{algorithm}[H]
+        \caption{\textsc{GabrielGraph}($P$: set of points)}
+        \begin{enumerate}
+            \item Create the Delaunay triangulation of $P$
+            \item Create the Voronoi diagram of $P$
+            \item Collect all edges of the Delaunay triangulation which intersect the dual Voronoi edge between its two endpoints into the Gabriel graph and return it
+        \end{enumerate}
+    \end{algorithm}
+
+    Creating both the Delaunay triangulation and Voronoi diagram takes $O(n \log n)$ time. Since we have the number of edges in the Delaunay triangulation as $O(n)$, the last step takes $O(n)$ time. In total then the algorithm takes $O(n \log n)$ time.
+\end{solution}
+
+\section*{Problem 5}
+The relative neighborhood graph of a set $P$ of points in the plane is defined as follows: Two points $p$ and $q$ are connected by an edge of the relative neighborhood graph if and only if
+\[
+    d(p,q) \leq \min_{r \in P, r \neq p, q} \max(d(p,r), d(q,r))
+.\]
+
+\subsection*{Part A}
+Given two points $p$ and $q$, let $\lune(p, q)$ be the moon-shaped region formed as the intersection of the two circles around $p$ and $q$ whose radius is $d(p, q)$. Prove that $p$ and $q$ are connected in the relative neighborhood graph if and only if $\lune(p, q)$ does not contain any points of $P$ in its interior.
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}
+        \item[$\Rightarrow)$]
+            Suppose $p$ and $q$ are connected within the relative neighborhood graph of $P$. Then $p$ and $q$ are the closet points to each other in any direction. That is a circle with radius $d(p,q)$ centered on either $p$ or $q$ does not contain any other point in $P$ in its interior. Therefore $\lune(p,q)$ must be empty as both of the circles defining it have no other points of $P$ on its interior.
+        \item[$\Leftarrow)$]
+            Suppose towards contradiction that $\lune(p,q)$ contains no other points of $P$ on its interior, but there is a point $r$ with $\max(d(p,r), d(q,r)) < d(p,q)$. Then $r$ must be within the lune otherwise $d(p,q) < \max(d(p,r), d(q,r))$. However, $\lune(p,q)$ was assumed to not contain any other points, a contradiction. Therefore we have the desired inequality for the edge $\qty{p,q}$ meaning it is in the relative neighborhood graph of $P$.
+    \end{enumerate}
+\end{proof}
+
+\subsection*{Part B}
+Prove that $\dg(P)$ contains the relative neighborhood graph of $P$.
+\begin{proof}
+    Let $\qty{p,q}$ be an edge in the relative neighborhood graph of $P$. Consider then the circle with diameter $\overline{pq}$. This circle will be contained within $\lune(p,q)$ and hence wont contain any other points of $P$ within it by Part A. This by definition means that $\qty{p,q}$ is an edge in the Delaunay triangulation of $P$.
+\end{proof}
+
+\subsection*{Part C}
+Design an algorithm to compute the relative neighborhood graph of a given point set.
+
+\begin{solution}
+    From Part B, we can determine the edges in the relative neighborhood graph by considering the Delaunay triangulation and checking between endpoints of edges that there are no points in the lune between them. 
+    \begin{algorithm}[H]
+        \caption{\textsc{RelNeighborGraph}($P$: set of points)}
+        \begin{enumerate}
+            \item Compute the Delaunay triangulation of $P$
+            \item For every point $p$ in $P$, consider all adjacent points $q$ in the Delaunay triangulation
+                \begin{itemize}
+                    \item Find the adjacent points that are within a distance of $d(p,q)$ around $p$ and $q$ excluding $p$ from $q$'s search and vice versa
+                    \item If the set of points from before are disjoint, add $\qty{p,q}$ to the relative neighborhood graph
+                \end{itemize}
+            \item Return the relative neighborhood graph
+        \end{enumerate}
+    \end{algorithm}
+
+    For complexity, finding the Delaunay triangulation can be done in $O(n \log n)$ time. On average, the number of neighbors to a given vertex in a Delaunay triangulation is $O(1)$. Therefore the process of considering neighbors of $p$ for each $p$ will take $O(n)$ expected time. In total then the algorithm has an expected time complexity of $O(n \log n)$.
+\end{solution}
+
+\end{document}

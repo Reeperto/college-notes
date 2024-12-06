@@ -19,7 +19,7 @@
 \author{Eli Griffiths}
 \title{A Spectral Approach To Meshes}
 \institute[UCI]{University of California, Irvine}
-\date{\today}
+\date{December 4, 2024}
 
 \directlua{graph = require("../scripts/graph")}
 \directlua{examples = require("../scripts/data")}
@@ -58,43 +58,22 @@
 \end{frame}
 
 \begin{frame}{Graphs $\Leftrightarrow$ Connectivity}
-    Graphs at their core encode connectivity
-    \begin{itemize}
-        \item<2-> Friend networks on social media platforms
-        \item<3-> Molecules and bonds between atoms in structural chemistry
-        \item<4-> Connectivity of meshes in computational geometry
-    \end{itemize}
-    \only<4>{
+    \begin{block}{Why Graphs?}
+        Graphs at their core encode connectivity
+        \begin{itemize}
+            \item<2-> Friend networks on social media platforms
+            \item<3-> Molecules and bonds between atoms in structural chemistry
+            \item<4-> Connectivity of meshes in computational geometry
+        \end{itemize}
+    \end{block}
 
+    \only<4>{
     \begin{figure}
         \centering
         \includegraphics[width=0.3\textwidth]{figurine.png}
         \includegraphics[width=0.3\textwidth]{figurine_split.png}
     \end{figure}
     }
-\end{frame}
-
-\begin{frame}
-    \begin{center}
-        \includesvg[width=0.6\pagewidth]{overlayed.svg}
-    \end{center}
-\end{frame}
-
-\begin{frame}
-    \begin{columns}
-        \begin{column}{0.5\pagewidth}
-            \begin{figure}[t]
-                \centering
-                \includesvg[width=0.9\textwidth]{overlayed_g1.svg}
-            \end{figure}
-        \end{column}
-        \begin{column}{0.5\pagewidth}
-            \begin{figure}[t]
-                \centering
-                \includesvg[width=0.9\textwidth]{overlayed_g2.svg}
-            \end{figure}
-        \end{column}
-    \end{columns}
 \end{frame}
 
 \section{Matrix Representations}
@@ -105,6 +84,8 @@
         \onslide<1>{
         \matrix[
             nodes={draw, minimum size = 0.6cm},
+            inner sep = 0,
+            outer sep = 0,
             column sep=-\pgflinewidth,
             row sep=-\pgflinewidth
         ] (m1) {
@@ -115,6 +96,8 @@
         \onslide<2->{
         \matrix[
             nodes={draw, minimum size = 0.6cm},
+            inner sep = 0,
+            outer sep = 0,
             column sep=-\pgflinewidth,
             row sep=-\pgflinewidth
         ] (m1) {
@@ -144,7 +127,7 @@
         }
 
         \onslide<3>{
-            \draw[->, thick] ($(m1.east) + (0.05,0)$) -- ++(1,0);
+            \draw[->, thick] ($(m1.east) + (0.15,0)$) -- ++(1,0);
             \node[anchor=west] (adj) at ($(m1.east) + (1,0)$) {$
             \begin{pmatrix}
                 \directlua{graph.adj_matrix(examples.example1)}
@@ -156,17 +139,49 @@
     \end{center}
 \end{frame}
 
-\begin{frame}
-    \begin{definition}[Degree Matrix]
-        The degree matrix of a graph $G$ with $n$ vertices is the $n \times n$ matrix $D$ such that
-        \[
-            (D)_{ij} = \begin{cases}
-                \deg(v_i) & i = j \\
-                0 & i \neq j
-            \end{cases}
-        .\]
-    \end{definition}
+\begin{frame}{Matrix Representations}
+    \begin{columns}[T]
+        \begin{column}{0.4\textwidth}
+            \begin{definition}[Degree Matrix]
+                The degree matrix of a graph $G$ with $n$ vertices is the $n \times n$ matrix $D$ such that
+                \[
+                    (D)_{ij} = \begin{cases}
+                        \deg(v_i) & i = j \\
+                        0 & i \neq j
+                    \end{cases}
+                .\]
+            \end{definition}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \[
+                \begin{pmatrix}
+                \directlua{graph.deg_matrix(examples.example1)}
+                \end{pmatrix}
+            \]
+        \end{column}
+    \end{columns}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{scope}[
+                anchor=west,
+                scale=0.5,
+                vertex/.style={
+                    font = \scriptsize,
+                    fill=blue!20,
+                    draw,
+                    circle,
+                    inner sep=0pt,
+                    minimum size=20pt,
+                },
+                edge/.style={}
+            ]
+                \directlua{graph.graph_tikz(examples.example1)}
+            \end{scope}
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
 
+\begin{frame}{Matrix Representations}
     \begin{definition}[Laplacian Matrix]
         The Laplacian matrix of a graph $G$ is
         \[
@@ -174,16 +189,39 @@
         .\]
     \end{definition}
 
-\end{frame}
+    \pause
 
-\begin{frame}
     \begin{theorem}
-        A graph has $m$ connected components if and only if zero has algebraic multiplicty $m$ for $L$
+        A graph has $m$ connected components if and only if zero has algebraic multiplicity $m$ for $L$
     \end{theorem}
     \begin{theorem}
         The eigenvector associated with the smallest positive eigenvalue of $L$ (called the ``Fiedler Vector'') defines a well behaved partitioning scheme of a graph.
     \end{theorem}
 \end{frame}
+
+\begin{frame}{Analyzing Graphs}
+    \begin{center}
+        \includesvg[width=0.6\pagewidth]{overlayed.svg}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Analyzing Graphs}
+    \begin{columns}
+        \begin{column}{0.5\pagewidth}
+            \begin{figure}[t]
+                \centering
+                \includesvg[width=0.9\textwidth]{overlayed_g1.svg}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\pagewidth}
+            \begin{figure}[t]
+                \centering
+                \includesvg[width=0.9\textwidth]{overlayed_g2.svg}
+            \end{figure}
+        \end{column}
+    \end{columns}
+\end{frame}
+
 
 \section{Computational Geometry}
 
@@ -226,6 +264,9 @@
 \end{frame}
 
 \begin{frame}{Spectral Partitioning}
+    \begin{center}
+        Using the Fiedler vector on meshes$\ldots$
+    \end{center}
     \begin{columns}
         \begin{column}{0.3\pagewidth}
             \begin{figure}

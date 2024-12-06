@@ -50,6 +50,7 @@ Prove that the duality transform introduced in this chapter is indeed incidence 
     \textbf{Order Preservation}
     \\
 
+    We can describe aboveness of $p$ compared to $l$ with the inequality $p_y > m p_x + b$ and similarly for $l^*$ above $p^*$. Therefore we have $p$ lies above $l$ iff  $p_y > mp_x + b$ iff $-b > mp_x - p_y$ iff $l^*$ lies above $p^*$.
 \end{proof}
 
 \section*{Problem 2}
@@ -59,7 +60,7 @@ Use Euler's formula to show that the maximum number of faces is $n^2 /2 + n/2 + 
     From Euler's formula we know that $n_v - n_e + n_f = 2$. We also consider there to be a vertex at infinity meaning
     \begin{align*}
         n_v - n_e + n_f &= 2 \\
-        \frac{n(n-1)}{2} + 1 - n^2 + n_f &= 2 \\
+        \qty(\frac{n(n-1)}{2} + 1) - n^2 + n_f &= 2 \\
         n_f &= n^2 - \frac{n(n-1)}{2} - 1 + 2 \\
         n_f &= n^2 - \frac{n^2}{2} + \frac{n}{2} + 1 \\
         n_f &= \frac{n^2}{2} + \frac{n}{2} + 1 \qedhere
@@ -107,5 +108,22 @@ Let $R$ be a set of $n$ red points in the plane, and let $B$ be a set of $n$ blu
 
 \section*{Problem 5}
 Let $S$ be a set of $n$ segments in the plane. A line $l$ intersects all segments of $S$ is called a \textit{transversal} or \textit{stabber} for $S$. Give an $O(n^2)$ algorithm to decide if a stabber exists for $S$.
+
+\begin{solution}
+    If we consider a single segment, we can take the dual of both of its endpoints. This will give a wedge shape. If we consider some point in the dual plane in this wedge region, then we know the point is above one dual line and below the other. Therefore the dual line of this point will be above one endpoint and below the other, hence it must intersect the original line segment. Therefore if we consider all such possible wedge regions from each segment, if their intersection is non empty then there must be a point and hence a dual line that intersects all the segments. We can determine if the region is non empty by performing the line arrangement algorithm but we modify it to keep track of faces of the arrangement that satisfy this condition. Specifically the algorithm would look like
+    \begin{algorithm}[H]
+        \caption{\textsc{StabberExistsQ($S$: segments)}}
+        \begin{enumerate}
+            \item Create the set of dual lines $P^*$ from the endpoints of the segments in $S$
+            \item Calculate the arrangement $A(P^*)$ but do the following during it
+                \begin{itemize}
+                    \item Add each segment's dual lines in as pairs, and for the very first insertion mark the dual wedge face
+                    \item With each new dual line pair check if the marked faces are still valid and if not unmark them (note that a marked face may be subdivided so it is necessary to also check the subdivided parts for validity)
+                \end{itemize}
+            \item Check if the arrangement has any marked faces. If so return true otherwise return false
+        \end{enumerate}
+    \end{algorithm}
+    As for complexity, we can create the set of dual lines in $O(n)$ time. The modified arrangement calculation still takes $O(n^2)$ time as the extra step of keeping track of marked faces only takes constant time since at most $2$ marked regions can be divided, bounding the work done there. The number of faces in the output is $O(n^2)$ so the final step is $O(n^2)$. Hence the overall complexity is $O(n^2)$.
+\end{solution}
 
 \end{document}
