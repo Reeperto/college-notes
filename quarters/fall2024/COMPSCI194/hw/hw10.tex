@@ -1,0 +1,145 @@
+\documentclass[12pt]{extarticle}
+
+\input{hw_preamble.tex}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[R]{\textbf{CS 164: Homework \#10}}
+\fancyhead[L]{Eli Griffiths}
+
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{physics}
+
+\usepackage{svg}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\lune}{lune}
+
+\newtcolorbox{solution}{
+	breakable,
+	coltitle = black,
+	colback = white,
+	frame hidden,
+	boxrule = 0pt,
+	boxsep = 0pt,
+	borderline west={3pt}{0pt}{black},
+	sharp corners = all,
+	enhanced,
+}
+
+\begin{document}
+
+\section*{Problem 1}
+Let $P$ be a set of $n$ points in the plane, sorted on $y$-coordinate. Show that, because $P$ is sorted, a priority search tree of the points in $P$ can be constructed in $O(n)$ time.
+
+\begin{solution}
+    Since the points are already sorted, they already are in the form of a flattened binary search tree. Constructing a heap from this can be done with the standard bottom up approach and therefore will only take $O(n)$ time as normal for heaps constructed in this way.
+\end{solution}
+
+\section*{Problem 2}
+Let $I$ a set of intervals on the real line. We want to be able to count the number of intervals containing a query point in $O(\log n)$ time. Thus, the query time must be independent of the number of segments containing the query point.
+
+\subsection*{Part A}
+Describe a data structure for this problem based on segment trees, which uses only $O(n)$ storage. Analyze the preprocessing time, and the query time of the data structure.
+
+\begin{solution}
+    The same process can be done to construct a segment tree, but with the following changes
+    \begin{itemize}
+        \item Store a counter with every node
+        \item When adding an interval $[x : x']$, if $\operatorname{Int}(v) \subseteq [x : x']$  then simply increment the counter associated to $v$ rather than storing the interval
+    \end{itemize}
+    The query then remains the same as a traversal from root to leaf, but all that needs to be done is keep a running total of the counters of all the nodes traversed. The preprocessing complexity is still $O(n \log n)$ since insertion takes $O(\log n)$ time and there are $n$ intervals in total. The storage complexity is now $O(n)$ since there are $n$ leaves and hence $O(n)$ of which each only need $O(1)$ space (since they no longer store intervals). The query time is also the desired $O(\log n)$ since all that needs to be done is a full root to leaf traversal with constant work at each step to keep the running total, hence $O(n \log n)$ time.
+\end{solution}
+
+\subsection*{Part B}
+Describe a data structure for this problem based on interval trees. You should replace the lists associated with the nodes of the interval tree with other structures. Analyze the amount of storage, preprocessing time, and the query time of the data structure.
+
+\begin{solution}
+    We modify the interval tree such that the nodes dont store any intervals but rather
+    \begin{itemize}
+        \item Store the smallest and largest endpoint of the intervals it represents
+        \item Store how many intervals it represents
+    \end{itemize}
+    That is, instead of storing intervals at each node, we only store the range in which all of them lay in and the number of intervals in that range. The query then is to walk the tree until we reach the node that contains the query point but its children do not and report the counter stored in that node. The preprocessing time of this modified structure is still $O(n \log n)$ since $O(n)$ work still needs to be done per level of recursion to determine the lower and upper endpoints, partition based on midpoint, and count the number of intervals. Storage is clearly $O(n)$ since we are using the same number of nodes as an interval tree with $O(1)$ data per node. The query time is $O(\log n)$ because it is a simple tree traversal that may or may not be a full traversal but is still bounded by $O(\log n)$.
+\end{solution}
+
+\section*{Problem 3}
+Let $I$ be a set of intervals on the real line. We want to store these intervals such that we can efficiently determine those intervals that are completely contained in a given interval $[x : x']$. Describe a data structure that uses $O(n \log n)$ storage and solves such queries in $O(\log n+k)$ time, where $k$ is the number of answers.
+
+\begin{solution}
+    The key idea is to do a range search of the endpoints and check if an intervals endpoints were both contained in the results. To do this, construct a range tree $\mathcal{T}$ on the endpoints of the intervals in $I$, storing with each endpoint both the interval and the interval's index from within $I$. The query then is
+    \begin{algorithm}[H]
+        \caption{QuerySuperset($\mathcal{T}$: Range Tree, $[x : x']$: Interval)}
+        \begin{enumerate}
+            \item Do a range query on $\mathcal{T}$ to get all the endpoints of the intervals contained in $[x : x']$
+            \item Create a boolean array with $n$ slots where $n$ is the number of intervals as well as an empty dynamic list of intervals
+            \item For each endpoint from the range query
+                \begin{itemize}
+                    \item Mark the slot at the endpoints associated index as true/present
+                    \item If the slot already was marked, add the interval to the dynamic list
+                \end{itemize}
+            \item Return the list of intervals
+        \end{enumerate}
+    \end{algorithm}
+\end{solution}
+
+\section*{Problem 4}
+Again we have a collection $I$ of intervals on the real line, but this time we want to efficiently determine those intervals that contain a given interval $[x : x']$. Describe a data structure that uses $O(n)$ storage and solves such queries in $O(\log n + k)$ time, where $k$ is the number of answers.
+
+\begin{solution}
+    We solve this by constructing a priority tree on the endpoints of the intervals, but we make sure to associate with each endpoint the interval it comes from and the index of that interval within the list $I$ as well as if its the right or left endpoint. The query is then 
+    \begin{algorithm}[H]
+        \caption{QuerySubset($\mathcal{T}$: P.S.T, $[x : x']$: Interval)}
+        \begin{enumerate}
+            \item Create a tracker array $A$ of $n$ booleans
+            \item Create an empty dynamic result list $L$ of intervals
+            \item Do the PST query $(-\infty, x]$. For only the endpoints that are marked as left endpoints, mark the entry in $A$ at the associated index as true
+            \item Do the PST query $[x', \infty)$. For only the endpoints that are as right endpoints, check if the entry in $A$ at the associated index has been marked as true. If so, add the associated interval to $L$
+            \item Return $L$
+        \end{enumerate}
+    \end{algorithm}
+\end{solution}
+
+\section*{Problem 5}
+\subsection*{Part A}
+Prove that the proposed data structure correctly solves range queries.
+
+\begin{proof}
+    Let $p,q \in P(v)$ for some node $v$. Assume that $p$ is in the query $[x : x'] \times [y : y']$ but $q$ is not. Since every associated tree will have the bounds $[y : y']$, if $q_y$ is not in this interval it will be rejected. Suppose then WLOG that $q_y$ is in this interval and that $q_x < x$. Then it is less than the $x$-coordinate of the split node. Therefore $q \in \mathcal{T}_{\text{left}}$ of $lc(v)$ which will be rejected by the query $[x : \infty)$. It is clear that $p$ will be detected by the query since the main query is the same as the union of the two unbounded queries of the children nodes. Therefore $p$ will be detected in the query and $q$ will not.
+\end{proof}
+
+\subsection*{Part B}
+What are the bounds for preprocessing time, storage, and query time of this structure? Prove your answers.
+
+\begin{proof}
+    \hfill\\
+    \rule{\textwidth}{1pt}\\
+    \textbf{Preprocessing} \\
+    Constructing the initial search tree on the $x$-coordinates takes $O(n \log n)$ time. If $h$ is the depth (starting from $0$) of some node $v$ in this tree, then $P(v)$ will have $O\qty(\frac{n}{2^h})$ nodes. Constructing both of the priority search trees will then take 
+    \[
+        O\qty(\frac{n}{2^{h+1}} \log\qty(\frac{n}{2^{h+1}}))
+    \]
+    for a node at depth $h$. Since there are $2^{h}$ nodes at depth $h$, we have a total running time of
+    \begin{align*}
+        \sum_{h = 0}^{\lceil \log n \rceil} 2^{h} O\qty(\frac{n}{2^{h+1}} \log\qty(\frac{n}{2^{h+1}})) &= \sum_{h = 0}^{\lceil \log n \rceil} O\qty(n \log\qty(\frac{n}{2^{h+1}})) \\
+                                                                                                         &= \sum_{h = 0}^{\lceil \log n \rceil} O\qty(n \qty(\log(n) - \log(2^{h+1}))) \\
+                                                                                                         &= \sum_{h = 0}^{\lceil \log n \rceil} O\qty(n \qty(\log(n) - (h+1)\log(2)))) \\
+                                                                                                         &= n\sum_{h = 0}^{\lceil \log n \rceil} O\qty(\log(n) - (h+1)\log(2))) \\
+                                                                                                         &= n \qty((\log n)O(\log n) - O(\log^2 n)) \\
+                                                                                                         &= n O(\log^2 n) = O(n \log^2 n)
+    \end{align*}
+    Hence the preprocessing time is $O(n \log^2 n)$.
+    \\\noindent \rule{\textwidth}{1pt}\\
+    \textbf{Query} \\
+    Finding $v_{\text{split}}$ only takes $O(\log n)$ time like other similar range structures. The PST queries in each subtree take then $O(\log n + k_1)$ and $O(\log n + k_2)$ time where $k_1 + k_2 = k$, hence all together the query takes only $O(\log n + k)$ time.
+    \\\noindent \rule{\textwidth}{1pt}\\
+    \textbf{Storage} \\
+    A node at depth $h$ stores $2 \cdot \frac{n}{2^{h+1}} = \frac{n}{2^h}$ points. Since there are $2^{h}$ nodes at each depth, there are $2^{h} \cdot \frac{n}{2^h} = n$ points stored. Since the height of the tree is $\log n$ we have a storage complexity of $O(n \log n)$.
+\end{proof}
+
+\end{document}

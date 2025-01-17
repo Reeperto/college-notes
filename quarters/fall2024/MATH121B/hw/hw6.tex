@@ -1,0 +1,173 @@
+\documentclass{article}
+
+\input{hw1_preamble.tex}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[lcr]{}
+\fancyhead[l]{Eli Griffiths}
+\fancyhead[c]{MATH $121$B}
+\fancyhead[r]{HW \#$5$}
+
+\DeclareMathOperator*{\argmin}{argmin}
+
+\NewDocumentCommand\iprd{ s m }{% s = star, m = mandatory arg
+   \IfBooleanTF{#1}{%
+    \langle #2 \rangle
+   }{%
+    \left\langle #2 \right\rangle
+   }%
+}
+
+\begin{document}
+
+\section*{Problem 1}
+\begin{proof}
+    We can expand the right hand side to get
+    \begin{align*}
+        \text{RHS} &= \qty(\frac{x+y}{2})^* A \qty(\frac{x+y}{2}) - \qty(\frac{x-y}{2})^* A \qty(\frac{x-y}{2}) + i \qty(\frac{x+iy}{2})^* A \qty(\frac{x+iy}{2}) - i\qty(\frac{x-iy}{2})^* A \qty(\frac{x-iy}{2}) \\
+            &= \frac{1}{4} \qty\Big[
+                (x^*+y^*)(Ax+Ay) - (x^* - y^*)(Ax - Ay) + i(x^* - iy^*)(Ax + iAy) - i(x^*+iy^*)(Ax - iAy)
+            ]
+    \end{align*}
+    We expand each term to get
+    \begin{align*}
+        (x^*+y^*)(Ax+Ay) &= x^* Ax + x^* Ay + y^* Ax + y^* A y \\[10pt]
+        (x^* - y^*)(Ax - Ay) &= x^* Ax - x^* Ay - y^* Ax + y^* Ay \\[10pt]
+        (x^* - iy^*)(Ax + iAy) &= x^* Ax + ix^* Ay - iy^* Ax + y^* Ay \\[10pt]
+        (x^*+iy^*)(Ax - iAy) &= x^* Ax - ix^* Ay + iy^* Ax + iy^* Ay
+    \end{align*}
+    Substituing we have
+    \begin{align*}
+        \text{RHS} &= \frac{1}{4}\qty(\qty\Big[2x^* Ay + 2y^* Ax] + i\qty\Big[2i x^* Ay - 2i y^* Ax + y^* Ay - iy^* Ay] )\\
+                &= \frac{1}{4} \qty(2x^* Ay + 2y^* Ax - 2x^* Ay + 2y^* Ax) \\
+                &= y^* Ax
+    \end{align*}
+    Since $y^* Ax = \iprd{Ax, y}$ we have the desired identity.
+    \\
+
+    Suppose $W(A) = \qty{0}$. Then for any $x \in \C^n \neq 0$ we have
+    \[
+        \frac{Q_A(x)}{x^* x} = 0 \implies Q_A(x) = 0
+    .\]
+    By definition we also have that $Q_A(0) = 0$. Now take $x,y \in \C^n$ with $x \neq 0$. Using the polarization identity we have
+    \[
+        \iprd{Ax, y} = Q_A(\ldots) - Q_A(\ldots) + i Q_A(\ldots) - i Q_A(\ldots) = 0 - 0 + 0 - 0 = 0
+    .\]
+    Since $x$ was taken to be non zero and $y$ as any vector, we must have that $A = 0$.
+    % Note that we can rewrite $Q_A(x) = \iprd{x, Ax}$ where $\iprd{\cdot, \cdot}$ is the standard inner product on $\C^n$. Taking the right hand side of the polarization identity we have
+    % \begin{align*}
+    %     \text{RHS} &= \frac{1}{4}\iprd{x+y, A(x+y)} - \frac{1}{4} \iprd{x-y, A(x-y)} + \frac{i}{4} \iprd{x+iy, A(x+iy)} - \frac{i}{4} \iprd{x-iy, A(x-iy)}\\
+    %                &= \frac{1}{4} \qty\Big[\iprd{x+y, A(x+y)} -  \iprd{x-y, A(x-y)} + i \iprd{x+iy, A(x+iy)} - i \iprd{x-iy, A(x-iy)}] \\
+    %                    &= \frac{1}{4} (I_x + I_y)
+    % \end{align*}
+    % where
+    % \begin{align*}
+    %     I_x &= \iprd{x, A(x+y)} - \iprd{x, A(x-y)} + i\iprd{x, A(x+iy)} - i\iprd{x, A(x-iy)} \\
+    %     I_y &= \iprd{y, A(x+y)} - \iprd{-y, A(x-y)} + i \iprd{iy, A(x+iy)} - i\iprd{-iy, A(x-iy)}
+    % \end{align*}
+    % We can simplify both to get
+    % \begin{align*}
+    %     I_x &= \iprd{x, Ax + Ay} + \iprd{x, -Ax + Ay} + \iprd{x, -iAx + Ay} + \iprd{x, iAx + Ay} \\
+    %     &= \iprd{x, Ax + Ay - Ax + Ay - iAx + Ay + iAx + Ay} \\
+    %     &= \iprd{x, 4Ay} = 4\iprd{x, Ay} \\[10pt]
+    %     I_y &= \iprd{y, Ax + Ay} + \iprd{y, Ax - Ay} + \iprd{y, -Ax-iAy)} + \iprd{y, -Ax + iAy} \\
+    %         &= \iprd{y, Ax + Ay + Ax - Ay - Ax - iAy - Ax + iAy} \\
+    %         &= \iprd{y, 0} = 0
+    % \end{align*}
+    % Therefore we have
+    % \[
+    %     \text{RHS} = \frac{1}{4} (4 \iprd{x, Ay} + 0) = \iprd{x, Ay} = x^* Ay
+    % .\]
+    % \\
+
+    % Suppose $W(A) = \qty{0}$. Then for any $x \in \C^n \neq 0$ we have
+    % \[
+    %     \frac{Q_A(x)}{x^* x} = 0 \implies Q_A(x) = 0
+    % .\]
+    % Take $x \neq 0$ and $y \in \C^n$. We then have from the polarization identity
+    % \[
+    %     \iprd{Ax, y} = Q_A\qty(\ldots) - Q_A(\ldots) + iQ_A(\ldots) - iQ_A(\ldots) = 0
+    % .\]
+\end{proof}
+
+\section*{Problem 2}
+\begin{proof}
+    Note that we can rewrite $Q_A(x) = \iprd{x, Ax}$ and $x^* x = \iprd{x, x}$ using the standard inner product on $\C^n$. The lower bound follows quickly from Cauchy Schwarz,
+    \[
+        r(A) = \sup_{x \in \C^n \setminus \qty{0}} \qty|\frac{\iprd{x, Ax}}{\iprd{x,x}}| \leq \sup_{x\in \C^n \setminus \qty{0}} \frac{\norm{Ax}_2 \norm{x}_2}{\norm{x}_2^2} = \sup_{x \in \C^n \setminus \qty{0}} \frac{\norm{Ax}_2}{\norm{x}_2} = \norm{A}
+    .\]
+    Note first that $\qty|Q_A(x)| \leq r(A) \norm{x}_2^2$. Therefore if $x \in \C^n$ from (1) and the triangle inequality we have
+    % \begin{align*}
+    %     \qty|\iprd{Ax,Ax}| &\leq \qty|Q_A\qty(Ax)| + \qty|Q_A\qty(0)| + \qty|Q_A\qty(\frac{Ax(1+i)}{2})| + \qty|Q_A\qty(\frac{Ax(1-i)}{2})| \\
+    %                        &\leq r(A) \norm{Ax}_2^2 + r(A) \norm{\frac{1+i}{2} \cdot Ax} + r(A)
+    % \end{align*}
+    \begin{align*}
+        \qty|\iprd{Ax,y}| &\leq \qty|Q_A\qty(\frac{x+y}{2})| + \qty|Q_A\qty(\frac{x-y}{2})| + \qty|Q_A\qty(\frac{x+iy}{2})| + \qty|Q_A\qty(\frac{x-iy}{2})| \\
+        &\leq r(A) \qty(\norm{\frac{x+y}{2}}_2^2 + \norm{\frac{x-y}{2}}_2^2) + r(A) \qty(\norm{\frac{x+iy}{2}}_2^2 + \norm{\frac{x-iy}{2}}_2^2) \\
+        &= r(A) \qty(2\norm{\frac{x}{2}}_2^2 + 2\norm{\frac{y}{2}}_2^2) + r(A) \qty(2\norm{\frac{x}{2}}_2^2 + 2\norm{\frac{iy}{2}}_2^2) \\
+        &= r(A) \qty(2\norm{\frac{x}{2}}_2^2 + 2\norm{\frac{y}{2}}_2^2) + r(A) \qty(2\norm{\frac{x}{2}}_2^2 + 2\norm{\frac{y}{2}}_2^2) \\
+        &= 2r(A) \qty(2\norm{\frac{x}{2}}_2^2 + 2\norm{\frac{y}{2}}_2^2) \\
+        &= 2r(A) \qty(\frac{1}{2}\norm{x}_2^2 + \frac{1}{2}\norm{y}_2^2) \\
+    &= r(A) \qty(\norm{x}_2^2 + \norm{y}_2^2) \tag{$*$}
+    \end{align*}
+    Using Cauchy Schwarz we can reformulate the matrix norm as
+    \[
+        \norm{A} = \sup_{\norm{x}_2 = \norm{y}_2 = 1} \qty|\iprd{Ax, y}|
+    .\]
+    By taking this supremum of the extreme sides in the previous derivation, we have
+    \[
+        \norm{A} = \sup_{\norm{x}_2 = \norm{y}_2 = 1} \qty|\iprd{Ax, y}| \leq \sup_{\norm{x}_2 = \norm{y}_2 = 1} r(A) \qty(\norm{x}_2^2 + \norm{y}_2^2) = r(A) (1^2 + 1^2) = 2r(A)
+.\]
+    Hence $\norm{A} \leq 2r(A)$.
+\end{proof}
+
+\section*{Problem 3}
+\begin{example}[$\norm{A} = r(A)$]
+    Note that for the identity matrix $I$ that
+    \[
+        \frac{Q_I(x)}{x^* x} = \frac{x^* I x}{x^* x} = \frac{x^* x}{x^* x} = 1
+    \]
+    when $x \neq 0$. Therefore $W(I) = \qty{1}$ and hence $r(I) = 1$. We also have
+    \[
+        \frac{\norm{Ix}_2}{\norm{x}_2} = \frac{\norm{x}_2}{\norm{x}_2} = 1
+    \]
+    when $x \neq 0$. Therefore $\norm{I} = 1$ as well meaning $\norm{I} = r(I)$. 
+\end{example}
+
+\begin{example}[$\norm{A} = 2r(A)$]
+    Consider the matrix
+        \[
+            A = \mqty(0 & 2 \\ 0 & 0)
+        .\]
+        Take $x \in \C^2 \neq 0$ with components $x_1$ and $x_2$. We have
+        \[
+            \qty|\frac{Q_A(x)}{x^* x}| = \qty|\frac{x^* A x}{x^* x}| = \qty|\frac{\mqty(\conj{x_1} & \conj{x_2}) \mqty(2x_1 \\ 0)}{|x_1|^2 + |x_2|^2}| = \qty|\frac{2 x_1 \conj{x_2}}{|x_1|^2 + |x_2|^2}| = \frac{2|x_1||x_2|}{|x_1|^2 + |x_2|^2}
+        .\]
+        Note that
+        \[
+            0 \leq (|x_1| - |x_2|)^2 = |x_1|^2 - 2|x_1| |x_2| + |x_2|^2 \implies 0 \leq \frac{2|x_1||x_2|}{|x_1|^2 + |x_2|^2} \leq 1
+        .\]
+        The upper bound is achieved with $x = 1$, hence $r(A) = 1$. Consider $\norm{A}$. Note that
+    \[
+        \norm{A} = \qty(\sup_{x \in \C^2 \setminus \qty{0}} \frac{\norm{Ax}_2^2}{\norm{x}_2^2})^{\frac{1}{2}}
+    \]
+    by the monotonicity of the square root. We then have
+    \[
+        \frac{\norm{Ax}_2^2}{\norm{x}_2^2} = \frac{\norm{\mqty(2x_2 \\ 0)}_2}{|x_1|^2 + |x_2|^2} = \frac{4|x_2|^2}{|x_1|^2 + |x_2|^2}
+    .\]
+    Note that $|x_2|^2 \leq |x_2|^2 + |x_1|^2$ meaning
+    \[
+    \frac{|x_2|^2}{|x_1|^2+|x_2|^2} \leq 1 \implies \frac{4|x_2|^2}{|x_1|^2 + |x_2|^2} \leq 4
+    .\]
+
+    This upper bound is achieved with $x_1 = 0$ and $x_2 = 1$ hence $\norm{A} = \sqrt{4} = 2$. Therefore $\norm{A} = 2 r(A)$.
+\end{example}
+
+\section*{Problem 4}
+\begin{proof}
+    Consider the characteristic polynomial $p_N(t)$. Since $N$ is purely upper triangular, we have $p_N(t) = \det(N - tI) = (-1)^n t^n$. By the Cayley-Hamilton theorem, we have that $\vb{0} = p_N(N) = (-1)^n N^n$ which means $N^n = \vb{0}$. Therefore $N$ is nilpotent.
+\end{proof}
+
+
+\end{document}

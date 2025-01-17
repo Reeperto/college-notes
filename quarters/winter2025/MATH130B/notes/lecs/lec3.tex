@@ -1,0 +1,23 @@
+\documentclass{subfiles}
+
+\begin{document}
+
+\section{Independence of Random Variables}
+
+Recall that the definition of independence of events.
+\begin{definition}[Independent Events]
+    Two events $E$ and $F$ are independent if $\prob{EF} = \prob{E} \prob{F}$.
+\end{definition}
+
+How can this idea of independence be extended to random variables, say $X$ and $Y$. Consider the example where $X$ is the sum of two fair dice. Then the statement $X = 7$ is a shorthand for the the event
+\[
+    E = \qty{(i,j) : 1 \leq i, j \leq 6, i + j = 7}
+.\]
+
+All expressions of this form $X = k$ give disjoint events. Furthermore, we have $\Omega = \coprod_k ``X = k''$. Thus we can identify independence of random variables as independence of these partitioning events.
+
+\begin{definition}[Independent Random Variables]
+    Two random variables $X$ and $Y$ are \textbf{independent} if $\forall x,y$ we have $\prob{(X \leq x) \cap (Y \leq y)} = \prob{X \leq x} \prob{Y \leq y}$.
+\end{definition}
+
+\end{document}

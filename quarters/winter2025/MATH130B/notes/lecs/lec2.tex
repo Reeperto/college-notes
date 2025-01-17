@@ -1,0 +1,51 @@
+\documentclass{subfiles}
+
+\begin{document}
+
+\begin{example}
+    Suppose someone chooses $-\infty < x < y < \infty$ and each are placed into separate "envelopes". The goal is to determine a strategy for finding the envelope containg $x$ with a greater than $\frac{1}{2}$ probability.
+    \\
+    \rule{\textwidth}{0.4pt}
+    \\
+    
+    The strategy is as follows
+    \begin{enumerate}
+        \item Let $Z \sim N(0,1)$ and expose some outcome $z = Z$.
+        \item Pick a random evelope and open it. If the number in the envelope is $< z$ then guess that it is $x$, otherwise guess $y$.
+    \end{enumerate}
+
+    Note that there are three outcomes or cases
+    \begin{enumerate}
+        \item $C_1 : z < x < y$
+        \item $C_2: x < y < z$
+        \item $C_3: x < z < y$
+    \end{enumerate}
+    Thus by the law of total probability is
+    \begin{align*}
+        \prob{\text{win}} &= \sum_i \prob{\text{win} | C_i} \prob{C_i} \\
+                          &= \frac{1}{2}\cdot \prob{C_1} + \frac{1}{2}\cdot \prob{C_2} + 1\cdot \prob{C_3} \\
+                          &= \frac{1}{2} \qty(\prob{C_1} + \prob{C_2} + \prob{C_3}) + \frac{1}{2} \prob{C_3} \\
+                          &= \frac{1}{2} + \frac{1}{2} \prob{C_3} > \frac{1}{2}
+    \end{align*}
+    since any probability of a normal distribution lying in an interval is non zero.
+\end{example}
+
+\begin{theorem}
+    Let $X$ be a random variable such that $\prob{X < 0} = 0$. Then
+    \[
+        \expp{X} = \int_0^\infty \prob{X \geq 0} \dd x
+    .\]
+\end{theorem}
+\begin{proof}
+    Note that
+    \begin{align*}
+        \expp{X} &= \int_0^\infty x f_X(x) \dd x \\
+                 &= \int_0^\infty f_X(x) \qty(\int_0^x 1 \dd y) \dd x \\
+                 &= \int_0^\infty \int_y^\infty f_X(x) \dd x \dd y \\
+                 &= \int_0^\infty \prob{X \geq y} \dd y \\
+                 &= \int_0^\infty \prob{X \geq x} \dd x
+    \end{align*}
+    which was to be shown.
+\end{proof}
+
+\end{document}

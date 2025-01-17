@@ -1,0 +1,59 @@
+\documentclass{subfiles}
+
+\begin{document}
+
+\chapter{Review+}
+
+\begin{definition}[Probability Space]
+    A probability space is a triple $(\Omega, \mathcal{F}, P)$ such that
+    \begin{enumerate}
+        \item $\mathcal{F} \subseteq \mathcal{P}(\Omega)$
+        \item $\forall E \in \mathcal{F}, 0 \leq P(E) \leq 1$
+        \item $P(\Omega) = 1$
+        \item If $E_1, E_2, \ldots, E_n \in \mathcal{F}$ are pairwise disjoint then $\displaystyle P(\cup_i E_i) = \sum_i P(E_i)$
+    \end{enumerate}
+    $\Omega$ is denote as the sample space, $\mathcal{F}$ the events, and $P$ the probability function.
+\end{definition}
+
+\begin{definition}[Conditional Probability]
+    For events $E, F \in \mathcal{F}$, the conditional probability is
+    \[
+        \prob{E | F} \coloneq \frac{\prob{E \cap F}}{\prob{F}}
+    .\]
+\end{definition}
+
+\begin{definition}[Independence]
+    Two events $E,F \in \mathcal{F}$ are \textbf{independent} if 
+    \[
+     \prob{E | F} = \prob{E} \Leftrightarrow \prob{E \cap F} = \prob{E} \prob{F}
+    .\]
+    A collection of events $E_1, \ldots, E_n$ are \textbf{mutually independent} if
+    \[
+        \forall I \subseteq [n], \prob{\cap_{i \in I} E_i} = \prod_{i \in I} \prob{E_i}
+    .\]
+\end{definition}
+
+\begin{theorem}[Law of Total Probability]
+    \label{thm:totalprobability}
+    Suppose that $F_1, \ldots, F_n \in \mathcal{F}$ are disjoint and $\Omega = \cup_{i} F_i$. Then for any other event $E \in \mathcal{F}$,
+    \[
+        \prob{E} = \sum_{i} \prob{E | F_i} \cdot \prob{F_i}
+    .\]
+\end{theorem}
+
+\begin{example}
+    Suppsoe that $S \subseteq [n]$ be a randomly chosen subset. We want to find $\prob{|S| \text{ is even}}$. Take $E_i$ to be the event that $i \in S$. Note that all $E_i$ are mutually independent for $1 \leq i \leq n$. Take
+    \[
+        F_{\conj{x}} = \bigcap_{i=1}^{n-1} E_i^{x_i}
+    .\]
+    where $\overline{x}$ is a string of either complements or nothing. Note then that
+    \[
+        \prob{|S| \text{ is even}} = \sum_{\conj{x}} \prob{|S| \text{ is even} \mid F_{\conj{x}}} \cdot \prob{F_{\conj{x}}}
+    .\]
+    Note that $\prob{|S| \text{ is even} \mid F_{\conj{x}}} = \frac{1}{2}$ since there are only two possible outcomes for adding the $n^\text{th}$ element and only one makes $|S|$ even. Furthermore since all $F_{\conj{x}}$ across all strings $\conj{x}$ are disjoint and cover $\Omega$, their total probability is $1$. Hence
+    \[
+        \prob{|S| \text{ is even}} = \frac{1}{2} \cdot 1 = \frac{1}{2}
+    .\]
+\end{example}
+
+\end{document}
