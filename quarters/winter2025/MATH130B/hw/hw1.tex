@@ -1,0 +1,98 @@
+\documentclass{eeleyes}
+
+\usepackage{physics}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[R]{HW \#1}
+\fancyhead[C]{\textbf{Math 130B}}
+\fancyhead[L]{Eli Griffiths}
+
+\NewDocumentCommand{\prob}{m}{\mathbb{P}\qty[#1]}
+\NewDocumentCommand{\expp}{m}{\mathbb{E}\qty[#1]}
+
+\begin{document}
+
+\section*{Problem 1}
+\subsection*{Part A}
+Let $Y$ be the number of games played. Note that $Y = X + 5$ where $X$ is a geometric distribution with probability $1-p$. This is because we are guaranteed to play $5$ games and then continually play until the first failure (which has probability $1 - p$). Thus the expected number of games played is
+\[
+    \expp{Y} = \expp{X + 5} = \expp{X} + 5 = \frac{1}{1 - p} + 5
+.\]
+
+\subsection*{Part B}
+Let $Y$ be the number of games lost. If $X$ is a binomial distribution with probability $1 - p$ and trial count $5$ then $Y = X + 1$. That is, the number of games lost is the number of games lost in the first $5$ plays plus the loss that stops further play. Thus the expected number of games lost is
+\[
+    \expp{Y} = \expp{X + 1} = \expp{X} + 1 = n(1 - p) + 1
+.\]
+
+\section*{Problem 2}
+\subsection*{Part A}
+In order for the maximum number on a ball to be a given value $x$, the other two balls must have values less than $x$ written on them. Therefore the probability of a given value being the maximum is the probability that two other smaller value balls are drawn. There are $\binom{x-1}{2}$ possible choices for two balls with value smaller than $x$ and $\binom{20}{3}$ possible choices of three balls. Thus
+
+\[
+    f_X(x) = \frac{\binom{x - 1}{2}}{\binom{20}{3}}
+.\]
+
+\subsection*{Part B}
+
+
+\section*{Problem 3}
+Let $M$ be the event that $A$ gets more heads after $n+1$ flips than $B$ after $n$ flips, $H_A$ be the event that $A$ gets more heads than $B$ after both do $n$ flips, $H_B$ the event $B$ has more heads after $n$ flips, and $H_0$ the event that both have the same number of heads. Since $H_A, H_B, H_0$ are all mutually exclusive and cover all cases, by the law of total probability, we have
+\[
+    \prob{M} = \prob{M \mid H_A} \prob{H_A} + \prob{M \mid H_B} \prob{H_B} + \prob{M \mid H_0} \prob{H_0}
+.\]
+Note that
+\begin{itemize}
+    \item $\prob{M \mid H_A} = 1$ since $A$ would already have more heads than $B$, thus the $n+1$ flip will not change the outcome that $A$ has more
+    \item $\prob{M \mid H_B} = 0$ since $A$ is at least $1$ head flip behind $B$ and thus cannot overtake $B$ in terms of heads with an additional flip
+    \item $\prob{M \mid H_0} = \frac{1}{2}$ since $A$ will have more heads than $B$ if a heads is flipped which occurs with probability $\frac{1}{2}$
+    \item $\prob{H_A} = \prob{H_B}$ since the coin is fair and thus the outcome of either $A$ or $B$ having more heads is symmetric
+    \item $\prob{H_0} = 1 - \prob{H_A \cup H_B} = 1 - \prob{H_A} - \prob{H_B} = 1 - 2 \prob{H_A}$
+\end{itemize}
+Therefore in total we have
+\begin{align*}
+    \prob{M} &= \prob{M \mid H_A} \prob{H_A} + \prob{M \mid H_B} \prob{H_B} + \prob{M \mid H_0} \prob{H_0} \\
+             &= 1\cdot(\prob{H_A}) + 0 \cdot(\prob{H_B}) + \frac{1}{2} \cdot (1 - 2\prob{H_A}) \\
+             &= \prob{H_A} + \frac{1}{2} - \prob{H_A} = \boxed{\frac{1}{2}}
+\end{align*}
+
+\section*{Problem 4}
+First consider the scenario that the barrel is spun again before shooting. Since the barrel is being respun, the first attempt by the opponent has no effect as a new random selection is being made. Therefore the probability of living is $\frac{4}{6}$ since there are $4$ empty slots of the $6$ total chambers.
+
+Now consider the scenario in which the barrel is not spun again before shooting. Then the probability of being shot is the probability that a given empty chamber is followed by the adjacent loaded chambers. Since there is only $1$ empty chamber out of $4$ that is followed by the loaded chambers, the probability of getting shot is $\frac{1}{4}$ meaning a $\frac{3}{4}$ probability of survival.
+
+\section*{Problem 5}
+\subsection*{Part A}
+
+We can use the following result to re-express $A^{(n)}$.
+
+\begin{theorem}[]
+    There exists a semicircle containing the points $P_1, \ldots, P_n$ if and only if there is a semicircle with an endpoint as some $P_i$ containing all the points.
+\end{theorem}
+
+\begin{proof}
+    The reverse implication is trivial. Assume that there exists a semicircle $C$ containing all points $P_i$. Without loss of generality, take $P_1, \ldots, P_n$ in clockwise order. Since all points are contained in $C$, can rotate $C$ clockwise until one of the endpoints is at $P_1$. Call this new semicircle $C'$. Note all points must be in $C'$ since the point furthest around the circle clockwise, $P_n$, is contained in $C$ and in front $P_1$, and thus moving $C$ to $C'$ will not cause $P_n$ to no longer be contained. Thus since $P_1$ and $P_n$ are in $C'$ and all other points are between $P_1$ and $P_n$, all points are contained in $C'$.
+\end{proof}
+Therefore we can identify the event that such a semicircle exists for a set of randomnly sampled points with the events that a semicircle starting at one the points contains all other points, giving
+\[
+    A^{(n)} = \bigcup_{i = 1}^n A_{i}^{(n)}
+.\]
+
+\subsection*{Part B}
+Using part $A$ we get
+\[
+    \prob{A^{(n)}} = \prob{\bigcup_{i} A_{i}^{(n)}} = \sum_{i} \prob{A_i^{(n)}} + O(1)
+.\]
+We will have exact equality without any other factors if we have pairwise mutually exclusivity between the $A_i^{(n)}$. 
+
+\[
+    \prob{A_i^{(n)}} = \qty(\frac{1}{2})^{n-1} = \frac{1}{2^{n-1}}
+\]
+since the other $n-1$ uniformly selected points have $\frac{1}{2}$ probability to be in the semicircle each (due to the fact that the semicircle is half the circumference and the points are sample uniformly along the circumference). Therefore
+\[
+    \prob{A^{(n)}} = \sum_{i=1}^n \frac{1}{2^{n-1}} = \frac{n}{2^{n-1}}
+.\]
+
+
+\end{document}
