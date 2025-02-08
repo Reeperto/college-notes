@@ -14,6 +14,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amsthm,thmtools}
 \usepackage[scaled=1.075,nc,vvarbb]{newtxmath}
+\usepackage{physics}
 
 % Tikz + PgfPlots
 \usepackage{tikz}

@@ -1,0 +1,45 @@
+\documentclass{eeleyes}
+
+\input{../course_preamble.tex}
+\def\thehwnumber{3}
+\input{hw_preamble.tex}
+
+\begin{document}
+
+\section*{Problem 1}
+
+\section*{Problem 2}
+\subsection*{Part A}
+By the definition of a conditional distribution,
+\[
+    p_{X | Y}(x | 3) = \frac{p(x,3)}{p_{Y}(3)} = \frac{p(x,3)}{0.05 + 0.1 + 0.35} = 2 p(x,3)
+.\]
+Therefore
+\begin{align*}
+    p_{X | Y}(1 \mid 3) &= \frac{1}{10} \\
+    p_{X | Y}(2 \mid 3) &= \frac{2}{10} \\
+    p_{X | Y}(3 \mid 3) &= \frac{7}{10} \\
+\end{align*}
+
+\subsection*{Part B}
+Again by the definition of a conditional distribution,
+\[
+    p_{Y | X}(y | 2) = \frac{p(2,y)}{p_{X}(2)} = \frac{p(2,y)}{0.2 + 0.1 + 0.05} = \frac{20 p(2,y)}{7}
+.\]
+Therefore
+\begin{alignat*}{3}
+    p_{Y | X}(1 \mid 2) &= \frac{2}{10} \cdot \frac{20}{7} &&= \frac{4}{7} \\
+    p_{Y | X}(2 \mid 2) &= \frac{1}{10} \cdot \frac{20}{7} &&= \frac{2}{7} \\
+    p_{Y | X}(3 \mid 2) &= \frac{1}{20} \cdot \frac{20}{7} &&= \frac{1}{7}
+\end{alignat*}
+
+\subsection*{Part C}
+No they are not the same. We have
+\[
+    p_{Y|X}(3 \mid 2) = \frac{1}{7} \neq \frac{2}{10} = p_{X | Y}(2 \mid 3)
+.\]
+
+\section*{Problem 3}
+\section*{Problem 4}
+
+\end{document}

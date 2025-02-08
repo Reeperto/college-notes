@@ -1,0 +1,133 @@
+\documentclass{eeleyes}
+
+\input{../course_preamble.tex}
+\def\thehwnumber{2}
+\input{hw_preamble.tex}
+
+\begin{document}
+
+\section*{Problem 1}
+\subsection*{Part A}
+We shall find the marginal density $f_X(x)$. This is simply
+\begin{align*}
+    f_X(x) &= \int_{0}^{\infty} x e^{-x(y+1)} \dd y \\
+           &= \qty[ -e^{-x(y+1)} ]_0^\infty \\
+           &= e^{-x}
+\end{align*}
+
+\section*{Problem 2}
+\subsection*{Part A}
+First we find $f_X(x)$. We can use the same method as in 1a to get
+\begin{align*}
+    f_X(x) &= \int_0^1 12xy(1-x) \dd y \\
+           &= \qty[y^2 \cdot 6x(1-x)]_0^1 \\
+           &= 6x(1-x)
+\end{align*}
+Therefore for expectation we have
+\begin{align*}
+    \expp{X} &= \int_0^1 x \cdot f_X(x) \dd x \\
+    &= \int_0^1 6x^2 (1-x) \dd x \\
+    &= 6\int_0^1 (x^2 - x^3) \dd x \\
+    &= 6 \qty[\frac{x^3}{3} - \frac{x^4}{4}]_0^1 \\
+    &= 6 \qty(\frac{1}{3} - \frac{1}{4}) = \boxed{\frac{1}{2}}.
+\end{align*}
+To find variance we find $\expp{X^2}$. Calculating this gives
+\begin{align*}
+    \expp{X^2} &= \int_0^1 x^2 \cdot f_X(x) \dd x \\
+    &= \int_0^1 6x^3 (1-x) \dd x \\
+    &= 6\int_0^1 (x^3 - x^4) \dd x \\
+    &= 6 \qty[\frac{x^4}{4} - \frac{x^5}{5}]_0^1 \\
+    &= 6 \qty(\frac{1}{4} - \frac{1}{5}) = \boxed{\frac{3}{10}}.
+\end{align*}
+Hence $\varr{X} = \expp{X^2} - \expp{X}^2 = \frac{3}{10} - \frac{1}{4} = \frac{1}{20}$.
+
+\section*{Problem 3}
+The joint density of $XY$ and $Z^2$ is simply the product of their respective joint density functions since both random variables are independent. Thus we simply need to find the joint density function for each one. We first find $f_{XY}(a)$ by taking the derivative of $\prob{XY \leq a}$. Note that $f_{X,Y}(x,y) = 1 \cdot 1$ hence
+\begin{align*}
+    \prob{XY \leq a} &= 1 - \prob{XY > a} \\
+                  &= 1 - \iint_{xy > a} f_{XY}(x,y) \dy \dx \\
+                  &= 1 - \int_k^1 \int_{\frac{a}{x}}^1 \dd y \dd x \\
+                  &= 1 - \int_k^1 \qty(1 - \frac{a}{x}) \dd x \\
+                  &= 1 - \qty[x - a \ln x]_{a}^1 \\
+                  &= 1 - \qty[1 - a + a \ln a] \\
+                  &= a - a \ln a
+.\end{align*}
+Thus we have 
+
+\[
+    f_{XY}(a) = \dv{a}\qty(a - a \ln a) = 1 - (1 + \ln a) = -\ln a   
+.\]
+Now consider $Z^2$. Note that $\prob{Z^2 \leq b} = \prob{Z \leq \sqrt{b}} = \sqrt{b}$. Therefore
+\[
+    f_{Z^2}(b) = \dv{b} \qty(\sqrt{b}) = \frac{1}{2 \sqrt{b}}
+.\]
+In total then we have the joint density of $XY$ and $Z^2$ as
+\[
+    f_{XY}(a) \cdot f_{Z^2}(b) = -\frac{\ln a}{2 \sqrt{b}}
+.\]
+
+We can find $\prob{XY < Z^2}$ by using the joint distribution across $X,Y,Z$ (which is just $1$ by independence) by doing the following
+\begin{align*}
+    \prob{XY < Z^2} &= \iiint_{xy < z^2} f(x,y,z) \dd z \dd y \dd x \\
+                   &= \int_0^1 \int_0^1 \int_{\sqrt{xy}}^1 \dd z \dd y \dd x \\
+                   &= \int_0^1 \int_0^1 \qty(1 - \sqrt{xy}) \dd y \dd x \\
+                   &= \int_0^1 \qty[y - (xy)^{\frac{3}{2}} \cdot \frac{2}{3x}]_0^1 \dd x \\
+                   &= \int_0^1 \qty(1 - \frac{2\sqrt{x}}{3}) \dd x \\
+                   &= \qty[x - x^{\frac{3}{2}} \cdot \frac{4}{9}]_0^1 \\
+                   &= \frac{5}{9}
+\end{align*}
+
+\section*{Problem 4}
+\subsection*{Part B}
+\begin{align*}
+    f_V(v) &= \int_0^1 f_{U,V}(u,v) \dd u \\
+           &= \int_{\max(0,v-1)}^{\min(1,v)} 1 \dd u \\
+           &= \min(1,v) - \max(0, v-1)
+\end{align*}
+
+\section*{Problem 5}
+Let $p(x,y)$ be the joint probability mass function of $X$ and $Y$. . For $Z$, note that
+\[
+    P_Z(k) = \prob{Z = k} = \prob{X - Y = k} = \sum_{x - y = k} p(x,y)
+.\]
+We can create a table of the possible values of $X - Y$ to get
+\[
+    \begin{array}{c||c|c|c|c|c}
+          & 1  & 2  & 3  &  4 & 5  \\\hline\hline
+        1 &  0 &  1 &  2 &  3 &  4 \\\hline
+        2 & -1 &  0 &  1 &  2 &  3 \\\hline
+        3 & -2 & -1 &  0 &  1 &  2 \\\hline
+        4 & -3 & -2 & -1 &  0 &  1 \\\hline
+        5 & -4 & -3 & -2 & -1 &  0 \\
+    \end{array}
+\]
+Since $X$ and $Y$ are independent, we have $p(x,y) = P_X(x) \cdot P_Y(y) = \frac{1}{25}$. Therefore we have
+\begin{alignat*}{7}
+    P_Z(-4) &=\;&& P_Z(4) &&= \frac{1}{25}\qty(1) &&= \frac{1}{25} \\
+    P_Z(-3) &=&& P_Z(3) &&= \frac{1}{25}\qty(2) &&= \frac{2}{25} \\
+    P_Z(-2) &=&& P_Z(2) &&= \frac{1}{25}\qty(3) &&= \frac{3}{25} \\
+    P_Z(-1) &=&& P_Z(1) &&= \frac{1}{25}\qty(4) &&= \frac{4}{25} \\
+            & && P_Z(0) &&= \frac{1}{25}\qty(5) &&= \frac{5}{25}
+\end{alignat*}
+
+We can do a similar process for $W$ to get a table of possible values for $X+Y$
+\[
+    \begin{array}{c||c|c|c|c|c}
+          & 1  & 2  & 3  &  4 & 5  \\\hline\hline
+        1 & 2  & 3  & 4  & 5  & 6  \\\hline
+        2 & 3  & 4  & 5  & 6  & 7  \\\hline
+        3 & 4  & 5  & 6  & 7  & 8  \\\hline
+        4 & 5  & 6  & 7  & 8  & 9  \\\hline
+        5 & 6  & 7  & 8  & 9  & 10 \\
+    \end{array}
+\]
+thus giving
+\begin{alignat*}{7}
+    P_Z(2) &=\;&& P_Z(10) &&= \frac{1}{25}\qty(1) &&= \frac{1}{25} \\
+    P_Z(3) &=&& P_Z(9) &&= \frac{1}{25}\qty(2) &&= \frac{2}{25} \\
+    P_Z(4) &=&& P_Z(8) &&= \frac{1}{25}\qty(3) &&= \frac{3}{25} \\
+    P_Z(5) &=&& P_Z(7) &&= \frac{1}{25}\qty(4) &&= \frac{4}{25} \\
+           & && P_Z(6) &&= \frac{1}{25}\qty(5) &&= \frac{5}{25}
+\end{alignat*}
+
+\end{document}

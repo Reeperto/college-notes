@@ -1,2 +1,2 @@
 #!/usr/bin/env fish
-stow -t "$HOME" texmf-stow
+stow -t (dirname "$(kpsewhich -var-value TEXMFHOME)") texmf-stow

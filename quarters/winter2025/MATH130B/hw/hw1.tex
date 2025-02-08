@@ -1,30 +1,24 @@
 \documentclass{eeleyes}
 
-\usepackage{physics}
-
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhead[R]{HW \#1}
-\fancyhead[C]{\textbf{Math 130B}}
-\fancyhead[L]{Eli Griffiths}
-
-\NewDocumentCommand{\prob}{m}{\mathbb{P}\qty[#1]}
-\NewDocumentCommand{\expp}{m}{\mathbb{E}\qty[#1]}
+\input{../course_preamble.tex}
+\def\thehwnumber{1}
+\input{hw_preamble.tex}
 
 \begin{document}
 
 \section*{Problem 1}
 \subsection*{Part A}
-Let $Y$ be the number of games played. Note that $Y = X + 5$ where $X$ is a geometric distribution with probability $1-p$. This is because we are guaranteed to play $5$ games and then continually play until the first failure (which has probability $1 - p$). Thus the expected number of games played is
+Note that you are guranteed to play at least $5$ games. If the fifth game is won, then the expected number of additional games played is $\frac{1}{1-p}$ as the number of additional games played is described by a geometric random variable where the probability of a success ending the trials is $1-p$ (a loss has probability $1-p$). If the fifth game is lost, then the expected number of additional games played is simply $0$. The probability that the fifth game is won is $p$ meaning the expected number of games played is 
 \[
-    \expp{Y} = \expp{X + 5} = \expp{X} + 5 = \frac{1}{1 - p} + 5
+    5 + p \cdot \frac{1}{1-p} + p \cdot 0 = 5 + \frac{p}{1-p}
 .\]
 
 \subsection*{Part B}
-Let $Y$ be the number of games lost. If $X$ is a binomial distribution with probability $1 - p$ and trial count $5$ then $Y = X + 1$. That is, the number of games lost is the number of games lost in the first $5$ plays plus the loss that stops further play. Thus the expected number of games lost is
+The expected number of games lost is the number of games lost in the first $5$ and then $1$ more loss if the fifth game is won. That is because the additional games only end once you lose, hence playing additional games will only contribute one loss. The expected number of losses in the the first $5$ games is simply a binomial distribution with probability $1-p$. The probability of winning the fifth game and hence adding another loss is $p$ and the probability of losing the fifth game and not adding another loss is $1-p$. Therefore the expected number of games lost is
 \[
-    \expp{Y} = \expp{X + 1} = \expp{X} + 1 = n(1 - p) + 1
+    5 \cdot (1-p) + 1 \cdot p + 0 \cdot (1 - p) = 5 - 4p
 .\]
+
 
 \section*{Problem 2}
 \subsection*{Part A}
@@ -35,7 +29,15 @@ In order for the maximum number on a ball to be a given value $x$, the other two
 .\]
 
 \subsection*{Part B}
-
+Using the definition of expectation we have
+\begin{align*}
+    \expp{X} &= \sum_{x=3}^{20} x f_X(x) \\
+             &= \frac{1}{\binom{20}{3}} \sum_{x=3}^{20} x \cdot \binom{x-1}{2} \\
+             &= \frac{1}{\binom{20}{3}} \sum_{x=3}^{20} 3 \cdot \binom{x}{3} \\
+             &= \frac{3 \cdot \binom{21}{4}}{\binom{20}{3}} \\
+             &= \frac{3 \cdot \frac{21}{4} \cdot \binom{20}{3}}{\binom{20}{3}} \\
+             &= \frac{63}{4} = 15.75
+\end{align*}
 
 \section*{Problem 3}
 Let $M$ be the event that $A$ gets more heads after $n+1$ flips than $B$ after $n$ flips, $H_A$ be the event that $A$ gets more heads than $B$ after both do $n$ flips, $H_B$ the event $B$ has more heads after $n$ flips, and $H_0$ the event that both have the same number of heads. Since $H_A, H_B, H_0$ are all mutually exclusive and cover all cases, by the law of total probability, we have
@@ -80,16 +82,16 @@ Therefore we can identify the event that such a semicircle exists for a set of r
 .\]
 
 \subsection*{Part B}
-Using part $A$ we get
-\[
-    \prob{A^{(n)}} = \prob{\bigcup_{i} A_{i}^{(n)}} = \sum_{i} \prob{A_i^{(n)}} + O(1)
-.\]
-We will have exact equality without any other factors if we have pairwise mutually exclusivity between the $A_i^{(n)}$. 
-
+Note that
 \[
     \prob{A_i^{(n)}} = \qty(\frac{1}{2})^{n-1} = \frac{1}{2^{n-1}}
 \]
-since the other $n-1$ uniformly selected points have $\frac{1}{2}$ probability to be in the semicircle each (due to the fact that the semicircle is half the circumference and the points are sample uniformly along the circumference). Therefore
+since the other $n-1$ uniformly selected points have $\frac{1}{2}$ probability to be in the semicircle each (due to the fact that the semicircle is half the circumference and the points are sample uniformly along the circumference). Using part $A$ we get
+\[
+    \prob{A^{(n)}} = \prob{\bigcup_{i} A_{i}^{(n)}} = \sum_{i} \prob{A_i^{(n)}} + \ldots
+\]
+with the extra terms being probabilities of intersections of different $A_i^{(n)}$ due to the inclusion exclusion principle. Note that $\prob{A_i^{(n)} \cap A_j^{(n)}} = 0$ for any $i,j$. If $P_i \neq P_j$, then if $P_i$ is in the semicricle starting at $P_j$, $P_j$ cant be in the semicircle starting at $P_i$ and vice versa. Therefore the only possible case in which you have both semicircles containing all points is if $P_i = P_j$. However since the distribution of both points is continuous, the probability of this occuring is $0$. Therefore $\prob{A_i^{(n)} \cap A_j^{(n)}} = 0$. Clearly then any collection of intersections of $A_i^{(n)}$ will also be $0$, eliminating all the extra terms. Therefore we have
+
 \[
     \prob{A^{(n)}} = \sum_{i=1}^n \frac{1}{2^{n-1}} = \frac{n}{2^{n-1}}
 .\]
