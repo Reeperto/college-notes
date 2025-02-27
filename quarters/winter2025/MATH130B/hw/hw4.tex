@@ -1,0 +1,131 @@
+\documentclass{eeleyes}
+
+\input{../course_preamble.tex}
+\def\thehwnumber{4}
+\input{hw_preamble.tex}
+
+\NewDocumentCommand{\eps}{}{\varepsilon}
+\NewDocumentCommand{\iprd}{m}{\left\langle #1 \right\rangle}
+% \RenewDocumentCommand{\tilde}{m}{\widetilde{#1}}
+
+\begin{document}
+
+\section*{Problem 1}
+\begin{proof}
+    Let $K = \qty{k+1, \ldots, 2k+1}$.
+
+    \subsection*{Part A}
+    Assume towards contradiction that $A$ is not sum free. Then there exists some $b_i, b_j, b_k$ such that $b_i \;+ \;b_j = b_k$. Since $b_i, b_j, b_k < \max\qty{\qty|b_i| : 1 \leq i \leq n}$ and $p > 2 \max\qty{\qty|b_i| : 1 \leq 1 \leq n}$, $b_i + b_j < p$ thus
+    \[
+        b_i + b_j \equiv b_k \pmod{p} \implies x b_i + x b_j \equiv x b_k \pmod{p}
+    .\]
+    But this means that $d_i \hspace{1pt}+\hspace{1pt} d_j = d_k$, which are elements of a sum free subset. This is a contradiction, hence $A$ must be sum free.
+
+    \subsection*{Part B}
+    Let $D_i$ be the indicator random variable that $d_i \in K$. Then we have
+    \[
+        \expp{\qty|\qty{d_1, \ldots, d_n} \cap K|} = \expp{\sum_{i = 1}^n D_i} = \sum_{i = 1}^n \expp{D_i}
+    .\]
+    Since $x \neq 0$ and $b_i \neq 0$, $d_i \neq 0$ and hence the number of total possibilities for $d_i$ is $p - 1$. Therefore since $x$ is chosen uniformly at random
+    \[
+        \prob{d_i \in K} = \frac{(2k + 2) - (k+1)}{p - 1} = \frac{k+1}{3k+1}
+    \]
+    Thus we have that the desired expectation equals
+    \[
+        \sum_{i=1}^n \expp{D_i} = \sum_{i=1}^n \frac{k+1}{3k+1} = n \qty(\frac{k+1}{3k+1})
+    .\]
+    Since $\frac{k+1}{3k+1} > \frac{1}{3}$ for all $k \geq 0$,
+    \[
+        \expp{\qty|\qty{d_1, \ldots, d_n} \cap K|} > \frac{n}{3}
+    .\]
+
+    \subsection*{Part C}
+    Since the expectation is greater than $\frac{n}{3}$, it follows that
+    \[
+        \prob{\qty|\qty{d_1, \ldots, d_n} \cap K| > \frac{n}{3}} > 0
+    .\]
+    Therefore there must exist some $x$ such that
+    \[
+        \qty|\qty{d_1, \ldots, d_n} \cap K| > \frac{n}{3}
+    .\]
+
+    \subsection*{Part D}
+    Take $A$ to be the collection of associated $b_i$ to $x$ such that $d_i \in K$. Then by $(a)$ this set is $A$ sum free and by $(c)$ this set has size greater than $\frac{n}{3}$. \qedhere
+
+\end{proof}
+
+\section*{Problem 2}
+
+\begin{proof}
+    Let $\eps_1, \ldots, \eps_n$ be independently randomnly chosen weights such that $\prob{\eps_i = -1} = \prob{\eps_i = 1} = \frac{1}{2}$. If $\iprd{\;, \;}$ is the Euclidean inner product, then $\norm{\cdot}^2 = \iprd{\cdot, \cdot}$ and thus by linearity of the inner product
+    \begin{align*}
+        \norm{\sum_{i} \eps_i v_i}^2 &= \iprd{\qty(\sum_{i} \eps_i v_i), \qty(\sum_{j} \eps_j v_j)} \\
+                             &= \sum_{i} \iprd{\eps_i v_i, \sum_{j} \eps_j v_j} \\
+                             &= \sum_{i} \sum_j \iprd{\eps_i v_i, \eps_j v_j} \\
+                             &= \sum_{i} \sum_j \eps_i \eps_j  \iprd{v_i, v_j}
+    .\end{align*}
+    Note that since $\expp{\eps_i^2} = 1$ and for $i \neq j$, $\expp{\eps_i \eps_j} = \expp{\eps_i} \expp{\eps_j} = 0$,
+    \[
+        \expp{\eps_i \eps_j} = \begin{cases}
+            1 & i = j \\
+            0 & i \neq j
+        \end{cases}
+    .\]
+    Therefore by linearity of expectation, we have
+    \begin{align*}
+        \expp{\norm{\sum_i \eps_i v_i}^2} &= \expp{\sum_{i} \sum_j \eps_i \eps_j  \iprd{v_i, v_j}} \\
+        &= \sum_i \sum_j \expp{\eps_i \eps_j} \iprd{v_i, v_j} \\
+        &= \sum_i \iprd{v_i, v_i} \\
+        &= n
+    \end{align*}
+    since all of the $v_i$ are unit vectors. Therefore since the expected value of the norm squared is $n$, then the probability that there exists an assignment of the $\eps_i$ that makes the norm squared less than or equal to $n$ is non zero. Since this probability is non zero, there then must exist such an assignment. Thus
+    \[
+        \norm{\sum_i \eps_i v_i}^2 \leq n \implies \norm{\sum_i \eps_i v_i} \leq \sqrt{n}
+    \]
+    which was to be shown.
+\end{proof}
+
+\section*{Problem 3}
+\begin{proof}
+    Trivially, if $n < 3$ then $K_n$ has no possible rainbow triangles and $\binom{n}{3} \frac{2}{9} < 1$. Assume then that $n \geq 3$. Consider a random assignment of a color to each edge $e \in K_n$ such that each color is equally likely. Let $X_{i,j,k}$ be the indicator random variable that the triangle comprised of edges $i,j,k$ is rainbow. Then the expected number of rainbow triangles is
+    \[
+        \expp{\sum_{i \neq j \neq k} X_{i,j,k}} = \sum_{i \neq j \neq k} \expp{X_{i,j,k}} = \binom{n}{3} \expp{X_{1,2,3}}
+    \]
+    since each $X_{i,j,k}$ is identically distributed hence we only need to find the expectation of a single one, and there are $\binom{n}{3}$ edges since $K_n$ is complete. The expectation is simply the probability a given triangle is rainbow. There are $3^3 = 27$ possible colorings of the edges of a triangle, and there are $3 \cdot 2 \cdot 1 = 6$ colorings in which all edges are different colors. Since every coloring is equally likely, this means
+    \[
+        \expp{\sum_{i \neq j \neq k} X_{i,j,k}} = \binom{n}{3} \expp{X_{1,2,3}} = \binom{n}{3} \frac{6}{27} = \binom{n}{3} \frac{2}{9}
+    .\]
+    Therefore the probability that a random edge coloring of $K_n$ contains more than $\binom{n}{3} \frac{2}{9}$ rainbow triangles is non zero, hence such a random edge coloring must exist.
+\end{proof}
+
+\section*{Problem 4}
+\begin{proof}
+    Let $S = \qty{1, \ldots, n}$ and $I = (c, c+1)$ where $c \in \R$. Given a vector $\eps \in \qty{0,1}^n$, we can associate a subset $E \subseteq S$ in which $i \in E$ iff $\eps_i = 1$. Note then that the sum
+    \[
+        \sum_{i=1}^n \eps_i a_i = \sum_{i \in E} a_i
+    .\]
+    Assume towards contradiction we have a family of such subsets such that they satisfy the unit interval summation property, but there is two subsets $E_1$ and $E_2$ such that $E_1 \neq E_2$ and $E_1 \subset E_2$. Note that
+    \[
+        c < \sum_{i \in E_1} a_i < c + 1
+    .\]
+    Since $E_1 \subset E_2$,
+    \[
+        \sum_{i \in E_2} a_i = \sum_{i \in E_1} a_i + \sum_{i \in E_2 \setminus E_1} a_i
+    .\]
+    Furthermore, there must be at least one element $a_i$ in $E_2$ that isnt in $E_1$. Combined with the fact that all $a_i \geq 1$,
+    \[
+        \sum_{i \in E_2 \setminus E_1} a_i \geq 1
+    .\]
+    Thus
+    \[
+        \sum_{i \in E_2} a_i = \sum_{i \in E_1} a_i + \sum_{i \in E_2 \setminus E_1} a_i \geq 1 + \sum_{i \in E_1} a_i > c + 1
+    .\]
+    But this means $E_2$ can not be in the family since it does not lay in $I$, a contradiction. Therefore the family of $E_i$ is a Sperner Family and hence has at most $\binom{n}{\frac{n}{2}} = \binom{n}{\lfloor \frac{n}{2} \rfloor}$ members. By the initial equivalence, this means that a family of $\eps$ vectors is also subject to the same upper bound.
+\end{proof}
+
+\section*{Problem 5}
+\begin{proof}
+    Let $\tilde{X} = X - a \cdot \mathbb{1}_{X \geq a}$. Note that $\tilde{X} \geq 0$, since when $X < a$ then $\tilde{X} = X$ and when $X \geq a$, then $\tilde{X} = X - a \geq a - a = 0$. Furthermore, by linearity of expectation $\expp{\tilde{X}} = \expp{X} - a \prob{X \geq a}$. When $\expp{\tilde{X}} = 0$, we get equality of the Markov inequality. Since $\tilde{X}$ is non-negative, the expectation being $0$ means that $\prob{\tilde{X} = 0} = 1$. The only two possibilities for $X$ that satisfy this are either $\prob{X = 0} = 1$ or $\prob{X = a} = 1$.
+\end{proof}
+
+\end{document}

@@ -7,6 +7,20 @@
 \begin{document}
 
 \section*{Problem 1}
+We have the following probability mass functions for $X$ and $Y$
+\[
+    \prob{X = i} = \binom{n}{i} p^i (1-p)^{n - i} \qquad \prob{Y = j} = \binom{m}{j} p^j (1-p)^{m - j}
+.\]
+Therefore considering the probability mass function of $X + Y$ we have
+\begin{align*}
+    \prob{X + Y = k} &= \sum_{i = 0}^k \prob{X = k - i, Y = i} \\
+                     &= \sum_{i = 0}^k \prob{X = k - i} \prob{Y = i} \\
+                     &= \sum_{i = 0}^k \qty(\binom{n}{k-i} p^{k-i} (1-p)^{n-k+i}) \qty(\binom{m}{i} p^i (1-p)^{m-i}) \\
+                     &= p^k (1-p)^{n+m-k}  \sum_{i = 0}^k \binom{n}{k-i} \binom{m}{i} \\
+                     &= \binom{n+m}{k} p^k (1-p)^{n+m-k}
+\end{align*}
+which is the probability mass function of $\operatorname{Binomial}(n+m, p)$.
+
 
 \section*{Problem 2}
 \subsection*{Part A}
@@ -29,8 +43,8 @@ Again by the definition of a conditional distribution,
 Therefore
 \begin{alignat*}{3}
     p_{Y | X}(1 \mid 2) &= \frac{2}{10} \cdot \frac{20}{7} &&= \frac{4}{7} \\
-    p_{Y | X}(2 \mid 2) &= \frac{1}{10} \cdot \frac{20}{7} &&= \frac{2}{7} \\
-    p_{Y | X}(3 \mid 2) &= \frac{1}{20} \cdot \frac{20}{7} &&= \frac{1}{7}
+    p_{Y | X}(3 \mid 2) &= \frac{1}{10} \cdot \frac{20}{7} &&= \frac{2}{7} \\
+    p_{Y | X}(5 \mid 2) &= \frac{1}{20} \cdot \frac{20}{7} &&= \frac{1}{7}
 \end{alignat*}
 
 \subsection*{Part C}
@@ -40,6 +54,40 @@ No they are not the same. We have
 .\]
 
 \section*{Problem 3}
+\subsection*{Part A}
+We can obtain the marginal density by integrating the joint density over the possible values of $y$. Thus
+\begin{align*}
+    f_X(x) &= \int_{0 < x < y} f(x,y) \dd y \\
+           &= \int_{x}^\infty e^{-y} \dd y \\
+           &= -e^{-y} \eval_{x}^\infty \\
+           &= e^{x}, \quad x > 0
+\end{align*}
+
+\subsection*{Part B}
+\[
+    f_{Y|X}(y | x) = \frac{f(x,y)}{f_X(x)} = e^{-(x+y)}, \quad y > x
+.\]
+
 \section*{Problem 4}
+
+\subsection*{Part A}
+Since $U$ is uniform on $(0,1)$, its probability density is simply $f_{U}(u) = 1$ for $0 < u < 1$. Note that
+\[
+    \prob{U > a} = \int_a^1 1 \dd u = 1 - a
+.\]
+Therefore for $a < u < 1$
+\[
+    f_{U|U > a}(u) = \frac{f_{U}(u)}{\prob{U > a}} = \frac{1}{1 - a}
+.\]
+
+\subsection*{Part B}
+In a similar manner to (A), we have
+\[
+    \prob{U < a} = \int_0^a 1 \dd u = a
+.\]
+Therefore for $0 < u < a$
+\[
+    f_{U|U < a}(u) = \frac{f_{U}(u)}{\prob{U < a}} = \frac{1}{a}
+.\]
 
 \end{document}
