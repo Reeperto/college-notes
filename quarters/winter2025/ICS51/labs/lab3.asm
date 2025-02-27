@@ -60,27 +60,58 @@ jr $ra
 ###############################################################
 catalan_recur:
 ############################### Part 2: your code begins here ##
-    bgt $a0, 1, catalan_loop
-    addi $v0, $0, 1
-    j catalan_ret
 
-    move $t0, $0
-    move $t1, $0
+    # STACK:
+    # 0  => ra
+    # 4  => n
+    # 8  => i
+    # 12 => sum
+    # 16 => temp
+
+    addiu $sp, $sp, -20
+    sw    $ra,  0($sp)
+
+    bgt   $a0, 1, catalan_inner # n > 1
+
+    addi  $v0, $0, 1
+    j     catalan_ret
+
+catalan_inner:
+    sw    $a0,  4($sp) # n
+    sw    $0,   8($sp) # i
+    sw    $0,  12($sp) # sum
 
 catalan_loop:
-    bge $t1, $a0, catalan_ret
+    lw    $a0, 4($sp)                # $a0 = n
+    lw    $t0, 8($sp)                # $t0 = i
+    bge   $t0, $a0, catalan_ret      # i >= n ? ret : continue
 
-    push($ra)
-    push($a0)
-    push($t0)
-    push($t1)
+    move  $a0, $t0                   # $a0 = i
+    jal   catalan_recur              
+    sw    $v0, 16($sp)               # temp = catalan(i)
 
+    lw    $a0, 4($sp)                # $a0 = n
+    lw    $t0, 8($sp)                # $t0 = i
+    sub   $a0, $a0, $t0              # $a0 = $a0 - $t0 = n - i
+    subi  $a0, $a0, 1                # $a0 = $a0 - 1   = n - i - 1
+    jal   catalan_recur
 
-    jal catalan_recur
+    lw    $t2, 16($sp)               # $t2 = temp
+    mul   $t3, $v0, $t2              # $t3 = temp * catalan(i-1) = catalan(i) * catalan(i-1)
+    
+    lw    $t1, 12($sp)               # $t1  = sum
+    add   $t1, $t1, $t3              # $t1 += $t3 = catalan(i) * catalan(i-1)
+    sw    $t1, 12($sp)               # sum  = $t1
 
+    lw    $t0, 8($sp)                # $t0  = i
+    addi  $t0, $t0, 1                # $t0 += 1
+    sw    $t0, 8($sp)                # i    = $t0
 
-    j catalan_loop
+    j     catalan_loop
+
 catalan_ret:
+    lw    $ra,  0($sp)
+    addiu $sp, $sp, 20
 ############################### Part 2: your code ends here  ##
 jr $ra
 
