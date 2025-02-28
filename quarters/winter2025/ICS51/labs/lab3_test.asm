@@ -232,8 +232,8 @@ lw $s2, 0($s2)
 ###############################################################
 # If you have finished part3A, you may un-comment the following 
 # code block to forward part3A result to be part3B input.
-#la $s1, dist_array
-#move $s2, $s0
+la $s1, dist_array
+move $s2, $s0
 ###############################################################
 li $v0, 4
 la $a0, ts_str
