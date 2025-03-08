@@ -1,0 +1,202 @@
+\documentclass{eeleyes}
+
+\input{../course_preamble.tex}
+\def\thehwnumber{5}
+\input{hw_preamble.tex}
+
+\NewDocumentCommand{\eps}{}{\varepsilon}
+\NewDocumentCommand{\iprd}{m}{\left\langle #1 \right\rangle}
+% \RenewDocumentCommand{\tilde}{m}{\widetilde{#1}}
+
+\begin{document}
+
+\section*{Problem 1}
+\subsection*{Part A}
+Since the probability that $X_n = k$ for some $1 \leq k \leq n$ is uniform,
+\[
+    \expp{X_n} = \sum_{k=1}^n \prob{X_n = k} \cdot \omega(k) = \frac{1}{n} \sum_{k=1}^n \omega(k)
+.\]
+Rather than writing this sum in terms of the number of prime factors per given number, we can write this sum in terms of how many numbers a given prime $p$ factors into between $1$ and $n$. Thus
+\[
+    \sum_{k=1}^n \omega(k) = \sum_{\substack{p \leq n \\ p \text{ prime}}} \sum_{\substack{1 \leq k \leq n \\ p | k}} 1
+.\]
+The inner sum is simply how many numbers from $1$ to $n$ are divisible by some $p$, which is just $\lfloor\frac{n}{p}\rfloor$. Therefore
+\[
+    \expp{X_n} = \frac{1}{n} \sum_{\substack{p \leq n \\ p\text{ prime}}} \left\lfloor \frac{n}{p} \right\rfloor
+.\]
+When $n \to \infty$, we have $\frac{1}{n} \lfloor \frac{n}{p} \rfloor = \frac{1}{p}$. Therefore for large $n$
+\[
+    \expp{X_n} \approx \sum_{\substack{p \leq n \\ p\text{ prime}}} \frac{1}{p}
+.\]
+Thus by Merten's Theorem,
+\[
+    \expp{X_n} = \log\log n + O(1)
+.\]
+
+\subsection*{Part B}
+Note that
+\[
+    \omega(X_n)^2 = \sum_{\substack{p \leq n \\ p\text{ prime}}} \mathbb{1}_{p \mid X_n} + \sum_{\substack{p < q \leq n \\ p\text{ prime}}} \mathbb{1}_{p \mid X_n} \mathbb{1}_{q \mid X_n}
+.\]
+Taking the expectation of each term gives
+
+\[
+    \expp{\sum_{\substack{p \leq n \\ p\text{ prime}}} \mathbb{1}_{p \mid X_n}} = \sum_{\substack{p \leq n \\ p\text{ prime}}} \frac{1}{p} = \log \log n + O(1)
+\]
+and by independence of $\mathbb{1}_{p \mid X_n}$ and $\mathbb{1}_{q \mid X_n}$ since $p$ and $q$ are distinct,
+\[
+    \expp{\sum_{\substack{p < q \leq n \\ p\text{ prime}}} \mathbb{1}_{p \mid X_n} \mathbb{1}_{q \mid X_n}} = \sum_{\substack{p < q \leq n \\ p\text{ prime}}} \frac{1}{pq}
+.\]
+This sum across distinct primes can be rewritten as
+\[
+    \sum_{\substack{p < q \leq n \\ p\text{ prime}}} \frac{1}{pq} = \qty(\sum_{\substack{p \leq n \\ p\text{ prime}}} \frac{1}{p})^2 - \sum_{\substack{p \leq n \\ p\text{ prime}}} \frac{1}{p^2}
+\]
+which comes from the fact that the square of the sum of prime reciprocals will include all products $\frac{1}{pq}$ but will include all $\frac{1}{p^2}$ terms which must be removed. Note that
+\[
+    0 \leq \sum_{\substack{p \leq n \\ p\text{ prime}}} \frac{1}{p^2} \leq \sum_{n = 1}^n \frac{1}{n^2} = \frac{\pi^2}{6}
+.\]
+Thus the reciprocal prime square sum is $O(1)$. By Merten's theorem we have then
+\[
+    \sum_{\substack{p < q \leq n \\ p\text{ prime}}} \frac{1}{pq} = (\log \log n)^2 + O(1)
+.\]
+By the definition of expectation we get in total
+\begin{align*}
+    \varr \omega(X_n) &= \expp{\omega(X_n)^2} - \expp{\omega(X_n)}^2 \\
+    &= (\log \log n)^2 + \log \log n - (\log \log n)^2 + O(1) \\
+    &= \log \log n + O(1)
+\end{align*}
+
+\subsection*{Part C}
+Note that Chebyshev's inequality states
+\[
+    \prob{|\omega(X_n) - \expp{\omega(X_n)}| \geq a} \leq \frac{\varr \omega(X_n)}{a^2}
+.\]
+Picking $a = t \sqrt{\varr \omega(X_n)}$ gives
+\[
+    \prob{|\omega(X_n) - \expp{\omega(X_n)}| \geq t \sqrt{\varr \omega(X_n)}} \leq \frac{1}{t_2}
+\]
+which clearly then goes to $0$ as $t \to \infty$.
+
+\section*{Problem 2}
+\begin{proof}
+    Note that $\deg v \sim \operatorname{Bin}(n-1,p)$. Thus $\expp{\deg v} = \frac{n-1}{2}$. For large $n$, $\frac{n - 1}{2} \approx \frac{n}{2}$, thus $\expp{\deg v} = \frac{n}{2}$. Using the Chernoff bound gives
+    \[
+        \prob{|\expp{\deg v - \expp{\deg v}}| \geq \delta \expp{X}} \leq 2 \exp\qty(-\frac{\expp{X} \delta^2}{3})
+    .\]
+    Let $t = \sqrt{10 n \log n}$ and choose $\delta = \frac{t}{\expp{X}}$ which equals
+    \[
+        \frac{2 \sqrt{10 n \log n}}{n} = 2 \sqrt{\frac{10 \log n}{n}}
+    .\]
+    For large $n$, this is between $0$ and $1$ and hence is a valid choice of $\delta$. Substituting into the right hand side of the bound gives
+    \[
+        2 \exp\qty[-\qty(\frac{n}{2})\qty(\frac{40 \log n}{n})\qty(\frac{1}{3})] = 2 \exp\qty[-\frac{20 \log n}{3}] = 2n^{-\frac{20}{3}}
+    .\]
+    Thus by applying the union bound,
+    \[
+        \prob{\exists v \text{ s.t. } |\deg v - \frac{n}{2}| \geq \sqrt{10 n \log n}} = n \qty(2n^{- \frac{20}{3}}) = 2n^{-\frac{17}{3}}
+    \]
+    which goes to $0$ as $n \to \infty$.
+\end{proof}
+
+\section*{Problem 3}
+\subsection*{Part A}
+\begin{proof}
+    Let $\mu = \expp{X}$. Consider when it is the case that $|X - \mu| \geq |\mu|$. It is guaranteed to be true if $X = 0$. Therefore it is the case that
+    \[
+        \prob{X = 0} \leq \prob{|X - \mu| \geq |\mu|}
+    .\]
+    Since $|\mu|$ is non-negative, by Chebyshev's inequality
+    \[
+        \prob{X = 0} \leq \prob{|X - \mu| \geq |\mu|} \leq \frac{\varr X}{(|\mu|)^2} = \frac{\varr X}{\mu^2}
+    .\]
+
+    Assume now that for a sequence of random variables $X_n$ that $\lim_{n \to \infty} \frac{\varr X_n}{\expp{X_n}^2} = 0$. Probabilities are non-negative meaning
+    \[
+        0 \leq \prob{X_n = 0} \leq \frac{\varr{X_n}}{\expp{X_n}^2}
+    .\]
+    Hence by the squeeze lemma it must be the case that as $n \to \infty$, $\prob{X_n = 0} = 0$. Thus we can conclude with high probability that $X_n \neq 0$.
+\end{proof}
+
+\subsection*{Part B}
+\begin{proof}
+    Let $X$ denote the total number of 4-cliques in $G_{n,p}$. This can be expressed as a sum of indicator random variables $X_{i,j,k,l}$ which are $1$ iff the vertices $i,j,k,l$ are in a 4-clique together. Thus
+    \[
+        X = \sum_{\substack{1 \leq i,j,k,l \leq n \\ i \neq j \neq k \neq l}} X_{i,j,k,l}
+    .\]
+    By linearity of expectation,
+    \[
+        \expp{X} = \binom{n}{4} \cdot \expp{X_{1,2,3,4}}
+    .\]
+    The probability that 4 vertices are in a clique is the product of the probabilities that each pair of vertices is connected, giving
+    \[
+        \prob{X_{1,2,3,4} = 1} = p^{\binom{4}{2}} = p^6
+    .\]
+    Therefore
+    \[
+        \expp{X} = \binom{n}{4} \cdot p^6
+    .\]
+    Taking $p \geq C n^{-\frac{2}{3}}$ it follows for large $C$
+    \[
+        \expp{X} \geq \frac{n^4}{24} (C^6 n^4) = \frac{C^6}{24}
+    .\]
+    This lower bound goes to infinity as both $n, C \to \infty$, thus $\expp{X} \to \infty$.
+\end{proof}
+\subsection*{Part C}
+Using the expectation calculate from $(B)$ and taking $p \leq \eps n^{-\frac{2}{3}}$ it follows
+\[
+    \expp{X} = \binom{n}{4} p^6 \leq \frac{n^4}{24} \qty(\eps n^{-\frac{2}{3}})^6 = \frac{\eps^6}{24}
+.\]
+By Markov's inequality we then have as both $n \to \infty$ and $\eps \to 0$ that
+\[
+    \prob{X \geq 1} \leq \expp{X} \leq \frac{\eps^6}{24} \to 0
+.\]
+
+\section*{Problem 4}
+Note that being uncorrelated implies independence, thus the random variables are pairwise independent. 
+
+\subsection*{Part A}
+By the definition of correlation,
+\[
+    \sigma_{X_1+X_2,X_3+X_4} = \frac{\operatorname{Cov}(X_1 + X_2, X_3 + X_4)}{\sqrt{\varr(X_1+X_2) \varr(X_2 + X_3)}} 
+.\]
+
+First we find the covariance. Let $\mu_i$ be the expectation of the $i$th random variable. Then
+\begin{align*}
+    \operatorname{Cov}(X_1+X_2, X_3+X_4) &= \expp{(X_1 + X_2)(X_3 + X_4)} - \expp{X_1 + X_2}\expp{X_3 + X_4} \\
+                                         &= \expp{X_1 X_3 + X_1 X_4 + X_2 X_3 + X_2 X_4} - (\mu_1 + \mu_2)(\mu_3 + \mu_4) \\
+                                         &= \mu_1 \mu_3 + \mu_1 \mu_4 + \mu_2 \mu_3 + \mu_2 \mu_4 \\
+                                         &= 0
+\end{align*}
+Since the covariance is $0$, it follows that $\sigma_{X_1+X_2,X_3+X_4} = 0$.
+
+\subsection*{Part B}
+We again find the covariance.
+\begin{align*}
+    \operatorname{Cov}(X_1 + X_2, X_2 + X_3) &= \expp{(X_1 + X_2)(X_2 + X_3)} - \expp{X_1 + X_2} \expp{X_2 + X_3} \\
+                                             &= \expp{X_1 X_2 + X_1 X_3 + X_2^2 + X_2 X_3} - (\mu_1 + \mu_2) (\mu_2 + \mu_3) \\
+                                             &= \expp{X_2}^2 + \mu_1 \mu_2 + \mu_1 \mu_3 + \mu_2 \mu_3 \\
+                                             &= \expp{X_2}^2 - \mu_2^2 \\
+                                             &= \varr X_2 = 1
+\end{align*}
+Since all variables are pairwise uncorrelated, $\varr(X_1 + X_2) = \varr(X_2 + X_3) = 2$. In total then
+\[
+    \sigma_{X_1 + X_2, X_2 + X_3} = \frac{1}{\sqrt{2}^2} = \frac{1}{2}
+.\]
+
+\section*{Problem 5}
+Let $N$ be the number of accidents in a week, and $X_i$ the number of workers injured during the $i$th accident. The total number of worker injuries $X$ is then
+\[
+    X = X_1 + X_2 + \ldots + X_N
+.\]
+Note that
+\[
+    \expp{X | N} = \expp{X_1 + \ldots + X_N | N} = N \cdot \expp{X_i} = 2.5 N
+.\]
+Therefore
+\[
+    \expp{X} = \expp{\expp{X | N}} = \expp{2.5 N} = 2.5 \expp{N} = 12.5
+.\]
+Hence the expected number of injured workers in a week is $12.5$.
+
+
+\end{document}

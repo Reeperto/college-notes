@@ -152,7 +152,6 @@ load_pts_file:
     lw    $a0, 0($sp)
     lw    $a1, 4($sp)
 
-    la    $s1, data_buffer
 
     # Registers:
     #   
@@ -160,16 +159,18 @@ load_pts_file:
     #   $t1 = number 1
     #   $t2 = number 2
     #   $t3 = is negative flag
+    #   $t4 = data buffer pointer
     #   $v0 = number of distances
     #
 
+    la    $t4, data_buffer
     li    $t1, 0
     li    $t2, 0
     li    $t3, 0
     li    $v0, 0
 
 load_loop_num1:
-    lb    $t0, ($s1)
+    lb    $t0, ($t4)
     beqz  $t0, load_ret
 
     beq   $t0, 0x0A, load_next_line  # $t0 == '\n'
@@ -181,12 +182,12 @@ load_loop_num1:
     mul   $t1, $t1, 10               # $t1 *= 10
     add   $t1, $t1, $t0              # $t1 += $t0
 
-    addiu $s1, $s1, 1
+    addiu $t4, $t4, 1
     j     load_loop_num1
 
 load_negative_num1:
     ori   $t3, $t3, 1
-    addiu $s1, $s1, 1
+    addiu $t4, $t4, 1
     j     load_loop_num1
 
 load_next_num:
@@ -196,10 +197,10 @@ load_next_num:
 
     li    $t3, 0
 
-    addi  $s1, $s1, 1
+    addi  $t4, $t4, 1
 
 load_loop_num2:
-    lb    $t0, ($s1)
+    lb    $t0, ($t4)
     beqz  $t0, load_ret
 
     beq   $t0, 0x0A, load_next_line  # $t0 == '\n'
@@ -210,12 +211,12 @@ load_loop_num2:
     mul   $t2, $t2, 10               # $t2 *= 10
     add   $t2, $t2, $t0              # $t2 += $t0
 
-    addiu $s1, $s1, 1
+    addiu $t4, $t4, 1
     j     load_loop_num2
 
 load_negative_num2:
     ori   $t3, $t3, 1
-    addiu $s1, $s1, 1
+    addiu $t4, $t4, 1
     j     load_loop_num2
 
 load_next_line:
@@ -240,7 +241,7 @@ load_store_dist:
     li    $t3, 0
 
     addi  $v0, $v0, 1
-    addi  $s1, $s1, 1
+    addi  $t4, $t4, 1
     addi  $a1, $a1, 4
     j     load_loop_num1
     
