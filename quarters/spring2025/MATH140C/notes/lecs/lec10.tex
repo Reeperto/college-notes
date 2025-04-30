@@ -1,0 +1,74 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{definition}[Preimage]
+    Let $f : \R^n \to \R^p$ and $G \subseteq \R^p$. The \term{preimage} of $G$ under $f$ is $f^{-1}(G) = \qty{x \in \R^n : f(x) \in G}$.
+\end{definition}
+
+\begin{theorem}[Topological Continuity]
+    \label{thm:topocontinuity}
+    A function $f : \R^n \to \R^p$ is continuous iff $f^{-1}(G)$ is open (closed) in $\R^n$ for every open (closed) set in $\R^p$.
+\end{theorem}
+
+\begin{lemma}
+    % TODO: Counters dont seem to exist for these environments?
+    \label{lemma:inversecomplement}
+    For any map $f : A \to B$ and set $F \subseteq B$, $f^{-1}(F^c) = f^{-1}(F)^c$.
+\end{lemma}
+
+\begin{proof}
+    Note that
+    \begin{align*}
+        x \in f^{-1}(F^c) &\Leftrightarrow f(x) \in F^c \\
+                          &\Leftrightarrow f(x) \notin F \\
+                          &\Leftrightarrow x \notin f^{-1}(F) \\
+                          &\Leftrightarrow x \in f^{-1}(F)^c
+    \end{align*}
+    which was to be shown.
+\end{proof}
+
+\begin{proof}[thm:topocontinuity]
+    We consider the open case first. Suppose $G$ is open. Let $a \in f^{-1}(G)$. Then $f(a) \in G$, thus $\exists \eps > 0$ such that $B_{\eps}(f(a)) \subseteq G$. That is, 
+    \[
+        \norm{y - f(a)} < \eps \implies y \in G \tag{\star}
+    .\]
+    Since $f$ is continuous at $a$, $\exists \delta > 0$ such that $\forall x \in \R^n, \norm{x - a} < \delta \implies \norm{f(x) - f(a)} < \eps $. Consider $x \in B_{\delta}(a)$. Then $\norm{x - a} < \delta$, thus by continuity of $f$ and $(\star)$, $f(x) \in G$ meaning $x \in f^{-1}(G)$. Thus $B_{\delta}(a) \subseteq f^{(-1)}(G)$, meaning $f^{-1}(G)$ is open.
+
+    Suppose that $f^{-1}(G)$ is open for all open $G \subseteq \R^p$. Take $a \in \R^n$, $\eps > 0$ and let $G = B_{\eps}(f(a))$. Note that $G$ is open. Suppose $a \in f^{-1}(G)$. Then $\exists \delta > 0$ such that $B_{\delta}(a) \subseteq f^{-1}(G)$. Therfore $x \in B_{\delta}(a) \implies x \in f^{-1}(x) \implies f(x) \in G$. Equivalently,
+    \[
+        \norm{x - a} < \delta \implies \norm{f(x) - f(a)} < \eps
+    .\]
+    Thus $f$ is continuous.
+
+    To prove the closed case, suppose $f$ is continuous. Take $F \subseteq \R^p$ closed. Then $F^c$ is open in $\R^p$. Thus $f^{-1}(F^c)$ is open. By lemma $\ref{lemma:inversecomplement}$, $f^{-1}(F^c) = f^{-1}(F)^c$, thus $f^{-1}(F)^c$ is open. Therefore $f^{-1}(C)$ is closed. The reverse direction follows by a similar argument as above.
+    % TODO: Prove backwards direction
+\end{proof}
+
+\begin{remark}
+    It is not true generally that a continuous map takes open sets to open sets, nor closed set into closed sets. The zero map $f : \R \to \R : x \mapsto 0$ is continuous, but $f((a,b)) = \qty{0}$ which is closed. The map $f : \R \to \R : x \mapsto \frac{x^2}{x^2 + 1}$ is continuous as well, but $f(\R) = [0, 1)$, meaning both an open and closed set is mapped to a set that is neither open or closed.
+\end{remark}
+
+\section[Compactness]{Compactness and Uniform Continuity}
+
+\begin{definition}[Sequential Compactness]
+    A set $K \subseteq \R^n$ is \term{sequentially compact} if every sequence $(x^{(k)})$ in $K$ has a convergent subsequence that converges to a point in $K$.
+\end{definition}
+
+\begin{example}
+    The closed ball $B_r[a] \subseteq \R^n$ is compact. Let $(x^{(k)})$ be a sequence in $B_r[a]$. Note that $\norm{x^{(k)}} \leq \norm{x^{(k)} - a} + \norm{a} \leq r + \norm{a}$. Thus $(x^{(k)})$ is bounded. Therefore by Bolzano-Weierstrass there exists a subsequence $(x^{(k_j)})$ in $K$ that converges to some point $x \in \R^n$. Since the norm is continuous,
+    \[
+        \lim_{j \to \infty} \norm{x^{(k_j)} - a} \leq r \implies \norm{x - a} \leq r
+    .\]
+    Thus $x \in B_r[a]$.
+\end{example}
+
+\begin{theorem}
+    Let $f : \R^n \to \R^p$ be continuous and $K \subseteq \R^n$ be compact. Then $f(K)$ is also compact.
+\end{theorem}
+
+\begin{proof}
+    Let $(y^{(k)})$ be a sequence in $f(K)$. Therefore there exists a sequence $(x^{(k)})$ in $K$ where $f(x^{(k)}) = y^{(k)}$. Since $K$ is compact, there exists a subsequence $(x^{k_j})$ that converges to a point $a \in K$. Since $f$ is continuous, then $f(x^{(k_j)}) = y^{(k_j)} \to f(a)$ as $j \to \infty$. Thus the subseqeunce $(y^{(k_j)})$ converges to $f(a) \in f(K)$, hence $f(K)$ is compact.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,76 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{remark}
+    The intersection of an infinite collection of open sets is not neccesarily open. Consider the family of open intervals in $\R$ of the form
+    \[
+        J_n = \qty(-\frac{1}{n}, \frac{1}{n})
+    .\]
+    Note that $\bigcap J_n = \qty{0}$ which is not open.
+\end{remark}
+
+\begin{definition}[Neighborhood]
+    Let $a \in \R^n$. A \term{neighborhood} of $a$ is an open set $G\subseteq \R^n$ such that $a \in G$. Often the term \emph{nbhd} is used as a shorthand.
+\end{definition}
+
+\begin{remark}
+    If $G$ is a nbhd of $a$, then $\exists r > 0$ such that $B_r(a) \subseteq G$.
+\end{remark}
+
+\begin{definition}[Interior]
+    The \term{interior} of a set $A \subseteq \R^n$ is defined as
+    \[
+        \interior(A) \coloneq \qty{x \in \R^n : x\text{ has a nbhd } G \subseteq A}
+    .\]
+\end{definition}
+
+\begin{example}
+    \hfill
+    \begin{enumerate}[label=\roman*)]
+        \item $\interior([a,b)) = (a,b)$ since any nbhd of $a$ will contain points outside of the interval.
+        \item Let $A = \qty{(x,y) \in \R^2 : x,y \geq 0}$. Then $\interior(A) = \qty{(x,y) \in \R^2 : x,y > 0}$ as any point along the axes fail by the same reasoning as above.
+        \item $\interior(\Q) = \varnothing$ because there will always be an irrational $x$ in any ball based around a rational number.
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}
+    For any $A \subseteq \R^n$
+    \begin{enumerate}[label=\roman*)]
+        \item $\interior(A)$ is open
+        \item $\interior(A)$ is the largest open set contained in $A$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Let $x \in \interior(A)$. Then there is some nbhd $G$ such that $G \subseteq A$. Let $y \in G$. Since $G$ is open, $G$ is a nbhd of $y$ as well hence $y \in \interior(A)$. Therefore $G \subseteq \interior(A)$ meaning $\interior(A)$ is open.
+    % TODO: Finish this proof. The idea is that any open subset of A is contained in the neighborhood
+\end{proof}
+
+\begin{definition}[Closed set]
+    A set $F \subseteq \R^n$ is \term{closed} if its complement $F^c$ is open.
+\end{definition}
+
+\begin{example}
+    \hfill
+    \begin{enumerate}[label=\roman*)]
+        \item Both $\varnothing$ and $\R^n$ are closed
+        \item $[a,b]$ is closed for all $a \neq b$
+        \item $[a,\infty)$ is closed since $[a, \infty)^c = (-\infty, a)$ which is open
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}
+    For every $a \in \R^n$ and $r > 0$, the closed ball $B_r[a] = \qty{x \in \R^n : |x - a| \leq r}$ is closed in $\R^n$.
+\end{theorem}
+
+\begin{proof}
+    If $B_r[a]^c = \qty{x \in \R^n : |x-a| > r}$ is open, then the desired result is achieved. Let $x \in B_r[a]^c$. Since $|x-a| > r$, then $\exists \rho > 0$ such that $|x-a| = r + \rho$. Take $y \in B_{\rho}(x)$. Then
+    \begin{align*}
+        |x-a| \leq |x-y| + |y-a| &\implies |y - a| \geq |x-a| - |x-y| \\
+                                 &\implies |y-a| > |x-a| - \rho = r
+    \end{align*}
+    Therefore $y \in Br[a]^c$, meaning $B_r[a]$ is open.
+\end{proof}
+
+\end{document}

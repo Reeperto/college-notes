@@ -1,0 +1,73 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{theorem}[Closed Set Families]
+    The following hold in $\R^n$
+    \begin{romanlist}
+    \item Let $(F_{\alpha})_{\alpha \in J}$ be a collection of closed sets. Then $\bigcap_{\alpha \in J} F_{\alpha}$ is closed
+    \item Let $(F_{\alpha})_{\alpha \in J}$ be a finite collection of closed sets. Then $\bigcup_{\alpha \in J} F_{\alpha}$ is closed
+    \end{romanlist}
+\end{theorem}
+
+\begin{proof}
+    \hfill
+    \begin{romanlist}
+        \item 
+            Note that by De'Morgan's,
+            \[
+                \qty(\bigcap_{\alpha \in J} F_{\alpha})^c = \bigcup_{\alpha \in J} F_{\alpha}^c
+            .\]
+            Since every $F_{\alpha}^c$ is open, and the union of a family of open sets is open, then the complement of the intersection is open. Hence the intersection is closed.
+        \item 
+            The same application of De'Morgan's gives the desired result.
+    \end{romanlist}
+\end{proof}
+
+\begin{remark}
+    Consider the family of closed sets $F_n = \qty[-1 + \frac{1}{n}, 1  - \frac{1}{n}]$. Note that
+    \[
+        \bigcup_{n=1}^\infty F_n = (-1, 1)
+    \]
+    hence the infinite union of closed sets is not necessarily closed.
+\end{remark}
+
+\begin{definition}[Boundary]
+    For a set $A \subseteq \R^n$, the \term{boundary} of $A$ is $\partial A \coloneq \conj{A} \cap \conj{A^c}$. Equivalently, the boundary is $\partial A = \conj{A} \setminus \interior(A)$.
+\end{definition}
+
+\begin{example}
+    For an open ball $B_r(a) \subseteq \R^n$, its boundary is
+    \begin{align*}
+        \partial B_r(a) &= \conj{B_r(a)} \setminus \interior(B_r(a)) \\
+                        &= \qty{x \in \R^n : |x-a| \leq r} \setminus \qty{x \in \R^n : |x-a| < r} \\
+                        &= \qty{x \in \R^n : |x-a| = r}
+    \end{align*}
+\end{example}
+
+\chapter{Sequences}
+
+\begin{definition}[Sequence]
+    A \term{sequence} in $\R^n$ is a map $f : \N \to \R^n$ where
+    \[
+        f(k) \coloneq x^{(k)} = (x_1^{(k)}, \ldots, x_n^{(k)}) \in \R^n
+    \]
+    and is denoted by $\qty{ x^{(k)} }$ or $\qty(x^{(k)})_{k=1}^\infty$.
+\end{definition}
+
+\begin{definition}[Convergence]
+    Let $\qty{x^{(k)}}$ be a sequence in $\R^n$. Then $x^{(k)}$ \term{converges} to a point $a \in \R^n$ if
+    \[
+        \lim_{k \to \infty} \qty|x^{(k)} - a| = 0
+    .\]
+    Equivalently
+    \begin{enumerate}
+        \item For all $\eps > 0$, $\exists K \in \N$ such that for all $k \geq K$,
+        \[
+            |x^{(k)} - a| \leq \eps
+        \]
+        \item For every nbhd $V$ of $a$, there is some $K$ such that $x^{(k)} \in V$ for all $k \geq K$
+    \end{enumerate}
+\end{definition}
+
+\end{document}

@@ -1,0 +1,61 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{definition}[Bounded Set]
+    A set $A \subseteq \R^n$ is \term{bounded} if there exists $M > 0$ such that
+    \[
+        \norm{a} \leq M, \forall a \in A
+    .\]
+\end{definition}
+
+\begin{theorem}[Compactness $\Leftrightarrow$ Closed and Bounded]
+    Let $K \subseteq \R^n$. Then $K$ is compact iff $K$ is closed and bounded.
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item[$\Leftarrow)$]
+            Suppose $K$ is closed and bounded. Let $\bigl(x^{(k)}\bigr)$ be a sequence of elements in $K$. Since $K$ is bounded, there exists $M > 0$ such that $\norm{a} \leq M$ for all $a \in K$. Therefore $\norm{x^{(k)}} \leq M$ for all $k \geq 0$, thus $\bigl(x^{(k)}\bigr)$ is bounded. By Bolzano-Weiestrass, there then exists a subsequence $\bigl(x^{(k_j)}\bigr)$ that converges to a point $x \in \R^n$. Since $K$ is closed, $a \in K$. Therefore $K$ is compact. \hfill\qedsymbol
+        \item[$\Rightarrow)$]
+            Suppose $K$ is compact. Let $a \in \conj{K}$. Then there exists a sequence $\bigl(x^{(k)}
+            \bigr)$ of elements in $K$ that converges to $a$. Since $K$ is compact, there exists a subsequence in $K$ that converges to some $\tilde{a} \in K$. But by the uniqueness of the limit, $a = \tilde{a} \in K$. Therefore $\conj{K} \subseteq K \implies K = \conj{K}$ meaning $K$ is closed. Suppose towards contradiction that $K$ is \emph{not bounded}. Then for any $l \in \N$, there exists $x^{(l)} \in K$ such that $\norm{x^{(l)}} > l$. $K$ is compact therefore there is a subsequence of these terms $\bigl(x^{(l_j)}\bigr)$ that converges to some $a \in K$. Since $\bigl(x^{(k)}\bigr)$ is convergent, it is bounded. On the other hand, $\norm{x^{(l_j)}} > l_j \geq j$ which means $\norm{x^{(l_j)}} \to \infty$ as $j \to \infty$, a contradiction. Therefore $K$ must be bounded. \qedhere
+    \end{enumerate}
+\end{proof}
+
+\begin{remark}
+    For a general metric space, it is only true in general that $K$ is compact implies $K$ is closed and bounded.
+\end{remark}
+
+\begin{remark}
+    Let $f : \R^n \to \R^p$ be continuous and $K \subseteq \R^p$ be compact. Then $f^{-1}(K)$ is closed in $\R^n$. However, it need not be compact. For example, consider $f : \R \to \R^2$ where $f(t) = (\cos(t), \sin(t))$. Clearly $f$ is continuous, and $f(\R) = S^1$. However, this means that $S^1$ which is a compact set under the preimage maps to $\R$, which is not bounded.
+\end{remark}
+
+\begin{theorem}
+    Let $K \subseteq \R^n$ be a compact non-empty set and $f : K \to \R$ be continuous. Then $f$ is bounded and achieves its supremum and infimum. That is $\exists a, b \in K$ such that
+    \[
+        \sup_{x \in K} f(x) = f(a) \quad\quad \inf_{x \in K} f(x) = f(b)
+    .\]
+\end{theorem}
+
+\begin{proof}
+    Since $f$ is continuous, $f(K)$ is compact and therefore bounded. Hence $f$ is bounded. Note that $f(K) \neq \varnothing$ is bounded. Thus there exists $\sup f(K) = L$. By definition of the supremum, $\forall \eps > 0, \exists x \in K$ such that $L - \eps < f(x) < L$. Take $\eps = \frac{1}{k}$ for $k \in \N$. Then there exists an $x^{(k)}$ for each $k$ such that $L - \frac{1}{k} < f(x^{(k)}) < L$. As $k \to \infty$, it follows $f(x^{(k)}) \to L$. Since $f(x^{(k)})$ is a sequence in $f(K)$ and $f(K)$ is compact and thus closed, $\exists a \in K$ such that $f(a) = L$. A similar argument can be applied to the infimum.
+\end{proof}
+
+\begin{definition}[Uniform Continuity]
+    Let $f : D \to \R^p$ where $D \subseteq \R^n$. Then $f$ is \term{uniformly continuous} on $D$ if for every $\eps > 0$, there exists $\delta > 0$ such that for all $x,y \in D$
+    \[
+        \norm{x - y} \leq \delta \implies \norm{f(x) - f(y)} \leq \eps
+    .\]
+\end{definition}
+
+\begin{example}
+    Consider the distance function $d(x,A)$ for some $A \subseteq \R^n$. Then the function $d(\cdot, A)$ is uniformly continuous. Consider $\eps > 0$ and take $\delta = \eps$. Take $x_0,y \in \R^n$ such that $\norm{x_0 - y} \leq \delta = \eps$. Then
+    \[
+        |d(y, A) - d(x_0, A)| \leq \norm{y - x_0} \leq \eps
+    \]
+    % TODO: Insert reference from monday lecture
+    follows from \hyperref[ex:dist_continuous]{a previous example}. Thus the distance function is uniformly continuous.
+\end{example}
+
+\end{document}

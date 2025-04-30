@@ -1,0 +1,67 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{theorem}
+    A sequence $\qty{x^{(k)}}$ converges to $a \in \R^n$ iff for every $1 \leq j \leq n$, the sequence $\qty{x_j^{(k)}}$ converges to $a_j$.
+\end{theorem}
+
+\begin{proof}
+    For $y \in \R^n$, note that
+    \[
+        |y_j| \leq \norm{y} \leq \sum_{i=1}^n |y_i|
+    .\]
+    Therefore
+    \[
+        0 \leq \qty|x_j^{(k)} - a_j| \leq \norm{x^{(k)} - a} \leq \sum_{j = 1}^n \qty|x_j^{(k)} - a_j|
+    .\]
+    Assuming the forward direction, it follows that $\norm{x^{(k)} - a} \to 0$ thus by the squeeze lemma $\qty|x_j^{(k)} - a_j| \to 0$. Assuming the reverse direction, it follows that $\sum_{j=1}^n \qty|x_j^{(k)} - a_j| \to 0$ which again by squeeze lemme means $\norm{x^{(k)} - a} \to 0$, which was to be shown.
+\end{proof}
+
+\begin{theorem}[Cluster Point $\Leftrightarrow$ Limit Point]
+    Let $A \subseteq \R^n$ and $x \in \R^n$. Then $x \in \conj{A}$ iff there exists a sequence $\qty{x^{(k)}}$ in $A$ that converges to $x$.
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item[$\Leftarrow)$]
+            Suppose such a sequence exists. Then for every nbhd $V$ of $x$, there is some $K$ such that $x^{(k)} \in V$ for all $k \geq K$. Since $x^{(k)} \in A$ for all $k$, then it follows $A \cap V \neq \varnothing$, thus $x \in \conj{A}$.
+        \item[$\Rightarrow)$]
+            Suppose $x \in \conj{A}$. Then for any $k \geq 1$, $B_{k^{-1}}(x) \cap A \neq \varnothing$. Therefore for each $k$, pick some $x^{(k)} \in B_{k^{-1}}(x) \cap A$. Then
+            \[
+                \norm{x^{(k)} - x} < \frac{1}{k} \to 0
+            \]
+            thus $\qty{x^{(k)}}$ is such a sequence.
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}[Bounded Sequence]
+    A sequence $\qty{x^{(k)}}$ in $\R^n$ is \term{bounded} if there exists $M \geq 0$ such that $\norm{x^{(k)}} \leq M$ for all $k \geq 1$.
+\end{definition}
+
+\begin{definition}[Subsequence]
+    Let $\qty(x^{(k)})_{k=1}^\infty$ be a sequence in $\R^n$ and $\phi : \N \to \N$ be a strictly increasing function. Then the sequence $\qty(x^{(\phi(l))})_{l=1}^\infty$ is a \term{subsequence} of the original sequence. The subindex will be denoted simply as $k_l \equiv \phi(l)$.
+\end{definition}
+
+\begin{theorem}
+    For any subsequence, $k_l \geq l$ for all $l \geq 1$.
+\end{theorem}
+
+\begin{proof}
+    Proceed with induction. Note that $k_1 \geq 1$ for any subsequence, thus the base case holds. Assume for some fixed $l$ that $k_l \geq l$. Since the associated $\phi$ is strictly increasing
+    \[
+        k_{l+1} > k_l \geq l \implies k_{l+1} \geq l + 1
+    \]
+    which was to be shown.
+\end{proof}
+
+\begin{theorem}[Bolzano-Weierstrass]
+    \label{thm:bolzano}
+    Every bounded sequence in $\R^n$ has a convergent subequence.
+\end{theorem}
+
+\begin{proof}
+    Let $\qty{x^{(k)}}$ be a bounded sequence in $\mathbb{R}^n$. Note that $\qty|x_j^{(k)}| \leq \norm{x^{(k)}}$ for all $1 \leq j \leq n$ and $k \geq 1$. Therefore each element wise sequence is bounded. Thus by Bolzano-Weierstrass in $\R$, the first component has a convergent subsequence with index $k_{j_1}$. The second component under this index must also be bounded, thus Bolzano-Weiestrass applies to it as well to get another index $k_{j_2}$. This can be continued until an index $k_{j_n}$ is reached. It is guaranteed by its construction that every component of $x^{(k_{j_n})}$ converges. Thus the subsequence $\qty{x^{k_{j_n}}}$ converges.
+\end{proof}
+
+\end{document}

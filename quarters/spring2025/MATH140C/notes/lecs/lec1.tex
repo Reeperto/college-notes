@@ -1,0 +1,78 @@
+\documentclass{subfile}
+
+\begin{document}
+
+\chapter{Euclidean Space}
+
+\section{Basic Structure}
+
+\begin{definition}[Euclidean Space]
+    \term{Euclidean Space}, denoted as $\R^n$, is the set of all $n$-tuples $x = (x_1, \ldots, x_n)$ with each $x_i \in \R$. $x$ is called a \term{point} or a \term{vector}. Addition is defined for $\R^n$ for $x = (x_1, \ldots, x_n)$ and $y = (y_1, \ldots, y_n)$ as
+    \[
+        x+y = (x_1 + y_1, \ldots, x_n + y_n) 
+    .\]
+    Scalar multiplication is defined for $\lambda \in \R$ as
+    \[
+        \lambda x = (\lambda x_1, \ldots, \lambda x_n)
+    .\]
+\end{definition}
+
+This definition of Euclidean space lends itself to a vector space structure where the underlying field is $\R$. 
+
+\begin{theorem}
+    $\R^n$ is a vector space over $\R$.
+\end{theorem}
+
+The proof is ommitted as it follows from the fact that $\R$ is a vector space and its properties are preserved under component wise operations. We further endow $\R^n$ with a \term{scalar product}.
+
+\begin{definition}[Euclidean Scalar Product]
+    The \term{scalar product} of two vectors $x,y \in \R^n$ is
+    \[
+        x \cdot y = x_1 y_1 + \ldots + x_n y_n
+    .\]
+\end{definition}
+
+It can be checked that this defines an inner product over $\R^n$, and thus also gives a natural \term{Euclidean norm} defined simply as $|x| = \norm{x} = \sqrt{x \cdot x}$.
+
+\begin{theorem}[Cauchy-Schwarz Inequality]
+    \label{thm:cauchyschwarz}
+    For all $x,y \in \R^n$, $|x \cdot y| \leq |x| |y|$.
+\end{theorem}
+
+\begin{proof}
+    If $y = 0$, then the inequality follows trivially. Assume then that $y \neq 0$. Let $t \in \R$ and $z = x + ty$. Note that $z \cdot z = |z|^2 \geq 0$. Therefore
+    \begin{align*}
+        0 \leq (x + ty) \cdot (x + ty) &= x \cdot x + 2 t(x \cdot y) + t^2 (y \cdot y)\\
+        &= |x|^2 + 2t(x\cdot y) + t^2 |y|^2 \\
+        &= |x|^2 + \qty(|y|t + \frac{x \cdot y}{|y|})^2 - \frac{(x\cdot y)^2}{|y|^2}
+    \end{align*}
+    Since $t$ was arbitrary, taking $t$ to be
+    \[
+        t = -\frac{x \cdot y}{|y|^2}
+    \]
+    gives
+    \[
+        0 \leq |x|^2 - \frac{(x\cdot y)^2}{|y|^2} \implies (x \cdot y)^2 \leq |x|^2 |y|^2
+    .\]
+    Rooting both sides gives the desired result.
+\end{proof}
+
+\begin{corollary}[Triangle Inequality]
+    For any $x,y \in \R^n$, $|x+y| \leq |x| + |y|$.
+\end{corollary}
+\begin{proof}
+    Note that 
+    \begin{align*}
+        |x+y|^2 &= (x + y) \cdot (x + y) \\
+        &= |x|^2 + 2 x \cdot y + |y|^2 \\
+        &\leq |x|^2 + 2 |x| |y| + |y|^2 \tag{\star} \\
+        &= (|x| + |y|)^2
+    \end{align*}
+    where $(\star)$ follows from Cauchy Schwarz. Taking the root of both sides gives the desired result.
+\end{proof}
+
+\begin{definition}[Euclidean distance]
+    The \term{distance} between $x,y \in \R^n$ is denoted as $d(x,y) \coloneq |x-y|$.
+\end{definition}
+
+\end{document}

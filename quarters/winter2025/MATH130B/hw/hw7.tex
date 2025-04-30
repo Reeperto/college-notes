@@ -1,0 +1,130 @@
+\documentclass{eeleyes}
+
+\input{../course_preamble.tex}
+\def\thehwnumber{7}
+\input{hw_preamble.tex}
+
+\NewDocumentCommand{\eps}{}{\varepsilon}
+
+\begin{document}
+
+\section*{Problem 1}
+\subsection*{Part A}
+Note that $|Y_i| \leq \delta n$, thus $Y_i^2 \leq \delta^2 n^2$. Therefore
+\[
+    \varr(Y_i) = \expp{Y_i^2} - \qty(\expp{Y_i})^2 \leq \expp{Y_i^2} \leq \delta^2 n^2
+\]
+which was to be shown.
+
+\subsection*{Part B}
+Let $Y = \frac{1}{n}(Y_1 + \ldots + Y_n)$. Note that
+\[
+    \varr(Y) = \frac{1}{n^2} \varr(Y_1 + \ldots + Y_n) \leq \frac{1}{n^2} \cdot n \cdot \delta^2 n^2 = \delta^2 n
+.\]
+Therefore by Chebychev's,
+\[
+    \prob{|Y - \expp{Y}| > \eps} \leq \frac{\delta^2 n}{\eps} 
+    = \frac{n}{n^{\frac{4}{3}} \eps} 
+    = \frac{1}{n^{\frac{1}{3}} \eps}
+.\]
+The upper bound goes to $0$ as $n \to \infty$, thus in the limit the probability is equal to $0$.
+
+\subsection*{Part C}
+Note that
+\[
+    \delta n \cdot \prob{|X| > \delta n} \leq \delta n \cdot \sum_{|x| > \delta n} \prob{|X| = x} \leq \sum_{|x| > \delta n} x \prob{X = x} \leq \sum_{x > \delta n} x \prob{X = x}
+.\]
+Thus
+\[
+    \prob{|X| > \delta n} \leq \frac{1}{\delta n} \cdot\sum_{x > \delta n} x \prob{X = x}
+.\]
+
+\subsection*{Part D}
+Let
+\[
+    L_n = \sum_{x \leq n} x \prob{X = x} \quad\quad R_n = \sum_{x > n} x \prob{X = x}
+.\]
+That is, $L_n$ is the left tail of the expectation of $X$ and $R_n$ is the right tail. Note that since the expectation is finite, $\lim_{n\to \infty} L_n = \expp{X}$ and $L_n + R_n = \expp{X}$. Therefore as the right tail cutoff approaches infinity, in the limit it must go to $0$. Choosing $\delta = \frac{1}{n^{2 / 3}}$ gives then
+\[
+    \lim_{n \to \infty} \sum_{x > \delta n} x \prob{X = x} = \lim_{n \to \infty} \sum_{x > n^{1/3}} x \prob{X = x} = 0
+.\]
+
+\subsection*{Part E}
+By the union bound
+\[
+    \prob{\exists Z_i \text{ s.t. } Z_i \neq 0} \leq n \cdot \prob{|X| > \delta n} \leq \frac{1}{\delta} \sum_{x > \delta n} x \prob{|X| = x}
+.\]
+From $(d)$, it follows this upper bound goes to $0$ as $n \to \infty$.
+
+\subsection*{Part F}
+Note that $X = Y_i + Z_i$. Therefore
+\[
+    \expp{X} = \expp{Y_i} + \expp{Z_i}
+.\]
+Since $Z_i = 0$ with high probability from $(e)$, it follows that
+\[
+    \lim_{n \to \infty} \expp{Y_i} + \expp{Z_i} = \lim_{n \to \infty} \expp{Y_i} = \expp{X}
+.\]
+
+\subsection*{Part G}
+Note that
+\[
+    \expp{Y} = \frac{1}{n} \cdot n \cdot \expp{Y_1} = \expp{Y_1} = \expp{X}
+.\]
+In the limit $n \to \infty$ it then follows from $(f)$ and $(b)$
+\[
+    \lim_{n \to \infty} \prob{\qty|\frac{\sum_{i=1}^n X_i}{n} - \expp{X}| > \eps} 
+    = \lim_{n \to \infty} \prob{\qty|\frac{\sum_{i=1}^n Y_i}{n} - \expp{Y}| > \eps} = 0
+.\]
+
+\section*{Problem 2}
+\begin{proof}
+    Note that the moment generating functions of $X$ and $Y$ are
+    \[
+        M_X(t) = \exp\qty(\mu_X t + \frac{1}{2} \sigma_X^2 t^2) \quad M_Y(t) = \exp\qty(\mu_Y t + \frac{1}{2} \sigma_Y^2 t^2)
+    .\]
+    Since $X$ and $Y$ are independent, the moment generating function of their sum is the product
+    \[
+        M_{X + Y}(t) = M_X(t) M_Y(t) = \exp\qty((\mu_X + \mu_Y) t + \frac{1}{2} \qty(\sigma_X^2 + \sigma_Y^2) t^2)
+    .\]
+    Note that this is the same moment generating function of a normal distribution with mean $\mu_X + \mu_Y$ and variance $\sigma_X^2 + \sigma_Y^2$. Thus by uniqueness of moment generating functions, this is the distribution of $X + Y$.
+\end{proof}
+
+\section*{Problem 3}
+Let $I_{ij}$ be the indicator random variable that $a_i$ and $a_j$ are inverted. The probability that $a_i$ and $a_j$ are inverted is the probability that $\pi(i) > \pi(j)$ where $\pi$ is the random permutation. This is simply $\frac{1}{2}$, thus $\prob{I_{ij} = 1} = \frac{1}{2}$. Note that a given iteration of bubble sort removes exactly $1$ inversion, thus the number of inversions that bubblesort will correct is the number of inversions in the original permutation, which is equal to
+\[
+    \expp{\sum_{i=1}^n \sum_{j > i}^n I_{ij}} = \sum_{i=1}^n \sum_{j > i}^n \expp{I_{ij}} = \sum_{i=1}^n \sum_{j>i}^n \frac{1}{2} = \binom{n}{2} \cdot \frac{1}{2} = \frac{n(n-1)}{4}
+.\]
+Note that the first past moves the largest element to the top, second largest before the top, etc. This means that on the first pass, $n - 1$ comparisons are done, on the second pass one less comparison is done meaning $n-2$ comparisons, etc. Therefore the expected number of comparisons is
+\[
+    (n-1) + (n-2) + \ldots + 1 = \frac{n(n-1)}{2}
+.\]
+
+\section*{Problem 4}
+Let $X_{ij}$ by the indicator random variable that the $i$th smallest and $j$th smallest elements are compared. Since quicksort sorts sublists, if two elements end up in two separate sublists, they will never be compared. Therefore the total number of comparisons $X$ can be expressed as
+\[
+    X = \sum_{i=1}^n \sum_{j > i}^n X_{ij}
+.\]
+Note that the only places for the pivot that affects $X_{ij}$ is between $i$ and $j$, since if the pivot is out of this range then both are in the same sublist and so a pivot will be reselected again. $X_{ij}$ is only $1$ when the pivot is selected to be either the element associated with $i$ or $j$, as otherwise the two elements would be in different sublists and hence never compared. Thus $\prob{X_{ij} = 1} = \frac{2}{j - i + 1}$. Therefore
+\[
+    \expp{X} = \sum_{i=1}^n \sum_{j = i + 1}^n \expp{X_{ij}} = 2 \sum_{i=1}^n \sum_{j=2}^{n-i+1} \frac{1}{j} < 2 \sum_{i=1}^n \sum_{j=2}^n \frac{1}{j} = 2n (H_n - 1)
+\]
+where $H_n$ is the $n$th harmonic number. Note that $\log n \leq H_n \leq \log n + 1$ thus $\expp{X} \leq 2n \log n$. Therefore by Markov's inequality,
+\[
+    \prob{X \geq c n \log n} \leq \frac{\expp{X}}{c n \log n} \leq \frac{2n \log n}{c n \log n} = \frac{2}{c}
+.\]
+Choosing $c = 200$
+\[
+    \prob{X < c n \log n} = 1 - \prob{X \geq c n \log n} \geq 1 - \frac{2}{c} = 1 - \frac{1}{100} = \frac{99}{100}
+\]
+which was to be shown.
+
+\section*{Problem 5}
+\begin{enumerate}[label=\alph*)]
+    \item This random variable most likely would not be normally distributed since the score distribution for each question is not guaranteed to be similar. However if the exam was designed such that the score distribution for each question is roughly the same, they are independent and so central limit theorem would apply, giving approximate normality
+    \item This random variable should be normally distributed as it is a sum of many i.i.d Bernoulli random variables, thus by the central limit theorem the average of these variables is normal, hence the sum of them is also normally distributed
+    \item This random variable should not be normally distributed, as height of men is likely distributed differently than women meaning each sample is not identically distributed meaning (its going to be more bimodal). Therefore the central limit theorem doesn't guarantee normality
+    \item This random variable should be normally distributed as it doesn't have the problem meeting the requirements for the central limit theorem that were discussed in $(c)$. The height of a woman is i.i.d to any other woman, meaning the average of all these heights should be approximately normal
+\end{enumerate}
+
+\end{document}

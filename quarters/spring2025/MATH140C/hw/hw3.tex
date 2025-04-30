@@ -1,0 +1,173 @@
+\documentclass{eeleyes}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[lcr]{}
+\fancyhead[l]{Eli Griffiths}
+\fancyhead[c]{MATH $140$C}
+\fancyhead[r]{HW \#$3$}
+
+\usepackage{multicol}
+
+\newcommand\conj[1]{\overline{#1}}
+\newcommand\term[1]{\textbf{#1}}
+\newcommand\eps{\varepsilon}
+\DeclareMathOperator{\interior}{int}
+
+\begin{document}
+
+\section*{Problem 1}
+\begin{proof}
+    Let $\bigl(a^{(k)}\bigr)$ be a sequence in $A$ that converges to some $a \in \R^n$. Then for each $a^{(k)}$ there exists some $x^{(k)} \in F$ such that $\norm{x^{(k)} - a^{(k)}} = \delta$. Since $\bigl(a^{(k)}\bigr)$ converges, it is bounded by some $M > 0$. Therefore
+    \[
+        \norm{x^{(k)}} = \norm{x^{(k)} - a^{(k)} + a^{(k)}} \leq \norm{x^{(k)} - a^{(k)}} + \norm{a^{(k)}} \leq \delta + M
+    \]
+    meaning $\bigl(x^{(k)}\bigr)$ is also bounded. Thus by Bolzano-Weierstrass, there exists a convergent subsequence $\bigl(x^{(k_j)}\bigr)$ with limit $x$ as $j \to \infty$. Since $F$ is closed, it follows that $x \in F$. Furthermore $\qty| \cdot |$ is continuous meaning limits pass through it. Since $\qty|x^{(k_j)} - a^{(k)}| = \delta$ for all $k$,
+    \[
+        \lim_{k \to \infty} \qty|x^{(k_j)} - a^{(k)}| = \qty|x - a| = \delta
+    .\]
+    Therefore $a \in A$ since $x \in F$, hence $A$ is closed.
+\end{proof}
+
+\section*{Problem 2}
+\begin{proof}
+    Suppose that $A$ is closed. Let $(x^{(k)})$ be a Cauchy sequence in $A$. Since $(x^{(k)})$ is also a Cauchy sequence in $\R^n$, it must converge to some point $x$. If $x \in A$, we are done. Suppose towards contradiction then that $x \notin A$. Since $A$ is closed, there exists some radius $r > 0$ such that $B_r(x) \cap A = \varnothing$. But since $(x^{(k)})$ is convergent, it follows that there exists $K \in \N$ such that for $k \geq K$,
+    \[
+        \norm{x^{(k)} - x} < r
+    .\]
+    meaning $x^{(k)} \notin A$ for $k \geq K$, a contradiction. Therefore every Cauchy sequence in $A$ converges to a point in $A$.
+
+    Suppose that $A$ is complete. Let $x \in \conj{A}$. Then there exists a sequence $(x^{(k)})$ in $A$ that converges to $x$. Since convergent sequences are Cauchy, it follows by completeness of $A$ that $x \in A$. Thus $\conj{A} \subseteq A$. Every set is a subset of its closure, meaning $A \subseteq \conj{A}$. Therefore $A = \conj{A}$ and $A$ is closed.
+\end{proof}
+
+\section*{Problem 3}
+\begin{enumerate}[label=\alph*)]
+    \item 
+        The limit does not exist. Consider the sequences $(\frac{1}{k}, 0)$ and $(-\frac{1}{k}, 0)$. Both converge to $(0,0)$ as $k \to \infty$, but
+        \[
+            f\qty(\frac{1}{k}, 0) = k \to \infty \quad (k \to \infty)
+        \]
+        and
+        \[
+            f\qty(-\frac{1}{k}, 0) = -k \to -\infty \quad (k \to \infty)
+        .\]
+        Thus the limit cannot exist.
+    \item 
+        The limit does exist and is $0$. Note that
+        \[
+            \qty|\frac{x+y}{x^2 + y^2}| \leq \frac{|x| + |y|}{x^2 + y^2}
+        \]
+        and both $|x| \leq \sqrt{x^2 + y^2}$ and $|y| \leq \sqrt{x^2 + y^2}$. Therefore
+        \[
+            \qty|\frac{x+y}{x^2 + y^2}| \leq \frac{|x| + |y|}{x^2 + y^2} \leq \frac{2 \sqrt{x^2 + y^2}}{x^2 + y^2} = \frac{2}{\sqrt{x^2 + y^2}}
+        .\]
+        As $|p| \to \infty$, $\sqrt{x^2 + y^2} \to \infty$ meaning
+        \[
+            \qty|\frac{x+y}{x^2 + y^2}| \to 0
+        .\]
+    \item The limit does not exist. Consider the sequence $(0, 0, \frac{1}{k})$ and $(\frac{1}{k}, \frac{1}{k}, 0)$. Both converge to $(0,0,0)$ as $k \to \infty$ but
+        \[
+            f\qty(0,0, \frac{1}{k}) = \frac{-\frac{1}{k^2}}{\frac{1}{k^2}} -1
+        \]
+        and
+        \[
+            f\qty(\frac{1}{k}, \frac{1}{k}, 0) = \frac{\frac{1}{k^2}}{2 \frac{1}{k^2}} = \frac{1}{2}
+        .\]
+        Thus the limit cannot exist.
+    \item The limit does not exist. Consider the sequences $(0, 0, k)$ and $(k,k,0)$. Both diverge in magnitude to $\infty$ as $k \to \infty$ but
+        \[
+            f(0,0,k) = \frac{-k^2}{k^2} = -1
+        \]
+        and
+        \[
+            f(k,k,0) = \frac{k^2}{2k^2} = \frac{1}{2}
+        .\]
+        Thus the limit cannot exist.
+\end{enumerate}
+
+\section*{Problem 4}
+\begin{enumerate}[label=\alph*)]
+    \item Note that $|x^2| \leq |2x^2 + y^2|$, therefore
+        \[
+            \qty|\frac{x^2}{2x^2 + y^2}| \leq 1 \implies 0 \leq \underbrace{\qty|\frac{x^2 y}{2x^2 + y^2}|}_{|F(x,y)|} \leq |y|
+        .\]
+        Thus if $(x,y) \to (0,0)$, then $y \to 0$ meaning $F(x,y) \to 0$.
+    \item The limit does not exist. Consider the sequences $\bigl(\frac{1}{k}, 0\bigr)$ and $\bigl(\frac{1}{k}, \frac{1}{k^2}\bigr)$. Both converge to $0$ as $k \to \infty$ but
+        \[
+            f\qty(\frac{1}{k}, 0) = \frac{\frac{1}{k^2} \cdot y}{\frac{3}{k^4} + 2\cdot 0^2} = 0
+        \]
+        and
+        \[
+            f\qty(\frac{1}{k}, \frac{1}{k^2}) = \frac{\frac{1}{k^2} \cdot \frac{1}{k^2}}{\frac{3}{k^4} + \frac{2}{k^4}} = \frac{\frac{1}{k^4}}{\frac{5}{k^4}} = \frac{1}{5}
+        .\]
+        Thus the limit cannot exist.
+\end{enumerate}
+
+\section*{Problem 5}
+Consider the following paths:
+\begin{itemize}
+    \item $(x_1, 0)$ where $x_1 \to 0$ gives $f(x_1, 0) = \frac{x_1^2 (0)^2}{x_1^2 + 0^2} = 0$
+    \item $(0, x_2)$ where $x_2 \to 0$ gives $f(0, x_2) = \frac{(0)^2 (x_2)^2}{0^2 + x_2^2} = 0$
+    \item For any $a, b \in \R$, $(a x_1, b x_1)$ where $x_1 \to 0$ gives $f(a x_1, b x_1) = \frac{a^2 b^2 x_1^4}{2a^2 b^2 x_1^2} = \frac{x_1^2}{2} \to 0$
+\end{itemize}
+
+All of these paths converge to $0$ and under $f$ converge to $f(0) = 0$, but this doesn't prove continuity. That is because continuity requires that every possible path converging to $0$ under $f$ also converges to $0$, something that cannot be hand checked in a case by case manner. 
+
+It is indeed the case that $f$ is continuous there. Note for $(x,y) \neq (0,0)$ that
+\[
+    \frac{x^2 y^2}{x^2 + y^2} \leq \frac{x^2 y^2}{x^2} = y^2 \tag{\star}
+.\]
+Take $\eps > 0$ and $\delta = \sqrt{\eps}$. Note then if $\norm{(x,y) - (0,0)} \leq \delta$ that
+\[
+    \norm{(x,y)} = \sqrt{x^2 + y^2} \leq \delta \implies x^2 + y^2 \leq \delta^2 \implies y^2 \leq \delta^2 = \eps
+.\]
+Thus by $(\star)$
+\[
+    \qty|\frac{x^2 y^2}{x^2 + y^2} - 0| = \frac{x^2 y^2}{x^2 + y^2} \leq y^2 \leq \eps
+.\]
+Hence $f$ is continuous at $(0, 0)$.
+
+\section*{Problem 6}
+\begin{proof}
+    Suppose towards contradiction that $f$ is continuous. Consider the sequence $x^{(k)} = \qty(\frac{1}{k^3}, \frac{1}{k})$. Since $f$ is continuous at $(0,0)$ it must be the case that $\lim f(x^{(k)}) = f(\lim x^{(k)}) = f(0,0) = 0$. Note that
+    \[
+        f(x^{(k)}) = \frac{\frac{1}{k^5}}{2 \cdot \frac{1}{k^6}} = \frac{k}{2}
+    .\]
+    Therefore $f(x^{(k)}) \to \infty$ as $k \to \infty$ and not $0$, hence $f$ is not continuous at $(0,0)$.
+\end{proof}
+
+\section*{Problem 7}
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item Let $A \subseteq \R^n$ and $y \in f(\conj{A})$. Then $\exists x \in \conj{A}$ such that $f(x) = y$. Since $x \in \conj{A}$, there exists a sequence $(x^{(k)})$ in $A$ that converges to $x$. By continuity of $f$, $\lim_{k \to \infty} f(x^{(k)}) = f(x) = y$. Note that the sequence $(f(x^{(k)}))$ is in $f(A)$, thus since it converges to $y$, $y \in \conj{f(A)}$. Therefore $f(\conj{A}) \subseteq \conj{f(A)}$. \hfill \qedsymbol
+
+        \item Consider $f : \R \to \R$ where
+        \[
+            f(x) = \begin{cases}
+                0 & x \leq 0 \\
+                x & x > 0
+            \end{cases}
+        \]
+        $f$ in this case is continuous. Note that if $A = (-1, 1)$ that $f(\interior(A)) = f((-1,1)) = [0,1)$ but $\interior(f(A)) = \interior([0,1)) = (0,1)$. Thus it cannot be said generally that $f(\interior(A)) \subseteq \interior(f(A))$. 
+
+        Now consider $f : \R^2 \to \R$ where $f(x,y) = x$ and 
+        \[
+            A = \qty{(x,y) \in \R^2 : xy = 1}
+        .\]
+        Then $\interior(A) = \varnothing$, hence $f(\interior(A)) = \varnothing$. But $f(A) = \R \setminus \qty{0}$. The interior of this is clearly non empty, thus it is not true in general that $\interior(f(A)) \subseteq f(\interior(A))$. \qedhere
+    \end{enumerate}
+\end{proof}
+
+\section*{Problem 8}
+\begin{proof}
+    Let $a \in \R^n \setminus A$. Since $\conj{A} = \R^n$, there exists a sequence $(x^{(k)})$ in $A$ such that $x^{(k)} \to a$ when $k \to \infty$. By continuity of $f$ and $g$, it follows that $f(x^{(k)}) \to f(a)$ and $g(x^{(k)}) \to g(a)$ as $k \to \infty$. Take $\eps > 0$. Then $\exists K_1, K_2 \in \N$ such that $\norm{f(x^{(k)}) - f(a)} < \frac{\eps}{2}$ for $k \geq K_1$ and $\norm{g(x^{(k)}) - g(a)} < \frac{\eps}{2}$ for $k \geq K_2$. Note that $f(x^{(k)}) = g(x^{(k)})$ since $x^{(k)}$ is a sequence in $A$, and thus for $k \geq \max\qty{K_1, K_2}$
+    \begin{align*}
+        \norm{f(a) - g(a)} &= \norm{f(a) - f(x^{(k)}) + g(x^{(k)}) - g(a) + f(x^{(k)} - g(x^{(k)})} \\
+                           &\leq \norm{f(x^{(k)}) - f(a)} + \norm{g(x^{(k)}) - g(a)} + \norm{f(x^{(k)}) - g(x^{(k)})}\\
+                           &\leq \frac{\eps}{2} + \frac{\eps}{2} + 0 \\
+                           &= \eps
+    \end{align*}
+    Therefore $\norm{f(a) - g(a)}$ can be made arbitrarily small, meaning $f(a) = g(a)$.
+\end{proof}
+
+\end{document}

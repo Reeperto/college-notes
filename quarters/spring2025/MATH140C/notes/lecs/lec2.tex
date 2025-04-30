@@ -1,0 +1,66 @@
+\documentclass{subfile}
+
+\begin{document}
+
+\begin{theorem}
+    $d(x,y)$ defines a metric on $\R^n$ in the sense that for all $x,y,z \in \R^n$
+    \begin{enumerate}[label=\roman*)]
+        \item $d(x,y) \geq 0$ and $d(x,y) = 0$ iff $x = y$
+        \item $d(x,y) = d(y,x)$
+        \item $d(x,z) \leq d(x,y) + d(y,z)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Both $(i)$ and $(ii)$ follow from the properties of a norm on a vector space. For $(iii)$, note that
+    \[
+        d(x,z) = |x-z| = |(x-y) + (y-z)| \leq |x-y| + |y-z| = d(x,y) + d(y,z)
+    \]
+    which was to be shown.
+\end{proof}
+
+Because $d(x,y)$ is a metric, it is called the \term{Euclidean metric} and $\R^n$ equipped with $d$ is called a \term{metric space}.
+
+\section{Topology of $\mathbf\R^n$}
+
+\begin{definition}[Open Ball]
+    Let $r > 0$ and $a \in \R^n$. Then the \term{open ball} centered at $a$ or radius $r$ is the set
+    \[
+        B_{r}(a) = \qty{x \in \R^n \vert d(x,a) < r}
+    .\]
+\end{definition}
+
+\begin{definition}[Open Set]
+    A set $G \subseteq \R^n$ is \term{open} if for every $a \in G$, $\exists r > 0$ such that $B_r(a) \subseteq G$.
+\end{definition}
+
+\begin{theorem}
+    Open balls are open sets.
+\end{theorem}
+
+\begin{proof}
+    Let $b \in B_r(a)$. That is $|b-a| < r$. Take $\rho = r - |a-b| \geq 0$ and consider some $x \in B_{\rho}(b)$. Then $|x-b| < \rho = r - |a-b|$ and
+    \[
+        |x-a| \leq |x-b| + |b-a| < r - |a-b| + |b-a| = r
+    .\]
+    Therefore $x \in B_r(a)$, meaning $B_{\rho}(b) \subseteq B_{r}(a)$. Hence $B_r(a)$ is open.
+\end{proof}
+
+\begin{theorem}[$\R^n$ is a topology]
+    The following hold in $\R^n$
+    \begin{enumerate}[label=\roman*)]
+        \item Let $(G_{\alpha})_{\alpha \in J}$ be a collection of open sets. Then $\bigcup_{\alpha \in J} G_{\alpha}$ is open.
+        \item Let $(G_{\alpha})_{\alpha \in J}$ be a \emph{finite} collection of open sets. Then $\bigcap_{\alpha \in J} G_{\alpha}$ is open.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item
+            Let $x \in \bigcup_{\alpha \in J} G_{\alpha}$. Then there is some $G_{\alpha}$ such that $x \in G_{\alpha}$. This set must be open, thus there is some $r > 0$ such that $B_{r}(x) \subseteq G_{\alpha}$. But note that $G_{\alpha} \subseteq \bigcup_{\alpha \in J} G_{\alpha}$. Thus the union is open.
+        \item
+            If $\bigcap_{\alpha \in J} G_{\alpha} = \varnothing$, then trivially the intersection is open. Assume then that $x \in \bigcap_{\alpha \in J} G_{\alpha} \neq \varnothing$. Then $x \in G_{\alpha}$ for all $\alpha \in J$. Thus there is a collection of radii $r_{\alpha}$ such that $B_{r_{\alpha}}(x) \subseteq G_{\alpha}$. Taking $r = \min_{\alpha \in J} r_{\alpha}$, the ball $B_{r}(x) \subseteq B_{\alpha}(x) \subseteq G_{\alpha}$ for all $\alpha \in J$. Thus the intersection is open.
+    \end{enumerate}
+\end{proof}
+
+\end{document}

@@ -1,0 +1,65 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{theorem}[Heine-Borel]
+    \label{thm:heineborel}
+    Let $K \subseteq \R^n$. Then $K$ is (topologically) compact iff $K$ is closed and bounded.
+\end{theorem}
+
+The following definition and lemma will be pivotal in proving Heine-Borel. If for every compact set $K$ a closed cube $Q$ can be chosen such that $K \subseteq Q$, then by the previous lemma if $Q$ is compact then so is $K$. Thus the reverse direction of \nameref{thm:heineborel} follows from the compactness of \emph{cubes}.
+
+\begin{definition}[Closed Cube]
+    A set $Q \subset \R^n$ is a \term{closed cube} if there exists closed and bounded intervals $I_1, \ldots, I_n$ in $\R$ such that $Q = I_1 \times \ldots \times I_n$.
+\end{definition}
+
+\begin{lemma}[Cubes are Compact]
+    \label{lemma:cubescompact}
+    Let $Q$ be a closed cube in $\R^n$. Then $Q$ is (topologically) compact.
+\end{lemma}
+
+\begin{lemma}
+    \label{lemma:dec_bounded_intervals}
+    Let $(I_n)$ be a sequence of closed bounded intervals in $\R$ such that $I_{n} \supseteq I_{n+1}$. Then $\bigcap I_n \neq \varnothing$.
+\end{lemma}
+
+\begin{proof}
+    Denote $I_n = [a_n, b_n]$. Note that the set of left endpoints $M = \qty{a_n : n \in \N}$ is bounded above by $b_1$. Let $x = \sup \R$. Note then that
+    \[
+        a_n \leq a_{n + m} \leq b_{n + m} \leq b_m, \quad \forall n,m \in \N
+    .\]
+    Thus $b_m$ is an upper bound of $M$ for all $m \geq 1$, meaning $a_m \leq x \leq b_m$ for all $m \geq 1$. Therefore $x \in \bigcap I_n$.
+\end{proof}
+
+\begin{lemma}
+    \label{lemma:dec_closed_cubes}
+    Let $(Q_j)$ be a sequence of closed cubes in $\R^n$ such that $Q_j \supseteq Q_{j+1}$. Then $\bigcap Q_j \neq \varnothing$.
+\end{lemma}
+
+% TODO: References here suck and need a better system.
+\begin{proof}
+    Write each $Q_j$ as $I_{1,j} \times \ldots \times I_{n,j}$. Then each $I_{k,j}$ are closed and bounded intervals such that $I_{k,j} \supseteq I_{k+1, j}$. Thus by \Cref{lemma:dec_bounded_intervals}, $\exists y_k \in \R$ for each $1 \leq k \leq n$ such that $y_k \in \bigcap_{j} I_{k,j}$. Thus the point $y = (y_1, \ldots, y_n) \in \bigcap_{j} Q_j$.
+\end{proof}
+
+\begin{proof}[lemma:cubescompact]
+    Write $Q = [a_1, b_1] \times \ldots \times [a_n \times b_n]$. Suppose towards contradiction that $Q$ is not (topologically) compact. Then there exists an open cover $(G_{\alpha})$ of $Q$ that has no finite subcover. Divide $Q$ into $4$ subcubes $Q^{1}_{j}$ for $1 \leq j \leq 4$. Since no finite subcover exists for $Q$, then there is some $Q^{1}_{i}$ that does not have a finite subcovering. Denote $\tilde{Q}_1 = Q$ and $\tilde{Q}_2 = Q^{1}_i$. The same division and selection process can be applied to $\tilde{Q}_2$ to get some $\tilde{Q}_3$. Continuing gives a sequence $(\tilde{Q}_j)$ such that $\tilde{Q}_j \supseteq \tilde{Q}_{j+1}$, $\tilde{Q}_j$ has no finite subcovering, and
+    \[
+        \operatorname{diam}(\tilde{Q}_j) \coloneq \sup_{x,y \in \tilde{Q}_j} \norm{x - y} \leq \frac{\operatorname{diam}(Q)}{2^{j-1}}
+    .\]
+    for all $j \in \N$. By \Cref{lemma:dec_closed_cubes}, there is some $y \in \bigcap \tilde{Q}_j$. Since $(G_{\alpha})$ is an open cover of $Q$, there is some $G_{\alpha}$ with $y \in G_{\alpha}$. Let $r > 0$ such that $B_r(y) \subseteq Q_{\alpha}$. Note then if $j$ is taken large enough such that $\frac{\operatorname{diam}(Q)}{2^{j-1}} < r$, then if $x \in \tilde{Q}_j$
+    \[
+        \norm{x - y} \leq \operatorname{diam}(\tilde{Q}_j) \leq \frac{C}{2^{j-1}} < r
+    .\]
+    Thus $\tilde{Q}_j$ is covered by the single open set $G_{\alpha}$, a contradiction. Therefore $Q$ is compact.
+\end{proof}
+
+\begin{proof}[thm:heineborel]
+    \begin{enumerate}
+        \item[$\Leftarrow)$]
+            Assume $K$ is closed and bounded. Since $K$ is bounded, it is possible to choose a closed cube $Q$ such that $K \subseteq Q$. Since $Q$ is compact by \Cref{lemma:cubescompact} and $K$ is closed, by \Cref{lemma:closed_subs_are_compact} it follows $K$ is also (topologically) compact.
+        \item[$\Rightarrow)$]
+            Assume $K$ is (topologically) compact.
+    \end{enumerate}
+\end{proof}
+
+\end{document}

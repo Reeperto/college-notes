@@ -1,0 +1,100 @@
+\documentclass{eeleyes}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[lcr]{}
+\fancyhead[l]{Eli Griffiths}
+\fancyhead[c]{MATH $140$C}
+\fancyhead[r]{HW \#$4$}
+
+\usepackage{multicol}
+
+\newcommand\conj[1]{\overline{#1}}
+\newcommand\term[1]{\textbf{#1}}
+\newcommand\eps{\varepsilon}
+\DeclareMathOperator{\interior}{int}
+
+\begin{document}
+
+\section*{Problem 1}
+\begin{proof}
+    Suppose towards contradiction that $F$ is uniformly continuous. Take $\eps = 1$. Then $\exists \delta > 0$ such that $\norm{x - y} \leq \delta \implies \norm{f(x) - f(y)} \leq 1$ for $x,y \in \R^2$. Take $x = (n, 0)$ and $y = (n + \frac{1}{n}, 0)$ with $n \in \N$ such that $\frac{1}{n} \leq \delta$. Then
+    \[
+        \norm{x - y} = \frac{1}{n} \leq \delta
+    \]
+    and
+    \[
+        \norm{f(x) - f(y)} = \norm{n^2 - \qty(n^2 + 2 + \frac{1}{n^2})} = \norm{2 + \frac{1}{n^2}} = 2 + \frac{1}{n^2} > 1 = \eps
+    .\]
+    Therefore $F$ is not uniformly continuous on $\R^2$.
+\end{proof}
+
+\section*{Problem 2}
+\begin{proof}
+    Take $\eps > 0$. Since $F$ approximates $f$, for any $x \in E$
+    \[
+        \norm{f(x) - F(x)} \leq \frac{\eps}{3}
+    .\]
+    Furthermore since $F$ is uniformly continuous, there exists some $\delta > 0$ such that for $\norm{x - y} \leq \delta$
+    \[
+        \norm{F(x) - F(y)} \leq \frac{\eps}{3}
+    \]
+    and thus by triangle inequality
+    \begin{align*}
+        \norm{f(x) - f(y)} &\leq \norm{f(x) - F(x)} + \norm{F(x) - F(y)} + \norm{F(y) - f(y)}  \\
+        &\leq \frac{\eps}{3} + \frac{\eps}{3} + \frac{\eps}{3} \\
+        &= \eps
+    \end{align*}
+    Therefore $f$ is uniformly continuous on $E$
+\end{proof}
+
+\section*{Problem 3}
+\begin{proof}
+    For $x \in K \times L$, let $x_L \coloneq (x_1, \ldots, x_n)$ and $x_R \coloneq (x_{n+1}, \ldots, x_{n+p})$. Since $K$ and $L$ are compact, both are closed and bounded meaning there exists $M_K$ and $M_L$ such that $\norm{x}_{\R^n} \leq M_K$ for $x \in K$ and $\norm{x}_{\R^p} \leq M_L$ for $x \in L$. Therefore
+    \[
+        \norm{x}_{\R^{n + p}}^2 = \norm{x_K}_{\R^n}^2 + \norm{x_K}_{\R^p}^2 \leq \qty(\norm{x_K}_{\R^n} + \norm{x_L}_{\R^p})^2 \leq (M_K + M_L)^2
+    \]
+    meaning $\norm{x}_{\R^{n+p}} \leq M_K + M_L$ for all $x \in K \times L$. Thus $K \times L$ is bounded.
+
+    Let $\bigl(x^{(k)}\bigr)$ be a sequence in $K \times L$ that converges to some $a \in \R^{n+p}$. Note then that each component must converge, meaning the sequences $\bigl(x_K^{(k)}\bigr)$ and $\bigl(x_L^{(k)}\bigr)$ both converge to $a_K$ and $a_L$ respectively. Since $K$ and $L$ are closed, $a_K \in K$ and $a_L \in L$. Therefore $a \in K \times L$ meaning $K \times L$ is closed. Since $K \times L$ is both closed and bounded, it is compact.
+\end{proof}
+
+\section*{Problem 4}
+\begin{proof}
+    Suppose $A$ is closed and $B$ is compact. Consider some sequence $\bigl(x^{(k)}\bigr)$ in $A + B$ that converges to $x \in \R^n$. Note that $x^{(k)} = a^{(k)} + b^{(k)}$ for some $a^{(k)} \in A$ and $b^{(k)} \in B$ for all $k \in \N$. Since $B$ is compact, there exists a subsequence $\bigl(b^{(k_j)}\bigr)$ that converges to some $b \in B$. Then since $a^{(k_j)} = x^{(k_j)} - b^{(k_j)}$ and both $\bigl(x^{(k_j)}\bigr)$ and $\bigl(b^{(k_j)}\bigr)$ are convergent sequences, $\bigl(a^{(k_j)}\bigr)$ converges to $x - b$. Since $A$ is closed, $x - b \in A$. Thus $(x-b) + b = x \in A + B$, hence $A + B$ is closed.
+\end{proof}
+
+\section*{Problem 5}
+\begin{proof}
+    First note that $\mathbb{S}^{n-1}$ is bounded since $\norm{x} \leq 1$ for all $x \in \mathbb{S}^{n-1}$. Additionally, since $d(x) = \norm{x}$ is continuous on $\R^n$, $\qty{1}$ is closed in $\R$, and $\mathbb{S}^{n-1} = d^{-1}(\qty{1})$, $\mathbb{S}^{n-1}$ is closed. Since $\mathbb{S}^{n-1}$ is both closed and bounded, it is compact.
+
+    Consider some $x \in \R^n \setminus{0}$. Note that it can be written as $r \hat{x}$ where $r = \norm{x} > 0$ and $\hat{x} = \frac{x}{\norm{x}}$. Therefore by the homogeneity of $f$, $f(x) = f(r\hat{x}) = r^d f(\hat{x})$. Since $\norm{\hat{x}} = 1$, $\hat{x} \in \mathbb{S}^{n-1}$. Furthermore $f$ is continuous on $\mathbb{S}^{n-1}$ which is compact, thus $f$ is bounded by some $M > 0$ on it. Hence
+    \[
+        \norm{f(x)} = \norm{r^d f(\hat{x})} = \norm{x}^{d} \norm{f(\hat{x})} \leq M \norm{x}^{d}
+    \]
+    which was to be shown.
+\end{proof}
+
+\section*{Problem 6}
+\subsection*{Part I}
+\begin{proof}
+    Suppose $g$ is continuous and let $\bigl(x^{(k)}\bigr)$ be a Cauchy sequence in $\R^n$. Since $\bigl(x^{(k)}\bigr)$ is Cauchy and $\R^n$ is complete, it must converge to some $a \in \R^n$. Take $\eps > 0$. Since $g$ is continuous at $a$, there exists $\delta > 0$ such that $\norm{x - a} \leq \delta \implies \norm{g(x) - g(a)} \leq \eps$. By convergence of $\bigl(x^{(k)}\bigr)$ there exists $K \in \N$ such that $\norm{x^{(k)} - a} \leq \delta$ for $k \geq K$. Therefore $\norm{g(x^{(k)}) - g(a)} \leq \eps$ for $k \geq K$, meaning the sequence $\bigl(g(x^{(k)})\bigr)$ converges to $g(a)$. Since convergent sequences are Cauchy, $g$ takes Cauchy sequences to Cauchy sequences.
+\end{proof}
+
+\subsection*{Part II}
+\begin{proof}
+    Suppose $f$ is uniformly continuous and let $\bigl(x^{(k)}\bigr)$ be a Cauchy sequence in $D$. Take $\eps > 0$. Since $f$ is uniformly continuous, $\exists \delta > 0$ such that $\norm{x - y} \leq \delta \implies \norm{f(x) - f(y)} \leq \eps$. Since $\delta > 0$ and $\bigl(x^{(k)}\bigr)$ is Cauchy, there exists $K$ such that for $m,n \geq K$, $\norm{x^{(n)} - x^{(m)}} \leq \delta$. Therefore $\norm{f(x^{(n)}) - f(x^{(m)})} \leq \eps$ for $m,n \geq K$, hence $\bigl(f(x^{(k)})\bigr)$ is a Cauchy sequence.
+\end{proof}
+
+\section*{Problem 7}
+\begin{proof}
+    Let $F \subseteq \R^n$ be closed. Consider some $y \in \conj{f(F)}$. Then there is a sequence $\bigl(y^{(k)}\bigr)$ in $f(F)$ that converges to $y$. Let $K = \qty{y^{(k)} : k \in \N} \cup \qty{y}$. Let $(G_{\alpha})$ be an open cover of $K$. Note then there is some $G_{\alpha}$ such that $y \in G_{\alpha}$. Thus there exists $r > 0$ such that $y \in B_r(y) \subseteq G_{\alpha}$. Since $\bigl(y^{(k)}\bigr)$ is convergent, there exists $K \in \N$ such that $\norm{y^{(k)} - y} < r$, thus $y^{(k)} \in B_r(y) \subseteq G_{\alpha}$ for all $k > K$. For each $1 \leq k \leq K$, there is then some $G_{\alpha_k}$ such that $y^{(k)} \in G_{\alpha_k}$. Thus the finite subcover $G_{\alpha_1} \cup \ldots \cup G_{\alpha_K} \cup G_{\alpha}$ covers $K$. 
+
+    Therefore $K$ is compact meaning the preimage $f^{-1}(K)$ is also compact. Note that $y^{(k)} = f(x^{(k)})$ for some $x^{(k)} \in f^{-1}(K) \subseteq F$. Thus there is a convergent subsequence $\bigl( x^{(k_j)} \bigr)$ which converges to some $a \in F$. Therefore by continuity of $f$ and uniqueness of limits
+    \[
+        f(a) = \displaystyle\lim_{j \to \infty} f(x^{(k_j)}) = y
+    .\]
+    Hence $y \in f(F)$ meaning $f(F)$ is closed.
+\end{proof}
+
+\end{document}

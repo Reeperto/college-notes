@@ -1,0 +1,108 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{definition}[Cauchy Sequence]
+    A sequence $\qty{x^{(k)}}$ in $\R^n$ is \term{Cauchy} if $\forall \eps > 0$, there exists $K \in \N$ such that
+    \[
+        \norm{x^{(k)} - x^{(l)}} \leq \eps \quad l, k \geq K
+    .\]
+\end{definition}
+
+\begin{theorem}
+    Cauchy sequences in $\R^n$ are bounded.
+\end{theorem}
+
+\begin{proof}
+    Let $\qty{x^{(k)}}$ be a Cauchy sequence in $\R^n$. Take $\eps = 1$ and $l = k$. Then as in the definition, for all $k \geq K$,
+    \[
+        \norm{x^{(k)}} \leq \norm{x^{(k)} - x^{(K)}} + \norm{x^{(K)}} \leq \norm{x^{(K)}} + 1
+    .\]
+    Take $M = \max\qty{\norm{x^{(1)}}, \ldots, \norm{x^{(K-1)}}, \norm{x^{(K)} + 1}}$. This is well defined since $K$ is finite, and bounds every element.
+\end{proof}
+
+\begin{theorem}[Completeness]
+    A sequence converges iff it is Cauchy.
+\end{theorem}
+
+\begin{proof}
+    Let $\qty{x^{(k)}}$ be a sequence in $\R^n$.
+    \begin{enumerate}
+        \item[$\Rightarrow)$] Assume $\qty{x^{(k)}}$ converges with limit $a \in \R^n$. Then for all $\eps > 0$, there exists $K \in \N$ such that $\norm{x^{(k)} - a} \leq \frac{\eps}{2}$ for $k \geq 2$. Now consider $k,l \geq K$. Note then that
+        \[
+            \norm{x^{(k)} - x^{(l)}} \leq \norm{x^{(k)} - a} + \norm{x^{(l)} - a} \leq 2\cdot \frac{\eps}{2} = \eps
+        .\]
+        Thus $\qty{x^{(k)}}$ is Cauchy.
+
+        \item[$\Leftarrow)$] 
+            Assume $\qty{x^{(k)}}$ is Cauchy. Then it is bounded and thus by Bolzano-Weierstrass, it has a convergent subsequence $\qty{x^{(k_j)}}$ with some limit $a \in \R^n$. Take $\eps > 0$. Then there exists $J \in \N$ such that for all $j \geq J$
+            \[
+                \norm{x^{(k_j)} - a} \leq \frac{\eps}{2}
+            .\]
+            Since $\qty{x^{(k)}}$ is Cauchy, there exists $K \in \N$ such that for all $k, l \geq K$
+            \[
+                \norm{x^{(k)} - x^{(l)}} \leq \frac{\eps}{2}
+            .\]
+            Take $N = \max\qty{K, J}$. Note that $k_j > j$ and so if $k \geq N$ and $j \geq N$
+            \[
+                \norm{x^{(k)} - a} \leq \norm{x^{(k)} - x^{(k_j)}} + \norm{x^{(x_j)} - a} \leq 2 \cdot \frac{\eps}{2} = \eps
+            .\]
+            Thus $\qty{x^{(k)}}$ converges.
+    \end{enumerate}
+\end{proof}
+
+\chapter{Functions}
+
+\begin{definition}[Function Terminology]
+    Consider a function $f : D \to \R^p$ where $D \subseteq \R^n$. The \term{domain} of $f$ is $D$ and the \term{range} of $f$ is $f(D) \coloneq \qty{ f(x) : x \in D }$.
+\end{definition}
+
+\begin{example}
+    A function $L : \R^n \to \R$ is a \emph{linear function} if it is of the form
+    \[
+        L(x) = c_1 x_1 + c_2 x_2 + \ldots + c_n x_n
+    \]
+    where $c_i \in \R$. These functions are \emph{linear} in their arguments, meaning $L(ax + by) = aL(x) + bL(y)$ for $a,b \in \R$.
+\end{example}
+
+\begin{example}
+    A function $Q : \R^n \to \R$ is a \emph{quadratic form} if it is of the form
+    \[
+        Q(x) = \sum_{i \leq j,k \leq n} c_{jk} x_j x_k
+    \]
+    where $c_{jk} \in \R$. For example $\norm{\cdot}$ is a quadratic form.
+\end{example}
+
+\begin{example}
+    A function's domain need not be all of $\R^n$. Consider $f : D \to \R^2$ where $D = \qty{(x,y) \in \R^2 : x^2 + y^2 \leq 4, (x,y) \neq (0,0)}$ and
+    \[
+        f(x,y) = \qty(\sqrt{4 - x^2 - y^2}, \log \sqrt{x^2 + y^2})
+    .\]
+    This function is well defined on $D$.
+\end{example}
+
+\begin{definition}[Limit Point]
+    Let $A \subseteq \R^n$. Then $x \in \R^n$ is a \term{limit point} of $A$ if for all $r > 0$, $(B_r(x) \setminus \qty{x}) \cap A \neq \varnothing$. The set of all limits points of $A$ is denoted as $A'$.
+\end{definition}
+
+\begin{remark}
+    If $x$ is a limit point of $A$, then $x$ is a cluster point. That is, $x \in \conj{A}$. However, the converse is not true. 
+    \begin{itemize}
+        \item Consider $A = B_1(0) \cup P$ for some $P \notin B_1[0]$. Note that $\conj{A} = B_1[0] \cup P$ but $A' = B_1[0]$.
+        \item Consider $A = \qty{\frac{1}{n} : n \in \N}$. Note that $\conj{A} = A \cup \qty{0}$ but $A' = \qty{0}$.
+    \end{itemize}
+\end{remark}
+
+\begin{definition}[Limit]
+    Let $D \subseteq \R^n$, $f : D \to \R^n$, and $a \in \R^n$ be a limit point of $D$. Then $f(x)$ has a \term{limit} to $b \in \R^p$ when $x$ tends to $a$ if for all $\eps > 0$, $\exists \delta > 0$ such that
+    \[
+        0 < |x - a| \leq \delta \implies |f(x) - b| \leq \eps
+    .\]
+    This limit is denoted as $\displaystyle \lim_{x \to a} f(x) = b$.
+\end{definition}
+
+\begin{remark}
+    Limit points must be used when defining limits to ensure that $0 < |x - a| < \delta$ is a non empty set.
+\end{remark}
+
+\end{document}

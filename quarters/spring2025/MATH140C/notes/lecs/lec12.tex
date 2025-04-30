@@ -1,0 +1,61 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{theorem}
+    Let $K \subseteq \R^n$ be compact and $f : K \to \R^n$ be continuous. Then $f$ is uniformly continuous on $K$.
+\end{theorem}
+
+\begin{proof}
+    Suppose towards contradiction that $f$ is not uniformly continuous. Then $\exists \eps > 0$ such that $\forall \delta > 0$, there exists $x,y \in K$ where $\norm{x - y} < \delta$ while $\norm{f(x) - f(y)} > \eps$. Letting $\delta_k = \frac{1}{k}$ for $k \in \N$, there is then corresponding $x^{(k)}$ and $y^{(k)}$ such that $\norm{x^{(k)} - y^{(k)}} \leq \delta_k$ while $\norm{f(x^{(k)}) - f(y^{(k)})}$. By compactness of $K$, there exists a subsequence $\bigl(x^{(k_j)}\bigr)$ that converges to some $x \in K$. Then
+    \[
+        0 \leq \norm{y^{(k_j)} - x} \leq \underbrace{\norm{y^{(k_j)} - x^{(k_j)}}}_{\leq \frac{1}{k_j} \leq \frac{1}{j}} + \norm{x^{(k_j)} - x}
+    .\]
+    In the limit as $j \to \infty$, the upper bound goes to $0$. Thus $\norm{y^{(k_j)} - x}$ goes to $0$, hence $\bigl(y^{(k_j)}\bigr)$ converges to $x$. Since $f$ is continuous at $x$ and $y$, $f(x^{(k_j)}) \to f(x)$ and $f(y^{(k_j)} \to f(y)$ as $j \to \infty$. Thus
+    \[
+        \norm{f(x^{(k_j)}) - f(y^{(k_j)})} \leq \norm{f(x^{(k_j)} - f(x)} + \norm{f(x) - f(y^{(k_j)}}
+    \]
+    which goes to $0$ as $j \to \infty$, a contradiction. Thus $f$ is uniformly continuous.
+\end{proof}
+
+\begin{definition}[Open Cover]
+    Let $A \subseteq \R^n$. An \term{open cover} of $A$ is a collection of open sets $(G_{\alpha})$ in $\R^n$ such that $A \subseteq \bigcup G_{\alpha}$.
+\end{definition}
+
+\begin{definition}[Topological Compactness]
+    A set $K \subseteq \R^n$ is \term{topologically compact} if every open cover of $K$ has a finite subcover. In other words, for any open cover $(G_{\alpha})$ of $K$, there are $\qty{\alpha_1, \ldots, \alpha_n}$ indices with $n < \infty$ such that $K \subseteq G_{\alpha_1} \cup \ldots \cup G_{\alpha_n}$.
+\end{definition}
+
+\begin{example}
+    The set $I = (0,1) \subseteq \R$ is not topologically compact. Consider the candidate open cover $\bigcup_{x \in (0,1)} \bigl(\frac{x}{2}, \frac{x+1}{2}\bigr)$. Let $x \in (0,1)$. Note that
+    \begin{alignat*}{7}
+        x > 0 &\implies 2x &&> x     &\implies& x &&> \frac{x}{2} \\
+        x < 1 &\implies 2x &&< x + 1 &\implies& x &&< \frac{x+1}{2}
+    \end{alignat*}
+    Thus it is an open cover. Assume then there exists a finite subcover
+    \[
+        \qty(\frac{x_1}{2}, \frac{x_1+1}{2}) \cup \ldots \cup \qty(\frac{x_n}{2}, \frac{x_n + 1}{2})
+    \]
+    for $x_1, \ldots, x_n \in (0,1)$. Take $x \in \min\qty{x_1, \ldots, x_n} > 0$ and $0 < y < \frac{x}{2}$. Then $y \in (0,1)$ but is not in the subcover. Hence $I$ cannot be topologically compact.
+\end{example}
+
+\subsection{Compactness Equivalence}
+
+The goal of this section is to prove the following theorem.
+
+\begin{theorem}[Sequential $\Leftrightarrow$ Topological Compactness]
+    A set $K \subseteq \R^n$ is topologically compact iff $K$ is sequentially compact.
+\end{theorem}
+
+The approach will be to use the result being close and bounded is equivalent to sequential compactness as a bridge. That is, show that topological compactness is equivalent to being closed and bounded, and thus sequentially compact as well.
+
+\begin{lemma}
+    \label{lemma:closed_subs_are_compact}
+    Let $K \subseteq \R^n$ be (topologically) compact and $F \subseteq K$ be closed in $\R^n$. Then $F$ is also (topologically) compact.
+\end{lemma}
+
+\begin{proof}
+    Let $(G_{\alpha})$ be an open cover of $F$. Note then that $K \subseteq F^c \cup \bigcup_{\alpha} G_{\alpha}$. Since $F$ is closed, $F^c$ is open and thus this is an open cover of $K$. Since $K$ is topologically compact, there then exists $\alpha_1, \ldots, a_n$ finite such that $K \subseteq G_{\alpha_1} \cup \ldots G_{\alpha_n} \cup F^c$. Since $F \subseteq K$, this is a finite cover of $F$ as well. Hence $F$ is compact.
+\end{proof}
+
+\end{document}

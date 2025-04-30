@@ -1,0 +1,50 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{definition}[Cluster Point]
+    Let $A \subseteq \R^n$. Then $x \in \R^n$ is a \term{cluster point} of $A$ if every nbhd of $x$ intersects $A$. Equivalently, $x$ is a cluster point of $A$ iff for every $r > 0$, $B_r(x) \cap A \neq \varnothing$.
+\end{definition}
+
+\begin{remark}
+    Any point $x \in A$ is a cluster point since $x \in B_r(x)$ for any $r > 0$ and hence $\varnothing \neq \{x\} \subseteq B_r(x) \cap A$. However, it need be that a cluster point is an element of $A$.
+\end{remark}
+
+\begin{example}
+    \hfill
+    \begin{romanlist}
+        \item Consider $A_1 = \qty{\frac{1}{n} : n = 1,2,3,\ldots} \subseteq \R$. The point $0$ is a cluster point since for any $r > 0$, $\exists n \geq 1$ such that $\frac{1}{n} < r$. However $0 \notin A_1$
+        \item Consider $A_2 = \qty{(x,y) \in \R^2 : x, y > 0}$. The set of all cluster points is $\qty{(x,y) \in \R^2 : x, y \geq 0 }$
+    \end{romanlist}
+\end{example}
+
+\begin{definition}[Closure]
+    The set of all cluster points for a set $A \subseteq \R^n$ is the \term{closure} of $A$, denoted as $\conj{A}$.
+\end{definition}
+
+For Example 3, the closure of $A_1$ is $\conj{A_1} = A_1 \cup \qty{0}$ and the closure of $A_2$ is $\qty{(x,y) \in \R^2 : x, y \geq 0 }$. These sets are both closed, a fact which holds in general. \\
+
+\begin{theorem}[Properties of Closure]
+    Let $A \subseteq \R^n$. Then
+    \begin{romanlist}
+        \item $\conj{A}^c = \interior(A^c)$
+        \item $\conj{A}$ is closed
+        \item $\conj{A}$ is the smallest closed set containing $A$
+        \item $F$ is closed if and only if $F = \conj{F}$ 
+    \end{romanlist}
+\end{theorem}
+
+\begin{proof}
+    % TODO: The overline seems to not play nice with superscripts.
+    \begin{romanlist}
+        \item Let $x \in \conj{A}^c$. Then $x$ is not a cluster point. Therefore there is some nbhd $G$ of $x$ such that $G \cap A = \varnothing$. Thus $G \subseteq A^c$, hence $x \in \interior(A^c)$. Let $x \in \interior(A^c)$. Then there is some nbhd $H$ such that $H \subseteq A^c$. Therefore $H \cap A = \varnothing$ meaning $x$ is not a cluster point of $A$. Thus $x \notin \conj{A} \implies x \in \conj{A}^c$.
+
+        \item From $(i)$, the complement of the closure of a set is the interior of a set. The interior of a set is always open, thus the closure of a set is closed.
+
+        \item Let $F \subseteq \R^n$ such that $F$ is closed and $A \subseteq F$. Note that $A^c \supseteq F^c$ and that $F^c$ is open. Furthermore $\interior(A^c)$ is the largest open set contained in $A^c$, therefore $F^c \subseteq \interior(A^c)$. Taking the complement and applying $(i)$ gives $F \supseteq \qty(\interior(A^c))^c = \conj{A}$.
+
+        \item Assume that $F$ is closed. Since trivially $F \subseteq F$, by $(iii)$ it follows $\conj{F} \subseteq F$. By definition, $F \subseteq \conj{F}$. Thus $F = \conj{F}$. Assume that $F = \conj{F}$. By $(ii)$, $\conj{F}$ is closed and therefore $F$ is closed.
+    \end{romanlist}
+\end{proof}
+
+\end{document}

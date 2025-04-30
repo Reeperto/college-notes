@@ -1,0 +1,85 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{theorem}
+    Let $D \subseteq \R^n$, $f : D \to \R^p$ and $a \in \R^n$ be a limt point of $D$. Then
+    \[
+        \lim_{x \to a} = b \Leftrightarrow f\qty(x^{(k)}) \to b, k \to \infty
+    \]
+    for every $x^{(k)} \to a$ and $x^{(k)} \neq a$.
+\end{theorem}
+
+\begin{corollary}
+    Using the same setup as above and letting $f_j: \R^n \to \R$ and $b_j$ be the $j^\text{th}$ components, then
+    \[
+        \lim_{x \to a} f(x) = b \Leftrightarrow \lim_{x\to a} f_{j}\qty(x^{(k)}) = b_j, 1 \leq j \leq n
+    .\]
+\end{corollary}
+
+\begin{corollary}
+    Let $f : D \to \R^p$ and $p : D \to \R^p$ with $D \subseteq \R^n$ and $a \in \R^n$ be a limit point of $D$. If $f(x) \to b$ and $p(x) \to d$ as $x \to a$ then
+    \begin{enumerate}
+        \item $f(x) + p(x) \to b + d$
+        \item $\lambda f(x) \to \lambda b$ for all $\lambda \in \R$
+        \item If $p = 1$, then $f(x)p(x) \to bd$ and $\frac{f(x)}{p(x)} \to \frac{b}{d}$ if $d \neq 0$.
+    \end{enumerate}
+\end{corollary}
+
+\section{Continuity}
+
+\begin{definition}[Continuity]
+    Let $D \subseteq \R^n$ and $a \in D$. A map $f : D \to \R^p$ is \term{continuous at $\mathbf a$} if for all $\eps > 0$, there exists $\delta > 0$ such that
+    \[
+        \norm{x - a} \leq \delta \implies \norm{f(x) - f(a)} \leq \eps
+    .\]
+    If $f$ is continuous at all $x \in D$, then $f$ is \term{continuous on $\mathbf D$}.
+\end{definition}
+
+\begin{remark}
+    If $a$ is a limit point, then $f$ is continuous iff $\displaystyle\lim_{x \to a} f(x) = f(a)$.
+\end{remark}
+
+\begin{theorem}[Sequential Continuity]
+    Let $f : D \to \R^p$, $a \in D$. Then $f$ is continuous at $a$ iff for every sequence $x^{(k)}$ in $D$ that converges to $a$, $\displaystyle\lim_{k\to \infty} f\qty(x^{(k)}) = f(a)$.
+\end{theorem}
+
+\begin{corollary}
+    $f: D \to \R^p$ is continuous at $a \in D$ iff $f_j$ is continuous at $a$ for all $1 \leq j \leq n$.
+\end{corollary}
+
+\begin{corollary}
+    If $f, p: D \to \R^p$ are continuous at $a \in D$, then $f+p$, $fp$ are continuous and if $p \neq 0$ then $\frac{f}{p}$ is continuous.
+\end{corollary}
+
+\begin{example}
+    Consider the map $f : \R^2 \to \R$ where
+    \[
+        f(x) = \begin{cases}
+            \frac{x_1 x_2}{x_1^2 + x_2^2} & x \neq 0 \\
+            0 & x = 0
+        \end{cases}
+    \]
+    Consider the continuity of $f$ at $x = 0$. Note that $f(x_1, 0) \to 0$ as $x_1 \to 0$ and $f(x_1, x_1) \to \frac{1}{2}$ as $x_1 \to 0$. Thus $\displaystyle\lim_{x \to 0} f(x)$ does not exist, and thus $f$ is not continuous at $0$.
+\end{example}
+
+\begin{example}
+    \label{ex:dist_continuous}
+    Let $A \subseteq \R^n$ and $x \in \R^n$. Define the distance $x$ from $A$ as $d(x,A) = \displaystyle\inf_{a \in A} \norm{x - a}$. Then $d(\cdot, A) : \R^n \to \R$ is continuous.
+
+    \begin{proof}
+        Let $x_0 \in \R^n$. Note for any $a \in A$ that $d(x_0, A) \leq \norm{x_0 - a}$. Let $y \in \R^n$. Note then that
+        \begin{align*}
+            d(x_0, A) &\leq \norm{x_0 - a} \\
+                      &\leq \norm{x_0 - y} + \norm{y - a} \\
+                      &\leq \norm{x_0 - y} + d(y, A)
+        \end{align*}
+        Therefore $d(x_0, A) - d(y, A) \leq \norm{x_0 - y}$. By symmetry, $x_0$ and $y$ can be swapped and so $d(x_0, A) - d(y, A) \leq \norm{x_0 - y}$. Thus $|d(x_0, A) - d(y, A)| \leq \norm{x_0 - y}$. Let $\eps > 0$ and $\delta = \eps$. Then for $\norm{x_0 - y} \leq \delta$, it follows that
+        \[
+            |d(x_0, A) - d(y, A)| \leq \norm{x_0 - y} \leq \delta = \eps
+        .\]
+        Therefore $d(\cdot, A)$ is continuous.
+    \end{proof}
+\end{example}
+
+\end{document}
