@@ -1,0 +1,122 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{proof}[thm:heineborel]
+    \begin{enumerate}
+        \item[$\Leftarrow)$]
+            Assume $K$ is closed and bounded. Since $K$ is bounded, it is possible to choose a closed cube $Q$ such that $K \subseteq Q$. Since $Q$ is compact by \Cref{lemma:cubescompact} and $K$ is closed, by \Cref{lemma:closed_subs_are_compact} it follows $K$ is also (topologically) compact.
+        \item[$\Rightarrow)$]
+            Assume $K$ is (topologically) compact. Consider the set of open balls $B_k(0)$ for $k \in \N$ and $k \geq 1$. Note that $\R^n = \bigcup_{k} B_k(0)$, thus this constitutes an open cover of $K$. Since $K$ is compact, there must exist a finite subcover $B_{k_1}(0) \cup \ldots \cup B_{k_m}(0)$. Taking $M = \max\qty{k_1, \ldots, k_m}$ gives $K \subseteq B_{M}(0)$, thus $K$ is bounded.
+
+            Consider some $y \in K^c$. Define $G_j = \qty{x \in \R^n : \norm{x - y} > \frac{1}{j}}$ for $j \geq 1$. Note that $G_j = \bigl(B_{j^{-1}}[y]\bigr)^c$ which means that $G_j$ is open. Since $y \notin K$, then $K \subseteq \R^n \setminus \qty{y}$. But $\R^n \setminus \qty{y} = \bigcup_{j=1}^\infty G_j$ which is then an open cover of $K$. Since $K$ is compact, there exists a finite subcover $G_{j_1} \cup \ldots G_{j_m}$ of $K$. Note that taking $j_0 = \max{j_1, \ldots, j_m}$ gives $G_{j_1} \cup \ldots \cup G_{j_m} \subseteq G_{j_0}$. Therefore $B_{j_0^{-1}}(y) \subseteq G_{j_0}^c \subseteq K^c$. Thus $K^c$ is open meaning $K$ is closed.
+    \end{enumerate}
+\end{proof}
+
+\chapter{Differentiability}
+
+\begin{definition}[Linear Transformation]
+    A map $T : \R^n \to \R^p$ is a \term{linear transformation} if
+    \[
+        T(\alpha x + \beta y) = \alpha Tx + \beta Ty
+    \]
+    for any $\alpha, \beta \in \R$ and $x, y \in \R^n$.
+\end{definition}
+
+\begin{definition}[Standard Basis]
+    The \term{standard basis} for $\R^n$ is the set of vectors $e_k$ where the $i^\thh$ component is $\delta_{i,j}$. For any $x \in \R^n$, there exists $x_1, \ldots, x_n \in \R$ such that
+    \[
+        x = x_1 e_1 + \ldots + x_n e_n
+    .\]
+\end{definition}
+
+\begin{remark}
+    For any linear transformation $T : \R^n \to \R^p$ and $x \in \R^n$, $Tx$ can be written as
+    \[
+        Tx = T(x_1 e_1 + \ldots + x_n e_n) = x_1 T e_1 + \ldots + x_n T e_n
+    .\]
+    Denote $T e_k = \qty(T_{1k}, \ldots, T_{pk}) \in \R^p$. These $T_{jk}$ give a $p \times n$ matrix of the form
+    \[
+        (T_{ij})_{\substack{j=1,\ldots,p \\ k = 1,\ldots,n}} \coloneq \mqty[
+        T_{11} & T_{12} & \cdots & T_{1k} & \cdots & T_{1n} \\
+        \vdots & \vdots &        & \vdots &        & \vdots \\
+        T_{p1} & T_{p2} & \cdots & T_{pk} & \cdots & T_{pn} 
+        ]
+    .\]
+    Note then that
+    \[
+        T e_k = \sum_{j=1}^p T_{jk} f_j
+    \]
+    where $f_j$ is the $j^\thh$ standard basis vector of $\R^p$. Therefore for $x \in \R^n$
+    \[
+        y = Tx = \sum_{k=1}^n x_k \qty(\sum_{j=1}^p T_{jk} f_j) = \sum_{\substack{k=1,\ldots,n \\ j = 1,\ldots,p}} (T_{jk} x_k) f_j
+    .\]
+    Thus $y_j = T_{j1} x_1 + \ldots + T_{jn} x_n$, meaning
+    \[
+        \mqty[
+            y_1 \\
+            \vdots \\
+            y_p
+        ] = \mqty[
+            T_{11} & \cdots & T_{1k} \\
+            \vdots &        & \vdots \\
+            T_{p1} & \cdots & T_{pn}
+        ] \mqty[
+            x_1 \\
+            \vdots \\
+            x_n
+        ]
+    .\]
+    Therefore a linear transformation can be identified by this matrix form.
+\end{remark}
+
+\begin{definition}[Linear Transformation Space]
+    Let $\mathcal{L}(\R^n, \R^p)$ be the set of all linear transformations from $\R^n$ to $\R^p$.
+\end{definition}
+
+\begin{remark}
+    Recall the definition of differentiability for $f : \R \to \R$ at a point $a$
+    \[
+        \lim_{x \to a} \frac{f(x) - f(a)}{x - a} \eqcolon f'(a) \in \R
+    .\]
+    This definition remains meaningful if $f : \R \to \R^p$, however it does not easily generalize to $f : \R^n \to \R^p$ where $n \geq 2$ since the division would be undefined.
+\end{remark}
+
+Since the standard definition does not generalize, it is then useful to look at other candidate definitions to generalize. Consider the following alternative characterization for single variable functions.
+
+\begin{theorem}
+    Let $f : I \to \R$ where $I = [a,b] \subseteq \R$ and $a \in \R$. Then $f$ is differentiable at $a$ iff $\exists \alpha \in \R$ such that
+    \[
+        \lim_{h \to 0} \frac{f(x+h) - f(a) + \alpha h}{h} = 0
+    .\]
+    Moreover $\alpha = f'(a)$.
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item[$\Rightarrow)$]
+            Suppose $f$ is differentiable at $a$. Let $\alpha = f'(a)$. Then
+            \[
+                \lim_{x \to a} \frac{f(x) - f(a) - f'(a) (x-a)}{x-a} = 0
+            .\]
+            Note that if $h = x-a$ that $h \to 0$ as $x \to a$. Thus
+            \[
+                \lim_{x \to a} \frac{f(x) - f(a) - f'(a) (x-a)}{x-a} =
+                \lim_{h \to 0} \frac{f(a + h) - f(a) - \alpha h}{h} = 0
+            .\]
+        \item[$\Leftarrow)$]
+            Suppose $\exists \alpha \in \R$ such that
+            \[
+                \lim_{h \to 0} \frac{f(a + h) - f(a) - \alpha h}{h} = 0
+            .\]
+            Let $x = a + h$. Then $x \to a$ as $h \to 0$. Thus
+            \begin{align*}
+                0      &= \lim_{x \to a} \frac{f(x) - f(a) - \alpha (x-a)}{x-a} \\
+                0      &= \lim_{x \to a} \qty(\frac{f(x) - f(a)}{x-a} - \alpha) \\
+                \alpha &= \lim_{x \to a} \frac{f(x) - f(a)}{x-a}
+            \end{align*}
+            Thus $f$ is differentiable at $a$ and $f'(a) = \alpha$.
+    \end{enumerate}
+\end{proof}
+
+\end{document}

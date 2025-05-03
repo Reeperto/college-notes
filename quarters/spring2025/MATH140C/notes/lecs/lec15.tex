@@ -1,0 +1,102 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\section[Derivatives I]{Multidimensional Derivative}
+
+\begin{definition}[Differentiability]
+    \label{def:differentiability}
+    Let $D \subseteq \R^n$ be open and $f : D \to \R^p$. Then $f$ is \term{differentiable} at $a \in D$ if there exists $T \in \mathcal{L}(\R^n, \R^p)$ such that
+    \[
+        \lim_{h \to 0} \frac{\norm{f(a + h) - f(a) - Th}_{\R^p}}{\norm{h}_{\R_n}} = 0
+    \]
+    where $h \in \R^n$ and $h \neq 0$. Furthermore $f$ is differentiable on $D$ if $f$ is differentiable at every $a \in D$.
+\end{definition}
+
+\begin{theorem}[Uniqueness of Derivative]
+    \label{thm:uniquederivative}
+    If $f : D \to \R^p$ is differentiable at $a$, the corresponding linear transformation $T \in \mathcal{L}(\R^n, \R^p)$ is unique.
+\end{theorem}
+
+\begin{proof}
+    Consider any $h \in \R^n$ where $h \neq 0$. Replacing $h$ with $th$ where $t \in \R$ and $t \neq 0$ in \Cref{def:differentiability} gives
+    \[
+        \rho(t) \coloneq \frac{f(a+th) - f(a) - tTh}{\qty|t| \cdot \norm{h}}
+    \]
+    and $\rho(t) \to 0$ as $t \to 0$. Thus
+    \begin{align*}
+        f(a+th) - f(a) - tTh &= \rho(t) \qty|t| \norm{h}  \\
+        Th &= \frac{f(a+th) - f(a)}{t} - \frac{|t|}{t} |h| \rho(t)
+    \end{align*}
+    Therefore
+    \[
+        Th = \lim_{t \to 0} \frac{f(a+th) - f(a)}{t} \quad h \in \R^n, h \neq 0
+    \]
+    meaning $T$ is completely determined by $f$ and is thus unique.
+\end{proof}
+
+\begin{definition}[Differential]
+    If $f$ is differentiable at $a$, then the \term{differential} or \term{total derivative} of $f$ at $a$ is denoted as $f'(a) = \mathcal{D} f(a) = T$.
+\end{definition}
+
+\begin{example}
+    \hfill
+    \begin{enumerate}
+        \item Consider $T \in \mathcal{L}(\R^n, \R^p)$. Note that
+            \[
+                T(a + h) - T(a) = Ta + Th - Ta = Th
+            .\]
+            Therefore
+            \[
+                \lim_{h \to 0} \frac{\norm{T(a+h) - T(a) - Th}}{\norm{h}} = \lim_{h \to 0} \frac{0}{\norm{h}} = 0
+            \]
+            meaning $T$ is differentiable at every $a \in \R^n$ and is its own differential.
+        \item Since the indentity map $I : \R^n \to \R^n : x \mapsto x$ is a linear transformation, then $I' = I$.
+        \item Consider $\rho : \R^n \times \R^n \to \R^n$ where $\rho(x,y) = x \cdot y$. Then $\rho$ is differentiable and $\rho'(a,b)$ is the mapping satisfying
+            \[
+                \rho'(a,b) (h,k) = a \cdot k + b \cdot h
+            .\]
+            To see this, note that
+            \begin{align*}
+                \rho(a+h, b+k) - \rho(a,b) &= (a+h) \cdot (b+k) - a \cdot b \\
+                &= a \cdot b + h \cdot b + a \cdot k + h \cdot k - a \cdot b \\
+                &= a \cdot k + b \cdot h + h \cdot k
+            \end{align*}
+            Therefore
+            \begin{align*}
+                \frac{\norm{\rho(a+h, b+k) - \rho(a,b) - \rho'(a,b)(h,k)}}{\norm{(h,k)}} &= \frac{|h \cdot k|}{\norm{(h,k)}} \\
+                &\leq \frac{\norm{h} \norm{k}}{\norm{(h,k)}} \\
+                &\leq \norm{k}
+            \end{align*}
+            meaning the quantity goes to $0$ as $h \to 0$. Thus the proposed differential is indeed correct.
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}
+    Let $f : D \to \R^p$ with $D$ open. If $f$ is differentiable at $a \in D$, then $f$ is continuous at $a$.
+\end{theorem}
+
+\begin{theorem}
+    Let $f : D \to \R^p$ with $D$ open. Then $f$ is differentiable at $a \in D$ iff $f_j$ is differentiable at $a_j$ for $1 \leq j \leq n$.
+\end{theorem}
+
+\section[Derivatives II]{Directional and Partial Derivatives}
+
+Consider some $f : D \to \R^p$ with $D$ open that is differentiable at $a \in D$. Then for $h \in \R^n$ and $t \in \R$ with $h, t \neq 0$ it follows from \Cref{thm:uniquederivative} that
+\[
+    f'(a) h = Th = \lim_{t \to 0} \frac{f(a + th) - f(a)}{t}
+.\]
+Therefore the function $t \mapsto f(a+th)$ is differentiable at $0$ with derivative
+\[
+    \dv{t} \eval_{t=0} f(a+th) = f'(a) h
+.\]
+
+\begin{definition}[Directional Derivative]
+    Let $f : D \to \R^p$ with $D$ open in $\R^n$. Then $f$ has a \term{directional derivative} at $a \in D$ in the direction $v \in \R^n \setminus{0}$ if the function $t \to f(a + tv)$ is differentiable at $0$. In this case,
+    \[
+        \dv{t} \eval_{t=0} f(a+tv) = \lim_{t \to 0} \frac{f(a+tv) - f(a)}{t} \eqcolon \mathcal{D}_{v} f(a) \eqcolon f'_{v}(a)
+    \]
+    is called the directional derivative of $f$ at $a$ in the direction of $v$.
+\end{definition}
+
+\end{document}
