@@ -1,0 +1,79 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\section[Inverse Function Thm.]{Inverse Functon Theorem}
+
+\begin{definition}[Contraction]
+    Let $E \subseteq \R^n$. Then a map $f : E \to E$ is a \term{contraction} if $\exists L \in (0,1)$  such that for all $x,y \in E$
+    \[
+        |f(x) - f(y)| \leq L |x - y|
+    .\]
+\end{definition}
+
+\begin{theorem}[Banach's Contraction Mapping Theorem]
+    \label{thm:banachscontraction}
+    Let $E \subseteq \R^n$ be closed and let $f : E \to E$ be a contraction. Then $f$ has a unique fixed point $x \in E$ such that $f(x) = x$.
+\end{theorem}
+
+\begin{proof}
+    % TODO: Proof of uniqueness
+    Let $x^{(0)} \in E$ and define recursively $x^{(k+1)} = f(x^{(k)})$ for $k \geq 0$ \footnote{This technique is called a \emph{Picard iteration.}}. Consider $|x^{(k)} - x^{(m)}|$ for $m > k$. Note that by triangle inequality
+    \[
+        |x^{(k)} - x^{(m)}| \leq |x^{(k)} - x^{(k+1)}| + |x^{(k+1)} - x^{(k+2)}| + \ldots + |x^{(m-1)} - x^{(m)}| \tag{\star}
+    .\]
+    Analyzing a single term $|x^{(j)} - x^{(j+1)}|$, since $f$ is a contraction
+    \[
+        |x^{(j)} - x^{(j+1)}| = |f(x^{(j-1)}) - f(x^{(j)})| \leq L |x^{(j-1)} - x^{(j)}|
+    .\]
+    Therefore this process can be done inducitvely to get
+    \[
+        |x^{(j)} - x^{(j-1)}| \leq L^j |x^{(0)} - x^{(1)}|
+    .\]
+    Substituting this result into $(\star)$ gives
+    \begin{align*}
+        |x^{(k)} - x^{(m)}| &\leq \sum_{j=k}^{m-1} |x^{(j)} - x^{(j+1)}| \\
+                            &\leq \sum_{j=k}^{m-1} L^j |x^{(0)} - x^{(1)}| \\
+                            &= L^k \cdot |x^{(0)} - x^{(1)}| \cdot \sum_{j=0}^{m - k - 1} L^j \\
+                            &\leq \frac{L^k}{1 - L} \cdot |x^{(0)} - x^{(1)}|
+    \end{align*}
+    Since $0 < L < 1$, in the limit as $k \to \infty$, $\frac{L^k}{1 - L}$ goes to $0$ and thus so does $|x^{(k)} - x^{(m)}|$, hence $\bigl(x^{(k)}\bigr)$ is cauchy. Therefore $\bigl(x^{(k)}\bigr)$ converges in $\R^n$ to some point $x \in \R^n$. Furthermore, since $E$ is closed and $\bigl(x^{(k)}\bigr)$ is a sequence in $E$ it follows $x \in E$. Since $f$ is continuous
+    \[
+        x^{(k+1)} = f(x^{(k)}) \;\xRightarrow{k \to \infty}\; x = f(x)
+    .\]
+\end{proof}
+
+\begin{theorem}[Inverse Function Theorem]
+    \label{thm:inversefunctionthm}
+    Let $\Omega \subseteq \R^n$ be open and $f \in C^1(\Omega; \R^n)$. Let $x_0 \in \Omega$ and $y_0 = f(x_0)$. If $f'(x_0) \in \mathcal{L}(\R^n, \R^n)$ is invertible, then there exists an open nbhd $U$ of $x_0$ and an open nbhd $V$ of $y_0$ such that $f : U \to V$ is a bijection. Furthermore, $f^{-1} : V \to U$ is $C^1(V; \R^n)$.
+\end{theorem}
+
+\begin{remark}
+    The inverse function theorem only provides a \emph{local bijection}. Consider $f : \R^2 \to \R^2$ where $f(x,y) = (e^{x} \cos y, e^{x} \sin y)$. The differental of $f$ is
+    \[
+        f'(x,y) = \mqty[
+            e^{x} \cos y & -e^{x} \sin y \\
+            e^{x} \sin y & e^{x} \cos y
+        ]
+    .\]
+    Note that $\det(f'(x,y)) = e^{2x} \neq 0$, therefore the differential is invertible for all $(x,y) \in \R^2$. Therefore by the inverse function theorem every point in $\R^2$ has a nbhd where $f$ is bijective and thus $f$ is injective. But $f$ is not globally injective. In particular
+    \[
+        f(x, y + 2 \pi) = (e^{x} \cos (y + 2 \pi), e^{x} \sin (y + 2 \pi))  = (e^{x} \cos y, e^{x} \sin y) = f(x,y)
+    .\]
+
+    Let $g$ be $f^{-1} : V \to U$. Note by chain rule that
+    \[
+        g(f(x)) = x \implies g'(f'(x)) f'(x) = 1
+    \]
+    and
+    \[
+        f(g(y)) = y \implies f'(g(y)) g'(y) = 1
+    .\]
+    Therefore
+    \[
+        g'(y) = (f'(x))^{-1}
+    .\]
+    % TODO: I dont get this :/
+\end{remark}
+
+\end{document}

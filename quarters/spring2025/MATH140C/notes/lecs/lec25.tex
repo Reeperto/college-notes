@@ -1,0 +1,77 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{proof}[thm:inversefunctionthm]
+    % Proving f is injective and also by construction of V, bijective
+    Assume that $x_0 = y_0 = 0$ and $f'(0) = 1$. Note that $x \to f'(x)$ is continuous at $0$ since $f \in C^1$. Therefore there exists $\delta > 0$ such that
+    \[
+        |x| \leq \delta \implies \norm{f'(x) - 1} \leq \frac{1}{2}
+    .\]
+    For $y \in \R^n$, denote $\phi_y(x) = x + y - f(x)$. Note that $\phi_y \in C^1(\Omega; \R^n)$. Then $y = f(x)$ iff $\phi_y(x) = x$, and $\phi_y'(x) = 1 - f'(x)$, therefore
+    \[
+        |x| \leq \delta \implies \norm{\phi_y(x)} \leq \frac{1}{2}
+    .\]
+    By MVT on $|x| \leq \delta$, there exists $M = \sup_{|x| \leq \delta} \norm{\phi_y'(x)} \leq \frac{1}{2}$ such that for all $|x^{(1)}| \leq \delta$ and $|x^{(2)}| \leq \delta$
+    \[
+        |\phi_y(x^{(1)}) - \phi_y(x^{(2)})| \leq \frac{1}{2} |x^{(1)} - x^{(2)}| \tag{\star}
+    .\]
+    % TODO: finish showing that f is injective
+
+    % Proving V is open
+    Set $U = \qty{ |x| < \delta }$ and $V = f(U)$. Since $f$ is injective from $U$ to $V$, $f$ is bijective. Let $y_0 \in V$ and note that $y_0 = f(x_0)$ for some $x_0 \in U$. Since $U$ is open, then there is an open ball $B = B_r(x_0)$ such that $\conj{B} \subseteq U$. Pick $y \in B_{\frac{r}{2}}(y_0)$. Note that
+    \[
+        \phi_y(x_0) - x_0 = x_0 + y - f(x_0) - x_0 = y - f(x_0) = y - y_0
+    \]
+    thus
+    \[
+        |\phi_y(x_0) - x_0| = |y - y_0| < \frac{r}{2}
+    .\]
+    Taking $x \in \conj{B}$ gives 
+    \[
+        |\phi_y(x) - x_0| \leq |\phi_y(x) - \phi_y(x_0)| + |\phi_y(x_0) - x_0| \leq \frac{1}{2} |x - x_0| + \frac{r}{2} \leq r
+    .\]
+    meaning $\phi_y(x) \in \conj{B}$. Therefore by $(\star)$, $\phi_y : \conj{B} \to \conj{B}$ is a contraction and thus by \Cref{thm:banachscontraction}, there exists a unique fixed point $\tilde{x} \in \conj{B}$. Note then that $\tilde{x} \in U$ and $\phi_y(\tilde{x}) = \tilde{x} \implies y = f(\tilde{x})$. Therefore $V$ is open.
+    
+    % Proving f^-1 is C^1
+    Now consider $g = f^{-1}$. Note that $f'(0) = 1$ is invertible and that $\norm{f'(x) - 1} \leq \frac{1}{2}$ for $x \in U$. Let $B \in \mathcal{L}(\R^n; \R^n)$ such that $\norm{B - 1} \leq \frac{1}{2}$. Then for any $v \in \R^n$,
+    \[
+        |(B-1)v| \leq \norm{B - 1} |v| \leq \frac{1}{2} |v|
+    .\]
+    Therefore $|Bv| = |(B-1)v + v \geq |v| - |(B-1)v| \geq \frac{1}{2} |v|$. Thus if  $Bv = 0$, then $|Bv| = 0$ meaning $|v| = 0$, hence $v = 0$ and $B$ is one-to-one. Since $N(B) = \qty{0}$, by rank nullity theorem
+    \[
+        \operatorname{nullity}(B) + \operatorname{rank}(B) = n \implies \operatorname{rank}(B) = n
+    \]
+    thus $B$ is onto and hence is a bijection. Therefore $\norm{f'(x) - 1} \leq \frac{1}{2}$ for all $x\in U$, then $(f'(x))^{-1}$ exists. Take $y = f(x) \in V$ and let $k \in \R^n$ be small such that $y + k \in V$. Then $g(y) = f^{-1}(f(x)) = x$ meaning $y + k = f(\tilde{x})$ where $\tilde{x} = x + h$ for some $h \in \R^n$. Therefore $g(y+k) = x + h$. Consider $g(y+k) - g(y) - A k$ where $A = (f'(x))^{-1}$. Note that
+    \begin{align*}
+        g(y+k) - g(y) - A k &= x + h - x - A k  \\
+        &= h - A k \\
+        &= -A \qty( k - A^{-1} h ) \\
+        &= -A \qty( f(x+h) - f(x) - f'(x) h )
+    \end{align*}
+    Therefore
+    \[
+        \frac{g(y+k) - g(y) - Ak}{|k|} = \frac{-A \qty(f(x+h) - f(x) - f'(x) h)}{|h|} \cdot \frac{|h|}{|k|}
+    .\]
+    Note that
+    \begin{align*}
+        \phi_y(x + h) - \phi_y(x) &= y + x + h - f(x + h) - (y + x - f(x)) \\
+        &= h + f(x) - f(x+h) \\ 
+        &= h - k
+    \end{align*}
+    By $(\star)$, it follows that
+    \[
+        |h| - |k| \leq |h-k| = |\phi_y(x + h) - \phi_y(x)| \leq \frac{1}{2} |x + h - x| = \frac{1}{2} |h|
+    \]
+    meaning $\frac{1}{2} |h| \leq |k|$. Therefore as $k \to 0$, then $h \to 0$ and $\frac{|h|}{|k|} \leq 2$. In total then
+    \[
+        \lim_{k \to 0} \frac{g(y+k) - g(y) - Ak}{|k|} = \lim_{k \to 0} \frac{-A\qty(f(x+h) - f(x) - f'(x)h)}{|h|} \cdot \frac{|h|}{|k|} = 0
+    \]
+    hence $g$ is differentiable. By Cramer's rule,
+    \[
+        g'(y) = \frac{1}{\det(f'(g(y)))} \cdot C
+    \]
+    where $C$ is the cofactor matrix of $f'(g(y))$, which will be filled with continuous entries. Therefore $g \in C^1(V; U)$.
+\end{proof}
+
+\end{document}

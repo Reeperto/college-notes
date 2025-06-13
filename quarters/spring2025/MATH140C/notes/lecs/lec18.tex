@@ -1,0 +1,113 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{theorem}[Chain Rule]
+    \label{thm:chainrule}
+    Let $\Omega \subseteq \R^n$ be open and $f \in C^1(\Omega; \R^p)$, and let $\tilde{\Omega} \subseteq \R^p$ be open such that $f(\Omega) \subseteq \tilde{\Omega}$. Let $g \in C^1(\tilde{\Omega}; \R^k)$. Then the composition $h = g \circ f$ is $C^1(\Omega; \R^k)$ and $h'(x) = g'(f(x)) f'(x) \in \mathcal{L}(\R^n, \R^k)$.
+\end{theorem}
+
+\begin{proof}
+    Since $f$ is differentiable at $x \in \Omega$, then for $k \in \R^n$
+    \[
+        \lim_{k \to 0} \frac{|f(x+k) - f(x) - f'(x) k|}{|k|} = 0
+    .\]
+    Let $\rho_1(k) = f(x + k) - f(x) - f'(x) k$. Then $f$ being differentiable at $x$ is equivalent to saying
+    \[
+        \lim_{k \to 0} \frac{|\rho_1(k)|}{|k|} = 0 \tag{1}
+    .\]
+    Let $l \in \R^p$. Note that since $g$ is differentiable at $f(x) \in \tilde{\Omega}$ that
+    \[
+        g(f(x) + l) = g(f(x)) + g'(f(x)) l + \rho_2(l)
+    \]
+    where $\lim_{l \to 0} \frac{|\rho_2(l)}{|l|}$. Choose $l = f(x+k) - f(x)$, and note that $l = f'(x) k + \rho_1(k)$. Then
+    \begin{align*}
+        h(x+k) &= g(f(x+k)) \\
+        &= g(f(x)+l) = g(f(x)) + g'(f(x)) (f'(x)k + \rho_1(k)) + \rho_2(l) \\
+        &= h(x) + g'(f(x)) f'(x) k + g'(f(x)) \rho_1(k) + \rho_2(l)
+    \end{align*}
+
+    It follows from $(1)$ that $\exists \delta > 0$ such that $|k| \leq \delta \implies \frac{|\rho_1(k)|}{|k|} \leq 1$. It also follows from \Cref{thm:linearboundedness} that $|f'(x)k| \leq c |k|$ for some $c \in \R$. Therefore $|l| \leq (c+1)|k|$, meaning
+
+    \begin{align*}
+        \frac{|g'(f(x)) \rho_1(k) + \rho_2(l)|}{|k|} &\leq \frac{|g'(f(x)) \rho_1(k)|}{|k|} + \frac{|\rho_2(l)|}{|k|} \\
+         &\leq c\frac{|\rho_1(k)|}{|k|} + (c + 1) \frac{|\rho_2(l)|}{|l|}
+    \end{align*}
+    which both go to $0$ as $k \to 0$ and $l \to 0$. Therefore $h$ is differentiable at $x \in \Omega$ and $h'(x) = g'(f(x)) f'(x)$. Since $h'(x)$ is the composition of continuous functions, it follows $h \in C^1(\Omega; \R^k)$.
+\end{proof}
+
+\begin{example}
+    Suppose $f : \R \to \R^n$ and $g : \R^n \to \R$ are differentiable. Then the differential of $f$ as a matrix is
+    \[
+        f'(t) = \mqty[\dv{f_1}{t}\relax(t) \\ \vdots \\ \dv{f_n}{t}\relax(t)]
+    .\]
+    and the differential of $g$ as a matrix is
+    \[
+        g'(y) = \mqty[\pdv{g}{y_1}\relax(y) & \cdots & \pdv{g}{y_n}\relax(y)] \eqcolon \nabla g(y)
+    .\]
+    By the chain rule, the composition $h : \R \to \R : x \mapsto (g \circ f)(x)$ is differentiable and the differential $h' : \R \to \mathcal{L}(\R, \R)$ is given by $h'(t) = g'(f(t)) f'(t)$. From them matrix forms, it follows
+    \[
+        h'(t) = \sum_{k=1}^n \pdv{g}{y_k}\relax(f(t)) \dv{f_k}{t}\relax(t)
+    .\]
+\end{example}
+
+\begin{example}
+    Suppose $f : \R^n \to \R^n$ and $g : \R^n \to \R$ and both are differentiable. Then
+    \[
+        f'(x) = \mqty[
+        \pdv{f_1}{x_1}\relax(x) & \cdots & \pdv{f_1}{x_n}\relax(x) \\
+        \vdots                  &        & \vdots                  \\
+        \pdv{f_n}{x_1}\relax(x) & \cdots & \pdv{f_n}{x_n}\relax(x) \\
+        ]
+    \]
+    and
+    \[
+        g'(y) = \mqty[\pdv{g}{y_1}\relax(y) & \cdots & \pdv{g}{y_n}\relax(y)]
+    .\]
+Therefore the composition $h : \R^n \to \R : x \mapsto (g \circ f)(x)$ has differential $h' : \R^n \to \mathcal{L}(\R^n, \R)$ where
+    \begin{align*}
+        h'(x) &= \mqty[\pdv{g}{y_1}\relax(f(x)) & \cdots & \pdv{g}{y_n}\relax(f(x))] \mqty[
+        \pdv{f_1}{x_1}\relax(x) & \cdots & \pdv{f_1}{x_n}\relax(x) \\
+        \vdots                  &        & \vdots                  \\
+        \pdv{f_n}{x_1}\relax(x) & \cdots & \pdv{f_n}{x_n}\relax(x) \\
+        ] \\
+                                &= \mqty[
+        \sum_{k=1}^n \pdv{g}{y_k}\relax(f(x)) \pdv{f_k}{x_1}\relax(x) & \cdots & \sum_{k=1}^n \pdv{g}{y_k}\relax(f(x)) \pdv{f_k}{x_n}\relax(x)
+                                ]
+    \end{align*}
+\end{example}
+
+\begin{definition}[Operator Norm]
+    Let $T \in \mathcal{L}(\R^n, \R^p)$. Then the \term{operator norm} of $T$ is
+    \[
+        \norm{T} \coloneq \sup_{x \in \R^n \setminus \qty{0}} \frac{|Tx|_{\R^p}}{|x|_{\R^n}}
+    .\]
+\end{definition}
+
+\begin{corollary}
+    For any $x \in \R^n$, $|Tx| \leq \norm{T} |x|$.
+\end{corollary}
+
+% \begin{theorem}[$\mathcal{L}(\R^n, \R^p)$ is a Norm Space]
+%     For any $T,S \in \mathcal{L}(\R^n, \R^p)$
+%     \begin{romanlist}
+%         \item $\norm{T} \geq 0$ and $\norm{T} = 0 \Leftrightarrow T = 0$
+%         \item $\norm{\lambda T} = |\lambda| \norm{T}$ for all $\lambda \in \R$
+%         \item $\norm{T + S} \leq \norm{T} + \norm{S}$
+%     \end{romanlist}
+% \end{theorem}
+
+\begin{proof}
+    Both $(i)$ and $(ii)$ follow from properties of the Euclidean norm and supremum. Consider then $(iii)$. Note that for $x \in \R^n \setminus \qty{0}$
+    \[
+        |(T+S)x| \leq |Tx| + |Sx| \leq \bigl(\norm{T} + \norm{S}\bigr) |x|
+    .\]
+    Thus
+    \[
+        \frac{|(T+S)x|}{|x|} \leq \norm{T} + \norm{S} \implies \sup_{x \in \R^n \setminus \qty{0}} \frac{|(T+S)x|}{|x|} \leq \norm{T} + \norm{S}
+    \]
+    which was to be shown.
+\end{proof}
+
+
+\end{document}

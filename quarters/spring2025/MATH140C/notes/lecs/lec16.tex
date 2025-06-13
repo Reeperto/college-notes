@@ -1,0 +1,73 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{definition}[Partial Derivative]
+    If $v = e_j \in \R^n$ for $1 \leq j \leq n$, then
+    \[
+        f'_{e_j}(a) \eqcolon \pdv{f}{x_j}\relax(a) \coloneq \partial_{x_j} f(a)
+    \]
+    is the $j^\thh$ \term{partial derivative} of $f$ at $a$.
+\end{definition}
+
+\begin{remark}
+    The partial derivative is often taught as holding all but one component constant. This is clear from the definition of partial derivative since
+    \begin{align*}
+        \pdv{f}{x_j}(a) &= \dv{t} \eval_{t=0} f(a_1, \ldots, a_{j-1}, a_{j} + t, a_{j+1}, \ldots, a_n) \\
+                        &= \dv{t} \eval_{t=a_j} f(a_1, \ldots, a_{j-1}, t, a_{j+1}, \ldots, a_n)
+    \end{align*}
+\end{remark}
+
+\begin{theorem}
+    Let $f : D \to \R^p$ with $D \subseteq \R^n$ open. Suppose that $f$ is differentiable at $a \in D$. Then
+    \begin{romanlist}
+        \item $f$ has directional derivatives in all directions $v \in \R^n \setminus \qty{0}$ and $f_v'(a) = f'(a) v$.
+        \item $f$ has all partial derivatives at $a$ and for all $v \in \R^n$
+            \[
+                f'(a) v = \sum_{j=1}^n v_j \pdv{f}{x_j}
+            .\]
+        \item The matrix form of $f'(a)$ is given by
+            \begin{align*}
+                f'(a) &= \qty[\pdv{f}{x_1}\relax(a), \ldots, \pdv{f}{x_n}\relax(a)] \\
+                      &= \mqty[
+                      \pdv{f_1}{x_1}\relax(a) & \cdots & \pdv{f_1}{x_n}\relax(a) \\
+                      \cdots            &        & \vdots            \\
+                      \pdv{f_p}{x_1}\relax(a) & \cdots & \pdv{f_p}{x_n}\relax(a)
+                      ]
+            \end{align*}
+    \end{romanlist}
+\end{theorem}
+
+\begin{proof}
+    \begin{romanlist}
+        \item This follows from \Cref{def:directional_derivative}
+        \item Write $v = v_1 e_1 + \ldots + v_n e_n$. Since $f'(a) \in \mathcal{L}(\R^n, \R^p)$ then
+            \[
+                f'(a) v = \sum_{j=1}^n v_j f'(a) e_j = \sum_{j=1}^n v_j \pdv{f}{x_j}(a)
+            .\]
+    \end{romanlist}
+\end{proof}
+
+\begin{remark}
+    The converse of $(i)$ does not hold. That is, the existence of all directional derivatives at some point $a$ does not imply differentiability of $f$ at $a$. Consider $f : \R^2 \to \R$ where
+    \[
+        f(x_1,x_2) = \begin{cases}
+            \frac{x_1 x_2^2}{x_1^2 + x_2^4} & x \neq 0 \\
+            0                               & x = 0
+        \end{cases}
+    .\]
+    For any $v \in \R^2$, the directional derivative of $f$ at $0$ is
+    \begin{align*}
+        f_v'(0) &= \lim_{t \to 0} \frac{f(0 + tv) - f(0)}{t} \\
+        &= \lim_{t \to 0} \frac{f(tv)}{t} \\
+        &= \lim_{t \to 0} \frac{t v_1 t^2 v_2^2}{t(t^2 v_1^2 + t^4 v_2^4)} \\
+        &= \lim_{t \to 0} \frac{v_1 v_2^2}{v_1^2 + t^2 v_2^4} \\
+        &= \begin{cases}
+            \frac{v_2^2}{v_1} & v_1 \neq 0 \\
+            0 & v_1 = 0
+        \end{cases}
+    \end{align*}
+    Therefore all directional derivatives exists at $0$. However $f$ is not continuous at $0$, meaning it cannot be differentiable at $0$.
+\end{remark}
+
+\end{document}

@@ -1,0 +1,111 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{theorem}[Equality of Mixed Partials]
+    % \label{thm:}
+    Let $f : D \to \R^p$ with $D \subseteq \R^p$ open and $a \in D$. Suppose $\partial^2_{x_i x_k} f$ and $\partial^2_{x_k x_i} f$ exist and are continuous in a nbhd of $a$. Then $\partial^2_{x_i x_k} f(a) = \partial^2_{x_k x_i} f(a)$.
+\end{theorem}
+
+\begin{proof}
+    Using a permutation of indicies, it is suffices to only show that the statement works for $k = 1$ and $i = 2$, and thus also for $n = 2$. Since $f$ is differentiable iff its components are, then it suffices to work with $p = 1$. Thus reconsider $f$ as $f : D \to \R$ with $D \subseteq \R^2$ open and $a \in D$. Let $U$ be a nbhd of $a$ where the first and second order partials exist and are continuous. WLOG, the nbhd $U$ can be described as
+    \[
+        U = (a_1 - \delta, a_1 + \delta) \times (a_2 - \delta, a_2 + \delta)
+    \]
+    for some $\delta > 0$. Let $(x_1, x_2) \in U \setminus \qty{(a_1, a_2)}$. Let $g : (a_1 - \delta, a_1 + \delta) \to \R$ where $g(t) = f(t,x_2) - f(t, a_2)$. 
+    Of interest is the expression
+    \[
+        \qty[f(x_1, x_2) - f(x_1, a_2)] - \qty[f(a_1, x_2) - f(a_1, a_2)] \tag{\star}
+    .\]
+    Then by MVT, there exists $\psi$ between $x_1$ and $a_1$ such that
+    \[
+        \qty[f(x_1, x_2) - f(x_1, a_2)] - \qty[f(a_1, x_2) - f(a_1, a_2)] = g(x_1) - g(a_1) = g'(\psi) (x_1 - a_1)
+    .\]
+    Again by MVT on $h(t) = \partial_{x_1} f(\psi, t)$, there exists $\eta$ between $x_2$ and $a_2$ such that
+    \begin{align*}
+        g'(\psi) (x_1 - a_1) &= h'(\eta) (x_1 - a_1) (x_2 - a_2) \\
+                             &= \qty[\partial_{x_2} \partial_{x_1} f(\psi, \eta)] (x_1 - a_1) (x_2 - a_2)
+    \end{align*}
+    Consider the following rearrangement of $(\star)$
+    \[
+        \qty[f(x_1, x_2) - f(x_1, a_2)] - \qty[f(a_1, x_2) - f(a_1, a_2)] = \qty[f(x_1, x_2) - f(a_1, x_2)] - \qty[f(x_1, a_1) - f(a_1, a_2)]
+    .\]
+    By MVT on $\tilde{g}(t) = f(x_1, t) - f(a_1, t)$, there exists $\tilde{\eta}$ between $x_2$ and $a_2$ such that
+    \begin{align*}
+        \qty[f(x_1, x_2) - f(a_1, x_2)] - \qty[f(x_1, a_1) - f(a_1, a_2)] &= \tilde{g}'(\tilde{\eta}) (x_2 - a_2) \\
+                                                                          &= \qty[\partial_{x_2} f(x_1, \tilde{\eta}) - \partial_{x_2} f(a_2, \tilde{\eta})] (x_2 - a_2)
+    \end{align*}
+    Again by MVT on $\tilde{h}(t) = \partial_{x_2} f(t, \tilde{\eta})$, there exists $\tilde{\psi}$ between $x_1$ and $a_1$ such that
+    \begin{align*}
+        \qty[\partial_{x_2} f(x_1, \tilde{\eta}) - \partial_{x_2} f(a_2, \tilde{\eta})] (x_2 - a_2) &= \tilde{h}'(\tilde{\psi}) (x_1 - a_1) (x_2 - a_2) \\
+                                                                                                    &= \qty[\partial_{x_1} \partial_{x_2} f(\tilde{\psi}, \tilde{\eta})] (x_1 - a_1, x_2 - a_2)
+    \end{align*}
+    Therefore since $x_1 \neq a_1$ and $x_2 \neq a_2$, combining both alternative expressions of $(\star)$ gives
+    \[
+        \partial^2_{x_2 x_1} f(\psi, \eta) = \partial^2_{x_1 x_2} f(\tilde{\psi}, \tilde{\eta})
+    .\]
+    The points $(\psi, \eta)$ and $(\tilde{\psi}, \tilde{\eta})$ are in $U$ and since the second partials are continuous at $a$
+    \[
+        \lim_{\delta \to 0} \partial^2_{x_2 x_1} f(\psi, \eta) = \partial^2_{x_2 x_1} f(a_1, a_2) = \partial^2_{x_1 x_2} f(a_1, a_2) = \lim_{\delta \to 0} \partial^2_{x_1 x_2} f(\tilde{\psi}, \tilde{\eta})
+    .\]
+\end{proof}
+
+\section{Taylor's Formula}
+
+\begin{theorem}[Taylor's Formula of Second Order]
+    \label{thm:taylorformula}
+    Let $D \subseteq \R^n$ be open with $a \in D$ and $f \in C^2(D; \R)$. Then for all $h \in \R^n$ small ($|h| \leq \delta$),
+    \[
+        f(a+h) = f(a) + L(h) + \frac{1}{2} Q(h) + R(h)
+    \]
+    where
+    \[
+        L(h) = \sum_{k=1}^n \partial_{x_k} f(a) h_k = \nabla f(a) \cdot h \hspace{2em}
+        Q(h) = \sum_{1 \leq j,k \leq n} \partial^2_{x_j x_k} f(a) h_j h_k
+    .\]
+    and
+    \[
+        \lim_{h \to 0} \frac{R(h)}{|h|^2} = 0
+    .\]
+\end{theorem}
+
+\begin{proof}
+    Consider the function $F(t) = f(a + th) \in C^2([0,1]; \R)$. By the chain rule
+    \[
+        F'(t) = f'(a + th) h = \nabla f(a + th) = \sum_{k=1}^n \partial_{x_k} f(a + th)  h_k
+    .\]
+    Again by the chain rule
+    \[
+        F''(t) = \sum_{k=1}^n \sum_{j=1}^n \partial_{x_j} \partial_{x_k} f(a+th) h_j h_k
+    .\]
+    Therefore $F'(0) = L(h)$ and $F''(0) = Q(h)$. Thus by the one dimensional version of Taylors Formula to $F$ there exists some $\psi$ between $0$ and $t$ such that
+    \[
+        F(t) = F(0) + F'(0)t + \frac{1}{2} F''(\psi) t^2
+    .\]
+    Plugging in $t = 1$ gives
+    \[
+        F(1) = F(0) + F'(0) + \frac{1}{2} F''(0) = F(0) + F'(0) + F''(0) + \frac{1}{2} F''(0) + R(h)
+    \]
+    where $R(h) = \frac{1}{2} (F''(\psi) - F''(0))$. Since $F(0) = f(a)$ and $F(1) = f(a + h)$
+    \[
+        f(a + h) = f(a) + L(h) + \frac{1}{2} Q(h) + R(h)
+    .\]
+    Now consider $R(h)$. Substituting in the expression for $F''(t)$ gives
+    \[
+        R(h) = \frac{1}{2} \sum_{1 \leq j,k \leq n} \qty[\partial_{x_j x_k} f(a + \psi h) + \partial_{x_j x_k} f(a)] h_j h_k
+    .\]
+    Since $\partial_{x_j x_k} f$ is continuous, for any $\eps > 0$ there eists $\delta > 0$ such that for $|x - a| \leq \delta$,
+    \[
+        |\partial_{x_j x_k} f(x) - \partial_{x_j x_k} f(a)| \leq \eps
+    .\]
+    Therefore if $|h| \leq \delta$, then $|\partial_{x_j x_k} f(a + \psi h) - \partial_{x_j x_k} f(a)| \leq \eps$. Thus this bounds $R(h)$ in that
+    \[
+        |R(h)| \leq \frac{1}{2} \sum_{1 \leq j,k \leq n} \eps |h_j| |h_k| \leq \frac{1}{2} \sum_{1 \leq j,k \leq n} \eps |h|^2
+    .\]
+    It follows then that for some $c \in \R$
+    \[
+        \frac{|R(h)|}{|h|^2} \leq c \eps \implies \lim_{h \to 0} \frac{R(h)}{|h|^2} = 0
+    .\]
+\end{proof}
+
+\end{document}

@@ -1,0 +1,217 @@
+\documentclass{eeleyes}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[lcr]{}
+\fancyhead[l]{Eli Griffiths}
+\fancyhead[c]{MATH $140$C}
+\fancyhead[r]{HW \#$6$}
+
+\usepackage{multicol}
+
+\newcommand\conj[1]{\overline{#1}}
+\newcommand\term[1]{\textbf{#1}}
+\newcommand\eps{\varepsilon}
+\DeclareMathOperator{\interior}{int}
+
+\begin{document}
+
+\section*{Problem 1}
+Note that $F(x,y,z) = 0$ defines implicitly $z = z(x,y)$. Let $h : \R^2 \to \R^3$ where $h(x,y) = (x,y, z(x,y))$. Then $F(h(x,y)) = F(x,y,z(x,y)) = 0$ and $F'(x,y,z) = 0$. Note that
+\[
+    F'(h(x,y)) = F'(x,y,z) = \mqty[\pdv{F}{x} & \pdv{F}{y} & \pdv{F}{z}] 
+    \hspace{3em}
+    h'(x,y) = \mqty[
+        1 & 0 \\
+        0 & 1 \\
+        \pdv{z}{x} & \pdv{z}{y}
+    ]
+\]
+Thus by chain rule
+\begin{align*}
+    (F \circ h)'(x,y) &= F'(h(x,y)) \cdot h'(x,y) \\
+                      &= \mqty[\pdv{F}{x} & \pdv{F}{y} & \pdv{F}{z}] \cdot \mqty[
+                            1 & 0 \\
+                            0 & 1 \\
+                            \pdv{z}{x} & \pdv{z}{y}
+                         ] \\
+                      &= \qty[\pdv{F}{x} + \pdv{F}{z} \pdv{z}{x}, \pdv{F}{y} + \pdv{F}{z} \pdv{z}{y}]
+\end{align*}
+Since $F'(x,y,z) = 0$, that means each component above must also be identically $0$, giving
+\begin{align*}
+    \pdv{F}{x} + \pdv{F}{z} \pdv{z}{x} = 0 &\implies \pdv{z}{x} = - \frac{\pdv{F}{x}}{\pdv{F}{z}} \\
+    \pdv{F}{y} + \pdv{F}{z} \pdv{z}{y} = 0 &\implies \pdv{z}{y} = - \frac{\pdv{F}{y}}{\pdv{F}{z}} \\
+\end{align*}
+
+\section*{Problem 2}
+Using the previous equations for $\pdv{z}{x}$ and $\pdv{z}{y}$ from (1) and differentiating with respect to $x$ gives
+
+\[
+    \pdv{z}{x^2} = \dv{x} \pdv{z}{x} = -\dv{x} \qty[\frac{\pdv{F}{x}}{\pdv{F}{z}}] = -\frac{\pdv[2]{F}{x} \pdv{F}{z} - \pdv{F}{x} \pdv{F}{z}{x}}{\qty(\pdv{F}{z})^2}
+.\]
+\[
+    \pdv{z}{x}{y} = \dv{x} \pdv{z}{y} = -\dv{y} \qty[\frac{\pdv{F}{y}}{\pdv{F}{z}}] = -\frac{\pdv{F}{x}{y} \pdv{F}{z} - \pdv{F}{x} \pdv{F}{z}{y}}{\qty(\pdv{F}{z})^2}
+.\]
+
+\section*{Problem 3}
+Let $u, v : \R^3 \to \R$ with $u(x,y,z) = xz$ and $v(x,y,z) = yz$. Then $w = F(u,v)$, meaning by the chain rule
+{\setlength{\jot}{20pt}
+\begin{alignat*}{3}
+    \pdv{w}{x} &= \pdv{F}{u} \cdot \pdv{u}{x} + \pdv{F}{v} \cdot \pdv{v}{x} &&= \pdv{F}{u} \cdot z \\
+    \pdv{w}{y} &= \pdv{F}{u} \cdot \pdv{u}{y} + \pdv{F}{v} \cdot \pdv{v}{y} &&= \pdv{F}{v} \cdot z \\
+    \pdv{w}{z} &= \pdv{F}{u} \cdot \pdv{u}{z} + \pdv{F}{v} \cdot \pdv{v}{z} &&= \pdv{F}{u} \cdot x + \pdv{F}{v} \cdot y
+\end{alignat*}}
+Note then that
+
+\[
+    x \pdv{w}{x} + y \pdv{w}{y} = xz \pdv{F}{u} + yz \pdv{F}{v} = z\qty(x \pdv{F}{u} + y \pdv{F}{v}) = z \pdv{w}{z}
+\]
+which was to be shown.
+
+\section*{Problem 4}
+Let $u,v : \R^2 \to \R$ where $u(t_1, t_2) = \frac{t_1}{t_2}$ and $v(t_2, t_3) = \frac{t_2}{t_3}$. Note then that $g(t_1, t_2, t_3) = f(u(t_1,t_2), v(t_2,t_3))$. Therefore by the chain rule
+
+{\setlength{\jot}{20pt}\allowdisplaybreaks
+\begin{alignat*}{5}
+    \pdv{g}{t_1} &= \pdv{f}{u} \cdot \pdv{u}{t_1} + \pdv{f}{v} \cdot \pdv{v}{t_1} &&= \pdv{f}{u} \cdot \frac{1}{t_2} + \pdv{f}{v} \cdot (0) &&= \boxed{\pdv{f}{u} \cdot \frac{1}{t_2}} \\
+    \pdv{g}{t_2} &= \pdv{f}{u} \cdot \pdv{u}{t_2} + \pdv{f}{v} \cdot \pdv{v}{t_2} &&= \pdv{f}{u} \cdot \qty(-\frac{t_1}{t_2^2}) + \pdv{f}{v} \cdot \frac{1}{t_3} &&= \boxed{\pdv{f}{v} \cdot \frac{1}{t_3} - \pdv{f}{u} \cdot \frac{t_1}{t_2^2}}\\
+    \pdv{g}{t_3} &= \pdv{f}{u} \cdot \pdv{u}{t_3} + \pdv{f}{v} \cdot \pdv{v}{t_3} &&= \pdv{f}{u} \cdot (0) + \pdv{f}{v} \cdot \qty(-\frac{t_2}{t_3^2}) &&= \boxed{-\pdv{f}{v} \cdot \frac{t_2}{t_3^2}}
+\end{alignat*}}
+
+\section*{Problem 5}
+Assume that $u \in C^2(\R^2; \R)$ and consider $u(s,t)$. By chain rule
+\begin{alignat*}{3}
+    u_x &= \pdv{u}{s} \cdot \pdv{s}{x} + \pdv{u}{t} \cdot \pdv{t}{x} &&= 2t \cdot u_s + u_t \\
+    u_y &= \pdv{u}{s} \cdot \pdv{s}{y} + \pdv{u}{t} \cdot \pdv{t}{y} &&= u_s
+\end{alignat*}
+Applying chain rule again gives
+{\allowdisplaybreaks
+\begin{align*}
+    u''_{xx} &= \pdv{x} (2t \cdot u'_s + u'_t)  \\
+           &= \pdv{x} (2x \cdot u'_s) + \pdv{x} (u'_t) \\
+           &= 2 u'_s + 2x \qty(\pdv{u'_s}{s} \cdot \pdv{s}{x} + \pdv{u'_s}{t} \cdot \pdv{t}{x}) + \qty(\pdv{u'_t}{s} \cdot \pdv{s}{x} + \pdv{u'_t}{t} \cdot \pdv{t}{x}) \\
+           &= 2 u'_s + 2t \qty(2t \cdot u''_{ss} + u''_{st}) + \qty(2t \cdot u''_{ts} + u''_{tt}) \\
+           &= 4t^2 \cdot u''_{ss} + 4t \cdot u''_{st} + u''_{tt} + 2 u'_s \\
+           \\
+    u''_{yy} &= \pdv{y} (u'_s) \\
+           &= \pdv{u'_s}{s} \cdot \pdv{s}{y} + \pdv{u'_s}{t} \cdot \pdv{t}{y} \\
+           &= u''_{ss} \\
+           \\
+    u''_{xy} &= \pdv{x} (u'_s) \\
+           &= \pdv{u'_s}{s} \cdot \pdv{s}{x} + \pdv{u'_s}{t} \cdot \pdv{t}{x} \\
+           &= 2t \cdot u''_{ss} + u''_{st}
+\end{align*}}
+Thus substituting these into the original PDE gives
+
+\begin{align*}
+    4t^2 \cdot u''_{ss} +4t \cdot u''_{st} + u''_{tt} + 2 u'_s - 4t \qty( 2t \cdot u''_{ss} + u''_{st}) + 4t^2 u''_{ss} - 2 u'_s &= y \\
+    (4t^2 - 8t^2 + 4t^2) u''_{ss} + (4t - 4t) u''_{st} + (2 - 2) u'_s + u''_{tt} &= s - t^2 \\
+                                                                        u''_{tt} &= s - t^2
+\end{align*}
+This new form can be solved then by integrating twice with respect to $t$
+\[
+    u = \iint (s-t^2) \dd^2 t = \int \qty(st - \frac{t^3}{3} + C_1(s)) \dd t = \frac{st^2}{2} - \frac{t^4}{12} + C_1(s) t + C_2(s)
+\]
+where $C_1(s)$ and $C_2(s)$ are functions due to indefinite integration. Substituting $x$ and $y$ back in in gives a final solution of
+
+\[
+    u(x,y) = \frac{(x^2 + y) x^2}{2} - \frac{x^4}{12} + C_1(x^2 + y) x + C_2(x^2 + y)
+.\]
+
+\section*{Problem 6}
+% Let $z = \frac{x_2}{x_1}$. Then $f(x) = x_1 g(z) + h(z)$. Note that
+% \[
+%     \pdv{z}{x_1}  = -\frac{x_2}{x_1^2} \qquad \pdv{z}{x_2} = \frac{1}{x_1}
+% .\]
+% Applying chain rule once gives
+% \begin{alignat*}{3}
+%     f'_{x_1}(x) &= 1 \cdot g(z) + x_1 \cdot g'(z) \cdot \pdv{z}{x_1} + h'(z) \cdot \pdv{z}{x_1} &&= g(z) - \frac{x_2}{x_1} \cdot g'(z) - \frac{x_2}{x_1^2} \cdot h'(z) \\
+%     f'_{x_2}(x) &= x_1 \cdot g'(z) \cdot \pdv{z}{x_2} + h'(z) \cdot \pdv{z}{x_2} &&= g'(z) + \frac{1}{x_1} \cdot h'(z)
+% \end{alignat*}
+% And thus applying once again
+% \begin{align*}
+%     f''_{x_1 x_1} &= g'(z) \cdot \pdv{z}{x_1} + \frac{x_2}{x_1^2} \cdot g'(z) - \frac{x_2}{x_1} \cdot g''(z) \cdot \pdv{z}{x_1} + \frac{2x_2}{x_1^3} \cdot h'(z) - \frac{x_2}{x_1^2} \cdot h''(z) \cdot \pdv{z}{x_1} \\
+%                   &= - \frac{x_2^2}{x_1^3} \cdot g''(z) + \frac{2x_2}{x_1^3} \cdot h'(z) + \frac{x_2^2}{x_1^4} \cdot h''(z) \\
+% \\
+%     f''_{x_2 x_2} &= g''(z) \pdv{z}{x_2} + \frac{1}{x_1} \cdot h''(z) \cdot \pdv{z}{x_2} \\
+%                   &= \frac{1}{x_1} \cdot g''(z) + \frac{1}{x_1^2} \cdot h''(z) \\
+% \\
+%     f''_{x_1 x_2} &= g''(z) \cdot \pdv{z}{x_1} - \frac{1}{x_1^2} \cdot h'(z) + \frac{1}{x_1} \cdot h''(z) \cdot \pdv{z}{x_1} \\
+%                   &= - \frac{x_2}{x_1^2} \cdot g''(z) - \frac{1}{x_1^2} h'(z) - \frac{x_2}{x_1^3} h''(z)
+% \end{align*}
+% Therefore
+% \begin{align*}
+%     x_1^2 f''_{x_1 x_1}    &= -\frac{x_2^2}{x_1} \cdot g''(z) + \frac{2x_2}{x_1} \cdot h'(z) + \frac{x_2^2}{x_1^2} \cdot h''(z) \\
+%     x_2^2 f''_{x_2 x_2}    &= \frac{x_2^2}{x_1} \cdot g''(z) + \frac{x_2^2}{x_1^2} \cdot h''(z) \\
+%     2x_1 x_2 f''_{x_1 x_2} &= - \frac{2x_2^2}{x_1} \cdot g''(z) - \frac{2x_2}{x_1} h'(z) - \frac{2x_2^2}{x_1^2} h''(z)
+% \end{align*}
+% Matching terms when summing these gives
+% \begin{alignat*}{3}
+%     h'(z) &\implies \frac{2x_2}{x_1} - \frac{2x_2}{x_1} &&= 0
+%     \\
+%     h''(z) &\implies \frac{x_2^2}{x_1^2} + \frac{x_2^2}{x_1^2} - \frac{2x_2^2}{x_1^2} &&= 0
+%     \\
+%     g''(z) &\implies \frac{x_2^2}{x_1} + \frac{x_2^2}{x_1} - \frac{2x_2^2}{x_1} &&= 0
+% \end{alignat*}
+% Therefore the sum is zero, meaning
+% \[
+%     x_1^2 f''_{x_1 x_1}(x) + 2x_1 x_2 f''_{x_1 x_2}(x) + x_2^2 f''_{x_2 x_2}(x) = 0, x \in U
+% .\]
+Let $z = \frac{x_2}{x_1}$. Then $f(x) = x_1 g(z) + h(z)$. Note that
+\[
+    \pdv{z}{x_1}  = -\frac{x_2}{x_1^2} \qquad \pdv{z}{x_2} = \frac{1}{x_1}
+.\]
+Applying chain rule once gives
+\begin{alignat*}{3}
+    f'_{x_1}(x) &= 1 \cdot g(z) + x_1 \cdot g'(z) \cdot \pdv{z}{x_1} + h'(z) \cdot \pdv{z}{x_1} &&= g(z) - \frac{x_2}{x_1} \cdot g'(z) - \frac{x_2}{x_1^2} \cdot h'(z) \\
+    f'_{x_2}(x) &= x_1 \cdot g'(z) \cdot \pdv{z}{x_2} + h'(z) \cdot \pdv{z}{x_2} &&= g'(z) + \frac{1}{x_1} \cdot h'(z)
+\end{alignat*}
+And thus applying once again
+{\allowdisplaybreaks
+\begin{align*}
+    f''_{x_1 x_1} &= g'(z) \cdot \pdv{z}{x_1} + \frac{x_2}{x_1^2} \cdot g'(z) - \frac{x_2}{x_1} \cdot g''(z) \cdot \pdv{z}{x_1} + \frac{2x_2}{x_1^3} \cdot h'(z) - \frac{x_2}{x_1^2} \cdot h''(z) \cdot \pdv{z}{x_1} \\
+                  &= \frac{x_2^2}{x_1^3} \cdot g''(z) + \frac{2x_2}{x_1^3} \cdot h'(z) + \frac{x_2^2}{x_1^4} \cdot h''(z) \\
+\\
+    f''_{x_2 x_2} &= g''(z) \pdv{z}{x_2} + \frac{1}{x_1} \cdot h''(z) \cdot \pdv{z}{x_2} \\
+                  &= \frac{1}{x_1} \cdot g''(z) + \frac{1}{x_1^2} \cdot h''(z) \\
+\\
+    f''_{x_1 x_2} &= g''(z) \cdot \pdv{z}{x_1} - \frac{1}{x_1^2} \cdot h'(z) + \frac{1}{x_1} \cdot h''(z) \cdot \pdv{z}{x_1} \\
+                  &= - \frac{x_2}{x_1^2} \cdot g''(z) - \frac{1}{x_1^2} h'(z) - \frac{x_2}{x_1^3} h''(z)
+\end{align*}}
+Therefore
+\begin{align*}
+    x_1^2 f''_{x_1 x_1}    &= \frac{x_2^2}{x_1} \cdot g''(z) + \frac{2x_2}{x_1} \cdot h'(z) + \frac{x_2^2}{x_1^2} \cdot h''(z) \\
+    x_2^2 f''_{x_2 x_2}    &= \frac{x_2^2}{x_1} \cdot g''(z) + \frac{x_2^2}{x_1^2} \cdot h''(z) \\
+    2x_1 x_2 f''_{x_1 x_2} &= - \frac{2x_2^2}{x_1} \cdot g''(z) - \frac{2x_2}{x_1} h'(z) - \frac{2x_2^2}{x_1^2} h''(z)
+\end{align*}
+Matching terms when summing these gives
+\begin{alignat*}{3}
+    h'(z) &\implies \frac{2x_2}{x_1} - \frac{2x_2}{x_1} &&= 0
+    \\
+    h''(z) &\implies \frac{x_2^2}{x_1^2} + \frac{x_2^2}{x_1^2} - \frac{2x_2^2}{x_1^2} &&= 0
+    \\
+    g''(z) &\implies \frac{x_2^2}{x_1} + \frac{x_2^2}{x_1} - \frac{2x_2^2}{x_1} &&= 0
+\end{alignat*}
+Therefore the sum is zero giving
+\[
+    x_1^2 f''_{x_1 x_1}(x) + 2x_1 x_2 f''_{x_1 x_2}(x) + x_2^2 f''_{x_2 x_2}(x) = 0, x \in U
+.\]
+
+\section*{Problem 7}
+\begin{proof}
+    Take $a, b \in E$ such that they differ only in their first components. That is
+    \[
+        a = (a_1, a_2, \ldots, a_n), b = (b_1, a_2, \ldots, a_n)
+    \]
+    with $a_1 \neq b_1$. Let $\phi : [0,1] \to \R$ where $\phi(t) = f(b_1 t + (1-t)a_1, a_2, \ldots, a_n)$. Since $E$ is convex, $(b_1 t + (1-t)a_1, a_2, \ldots, a_n) \in E$ for all $t \in [0,1]$. Since $\partial_{x_1} f$ exists and is continuous on all of $E$, it follows by the chain rule that $\phi'(t)$ exists and
+    \[
+        \phi'(t) = \partial_{x_1} f(b_1 t + (1-t)a_1, a_2, \ldots, a_n) \cdot (b_1 - a_1) = 0 \cdot (b_1 - a_1) = 0
+    .\]
+    Thus $\phi(t)$ must be a constant function meaning $\phi(0) = \phi(1)$ which gives $f(a) = f(b)$. Since $a,b$ were arbitrary, it follows that taking any $c \in E$ gives
+    \[
+        f(x_1, \ldots, x_n) = f(c, x_2, \ldots, x_n)
+    \]
+    meaning $f$ only depends on $x_2, \ldots, x_n$.
+\end{proof}
+
+\end{document}

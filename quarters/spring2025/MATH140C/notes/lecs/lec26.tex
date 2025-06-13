@@ -1,0 +1,80 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{corollary}
+    Let $f \in C^1(\Omega, \R^n)$ with $\Omega \subseteq \R^n$ open be such that $\det f'(x) \neq 0$ for all $x \in \Omega$. Then $f$ is an \term{open map}. That is, for any open set $\omega \subseteq \Omega$, the set $f(\omega)$ is open in $\R^n$.
+\end{corollary}
+
+\begin{proof}
+    Let $\omega \subseteq \Omega$ be open and $y_0 \in f(\omega)$. Then $y_0 = f(x_0)$ for some $x_0 \in \omega$. Since then $\det f'(x_0) \neq 0$, by \Cref{thm:inversefunctionthm} there exists open nbhds $U \subseteq \omega$ of $x_0$ and $V$ of $y_0$ such that $f : U \to V$ is bjiective. Therefore $y_0 = f(x_0) \in f(U) = V \subseteq f(\omega)$. Therefore $y_0$ is in an open set, namely $V$, which is contained in $f(\omega)$. Thus $f(\omega)$ is open.
+\end{proof}
+
+\begin{corollary}
+    Let $\Omega \subseteq \R^n$ be open and $f \in C^1(\Omega, \R^n)$. If $\det f'(x) \neq 0$ for all $x \in \Omega$ and $f$ is injective, then $f(\omega)$ is open and $f : \Omega \to f(\Omega)$ is in $C^1$ and is bijective with a $C^1$ inverse.
+\end{corollary}
+
+\section[Implicit Function Thm.]{Implicit Function Theorem}
+
+Consider the following function $f : \R^2 \to \R$ where $f(x_1, x_2) = x_1^2 + x_2^2 + 1$. Note that the set $S = \qty{x \in \R^2 : f(x) = 0}$ is the same as
+\[
+    S = \qty{(x_1, x_2) \in \R^2 : x_1^2 + x_2^2 = 1}
+\]
+which geometrically is the unit circle. Let $a \in S$ where $a_2 \neq 0$. Therefore for all $x$ in a nbhd of $a$,
+\[
+    f(x_1, x_2) = 0 \Leftrightarrow x_2 = \Psi(x_1), \qquad \Psi(x_1) = \begin{cases}
+        \sqrt{1 - x_1^2} & a_2 > 0 \\
+        -\sqrt{1 - x_1^2} & a_2 < 0
+    \end{cases}
+.\]
+However if $a_2 = 0$, then there does not exist a nbhd of $a$ such that $f(x_1, x_2) = 0$ can be given as the graph of a function of $x_1$. Note that
+\[
+    \partial_{x_2} f(a_1, a_2) = 2a_2 = 0 \Leftrightarrow a_2 = 0
+.\]
+That is, the points that posed problems are those where the derivative of $f$ vanishes with respect to $x_2$.
+
+\begin{theorem}[Implicit Function Theorem]
+    \label{thm:implicitfunction}
+    Let $\Omega \subseteq \R^{n + m} = \R_{x}^n \times \R_{y}^m$ be open and $f \in C^1(\Omega, \R^n)$. Let $(x_0, y_0) \in \Omega$ be such that $f(x_0, y_0) = 0$. If $f_x'(x_0,y_0) \in \mathcal{L}(\R^n, \R^n)$ is invertible, then 
+    \begin{itemize}
+        \item There exists a nbhd $U$ of $x_0$ in $\R^n$ and a nbhd $V$ of $y_0$ in $\R^m$ such that for every $y \in V$, there exists a unique $x \in U$ where $f(x, y) = 0$
+
+        \item There exists a map $\Psi : V \to U$ in $C^1$ where $\Psi(y) = x$ and $f(\Psi(y), y) = 0$
+
+        \item $\Psi'(y) \in \mathcal{L}(\R^m, \R^n)$ is given by $\Psi'(y) = -\qty(f_x'(\Psi(y),y)^{-1}) \circ f_y'(\Psi(y), y)$ for all $y \in V$
+    \end{itemize}
+\end{theorem}
+
+\begin{example}
+    Consider $f(x,y) = x^3 y^2 - 3xy^3 - 2x^2$. Note that $f(3,1) = 27 - 9 - 18 = 0$. The differential of $f$ with respect to $y$ is $f_y'(x,y) = 2x^3 y - 9xy^2$ and $f_y'(3,1) = 27 \neq 0$. Therefore implicit function theorem applies, meaning the equation $f(x,y) = 0$ defines $y$ as $y = y(x) \in C^1$ in a nbhd of $3$. Note that $f(x, y(x)) = 0$, meaning for any $x$ in a nbhd of $1$
+    \[
+        x^3 y(x)^2 - 3x y(x)^3 - 2x^2 = 0
+    .\]
+    Differentiating this with respect to $x$ gives
+    \[
+        3x^2 y(x)^2 + 2x^3 y(x) y'(x) - 3y(x)^3 - 9x y(x)^2 y'(x) - 4x = 0
+    .\]
+    Note then that plugging in $x = 3$ and $y(3) = 1$ gives
+    \[
+        27 + 54 y'(3) - 3 - 27 y'(3) - 12 = 0 \implies y'(3) = -\frac{4}{9}
+    .\]
+\end{example}
+
+\begin{proof}[thm:implicitfunction]
+    \verb|TODO: Finish, this is only a sketch of the proof| \\
+
+    Define $F : \Omega \to \R^n \times \R^m$ where $F(x,y) = (f(x,y), y)$. Then $F(x_0, y_0) = (0, y_0)$ and 
+    \[
+        F'(x,y) = \mqty[
+        f_x'(x,y) & f_y'(x,y) \\
+        0         & 1
+        ]
+    .\]
+    Since $f_x'(x_0, y_0)$ is invertible, then so is $F'(x_0, y_0)$ since $F'(x,y)$ is a diagonal matrix and thus its determinant is $f_x'(x,y) \cdot 1 = f_x'(x,y)$ which is invertible. By IVT, there is a nbhd $W_0 \subseteq \Omega$ of $(x_0, y_0)$ and a nbhd $V_0$ of $(0, y_0)$ such that $F : W_0 \to V_0$ is bijective with a $C^1$ inverse $G : V_0 \to W_0$. For any $(z,y)$, it is possible to write 
+    \[
+        (z,y) = F(G(z,y)) = F(G_1(z,y), G_2(z,y)) = (f(G_1(z,y), G_2(z,y)), G_2(z,y))
+    .\]
+    Thus $y = G_2(z,y) \implies G(z,y) = (G_1(z,y), y)$, meaning $z = f(G_1(z,y), y)$. Therefore since $z$ can be any point in a nbhd of $0$, taking $z = 0$ gives $f(G_1(0,y),y ) = 0$, giving $\Psi(y) \coloneq G_1(0,y)$.
+\end{proof}
+
+\end{document}

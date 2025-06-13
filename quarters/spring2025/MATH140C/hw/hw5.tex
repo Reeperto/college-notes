@@ -1,0 +1,117 @@
+\documentclass{eeleyes}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[lcr]{}
+\fancyhead[l]{Eli Griffiths}
+\fancyhead[c]{MATH $140$C}
+\fancyhead[r]{HW \#$5$}
+
+\usepackage{multicol}
+
+\newcommand\conj[1]{\overline{#1}}
+\newcommand\term[1]{\textbf{#1}}
+\newcommand\eps{\varepsilon}
+\DeclareMathOperator{\interior}{int}
+
+\begin{document}
+
+\section*{Problem 1}
+\begin{proof}
+    If $a, b \in \R$ with $a \neq b$, then
+    \[
+        \qty|\frac{f(a) - f(b)}{a - b}| \leq M |a - b|
+    .\]
+    Therefore taking $x \in \R$ and $h \in \R \setminus \qty{0}$ gives
+    \[
+        0 \leq \qty|\frac{f(x + h) - f(x)}{x + h - x}| = \qty|\frac{f(x+h) - f(x)}{h}| \leq M |h|
+    .\]
+    Hence by the squeeze lemma
+    \[
+        \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} = 0
+    .\]
+    But this means that $f'(x) = 0$ everywhere meaning $f$ must be a constant function.
+\end{proof}
+
+\section*{Problem 2}
+
+\subsection*{Part A}
+The partial derivatives of $f$ when $(x,y) \neq 0$ (which can be found by normal differentiation treating $x$ or $y$ as a constant where needed) are
+\begin{align*}
+    \pdv{f}{x} \relax(x,y) &= \frac{y}{x^2 + y^2} - \frac{2 x^2 y}{(x^2 + y^2)^2} \\
+    \pdv{f}{y} \relax(x,y) &= \frac{x}{x^2 + y^2} - \frac{2 x y^2}{(x^2 + y^2)^2}
+\end{align*}
+and when $(x,y) = 0$,
+\begin{alignat*}{3}
+    \pdv{f}{x}\relax(0,0) &= \lim_{t \to 0} \frac{f(t,0) - f(0,0)}{t} &&= \lim_{t \to 0} \frac{0}{t} = 0 \\
+    \pdv{f}{x}\relax(0,0) &= \lim_{t \to 0} \frac{f(0,t) - f(0,0)}{t} &&= \lim_{t \to 0} \frac{0}{t} = 0
+\end{alignat*}
+Thus the partial derivatives exist everywhere. However, they are not both continuous at $(0,0)$. Consider the sequences $(0, \frac{1}{k})$ and $(0, -\frac{1}{k})$ for $k \in \N$. Both converge to $(0,0)$ but as $k \to \infty$,
+\begin{align*}
+    \pdv{f}{x}\relax\qty(0, \frac{1}{k}) &= k \to \infty \\
+    \pdv{f}{x}\relax\qty(0, -\frac{1}{k}) &= -k \to -\infty
+\end{align*}
+Thus $\pdv{f}{x}$ is not continuous at $0$ and therefore not continuous on all of $\R^2$, meaning $f$ cannot be $C^1$.
+
+\subsection*{Part B}
+Since $f$ has partial derivatives at the origin, then every directional derivative at the origin also exists. That is because if $v \in \R^2 \setminus \qty{0}$, by linearity of the differential
+\begin{align*}
+    f'(0,0) v &= f'(0,0) (v_1 e_1) + f'(0,0) (v_2 e_2) \\
+    &= v_1 f'(0,0) e_1 + v_2 f'(0,0) e_2 \\
+    &= v_1 \pdv{f}{x}\relax(0,0) + v_2 \pdv{f}{y}\relax(0,0) = 0
+\end{align*}
+
+\subsection*{Part C}
+No, $f$ is not continuous at the origin. Consider the paths $(x_1, x_1)$ and $(-x_1, x_1)$ where $x_1 \to 0$. Note that
+\[
+    f(x_1, x_1) = \frac{x_1^2}{2x_1^2} = \frac{1}{2}
+\]
+but
+\[
+    f(-x_1, x_1) = \frac{-x_1^2}{2x_1^2} = -\frac{1}{2}
+.\]
+Since these paths give different limits, $f$ cannot be continuous at the origin.
+
+\section*{Problem 3}
+\begin{proof}
+    Suppose $D$ is bounded and $f$ is uniformly continuous. Take $\eps = 1$. Since $f$ is uniformly continuous, there exists some $\delta > 0$ such that $\norm{x - y} \leq \delta \implies \norm{f(x) - f(y)} \leq \eps$ for all $x,y \in D$. Since $D$ is bounded, it is possible to cover $D$ with a finite number of open balls with radius $\delta$ centered at some set of points $x_1, \ldots, x_n \in D$. Note then that for any $x \in D$ that $x \in B_{1}(x_k)$ for some $x_k$, thus $\norm{x - x_k} \leq \delta$. Therefore
+    \[
+        \norm{f(x)} \leq \norm{f(x) - f(x_k)} + \norm{f(x_k)} \leq \norm{f(x_k)} + 1
+    .\]
+    Take then $M = \max\qty{\norm{f(x_1)}, \ldots, \norm{f(x_n)}} + 1$. Since for any $x \in D$, $\norm{f(x)} \leq M$, $f$ is bounded on $D$.
+\end{proof}
+
+\section*{Problem 4}
+\begin{proof}
+    Let $S = f(\R^n)$ and $\bigl(y^{(k)}\bigr)$ be a sequence in $S$ that converges to some $y \in \R^n$. Note then there exists a sequence $\bigl(x^{(k)}\bigr)$ such that $f(x^{(k)}) = y^{(k)}$ for all $k \in \N$. Therefore since $f$ is continuous
+    \[
+        \lim_{k \to \infty} f(y^{(k)}) = f(y)
+    .\]
+    But note that $f(y^{(k)}) = f(f(x^{(k)})) = f(x^{(k)}) = y_k$. Therefore
+    \[
+        \lim_{k \to \infty} f(y^{(k)}) = y
+    .\]
+    Thus $y = f(y)$ meaning $y \in S$ and $S$ is closed.
+\end{proof}
+
+\section*{Problem 5}
+\begin{proof}
+    Let $x \in A + B$. Then there exists $a \in A$ and $b \in B$ such that $x = a + b$. Since $A$ is open, there exists some $r > 0$ such that $B_r(a) \subseteq A$. Take a point $y \in B_r(x)$. Then there exists some $h$ such that $y = x + h$ and $\norm{h} < r$. Note then that $a + h \in B_r(a)$, hence $a + h \in A$. Thus $y = x + h = (a + h) + b \in A + B$. Therefore $A + B$ is open.
+\end{proof}
+
+\section*{Problem 6}
+\begin{proof}
+    Let $(a,b) \in \R^2 \setminus \Q^2$ not equal to $(0,0)$. Since $\Q^2$ is dense in $\R^2$, there exists a sequence $\bigl(x^{(k)}, y^{(k)}\bigr)$ in $\Q^2 \setminus \qty{0}$ that converges to $(a,b)$. Note then that $f(x^{(k)}, y^{(k)}) = (x^{(k)})^2 + (y^{(k)})^2 \neq 0$, but $f(a,b) = 0$. Therefore
+    \[
+        \lim_{k \to \infty} f(x^{(k)},y^{(k)}) = a^2 + b^2 \neq 0 = f(a,b)
+    \]
+    hence $f$ cannot be continuous at irrational pairs. Since $\R \setminus \Q^2$ is dense in $\Q^2$, the same argument as above applies for $(a,b) \in \Q^2$ and $\bigl(x^{(k)}, y^{(k)})$ in $\R^2 \setminus \Q^2$ but instead $f(x^{(k)}, y^{(k)}) = 0$ and $f(a,b) = a^2 + b^2 \neq 0$. Therefore $f$ cannot be continuous away from the origin, and thus also can only be differentiable at the origin.
+
+    Consider the proposed differential $\mathcal{D}(x,y) = 0$. Note then that
+    \[
+        \lim_{h \to 0} \frac{\norm{f(0 + h) - f(0) - \mathcal{D}h}}{\norm{h}} = \lim_{h \to 0} \frac{\norm{f(h)}}{\norm{h}} \leq \lim_{h \to 0} \frac{\norm{h}^2}{\norm{h}} = \lim_{h\to 0} \norm{h} = 0
+    .\]
+    Since this limit is zero, the proposed differential is the actual differential of $f$, and thus $f$ is differentiable at $0$, implying also continuity. Therefore $f$ is continuous and differentiable exclusively at $0$.
+\end{proof}
+
+\end{document}

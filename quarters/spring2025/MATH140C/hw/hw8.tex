@@ -1,0 +1,161 @@
+\documentclass{eeleyes}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[lcr]{}
+\fancyhead[l]{Eli Griffiths}
+\fancyhead[c]{MATH $140$C}
+\fancyhead[r]{HW \#$8$}
+
+\usepackage{multicol}
+
+\newcommand\conj[1]{\overline{#1}}
+\newcommand\term[1]{\textbf{#1}}
+\newcommand\eps{\varepsilon}
+\DeclareMathOperator{\interior}{int}
+
+\begin{document}
+
+\section*{Problem 1}
+By integration note that
+\[
+    T_1(x,y) = \int \pdv{T_1}{x} \dd x = \int 3x^2 y \dd x = x^3 y + C_1(y)
+.\]
+Since $\pdv{T}{y} = x^3$, then if the previous expression is to hold
+\[
+    \pdv{y} (x^3 y + C(y)) = x^3 \implies C'(y) = 0
+.\]
+Therefore $C_1(y) = c_1 \in \R$. Integrating again but this time for $f_2$ gives
+\[
+    T_2(x,y) = \int \pdv{T_2}{x} \dd x = \int y \dd x = xy + C_2(y)
+.\]
+Since $\pdv{T}{y} = x$, then if the previous expression is to hold
+\[
+    \pdv{y} (xy + C_2(y)) = x \implies C_2'(y) = 0
+.\]
+Therefore similarly $C_2(y) = c_2 \in \R$. Thus the transformation
+\[
+    T(x,y) = \qty(x^3 y + c_1 ,\; xy + c_2)
+\]
+for constants $c_1, c_2 \in \R$ has the desired differential.
+
+\section*{Problem 2}
+Yes. Let $F(x,y) = x^2 + y + \sin(xy)$. Since $F(0,0) = 0^2 + 0 + \sin(0) = 0$ and 
+\[
+    F_y'(x,y) = 1 + x \cos(xy) \implies F_y'(0,0) = 1 \neq 0
+\]
+then by inverse function theorem, there does exist $f(x)$ such that $y = f(x)$ and $F(x, f(x)) = 0$ in a neighborhood of $(0,0)$.
+
+\section*{Problem 3}
+Yes. Let $F(x,y,z) = xy - z \log y + e^{xz} - 1$. Since $F(0,1,1) = 0$ and
+\[
+    F_y'(x,y,z) = x - \frac{z}{y} \implies F_y'(0,1,1) = 0 - \frac{1}{1} = -1 \neq 0
+\]
+then by inverse function theorem, there does exist $g(x,z)$ such that $y = g(x,z)$ and $F(x, g(x,z), z) = 0$ in a neighborhood of $(0, 1, 1)$.
+
+
+\section*{Problem 4}
+\begin{proof}
+    Let $r = |x|$. Since $f$ only depends on $|x|$, then $f(x) = g(r)$ where $g : (0, \infty) \to \R$ is a $C^2$ function. Note that
+    \[
+        \pdv{r}{x_j} = \pdv{x_j} \qty(\sqrt{x_1^2 + x_2^2 + x_3^2}) = 2 \cdot x_{j} \cdot \frac{1}{2\sqrt{x_1^2 + x_2^2 + x_3^2}} = \frac{x_j}{r}
+    \]
+    and thus
+    \[
+        \pdv[2]{r}{x_j} = \pdv{x_j} \qty(\frac{x_j}{r}) = \frac{r - x_j \cdot \frac{x_j}{r}}{r^2} = \frac{r^2 - x_j^2}{r^3} = \frac{1}{r} - \frac{x_j^2}{r^3}
+    .\]
+    Therefore by chain rule
+    \[
+        \pdv{f}{x_j} = g'(r) \cdot \pdv{r}{x_j} = g'(r) \cdot \frac{x_j}{r}
+    .\]
+    Applying the chain rule once again gives
+    \[
+        \pdv[2]{f}{x_j} = \pdv{x_j} \qty(g'(r) \cdot \frac{x_j}{r}) = g''(r) \cdot \qty(\frac{x_j}{r})^2 + g'(r) \cdot \qty(\frac{1}{r} - \frac{x_j^2}{r^3})
+    .\]
+    To get $\Delta f$, simply sum over all these terms to get
+    \[
+        \Delta f = \sum_{k = 1}^3 \pdv[2]{f}{x_j} = \frac{g''(r)}{r^2} \cdot \sum_{k = 1}^3 x_j^2 + g'(r) \cdot \qty(\frac{3}{r} - \frac{1}{r^3} \sum_{k=1}^3 x_j^2)
+    .\]
+    Since $x_1^2 + x_2^2 + x_3^2 = r^2$ and $\Delta f = 0$, we obtain $\Delta f = g''(r) + g'(r) \cdot \frac{2}{r} = 0$. Let $q(r) = g'(r)$ and note that $q'(r) + q(r) \cdot \frac{2}{r} = 0$. Therefore
+    \[
+        q'(r) + q(r) \cdot \frac{2}{r} = 0 \implies r^2 q'(r) + 2r \cdot q(r) = 0 \implies \dv{r} \qty(r^2 \cdot q(r)) = 0
+    .\]
+    Thus integrating gives $r^2 \cdot q(r) = c_1$ or equivalently $g'(r) = \frac{c_1}{r^2}$. Integrating again gives $g(r) = -\frac{c_1}{r} + c_2$. Letting $a = -c_1$ and $b = c_2$ gives
+    \[
+        f(x) = g(r) = g(|x|) = \frac{a}{|x|} + b
+    .\]
+\end{proof}
+
+\section*{Problem 5}
+
+\begin{proof}
+    Let $t > 0$ and $x^{(1)}, x^{(2)} \in \R^n$ such that $\Phi_t(x^{(1)}) = \Phi_t(x^{(2)})$. Note then that
+    \begin{align*}
+        \Phi_t(x^{(1)}) &= \Phi_t(x^{(2)}) \\ 
+        x^{(1)} - t f(x^{(1)}) &= x^{(2)} - t f(x^{(2)}) \\
+        x^{(1)} - x^{(2)} &= t \qty[f(x^{(1)}) - f(x^{(2)})]
+    \end{align*}
+    Thus $|x^{(1)} - x^{(2)}| = t |f(x^{(1)}) - f(x^{(2)})|$. Since $f \in C^1$, so is $\Phi_t$.
+
+    Since $K$ is compact, it is bounded and thus there exists $R > 0$ such that $|x| \leq R$ for every $x \in K$. Since $\Phi_t$ is $C^1$ on $\R^n$, it follows that $\Phi_t$ is $C^1$ on $B_{R+2}(0)$. Therefore since an open ball is convex, by MVT there exists $M > 0$ such that for $x,y \in B_{R + 1}(0)$
+    \[
+        |f(x) - f(y)| \leq M |x - y|
+    .\]
+    Since $K \subseteq B_{R+1}(0)$, this holds for $x,y \in K$. Therefore if $x^{(1)}, x^{(2)} \in K$, then
+    \[
+        |x^{(1)} - x^{(2)}| = t |f(x^{(1)}) - f(x^{(2)})| \leq tM |x^{(1)} - x^{(2)}|
+    .\]
+    If $x^{(1)} \neq x^{(2)}$, then $|x^{(1)} - x^{(2)}| \neq 0$ and so dividing through gives $1 \leq tM \implies \frac{1}{M} \leq t$. But $t$ can be taken to be $t < \frac{1}{M}$, meaning this cannot be the case. Therefore $x^{(1)} = x^{(2)}$, and hence $\Phi_t$ is injective.
+
+    % By the continuity of $\Phi_t$, for each $a \in K$ there exists $\delta_a > 0$ such that $|x - a| \leq \delta \implies |f(x) - f(a)| \leq \frac{1}{2}$. This defines a family of open balls $B_{\delta_a}(a)$ and note that $\bigcup_{a \in K} B_{\delta_a}(a)$ is an open cover of $K$. Since $K$ is compact, then there exists a finite subcover $B_{\delta_{a_1}}(a_1) \cup \ldots \cup B_{\delta_{a_m}}(a_m)$ of $K$. Note then that if $x^{(1)}, x^{(2)} \in K$, then there must be $1 \leq j,k \leq m$ such that $x^{(1)} \in B_{\delta_{a_j}}(a_j)$ and $x^{(2)} \in B_{\delta_{a_k}}(a_k)$. Therefore
+    % \begin{align*}
+    %     \norm{x^{(1)} - x^{(2)}} &= t \norm{f(x^{(1)}) - f(x^{(2)})}  \\
+    %                              &\leq t \qty[\norm{}]
+    % \end{align*}
+\end{proof}
+
+
+\section*{Problem 6}
+
+\begin{proof}
+    Note that $f(x) = 3 x_1^4 - 4 x_1^2 x_2 + x_2^2$, therefore 
+    \[
+        \nabla f(x) = \mqty[ 12 x_1^3  - 8 x_1 x_2 & 2 x_2 - 4 x_1^2]
+    .\]
+    Since $\nabla f(0) = (0 , 0)$, $0$ is a critical point of $f$. Suppose towards contradiction that $f$ has a local extremum at $0$. If $0$ is a local maximum, then $f(x) \leq f(0) = 0$ for any $x$ in some open ball $B_r(0)$. Note that $f(0,t) = t^2$, and taking $0 < t < r$ gives $(0,t) \in B_r(0)$. But $t^2 > 0 = f(0)$, hence $0$ cannot be a local maximum.
+
+    Suppose then $0$ is a local minimum. Then $f(x) \geq f(0) = 0$ for any $x$ in some open ball $B_r(0)$. Note that $f(t, 2t^2) = -t^4$, and taking $t$ such that $0 < |(t, 2t^2)| < r$ gives $(t, 2t^2) \in B_r(0)$. But $-t^4 < 0 = f(0)$, hence $0$ cannot be a local minimum.
+    
+    In either case, $0$ cannot be a local maximum or minimum and thus is not a local extremum of $f$.
+\end{proof}
+
+\section*{Problem 7}
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item Let $K \subseteq \R^n$ be compact and assume towards contradiction that $f$ has infinitely many critical points in $K$. Let $S = \qty{x \in K : \nabla f(x) = 0 }$ and note that $S$ is infinite. Therefore it is possible to pick a sequence $\bigl(x^{(k)}\bigr)$ in $S$ with distinct terms. Since $\bigl(x^{(k)}\bigr)$ is also a sequence in $K$ and $K$ is closed and bounded, then by Bolzano-Weierstrass there is a subsequence $\bigl(x^{(k_j)}\bigr)$ that converges to some $x \in K$. Furthermore since $f$ is $C^2$, then $\nabla f$ is continuous meaning
+        \[
+            \lim_{j \to \infty} \nabla f(x^{(k_j)}) = 0 \implies \nabla f(x) = 0
+        .\]
+        Thus $x$ is a critical point of $f$ and is non degenerate since $f$ is a morse function. Since $\nabla f$ is $C^1$ and $H f$ is both the differential of $\nabla f$ and invertible at $x$ (by non degeneracy), by the inverse function theorem there exists an open nbhd $U$ of $x$ and open nbhd $V$ of $\nabla f(x)$ such that $\nabla f : U \to V$ is bijective. Since $\nabla f(x) = 0$ and $f$ must be injective, then $\nabla f(a) \neq 0$ for any $a \in U \setminus\qty{x}$. Note that $\bigl(x^{(k_j)}\bigr)$ converges to $x$ so there must exist some $J \in \N$ such that for $j \geq J$, $x^{(k_j)} \in U$ and $x^{(k_j)} \neq x$. But $\nabla f(x^{(k_j)}) = 0$, a contradiction. Therefore $f$ has finitely many critical points.
+
+        \item Note that for $x \in \R^n$ that $|x|^2 = x_1^2 + \ldots + x_n^2$. Therefore
+            \[
+                f(x) = 2 \bigl(x_1^2 + \ldots + x_n^2\bigr) - \bigl(x_1^2 + \ldots + x_n^2\bigr)^2
+            .\]
+            Thus the partial derivatives are of the form
+            \[
+                \partial_{x_j} f(x) = 4 x_j - 4 x_j (x_1^2 + \ldots + x_n^2)
+            .\]
+            Since the gradient of $f$ is simply the matrix of its partials, it is equal to $0$ when all the partial are simultaneously equal to $0$. It follows that
+            \[
+                \partial_{x_j} f(x) = 0 \implies  x_j = x_j (x_1^2 + \ldots + x_n^2)
+            \]
+            which is only true when either $x_j = 0$, or $x_1^2 + \ldots + x_n^2 = 1$ or equivalently $|x| = 1$. Since this must hold for all $1 \leq j \leq n$, the gradient of $f$ is zero when
+            \[
+                x \in \qty{0} \cup \qty{x \in \R^n : |x| = 1}
+            .\]
+            This set of points is infinite, and also contained entirely in the closed ball $B_2(0)$ which is compact. By the contrapositive of $(i)$, it follows that $f$ cannot be a Morse function.
+    \end{enumerate}
+\end{proof}
+
+\end{document}

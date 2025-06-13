@@ -1,0 +1,58 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{theorem}[Uniqueness of Taylor's Formula]
+    \label{thm:taylorformulaunique}
+    Let $D \subseteq \R^n$ be open with $a \in D$ and $f \in C^2(D; \R)$. Suppose for $h$ small that
+    \[
+        f(a + h) = C + \tilde{L}(h) + \frac{1}{2} \tilde{Q}(h) + \tilde{R}(h)
+    \]
+    where $C$ is a constant, $\tilde{L}$ is a linear form, $\tilde{Q}$ is a quadratic form, and
+    \[
+        \lim_{h \to 0} \frac{\tilde{R}(h)}{|h|^2} = 0
+    .\]
+    Then $C = f(a)$, $\tilde{L} = L$, $\tilde{Q} = Q$ as in from \Cref{thm:taylorformula}
+\end{theorem}
+
+\section{Quadratic Forms}
+
+Let $f \in C^2(D; \R)$ for $D \subseteq \R^n$ open. If $a \in D$ is a critical point of $f$, then $\nabla f(a) = 0$, and by \nameref{thm:taylorformula}
+\[
+    f(a+h) = f(a) + \frac{1}{2} Q(h) + R(h)
+.\]
+Note that this means the behavior of $f$ around small neighborhoods of $a$ is described mostly by $Q(h)$ since $f(a)$ is a constant and $R(h)$ will drop off. Thus it is of interest to understand $Q(h)$ to understand the behavior of $f$ at $a$.
+
+\begin{definition}[Definiteness]
+    Let $Q$ be a quadratic form on $\R^n$. Then $Q$ is
+    \begin{itemize}
+        \item \term{positive semidefinite} if $Q(h) \geq 0$ for all $h \in \R^n$
+        \item \term{positive definite} if $Q(h) > 0$ for all $h \in R^n \setminus \qty{0}$
+        \item \term{negative semidefinite} if $Q(h) \leq 0$ for all $h \in \R^n$
+        \item \term{negative definite} if $Q(h) < 0$ for all $h \in \R^n \setminus \qty{0}$
+    \end{itemize}
+    If $Q$ is neither positive or negative semidefinite, then $Q$ is \term{indefinite}.
+\end{definition}
+
+\begin{remark}
+    $Q$ is indefinite iff there exists $h^{+}, h^{-} \in \R^n$ such that $Q(h^{+}) > 0$ and $Q(h^{-}) < 0$.
+\end{remark}
+
+An important property of quadratic forms is that they always have an associated matrix form. That is for any quadratic form $Q$ on $\R^n$, there exists a symmetric $n \times n$ matrix $A$ such that
+\[
+    Q(h) = Ah \cdot h
+.\]
+The properties of $Q$ can be then ascertained by the properties of its associated matrix $A$, as outlined below.
+
+\begin{theorem}
+    Let $Q$ be a quadratic form. Then for all eigenvalues $\lambda_i$ of the associated matrix $A$
+    \begin{itemize}
+        \item $Q$ is positive definite $\Leftrightarrow$ $\lambda_i > 0$
+        \item $Q$ is positive semidefinite $\Leftrightarrow$ $\lambda_i \geq 0$
+        \item $Q$ is negative definite $\Leftrightarrow$ $\lambda_i < 0$
+        \item $Q$ is negative semidefinite $\Leftrightarrow$ $\lambda_i \leq 0$
+        \item $Q$ is indefinite $\Leftrightarrow$ there exists $\lambda_j > 0$ and $\lambda_k < 0$
+    \end{itemize}
+\end{theorem}
+
+\end{document}

@@ -1,0 +1,86 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{theorem}
+    Let $f : D \to \R^p$ with $D \subseteq \R^n$ open. If $\pdv{f}{x_j}\relax (x)$ for $1 \leq j \leq n$ exists and is continuous on $D$, then $f$ is differentiable on $D$.
+\end{theorem}
+
+\begin{proof}
+    It suffices to consider the case $p = 1$ since differentability of $f$ is equivalent to differentiability of all the component functions $f_j : D \to \R$. Let $x \in D$. The desired result is that
+    \[
+        \lim_{h \to 0} \frac{|f(x+h) - f(x) - \sum_{k=1}^n \pdv{f}{x_k}\relax(x) h_k|}{\norm{h}} = 0
+    .\]
+    Note that $f(x+h) - f(x)$ can be written as
+
+    \begin{align*}
+        f(x+h) - f(x) = \sum_{k=1}^n \bigl[&f(x_1 + h_1, \ldots, x_k + h_k, x_{k+1}, \ldots, x_n) \\
+                      &- f(x_1 + h_1, \ldots, x_{k-1} + h_{k-1}, x_k, \ldots, x_n)\bigr]
+    \end{align*}
+
+    Let $g(t) = f(\ldots, x_{k-1} + h_{k-1}, t, x_{k+1}, \ldots)$. Then the $k^\thh$ term in the sum is
+    \begin{align*}
+        &f(x_1 + h_1, \ldots, x_{k-1} + h_{k-1}, x_{k} + h_k, x_{k+1}, \ldots, x_n) \\
+        &\quad\quad - f(x_1 + h_1, \ldots, x_{k-1} + h_{k-1}, x_{k}, x_{k+1}, \ldots, x_n) = g(x_k + h_k) - g(x_k)
+    \end{align*}
+    Since the partials exists, then $g$ is differentiable and thus by mean value theorem $\exists \psi_k \in (x_k, x_{k} + h_k)$ such that
+    \[
+        g(x_k + h_k) - g(x_k) = g'(\psi_k) (x_k + h_k - x_k) = \pdv{f}{x_k}\relax(\psi_k) \cdot h_k
+    .\]
+    Hence
+    \begin{multline}
+        f(x+h) - f(x) - \sum_{k=1}^n \pdv{f}{x_k}\relax(x) h_k  \\
+        = \sum_{k=1}^n \qty(\pdv{f}{x_k}\relax(\ldots, x_{k-1} + h_{k-1}, \psi_k, x_{k+1}, \ldots) - \pdv{f}{x_k}\relax(x)) h_k
+    \end{multline}
+    Since each partial is continuous at $x \in D$, for any $\eps > 0$ there exists $\delta_k > 0$ such that for any $y \in D$
+    \[
+        \norm{x - y} \leq \delta_k \implies \norm{\pdv{f}{x_k}\relax(y) - \pdv{f}{x_k}\relax(x)} \leq \eps
+    .\]
+    Take $\delta = \min\qty{\delta_1, \ldots, \delta_n} > 0$. Then for $\norm{h} \leq \delta$ since
+    \begin{align*}
+        \norm{(\ldots, x_{k-1} + h_{k-1}, \psi_k, x_{k+1}, \ldots) - (x_1, \ldots, x_n)} &= \norm*{(h_1, \ldots, h_{k-1}, \overbrace{\psi_k - x_k}^{\leq h_k}, 0, \ldots)} \\
+        &\leq \norm{h} \leq \delta
+    \end{align*}
+    Thus
+    \[
+        \qty|f(x+h) - f(x) - \sum_{k=1}^n \pdv{f}{x_k}\relax(x) h_k| < \eps \sum_{k=1}^n |h_k| \leq \eps |h| n
+    .\]
+    % TODO: Replace all norms with absolute value
+\end{proof}
+
+\section{Chain Rule}
+
+\begin{theorem}
+    \label{thm:linearboundedness}
+    Let $T \in \mathcal{L}(\R^n, \R^p)$. Then $\exists c \in \R$ such that for all $x \in \R^n$
+    \[
+        \qty|Tx|_{\R^p} \leq c|x|_{\R^n}
+    .\]
+\end{theorem}
+
+\begin{proof}
+    Recall that $T$ has a matrix form $(T_{jk})$ that is $p \times n$. Then by Cauchy-Schwarz
+    \[
+        \qty|Tx|^2 = \sum_{j=1}^p ((Tx)_j)^2 = \sum_{j=1}^p \qty(\sum_{j=1}^n T_{jk} x_k)^2 \leq \sum_{j=1}^p \qty(\sum_{k=1}^n T_{jk}^2) \qty(\sum_{k=1}^n x_k^2) = c^2 |x|^2
+    \]
+    Thus rooting both sides gives $|Tx| \leq c |x|$.
+\end{proof}
+
+\begin{definition}[Continuity Class]
+    Let $D \subseteq \R^n$ be open. Then the \term{continuity classes} of functions are
+    \begin{itemize}
+        \item $C^0 (D; \R^p) \coloneq \qty{ f : D \to \R^p : \text{$f$ is continuous}}$
+        \item $C^1 (D; \R^p) \coloneq \qty{ f : D \to \R^p : \pdv{f}{x_k}\text{ exists and is continuous on } D, 1 \leq j \leq n}$
+        \item $C^2 (D; \R^p) \coloneq \qty{ f : D \to \R^p : f \in C^1(D; \R^p) \text{ and } \pdv{f}{x_j} \in C^1(D; \R^p), 1 \leq k \leq n}$
+    \end{itemize}
+\end{definition}
+
+\begin{theorem}
+$f \in C^1(D; \R^p)$ iff $f$ is differentiable on $D$ and $f' : D \to \mathcal{L}(\R^n, \R^p)$ is continuous
+\end{theorem}
+
+\begin{proof}
+    % TODO: Finish this proof
+\end{proof}
+
+\end{document}

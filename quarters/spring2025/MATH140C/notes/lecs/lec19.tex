@@ -1,0 +1,98 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\section{Mean Value Theorem}
+
+Recall the mean value theorem for single variable real functions.
+\begin{theorem}
+    Let $f: \R \to \R$ be differentiable. Then for any $x, x' \in \R$, there exists $\psi \in (x, x')$ such that
+    \[
+        f(x) - f(x') = f'(\psi) \cdot (x - x')
+    .\]
+\end{theorem}
+In this current form, the mean value theorem does not generalize to functions $f : \R^n \to \R^p$. Consider $f : \R \to \R^2$ where $f(t) = (\cos t, \sin t)$. Then the derivative is $f'(t) = (- \sin t, \cos t)$. Take $x = 2 \pi$ and $x' = 0$. Then
+\begin{align*}
+    f(x) = (1,0) \quad\quad f(x') = (1, 0)
+\end{align*}
+If the mean value theorem held, then
+\begin{align*}
+    f(x) - f(x') &\stackrel{?}{=} f'(\psi) (x - x') \\
+    (0,0) &\stackrel{?}{=} 2 \pi (- \sin \psi, \cos \psi)
+\end{align*}
+But $|2 \pi (-\sin \psi, \cos \psi)| = 2 \pi$ and so can never be $(0,0)$. Thus more care is needed to generalize mean value theorem.
+
+\begin{definition}[Convex Set]
+    A set $\Omega \subseteq \R^n$ is \term{convex} if for all $x,y \in \Omega$ the line segment $tx + (1 - t)y \in \Omega$ for all $0 \leq t \leq 1$.
+\end{definition}
+
+\begin{theorem}[Mean Value Theorem]
+    \label{thm:mvt}
+    Let $\Omega \subseteq \R^n$ be open, bounded, and convex. Let $\tilde{\Omega} \subset \R^n$ be open such that $\tilde{\Omega} \supseteq \conj{\Omega}$ and $f \in C^1(\tilde{\Omega}; \R^p)$. Then there exists $M > 0$ such that for all $x,y \in \Omega$ then
+    \[
+        |f(x) - f(y)| \leq M |x-y|
+    .\]
+\end{theorem}
+
+\begin{proof}
+    Note that $\pdv{f}{x_k} \in C(\tilde{\Omega}; \R^p)$. Since $\conj{\Omega}$ is compact, then
+    \[
+        M \coloneq \sup_{x \in \conj{\Omega}} \qty|\pdv{f}{x_k}\relax(x)| < \infty
+    .\]
+    Recall that the Jacobi matrix of $f'(x)$ is
+    \[
+        f'(x) = \mqty[
+        \pdv{f_1}{x_1}\relax(x) & \cdots & \pdv{f_1}{x_n}\relax(x) \\
+        \vdots                  &        & \vdots                  \\
+        \pdv{f_p}{x_1}\relax(x) & \cdots & \pdv{f_p}{x_n}\relax(x) \\
+        ]
+    \]
+    and thus for any $x \in \R^n$
+    \[
+        \norm{f'} \leq \qty[\sum_{\substack{j = 1, \ldots, p \\ k = 1, \ldots, n}} \qty(\pdv{f_j}{x_k}\relax(x))^2]^{\frac{1}{2}}
+    .\]
+    Let $x, y \in \Omega$ and $g(t) \coloneq f(tx + (1-t) y)$ with $0 \leq t \leq 1$. Since $\Omega$ is convex, $g(t)$ is well defined on $\Omega$. Then by the \nameref{thm:chainrule}, $g \in C^1([0,1]; \R^p)$ and
+    \[
+        g'(t) = f'(tx + (1-t)y) (x-y)
+    .\]
+    Since $f'$ is a linear transformation and $(x-y) \in \R^n$
+    \[
+        |g'(t)| \leq \norm{f'(tx + (1-t)y)} |x - y| \leq M |x - y|
+    .\]
+    By the fundamental theorem of calculus
+    \[
+        |g(1) - g(0)| = \qty|\int_0^1 g'(t) \dd t| \leq \int_0^1 |g'(t)| \dd t \leq M |x-y|
+    .\]
+    Therefore since $g(1) = f(x)$ and $g(0) = f(y)$, meaning
+    \[
+        |f(x) - f(y)| \leq M |x-y|
+    .\]
+\end{proof}
+
+\section{Scalar Functions}
+
+\begin{definition}[Scalar Function]
+    A function $f$ is a \term{scalar function} if it is of the form $f : D \to \R$ where $D \subseteq \R^n$ open.
+\end{definition}
+
+\begin{definition}[Local Extrema]
+    A scalar function $f : D \to \R$ has a \term{local maximum} at $a \in D$ if there exists an open ball $B_r(a) \subseteq D$ such that for all $x \in B_r(a)$
+    \[
+        f(x) \leq f(a)
+    .\]
+    Similarly, $f$ has a \term{local minimum} at $a \in D$ if there exists an open ball $B_r(a) \subseteq D$ such that for all $x \in B_r(a)$
+    \[
+        f(a) \leq f(x)
+    .\]
+    If $f$ has either a local minimum of maximum at $a \in D$, it is said $f$ has a \term{local extremum} at $a$.
+\end{definition}
+
+\begin{remark}
+    Let $f : D \to \R$ be a scalar function that is differentiable at $a \in D$. Then $f'(a) \in \mathcal{L}(\R^n,\R)$ an the Jacobi matrix of $f$ at $a$ is
+    \[
+        f'(a) = \mqty[\partial_{x_1} f(a) & \cdots & \partial_{x_n} f(a)]
+    .\]
+    This specific case of the differential is called the \term{gradient} of $f$ and is denoted as $\nabla f(a)$
+\end{remark}
+
+\end{document}

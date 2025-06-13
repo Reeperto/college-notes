@@ -1,0 +1,61 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{theorem}
+    Let $f : D \to \R$ be a scalar function differentiable at $a \in D$. Then if $f$ has a local extremum at $a$ then $\nabla f(a) = 0$.
+\end{theorem}
+
+\begin{proof}
+    Suppose $f$ has a local maximum at $a$. Let $\delta > 0$ such that $R = (a_1 - \delta, a_1 + \delta) \times \ldots \times (a_n - \delta, a_n + \delta) \subseteq D$. Then for any $x \in R$, $f(x) \leq f(a)$. Consider the set of functions
+    \[
+        g_j : (a_j - \delta, a_j + \delta) \to R : t \mapsto f(\ldots, a_{j-1}, t, a_{j+1}, \ldots)
+    .\]
+    Since $f$ is differentiable at $a$, then $g_j$ is differentiable at $a_j$ and
+    \[
+        g_j'(a_j) = \lim_{t \to 0} \frac{g_j(a_j + t) - g_j(a_j)}{t} = \partial_{x_j} f(a_j)
+    .\]
+    Since $a$ is a local maximum, then $a_j$ is a local maximum for $g_j$. Thus $g'(a_j) = 0$ from single variable analysis. Thus $\partial_{x_j} f(a_j) = 0$ for all $1 \leq j \leq n$, meaning $\nabla f(a) = 0$. A very similar arguement works for a local minimum.
+\end{proof}
+
+\begin{definition}[Critical Point]
+    Let $f : D \to \R$ be a scalar function differentiable at $a \in D$. Then $a$ is a \term{critical point} for $f$ if $\nabla f (a) = 0$. The associated value $f(a)$ is called the \term{critical value}.
+\end{definition}
+
+\section[Second Derivatives]{Second Order Derivatives}
+
+\begin{definition}[Second Order Partials]
+    Let $f : D \to \R^p$ with $D \subseteq \R^n$ open. If the partial derivatives $\partial_{x_k} f$ exist on $D$, and the partials themselves have partial derivatives, then these derivatives are called the \term{second order partial derivatives} of $f$, and are denoted equivalently as
+    \[
+        \partial_{x_i x_k}^2 f \Leftrightarrow \pdv{f}{x_i}{x_k} \Leftrightarrow f''_{x_i x_k}
+    \]
+    with $1 \leq i,k \leq n$.
+\end{definition}
+
+\begin{example}
+    The order of partials does matter. Consider $f : \R^2 \to \R$ where
+    \[
+        f(x) = \begin{cases}
+            x_1 x_2 \qty(\frac{x_1^2 - x_2^2}{x_1^2 + x_2^2}) & x \neq 0 \\
+            0                                                 & x = 0
+        \end{cases}
+    .\]
+    Note that
+    \begin{align*}
+        \partial_{x_1} f(0, x_2) &= \lim_{t \to 0} \frac{f(0 + t, x_2) - f(0,x_2)}{t} \\ 
+                                 &= \lim_{t \to 0} \frac{1}{t} \cdot t \cdot x_2 \qty(\frac{t^2 - x_2^2}{t^2 + x_2^2}) \\
+                                 &= \lim_{t \to 0} x_2 \qty(\frac{t^2 - x_2^2}{t^2 + x_2^2}) \\
+                                 &= -x_2
+    \end{align*}
+    Thus $\partial_{x_2} \partial_{x_1} f(0, x_2) = -1$ meaning $\partial^2_{x_2 x_1} f(0,0) = -1$. Now note
+    \begin{align*}
+        \partial_{x_2} f(x_1, 0) &= \lim_{t \to 0} \frac{f(x_1, 0 + t) - f(x_1, 0)}{t} \\
+        &= \lim_{t \to 0} \frac{1}{t} \cdot t \cdot x_1 \qty(\frac{x_1^2 - t^2}{x_1^2 + t^2}) \\
+        &= \lim_{t \to 0} x_1 \qty(\frac{x_1^2 - t^2}{x_1^2 + t^2}) \\
+        &= x_1
+    \end{align*}
+    Thus $\partial_{x_1} \partial_{x_2} f(x_1, 0) = 1$ meaning $\partial^2_{x_1 x_2} f(0,0) = 1$, which does not equal $\partial^2_{x_2 x_1} f(0,0)$.
+\end{example}
+
+
+\end{document}

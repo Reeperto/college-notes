@@ -5,16 +5,23 @@
 \RequireLuaModule{eeleyes.lua}
 
 % General document structure
-\LoadClass[12pt]{report}
-\usepackage[letterpaper, margin=1.5in]{geometry}
+\LoadClass[12pt, fleqn]{report}
+\usepackage[letterpaper, margin=1.25in]{geometry}
 \renewcommand{\baselinestretch}{1.25}
+\usepackage{enumitem}
 
 % Font and math
 \usepackage{tgschola}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amsthm,thmtools}
+\usepackage{mathtools}
 \usepackage[scaled=1.075,nc,vvarbb]{newtxmath}
 \usepackage{physics}
+
+\NewDocumentCommand{\N}{}{\mathbb{N}}
+\NewDocumentCommand{\Q}{}{\mathbb{Q}}
+\NewDocumentCommand{\R}{}{\mathbb{R}}
+\DeclareMathOperator{\spann}{span}
 
 % Tikz + PgfPlots
 \usepackage{tikz}
@@ -22,7 +29,7 @@
 
 % Boxes
 \usepackage{tcolorbox}
-\tcbuselibrary{skins}
+\tcbuselibrary{skins, breakable}
 \tcbsetforeverylayer{shield externalize}
 
 \newtcolorbox{hookbox}[1]{
@@ -59,34 +66,46 @@
 \makeatletter
 \NewDocumentCommand{\addproofref}{}{
     \par\hfill 
-    \edef\tmp@proofreference{\directlua{tex.print(RefMgr.to_proof_namespace(RefMgr.pop_stack()))}}
+    \edef\tmp@proofreference{\directlua{tex.print(Mgr.label_as_proof(Mgr.peek_label()))}}
     \footnotesize\hyperref[\tmp@proofreference]{Proof}
 }
 
-\newcommand{\createTheorem}[2]{
-\newcounter{@eel@counters@#1}
-\setcounter{@eel@counters@#1}{1}
+\newcommand{\createTheorem}[2]{ %-----------------------------------------------
 
-\NewDocumentEnvironment{#1}{o o}{
-    \phantomsection
-    \IfNoValueTF{##1}{
-    \begin{hookbox}{\textbf{#2 \csname the@eel@counters@#1\endcsname .}}
-    }{
-    \begin{hookbox}{\textbf{#2.} {##1}}
-    }
+\newcounter{@eel@counters@#1}[chapter]
+\expandafter\def\csname the@eel@counters@#1\endcsname {\thechapter.\arabic{@eel@counters@#1}}
+\Crefname{@eel@counters@#1}{#2}{{#2}s}
 
-    \IfNoValueF{##2}{
-        \label{##2}
-        \directlua{RefMgr.push_stack("##2")}
-        \directlua{RefMgr.add_ref("##2", "##1")}
-    }
+\directlua{Mgr.init_env("#1")}
+
+\newenvironment{#1}[1][]{
+\refstepcounter{@eel@counters@#1}
+
+\IfNoValueTF{##1}{
+\begin{hookbox}{\textbf{#2 \csname the@eel@counters@#1\endcsname .}}
 }{
-        \directlua{RefMgr.pop_stack("##2")}
-    \end{hookbox}
-    \refstepcounter{@eel@counters@#1}
-    \@afterindentfalse\@afterheading
+\begin{hookbox}{\textbf{#2 \csname the@eel@counters@#1\endcsname .} {##1}}
 }
+    \phantomsection
+    \def\@tmp@envname{##1}
+
+    \edef\@currentlabel{\csname the@eel@counters@#1\endcsname}
+    \edef\@currentlabelname{\@tmp@envname}
+    \edef\@currentlabeltype{@eel@counters@#1}
+
+    \let\@oldlabel\label
+
+    \renewcommand{\label}[1]{
+        \directlua{Mgr.push_label("####1")}
+        \@oldlabel{####1}
+    }
+}{%
+    % \protected@write\@auxout{}{\string\@eel@addthmentry{#1}{\@tmp@envname}{\directlua{tex.print(Mgr.peek_label())}}}
+    \directlua{Mgr.pop_label()}
+\end{hookbox}
+\@afterindentfalse\@afterheading
 }
+} %-----------------------------------------------------------------------------
 
 \RenewDocumentEnvironment{proof}{o}{
 \phantomsection
@@ -97,8 +116,8 @@
 \IfNoValueTF{#1}{
 \bf Proof.\normalfont
 }{
-\label{\directlua{tex.print(RefMgr.to_proof_namespace("#1"))}}
-\bf \hyperref[#1]{Proof of \directlua{tex.print(RefMgr.search_ref("#1"))}.} \normalfont
+\label{\directlua{tex.print(Mgr.label_as_proof("#1"))}}
+\bf \hyperref[#1]{Proof of \Cref*{#1}.} \normalfont
 }
 }{
 \popQED
@@ -107,23 +126,9 @@
 
 \makeatother
 
-\createTheorem{theorem}{Theorem}
-\createTheorem{definition}{Def}
-\createTheorem{corollary}{Corollary}
-\createTheorem{lemma}{Lemma}
-
-\declaretheoremstyle[
-    spaceabove = 1em,
-    spacebelow = 1em
-]{examplestyle}
-
-\declaretheorem[style=examplestyle]{example}
-
-\DeclareMathOperator{\spann}{span}
-\newcommand{\R}{\mathbb{R}}
-
 % Links
 \usepackage{hyperref}
+\usepackage{cleveref}
 \usepackage{xcolor}
 
 \hypersetup{
@@ -132,3 +137,21 @@
     citecolor={blue!50!black},
     urlcolor={blue!80!black}
 }
+
+\createTheorem{theorem}{Theorem}
+\createTheorem{definition}{Def}
+\createTheorem{corollary}{Corollary}
+\createTheorem{lemma}{Lemma}
+
+\makeatletter
+\newcommand{\tableofdefs}{
+}
+\makeatother
+
+\declaretheoremstyle[
+    spaceabove = 1em,
+    spacebelow = 1em
+]{blankstyle}
+
+\declaretheorem[style=blankstyle, numbered=no]{example}
+\declaretheorem[style=blankstyle, numbered=no]{remark}
