@@ -1,0 +1,92 @@
+\documentclass{eeleyes}
+\usepackage{fancyhdr}
+
+\newcommand\conj[1]{\overline{#1}}
+\newcommand\term[1]{\textbf{#1}}
+\newcommand\eps{\varepsilon}
+\DeclareMathOperator{\interior}{int}
+
+\pagestyle{fancy}
+
+\begin{document}
+
+\section*{Ex 1.11}
+
+\begin{proof}
+    We will prove $1 \Leftrightarrow 2 \Leftrightarrow 3$. \hfill
+    \begin{enumerate}
+        \item[$1 \Leftrightarrow 2)$]
+            Suppose $E$ is Jordan measurable and take $\eps > 0$. By the definition of the inner and outer Jordan measure, it follows that there exists elementary sets $A$ and $B$ such that $A \subset E$ and $E \subset B$ as well as
+            \[
+                m(A) + \frac{\eps}{2} \leq m_*^J(E) \hspace{2cm} m_J^*(E) \leq m(B) - \frac{\eps}{2}
+            .\]
+            Subtracting the first inequality from the second gives
+            \[
+                m(B) - \frac{\eps}{2} - m(A) - \frac{\eps}{2} \leq m_J^*(E) - m^J_*(E) = 0 \implies m(B) - m(A) \leq \eps
+            .\]
+            Since $B \setminus A$ and $A$ are disjoint and $(B \setminus A) \cup A = A$,
+            \begin{align*}
+                m(A) &= m((B \setminus A) \cup A) \\ 
+                     &= m(B \setminus A) + m(A) \implies m(B \setminus A) = m(B) - m(A)
+            \end{align*}
+            Therefore $m(B \setminus A) \leq \eps$.
+
+            Suppose then $(ii)$ holds.
+        \item[$2 \Leftrightarrow 3)$]
+            Suppose that $(iii)$ holds and take $\eps > 0$. Since $m_J^*(A \Delta E) \leq \eps$, then there exists an elementary set $B$ such that $A \Delta E \subset B$ and $m_J^*(A \Delta E) \leq m(B) + \eps$.
+    \end{enumerate}
+\end{proof}
+
+\section*{Ex. 1.14}
+
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item Take $\eps > 0$. Since $B$ is closed and bounded, it is compact meaning $f$ is uniformly continuous over $B$. Therefore $\exists \delta > 0$ such that $|x-y| < \delta \implies |f(x) - f(y)| < \eps$. Partition $B$ into a disjoint set of closed boxes $Q_i$ whose diameters are smaller than $\delta$. Associate then the set of points $x_i$ with $Q_i$ where $x_i \in Q_i$. Note then that $x \in Q_i$ gives $|x - x_i| < \delta \implies |f(x) - f(x_i)| < \eps$. Thus we have
+        \[
+            \qty{(x,f(x)) : x \in Q_i} \subset Q_i \times [f(x_i) - \eps, f(x_i) + \eps]
+        .\]
+        Since all the $Q_i$ cover $B$, it follows
+        \[
+            G(f) \subset \bigcup_i Q_i \times [f(x_i) - \eps, f(x_i) + \eps]
+        .\]
+        The measure of the union can be bounded above by $2 \eps \cdot M$ where $M$ is the total size of all the $Q_i$. The total size of all the $Q_i$ is constant since it is simply the size of $B$. Therefore we have
+        \[
+            0 \leq m_*^J(G(f)) \leq m^*_J(G(f)) \leq 2 \eps \cdot M
+        .\]
+        Since $\eps$ is arbitrary, it follows that $m(G(f)) = 0$.
+    \end{enumerate}
+\end{proof}
+
+\section*{Ex 1.18}
+
+\begin{proof}
+    
+\end{proof}
+
+\section*{Ex 1.25}
+
+\begin{proof}
+    
+\end{proof}
+
+\section*{Ex 1.26}
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}[label=\roman*)]
+        \item Since $E \subset \conj{E}$ it follows $m_J^*(E) \leq m_J^*(\conj{E})$, thus it suffices to show the reverse inequality. Take $\eps > 0$. Then there exists boxes $B_1, \ldots, B_n$ such that $E \subset \bigcup B_i$ and $\sum |B_i| \leq m_J^*(E) + \eps$. Note that $|\conj{B_i}| = |B_i|$ and
+        \[
+            \conj{E} \subset \conj{\bigcup_i B_i} = \bigcup_i \conj{B_i}
+        .\]
+        Therefore $m_J^*(\conj{E}) \leq \sum |\conj{B_i}| = \sum |B_i| \leq m_J^*(E) + \eps$, giving $m_J^*(\conj{E}) \leq m_J^*(E) + \eps$. Since $\eps$ was arbitrary, we have equality.
+
+        \item We use a similar argument as above. Clearly $m^J_*(\mathring{E}) \leq m^J_*(E)$. Take $\eps > 0$. Then there exists boxes $B_1, \ldots, B_n$ such that $\bigcup B_i \subset E$ with $m^J_*(E) + \eps < \sum |B_i|$.
+
+        \item Suppose $E$ is Jordan measurable. Then $m_J^*(E) = m^J_*(E)$. Since $\mathring{E} \subset \conj{E}$, $m^J_*(\mathring{E}) \leq $
+
+        \item Since $\conj{[0,1]^2 \setminus \Q^2} = [0,1]^2 = \conj{[0,1]^2 \cap \Q^2}$, it follows $m_J^*([0,1]^2 \setminus \Q^2) = m_J^*([0,1]^2 \cap \Q^2) = m_J^*([0,1]^2) = 1$. But $\interior([0,1]^2 \setminus) = \varnothing = \interior([0,1]^2 \cap \Q^2)$, thus $m^J_*([0,1]^2 \setminus \Q) = m^J_*([0,1]^2 \cap \Q^2) = m^J_*(\varnothing) = 0$. Therefore neither $[0,1]^2 \setminus \Q^2$ or $[0,1]^2 \cap \Q^2$ are Jordan measurable.
+    \end{enumerate}
+\end{proof}
+
+\end{document}
+

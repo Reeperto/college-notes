@@ -21,6 +21,7 @@
 \NewDocumentCommand{\N}{}{\mathbb{N}}
 \NewDocumentCommand{\Q}{}{\mathbb{Q}}
 \NewDocumentCommand{\R}{}{\mathbb{R}}
+\NewDocumentCommand{\Z}{}{\mathbb{Z}}
 \DeclareMathOperator{\spann}{span}
 
 % Tikz + PgfPlots

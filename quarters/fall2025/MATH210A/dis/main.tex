@@ -1,0 +1,34 @@
+\documentclass{eeleyes}
+\usepackage{subfiles}
+
+\usepackage{fancyhdr}
+
+\newcommand\conj[1]{\overline{#1}}
+\newcommand\term[1]{\textbf{#1}}
+\newcommand\eps{\varepsilon}
+\DeclareMathOperator{\interior}{int}
+
+\newcommand\thh{\text{th}}
+\newcommand{\coloneqcolon}{\mathrel{\mathop{:}\!\!=\!\!\mathop{:}}}
+
+\NewDocumentEnvironment{romanlist}{}
+{\begin{enumerate}[label=\roman*)]}
+{\end{enumerate}}
+
+\begin{document}
+
+% \tableofdefs
+% \newpage
+
+\newtheorem{com}{{\color{blue} Comment}}[section]
+\newtheorem{que}{{\color{blue} Question}}[section]
+\newtheorem*{ans}{{\color{orange}\em Answer}}
+\newtheorem*{rem}{{\color{magenta}{\em Remark}}}
+\newtheorem*{hint}{{\color{brown}{\em Hint}}}
+
+\pagestyle{fancy}
+
+\subfile{dis-sep-30.tex}
+
+\end{document}
+

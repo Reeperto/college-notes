@@ -1,0 +1,39 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+
+\begin{que}
+    Kyle: What is the intuition behind the discretization of the box size and why is equivalent to the product definition $(|B| = \prod_i |I_i|)$.
+\end{que}
+
+\begin{ans}
+    It will only hold in the case of a box. Recalling the definition of a box $B = I_1 \times \ldots \times I_n$, if $I_i = [a_i, b_i]$ we have
+    \[
+        |B| = \prod_i |I_i| = \prod_i (b_i - a_i)
+    .\]
+    Focusing on the single dimensional case (which generalizes via cross products), take $N \in \N_0$ and note that $k / N \in \Z / N$ is in $I$ iff $a \leq \frac{k}{N} \leq b$, which is the same as $\lceil aN \rceil \leq k \leq \lfloor bN \rfloor$. By simple counting it follows that
+    \[
+        \qty|I \cap \frac{\Z}{N}| = \lfloor bN \rfloor - \lceil aN \rceil + 1
+    .\]
+    This can be bounded to 
+    \begin{align*}
+        (bN - 1) - (aN + 1) + 1 &\leq \lfloor bN \rfloor - \lceil aN \rceil + 1 \leq bN - (aN - 1) + 1 \\
+        N(b-a) - 1  &\leq \lfloor bN \rfloor - \lceil aN \rceil + 1 \leq N(b-a) + 2 \\
+    \end{align*}
+    Therefore
+    \[
+        (b-a) - \frac{1}{N} \leq \frac{1}{N} \cdot \qty|I \cap \frac{\Z}{N}| \leq (b-a) + \frac{2}{N}
+    \]
+    which in the limit gives the desired result $|I| = b - a = \lim_{n \to \infty} \frac{1}{N} \qty|I \cap \frac{\Z}{N}|$.
+\end{ans}
+
+\begin{remark}
+    Charlie: What about for an elementary set $E = \coprod_i B_i$ defining its ``size'' as a supremum over all disjoint decompositions? For example:
+    \[
+        |E| = \sup \qty{\sum_i^N |B_i| : B_i \cap B_j = \varnothing, B_i \in E}
+    .\]
+    This could possibly be extended to open sets as well? Open boxes with rational corners would provide a nice basis for $\R^d$.
+\end{remark}
+
+
+\end{document}
