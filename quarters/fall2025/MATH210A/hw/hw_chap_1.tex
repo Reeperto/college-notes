@@ -1,0 +1,214 @@
+\documentclass[hw_all.tex]{subfiles}
+
+\begin{document}
+
+\section*{Ex 1.2}
+
+\begin{proof}
+    Let $E = B_1 \cup \ldots \cup B_n$ and $F = V_1 \cup \ldots \cup V_m$ where $B_i$, $V_j$ are boxes in $\R^{d}$.
+    \begin{enumerate}[label=(\roman*)]
+        \item By definition, $E$ and $F$ are the unions of finite boxes, and thus $E \cup F$ is the union of finite boxes meaning it is elementary.
+
+        \item Note that the intersection of two intervals is always an interval (assuming $\varnothing$ is also an interval). That is because if the intersection is non-empty and the endpoints of the intervals are $a_1, b_1$ and $a_2, b_2$, then the endpoints of their intersection are $\min(a_1, a_2)$ and $\max(b_1, b_2)$. Thus the intersection of two boxes is itself a box. Note
+            \[
+                E \cap F = \bigcup_{i} \bigcup_{j} B_i \cap V_j
+            \]
+            which is the union of the intersection of boxes, which themselves are boxes. Hence $E \cap F$ is elementary.
+
+        \item 
+        \item Since $E \setminus F$ and $F \setminus E$ are elementary from $(iii)$, then their union is also elementary from $(i)$. Thus $E \Delta F$ is elementary.
+        \item Note that $E + x = \bigcup_{i} (B_i + x)$ thus we only need to consider $B_i + x$. Suppose $B_i = [a_1,b_1] \times \ldots \times [a_d, b_d]$ (since the following argument works regardless of endpoint inclusion). Note then that
+            \[
+                B_i + x = [a_1 + x_1, b_1 + x_1] \times \ldots \times [a_d + x_d, b_d + x_d]
+            \]
+            which is still a box. Thus $E$ is the union of a finite number of boxes and therefore elementary.
+    \end{enumerate}
+\end{proof}
+
+\section*{Ex 1.7}
+
+\begin{proof}
+    Let $c = \tilde{m}([0,1)^d)$. Note that finite additivity and non-negativity of $\tilde{m}$ give monotonicity because if $A \subset B$, then $\tilde{m}(B \setminus A) \geq 0$ and 
+    \[
+        \tilde{m}(B) = \tilde{m}(A \cup (B \setminus A)) \geq \tilde{m}(A) + \tilde{m}(B \setminus A) \geq \tilde{m}(A)
+    .\]
+    We can now extend the known value of $\tilde{m}$ to general boxes.
+    \begin{itemize}
+        \item Take $n \in \N$. Then $[0,1)^d$ can be subdivided into $n^d$ cubes of side length $\frac{1}{n}$. By translation invariance, each of these cubes must have the same measure, thus $\tilde{m} \left([0, \frac{1}{n})^d\right) = \frac{c}{n^d}$. 
+        \item Let $B$ be a box with rational endpoints. By translation invariance it can be assumed $B = \prod_{i=1}^d [0, r_i)$ where $r_i \in \Q$. For some $q \in \N$, we can then write $r_i = \frac{p_i}{q}$ for some $p_i \in \Z$. It is therefore possible to partition $B$ into $p_1 p_2 \ldots p_d$ boxes of side length $\frac{1}{q}$. It follows from the previous part then that 
+            \[
+            \tilde{m}(B) = p_1 \ldots p_d \cdot \frac{c}{q^d} = c \cdot \prod_{i=1}^d r_i = c m(B)
+            .\]
+        \item Now let $B$ be a box with real endpoints. Again by translation invariance it can be assumed $B = \prod_{i=1}^d [0, t_i)$. Take $q \in \N$ and set $p_i = \lfloor qt_i \rfloor$. Define then
+            \[
+                B_L = \prod_{i=1}^d \left[0, \frac{p_i}{q}\right) \hspace{1cm} B_U = \prod_{i=1}^d \left[0, \frac{p_i + 1}{q}\right)
+            .\]
+            Note that $B_L \subset B \subset B_U$ and 
+            \[
+                \frac{p_1 \ldots p_d}{q} \leq t_1 \ldots t_d \leq \frac{(p_1 + 1)\ldots(p_d + 1)}{q} \tag{\star}
+            \]
+            which in the limit as $q \to \infty$ leads to both sides converging to $t_1 \ldots t_d$. Monotonicity gives $\tilde{m}(B_L) \leq \tilde{m}(B) \leq \tilde{m}(B_U)$. From the previous part, we have
+            \[
+                \tilde{m}(B_L) = c \cdot \frac{p_1 \ldots p_d}{q} \hspace{1cm} \tilde{m}(B_U) = c \cdot \frac{(p_1 + 1) \ldots (p_d + 1)}{q}
+            .\]
+            Therefore
+            \[
+                c \cdot \frac{p_1 \ldots p_d}{q} \leq \tilde{m}(B) \leq c \cdot \frac{(p_1 + 1) \ldots (p_d + 1)}{q}
+            .\]
+            In the limit as $q \to \infty$, it follows then in conjunction with $(\star)$ that $\tilde{m}(B) = c \cdot t_1 \ldots t_2 = c m(B)$.
+    \end{itemize}
+    Now consider an elementary set $E$. Then there is a disjoint decomposition of $E$ into boxes $B_1 \cup \ldots B_n$. By finite additivity of $\tilde{m}$, it follows
+    \[
+        \tilde{m}(B) = \sum_{i} \tilde{B_i} = \sum_{i} c \cdot m(B_i) = c \sum_{i} m(B_i) = c m(E)
+    \]
+    which was to be shown.
+\end{proof}
+
+\section*{Ex 1.11}
+
+\begin{proof}
+    We will prove $1 \Rightarrow 2 \Rightarrow 3 \Rightarrow 1$. \hfill
+    \begin{enumerate}
+        \item[$1 \Rightarrow 2)$]
+            Suppose $E$ is Jordan measurable and take $\eps > 0$. By the definition of the inner and outer Jordan measure, it follows that there exists elementary sets $A$ and $B$ such that $A \subset E$ and $E \subset B$ as well as
+            \[
+                m(A) + \frac{\eps}{2} \leq m_*^J(E) \hspace{2cm} m_J^*(E) \leq m(B) - \frac{\eps}{2}
+            .\]
+            Subtracting the first inequality from the second gives
+            \[
+                m(B) - \frac{\eps}{2} - m(A) - \frac{\eps}{2} \leq m_J^*(E) - m^J_*(E) = 0 \implies m(B) - m(A) \leq \eps
+            .\]
+            Since $B \setminus A$ and $A$ are disjoint and $(B \setminus A) \cup A = A$,
+            \begin{align*}
+                m(A) &= m((B \setminus A) \cup A) \\ 
+                     &= m(B \setminus A) + m(A) \implies m(B \setminus A) = m(B) - m(A)
+            \end{align*}
+            Therefore $m(B \setminus A) \leq \eps$.
+        \item[$2 \Rightarrow 3)$]
+            Take $\eps > 0$ and suppose there exists elementary sets $A \subset E \subset B$ such that $m(B \setminus A) \leq \eps$. Note that $A \setminus E = \varnothing$, thus $A \Delta E = E \setminus A$. Since $E \setminus A \subset B$ and $(E \setminus A) \cap A = \varnothing$, $E \setminus A \subset B \setminus A$ and thus $A \Delta E \subset B \setminus A$. Therefore $m_J^*(A \Delta E) \leq m(B \setminus A) \leq \eps$.
+        \item[$3 \Rightarrow 1)$]
+            Take $\eps > 0$ and suppose there exists and elementary set $A$ such that $m_J^*(A \Delta E) \leq \eps$. Then for any $\delta > 0$ there exists some elementary set $C$ such that $A \Delta E \subset C$ and $m(C) \leq m_J^*(A \Delta E) + \delta \leq \eps + \delta$. Note that $A \cup C \supset E$ and $A \setminus C \subset E$ are both elementary sets. Therefore we have
+            \[
+                m_J^*(E) \leq m_J^*(A \cup C) = m(A \cup C) \leq m(A) + m(C) \leq m(A) + (\eps + \delta)
+            \]
+            and
+            \[
+                m^J_*(E) \geq m^J_*(A \setminus C) = m(A \setminus C) \geq m(A) - m(C) \geq m(A) - (\eps + \delta)
+            .\]
+            Putting these together gives
+            \[
+                m(A) - (\eps + \delta) \leq m^J_*(E) \leq m_J^*(E) \leq m(A) + (\eps + \delta)
+            .\]
+            Since $\delta$ was arbitrary, we can reduce the inequality bounds to $m(A) \pm \eps$. Furthermore since $\eps$ was arbitrary, $m^J_*(E) = m_J^*(E) = m(A)$ and thus $E$ is measurable.
+    \end{enumerate}
+\end{proof}
+
+\section*{Ex. 1.13}
+
+\begin{proof}
+    \begin{enumerate}
+        \item[(i)] Take $\eps > 0$. Then there exists elementary sets $A_1, A_2, B_1, B_2$ such that $A_1 \subset E_1 \subset B_1$, $A_2 \subset E_2 \subset B_2$ and $m(B_1 \setminus A_1), m(B_2 \setminus A_2) \leq \eps$. 
+            \begin{itemize}
+                \item Note that $A_1 \cup A_2 \subset E_1 \cup E_2 \subset B_1 \cup B_2$ and
+                    \begin{align*}
+                        (B_1 \cup B_2) \setminus (A_1 \cup A_2) &= (B_1 \setminus (A_1 \cup A_2)) \cup (B_2 \setminus (A_1 \cup A_2)) \\
+                                                                &\subset (B_1 \setminus A_1) \cup (B_2 \setminus A_2)
+                    \end{align*}
+                    Therefore $m((B_1 \cup B_2) \setminus (A_1 \cup A_2)) \leq m(B_1 \cup A_1) + m(B_2 \setminus A_2) \leq 2 \eps$. Since $A_1 \cup A_2$ and $B_1 \cup B_2$ are elementary, $E_1 \cup E_2$ is Jordan measurable.
+
+                \item Note that $A_1 \cap A_2 \subset E_1 \cap E_2 \subset B_1 \cap B_2$  and
+                    \begin{align*}
+                        (B_1 \cap B_2) \setminus (A_1 \cap A_2) &= (B_1 \setminus (A_1 \cap A_2)) \cup (B_2 \setminus (A_1 \cap A_2)) \\
+                                                                &\subset (B_1 \setminus A_1) \cup (B_2 \setminus A_2)
+                    \end{align*}
+                \item 
+                \item Since $E_1 \Delta E_2 = (E_1 \setminus E_2) \cup (E_2 \setminus E_1)$, $E_1 \Delta E_2$ is Jordan measurable by $(i)$ and $(iii)$.
+            \end{itemize}
+        \item[(ii)] Since the elementary measure is non-negative and $m(E_1) = m^J_*(E_1) = \sup\qty{m(A) : A \subset E_1, A \in \mathcal{E}(\R^d)} \geq 0$
+        \item[(iv)] If $A \subset E_1$ is elementary, then $A \subset E_2$, thus the supremum over all inner elementary sets for $E_1$ is a subset of the inner elementary sets for $E_2$. Thus $m^J_*(E_1) \leq m^J_*(E_2)$, which gives $m(E_1) \leq m(E_2)$ since $E_1$ and $E_2$ are Jordan measurable.
+        \item[(v)] Pick $\eps > 0$ and elementary sets $B_1 \supset E_1, B_2 \supset E_2$ such that $m(B_1) - m(E_1) \leq \eps$ and $m(B_2) - m(E_2) \leq \eps$. Since $E_1 \cup E_2 \subset B_1 \cup B_2$ by (iv) it follows
+            \[
+                m(E_1 \cup E_2) \leq m(B_1 \cup B_2) \leq m(B_1) + m(B_2) \leq m(E_1) + m(E_2) + 2\eps
+            .\]
+            Since $\eps$ was arbitrary, it follows $m(E_1 \cup E_2) \leq m(E_1) + m(E_2)$.
+        \item[(iii)] Take $\eps > 0$. Then there exists elementary sets $A_1 \subset E_1, A_2 \subset E_2$ such that $m(E_1) - m(A_1) \leq \eps$ and $m(E_2) - m(A_2) \leq \eps$. Since $E_1 \cap E_2 = \varnothing$, $A_1 \cap A_2 = \varnothing$ which means $m(A_1 \cup A_2) = m(A_1) + m(A_2)$. Note that $A_1 \cup A_2 \subset E_1 \cup E_2$, which by (iv) gives
+            \[
+                m(E_1 \cup E_2) \geq m(A_1 \cup A_2) = m(A_1) + m(A_2) \geq m(E_1) + m(E_2) - 2\eps
+            .\]
+            Since $\eps$ was arbitrary, it follows $m(E_1 \cup E_2) \geq m(E_1) + m(E_2)$ which in conjunction with (v) gives $m(E_1 \cup E_2) = m(E_1) + m(E_2)$.
+        \item[(vi)] Take $\eps > 0$. Then there exists elementary sets $A \subset E_1 \subset B$ such that $m(B \setminus A) \leq \eps$. Note that $A+x \subset E_1 + x \subset B+x$. Since $m(\cdot)$ is translation invariant for elementary sets, it follows $m(A+x) = m(A)$ and $m(B+x) = m(B)$. Note then by (iv) that
+            \[
+                m(A) \leq m(E_1) \leq m(B) 
+            \]
+            and by the definition of the outer/inner Jordan measure that
+            \[
+                m(A) = m(A+x) \leq m^J_*(E_1+x) \leq m_J^*(E_1+x) \leq m(B+x) = m(B)
+            .\]
+            Since $m(B \setminus A) = m(B) - m(A) \leq \eps$ we have both $|m(E_1) - m_J^*(E_1+x)| \leq \eps$ and $|m(E_1) - m^J_*(E_1+x)|$. The choice of $\eps$ was arbitrary, hence $m_J^*(E_1 + x) = m^J_*(E_1+x) = m(E)$.
+    \end{enumerate}
+\end{proof}
+
+\section*{Ex. 1.14}
+
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item 
+            Take $\eps > 0$. Since $B$ is closed and bounded, it is compact meaning $f$ is uniformly continuous over $B$. Therefore $\exists \delta > 0$ such that $|x-y| < \delta \implies |f(x) - f(y)| < \eps$. Partition $B$ into a disjoint set of closed boxes $Q_i$ whose diameters are smaller than $\delta$. Associate then the set of points $x_i$ with $Q_i$ where $x_i \in Q_i$. Note then that $x \in Q_i$ gives $|x - x_i| < \delta \implies |f(x) - f(x_i)| < \eps$. Thus we have
+            \[
+                \qty{(x,f(x)) : x \in Q_i} \subset Q_i \times [f(x_i) - \eps, f(x_i) + \eps]
+            .\]
+            Since all the $Q_i$ cover $B$, it follows
+            \[
+                G(f) \subset \bigcup_i Q_i \times [f(x_i) - \eps, f(x_i) + \eps]
+            .\]
+            The measure of the union can be bounded above by $2 \eps \cdot M$ where $M$ is the total size of all the $Q_i$. The total size of all the $Q_i$ is constant since it is simply the size of $B$. Therefore we have
+            \[
+                0 \leq m_*^J(G(f)) \leq m^*_J(G(f)) \leq 2 \eps \cdot M
+            .\]
+            Since $\eps$ is arbitrary, it follows that $m(G(f)) = 0$.
+
+        \item 
+            Take $\eps > 0$. Partition $B$ into the boxes $Q_i$ as described above. Let $m_i = \inf_{x \in B_i} f(x)$ and $M_i = \sup_{x \in B_i} f(x)$, and define the elementary sets
+            \[
+                L = \bigcup_{i} Q_i \times [0, m_i] \hspace{2cm} U = \bigcup_{i} Q_i \times [0, M_i].
+            \]
+            Note that $A \subset B(f) \subset B$ and that $0 \leq M_i - m_i \leq \eps$. Therefore
+            \[
+                m(U \setminus L) = m\qty(\bigcup_i Q_i \times [m_i, M_i]) \leq \sum_i |Q_i| (M_i - m_i) \leq \eps \sum_i |Q_i|
+            .\]
+            Similar to above, the total size of all the $Q_i$ is constant giving $m(U \setminus L) \leq \eps \cdot M$, hence $B(f)$ is Jordan measurable.
+    \end{enumerate}
+\end{proof}
+
+\section*{Ex 1.18}
+
+\begin{proof}
+    
+\end{proof}
+
+\section*{Ex 1.25}
+
+\begin{proof}
+    
+\end{proof}
+
+\section*{Ex 1.26}
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}[label=\roman*)]
+        \item Since $E \subset \conj{E}$ it follows $m_J^*(E) \leq m_J^*(\conj{E})$, thus it suffices to show the reverse inequality. Take $\eps > 0$. Then there exists boxes $B_1, \ldots, B_n$ such that $E \subset \bigcup B_i$ and $\sum |B_i| \leq m_J^*(E) + \eps$. Note that $|\conj{B_i}| = |B_i|$ and
+        \[
+            \conj{E} \subset \conj{\bigcup_i B_i} = \bigcup_i \conj{B_i}
+        .\]
+        Therefore $m_J^*(\conj{E}) \leq \sum |\conj{B_i}| = \sum |B_i| \leq m_J^*(E) + \eps$, giving $m_J^*(\conj{E}) \leq m_J^*(E) + \eps$. Since $\eps$ was arbitrary, we have equality.
+
+        \item We use a similar argument as above. Clearly $m^J_*(\mathring{E}) \leq m^J_*(E)$. Take $\eps > 0$. Then there exists boxes $B_1, \ldots, B_n$ such that $\bigcup B_i \subset E$ with $m^J_*(E) + \eps < \sum |B_i|$.
+
+        \item Suppose $E$ is Jordan measurable. Then $m_J^*(E) = m^J_*(E)$. Since $\mathring{E} \subset \conj{E}$, $m^J_*(\mathring{E}) \leq $
+
+        \item Since $\conj{[0,1]^2 \setminus \Q^2} = [0,1]^2 = \conj{[0,1]^2 \cap \Q^2}$, it follows $m_J^*([0,1]^2 \setminus \Q^2) = m_J^*([0,1]^2 \cap \Q^2) = m_J^*([0,1]^2) = 1$. But $\interior([0,1]^2 \setminus) = \varnothing = \interior([0,1]^2 \cap \Q^2)$, thus $m^J_*([0,1]^2 \setminus \Q) = m^J_*([0,1]^2 \cap \Q^2) = m^J_*(\varnothing) = 0$. Therefore neither $[0,1]^2 \setminus \Q^2$ or $[0,1]^2 \cap \Q^2$ are Jordan measurable.
+    \end{enumerate}
+\end{proof}
+
+\end{document}
