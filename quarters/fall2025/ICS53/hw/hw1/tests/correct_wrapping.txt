@@ -1,0 +1,13 @@
+Short line
+Exactly eighty characters follows:
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+Now a line that is slightly longer than eighty characters and should wrap once a
+t or before column eighty.
+This line contains    multiple    spaces    and should wrap correctly even with 
+irregular spacing.
+A singlewordthatgoesonandsoonandsoonandsoonandsoonandsoonandsoonandsoonandsoonan
+dsoonandsoonandsoonandsoonandsoonandsoonandsoonandsoonandsoonandsoonandsoonandso
+onandsoonandsoonandsoon.
+Blank line follows:
+
+End.

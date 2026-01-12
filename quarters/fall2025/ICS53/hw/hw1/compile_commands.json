@@ -1,0 +1,32 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/formattxt",
+      "src/hw1.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw1",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw1/src/hw1.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw1/bin/formattxt"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/formattxt",
+      "src/helpers1.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw1",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw1/src/helpers1.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw1/bin/formattxt"
+  }
+]

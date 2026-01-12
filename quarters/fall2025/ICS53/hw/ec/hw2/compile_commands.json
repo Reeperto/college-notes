@@ -1,0 +1,242 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/p1test_main",
+      "src/helpers2.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/src/helpers2.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/bin/p1test_main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/p1test_main",
+      "src/linkedlist.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/src/linkedlist.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/bin/p1test_main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/p1test_main",
+      "src/hw2.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/src/hw2.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/bin/p1test_main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/p1test_main",
+      "tests/p1test_main.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/tests/p1test_main.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/bin/p1test_main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/p2test_main",
+      "src/linkedlist.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/src/linkedlist.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/bin/p2test_main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/p2test_main",
+      "src/helpers2.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/src/helpers2.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/bin/p2test_main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/p2test_main",
+      "src/hw2.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/src/hw2.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/bin/p2test_main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/p2test_main",
+      "tests/p2test_main.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/tests/p2test_main.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/bin/p2test_main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/linkedlisttest_main",
+      "src/linkedlist.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/src/linkedlist.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/bin/linkedlisttest_main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/linkedlisttest_main",
+      "src/helpers2.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/src/helpers2.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/bin/linkedlisttest_main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/linkedlisttest_main",
+      "src/hw2.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/src/hw2.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/bin/linkedlisttest_main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/linkedlisttest_main",
+      "tests/linkedlisttest_main.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/tests/linkedlisttest_main.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/bin/linkedlisttest_main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/53library",
+      "src/53library.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/src/53library.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/bin/53library"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/53library",
+      "src/linkedlist.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/src/linkedlist.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/bin/53library"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/53library",
+      "src/helpers2.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/src/helpers2.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/bin/53library"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-g",
+      "-o",
+      "bin/53library",
+      "src/hw2.c"
+    ],
+    "directory": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2",
+    "file": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/src/hw2.c",
+    "output": "/Users/reeperto/.schoolFiles/quarters/fall2025/ICS53/hw/hw2/bin/53library"
+  }
+]

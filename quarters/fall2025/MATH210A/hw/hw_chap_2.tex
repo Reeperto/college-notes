@@ -1,0 +1,402 @@
+\documentclass[hw_all.tex]{subfiles}
+
+\begin{document}
+
+\section*{Ex 2.13}
+
+\begin{proof}
+    \begin{enumerate}
+        \item[i $\Rightarrow$ ii)]
+            Suppose $E$ is Lebesgue measurable and take $\eps > 0$. Then there exists $O \overset{o}{\supset} E$ such that $m^*(O \setminus E) \leq \eps$. Note that $O \Delta E = (O \setminus E) \cup (E \setminus O) = O \setminus E$ since $O \supset E$. Thus $m^*(O \Delta E) = m^*(O \setminus E) \leq \eps$.
+
+        \item[ii $\Rightarrow$ i)]
+            Suppose there is an open set $O$ such that $m^*(O \Delta E) \leq \eps$. This means that $m^*(O \setminus E) \leq \eps$ and thus there exists an open set $C$ covering $O \setminus E$ and $m^*(C) \leq m^*(O \setminus E) + \eps = 2 \eps$ ($C$ can come from taking a countable collection of open boxes from the definition of outer measure). Taking $O' = O \cup C$, we have $O'$ is open and $O' \setminus E \subset (O \setminus E) \cup C$. Thus by subadditivity
+            \[
+                m^*(O \setminus E) \leq m^*(O \setminus E) + m^*(C) \leq 3 \eps
+            \]
+            which was to be shown.
+
+        \item[i $\Leftrightarrow$ iii)]
+            Suppose $E$ is measurable. Then $E^c$ is measurable, hence there exists and open set $O \supset E^c$ such that $m^*(O \setminus E^c) \leq \eps$. Let $F = O^c$ and note that $F$ is closed $E \setminus F = E \cap O = O \setminus E^c$. Therefore
+            \[
+                m^*(E \setminus F) = m(O \setminus E^c) \leq \eps
+            .\]
+            which was to be shown.
+
+            Suppose then there is a closed set $F \subset E$ such that $m^*(E \setminus F) \leq \eps$. Then $O = F^c$ is an open set and $O \setminus E = E^c \cap O = E \setminus F$. Therefore
+            \[
+                m^*(O \setminus E) = m(E \setminus F) \leq \eps
+            \]
+            which was to be shown.
+
+        \item[iii $\Rightarrow$ iv)]
+            Take $\eps > 0$ and suppose there exists a closed set $F \subset E$ such that $m^*(E \setminus F) \leq \eps$. Note that $F \Delta E = (F \setminus E) \cup (E \setminus F) = E \setminus F$ since $F \subset E$. Thus $m^*(F \Delta E) = m^*(E \setminus F) \leq \eps$.
+
+        \item[iv $\Rightarrow$ i)]
+            Take $\eps > 0$ and suppose there exists a closed set $F$ such that $m^*(E \Delta F) \leq \eps$. Note that $O = F^c$ is an open set and $E \Delta F = E^c \Delta O$, thus
+            \[
+                m^*(O \Delta E^c) = m^*(E \Delta F) \leq \eps
+            .\]
+            From the established equivalency for (ii) $\Leftrightarrow$ (i), it follows $E^c$ is measurable and thus so is $E$.
+
+            
+        \item[i $\Rightarrow$ v)]
+            Taking $E_\eps = E$ gives the result directly since $m^*(E \Delta E_\eps) = m^*(\varnothing) = 0 < \eps$ for any $\eps > 0$.
+
+        \item[v $\Rightarrow$ ii)]
+            Suppose there exists a Lebesgue measurable set $E_\eps$ such that $m^*(E \Delta E_\eps) \leq \eps$. Since $E_\eps$ is measurable, by the equivalency of (ii) $\Leftrightarrow$ (i) there exists some open set $O$ such that $m^*(O \Delta E) \leq \eps$. Since $A \Delta C = (A \Delta B) \cup (B \Delta C)$ for any sets $A, B, C$, it follows
+            \[
+                m^*(O \Delta E) \leq m^*(O \Delta E_\eps) + m^*(E_\eps \Delta E) \leq 2\eps
+            \]
+            which was to be shown.
+    \end{enumerate}
+\end{proof}
+
+\section*{Ex 2.18}
+
+\begin{proof}
+    \begin{enumerate}
+        \item
+            Take $x \in E$. From pointwise convergence it follows $\exists N \in \N$ such that $|\mathds{1}_{E_n}(x) - \mathds{1}_{E}(x)| < \frac{1}{2}$ for every $n \geq N$. But this means that $\mathds{1}_{E_n}(x) = \mathds{1}_{E}(x)$ since any indicator function only takes on the values $\qty{0,1}$. Therefore $x \in E_n$ for every $n \geq N$. Thus
+            \[
+                E \subset \bigcup_{N \in \N} \bigcap_{n \geq N} E_n \eqcolon L
+            .\]
+            Now take $x \in L$. Then there is some $N \in \N$ such that $x \in E_n$ for all $n \geq N$. Thus $\mathds{1}_{E_n}(x) = 1$ for every $n \geq N$. It follows then $\mathds{1}_{E} = \lim_{n \to \infty} \mathds{1}_{E_n}(x) = 1$, meaning $x \in E$. Therefore we have the other subset inclusion giving $E = L$.
+
+            Since every $E_n$ is measurable, the countable intersection of them is also measurable. This collection of countable intersections are all measurable, thus the countable union of them is also measurable. Hence $L$ is measurable, which means $E$ is measurable.
+
+        \item 
+            Since from (a) we know $E$ is measurable, we have $|m(E_n) - m(E)| \leq m(E_n \Delta E)$. Let $A_k = \bigcup_{n \geq k} E_n \Delta E$. From (a), we know that for sufficiently large $N$, it is either the case that $x \in E_n$ for all $n > N$, or $x \notin E_n$ for all $n > N$, of which precisely are the cases where $x \in E$ or $x \notin E$ respectively. Therefore
+            \[
+                A \coloneq \bigcap_{k \in \N} A_k = \varnothing
+            .\]
+            Since each $A_k$ is the countable union of measurable sets, each $A_k$ is measurable, and $A$ is measurable since it is the countable intersection of measurable sets. Since each $E_n \subset F$, it follows $E \subset F$ and thus $A_k \subset F$. Therefore $m(A_k) < \infty$ meaning by continuity from above
+            \[
+                \lim_{k \to \infty} m(A_k) = m(A) = 0
+            .\]
+            Note that for $n \geq k$ that $E_n \Delta E \subset A_k$, so $m(E_n \Delta E) \leq m(A_k)$ which combined with previous result means $\lim_{n \to \infty} m(E_n \Delta E) = 0$. Therefore $m(E_n) = m(E)$.
+        \item 
+            Let $E_n = n + [0,1]$. Note that $m(E_n) = 1$ for all $n$ by translation invariance. However, for any $x \in \R$, there exists some $N \in \N$ such that $x < n$ for all $n > N$. Thus $x \notin E_n$ for $n > N$, and hence $\mathds{1}_{E_n}(x) \neq 1$ for $n > N$. This means that $\lim_{n \to \infty} \mathds{1}_{E_n} = \mathds{1}_{\varnothing}$, and since $m(\varnothing) = 0 \neq 1$, (b) does not hold.
+    \end{enumerate}
+\end{proof}
+
+\section*{Ex 2.19}
+
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            Note that for each $n \in \N$, there exists an open set $O_n \supset E$ such that $m^*(O_n) \leq m^*(E) + \frac{1}{n}$. Let $O = \bigcap_{i \in \N} O_n$. Since open sets are measurable, and $O$ is the countable intersection of open sets, it follows $O$ is measurable. Note that $O \supset E$ meaning $m^*(E) \leq m(O)$, and thus if $m^*(E) = \infty$ then $m(O) = \infty$ and we are done. Suppose then $m^*(E) < \infty$. Since $O \supset O_n$ for every $n$, then 
+            \[
+                m(O) = m^*(O) \leq m^*(O_n) \leq m^*(E) + \frac{1}{n}
+            \]
+            which in the limit as $n \to \infty$ gives $m(O) \leq m^*(E)$. Since we know from the infinite case $m^*(E) \leq m(O)$, we have $m(O) = m^*(E)$, which was to be shown.
+
+        \item
+            Suppose $E$ is bounded and take $\eps > 0$. Since $E$ is measurable, there then exists a closed set $F_\eps \subset E$ such that $m(E \setminus F_\eps) \leq \eps$. Note that $m(E \setminus F_\eps) = m(E) - m(F_\eps) \leq \eps$, and thus $m(E) - \eps \leq m(F_\eps)$. Since $E$ is bounded, every $F_\eps$ is bounded and thus compact. Thus since there exists a compact set $K \subset E$ for every $\eps > 0$ where $m(E) - \eps \leq m(K)$, it follows
+            \[
+                m(E) = \sup_{K \subset E, K \text{ compact}} m(K)
+            .\]
+
+            Suppose then $E$ is unbounded. Let $E_R \coloneq E \cap B_R(0)$. Each $E_R$ is measurable since it is the intersection of two measurable sets. Since $E = \bigcup_{R \in \N_0} E_R$, it follows that
+            \[
+                m(E) = \lim_{R \to \infty} m(E_R)
+            .\]
+            Any compact subset of $E_R$ is also a compact subset of $E$, so from the previous result for bounded sets we know that
+            \[
+                m(E_R) = \sup_{K \subset E_R, K \text{ compact}} m(K) \leq \sup_{K \subset E, K \text{ compact}} m(K)
+            .\]
+            Note then that if $m(E) = \infty$, then taking the limit as $R \to \infty$ of the above inequality gives the desired result. Assume then $m(E) < \infty$. By monotonicity, any compact subset $K$ of $E$ will have $m(K) \leq m(E)$, thus combining this result with the previous inequality gives
+            \[
+                m(E_R) \leq \sup_{K \subset E, K \text{ compact}} m(K) \leq m(E)
+            .\]
+            In the limit as $R \to \infty$, the lower bound becomes $m(E)$ and thus the desired result is achieved.
+    \end{enumerate}
+\end{proof}
+
+\section{Exercise 2.20}
+
+\begin{proof}
+    \begin{enumerate}
+        \item[i $\Rightarrow$ ii)]
+            Suppose $E$ is measurable and $m(E) < \infty$. Take $\eps > 0$. Then by outer regularity, there exists an open set $O$ such that $m^*(O) \leq m^*(E) + \eps$. Since $O \supset E$, it follows
+            \[
+                m^*(O \setminus E) \leq m^*(O) - m^*(E) \leq \eps
+            .\]
+            Since $E$ is measurable and $O$ is open and hence also measurable, $m(O) \leq m(E) + \eps < \infty$.
+
+        \item[ii $\Rightarrow$ iii)]
+            Suppose there exists an open set $O \supset E$ where $m(O) < \infty$ and $m^*(O \setminus E) \leq \eps$. Let $O_R = O \cap B_R(0)$. Since $O = \bigcup_{R \in \N} O_R$, by continuity it follows $m(O) = \lim_{R \to \infty} O_R$. Since $m(O)$ is finite, there then exists some $N > 0$ such that $m(O \setminus O_N) \leq \eps$. Note that $O_N \setminus E \subset O \setminus E$ and $E \setminus O_N \subset O \setminus O_N$, thus
+            \begin{align*}
+                m^*(E \Delta O_N) &\leq m^*(E \setminus O_N) + m^*(O_N \setminus E) \\
+                                 &\leq m^*(O \setminus O_N) + m^*(O \setminus E) \\
+                                 &\leq \eps + \eps \\
+                                 &=2\eps
+            \end{align*}
+            Since $O_N$ is the intersection of an open set with an open and bounded set, it itself is also open and bounded, giving the desired set for (iii).
+
+        \item[iii $\Rightarrow$ i)]
+            Suppose there exists a bounded open set $O$ such that $m^*(E \Delta O) \leq \eps$. Note that $m^*(E \setminus O) \leq m^*(E \Delta O) \leq \eps$ (the same argument holds for $O \setminus E$), thus there exists an open set $C \supset E \setminus O$ such that $m^*(C) \leq m^*(E \setminus O) + \eps \leq 2\eps$. Let $O' = O \cup C$, and note that $O' \supset E$ and $O' \setminus E \subset (O \setminus E) \cup C$. Therefore
+            \[
+                m^*(O' \setminus E) \leq m^*(O \setminus E) + m^*(C) \leq \eps + 2\eps = 3 \eps
+            \]
+            which was to be shown.
+
+        \item[i $\Rightarrow$ iv)]
+            Suppose $E$ is measurable. From the previous homework problem, it follows that there exists some compact set $K \subset E$ such that $m(K) \geq m(E) - \eps$. Thus 
+            \[
+                m^*(E \setminus K) \leq m^*(E) - m^*(K) = m(E) - m(K) \leq \eps
+            \]
+            which was to be shown
+
+        \item[iv $\Rightarrow$ v)]
+            If $F$ is the compact set from (iv), then the set of difference between $E$ and $F$, which is $E \Delta F$, has outer measure $m^*(E \Delta F) = m^*(E \setminus F) \leq \eps$ (since $F \subset E$), which was to be shown.
+            
+        \item[v $\Rightarrow$ vi)]
+            This is simply a restatement of (v) since any compact set is also bounded.
+
+        \item[vi $\Rightarrow$ vii)]
+            Suppose there exists a bounded measurable set $F$ such that $m^*(E \Delta F) \leq \eps$. Note since $F$ is bounded, it is contained in some bounded box, which has finite measure. Thus by monotonicity, $m(F) < \infty$. (vii) thus follows from the supposition.
+            
+        \item[vii $\Rightarrow$ viii)]
+            Suppose there exists a measurable set $F$ with finite measure such that $m^*(E \Delta F) \leq \eps$. By the continuity of the Lebesgue measure, there exists $R > 0$ such that $m(F \setminus B_R(0)) \leq \eps$. Let $F_R \coloneq F \cap B_R(0)$. Note then $F_R$ is both bounded and measurable, as well as
+            \[
+                m^*(F \Delta F_R) = m^*(F \setminus F_R) = m(F \setminus B_R(0)) \leq \eps
+            .\]
+            Since $A \Delta C = (A \Delta B) \cup (B \Delta C)$ for any sets $A,B,C$, it follows
+            \[
+                m^*(E \Delta F_R) \leq m^*(E \Delta F) + m^*(F \Delta F_R) \leq 3 \eps
+            .\]
+            $F_R$ is bounded and measurable, so we can find an open set $O \supset F_R$ such that $m(O \setminus F_R) \leq \eps$, and this open set can be described as the countable union of boxes $B_i$. Let then $A_N = \bigcup_{i = 1}^N B_i$. Since $\bigcup_{N \in \N} A_N = O$, by continuity $\lim_{N \to \infty} m(A_N) = m(O)$. Thus there is some $N$ such that $m(O \setminus A_N) \leq \eps$. Note that $A_N$ is a finite union of boxes and is thus elementary, and since $A_N \subset O$
+            \begin{align*}
+                m^*(E \Delta A_N) &\leq m^*(E \Delta O) + m^*(O \Delta A_N) \\
+                                  &\leq m^*(E \Delta F_R) + m^*(F_R \Delta O) + m^*(O \Delta A_N) \\
+                                  &\leq m^*(E \Delta F_R) + m(O \setminus F_R) + m(O \setminus A_N) \\
+                                  &\leq 3 \eps + \eps + \eps \\
+                                  &= 5\eps
+            \end{align*}
+            which was to be shown.
+
+        \item[viii $\Rightarrow$ ix)]
+            Suppose there exists an elementary set $A$ such that $m^*(E \Delta A) \leq \eps$. Let $D_n$ denote the set of all dyadic cubes of sidelength $2^{-n}$ contained in $A$. Since $A$ is elementary, it is Jordan measurable and thus $\lim_{n \to \infty} m(D_n) = m(A)$ (this specifically follows from Exercise 1.23). Therefore we can take $N \in \N$ such that $m(A \setminus D_n) \leq \eps$ since $D_n \subset A$. Thus we have
+            \begin{align*}
+                m^*(E \Delta D_n) &\leq m^*(E \Delta A) + m^*(A \Delta D_n) \\
+                                  &\leq m^*(E \Delta A) + m(A \setminus D_n) \\
+                                  &\leq \eps + \eps \\
+                                  &= 2\eps
+            \end{align*}
+            which was to be shown.
+
+        \item[ix $\Rightarrow$ i)]
+            Suppose there exists finite union $F$ of closed dyadic cubes of sidelength $2^{-n}$ such that $m^*(E \Delta F) \leq \eps$. Since $F$ is a finite union of cubes, it is thus elementary and Jordan measurable. Therefore $m_J(\partial F) = m_J^*(\partial F) = 0$. Since the Jordan and Lebesgue measure agree on Jordan measurable sets, there then exists an open set $C \supset \partial F$ such that $m(C) \leq \eps$. Define then $N = F \cup C$ and note that $N$ is an open set, and $m^*(N \setminus F) = m(C) \leq \eps$.
+
+            Since $m^*(E \setminus F) \leq m^*(E \Delta F) \leq \eps$, there exists an open set $U \supset E \setminus F$ such that $m^*(U) \leq m^*(E \setminus F) + 2\eps$ ($U$ can be constructed from an countable open covering of $E \setminus F$ with boxes from the definition of outer measure). 
+
+            Now let $O = N \cup U$. Note that $O$ is open since $N$ and $U$ are open and contains $E$. Since $O \setminus E \subset (N \setminus F) \cup (F \setminus E) \cup U$ and $m^*(F \setminus E) \leq m^*(E \Delta F) \leq \eps$, by subadditivity it follows
+            \[
+                m^*(O \setminus E) \leq m^*(N \setminus F) + m^*(F \setminus E) + m^*(U) \leq \eps + \eps + 2\eps = 4\eps
+            \]
+            which was to be shown.
+    \end{enumerate}
+\end{proof}
+
+\section*{Exercise 2.21}
+
+\begin{proof}
+    \begin{enumerate}
+        \item[i $\Rightarrow$ ii)]
+            Suppose $E$ is Lebesgue measurable. Then if $A$ is elementary, it is also Lebesgue measurable. Since $A = (A \cap E) \cup (A \setminus E)$ and the Lebesgue measure has countable additivity, it follows
+            \[
+                m(A) = m(A \cap E) + m(A \setminus E) = m^*(A \cap E) + m^*(A \setminus E)
+            .\]
+
+        \item[ii $\Rightarrow$ iii)]
+            Since every box $B$ is an elementary set and $m(B) = |B|$, the result follows directly from (ii).
+            
+        \item[iii $\Rightarrow$ i)]
+            Take $\eps > 0$. Then there exists countable collection of open boxes $B = \cup_{i} B_i$ such that $E \subset B$ and $\sum_i |B_i| \leq m^*(E) + \eps$. We can convert the collection $B$ into a collection $U = \bigcup_i V_i$ of almost disjoint boxes. 
+            Since the boxes are almost disjoint, from the supposition we have
+            \[
+                m^*(U) = \sum_i |V_i| = \sum_i \qty[m^*(V_i \cap E) + m^*(V_i \setminus E)]
+            .\]
+            Since
+            \[
+                U \cap E = \bigcup_i V_i \cap E \hspace{1.5cm} U \setminus E = \bigcup_i V_i \setminus E
+            \]
+            it follows from subadditivity that
+            \[
+                m^*(U \cap E) + m^*(U \setminus E) \leq \sum_i \qty[m^*(V_i \cap E) + m^*(V_i \setminus E)] = m^*(U) \tag{$\star_1$}
+            .\]
+            But $U = (U \cap E) \cup (U \setminus E)$, which means
+            \[
+                m^*(U) \leq m^*(U \cap E) + m^*(U \setminus E) \tag{$\star_2$}
+            .\]
+            Therefore combining $(\star_1)$ and $(\star_2)$ gives $m^*(U) = m^*(U \cap E) + m^*(U \setminus E)$. Since $E \subset U$, it follows $m^*(U) = m^*(E) + m^*(U \setminus E)$, or equivalently $m^*(U \setminus E) = m^*(U) - m^*(E)$. From the construction of $U$ we have $m^*(U) = \sum_{i} |B_i| \leq m^*(E) + \eps$. Thus
+
+            \[
+                m^*(U \setminus E) = m^*(U) - m^*(E) \leq m^*(E) - m^*(E) + \eps = \eps
+            .\]
+            Since $U$ is equivalent to $B$ which is the union of open boxes, $U$ itself is open. Therefore $E$ is Lebesgue measurable.
+   \end{enumerate}
+\end{proof}
+
+\section*{Exercise 2.25}
+
+\begin{proof}
+    Suppose $E$ is measurable.
+    \begin{enumerate}
+        \item
+            For each $n \in \N$, take $U_n \supset E$ open such that $m^*(U_n \setminus E) \leq \frac{1}{n}$. Let $G = \bigcap_{n \in \N} U_n$. Note that $G$ is a $G_{\delta}$ set and $m^*(G \setminus E) \leq m^*(U_n \setminus E) \leq \frac{1}{n}$ for every $n \in \N$. Therefore $m^*(G \setminus E) = 0$. If $N = G \setminus E$, then $m(N) \leq m^*(N) = 0$ so $N$ is a null set and $E = G \setminus N$.
+            
+        \item
+            The previous argument can be applied to $E^c$ (which is measurable since $E$ is measurable), giving $E^c = G' \setminus N'$ where $G'$ is a $G_{\delta}$ set and $N'$ is a null set. Then $E = (G')^c \cup N'$, and the complement of a $G_{\delta}$ set is a $F_{\sigma}$ set.
+    \end{enumerate}
+
+    Suppose then $(i)$ or $(ii)$ holds. Note that any $G_{\delta}$ or $F_{\sigma}$ set is measurable since open sets and closed sets are measurable, and thus any countable union or intersection of them is also measurable. Therefore since $E$ can be written as the union or subtraction of two measurable sets, and union and subtraction preserve measurability, $E$ must be measurable.
+\end{proof}
+
+\section*{Exercise 2.27}
+
+\begin{proof}
+    If $T$ is not invertible, then $T(E)$ for any $E \subset \R^d$ will lay in a subspace of $\R^d$ with dimension less than $d$. Therefore $m(T(E)) = 0$ which is the desired result. Assume then going forward $T$ is invertible. Let $A \subset \R^d$. Note for any countable cover $\bigcup_{i} B_i$ of $A$ with boxes that
+    \[
+        T(A) \subset \bigcup_{i} T(B_i)
+    .\]
+    From previous HW we know that $m(T(B_i)) = |\det T| m(B_i)$, therefore
+    \[
+        m^*(T(A)) \leq \sum_{i} m^*(T(B_i)) = |\det T| \sum_{i} m^*(B_i)
+    .\]
+    Taking the infimum over all possible coverings of $A$ gives $m^*(T(A)) \leq |\det T| m^*(A)$. Since $T$ is invertible,
+    \[
+        m^*(A) = m^*(T^{-1}(T(A))) \leq |\det T^{-1}| m^*(T(A)) = \frac{1}{|\det T|} m^*(T(A))
+    \]
+    thus $m^*(T(A)) = |\det T| m^*(A)$.
+
+    Suppose then $E$ is Lebesgue measurable. Fix $A \subset \R^d$ elementary. Since $E$ is measurable, by Carath\'eodory's criterion 
+    \[
+        m(A) = m^*(A \cap E) + m^*(A \setminus E)
+    .\]
+    Note then that
+    \begin{align*}
+        m^*(T(A)) &= |\det T|m^*(A) \\
+                  &= |\det T|(m^*(A \cap E) + m^*(A \setminus E)) \\
+                  &= m^*(T(A \cap E)) + m^*(T(A \setminus E)) \\
+                  &= m^*(T(A) \cap T(E)) + m^*(T(A) \setminus T(E))
+    \end{align*}
+    Since $T$ is invertible and thus bijective, $T(A)$ can represent any elementary subset of $\R^d$, and thus $T(E)$ is measurable by Carath\'eodory's criterion. Therefore
+    \[
+        m(T(E)) = m^*(T(E)) = |\det T| m^*(E) = |\det T| m(E)
+    \]
+    which was to be shown.
+\end{proof}
+
+\section*{Exercise 2.29}
+
+\begin{proof}
+    \begin{enumerate}
+        \item
+            Let $\eps > 0$. Take $\qty{B_i}$ and $\qty{V_i}$ to be covers of $E$ and $F$ respectively of boxes such that
+            \[
+                \sum_{i \in \N} |B_i| \leq m_{d_1}^*(E) + \eps \hspace{1.5cm} \sum_{j \in \N} |V_j| \leq m_{d_2}^*(F) + \eps
+            .\]
+            Note that
+            \[
+                E \times F \subset \bigcup_{(i,j) \in \N^2} B_i \times V_j
+            \]
+            is a countable covering of boxes for $E \times F$, therefore
+            \begin{align*}
+                m_{d_1 + d_2}^*(E \times F) &\leq \sum_{(i,j) \in \N^2} |B_i \times V_j| \\
+                &= \sum_{(i,j) \in \N^2} |B_i| |V_j| \\
+                &= \qty(\sum_{i} |B_i|) \qty(\sum_{j} |V_j|) \\
+                &\leq (m_{d_1}^*(E) + \eps) (m_{d_2}^*(F) + \eps) \\
+                &= m_{d_1}^*(E) \cdot m_{d_2}^*(F) + \eps (\ldots)
+            \end{align*}
+            Since $\eps$ was arbitrary, it follows that $m_{d_1 + d_2}^*(E \times F) \leq m_{d_1}^*(E) \cdot m_{d_2}^*(F)$.
+
+        \item
+            By Problem (1), there exists $F_{\sigma}$ sets $G \subset \R^{d_1}$ and $H \subset \R^{d_2}$ such that $m(E \setminus G) = 0$ and $m(F \setminus H) = 0$. Note then that $G \times H$ is also a $G_{\delta}$ set and that
+            \[
+                (G \times H) \setminus (E \times F) = ((G \setminus E) \times H) \cup ((H \setminus F) \times G)
+            .\]
+            From $(a)$, we know $m((G \setminus E) \times H) = 0$ and $m((H \setminus F) \times G) = 0$ since $G \setminus E$ and $H \setminus F$ are null sets. Therefore
+            \[
+                m^*_{d_1 + d_2}((G \times H) \setminus (E \times F)) = 0
+            \]
+            thus $E \times F$ is measurable since it differs from a $G_{\delta}$ set by a null set.
+
+            A result we will need to prove is that it the desired equality holds for open sets. Let $A \subset \R^{{d_1}}$ and $B \subset \R^{d_2}$ be open. Then both can be written as the countable union of open boxes $A = \bigcup_i B_i$ and $B = \bigcup_j V_j$. Let $A_n = \bigcup_{i = 1}^n B_i$ and $B_n = \bigcup_{j=1}^n V_j$. Since each $A_n$ and $B_n$ are Jordan measurable, then we have $m_{d_1 + d_2}(A_n \times B_n) = m_{d_1}(A_n) m_{d_2}(B_n)$. Thus by continuity of the Lebesgue measure we have
+            \begin{align*}
+                m_{d_1 + d_2}(A \times B) &= \lim_{n \to \infty} m_{d_1 + d_2}(A_n \times B_n) \\
+                &= \lim_{n \to \infty} m_{d_1}(A_n) m_{d_2}(B_n) \\
+                &= m_{d_1}(A) m_{d_2}(B)
+            \end{align*}
+            Thus we have equality for open sets.
+
+            Let $G = \bigcap_{n} G_n$ and $H = \bigcap_{n} H_n$ where $G_{n+1} \subset G_n$ and $H_{n+1} \subset H_n$ (these come directly from taking the partial intersections of open sets in their definition). Thus by continuity from above we have
+            \[
+                m_{d_1+d_2}(G \times H) = \lim_{n \to \infty} m_{d_1+d_2}(G_n \times H_n) = \lim_{n \to \infty} m_{d_1}(G_n) m_{d_2}(H_n) = m(G) m(H)
+            .\]
+            Since $m(G \times H) = m(E \times F)$, $m(G) = m(E)$ and $m(H) = m(F)$, we have the desired equality.
+    \end{enumerate}
+\end{proof}
+
+\section*{Exercise 2.31}
+
+\begin{proof}
+    Since we are working with sets in $2^A$ and $A$ is elementary and thus bounded, we can assume all measures and outer measures to be finite when they exist.
+
+    \begin{enumerate}
+        \item
+            Since $E \Delta E = \varnothing$ which is a null set, $\sim$ is reflexive. Furthermore $E \Delta F = F \Delta E$, thus $\sim$ is also symmetric. Suppose then that $A \sim B$ and $B \sim C$. Note that $A \Delta C = (A \Delta B) \cup (B \Delta C)$. Since $A \Delta B$ and $B \Delta C$ are null sets, then $A \Delta C$ is also a null set and hence $A \sim C$. Therefore $\sim$ is an equivalence relation.
+
+        \item 
+            Let $E_1 \sim E_2$ and $F_1 \sim F_2$. Note that
+            \[
+                E_1 \Delta F_1 = (E_1 \Delta E_2) \cup (E_2 \Delta F_2) \cup (F_2 \Delta F_1)
+            \]
+            Therefore
+            \[
+                m^*(E_1 \Delta F_1) \leq m^*(E_1 \Delta E_2) + m^*(E_2 \Delta F_2) + m^*(F_2 \Delta F_1) = m^*(E_2 \Delta F_2)
+            .\]
+            The same argument can be applied to obtain the reverse inequality, giving $m^*(E_1 \Delta F_1) = m^*(E_2 \Delta F_2)$, hence $d([E], [F])$ is well defined.
+
+            Consider then the axioms for a metric
+            \begin{itemize}
+                \item $d(\cdot, \cdot)$ is always non-negative since the outer measure of any set is non-negative
+                \item Symmetry follows since $E \Delta F = F \Delta E$.
+                \item Take $E, F, G$ in $2^A$. Then
+                    \begin{align*}
+                        d([E], [G]) &= m^*(E \Delta G) \\
+                        &= m^*((E \Delta F) \cup (F \Delta G)) \\
+                        &\leq m^*(E \Delta F) + m^*(F \Delta G) \\
+                        &= d([E], [F]) + d([F], [G])
+                    \end{align*}
+                    Therefore $d(\cdot, \cdot)$ satisfies the triangle inequality.
+            \end{itemize}
+            Thus $d(\cdot, \cdot)$ is a metric on $2^A / \sim$.
+
+            For completeness, let $[E_n]$ be a Cauchy sequence in $2^A / \sim$.
+
+        \item 
+            Let $E \in \mathcal{L}$. Then for $\eps > 0$ there exists an open set $U \supset E$ such that $U \subset A$ and $m^*(U \setminus E) \leq \eps$. Since $U$ is the countable union of boxes, by continuity from below there is a finite union of boxes $B \subset U$ such that $m^*(U \setminus B) \leq \eps$. Note then $B$ is elementary and $E \Delta B \subset (U \setminus E) \cup (U \setminus B)$, meaning
+            \begin{align*}
+                d([E], [B]) &= m^*(E \Delta B) \\
+                            &\leq m^*(U \setminus E) + m^*(U \setminus B) \\
+                            &\leq 2 \eps
+            \end{align*}
+            Thus it is possible for any $\eps$ to produce some $[B] \in \mathcal{E} / \sim$ such that $d([E], [B]) \leq \eps$, hence $\mathcal{L} / \sim$ is the closure of $\mathcal{E} / \sim$ with respect to $d$.
+
+        \item 
+            Let $E, F \in \mathcal{L}$. If $E \sim F$, then $m(E \setminus F) \leq m^*(E \Delta F) = 0$ and $m(F \setminus E) \leq m^*(E \Delta F) = 0$. Since $E = (E \setminus F) \cup (E \cap F)$ and $F = (F \setminus F) \cup (E \cap F)$ which are both disjoint decompositions,
+            \begin{align*}
+                m(E) &= m(E \setminus F) + m(E \cap F) = m(E \cap F) \\
+                m(F) &= m(F \setminus E) + m(F \cap E) = m(E \cap F)
+            \end{align*}
+            Therefore $m(E) = m(F)$, so $m(E)$ is constant for any representative of $[E]$ and thus $m([E])$ is well defined. Note that $|m(E) - m(F)| \leq m(E \Delta F)$, thus
+            \[
+                |m([E]) - m([F])| \leq d([E], [F])
+            .\]
+            This means $m : \mathcal{L} / \sim \to \R_{\geq 0}$ is Lipschitz continuous and thus continuous. Note the above inequality holds as well for $m : \mathcal{E} / \sim \to \R_{\geq 0}$ meaning it is also continuous. Since $\mathcal{E} / \sim$ is dense in $\mathcal{L} / \sim$ and both measures agree on $\mathcal{E} / \sim$, it follows $m : \mathcal{L} / \sim \to \R_{\geq 0}$ is the unique continuous extension.
+    \end{enumerate}
+\end{proof}
+
+\end{document}

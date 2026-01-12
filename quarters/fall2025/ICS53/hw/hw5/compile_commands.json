@@ -1,0 +1,164 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-Wall",
+      "-Werror",
+      "-g",
+      "-Wno-unused",
+      "-D_GNU_SOURCE",
+      "-o",
+      "bin/ZotDonate_MTserver",
+      "src/linkedlist.c"
+    ],
+    "directory": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5",
+    "file": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/src/linkedlist.c",
+    "output": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/bin/ZotDonate_MTserver"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-Wall",
+      "-Werror",
+      "-g",
+      "-Wno-unused",
+      "-D_GNU_SOURCE",
+      "-o",
+      "bin/ZotDonate_MTserver",
+      "src/MThelpers.c"
+    ],
+    "directory": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5",
+    "file": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/src/MThelpers.c",
+    "output": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/bin/ZotDonate_MTserver"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-Wall",
+      "-Werror",
+      "-g",
+      "-Wno-unused",
+      "-D_GNU_SOURCE",
+      "-o",
+      "bin/ZotDonate_MTserver",
+      "src/MTserver.c"
+    ],
+    "directory": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5",
+    "file": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/src/MTserver.c",
+    "output": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/bin/ZotDonate_MTserver"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-Wall",
+      "-Werror",
+      "-g",
+      "-Wno-unused",
+      "-D_GNU_SOURCE",
+      "-o",
+      "bin/ZotDonate_RWserver",
+      "src/linkedlist.c"
+    ],
+    "directory": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5",
+    "file": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/src/linkedlist.c",
+    "output": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/bin/ZotDonate_RWserver"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-Wall",
+      "-Werror",
+      "-g",
+      "-Wno-unused",
+      "-D_GNU_SOURCE",
+      "-o",
+      "bin/ZotDonate_RWserver",
+      "src/RWhelpers.c"
+    ],
+    "directory": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5",
+    "file": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/src/RWhelpers.c",
+    "output": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/bin/ZotDonate_RWserver"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-Wall",
+      "-Werror",
+      "-g",
+      "-Wno-unused",
+      "-D_GNU_SOURCE",
+      "-o",
+      "bin/ZotDonate_RWserver",
+      "src/RWserver.c"
+    ],
+    "directory": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5",
+    "file": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/src/RWserver.c",
+    "output": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/bin/ZotDonate_RWserver"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-Wall",
+      "-Werror",
+      "-g",
+      "-Wno-unused",
+      "-D_GNU_SOURCE",
+      "-o",
+      "bin/ZotDonate_PCserver",
+      "src/linkedlist.c"
+    ],
+    "directory": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5",
+    "file": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/src/linkedlist.c",
+    "output": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/bin/ZotDonate_PCserver"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-Wall",
+      "-Werror",
+      "-g",
+      "-Wno-unused",
+      "-D_GNU_SOURCE",
+      "-o",
+      "bin/ZotDonate_PCserver",
+      "src/PChelpers.c"
+    ],
+    "directory": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5",
+    "file": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/src/PChelpers.c",
+    "output": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/bin/ZotDonate_PCserver"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-Wall",
+      "-Werror",
+      "-g",
+      "-Wno-unused",
+      "-D_GNU_SOURCE",
+      "-o",
+      "bin/ZotDonate_PCserver",
+      "src/PCserver.c"
+    ],
+    "directory": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5",
+    "file": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/src/PCserver.c",
+    "output": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw5/bin/ZotDonate_PCserver"
+  }
+]

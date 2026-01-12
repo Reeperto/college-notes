@@ -3,85 +3,145 @@
 
 #include "hw1.h"
 
-#define BUFFER_SIZE 256
-
-void print_usage() { fprintf(stderr, USAGE_MSG); }
-
-typedef struct {
-    int characters;
-    int lines;
-    int words;
-
-    int longest_line;
-
-    int word_occurences
-} Statistics;
-
 int main(int argc, char* argv[])
 {
-    bool parse_valid;
+    ArgParseResult res = parse_cmd_args(argc, argv);
 
-    enum Operation operation = 0;
-    char* stat_word = NULL;
-    char* remove_syms = NULL;
-
-    switch (argc) {
-        case 2: { // Single flags, _no removal_
-            parse_valid = parse_mandatory_flag(&operation, argv[1]);
-            if (operation == REMOVAL) { parse_valid = false; }
-            break;
-        }
-        case 3: { // [-R SYMBOLS]
-            parse_valid = parse_mandatory_flag(&operation, argv[1]);
-            remove_syms = argv[2];
-            break;
-        }
-        case 4: { // [-W WORD]
-            parse_valid = parse_mandatory_flag(&operation, argv[1]);
-            if (!parse_valid) { break; }
-            parse_valid = check_word_flag(argv[2]);
-            break;
-        }
+    if (!res.valid_parse && !res.showed_usage) {
+        return 1;
+    } else if (!res.valid_parse && res.showed_usage) {
+        return 0;
     }
 
-    if (!parse_valid) {
-        print_usage();
-        return EXIT_FAILURE;
-    }
+    enum Operation operation = res.operation;
+    char* remove_syms = res.remove_syms;
 
-    Statistics stats = {
-        .lines = 1
-    };
+    Statistics stats = { .lines = 1 };
+    WordMatcher wm = {0};
+    ParserState state = {0};
 
-    char read_buf[BUFFER_SIZE];
-    char work_buf[BUFFER_SIZE];
+    wm_init(&wm, res.stat_word);
 
-    int total_read = 0;
-    int n_read;
+    int num_read;
+    while ((num_read = ps_read_stdin(&state)) > 0) {
+        stats.characters += num_read;
 
-    bool in_whitespace = false;
-
-    while ((n_read = fread(read_buf, 1, BUFFER_SIZE, stdin)) > 0) {
-        stats.characters += n_read;
-
-        int work_buf_size = 0;
-        for (int i = 0; i < n_read; ++i) {
-            char curr_char = read_buf[i];
+        for (int i = 0; i < num_read; ++i) {
+            char curr_char = state.read_buf[i];
 
             if (curr_char == '\n') {
-               ++stats.lines;
+                ++stats.lines;
+
+                if (state.curr_line_len > stats.longest_line) {
+                    stats.longest_line = state.curr_line_len;
+                }
+
+                state.curr_line_len = 0;
+            } else {
+                state.curr_line_len += 1;
             }
 
-            work_buf[i] = toupper(read_buf[i]);
-            ++work_buf_size;
+            if (!isspace(curr_char)) {
+                state.start_of_word = !state.in_word;
+                state.in_word = true;
+
+                if (!state.seen_alpha && isalpha(curr_char)) {
+                    state.start_of_alpha = true;
+                    state.seen_alpha = true;
+                } else {
+                    state.start_of_alpha = false;
+                }
+
+                wm_add_char(&wm, curr_char);
+            } else {
+                if (state.in_word) {
+                    stats.words += 1;
+                    stats.word_occurences += wm_check(&wm) ? 1 : 0;
+                    wm_reset(&wm);
+                }
+
+                state.in_word = false;
+                state.seen_alpha = false;
+            }
+
+            switch (operation) {
+                case OP_UPPERCASE: {
+                    ps_wb_add_char(&state, toupper(state.read_buf[i]));
+                    break;
+                }
+                case OP_LOWERCASE: {
+                    ps_wb_add_char(&state, tolower(state.read_buf[i]));
+                    break;
+                }
+                case OP_TITLECASE: {
+                    if (state.start_of_alpha) {
+                        ps_wb_add_char(&state, toupper(state.read_buf[i]));
+                    } else {
+                        ps_wb_add_char(&state, tolower(state.read_buf[i]));
+                    }
+
+                    break;
+                }
+                case OP_REMOVAL: {
+                    bool should_remove = false;
+
+                    for (int i = 0; i < strlen(remove_syms); ++i) {
+                        if (curr_char == remove_syms[i]) {
+                            should_remove = true;
+                            break;
+                        }
+                    }
+
+                    if (!should_remove) {
+                        ps_wb_add_char(&state, state.read_buf[i]);
+                    }
+
+                    break;
+                }
+                case OP_TERMFMT: {
+                    if (curr_char == '\n') {
+                        ps_tb_flush(&state);
+                        fputc('\n', stdout);
+                    } else {
+                        if (state.tb_len == TERM_WIDTH) {
+                           ps_tb_flush(&state);
+                           fputc('\n', stdout);
+                        }
+
+                        ps_tb_add_char(&state, curr_char);
+                    }
+
+                    break;
+                }
+                default: {
+                    assert(false);
+                    break;
+                }
+            }
+
         }
 
-        fwrite(work_buf, 1, work_buf_size);
+        ps_wb_flush(&state);
+        state.total_read += num_read;
     }
 
-    if (total_read == 0) {
-        print_usage();
-        return EXIT_FAILURE;
+    if (state.total_read == 0) {
+        print_usage(true);
+        return 1;
+    }
+
+    if (state.curr_line_len > stats.longest_line) {
+        stats.longest_line = state.curr_line_len;
+    }
+
+    if (state.tb_len != 0) {
+        ps_tb_flush(&state);
+    }
+
+    if (state.in_word) {
+        stats.words += 1;
+        stats.word_occurences += wm_check(&wm) ? 1 : 0;
+        wm_reset(&wm);
     }
 
     fprintf(stderr, "%d\n", stats.characters);
@@ -89,7 +149,7 @@ int main(int argc, char* argv[])
     fprintf(stderr, "%d\n", stats.words);
     fprintf(stderr, "%d\n", stats.longest_line);
 
-    if (stat_word != NULL) {
+    if (wm.word != NULL) {
         fprintf(stderr, "%d\n", stats.word_occurences);
     }
 

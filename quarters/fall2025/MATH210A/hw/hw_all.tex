@@ -1,17 +1,26 @@
 \documentclass{eeleyes}
 \usepackage{fancyhdr}
 \usepackage{subfiles}
+\usepackage{dsfont}
 
 \newcommand\conj[1]{\overline{#1}}
 \newcommand\term[1]{\textbf{#1}}
 \newcommand\eps{\varepsilon}
 \DeclareMathOperator{\interior}{int}
+\newcommand\ind[1]{\mathds{1}_{#1}}
+\newcommand\sint{\mathit{I}_{\mathcal{S}}}
+\newcommand\lint{\mathcal{L}_{-}}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
 
 \pagestyle{fancy}
 
 \begin{document}
 
 \subfile{hw_chap_1.tex}
+\subfile{hw_chap_2.tex}
+\subfile{hw_chap_3.tex}
+\subfile{hw_chap_4.tex}
 
 \end{document}
 

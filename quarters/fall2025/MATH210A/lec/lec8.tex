@@ -1,0 +1,36 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+
+\begin{rem}
+    In addition to the previous proof, we found an alternative example via an explicit construction of a sequence of simple functions $f_n$ that converge to $f$. From this point forward, we will assume that every binary expansion will be non-terminating as to ensure uniqueness of the expansions. Note this can be done since one can substitute the last $1$ in a terminating sequence with $0\overline{1}$. Suppose that $x \in [0,1]$ has a binary expansion
+    \[
+        x = 0.b_1 b_2 b_3 \cdots
+    .\]
+    Clearly the sequence of partial sums
+    \[
+        f_n(x) = \sum_{j=1}^n 2 b_j 3^{-j}
+    \]
+    converges pointwise to $f$. Thus if we can show they are simple functions, we obtain $f$ is measurable and the previous answer's conclusion follows.
+
+    Consider the case when $b_1$ is $1$. Then possible values $x$ can take on are those satisfying
+    \[
+        \frac{1}{2} = 0.0111\cdots < x \leq 0.111\cdots = 1
+    .\]
+    Thus in the place of $b_1$ in $f_n$, we can substitute $\mathds{1}_{(\frac{1}{2}, 1]}(x)$. When $b_2$ is $1$, then $b_1$ can be either $0$ or $1$, meaning the possible values for $x$ must satisfy either of
+    \begin{alignat*}{9}
+        \frac{1}{4} &= 0.00111\cdots &&< x &&\leq 0.0111\cdots &&= \frac{1}{2} \\
+        \frac{3}{4} &= 0.10111\cdots &&< x &&\leq 0.1111\cdots &&= 1
+    \end{alignat*}
+    Since these are disjoint intervals, we can again do a substitution of $b_2$ in $f_n$ for $\mathds{1}_{(\frac{1}{4}, \frac{1}{2}]}(x) + \mathds{1}_{(\frac{3}{4}, 1]}(x)$. In general, the digit $b_i$ can be written as a sum of disjoint indicator functions. More precisely, it is the sum over all indicator functions corresponding to all the possible bit flippings of $0.b_1 \cdots b_{i-1}$, as those bits dictate where each interval starts, giving
+    \[
+        b_i = \sum_{k=1}^{2^{i-1}} \mathds{1}_{(\frac{2k - 1}{2^i}, \frac{2k}{2^i}]}(x)
+    .\]
+    Thus we can write in total
+    \[
+        f_n(x) = \sum_{j=1}^n \frac{2}{3^j} \cdot \left(\sum_{k=1}^{2^{j-1}} \mathds{1}_{(\frac{2k - 1}{2^i}, \frac{2k}{2^i}]}(x)\right)
+    .\]
+    In this form it is then clear that each $f_n$ is a simple function, which was to be shown.
+\end{rem}
+
+\end{document}

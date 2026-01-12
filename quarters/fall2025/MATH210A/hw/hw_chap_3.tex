@@ -1,0 +1,404 @@
+\documentclass[hw_all.tex]{subfiles}
+
+\begin{document}
+
+\section*{Exercise 3.5}
+
+\begin{proof}
+    Let
+    \[
+        f = \sum_{j=1}^n c_j \ind{E_j} = \sum_{k=1}^m d_k \ind{F_k}
+    \]
+    be two separate representations of the same simple function $f$. Let $G_{j,k} = E_j \cap F_k$. Note that each $G_{j,k}$ are disjoint and measurable, and that $\bigcup G_{j,k} = \bigcup {E_j} = \bigcup F_{k}$. If $x \in G_{j,k}$, then $x \in E_j$ and $x \in F_k$. Thus $f(x) = c_j$ and $f(x) = d_k$ meaning $c_j = d_k$. Therefore
+    \[
+        \sum_{j=1}^n c_j m(E_j) = \sum_{j=1}^n \sum_{k=1}^m c_j m(G_{j,k}) = \sum_{j=1}^n \sum_{k=1}^m d_k m(G_{j,k}) = \sum_{k=1}^m d_k m(F_k)
+    .\]
+    Therefore $\mathcal{I}_S(f)$ is well defined and invariant to the representation of $f$.
+\end{proof}
+
+\section*{Exercise 3.8}
+
+\begin{proof}
+    Let $f = \sum_{j=1}^n c_j \ind{E_j}$ and $g = \sum_k^m d_k \ind{F_k}$.
+    \begin{enumerate}
+        \item
+            Let $G_{j,k} = E_j \cap F_k$. Note that
+            \[
+                f = \sum_{j=1}^n \sum_{k=1}^m c_j \ind{G_{j,k}} \hspace{1.5cm} g = \sum_{j=1}^n \sum_{k=1}^m d_k \ind{G_{j,k}}
+            .\]
+            Therefore
+            \[
+                f + cg = \sum_{j = 1}^n \sum_{k = 1}^m (c_j + c \cdot d_k) \ind{G_{j,k}}
+            \]
+            meaning
+            \[
+                \sint(f + cg) = \sum_{j=1}^n \sum_{k=1}^m (c_j + c \cdot d_k) m(G_{j,k})
+            .\]
+            But then this summation can be broken up into
+            \begin{align*}
+                \sum_{j=1}^n \sum_{k=1}^m (c_j + c \cdot d_k) m(G_{j,k}) &= \qty[\sum_{j=1}^n \sum_{k=1}^m c_j m(G_{j,k})] + c \cdot \qty[\sum_{j=1}^n \sum_{k=1}^m d_k m(G_{j,k})] \\
+                &= \sint(f) + c \sint(g)
+            \end{align*}
+            Hence $\sint(f + cg) = \sint(f) + c\sint(g)$.
+            
+        \item
+            Suppose $f$ is finite a.e. and its support has finite measure. Then there exists some $X \subset \R^d$ such that $f(X^c) \subset [0,\infty)$ and $m(X) = 0$. Denote $S = [f \neq 0]$ and note $m(S) < \infty$. Note that $f$ can be rewritten as
+            \[
+                f = \sum_{k} \qty[c_k \ind{X^c \cap E_k} + c_k \ind{X \cap E_k}]
+            .\]
+            Since $m(X \cap E_k) = 0$ for all $k$
+            \[
+                \sint(f) = \sum_{k} c_k m(X^c \cap E_k)
+            .\]
+            Whenever $m(X^c \cap E_k) \neq 0$, we have $c_k$ finite. Denote then $C < \infty$ as the maximum over all such $c_k$. Since $X^c \cap E_k \subset S$, we have
+            \[
+                \sint(f) = \sum_{k} c_k m(X^c \cap E_k) \leq \sum_{k} C m(S) < \infty
+            .\]
+
+            Suppose now that $\sint(f) < \infty$. Then
+            \[
+               \sint(f) = \sum_k c_k m(E_k) < \infty
+            .\]
+            If $f$ was not finite almost everywhere, then there would be a set $A$ with $m(A) > 0$ such that $f(x) = \infty$ for $x \in A$. Let $A_E = \qty{E_k : A \cap E_k \neq \varnothing}$ and note that $A_E$ is non empty and its union is $A$. Therefore $\sum_{E_k \in A_E} c_k E_k = \infty$, meaning the integral of $f$ is not finite, a contradiction. Assume then $f$ is not supported on a set of finite measure. Then there must exist some $c = \min\qty{c_k : c_k > 0}$. Note then that
+            \[
+                c \sum_k m(E_k) < \sum_{k} c_k m(E_k)
+            \]
+            but $\sum_k m(E_k) = m([f \neq 0]) = \infty$, hence $\sint(f)$ is not finite, a contradiction.
+        \item
+            If $f \overset{\text{a.e.}}{=} 0$, then there is some set $X \subset \R^d$ such that $f(X^c) = \qty{0}$ and $m(X) = 0$. Note that $f$ can be rewritten as
+            \[
+                f = \sum_{k} \qty[c_k \ind{X \cap E_k} + 0 \cdot \ind{X^c \cap E_k}]
+            .\]
+            Since $m(X \cap E_k) = 0$ for all $k$
+            \[
+                \mathit{I}_{\mathcal{S}}(f) = \sum_{k} \qty[ c_k \cdot 0 + 0 \cdot m(X^c \cap E_k) ] = 0
+            .\]
+        \item
+            If $f \overset{\text{a.e.}}{=} g$, then there is some set $X \subset \R^d$ such that $f(x) = g(x)$ for all $x \in X^c$ and $m(X) = 0$. Note that $f$ and $g$ can be rewritten as
+            \[
+                f = \sum_{k} c_k \qty(\ind{E_k \cap X} + \ind{E_k \cap X^c}) \hspace{1.5cm} g = \sum_{k} d_k \qty(\ind{F_k \cap X} + \ind{F_k} \cap X^c)
+            .\]
+            Since $m(E_k \cap X) = 0$ and $m(F_k \cap X) = 0$ for all $k$
+            \[
+                \sint(f) = \sum_k c_k m(E_k \cap X^c) \hspace{1.5cm} \sint(g) = \sum_k d_k m(F_k \cap X^c)
+            .\]
+            Note then that $f \cdot \ind{X^c} = g \cdot \ind{X^c}$ are simple and equal everywhere, and that $f \cdot \ind{X^c} = \sum_k c_k \ind{E_k \cap X^c}$ and $g \cdot \ind{X^c} = \sum_k d_k \ind{F_k \cap X^c}$. Therefore
+            \[
+                \sint(f) = \sint(f \cdot \ind{X^c}) = \sint(g \cdot \ind{X^c}) = \sint(g)
+            .\]
+
+        \item
+            If $f \leq g$ a.e., then there exists some set $X \subset \R^d$ such that $f(x) \leq g(x)$ for all $x \in X^c$ and $m(X) = 0$. Let $G_{j,k} = E_j \cap F_k$. Then
+            \[
+                f = \sum_{j=1}^n \sum_{k=1}^m c_j \qty(\ind{G_{j,k} \cap X} + \ind{G_{j,k} \cap X^c}) \hspace{1.5cm} g = \sum_{j=1}^n \sum_{k=1}^m d_k \qty(\ind{G_{j,k} \cap X} + \ind{G_{j,k} \cap X^c})
+            .\]
+            Since $m(G_{j,k} \cap X) = 0$ for all $j,k$
+            \[
+                \sint(f) = \sum_{j=1}^n \sum_{k=1}^m c_j m(G_{j,k} \cap X^c) \hspace{1.5cm} \sint(g) = \sum_{j=1}^n \sum_{k=1}^m d_k m(G_{j,k} \cap X^c)
+            .\]
+            Note then for any $x \in G_{j,k} \cap X^c$ that $c_j = f(x) \leq g(x) = d_k$, thus $c_j m(G_{j,k} \cap X^c) \leq d_k m(G_{j,k} \cap X^c)$. Therefore
+            \[
+                \sint(f) = \sum_{j=1}^n \sum_{k=1}^m c_j m(G_{j,k} \cap X^c) \leq \sum_{j=1}^n \sum_{k=1}^m d_k m(G_{j,k} \cap X^c) = \sint(g)
+            .\]
+
+        \item
+            Note that $\ind{E}$ is a simple function with coefficient $c = 1$ since $E$ is measurable, thus $\sint(\ind{E}) = m(E)$.
+
+    \end{enumerate}
+
+    Suppose there is a map $I : \mathcal{S}^+ (\R^d) \to [0,\infty]$ satisfying all the above properties. Take $s \in \mathcal{S}^+ (\R^d)$. Then $s$ has the canonical representation
+    \[
+        s = \sum_{y \in Y} y \ind{s^{-1}(y)}
+    \]
+    where $Y = s(\R^d)$. Since $s$ is non-negative, $y \geq 0$ for all $y \in Y$. Therefore by properties $(i)$ and $(vi)$
+    \[
+        I(s) = \sum_{y \in Y} y I(\ind{s^{-1}(y)}) = \sum_{y \in Y} y m(s^{-1}(y))
+    .\]
+    But the right hand side is exactly $\sint(s)$, thus $\sint$ is the unique map from $\mathcal{S}^+(\R^d)$ to $[0,\infty]$ satisfying the above properties.
+\end{proof}
+
+\section*{Exercise 3.14}
+
+\begin{proof}
+    \begin{enumerate}
+        \item
+            Suppose $f : \R^d \to [0,\infty]$ is continuous. Then for any relatively open set $U \subset [0,\infty)$, it follows from continuity that $f^{-1}(U)$ is also relatively open and thus measurable. Therefore $f$ itself is measurable.
+
+        \item 
+            For any $s \in \mathcal{S}^+(\R^d)$, it is the pointwise limit of the sequence of simple functions $s_n = s$. Therefore it is measurable.
+
+        \item 
+            Take $\lambda \geq 0$ and let $g \coloneq \sup_{n} f_n$. Note that
+            \begin{align*}
+                [g > \lambda] &= \qty{x \in \R^d : \sup_n f_n(x) > \lambda } \\
+                &= \qty{x \in \R^d : \exists n \text{ s.t. } f_n(x) > \lambda} \\
+                &= \bigcup_{n \geq 1} [f_n > \lambda]
+            \end{align*}
+            Since each $f_n$ is measurable, then $[f_n > \lambda]$ is measurable. Hence $[g > \lambda]$ is measurable as its the countable union of measurable sets, meaning $g$ is measurable. Let $h \coloneq \inf_n f_n$. Similar to above,
+            \[
+                [h < \lambda] = \bigcup_{n \geq 1} [f_n < \lambda]
+            \]
+            which by the same argument implies $h$ is measurable. Since then
+            \[
+                \limsup_n f_n = \inf_{k \geq 1} \sup_{n \geq k} f_n \hspace{1.5cm} \liminf_n f_n = \sup_{k \geq 1} \inf_{n \geq k} f_n
+            \]
+            it follows from the measurability of supremum and infimum that both are measurable as well.
+
+        \item 
+            Suppose $f : \R^d \to [0,\infty]$ is equal a.e. to some non-negative measurable function $s$. Since $s$ is measurable, there is some sequence of measurable simple functions $s_n$ that converges to $s$ pointwise. Clearly then this sequence $s_n$ also converges to $f$ a.e., thus $f$ itself is measurable.
+
+        \item 
+            Let $X$ denote the set on which $f_n \to f$ converges pointwise. Then restricting the sequence to $f_n\vert_X$ will converge everywhere to $f\vert_X$. Therefore
+            \[
+                f\vert_X = \lim_{n \to \infty} f_n\vert_X = \limsup_{n \to \infty} f_n\vert_X
+            .\]
+            Thus by $(iii)$, $f\vert_X$ is measurable. Since $f$ is equal a.e. to $f\vert_X$ (follows from $m(X^c) = 0$), which is measurable, then $f$ is measurable by $(iv)$.
+
+        \item
+            Suppose $f : \R^d \to [0,\infty]$ is measurable and $\phi : [0,\infty] \to [0, \infty]$ is continuous. Let $U \subset [0,\infty]$ be a relatively open set. Note then that
+            \[
+                (\phi \circ f)^{-1}(U) = f^{-1}(\phi^{-1}(U))
+            .\]
+            Since $\phi$ is continuous, then $\phi^{-1}(U)$ is open, and since $f$ is measurable then $f^{-1}(\phi^{-1}(U))$ is also measurable. Therefore $\phi \circ f$ is measurable.
+
+        \item 
+            If $f$ and $g$ are non-negative measurable functions, then there are sequences of non-negative simple functions $f_n$ and $g_n$ that converge pointwise to $f$ and $g$. Note $f_n + g_n$ and $f_n \cdot g_n$ are still sequences of simple functions and by limit theorems $f + g$ and $f \cdot g$ are the pointwise limits of $f_n + g_n$ and $f_n \cdot g_n$ respectively. Therefore $f + g$ and $f \cdot g$ are measurable.
+
+       \end{enumerate}
+\end{proof}
+
+\section*{Exercise 3.24}
+
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            If $f$ is simple, then since $f \leq f$, by definition $\sint(f) \leq \lint[f]$. But for any simple function $g \leq f$ we have $\sint(g) \leq \sint(f)$, giving $\lint[f] = \sint(f)$.
+            
+        \item
+            Suppose $f \leq g$ a.e. If $h \in \mathcal{S}^+ \leq f$, then $h$ can be changed to some $\tilde{h}$ that is $0$ where $f > g$. Note then that $\tilde{h} \leq g$ and $f > g$ on a null set, thus $\sint(\tilde{h}) = \sint(h)$. Therefore $\sint(h) = \sint(\tilde{h}) \leq \lint[g]$. Taking the supremum over both sides gives $\lint[f] \leq \lint[g]$.
+
+        \item
+            If $c = 0$, then clearly it holds. Suppose $c > 0$. Since for $h \in \mathcal{S}^+$ we have $\sint(ch) = c \sint(h)$, we have
+            \begin{align*}
+                \lint[cf] &= \sup_{cf \geq h \in \mathcal{S}^+} \sint(h) \\
+                          &= \sup_{f \geq h \in \mathcal{S}^+} \sint(ch) \\
+                          &= c \sup_{f \geq h \in \mathcal{S}^+} \sint(h) \\
+                          &= c \lint[f]
+            \end{align*}
+
+        \item
+            If $f = g$ a.e., it follows $f \leq g$ and $g \leq f$ a.e. which in conjunction with $(ii)$ gives the desired result.
+
+        \item 
+            Let $h_1 \leq f$ and $h_2 \leq g$ be simple. Then clearly $h_1 + h_2$ is simple and $h_1 + h_2 \leq f + g$, thus
+            \[
+                \sint(h_1) + \sint(h_2) = \sint(h_1 + h_2) \leq \lint[f + g]
+            .\]
+            Taking the supremum over all $h_1, h_2$ on both sides gives then
+            \[
+                \lint[f] + \lint[g] \leq \lint[f + g]
+            .\]
+
+        \item 
+            Let $E$ be measurable. Note that $f = f \ind{E} + f \ind{E^c}$ as well as $f \ind{E} \leq f$ and $f \ind{E^c} \leq f$. Therefore by $(v)$
+            \[
+                \lint[f] \geq \lint[f \ind{E}] + \lint[f \ind{E^c}]
+            .\]
+            For any simple function $h \leq f$, it can similarly be split into two simple function $h \ind{E}$ and $h \ind{E^c}$. Then
+            \[
+                \sint(h) = \sint(h \ind{E}) + \sint(h \ind{E^c}) \leq \lint[f \ind{E}] + \lint[f \ind{E^c}]
+            .\]
+            Taking the supremum over all $h$ combined with the previous inequality gives
+            \[
+                \lint[f] = \lint[f \ind{E}] + \lint[f \ind{E^c}]
+            .\]
+
+        \item 
+            Let $f_n = \min(f, n)$, and note that $f_n \leq f_{n+1} \leq \ldots \leq f$. Therefore $\lint[f_n]$ is an increasing sequence bounded above by $\lint[f]$, so $\lim_{n \to \infty} \lint[f_n]$ exists and is bounded above by $\lint[f]$. Consider a simple function $h \leq f$. 
+            \begin{itemize}
+                \item If $h$ is $\infty$ on a set of positive measure $E$, the desired inequality is trivial as $\lint[f] = \infty$, and for any $r > 0$ there is large enough $N$ such if $n \geq N$ then $f_n(x) \geq r$ for all $x \in E$. Hence $\lim_{n \to \infty} \lint[f_n] = \infty$ as well. 
+
+                \item If $h$ is $\infty$ on a null set, then we can simply set $h$ to $0$ on the null set and still get the same integral.
+            \end{itemize}
+
+            We can assume then $h$ is finite everywhere. There then exists sufficiently large $N$ such that for $n \geq N$, $h \leq f_n$. Therefore taking the limit and then supremum gives $\lint[f] \leq \lim_{n \to \infty} \lint[f_n]$. Combined with the original inequality gives the desired result.
+
+        \item 
+            Let $B_n = \conj{B}_{n}(0)$. Note that $f \ind{B_n} \leq f \ind{B_{n+1}} \leq \ldots \leq f$ for all $n$, thus the limit exists and $\lim_{n \to \infty} \lint[f \ind{B_n}] \leq \lint[f]$. Let $h$ be simple and $h \leq f$. Then $h$ can be written as
+            \[
+                h = \sum_{k} c_k E_k
+            .\]
+            By continuity of the Lebesgue measure, it follows that $m(E_k) = \lim_{n \to \infty} E_k \cap B_n$, therefore
+            \[
+                \lim_{n \to \infty} \sint(h \ind{B_n}) = \lim_{n \to \infty} \sum_k c_k m(E_k \cap B_n) = \sum_k c_k m(E_k) = \sint(h)
+            .\]
+            Since $h \ind{B_n} \leq f \ind{B_n}$, it follows in the limit that $\sint(h) = \lim_{n \to \infty} \lint[f \ind{B_n}]$. Taking the supremum over all $h$ gives $\lint[f] \leq \lim_{n\to \infty} \lint[f \ind{B_n}]$. This combined with the first inequality gives the desired result.
+    \end{enumerate}
+\end{proof}
+
+\section*{Exercise 3.32}
+
+\begin{proof}
+    Let $g \in \mathcal{S}^+$ with the representation $g = \sum_{k} c_k E_k$.
+    \begin{enumerate}
+        \item
+            Take $y_0 \in \R^d$. Note that
+            \[
+                \ind{E_k}(x + y_0) = \ind{E_k - y_0}(x)
+            \]
+            meaning $g(\cdot + y_0) = \sum_k c_k \ind{E_k - y_0}(x)$. Therefore
+            \begin{align*}
+                \sint(g(\cdot + y_0)) &= \sum_k c_k m(E_k - y_0) \\
+                &= \sum_k c_k m(E_k) \\
+                &= \sint(g)
+            \end{align*}
+            Since the integral of simple functions is translation invariant, so is the Lebesgue integral.
+
+        \item 
+            Since $T$ is invertible and $Tx \in E_k$ iff $x \in T^{-1}(E_k)$, then
+            \[
+                \ind{E_k}(Tx) = \ind{T^{-1}(E_k)}(x)
+            .\]
+            Therefore
+            \begin{align*}
+                \sint(g \circ T) &= \sum_k c_k m(T^{-1}(E_k)) \\
+                                 &= \frac{1}{|\det T|} \cdot \sum_k c_k m(E_k) \\
+                                 &= \frac{1}{|\det T|} \cdot \sint(g)
+            \end{align*}
+            Since $T$ is a bijection and linear transformations are measurable, then
+            \begin{align*}
+                \mathcal{L}_{-}(f \circ T) &= \sup_{f \circ T \geq g \in \mathcal{S}^+} \sint(g) \\
+                &= \sup_{f \geq g \in \mathcal{S}^+} \sint(g \circ T) \\
+                &= \frac{1}{|\det T|} \cdot \sup_{f \geq g \in \mathcal{S}^+} \\
+                &= \frac{1}{|\det T|}\mathcal{L}_{-}(f)
+            \end{align*}
+
+        \item
+            Let $P = [x_1, \ldots, x_n]$ be a partition of $[a,b]$. Then let
+            \[
+                M_i = \sup_{x \in [x_i, x_{i+1}]} f(x)
+            .\]
+            Note that for any $g \in \mathcal{S}^+$ where $g \leq f$ that
+            \[
+                x \in [x_i, x_{i+1}] \implies g(x) \leq M_i
+            .\]
+            Thus we have
+            \[
+                \int g(x) \dd x \leq \sum_{i = 1}^{n-1} M_i \cdot (x_{i + 1} - x_i)
+            .\]
+            But the RHS is just the upper Darboux integral, so taking the infimum of both sides over all partitions of $[a,b]$ gives
+            \[
+                \int_{\R} g(x) \dd x \leq \int_a^b f(x) \dd x
+            \]
+            establishing the Riemann integral as an upper bound on the Lebesgue integral. Note for any partition that the lower Darboux integral gives a simple function. That is, if
+            \[
+                m_i = \inf_{x \in [x_i, x_{i+1}]} f(x)
+            \]
+            we get a simple function
+            \[
+                f_P(x) = \sum_{i=1}^{n-1} m_i \ind{[x_i, x_{i+1}]}
+            \]
+            Clearly then since $f$ is Riemann integrable, the supremum of this over all partitions gives the Riemann integral of $f$. This can be rephrased as a supremum over all simple functions with this lower Darboux form, which combined with the Riemann integral being an upper bound gives us the desired result that
+            \[
+                \int_{\R} f(x) \dd x = \mathcal{R} - \int_{a}^{b} f(x) \dd x
+            .\]
+    \end{enumerate}
+\end{proof}
+
+\section*{Exercise 3.34}
+
+\begin{proof}
+    \begin{enumerate}
+        \item
+            Suppose that $\int f(x) \dd x < \infty$. Let $C = \int f(x) \dd x$. Then for any $\lambda > 0$ we have from Markov's inequality
+
+            \[
+                \lambda m([f \geq \lambda]) \leq C \implies m([f \geq \lambda]) \leq \frac{C}{\lambda}
+            .\]
+            Note that $[f = \infty] = \bigcap_{n \geq 0} [f \geq n]$, and since $m([f \geq 0]) < \infty$, by continuity from above
+            \[
+                m([f = \infty]) = \lim_{n \to \infty} \frac{C}{n} = 0
+            .\]
+            Therefore $f$ is finite almost everywhere. For a counterexample to the converse, consider
+            \[
+                f(x) = \begin{cases}
+                    0 & x \leq 0 \\
+                    \cfrac{1}{x} & x > 0
+                \end{cases}
+            .\]
+            Clearly $f$ is finite everywhere, but the integral is infinite.
+        \item 
+            Suppose that $f$ is zero almost everywhere. Then $f$ is equal a.e. to the zero function which is simple, thus
+            \[
+                \int f(x) \dd x = \sint(0) = 0
+            .\]
+            Suppose then $\int f(x) \dd x = 0$. Then for any $\lambda > 0$ we have from Markov's inequality
+            \[
+                \lambda m([f \geq \lambda]) \leq 0 \implies m([f \geq \lambda]) = 0
+            .\]
+            Since $[f > 0] = \bigcup_{n \in \N} [f \geq \frac{1}{n}]$, by subadditivity we have $m([f > 0]) = 0$. Therefore $f$ is zero almost everywhere.
+    \end{enumerate}
+\end{proof}
+
+\section*{Exercise 3.38}
+
+\begin{proof}
+    Since $f$ and $g$ are absolutely integrable, then
+    \[
+        f = f_u + i f_v \hspace{1.5cm} g = g_u + i g_v
+    \]
+    where $f_u, f_v, g_u, g_v$ are real valued and absolutely integrable. Note then that by linearity of absolutely integrable real valued functions
+    \begin{align*}
+        \int (f + cg) &= \int \Re[f + cg] \dd x + i \int \Im[f + cg] \dd x \\
+                      &= \int (f_u + \Re[c] g_u) \dd x + i \int (f_v + \Im[c] g_v) \dd x \\
+                      &= \qty(\int f_u \dd x + i \int f_v \dd x) + \qty(\Re[c] \int g_u \dd x + i \Im[c] \int g_v \dd x) \\
+                      &= \int f \dd x + c \int g \dd x
+    \end{align*}
+    Note as well that
+    \begin{align*}
+        \conj{\int \conj{f} \dd x} &= \conj{\int \Re\qty[\conj{f}] \dd x + i \int \Im[\conj{f}] \dd x} \\
+                                   &= \conj{\int \Re\qty[\conj{f}] \dd x} - i \conj{\int \Im[\conj{f}] \dd x} \\
+                                   &= \int f_u \dd x - i \int (-f_v) \dd x \\
+                                   &= \int f_u \dd x + i \int f_v \dd x \\
+                                   &= \int f \dd x
+    \end{align*}
+    which was to be shown.
+\end{proof}
+
+\section*{Exercise 3.50}
+
+\begin{proof}
+    Suppose that $f$ is the pointwise a.e. limit of a sequence of continuous complex valued functions $f_n$. Each $f_n$ is measurable since they are continuous. Therefore $f$ is measurable since it is the pointwise a.e. limit of measurable functions. 
+
+    Suppose then that $f$ is measurable. Take $\eps > 0$ and $n \in \N$ and consider $f \ind{B_n(0)}$. Since $f \ind{B_n(0)}$ has finite support, there is a set $E$ with $m(E) \leq \eps$ such that $f \ind{B_n(0) \setminus E}$ is bounded. Note then that $f \ind{B_n(0) \setminus E}$ is then $\mathcal{L}^1$, hence there is a continuous, compactly supported $g_n$ such that $\norm{f - g_n}_{L^1} \leq \eps$. Let
+    \[
+        A_n = \qty{x \in B_n(0) : |f(x) - g_n(x)| \geq \frac{1}{n}}
+    .\]
+    Note then that
+    \begin{align*}
+        m(A_n) \leq m(A_n \setminus E) + m(E) \leq n \cdot \norm{f - g_n}_{L^1} + m(E) = \eps (n + 1)
+    \end{align*}
+    Therefore if $\eps \leq \frac{1}{(n+1)\cdot 2^n}$ we have
+    \[
+        m(A_n) \leq \frac{1}{2^n}
+    .\]
+    Continuing this process for all $n \in \N$ gives a sequence of continuous function $g_n$. Consider the set of points where $g_n$ does not converge to $f$
+    \[
+        D = \qty{x \in \R^d : \lim_{n \to \infty} g_n(x) \neq f(x)}
+    .\]
+    If $x \in D$, then there must exist some $N$ and $\eps_0 > 0$ such that $|f(x) - g_n(x)| > \eps_0$ for all $n \geq N$. Taking $N$ larger to where $\frac{1}{N} < \eps_0$, we then have $x \in A_n$ for all $n \geq N$. Thus
+    \[
+        D \subset \bigcup_{n \in \N} \bigcap_{k \geq n} A_k
+    .\]
+    Note that $\bigcap_{k \geq n} A_k \subset A_n$ thus
+    \[
+        m\qty(\bigcap_{k \geq n} A_k) \leq m(A_n) \leq \frac{1}{2^n}
+    .\]
+    By continuity from below, it then follows
+    \[
+        m\qty(\bigcup_{n \in \N} \bigcap_{k \geq n} A_k) = \lim_{n \to \infty} m(\bigcap_{k \geq n} A_k) \leq \lim_{n \to \infty} \frac{1}{2^n} = 0
+    .\]
+    Thus $m(F) = 0$, meaning $g_n$ converges to $f$ pointwise almost everywhere.
+\end{proof}
+
+\end{document}

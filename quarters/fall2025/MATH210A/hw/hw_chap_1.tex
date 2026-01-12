@@ -7,21 +7,35 @@
 \begin{proof}
     Let $E = B_1 \cup \ldots \cup B_n$ and $F = V_1 \cup \ldots \cup V_m$ where $B_i$, $V_j$ are boxes in $\R^{d}$.
     \begin{enumerate}[label=(\roman*)]
-        \item By definition, $E$ and $F$ are the unions of finite boxes, and thus $E \cup F$ is the union of finite boxes meaning it is elementary.
+        \item 
+            By definition, $E$ and $F$ are the finite union of boxes, and thus $E \cup F$ is the finite union of boxes meaning it is elementary.
 
-        \item Note that the intersection of two intervals is always an interval (assuming $\varnothing$ is also an interval). That is because if the intersection is non-empty and the endpoints of the intervals are $a_1, b_1$ and $a_2, b_2$, then the endpoints of their intersection are $\min(a_1, a_2)$ and $\max(b_1, b_2)$. Thus the intersection of two boxes is itself a box. Note
+        \item 
+            Note that the intersection of two intervals is always an interval (assuming $\varnothing$ is also an interval). That is because if the intersection is non-empty and the endpoints of the intervals are $a_1, b_1$ and $a_2, b_2$, then the endpoints of their intersection are $\min(a_1, a_2)$ and $\max(b_1, b_2)$. Thus the intersection of two boxes is itself a box. Note
             \[
                 E \cap F = \bigcup_{i} \bigcup_{j} B_i \cap V_j
             \]
             which is the union of the intersection of boxes, which themselves are boxes. Hence $E \cap F$ is elementary.
 
         \item 
-        \item Since $E \setminus F$ and $F \setminus E$ are elementary from $(iii)$, then their union is also elementary from $(i)$. Thus $E \Delta F$ is elementary.
-        \item Note that $E + x = \bigcup_{i} (B_i + x)$ thus we only need to consider $B_i + x$. Suppose $B_i = [a_1,b_1] \times \ldots \times [a_d, b_d]$ (since the following argument works regardless of endpoint inclusion). Note then that
+            Note that
+            \begin{align*}
+                E \setminus F &= \qty\big[\bigcup_i B_i] \setminus F \\
+                &= \bigcup_i B_i \setminus F \\
+                &= \bigcup_i B_i \setminus \qty\big[\bigcup_j V_j] \\
+                &= \bigcup_i \bigcap_j B_i \setminus V_j
+            \end{align*}
+            Therefore if the subtraction of two boxes is an elementary set, then by (i) and (ii) $E \setminus F$ will also be elementary. The difference of two boxes will themselves be a union of boxes, as one can divide the resulting set $B_i \setminus V_j$ along the hyperplanes of $V_i$ to obtain a disjoint decomposition. This means that $B_i \setminus V_j$ is an elementary set, which means that $E \setminus F$ is elementary.
+
+        \item 
+            Since $E \setminus F$ and $F \setminus E$ are elementary from $(iii)$, then their union is also elementary from $(i)$. Thus $E \Delta F$ is elementary.
+
+        \item 
+            Note that $E + x = \bigcup_{i} (B_i + x)$ thus we only need to consider $B_i + x$. Suppose $B_i = [a_1,b_1] \times \ldots \times [a_d, b_d]$ (since the following argument works regardless of endpoint inclusion). Note then that
             \[
                 B_i + x = [a_1 + x_1, b_1 + x_1] \times \ldots \times [a_d + x_d, b_d + x_d]
             \]
-            which is still a box. Thus $E$ is the union of a finite number of boxes and therefore elementary.
+            which is still a box. Thus $E + x$ is the union of a finite number of boxes and therefore elementary.
     \end{enumerate}
 \end{proof}
 
@@ -34,12 +48,17 @@
     .\]
     We can now extend the known value of $\tilde{m}$ to general boxes.
     \begin{itemize}
-        \item Take $n \in \N$. Then $[0,1)^d$ can be subdivided into $n^d$ cubes of side length $\frac{1}{n}$. By translation invariance, each of these cubes must have the same measure, thus $\tilde{m} \left([0, \frac{1}{n})^d\right) = \frac{c}{n^d}$. 
-        \item Let $B$ be a box with rational endpoints. By translation invariance it can be assumed $B = \prod_{i=1}^d [0, r_i)$ where $r_i \in \Q$. For some $q \in \N$, we can then write $r_i = \frac{p_i}{q}$ for some $p_i \in \Z$. It is therefore possible to partition $B$ into $p_1 p_2 \ldots p_d$ boxes of side length $\frac{1}{q}$. It follows from the previous part then that 
+        \item 
+            Take $n \in \N$. Then $[0,1)^d$ can be subdivided into $n^d$ cubes of side length $\frac{1}{n}$. By translation invariance, each of these cubes must have the same measure, thus $\tilde{m} \left([0, \frac{1}{n})^d\right) = \frac{c}{n^d}$. 
+
+        \item
+            Let $B$ be a box with rational endpoints. By translation invariance it can be assumed $B = \prod_{i=1}^d [0, r_i)$ where $r_i \in \Q$. For some $q \in \N$, we can then write $r_i = \frac{p_i}{q}$ for some $p_i \in \Z$. It is therefore possible to partition $B$ into $p_1 p_2 \ldots p_d$ boxes of side length $\frac{1}{q}$. It follows from the previous part then that 
             \[
             \tilde{m}(B) = p_1 \ldots p_d \cdot \frac{c}{q^d} = c \cdot \prod_{i=1}^d r_i = c m(B)
             .\]
-        \item Now let $B$ be a box with real endpoints. Again by translation invariance it can be assumed $B = \prod_{i=1}^d [0, t_i)$. Take $q \in \N$ and set $p_i = \lfloor qt_i \rfloor$. Define then
+
+        \item 
+            Now let $B$ be a box with real endpoints. Again by translation invariance it can be assumed $B = \prod_{i=1}^d [0, t_i)$. Take $q \in \N$ and set $p_i = \lfloor qt_i \rfloor$. Define then
             \[
                 B_L = \prod_{i=1}^d \left[0, \frac{p_i}{q}\right) \hspace{1cm} B_U = \prod_{i=1}^d \left[0, \frac{p_i + 1}{q}\right)
             .\]
@@ -84,8 +103,10 @@
                      &= m(B \setminus A) + m(A) \implies m(B \setminus A) = m(B) - m(A)
             \end{align*}
             Therefore $m(B \setminus A) \leq \eps$.
+
         \item[$2 \Rightarrow 3)$]
             Take $\eps > 0$ and suppose there exists elementary sets $A \subset E \subset B$ such that $m(B \setminus A) \leq \eps$. Note that $A \setminus E = \varnothing$, thus $A \Delta E = E \setminus A$. Since $E \setminus A \subset B$ and $(E \setminus A) \cap A = \varnothing$, $E \setminus A \subset B \setminus A$ and thus $A \Delta E \subset B \setminus A$. Therefore $m_J^*(A \Delta E) \leq m(B \setminus A) \leq \eps$.
+
         \item[$3 \Rightarrow 1)$]
             Take $\eps > 0$ and suppose there exists and elementary set $A$ such that $m_J^*(A \Delta E) \leq \eps$. Then for any $\delta > 0$ there exists some elementary set $C$ such that $A \Delta E \subset C$ and $m(C) \leq m_J^*(A \Delta E) + \delta \leq \eps + \delta$. Note that $A \cup C \supset E$ and $A \setminus C \subset E$ are both elementary sets. Therefore we have
             \[
@@ -107,36 +128,62 @@
 
 \begin{proof}
     \begin{enumerate}
-        \item[(i)] Take $\eps > 0$. Then there exists elementary sets $A_1, A_2, B_1, B_2$ such that $A_1 \subset E_1 \subset B_1$, $A_2 \subset E_2 \subset B_2$ and $m(B_1 \setminus A_1), m(B_2 \setminus A_2) \leq \eps$. 
+        \item[(i)] 
+            Take $\eps > 0$. Then there exists elementary sets $A_1, A_2, B_1, B_2$ such that $A_1 \subset E_1 \subset B_1$, $A_2 \subset E_2 \subset B_2$ and $m(B_1 \setminus A_1), m(B_2 \setminus A_2) \leq \eps$. 
+
             \begin{itemize}
-                \item Note that $A_1 \cup A_2 \subset E_1 \cup E_2 \subset B_1 \cup B_2$ and
+                \item 
+                    Note that $A_1 \cup A_2 \subset E_1 \cup E_2 \subset B_1 \cup B_2$ and
                     \begin{align*}
                         (B_1 \cup B_2) \setminus (A_1 \cup A_2) &= (B_1 \setminus (A_1 \cup A_2)) \cup (B_2 \setminus (A_1 \cup A_2)) \\
                                                                 &\subset (B_1 \setminus A_1) \cup (B_2 \setminus A_2)
                     \end{align*}
                     Therefore $m((B_1 \cup B_2) \setminus (A_1 \cup A_2)) \leq m(B_1 \cup A_1) + m(B_2 \setminus A_2) \leq 2 \eps$. Since $A_1 \cup A_2$ and $B_1 \cup B_2$ are elementary, $E_1 \cup E_2$ is Jordan measurable.
 
-                \item Note that $A_1 \cap A_2 \subset E_1 \cap E_2 \subset B_1 \cap B_2$  and
-                    \begin{align*}
-                        (B_1 \cap B_2) \setminus (A_1 \cap A_2) &= (B_1 \setminus (A_1 \cap A_2)) \cup (B_2 \setminus (A_1 \cap A_2)) \\
-                                                                &\subset (B_1 \setminus A_1) \cup (B_2 \setminus A_2)
-                    \end{align*}
                 \item 
-                \item Since $E_1 \Delta E_2 = (E_1 \setminus E_2) \cup (E_2 \setminus E_1)$, $E_1 \Delta E_2$ is Jordan measurable by $(i)$ and $(iii)$.
+                    Note that $A_1 \cap A_2 \subset E_1 \cap E_2 \subset B_1 \cap B_2$ and
+                    \begin{align*}
+                        m((B_1 \cap B_2) \setminus (A_1 \cap A_2)) &= m(((B_1 \cap B_2) \setminus A_1) \cup ((B_1 \cap B_2) \setminus A_2)) \\
+                                                                   &\leq m((B_1 \cap B_2) \setminus A_1) + m((B_1 \cap B_2) \setminus A_2) \\
+                                                                   &\leq m(B_1 \setminus A_1) + m(B_2 \setminus A_2) \\
+                                                                   &\leq 2 \eps
+                    \end{align*}
+                    Since $A_1 \cap A_2$ and $B_1 \cap B_2$ are elementary, $E_1 \cap E_2$ is Jordan measurable.
+                \item 
+                    Note that $A_1 \setminus B_2 \subset E_1 \setminus E_2 \subset B_1 \setminus A_2$, as well as
+                    \begin{align*}
+                        m((B_1 \setminus A_2) \setminus (A_1 \setminus B_2)) &= m(B_1 \setminus A_2) - m(A_1 \setminus B_2) \\
+                        &\leq (m(B_1) - m(A_2)) - (m(A_1) - m(B_2)) \\
+                        &= (m(B_1) - m(A_1)) + (m(B_2) - m(A_2)) \\
+                        \leq 2 \eps
+                    \end{align*}
+                    Since $A_1 \setminus B_2$ and $B_1 \setminus A_2$ are elementary, $E_1 \setminus E_2$ is Jordan measurable.
+                \item 
+                    Since $E_1 \Delta E_2 = (E_1 \setminus E_2) \cup (E_2 \setminus E_1)$, $E_1 \Delta E_2$ is Jordan measurable by $(i)$ and $(iii)$.
             \end{itemize}
-        \item[(ii)] Since the elementary measure is non-negative and $m(E_1) = m^J_*(E_1) = \sup\qty{m(A) : A \subset E_1, A \in \mathcal{E}(\R^d)} \geq 0$
-        \item[(iv)] If $A \subset E_1$ is elementary, then $A \subset E_2$, thus the supremum over all inner elementary sets for $E_1$ is a subset of the inner elementary sets for $E_2$. Thus $m^J_*(E_1) \leq m^J_*(E_2)$, which gives $m(E_1) \leq m(E_2)$ since $E_1$ and $E_2$ are Jordan measurable.
-        \item[(v)] Pick $\eps > 0$ and elementary sets $B_1 \supset E_1, B_2 \supset E_2$ such that $m(B_1) - m(E_1) \leq \eps$ and $m(B_2) - m(E_2) \leq \eps$. Since $E_1 \cup E_2 \subset B_1 \cup B_2$ by (iv) it follows
+
+        \item[(ii)] 
+            Since the elementary measure is non-negative and $m(E_1) = m^J_*(E_1) = \sup\qty{m(A) : A \subset E_1, A \in \mathcal{E}(\R^d)} \geq 0$
+
+        \item[(iv)] 
+            If $A \subset E_1$ is elementary, then $A \subset E_2$, thus the supremum over all inner elementary sets for $E_1$ is a subset of the inner elementary sets for $E_2$. Thus $m^J_*(E_1) \leq m^J_*(E_2)$, which gives $m(E_1) \leq m(E_2)$ since $E_1$ and $E_2$ are Jordan measurable.
+
+        \item[(v)] 
+            Pick $\eps > 0$ and elementary sets $B_1 \supset E_1, B_2 \supset E_2$ such that $m(B_1) - m(E_1) \leq \eps$ and $m(B_2) - m(E_2) \leq \eps$. Since $E_1 \cup E_2 \subset B_1 \cup B_2$ by (iv) it follows
             \[
                 m(E_1 \cup E_2) \leq m(B_1 \cup B_2) \leq m(B_1) + m(B_2) \leq m(E_1) + m(E_2) + 2\eps
             .\]
             Since $\eps$ was arbitrary, it follows $m(E_1 \cup E_2) \leq m(E_1) + m(E_2)$.
-        \item[(iii)] Take $\eps > 0$. Then there exists elementary sets $A_1 \subset E_1, A_2 \subset E_2$ such that $m(E_1) - m(A_1) \leq \eps$ and $m(E_2) - m(A_2) \leq \eps$. Since $E_1 \cap E_2 = \varnothing$, $A_1 \cap A_2 = \varnothing$ which means $m(A_1 \cup A_2) = m(A_1) + m(A_2)$. Note that $A_1 \cup A_2 \subset E_1 \cup E_2$, which by (iv) gives
+
+        \item[(iii)] 
+            Take $\eps > 0$. Then there exists elementary sets $A_1 \subset E_1, A_2 \subset E_2$ such that $m(E_1) - m(A_1) \leq \eps$ and $m(E_2) - m(A_2) \leq \eps$. Since $E_1 \cap E_2 = \varnothing$, $A_1 \cap A_2 = \varnothing$ which means $m(A_1 \cup A_2) = m(A_1) + m(A_2)$. Note that $A_1 \cup A_2 \subset E_1 \cup E_2$, which by (iv) gives
             \[
                 m(E_1 \cup E_2) \geq m(A_1 \cup A_2) = m(A_1) + m(A_2) \geq m(E_1) + m(E_2) - 2\eps
             .\]
             Since $\eps$ was arbitrary, it follows $m(E_1 \cup E_2) \geq m(E_1) + m(E_2)$ which in conjunction with (v) gives $m(E_1 \cup E_2) = m(E_1) + m(E_2)$.
-        \item[(vi)] Take $\eps > 0$. Then there exists elementary sets $A \subset E_1 \subset B$ such that $m(B \setminus A) \leq \eps$. Note that $A+x \subset E_1 + x \subset B+x$. Since $m(\cdot)$ is translation invariant for elementary sets, it follows $m(A+x) = m(A)$ and $m(B+x) = m(B)$. Note then by (iv) that
+
+        \item[(vi)] 
+            Take $\eps > 0$. Then there exists elementary sets $A \subset E_1 \subset B$ such that $m(B \setminus A) \leq \eps$. Note that $A+x \subset E_1 + x \subset B+x$. Since $m(\cdot)$ is translation invariant for elementary sets, it follows $m(A+x) = m(A)$ and $m(B+x) = m(B)$. Note then by (iv) that
             \[
                 m(A) \leq m(E_1) \leq m(B) 
             \]
@@ -145,6 +192,7 @@
                 m(A) = m(A+x) \leq m^J_*(E_1+x) \leq m_J^*(E_1+x) \leq m(B+x) = m(B)
             .\]
             Since $m(B \setminus A) = m(B) - m(A) \leq \eps$ we have both $|m(E_1) - m_J^*(E_1+x)| \leq \eps$ and $|m(E_1) - m^J_*(E_1+x)|$. The choice of $\eps$ was arbitrary, hence $m_J^*(E_1 + x) = m^J_*(E_1+x) = m(E)$.
+
     \end{enumerate}
 \end{proof}
 
@@ -183,13 +231,117 @@
 \section*{Ex 1.18}
 
 \begin{proof}
-    
+    Let $c \coloneq m(L([0,1]^d))$. Note that for sets $A, B \subset \R^d$ that $L(A \cup B) = L(A) \cup L(B)$.
+
+    \begin{itemize}
+        \item
+            Take $n \in \N$. Then $[0,1)^d$ can be subdivided into $n^d$ cubes of side length $\frac{1}{n}$. Note that each cube can be written as $x + [0, \frac{1}{n})^d$ for some $x \in \R^d$, and by linearity that $L(x + [0,\frac{1}{n}))^d) = L(x) + L([0, \frac{1}{n})^d)$. Therefore by translation invariance
+            \[
+                m\left(L\left(\left[0, \frac{1}{n}\right)^d\right)\right) = \frac{c}{n^d}
+            .\]
+
+        \item
+            Let $B$ be a box with rational endpoints. By translation invariance it can be assumed $B = \prod_{i=1}^d [0,r_i)$ where $r_i \in \Q$. For some $q \in \N$ we can then write $r_i = \frac{p_i}{q}$ for some $p_i \in \Z$. It is therefore possible to partition $B$ into $p_1 p_2 \ldots p_d$ boxes of side length $\frac{1}{q}$. From the previous part it then follows
+            \[
+                m(L(B)) = p_1 \ldots p_d \cdot m\left(L\left(\left[0, \frac{1}{q}\right)^d\right)\right) = \frac{p_1 \ldots p_d}{q^d}
+            .\]
+
+        \item 
+            Now let $B$ be a box with real endpoints, which again by translation invariance can be assumed to be $B = \prod_{i=1}^d [0, t_i)$ for $t_i \in \R$. Take $q \in \N$ and let $p_i = \lfloor q t_i \rfloor$. Define
+            \[
+                B_L = \prod_{i=1}^d \left[0, \frac{p_i}{q}\right) \hspace{2cm} B_U = \prod_{i=1}^d \left[0, \frac{p_i + 1}{q}\right)
+            .\]
+            Note that $B_L \subset B \subset B_U$, and
+            \[
+                \lim_{q \to \infty} \frac{p_1 \ldots p_d}{q^d} = \lim_{q \to \infty} \frac{(p_1 + 1)\ldots (p_d + 1)}{q^d} = t_1 \ldots t_d = |B|
+            .\]
+            Montonicity gives $m(L(B_L)) \leq m(L(B)) \leq m(L(B_U))$, and from the previous part
+            \[
+                m(L(B_L)) = c \cdot\frac{p_1 \ldots p_d}{q^d} \hspace{1cm} m(L(B_U)) = c\cdot \frac{(p_1 + 1) \ldots (p_d + 1)}{q^d}
+            .\]
+            Therefore
+            \[
+                c \cdot \frac{p_1 \ldots p_d}{q^d} \leq m(L(B)) \leq c \cdot \frac{(p_1 + 1) \ldots (p_d + 1)}{q^d}
+            .\]
+            Thus in the limit as $q \to \infty$ it follows $m(L(B)) = c \cdot |B|$.
+    \end{itemize}
+
+    Let $E \subset \R^d$ be an elementary set. Then $E$ has a finite disjoint decomposition into boxes $E = \coprod_i B_i$. Note then that
+    \begin{align*}
+        m(L(E)) = m\qty(L\qty(\coprod_i B_i)) &= m\qty(\coprod_i L(B_i))  \\
+        &= \sum_i m(L(B_i)) = c \cdot \sum_i |B_i| = c m(E)
+    \end{align*}
+    proving (i).
+
+    Now let $E$ be Jordan measurable, and take $\eps > 0$. Then there exists elementary sets $A, B$ such that $A \subset E \subset B$ and $m(B \setminus A) \leq \eps$. Therefore $m(B) - m(A) \leq \eps$, or equivalently
+    \[
+        \frac{m(L(B))}{c} - \frac{m(L(A))}{c} \leq \eps \implies m(L(B)) - m(L(A)) \leq c \eps
+    .\]
+    Thus since $L(A) \subset L(E) \subset L(B)$, it follows
+    \[
+        c m(A) = m(L(A)) \leq m^J_*(L(E)) \leq m_J^*(L(E)) \leq m(L(B)) = c m(B)
+    .\]
+    Letting $\eps$ go to $0$ means $L(E)$ is measurable, and both $m(A)$ and $m(B)$ will converge to $m(E)$, giving $m(L(E)) = c m(E)$.
+
+\end{proof}
+
+\section*{Ex 1.23}
+
+\begin{proof}
+    Define $A_n$ be the union of all dyadic cubes of side length $2^{-n}$ contained in $E$, $B_n$ the ones that intersect $E$. Let $a_n \coloneq m(A_n) = 2^{-dn} e_*(E, n)$ and $b_n \coloneq m(B_n) = 2^{-dn} e^*(E, n)$. When the limits exist, denote $\alpha = \lim_{n\to \infty} a_n$ and $\beta = \lim_{n \to \infty}$.
+
+    Suppose $E$ is measurable and take $\eps > 0$. Note that
+    \[
+        m(B_n \setminus A_n) = m(B_n) - m(A_n) = 2^{-dn} \qty(e^*(E, n) - e_*(E, n))
+    .\]
+    Since $E$ is measurable, $m^*(\partial E) = 0$ and therefore there exists an elementary set $C \supset \partial E$ such that $m(C) < \eps$. We can assume $C$ to be open, and since $\partial E$ is closed and bounded, it is also compact. Therefore we can create an open cover of cubes contained in $C$ for every point in $\partial E$, of which gives a finite subcover $O$. It is then possible to take $n$ large enough such that $B_n \setminus A_n \subset O \subset C$ (taking $\delta$ to be smallest diameter of the non-empty pairwise intersections of the open cubes in the finite subcover and choosing $2^{-n} < \delta$ accomplishes this). Therefore $m(B_n \setminus A_n) \leq m(C) \leq \eps$. As $\eps$ goes to $0$, $n$ goes to infinity giving
+    \[
+        \lim_{n \to \infty} m(B_n \setminus A_n) = 0 \implies \lim_{n \to \infty} 2^{-dn} \qty(e^*(E, n) - e_*(E, n)) = 0
+    .\]
+
+    \noindent
+    Suppose then that
+    \[
+        \lim_{n \to \infty} 2^{-dn} \qty(e^*(E, n) - e_*(E, n)) = \lim_{n \to \infty} (b_n - a_n) = \beta - \alpha = 0
+    .\]
+    Then $\alpha = \beta$, and since $a_n \leq m^J_*(E) \leq m_J^*(E) \leq b_n$, it follows $E$ is measurable and
+    \[
+        m(E) = \alpha = \beta
+    \]
+    which was to be shown.
 \end{proof}
 
 \section*{Ex 1.25}
 
 \begin{proof}
-    
+    Let $E \subset \R^{d_1}$ and $F \subset \R^{d_2}$ be elementary sets. Then there are finite disjoint decompositions $E = \bigcup_{i} B_i$ and $F = \bigcup_i V_i$ where $B_i$ and $V_i$ are boxes. Note then that
+    \[
+        E \times F = \bigcup_{i} \bigcup_{j} B_i \times V_i
+    \]
+    and $|B_i \times V_i| = |B_i| |V_i|$. Therefore
+    \begin{align*}
+        m_{d_1 + d_2}(E \times F) &= \sum_{i} \sum_{j} |B_i \times V_i| \\
+        &= \sum_{i} \sum_{j} |B_i| |V_i| \\
+        &= \qty(\sum_{i} |B_i|) \qty(\sum_j |V_i|) \\
+        &= m_{d_1}(E) m_{d_2}(F)
+    \end{align*}
+    For any elementary sets $U, V$ such that $U \supset E_1$ and $V \supset E_2$, it follows $U \times V \supset E_1 \times E_2$ and
+    \[
+        m_J^*(E_1 \times E_2) \leq m(U \times V) = m(U) m(V)
+    .\]
+    Thus taking the infimum over all these possible elementary sets gives
+    \[
+        m_J^*(E_1 \times E_2) \leq m_J^*(E_1) m_J^*(E_2)
+    .\]
+    A similar argument using subsets and the supremum gives
+    \[
+        m^J_*(E_1 \times E_2) \geq m^J_*(E_1) m^J_*(E_2)
+    .\]
+    Therefore if $E_1$ and $E_2$ are both measurable,
+    \[
+        m_{d_1}(E_1) m_{d_2}(E_2) \leq m^J_*(E_1 \times E_2) \leq m_J^*(E_1 \times E_2) \leq m_{d_1}(E_1) m_{d_2}(E_2)
+    .\]
+    Thus $E_1 \times E_2$ is measurable and $m_{d_1 + d_2}(E_1 \times E_2) = m_{d_1}(E_1) m_{d_2}(E_2)$.
 \end{proof}
 
 \section*{Ex 1.26}
@@ -203,12 +355,38 @@
         .\]
         Therefore $m_J^*(\conj{E}) \leq \sum |\conj{B_i}| = \sum |B_i| \leq m_J^*(E) + \eps$, giving $m_J^*(\conj{E}) \leq m_J^*(E) + \eps$. Since $\eps$ was arbitrary, we have equality.
 
-        \item We use a similar argument as above. Clearly $m^J_*(\mathring{E}) \leq m^J_*(E)$. Take $\eps > 0$. Then there exists boxes $B_1, \ldots, B_n$ such that $\bigcup B_i \subset E$ with $m^J_*(E) + \eps < \sum |B_i|$.
+    \item We use a similar argument as above. Clearly $m^J_*(\mathring{E}) \leq m^J_*(E)$. Take $\eps > 0$. Then there exists boxes $B_1, \ldots, B_n$ such that $\bigcup B_i \subset E$ with $\sum |B_i| \geq m^J_*(E) - \eps$. Note that $|\mathring{B_i}| = |B_i|$ and
+        \[
+            \bigcup_{i} \mathring{B_i} \subset \interior\qty(\bigcup_i B_i) \subset \mathring{E}
+        .\]
+        Therefore $m^J_*(E) \geq \sum |\mathring{B_i}| = \sum |B_i| \geq$. Since $\eps$ was arbitrary, we have equality.
 
-        \item Suppose $E$ is Jordan measurable. Then $m_J^*(E) = m^J_*(E)$. Since $\mathring{E} \subset \conj{E}$, $m^J_*(\mathring{E}) \leq $
+        \item 
+            Suppose $E$ is Jordan measurable and take $\eps > 0$. Then there exists $A \subset E \subset B$ elementary such that $m(B \setminus A) = m(B) - m(A) \leq \eps$. Note then that $\partial E \subset \conj{B} \setminus \mathring{A}$. From the previous parts, it follows that $m(\mathring{A}) = m(A)$ and $m(\conj{B}) = m(B)$, thus
+            \[
+               m_J^*(\partial E) \leq m(\conj{B} \setminus \mathring{A}) = m(\conj{B}) - m(\mathring{A}) = m(B) - m(A) \leq \eps
+            .\]
+            Since $\eps$ was arbitrary, it follows $m_J^*(\partial E) = 0$.
+        
+            Suppose then $m_J^*(\partial E) = 0$ and take $\eps > 0$. Then there exists an elementary set $C \supset \partial E$ with $m(C) \leq \eps$. We can assume $C$ to be open, thus $\conj{E} \setminus C$ is a compact set. Since $\conj{E} \setminus C \subset \mathring{E}$, we can find an open box around every point $x \in \conj{E} \setminus C$ contained in $\mathring{E}$. This defines an open cover of $\conj{E} \setminus C$, thus there is a finite subcover $A$ by compactness. Note that $A$ is elementary since it is the union of finitely many open boxes. Furthermore $A \subset \mathring{E}$, meaning
+            \[
+                m_J^*(\conj{E}) \leq m(A \cup C) \leq m(A) + m(C) \leq m^J_*(\mathring{E}) + \eps
+            .\]
+            Letting $\eps$ go to $0$ gives $m_J^*(\conj{E}) = m^J_*(\mathring{E})$. It follows then from the previous two parts that $m^J_*(E) = m_J^*(E)$, thus $E$ is measurable.
 
-        \item Since $\conj{[0,1]^2 \setminus \Q^2} = [0,1]^2 = \conj{[0,1]^2 \cap \Q^2}$, it follows $m_J^*([0,1]^2 \setminus \Q^2) = m_J^*([0,1]^2 \cap \Q^2) = m_J^*([0,1]^2) = 1$. But $\interior([0,1]^2 \setminus) = \varnothing = \interior([0,1]^2 \cap \Q^2)$, thus $m^J_*([0,1]^2 \setminus \Q) = m^J_*([0,1]^2 \cap \Q^2) = m^J_*(\varnothing) = 0$. Therefore neither $[0,1]^2 \setminus \Q^2$ or $[0,1]^2 \cap \Q^2$ are Jordan measurable.
+        \item 
+            Since $\conj{[0,1]^2 \setminus \Q^2} = [0,1]^2 = \conj{[0,1]^2 \cap \Q^2}$, it follows $m_J^*([0,1]^2 \setminus \Q^2) = m_J^*([0,1]^2 \cap \Q^2) = m_J^*([0,1]^2) = 1$. But $\interior([0,1]^2 \setminus) = \varnothing = \interior([0,1]^2 \cap \Q^2)$, thus $m^J_*([0,1]^2 \setminus \Q) = m^J_*([0,1]^2 \cap \Q^2) = m^J_*(\varnothing) = 0$. Therefore neither $[0,1]^2 \setminus \Q^2$ or $[0,1]^2 \cap \Q^2$ are Jordan measurable.
     \end{enumerate}
+\end{proof}
+
+\section*{Ex. 1.28}
+
+\begin{proof}
+    Since $E = (E \cap F) \cup (E \setminus F)$, it follows that $m_J^*(E) \leq m_J^*(E \cap F) + m_J^*(E \setminus F)$. For the other inequality, take $\eps > 0$. There then exists some elementary set $A \supset E$ such that $m(A) \leq m_J^*(E) + \eps$. Since $F$ is elementary, it follows $A \cap F$ and $A \setminus F$ are both elementary, and since both are disjoint $m(A) = m(A \cap F) + m(A \setminus F)$. Thus
+    \[
+        m_J^*(E) + \eps \geq m(A) = m(A \cap F) + m(A \setminus F) \geq m_J^*(E \cap F) + m_J^*(E \setminus F)
+    .\]
+    Since $\eps$ was arbitrary, we have $m_J^*(E) \geq m_J^*(E \cap F) + m_J^*(E \setminus F)$. Combining both inequalities gives the desired result.
 \end{proof}
 
 \end{document}

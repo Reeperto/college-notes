@@ -1,5 +1,6 @@
 .scratchpad
 **/.DS_Store
+
 **/.aux
 **/aux
 **/*.out
@@ -10,7 +11,11 @@
 **/*.synctex.gz
 **/*.toc
 **/*.log
+
 quarters/spring2023/WRITING60/advocacy_project/reagan.psd
 quarters/spring2023/WRITING60/advocacy_project/AP Zines.psd
 quarters/spring2023/WRITING60/advocacy_project/AP ZinesAbolish the Prison.pdf
 quarters/spring2023/WRITING60/advocacy_project/AP ZinesReplace the Prison.pdf
+
+**/hw*/bin
+**/.cache
