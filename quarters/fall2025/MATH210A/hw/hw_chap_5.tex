@@ -2,4 +2,148 @@
 
 \begin{document}
 
+\section*{Exercise 5.22}
+
+\begin{proof}
+    Suppose that $f_n \to f$ in the $L^1$ norm. Note that by Markov's inequality that for some $\eps > 0$
+    \[
+        \mu([|f - f_n| \geq \eps]) \leq \frac{1}{\eps} \cdot \int |f - f_n| d \mu = \frac{1}{\eps} \cdot \norm{f - f_n}_{L^1}
+    .\]
+    Therefore in the limit as $n \to \infty$, the RHS goes to zero by the assumption, meaning $f_n \to f$ in measure.
+
+
+    Suppose towards contradiction then that $f_n \to f$ in measure but $f_n \not\to f$ in $L^1$. Then there exists some $\eps > 0$ and subsequence $f_{n_j}$ such that
+    \[
+        \norm{f - f_{n_j}} \geq \eps, \forall j
+    .\]
+    Denote this subsequence as $h_n$. Since $f_n \to f$ in measure, it is also the case that $h_n \to f$ in measure as well. Since $f_n$ is a dominated sequence, so is $h_n$ meaning there is some $g \in \mathcal{L}^1$ such that both $|h_n| \leq g$ and $|f| \leq g$. Therefore by the triangle inequality, $|f - h_n| \leq 2g$ meaning $|f - h_n|$ is also a dominated sequence. Since $h_n \to f$ in measure, there is some subsequence $h_{n_k} \to f$ pointwise a.e. Therefore by the Dominated Convergence Theorem it follows that
+    \[
+        \lim_{n \to \infty} \int |f - h_{n_k}| d \mu = 0 \Leftrightarrow \lim_{n\to \infty} \norm{f - h_{n_k}}_{L^1} = 0
+    .\]
+    But for a sufficiently large $k$ it follows that $\norm{f - h_{n_k}} < \eps$, a contradiction. Therefore $f_n \to f$ in $L^1$.
+\end{proof}
+
+\section*{Exercise 5.26}
+
+\begin{proof}
+    The forward direction is trivial as the result is a requirement of uniform integrability. Suppose then that
+    \[
+        \sup_{n \in \N} \int_{[|f_n| \geq M]} |f_n| d \mu \to 0
+    \]
+    as $M \to \infty$. One can then take $M$ large enough such that
+    \[
+        \sup_{n \in \N} \int_{[|f_n| \geq M]} \leq 1
+    .\]
+    Since $\mu(X) < \infty$, for any $n$ it then follows that
+    \[
+        \int |f_n| d \mu = \int_{[|f_n| \geq M]} |f_n| d \mu + \int_{[|f_n| < M]} |f_n| d \mu \leq 1 + M \cdot \mu(X) < \infty
+    .\]
+    Therefore the first condition for uniform integrability holds. Clearly the second holds as it is identical to the assumption, leaving the third to be shown. Note that for any $n$
+    \[
+        \int_{[|f_n| \leq \delta]} |f_n| \leq \int_{[|f_n| \leq \delta]} \delta d \mu = \delta \cdot \mu(|f_n| \leq \delta]) \leq \delta \cdot \mu(X)
+    .\]
+    In the limit $\delta \to 0$, the integral goes to $0$ and thus $(f_n)_{n \in \N}$ is uniformly integrable.
+\end{proof}
+
+\section*{Exercise 5.27}
+
+\begin{proof}
+    \begin{enumerate}
+        \item
+            Denote $C = \sup_{n \in \N} \int |f_n|^p d \mu$. Note that $|f_n| \leq |f_n|^p + 1$ for any $p > 1$, therefore
+            \[
+                \sup_{n \in \N} \int |f_n| d \mu \leq \sup_{n \in \N} \int (|f_n|^p + 1) d \mu = \mu(X) + C < \infty
+            .\]
+            Therefore the first condition of uniform integrability holds. Consider $|f_n|$ when $|f_n| \geq M$. Note that for $p > 1$
+            \[
+                |f_n| = \frac{|f_n|^{p}}{|f_n|^{p - 1}} \leq \frac{|f_n|^p}{M^{p-1}}
+            .\]
+            Integrating over both sides then gives
+            \[
+                \int_{[|f_n| \geq M]} |f_n| d \mu \leq \frac{1}{M^{p-1}} \cdot \int_{[|f_n| \geq M]} |f_n|^p d \mu \leq \frac{C}{M^{p-1}}
+            \]
+            which in the limit as $M \to \infty$ goes to $0$. Therefore the second condition of uniform integrability holds. Take $\delta > 0$ and note that
+            \[
+                \int_{[|f_n| \leq \delta]} |f_n| d \mu \leq \int_{[|f_n| \leq \delta]} \delta d \mu = \delta \cdot \mu([|f_n| \leq \delta]) \leq \delta \cdot \mu(X)
+            .\]
+            Since $\mu(X) < \infty$, it follows in the limit $\delta \to 0$ that the integral goes to $0$ for all $n$. Thus $(f_n)_{n \in \N}$ is uniformly integrable.
+
+        \item 
+            Take $\eps > 0$. By uniform integrability, there is some $\delta > 0$ and $M > 0$ such that
+            \[
+                \sup_{n \in \N} \int_{[|f_n| \leq \delta]} |f_n| d \mu \leq \eps \hspace{2cm} \sup_{n \in \N} \int_{[|f_n| \geq M]} |f_n| \leq \eps
+            \]
+            If $\mu(E) \leq \eps$, then note
+            \[
+                \int_E |f_n| d \mu = \int_{E \cap [|f_n| \leq \delta]} |f_n| d \mu + \int_{E \cap [\delta < |f_n| < M]} |f_n| d \mu + \int_{E \cap [|f_n| \geq M]} |f_n| d \mu
+            \]
+            in which each term can be bounded to give
+            \[
+                \int_E |f_n| d \mu \leq \eps + \mu(E) \cdot M + \eps \leq 2 \eps + M \cdot \eps
+            \]
+            which was to be shown.
+
+        \item 
+            The first condition for uniform integrability is satisfied by taking $C = \sup_{n \in \N} \norm{f_n}_{L^1}$. Note that by Markov's inequality
+            \[
+                \mu([|f_n| \geq M]) \leq \frac{\norm{f_n}_{L^1}}{M} \leq \frac{C}{M}
+            .\]
+            For any $\eps > 0$ and the associated $\delta$ given by the assumption, taking $M$ large enough such that $\frac{C}{M} \leq \delta$ gives
+            \[
+                \sup_{n \in \N} \int_{[|f_n| \geq M]} |f_n| d \mu \leq \eps
+            \]
+            hence the second condition for uniform integrability holds. Note that for $\delta > 0$ and any $n$ that
+            \[
+                \int_{[|f_n| \leq \delta]} |f_n| \leq \int_{[|f_n| \leq \delta]} \delta d \mu \leq \delta \cdot \mu(X)
+            .\]
+            Since $\delta \cdot \mu(X) \to 0$ as $\delta \to 0$, the third condition for uniform integrability then holds.
+
+        \item 
+            Let $f_n = \ind{[n, n+1]}$. Note that
+            \begin{itemize}
+                \item $\norm{f_n}_{L^1} = 1$ for all $n$
+                \item $\int_{[|f_n| \geq M]} |f_n| d \mu = 0$ for $M > 1$ and all $n$
+                \item $\int_{[|f_n| \leq \delta]} |f_n| d \mu = 0$ for $\delta < 1$ and all $n$
+            \end{itemize}
+            Thus $f_n$ is uniformly integrable and converges pointwise almost everywhere to $0$. However,
+            \begin{itemize}
+                \item It does not converge in $L^1$ since $\norm{f_n - 0}_{L^1} = \norm{f_n}_{L^1} = 1$
+                \item It does not converge in measure since $\mu([f_n - 0] > \frac{1}{2}) = 1 \not\to 0$
+                \item It does not converge almost uniformly since the set $f_n$ differs from $0$ will always have a measure of $1$ and hence cant be arbitrarily small
+            \end{itemize}
+    \end{enumerate}
+\end{proof}
+
+\section*{Exercise 5.31}
+
+\begin{proof}
+    Let $f \coloneq \sup_{n \in \N} f_n = \lim_{n \to \infty} f_n$. Since $f_n$ is a non-decreasing sequence, it follows from the Monotone Convergence Theorem that
+    \[
+        \int f d\mu = \lim_{n \to \infty} \int f_n d \mu = \sup_{n \in \N} \int f_n d \mu < \infty
+    .\]
+    Therefore $f \in \mathcal{L}^1$. Since $f_n \leq f$, it follows that $f - f_n \geq 0$. Thus
+    \[
+        \norm{f - f_n}_{L^1} = \int | f - f_n | d \mu = \int (f - f_n) d \mu = \int f d \mu - \int f_n d \mu
+    .\]
+    In the limit the integrals of the RHS are equal, meaning $\lim_{n \to \infty} \norm{f - f_n}_{L^1} = 0$. Hence $f_n \to f$ in the $L^1$ norm.
+\end{proof}
+
+\section*{Exercise 5.33}
+
+\begin{proof}
+    The forward direction follows from exercise $5.5$. Suppose then that $f_n \to f$ pointwise a.e. and that $f_n$ is dominated by some $g \in \mathcal{L}^1$. Take $\eps > 0$ and define
+    \[
+        X_k = \qty{x \in X : g(x) \geq \frac{1}{k}}
+    .\]
+    By Markov's inequality it follows that
+    \[
+        \mu(X_k) \leq k \cdot \int g d \mu \leq \infty
+    \]
+    thus each of the $X_k$ are finite. For each $k$, it follows then by Egorov's that there is a $B_k \subset X_k$ with $\mu(B_k) \leq \frac{\eps}{2^k}$ where $f_n \to f$ uniformly on $X_k \setminus B_k$. Let then $B = \bigcup B_k$ and note that $\mu(B) \leq \eps$. Take now $K > 0$ large such that $\frac{1}{K} \leq \eps$. If $x \notin X_K \cup E$, then $g(x) < \frac{1}{K} \leq \eps$. Note then that
+    \[
+        |f_n(x) - f(x)| \leq |f_n(x)| + |f(x)| \leq 2 g(x) \leq 2 \eps
+    .\]
+    By the construction of $X_K$, it follows that $f_n \to f$ uniformly on $X_K \setminus E$. Therefore $f_n \to f$ uniformly everywhere except on $B$ which is arbitrarily small.
+\end{proof}
+
 \end{document}
