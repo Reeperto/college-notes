@@ -5,8 +5,6 @@
 
 typedef enum { false, true } bool;
 
-bool is_alphanumeric(char c);
-
 int str_len(char* str);
 char* str_cpy_n(char *dest, const char *src, size_t n);
 

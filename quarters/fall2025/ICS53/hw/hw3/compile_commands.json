@@ -1,0 +1,50 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-DCOLOR",
+      "-I",
+      "include",
+      "lib/icsshlib.o",
+      "-o",
+      "bin/53shell",
+      "src/linkedlist.c"
+    ],
+    "directory": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw3",
+    "file": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw3/src/linkedlist.c",
+    "output": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw3/bin/53shell"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-DCOLOR",
+      "-I",
+      "include",
+      "lib/icsshlib.o",
+      "-o",
+      "bin/53shell",
+      "src/helpers.c"
+    ],
+    "directory": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw3",
+    "file": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw3/src/helpers.c",
+    "output": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw3/bin/53shell"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-DCOLOR",
+      "-I",
+      "include",
+      "lib/icsshlib.o",
+      "-o",
+      "bin/53shell",
+      "src/icssh.c"
+    ],
+    "directory": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw3",
+    "file": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw3/src/icssh.c",
+    "output": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw3/bin/53shell"
+  }
+]

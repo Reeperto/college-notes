@@ -1,26 +1,66 @@
 #include <pthread.h>
 #include <signal.h>
+#include <errno.h>
 
+#include "debug.h"
 #include "server.h"
 #include "protocol.h"
 #include "MThelpers.h"
 
 /******DECLARE ALL LOCKS HERE BETWEEN THES LINES FOR MANUAL GRADING************/
 
-pthread_mutex_t charity_log_mutex;
-pthread_mutex_t stats_mutex;
-pthread_mutex_t max_donations_mutex;
-pthread_mutex_t charities_mutexes[5];
+pthread_mutex_t charity_log_mutex; // Global lock for the actions log
+pthread_mutex_t max_donations_mutex; // Global lock for maxDonations
+pthread_mutex_t charities_mutexes[5]; // Per charity lock
 
 /******************************************************************************/
 
-// Global variables, statistics collected since server start-up
-int clientCnt;             // # of client connections made, Updated by the main thread
-uint64_t maxDonations[3];  // 3 highest total donations amounts (sum of all donations to all
-                           // charities in one connection), updated by client threads
-                           // index 0 is the highest total donation
-charity_t charities[5];    // Global variable, one charity per index
+int clientCnt;
+uint64_t maxDonations[3];
+charity_t charities[5];
 FILE* charity_log;
+
+volatile sig_atomic_t sigint_flag = false;
+
+void sigint_handler(int sig) {
+    sigint_flag = true;
+}
+
+void send_error(int fd) {
+    message_t response = { .msgtype = ERROR };
+    write(fd, &response, MESSAGE_SIZE);
+
+    LOCK(&charity_log_mutex);
+    {
+        fprintf(
+            charity_log,
+            "%d ERROR\n",
+            fd
+        );
+    }
+    UNLOCK(&charity_log_mutex);
+}
+
+void update_max_donations(int total) {
+    LOCK(&max_donations_mutex);
+    {
+        for (int i = 0; i < 3; ++i) {
+            if (total >= maxDonations[i]) {
+                for (int j = 2; j > i; --j) {
+                    maxDonations[j] = maxDonations[j - 1];
+                }
+
+                maxDonations[i] = total;
+                break;
+            }
+        }
+    }
+    UNLOCK(&max_donations_mutex);
+}
+
+bool is_valid_charity(int charity) {
+    return 0 <= charity && charity < 5;
+}
 
 void* handle_connection(void* fd_param) {
     int client_fd = *((int*)fd_param);
@@ -31,7 +71,20 @@ void* handle_connection(void* fd_param) {
     unsigned char* buf[MESSAGE_SIZE];
     ssize_t n_read = 0;
 
-    while ((n_read = read(client_fd, buf, MESSAGE_SIZE)) > 0) {
+    while (1) {
+        n_read = read(client_fd, buf, MESSAGE_SIZE);
+
+        if (n_read < 0) {
+            if (errno != EINTR) {
+                break;
+            }
+
+            if (sigint_flag) {
+                update_max_donations(donation_total);
+                break;
+            }
+        }
+
         message_t msg = *((message_t*)(buf));
 
         switch (msg.msgtype) {
@@ -39,13 +92,18 @@ void* handle_connection(void* fd_param) {
                 int amount = msg.msgdata.donation.amount;
                 int charity = msg.msgdata.donation.charity;
 
+                if (!is_valid_charity(charity)) {
+                    send_error(client_fd);
+                    break;
+                }
+
                 donation_total += amount;
 
                 LOCK(&charities_mutexes[charity]);
                 {
                     charities[charity].totalDonationAmt += amount;
                     charities[charity].numDonations += 1;
-                    
+
                     if (amount > charities[charity].topDonation) {
                         charities[charity].topDonation = amount;
                     }
@@ -71,6 +129,11 @@ void* handle_connection(void* fd_param) {
 
             case CINFO: {
                 int charity = msg.msgdata.donation.charity;
+
+                if (!is_valid_charity(charity)) {
+                    send_error(client_fd);
+                    break;
+                }
 
                 message_t response = {0};
 
@@ -106,7 +169,7 @@ void* handle_connection(void* fd_param) {
                     memcpy(
                         response.msgdata.maxDonations,
                         maxDonations,
-                        3 * sizeof(int)
+                        3 * sizeof(uint64_t)
                     );
                 }
                 UNLOCK(&max_donations_mutex);
@@ -137,41 +200,19 @@ void* handle_connection(void* fd_param) {
                 }
                 UNLOCK(&charity_log_mutex);
 
-                close(client_fd);
-
-                LOCK(&max_donations_mutex);
-                {
-                    for (int i = 0; i < 3; ++i) {
-                        if (donation_total >= maxDonations[i]) {
-                            for (int j = i + 1; j < 3; ++j) {
-                                maxDonations[j] = maxDonations[j - 1];
-                            }
-
-                            maxDonations[i] = donation_total;
-                            break;
-                        }
-                    }
-                }
-                UNLOCK(&max_donations_mutex);
+                update_max_donations(donation_total);
+                goto close_connection;
             }
 
             default: {
-                message_t response = { .msgtype = ERROR };
-                write(client_fd, &response, MESSAGE_SIZE);
-
-                LOCK(&charity_log_mutex);
-                {
-                    fprintf(
-                        charity_log,
-                        "%d ERROR\n",
-                        client_fd
-                    );
-                }
-                UNLOCK(&charity_log_mutex);
+                send_error(client_fd);
+                break;
             }
         }
     }
 
+close_connection:
+    close(client_fd);
     return NULL;
 }
 
@@ -195,19 +236,27 @@ int main(int argc, char *argv[]) {
     char *log_filename = argv[2];
 
     // INSERT SERVER INITIALIZATION CODE HERE
-    FILE* log_file = fopen(log_filename, "w");
-    if (!log_file) {
+    charity_log = fopen(log_filename, "w");
+    if (!charity_log) {
         exit(2);
     }
 
     ThreadList threads = {0};
 
     pthread_mutex_init(&charity_log_mutex, NULL);
-    pthread_mutex_init(&stats_mutex, NULL);
     pthread_mutex_init(&max_donations_mutex, NULL);
 
     for (int i = 0; i < 5; ++i) {
         pthread_mutex_init(&charities_mutexes[i], NULL);
+    }
+
+    struct sigaction sigact = {
+        .sa_handler = sigint_handler,
+    };
+
+    if (sigaction(SIGINT, &sigact, NULL) < 0) {
+        fprintf(stderr, "Failed to install signal handler\n");
+        exit(EXIT_FAILURE);
     }
 
     // Initiate server socket for listening
@@ -218,25 +267,80 @@ int main(int argc, char *argv[]) {
     unsigned int client_addr_len = sizeof(client_addr);
 
     while(1) {
-        thread_list_prune(&threads);
+connection_listen:
+        if (sigint_flag) {
+            goto shutdown_server;
+        }
+
+        thread_list_prune(&threads, false);
 
         client_fd = accept(listen_fd, (SA*)&client_addr, &client_addr_len);
+
         if (client_fd < 0) {
-            printf("server acccept failed\n");
-            exit(EXIT_FAILURE);
+            if (errno != EINTR) {
+                printf("server acccept failed\n");
+                exit(EXIT_FAILURE);
+            }
+
+            if (sigint_flag) {
+                goto shutdown_server;
+            } else {
+                goto connection_listen;
+            }
         }
 
         int* fd_param = malloc(sizeof(int));
+        *fd_param = client_fd;
 
         pthread_t tid;
         if (pthread_create(&tid, NULL, &handle_connection, fd_param) != 0) {
+            error("Failed to spawn thread\n");
+            exit(EXIT_FAILURE);
         }
 
         thread_list_push(&threads, tid);
         clientCnt += 1;
     }
 
+shutdown_server:
     close(listen_fd);
+    thread_list_signal(&threads, SIGINT);
+    thread_list_prune(&threads, true);
+    thread_list_destroy(&threads);
+
+    for (int i = 0; i < 5; ++i) {
+        LOCK(&charities_mutexes[i]);
+        {
+            printf(
+                "%d, %u, %lu, %lu\n", 
+                i,
+                charities[i].numDonations,
+                charities[i].topDonation,
+                charities[i].totalDonationAmt
+            );
+        }
+        UNLOCK(&charities_mutexes[i]);
+    }
+
+    LOCK(&max_donations_mutex);
+    {
+        fprintf(
+            stderr, 
+            "%d\n%lu, %lu, %lu\n", 
+            clientCnt,
+            maxDonations[0],
+            maxDonations[1],
+            maxDonations[2]
+        );
+    }
+    UNLOCK(&max_donations_mutex);
+
+    LOCK(&charity_log_mutex);
+    {
+        fclose(charity_log);
+    }
+    UNLOCK(&charity_log_mutex);
+
     return 0;
 }
 

@@ -1,7 +1,7 @@
 # Resource to learn Make: https://www.gnu.org/software/make/manual/html_node/index.html
 
 CC:=gcc
-CFLAGS:=-g
+CFLAGS:=-g -Wno-incompatible-pointer-types -std=gnu99
 # To turn off warnings change line above to "CFLAGS:=-g -w"
 BIN_NAME:=53library
 SRC_DIR:=src

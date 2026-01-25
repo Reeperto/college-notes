@@ -3,6 +3,7 @@
 
 #include <assert.h>
 #include <pthread.h>
+#include <stdbool.h>
 
 #include "protocol.h"
 
@@ -18,6 +19,8 @@ typedef struct {
 } ThreadList;
 
 void thread_list_push(ThreadList* list, pthread_t tid);
-void thread_list_prune(ThreadList* list);
+void thread_list_prune(ThreadList* list, bool block);
+void thread_list_signal(ThreadList* list, int sig);
+void thread_list_destroy(ThreadList* list);
 
 #endif

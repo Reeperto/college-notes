@@ -152,10 +152,6 @@ list_t* getGenres(char* str) {
     char* p_curr = str;
 
     while (*p_curr != '\0') {
-        if (*p_curr == '\n' && *(p_curr + 1) == '\0') {
-            break;
-        }
-
         if (*p_curr == '|') {
             int genre_str_len = (p_curr - genre_start);
 
@@ -281,7 +277,7 @@ void book_tPrinter(void* data, FILE*fp, int flag) {
 
     if (flag == 0) {
         fprintf(
-            fp, "%d\t%02d\t%02d\t%04d\t%s\t%s\t",
+            fp, "%d\t%02d\%02d\t%04d\t%s\t%s\t",
             book->ISBN,
             book->pubDate.month,
             book->pubDate.day,
@@ -301,16 +297,6 @@ void book_tPrinter(void* data, FILE*fp, int flag) {
     PrintLinkedList(book->genres, fp, ",");
 }
 
-static int isbn_cmp(unsigned int lhs, unsigned int rhs) {
-    if (lhs == rhs) {
-        return 0;
-    } else if (lhs < rhs) {
-        return -1;
-    } else {
-        return 1;
-    }
-}
-
 int book_tISBNAscComparator(void* lhs, void* rhs) {
     if (!lhs || !rhs) {
         return 0xBEEFCAFE;
@@ -319,18 +305,21 @@ int book_tISBNAscComparator(void* lhs, void* rhs) {
     book_t* book_lhs = lhs;
     book_t* book_rhs = rhs;
 
-    return isbn_cmp(book_lhs->ISBN, book_rhs->ISBN);
+    unsigned int lhs_i = book_lhs->ISBN;
+    unsigned int rhs_i = book_rhs->ISBN;
+
+    if (lhs_i == rhs_i) {
+        return 0;
+    } else if (lhs_i < rhs_i) {
+        return -1;
+    } else {
+        return 1;
+    }
 }
 
 int book_tISBNDescComparator(void* lhs, void* rhs) {
-    if (!lhs || !rhs) {
-        return 0xBEEFCAFE;
-    }
-
-    book_t* book_lhs = lhs;
-    book_t* book_rhs = rhs;
-
-    return -isbn_cmp(book_lhs->ISBN, book_rhs->ISBN);
+    int cmp = book_tISBNAscComparator(lhs, rhs);
+    return cmp == 0xBEEFCAFE ? cmp : -cmp;
 }
 
 void book_tDeleter(void* data) {
@@ -339,6 +328,7 @@ void book_tDeleter(void* data) {
     DestroyList(&book->genres);
     free(book->name);
     free(book->title);
+
     free(book);
 }
 
@@ -364,7 +354,7 @@ static bool parse_title(char* str, char** title_out, char** next_field_out) {
     if (!title) { return false; }
 
     *title_out = title;
-    *next_field_out = next_field;
+    *next_field_out = title_end + 1;
 
     return true;
 }
@@ -418,8 +408,6 @@ static bool parse_author(char* str, char** author_out, char** next_field_out) {
     }
 
     char* author = malloc(first_name_len + last_name_len + 2 + 1);
-    *(author + first_name_len + last_name_len + 2) = '\0';
-
     str_cpy_n(author, last_name_start, last_name_len);
     str_cpy_n(author + last_name_len, ", ", 2);
     str_cpy_n(author + last_name_len + 2, first_name_start, first_name_len);
@@ -504,60 +492,32 @@ int bookMatch(book_t* book, search_t* criterion) {
 
         if (!found) {
             matches = false;
-            goto break_out;
-        }
-
-        char prev = (found <= book->name) ? '\0' : *(found - 1);
-        char post = *(found + str_len(criterion->name));
-
-        if (is_alphanumeric(prev) || is_alphanumeric(post)) {
-            matches = false;
         }
     } else if (criterion->keyword != NULL) {
         // if (book->title == NULL || book->name) { return -1; }
 
-        char* name_ptr = find_str(book->name, criterion->keyword);
-        char* title_ptr = find_str(book->title, criterion->keyword);
+        char* in_name = find_str(book->name, criterion->keyword);
+        char* in_title = find_str(book->title, criterion->keyword);
 
-        if (!name_ptr && !title_ptr) {
-            matches = false;
-            goto break_out;
-        }
-
-        bool in_name = false;
-        bool in_title = false;
-
-        if (name_ptr) {
-            char prev = (name_ptr <= book->name) ? '\0' : *(name_ptr - 1);
-            char post = *(name_ptr + str_len(criterion->keyword));
-
-            in_name = !is_alphanumeric(prev) && !is_alphanumeric(post);
-        } 
-
-        if (title_ptr) {
-            char prev = (title_ptr <= book->title) ? '\0' : *(title_ptr - 1);
-            char post = *(title_ptr + str_len(criterion->keyword));
-
-            in_title = !is_alphanumeric(prev) && !is_alphanumeric(post);
-        }
-
-        if (!in_title && !in_name) {
+        if (!in_name && !in_title) {
             matches = false;
         }
     } else if (criterion->ISBN != 0) {
-        if (book->ISBN == 0) { return -1; }
+        book_t temp = { .ISBN = criterion->ISBN };
+        int cmp = book_tISBNAscComparator(&book->ISBN, &temp);
+        if (cmp == 0xBEEFCAFE) { return -1; }
 
-        if (isbn_cmp(book->ISBN, criterion->ISBN) != 0) {
+        if (cmp != 0) {
             matches = false;
         }
     } else if (
         criterion->pubDate.day != 0 
         && criterion->pubDate.month != 0 
-        && criterion->pubDate.year != 0
+        && criterion->pubDate.year
     ) {
-        int cmp = cmpDate(book->pubDate, criterion->pubDate);
+        int cmp = cmpDate(criterion->pubDate, book->pubDate);
 
-        if (cmp < 0) {
+        if (cmp != 0) {
             matches = false;
         }
     } else if (criterion->genre != NULL) {
@@ -567,7 +527,6 @@ int bookMatch(book_t* book, search_t* criterion) {
         }
     }
 
-break_out:
     return matches;
 }
 
@@ -578,12 +537,12 @@ void PrintNLinkedList(list_t* list, FILE* fp, int NUM) {
 
     if (NUM == 0) {
         while (node) {
-            list->printer(node->data, fp, 1);
+            list->printer(node->data, fp, 0);
             node = node->next;
         }
     } else {
         while (node && NUM > 0) {
-            list->printer(node->data, fp, 1);
+            list->printer(node->data, fp, 0);
             node = node->next;
             --NUM;
         }

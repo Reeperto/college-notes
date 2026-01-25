@@ -6,7 +6,7 @@ SRC := $(shell find src -not -path '*/\.*' -type f -name *.c)
 INC := -I include
 
 DFLAGS := -g -DDEBUG
-CFLAGS := -DCOLOR $(INC) 
+CFLAGS := -DCOLOR $(INC) -Wno-incompatible-pointer-types
 
 
 .PHONY: clean all setup
@@ -21,4 +21,4 @@ setup:
 	mkdir -p bin
 
 clean:
-	$(RM) -r bin
+	$(RM) -r bin .cache

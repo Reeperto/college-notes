@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
     int i;
 
     // Create and initialize integer linked list
-    list_t* list = CreateList(&intComparator, (void*)&intPrinter, &intDeleter);
+    list_t* list = CreateList(&intComparator, &intPrinter, &intDeleter);
 
     // Output: List is empty
     printf("**********Empty List**********\n");    

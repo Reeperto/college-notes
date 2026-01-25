@@ -4,14 +4,6 @@
 
 #define ARR_LEN(arr) (sizeof((arr)) / sizeof((arr)[0]))
 
-#define TEST_CHECK_STR_EQ(expected, actual, n)                                 \
-    do                                                                         \
-    {                                                                          \
-        TEST_CHECK(strncmp((expected), (actual), n) == 0);                     \
-        TEST_MSG("Expected: %s", expected);                                    \
-        TEST_MSG("Actual  : %s", actual);                                      \
-    } while (false)
-
 void test_date_parsing() {
     char hard_neg_str[] = "17/01/2000";
     Date date;
@@ -163,14 +155,6 @@ void test_find_str() {
             TEST_CHECK(res == t_case.haystack + t_case.expected_offset);
         }
     }
-}
-
-void memstream_clear(FILE **fp, char **buf, size_t *size) {
-    fclose(*fp);
-    free(*buf);
-    *buf = NULL;
-    *size = 0;
-    *fp = open_memstream(buf, size);
 }
 
 void test_book_create() {

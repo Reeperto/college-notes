@@ -1,0 +1,38 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Werror",
+      "-Wno-unused-variable",
+      "-Iinclude",
+      "-g",
+      "-DDEBUG",
+      "-c",
+      "-o",
+      "build/helpers4.o",
+      "src/helpers4.c"
+    ],
+    "directory": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw4",
+    "file": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw4/src/helpers4.c",
+    "output": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw4/build/helpers4.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Werror",
+      "-Wno-unused-variable",
+      "-Iinclude",
+      "-g",
+      "-DDEBUG",
+      "-c",
+      "-o",
+      "build/icsmm.o",
+      "src/icsmm.c"
+    ],
+    "directory": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw4",
+    "file": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw4/src/icsmm.c",
+    "output": "/home/eeleyes/.school_files/quarters/fall2025/ICS53/hw/hw4/build/icsmm.o"
+  }
+]

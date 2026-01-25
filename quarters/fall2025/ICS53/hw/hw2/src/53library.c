@@ -5,15 +5,12 @@
 int main(int argc, char* argv[]) {
     search_t criterion = {0};
 
-    // Required option
     bool I_flag = false;
     bool D_flag = false;
     bool G_flag = false;
     bool N_flag = false;
     bool K_flag = false;
-
-    // Optional flags
-    int NUM_arg = 0;
+    bool NUM_arg = false;
     char ORDER_arg = 'n';   // default no order
     char* OUTFILE = NULL;
 
@@ -77,78 +74,18 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    list_t* match_list = NULL;
-    int (*list_cmp)(void*, void*) = NULL;
-    void (*list_insert)(list_t* list, void* val_ref) = NULL;
-
-    switch (ORDER_arg) {
-        case 'n':
-            list_cmp = (void*)book_tISBNAscComparator;
-            list_insert = InsertAtTail;
-            break;
-        case 'a':
-            list_cmp = (void*)book_tISBNAscComparator;
-            list_insert = InsertInOrder;
-            break;
-        case 'd':
-            list_cmp = (void*)book_tISBNDescComparator;
-            list_insert = InsertInOrder;
-            break;
-        default:
-            return 1;
-    }
-
-    FILE* output_file = NULL;
-
-    if (OUTFILE) {
-        FILE* fp_param = fopen(OUTFILE, "w");
-        if (!fp_param) { return 3; }
-        output_file = fp_param;
-    } else {
-        output_file = stdout;
-    }
-
-    match_list = CreateList(list_cmp, book_tPrinter, book_tDeleter);
-
-    if (!match_list) {
-        return 4;
-    }
-
     char* line = NULL;
     size_t line_cap = 0;
     ssize_t line_size = 0;
     size_t total_read = 0;
 
     while ((line_size = getline(&line, &line_cap, stdin)) > 0) {
-        book_t* book = createBook(line);
-
-        if (!book) {
-            free(line);
-            DestroyList(&match_list);
-            return 2;
-        }
-
-        int res = bookMatch(book, &criterion);
-
-        if (res == -1) {
-            return 2;
-        } else if (res == 1) {
-            list_insert(match_list, book);
-        } else {
-            book_tDeleter(book);
-        }
-
         total_read += line_size;
     }
-
-    free(line);
 
     if (total_read == 0) {
         return 2;
     }
-
-    PrintNLinkedList(match_list, output_file, NUM_arg);
-    DestroyList(&match_list);
 
     return 0;
 }

@@ -1,99 +1,98 @@
 #include "icssh.h"
-#include "linkedlist.h"
+
+#include <assert.h>
 #include <readline/readline.h>
 
-volatile sig_atomic_t color = 31;
+#include "helpers.h"
 
 int main(int argc, char* argv[]) {
+    init_globals_and_handlers();
+
     int max_bgprocs = -1;
-	int exec_result;
-	int exit_status;
-	pid_t pid;
-	pid_t wait_result;
-	char* line;
-#ifdef GS  // This compilation flag is for grading purposes. DO NOT REMOVE
+    int exit_status = 0;
+    char* line = NULL;
+
+#ifdef GS
     rl_outstream = fopen("/dev/null", "w");
 #endif
 
-    // check command line arg
+    int max_bg_procs = -1;
+
     if(argc > 1) {
         int check = atoi(argv[1]);
         if(check != 0)
-            max_bgprocs = check;
+            max_bg_procs = check;
         else {
             printf("Invalid command line argument value\n");
             exit(EXIT_FAILURE);
         }
     }
 
-	// Setup segmentation fault handler
-	if (signal(SIGSEGV, sigsegv_handler) == SIG_ERR) {
-		perror("Failed to set signal handler");
-		exit(EXIT_FAILURE);
-	}
+    job_info* job;
+    while ((line = readline(SHELL_PROMPT)) != NULL) {
+        job = validate_input(line);
 
-    	// print the prompt & wait for the user to enter commands string
-	while ((line = readline(SHELL_PROMPT)) != NULL) {
-        	// MAGIC HAPPENS! Command string is parsed into a job struct
-        	// Will print out error message if command string is invalid
-		    job_info* job = validate_input(line);
-        	if (job == NULL) { // Command was empty string or invalid
-			free(line);
-			continue;
-		}
+        if (job == NULL) {
+            goto next_cmd;
+        } else if (!verify_job(job)) {
+            goto next_and_free_job;
+        }
 
-        	//Prints out the job linked list struture for debugging
-        	#ifdef DEBUG   // If DEBUG flag removed in makefile, this will not longer print
-            		debug_print_job(job);
-        	#endif
+        if (bg_mgr.do_process_reap) {
+            reap_bg_processes(&bg_mgr, &exit_status);
+        }
 
-		// example built-in: exit
-		if (strcmp(job->procs->cmd, "exit") == 0) {
-			// Terminating the shell
-			free(line);
-			free_job(job);
-            validate_input(NULL);   // calling validate_input with NULL will free the memory it has allocated
-            return 0;
-		}
+#ifdef DEBUG
+        debug_print_job(job);
+#endif
 
-		// example of good error handling!
-        // create the child proccess
-		if ((pid = fork()) < 0) {
-			perror("fork error");
-			exit(EXIT_FAILURE);
-		}
-		if (pid == 0) {  //If zero, then it's the child process
-            //get the first command in the job list to execute
-		    proc_info* proc = job->procs;
-			exec_result = execvp(proc->cmd, proc->argv);
-			if (exec_result < 0) {  //Error checking
-				printf(EXEC_ERR, proc->cmd);
-				
-				// Cleaning up to make Valgrind happy 
-				// (not technically necessary because resources will be released when reaped by parent)
-				free_job(job);  
-				free(line);
-        		validate_input(NULL);  // calling validate_input with NULL will free the memory it has allocated
-				exit(EXIT_FAILURE);
-			}
-		} else {
-        	// As the parent, wait for the foreground job to finish
-			wait_result = waitpid(pid, &exit_status, 0);
-			if (wait_result < 0) {
-				printf(WAIT_ERR);
-				exit(EXIT_FAILURE);
-			}
-		}
+        if (strcmp(job->procs->cmd, "exit") == 0) {
+            kill_bg_processes(&bg_mgr, &exit_status);
+            goto exit_shell;
+        } else if (strcmp(job->procs->cmd, "estatus") == 0) {
+            fprintf(stdout, "%d\n", exit_status);
+            goto next_and_free_job;
+        } else if (strcmp(job->procs->cmd, "cd") == 0) {
+            builtin_cd(job);
+            goto next_and_free_job;
+        } else if (strcmp(job->procs->cmd, "bglist") == 0) {
+            builtin_bglist(&bg_mgr);
+            goto next_and_free_job;
+        } else if (strcmp(job->procs->cmd, "fg") == 0) {
+            builtin_fg(&bg_mgr, job, &exit_status);
+            goto next_and_free_job;
+        }
 
-		free_job(job);  // if a foreground job, we no longer need the data
-		free(line);
-	}
+        if (!job->bg) {
+            run_fg_process(job, &exit_status);
+            goto next_and_free_job;
+        } else {
+            if (max_bg_procs != -1 && max_bg_procs <= bg_mgr.procs.size) {
+                fprintf(stderr, BG_ERR);
+                goto next_and_free_job;
+            }
 
-    	// calling validate_input with NULL will free the memory it has allocated
-    	validate_input(NULL);
+            run_bg_process(&bg_mgr, job);
+            goto next_cmd;
+        }
+
+next_and_free_job:
+        free_job(job);
+        job = NULL;
+
+next_cmd:
+        free(line);
+        line = NULL;
+    }
+
+exit_shell:
+    free(line);
+    free_job(job);
+    deinit_globals_and_handlers();
 
 #ifndef GS
-	fclose(rl_outstream);
+    fclose(rl_outstream);
 #endif
-	return 0;
+
+    return 0;
 }

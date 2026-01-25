@@ -3,13 +3,6 @@
 
 #include <stdlib.h>
 
-bool is_alphanumeric(char c) {
-    bool is_alpha = (('a' <= c) && (c <= 'z')) || (('A' <= c) && (c <= 'Z'));
-    bool is_numer = (('0' <= c) && (c <= '1'));
-
-    return is_alpha || is_numer;
-}
-
 int str_len(char* str) {
     if (str == NULL) {
         return 0;
