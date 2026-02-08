@@ -181,11 +181,11 @@
 \section*{Exercise 6.29}
 
 \begin{proof}
-    Since each $\mathcal{A}_i$ generates themselves ($\sigma(\mathcal{A}_i) = \mathcal{A}_i$), then by proposition 6.22 it follows that
+    Since each $\mathcal{A}_i$ generates themselves ($\sigma(\mathcal{A}_i) = \mathcal{A}_i$), then by Proposition 6.22 it follows that
     \[
         \mathcal{A}_1 \otimes \mathcal{A}_2 \otimes \mathcal{A}_3 = \sigma\qty(\qty{A_1 \times A_2 \times A_3 : A_i \in \mathcal{A}_i})
     .\]
-    But note that $\qty{A_1 \times A_2 : A_i \in \mathcal{A}_i}$ generates $\mathcal{A}_1 \otimes \mathcal{A}_2$, so again by proposition 6.22
+    But note that $\qty{A_1 \times A_2 : A_i \in \mathcal{A}_i}$ generates $\mathcal{A}_1 \otimes \mathcal{A}_2$, so again by Proposition 6.22
     \[
         (\mathcal{A}_1 \otimes \mathcal{A}_2) \otimes \mathcal{A}_3 = \sigma\qty(\qty{(A_1 \times A_2) \times A_3 : A_i \in \mathcal{A}_i})
     .\]
@@ -209,7 +209,14 @@
 \section*{Exercise 6.34}
 
 \begin{proof}
-    %TODO: Other stuff
+    Note that $D_x^1 = D_x^2 = \qty{x}$ meaning
+    \[
+        \iint \ind{D} d \mu_1 \mu_2 = \int \mu_1(D_y^2) d \mu_2(y) = \int 0 d \mu_2(y) = 0
+    \]
+    and
+    \[
+        \iint \ind{D} d \mu_2 \mu_1 = \int \mu_2(D_x^1) d \mu_1(x) = \int 1 d \mu_1(x) = \mu_1([0,1]) = 1
+    .\]
 
     Suppose towards contradiction that $(\mu_1 \times \mu_2)(D) < \infty$. Let $A_n \times B_n$ be a cover of $D$ in $X_1 \times X_2$. Without loss of generality, it can be assumed that $m(A_0) = 0$ and $m(A_n) > 0$ for all $n \geq 1$, as well as $\mu_2(B_n) \geq 1$ for all $n$. Note that since $(\mu_1 \times \mu_2)(D) < \infty$, it follows
     \[
@@ -231,6 +238,68 @@
     \[
         \int \ind{D} d \mu_1 \times \mu_2 = (\mu_1 \times \mu_2)(D) = \infty
     .\]
+\end{proof}
+
+\section*{Exercise 6.36}
+
+\begin{proof}
+    First note that
+    \[
+        E_{x_0}^1 = \qty{y \in X : y < x_0} = \qty{y \in X : x_0 \leq y}^c = \qty(\qty{x_0} \cup \qty{y \in X : x_0 < y})^c
+    .\]
+    Since $\qty{x_0} \cup \qty{y \in X : x_0 < y}$ is countable, then $E_{x_0}^1$ is co-countable and hence measurable. Similarly,
+    \[
+        E_{y_0}^2 = \qty{x \in X : y_0 < x}
+    \]
+    is countable by definition and thus also measurable. Therefore
+    \[
+        \iint \ind{E} d \mu_1 d \mu_2 = \int_X \mu_1(E_y^2) d \mu_2(y) = \int_X 0 d \mu_2(y) = 0
+    \]
+    and
+    \[
+        \iint \ind{E} d \mu_2 d \mu_1 = \int_X \mu_2(E_x^1) d \mu_1(x) = \int_X 1 d \mu_1(x) = \mu_1(X) = 1
+    \]
+    since $X = \varnothing^c$ and is thus co-countable. But this means that
+    \[
+        \iint \ind{E} d \mu_1 d \mu_2 \neq \iint \ind{E} d \mu_2 d \mu_1
+    .\]
+\end{proof}
+
+\section*{Exercise 6.42}
+
+\begin{proof}
+    Suppose the case in which $f \geq 0$. From Proposition 6.41, there exists some $g$ that is $\mathcal{A}$ measurable and $f = g$ $\lambda$-a.e. WLOG take $g \geq 0$ (adjust $g$ to be at least $0$ where $f\neq g$). Let $h = f - g$, and note that $h = 0$ $\lambda$-a.e. Therefore
+    \[
+        f_x^i = g_x^i + h_x^i
+    \]
+    is measurable for a.e. $x \in X_i$ since 
+    \begin{itemize}
+        \item $g_x^i$ is measurable everywhere by the original Fubini, and thus is measurable for a.e $x \in X_i$
+        \item $h_x^i$ is measurable for a.e. $x \in X_i$ by Lemma (b). 
+    \end{itemize}
+    Since $\int f_x^i d \mu_j = \int g_x^i d \mu_j + \int h_x^i d \mu_j$, then by the same cited results, $x \mapsto \int f_x^i d \mu_j$ is measurable. Since $f = g$ $\lambda$-a.e., then it follows from the original Fubini-Tonelli that
+    \begin{align*}
+        \int f d \lambda = \int g d \lambda &= \int g d(\mu_1 \times \mu_2) \\
+        &= \iint g d \mu_1 \mu_2 = \iint f d \mu_1 \mu_2 \\
+        &= \iint g d \mu_2 \mu_1 = \iint f d \mu_2 \mu_1 \\
+    \end{align*}
+
+    Suppose then the case in which $f \in \mathcal{L}^1(\lambda)$. Take $g$ to be the same as above and note that since $f = g$ $\lambda$-a.e., then $\int f d \lambda = \int g d \lambda$ and thus $g \in \mathcal{L}^1(\lambda)$. Take $h = f - g$ the same. Then
+    \[
+        f_x^i = g_x^i + h_x^i
+    \]
+    is integrable for $\lambda$-a.e. $x$ since
+    \begin{itemize}
+        \item $g_x^i$ is integrable for a.e. $x \in X_i$ by the original Tonelli
+        \item $h_x^i$ is measurable for a.e. $x \in X_i$ by Lemma (b). 
+    \end{itemize}
+    Since $\int f_x^i d \mu_j = \int g_x^i d \mu_j + \int h_x^i d \mu_j$, then by the same cited results, $x \mapsto \int f_x^i d \mu_j$ is measurable. Since $f = g$ $\lambda$-a.e., then it follows from the original Fubini-Tonelli that
+    \begin{align*}
+        \int f d \lambda = \int g d \lambda &= \int g d(\mu_1 \times \mu_2) \\
+        &= \iint g d \mu_1 \mu_2 = \iint f d \mu_1 \mu_2 \\
+        &= \iint g d \mu_2 \mu_1 = \iint f d \mu_2 \mu_1 \\
+    \end{align*}
+
 \end{proof}
 
 \end{document}
