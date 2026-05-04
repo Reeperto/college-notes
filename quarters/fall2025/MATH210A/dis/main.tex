@@ -2,6 +2,7 @@
 \usepackage{subfiles}
 
 \usepackage{fancyhdr}
+\usepackage{dsfont}
 
 \newcommand\conj[1]{\overline{#1}}
 \newcommand\term[1]{\textbf{#1}}
@@ -29,6 +30,82 @@
 \pagestyle{fancy}
 
 \subfile{dis-sep-30.tex}
+
+\begin{rem}
+    \newcommand{\ind}[1]{\mathds{1}_{#1}}
+    Different non-decreasing functions can generate the same measure. Consider $f = \ind{[0,\infty)}$ and $g = \ind{(0,\infty)}$. Then $f(0) \neq g(0)$. Take $a < b$ and consider the following cases
+    \begin{itemize}
+        \item[$a,b \leq 0)$]
+            Both $f(a) = 0$ and $g(b) = 0$, thus $\mu_f((a,b]) = \mu_g((a,b]) = 0$.
+
+        \item[$a,b \geq 0)$]
+            Since $0 \leq a < b$, then $f(a) = f(b) = 1$ and $g(a) = g(b) = 1$, thus $\mu_f((a,b]) = \mu_g((a,b]) = 0$.
+
+        \item[$a < 0 < b)$]
+            Note that
+            \begin{alignat*}{5}
+                \mu_f((a,b]) &= f(b) - f(a) &&= 1 - 0 &&= 1 \\
+                \mu_g((a,b]) &= g(b) - g(a) &&= 1 - 0 &&= 1
+            \end{alignat*}
+    \end{itemize}
+    Therefore $\mu_f = \mu_g$ despite $f \neq g$. 
+\end{rem}
+
+\begin{theorem}
+    If $\mu$ is a Borel measure that is finite for all bounded intervals, then there is a unique (up to an additive constant) non-decreasing right-continuous function $F : \R \to \R$ such that
+    \[
+        \mu((a,b]) = F(b) - F(a), \quad a < b
+    .\]
+\end{theorem}
+
+\begin{proof}
+    Define the candidate generating function
+    \[
+        F(x) \coloneq \begin{cases}
+            \mu((0,x]) & x \geq 0 \\
+            -\mu((x, 0]) & x < 0 \\
+        \end{cases}
+    .\]
+    Since $\mu((x,y]) < \infty$ for any $x,y \in \R$, it follows that $F(x) < \infty$ for all $x$. Suppose then $a < b$ and consider the following cases
+    \begin{itemize}
+        \item[$a,b \geq 0$)]
+            Since $(a,b] = (0, b] \setminus (0,a]$, then
+            \[
+                F(b) - F(a) = \mu((0,b]) - \mu((0,a]) = \mu((a,b])
+            .\]
+
+        \item[$a,b < 0$)]
+            Since $(a,b] = (a,0] \setminus (b, 0]$, then
+            \begin{align*}
+                F(b) - F(a) &= (-\mu((b,0])) - (-\mu((a,0])) \\
+                &= \mu((a,0]) - \mu((b, 0]) \\
+                &= \mu((a,b])
+            \end{align*}
+
+        \item[$a < 0 \leq b$)]
+            Since $(a,b] = (a,0] \;\dot{\cup}\; (0,b]$, then
+            \begin{align*}
+                F(b) - F(a) &= \mu((0,b]) - (-\mu((a,0])) \\
+                &= \mu((0,b]) + \mu((a,0]) \\
+                &= \mu((a,b])
+            \end{align*}
+    \end{itemize}
+    Clearly $F$ is non-decreasing since $F(y) - F(x) = \mu((x,y]) \geq 0$ for $y > x$. Take $x \in \R$ and $(h_n)_{n \in \N}$ with $h_n \geq 0$ and $\lim_{n \to \infty} h_n = 0$. Note then that
+    \[
+        F(x + h_n) - F(x) = \mu((x, x+h_n])
+    \]
+    which by continuity from above means $\lim_{n \to \infty} \mu((x,x+h_n]) = 0$ and hence $\lim_{n \to \infty} F(x + h_n) = F(x)$. Thus $F$ is right-continuous.
+
+    For uniqueness, suppose there is some $G$ that is also non-decreasing and right-continuous such that for $a < b$
+    \[
+        \mu((a,b]) = G(b) - G(a)
+    .\]
+    Then for all $a < b$
+    \[
+        F(b) - F(a) = G(b) - G(a) \implies F(b) - G(b) = F(a) - G(a)
+    .\]
+    This means that $F - G$ is a constant function, hence $G = F + c$ for some constant $c$.
+\end{proof}
 
 \end{document}
 

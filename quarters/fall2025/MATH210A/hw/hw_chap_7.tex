@@ -1,0 +1,715 @@
+\documentclass[hw_all.tex]{subfiles}
+
+\begin{document}
+
+\subsection{Exercise 7.18}
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            We show that $\norm{\cdot + Y}$ satisfies the conditions for a norm.
+            \begin{itemize}
+                \item
+                    Since $\norm{x + y} \geq 0$ for any $y \in Y$, it follows that $\norm{x + Y} \geq 0$. If $\norm{x + Y} = 0$, then $\inf_{y \in Y} \norm{x + y} = 0$, thus $x \in \conj{Y} = Y$ since $Y$ is closed. Therefore $x + Y = 0 + Y$ which is the zero element of $X / Y$.
+
+                \item 
+                    Let $\lambda \neq 0$. Then
+                    \[
+                        \norm{\lambda x + Y} = \inf_{y \in Y} \norm{\lambda x + y} = \inf_{\tilde{y} \in Y} \norm{\lambda x + \lambda \tilde{y}} = |\lambda| \inf_{\tilde{y} \in Y} \norm{x + \tilde{y}} = |\lambda| \norm{x + Y}
+                    .\]
+
+                \item 
+                    Let $x_1, x_2 \in X$ and $\eps > 0$. Then there exists $y_1, y_2 \in Y$ such that
+                    \[
+                        \norm{x_1 + y_1} \leq \norm{x_1 + Y} + \eps \hspace{1.5cm} \norm{x_2 + y_2} \leq \norm{x_2 + Y} + \eps
+                    .\]
+                    Therefore
+                    \begin{align*}
+                        \norm{(x_1 + x_2) + Y} &\leq \norm{(x_1 + y_1) + (x_2 + y_2)} \\
+                        &\leq \norm{x_1 + y_1} + \norm{x_2 + y_2} \\
+                        &\leq \norm{x_1 + Y} + \norm{x_2 + Y} + 2\eps
+                    \end{align*}
+                    Taking $\eps \to 0$ gives the desired triangle inequality.
+            \end{itemize}
+
+        \item 
+            Since $Y$ is a proper subspace, there exists $u \in X \setminus Y$ with $d = \norm{u + Y} > 0$. Take $\eps_0 > 0$ and note there then exists $y_0 \in Y$ such that
+            \[
+                d \leq \norm{u - y_0} \leq d + \eps_0
+            .\]
+            Take $x = \frac{u - y_0}{\norm{u - y_0}}$. Note that $\norm{x} = 1$ and
+            \[
+                \norm{x + Y} = \inf_{y \in Y} \norm{\frac{u - y_0}{\norm{u - y_0}} + y} = \frac{1}{\norm{u - y_0}} \inf_{\tilde{y} \in Y} \norm{u - \tilde{y}} = \frac{d}{\norm{u - y_0}}
+            .\]
+            Since $\norm{u - y_0} \leq d + \eps_0$, it follows that for $\eps > 0$ by taking $\eps_0$ small 
+            \[
+                \norm{x + Y} \geq \frac{d}{d+\eps_0} \geq 1 - \eps
+            .\]
+
+        \item 
+            \begin{itemize}
+                \item
+                    Take $ax + bz \in X$ and note that
+                    \[
+                        \pi(ax + bz) = (ax + bz) + Y = a(x + Y) + b(z + Y) = a \pi(x) + b \pi(z)
+                    \]
+                    thus $\pi$ is linear.
+
+                \item 
+                    Since $0 \in Y$, note that
+                    \[
+                        \norm{\pi(x)} = \inf_{y \in Y} \norm{x + y} \leq \norm{x + 0} = \norm{x}
+                    \]
+                    thus $\pi$ is bounded.
+
+                \item 
+                    From (b), it follows for any $\eps > 0$ there is $x$ such that $\norm{x} = 1$ and $\norm{\pi(x)} \geq 1 - \eps$. Therefore the supremum over all $\norm{x} = 1$ gives $\norm{\pi} = 1$.
+            \end{itemize}
+
+        \item 
+            Completeness of a normed space is equivalent to all absolutely convergent series converging to a point in the space. Let $\sum_{n \in \N} \tilde{x}_n$ be an absolutely convergent series in $X / Y$. Take $x_n \in X$ such that $\pi(x) = x_n$ and
+            \[
+                \norm{x_n} \leq \norm{\tilde{x}_n} + \frac{1}{2^n}
+            .\]
+            Then
+            \[
+                \sum_{n \in \N} \norm{x_n} \leq 2 + \sum_{n \in \N} \norm{\tilde{x}_n} < \infty
+            .\]
+            Since $x$ is complete, there is some $x \in X$ such that $x = \sum_{n \in \N} x_n$. From the previous part, $\pi$ is a continuous linear operator, therefore
+            \[
+                \pi(x) = \pi\qty(\sum_{n \in \N} x_n) = \sum_{n \in \N} \pi(x_n) = \sum_{n \in \N} \tilde{x}_n
+            .\]
+            Hence the original series converges in $X / Y$.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 7.28}
+\begin{proof}
+    \begin{enumerate}
+        \item
+            We show that $\norm{\cdot}_1$ satisfies the conditions for a norm.
+            \begin{itemize}
+                \item 
+                    Clearly $\norm{x}_1 \geq 0$ since it is the sum of non-negative terms. If $\norm{x}_1 = 0$, then $|a_j| = 0$ for all $j$, and thus $a_j = 0$ for all $j$. Thus $x = 0$.
+
+                \item 
+                    Let $\lambda \in \mathbb{K}$. Then
+                    \[
+                        \norm{\lambda x}_1 = \norm{\sum_{j \leq n} (\lambda a_j) e_j}_1 = \sum_{j \leq n} |\lambda a_j| = |\lambda| \sum_{j \leq n} |a_j| = |\lambda| \norm{x}_1
+                    .\]
+
+                \item 
+                    Note that for $x,y \in X$
+                    \begin{align*}
+                        \norm{x + y}_1 &= \norm{\sum_{j \leq n} (a_j + b_j)e_j}_1 \\
+                        &= \sum_{j \leq n} |a_j + b_j| \\
+                        &\leq \sum_{j \leq n} |a_j| + \sum_{j \leq n} |b_j| \\
+                        &= \norm{x}_1 + \norm{y}_1
+                    \end{align*}
+            \end{itemize}
+
+        \item 
+            Let $a = (a_1, \ldots, a_n)$ and $b = (b_1, \ldots, b_n)$ both be in $\mathbb{K}^n$. Note that
+            \[
+                \norm{a}_1 = \sum_{j \leq n} |a_j| \leq \sqrt{n} \sqrt{\sum_{j \leq n} |a_j|^2} = \sqrt{n} \cdot \norm{a}_2
+            .\]
+            Therefore
+            \[
+                \norm{Ta - Tb}_1 = \norm{\sum_{j \leq n}(a_j - b_j)e_j}_1 = \sum_{j \leq n} |a_j - b_j| \leq \sqrt{n} \cdot \norm{a - b}_2
+            .\]
+            Thus $T$ is Lipschitz continuous and hence continuous.
+            
+        \item 
+            Let $S = \qty{a \in \mathbb{K}^n : \norm{a}_1 = 1}$. Note that $S$ is closed and bounded, thus $S$ is compact. Since $X_1 = T(S)$ and $T$ is continuous, it follows that $X_1$ is compact as well.
+
+        \item 
+            Let $\norm{\cdot}$ be some norm on $X$. By the triangle inequality, it follows for any $x \in X$ that
+            \[
+                \norm{x} = \norm{\sum_{j \leq n} a_j e_j} \leq \sum_{j \leq n} |a_j| \norm{e_j} \leq \qty(\max_{j \leq n} \norm{e_j}) \sum_{j \leq n} |a_j| = C \cdot \norm{x}_1
+            .\]
+            Consider then $f : X_1 \to \R : x \mapsto \norm{x}$. Note that the established upper bound means $f$ is continuous with respect to the $\norm{\cdot}_1$ topology. Therefore by EVT, $f$ attains its maximum value $c$ on $X_1$. Since $0 \notin X_1$, $c > 0$ and for any $x \in X \neq 0$ it follows
+            \[
+                \norm{\frac{x}{\norm{x}_1}} \geq c \implies \norm{x} \geq c \norm{x}_1
+            .\]
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 7.30}
+\begin{proof}
+    First we show that $\norm{\mu}$ is a norm.
+    \begin{itemize}
+        \item 
+            Since $|\mu|(E) \geq 0$ for any $E \in \mathcal{A}$, it follows $\norm{\mu} \geq 0$. Suppose then $\norm{\mu} = 0$. Therefore $|\mu|(X) = 0$ meaning $|\mu(E)| \leq |\mu|(E) \leq |\mu|(X) = 0$. Thus $\mu(E) = 0$ for all $E \in \mathcal{A}$, hence $\mu = 0$.
+
+        \item 
+            Let $c \in \C$. Then for any $E \in \mathcal{A}$
+            \begin{align*}
+                |c \mu|(E) &= \sup\qty{ \sum_{n \in \N} |(c \mu)(E_n)| : E = \dot{\bigcup}_{n \in \N} E_n } \\
+                           &= |c| \cdot \sup\qty{ \sum_{n \in \N} |\mu(E_n)| : E = \dot{\bigcup}_{n \in \N} E_n } \\
+                           &= |c| \cdot |\mu|(E)
+            \end{align*}
+            Therefore
+            \[
+                \norm{c \mu} = |c \mu|(X) = |c| |\mu|(X) = |c| \norm{\mu}
+            .\]
+
+        \item 
+            Let $\mu, \nu \in \mathcal{A}(X)$. For any $E \in \mathcal{A}$ and partition of $E = \dot{\bigcup}_{n \in \N} E_n$, it follows
+            \[
+                \sum_{n \in \N} |(\mu + \nu)(E_n)| \leq \sum_{n \in \N} |\mu(E_n)| + \sum_{n \in \N} |\nu(E_n)|
+            .\]
+            Taking the supremum over all partitions gives then $|\mu + \nu|(E) \leq |\mu|(E) + |\nu|(E)$, thus
+            \[
+                \norm{\mu + \nu} = |\mu + \nu|(X) \leq |\mu|(X) + |\nu|(X) = \norm{\mu} + \norm{\nu}
+            .\]
+    \end{itemize}
+    Thus $\norm{\mu}$ is a norm. We will show then that all absolutely convergent series converge. Let $\sum_{n \in \N} \mu_n$ be an absolutely convergent series. Take $E \in \mathcal{A}$ and note
+    \[
+        |\mu_n(E)| \leq |\mu_n|(E) \leq |\mu_n|(X) = \norm{\mu_n}
+    .\]
+    Therefore since
+    \[
+        \sum_{n \in \N} |\mu_n(E)| \leq \sum_{n \in \N} \norm{\mu_n} < \infty
+    \]
+    it follows $\sum_{n \in \N} \mu_n(E)$ converges absolutely. Take $\mu(E) = \sum_{n \in \N} \mu_n(E)$ and note that it is a complex measure from previous exercises. Clearly then the original series converges to $\mu$ in the norm.
+\end{proof}
+
+\subsection{Exercise 7.33}
+\begin{proof}
+    We first show that $\norm{\cdot}_{\alpha}$ is an norm.
+    \begin{itemize}
+        \item
+            Clearly $\norm{f}_{\alpha} \geq 0$ since it is the sum of non-negative terms. Suppose then $\norm{f}_{\alpha} = 0$. Then both $f(0) = 0$ and $[f]_{\alpha} = 0$. Thus for any $x \neq y$
+            \[
+                \frac{|f(x) - f(y)|}{|x-y|^\alpha} = 0 \implies |f(x) - f(y)| = 0
+            .\]
+            Thus $f(x) = f(0) = 0$ everywhere, hence $f = 0$.
+
+        \item 
+            Let $\lambda \neq 0$ and note
+            \[
+                \norm{\lambda f}_{\alpha} = |\lambda \cdot f(0)| + \sup_{x \neq y} \frac{|\lambda f(x) + \lambda f(y)}{|x-y|^{\alpha}} = |\lambda| |f(0)| + \lambda [f]_{\alpha} = \lambda\cdot \norm{f}_{\alpha}
+            .\]
+
+        \item 
+            Note that by the normal triangle inequality
+            \begin{align*}
+                [f + g]_{\alpha} &= \sup_{x \neq y} \frac{|(f(x) + g(x)) - (f(y) + g(y))|}{|x-y|^{\alpha}} \\
+                                 &\leq \sup_{x \neq y} \frac{|f(x) - f(y)|}{|x-y|^{\alpha}} + \sup_{x \neq y} \frac{|g(x) - g(y)|}{|x - y|^{\alpha}} \\
+                                 &= [f]_{\alpha} + [g]_{\alpha}
+            \end{align*}
+            Similarly $|f(0) + g(0)| \leq |f(0)| + |g(0)|$, hence $\norm{f + g}_{\alpha} \leq \norm{f}_{\alpha} + \norm{g}_{\alpha}$.
+    \end{itemize}
+    Hence $\norm{\cdot}_{\alpha}$ is a norm. Let $\sum_{n \in \N} f_n$ be an absolutely convergent series under $\norm{\cdot}_{\alpha}$. Note that $|f_n(x)| \leq |f_n(0)| + [f_n]_{\alpha} |x|^n$, thus $\norm{f_n}_{\infty} \leq |f_n|(0) + [f_n]_{\alpha} = \norm{f_n}_{\alpha}$. Thus
+    \[
+        \sum_{n\in \N} \norm{f_n}_{\infty} \leq \sum_{n\in \N} \norm{f_n}_{\alpha} < \infty
+    .\]
+    Thus the series $\sum_{n \in \N} f_n$ converges absolutely and uniformly to some function $f$. Note that
+    \[
+        \frac{|f(x) - f(y)|}{|x-y|^\alpha} \leq \sum_{n \in \N} \frac{|f_n(x) - f_n(y)|}{|x-y|^\alpha}
+    .\]
+    Taking the supremum over all $x \neq y$ then gives
+    \[
+        [f]_{\alpha} \leq \sum_{n \in \N} [f_n]_{\alpha} \leq \sum_{n \in \N} \norm{f_n}_{\alpha} < \infty
+    .\]
+    Since $f(0)$ is finite, then $\norm{f}_{\alpha} = |f(0)| + [f]_{\alpha} < \infty$ meaning $f \in C^{\alpha}([0,1])$. Let $S_n = \sum_{k \leq n} f_k$. Note then that
+    \[
+        \norm{f - S_n}_{\alpha} = \norm{\sum_{k > n} f_k} \leq \sum_{k > n} \norm{f_k}_{\alpha}
+    .\]
+    Since the right hand side is the tail of a convergent series, it follows that as $n \to \infty$ it goes to $0$. Thus the series of functions converges to $f$ in the $\alpha$-norm, meaning $C^\alpha([0,1])$ is a Banach space. Consider then the cases of $\alpha$ for $c^\alpha$:
+    \begin{itemize}
+        \item[$\alpha = 1)$]
+            If $\alpha = 1$, then for $f \in c^\alpha([0,1])$
+            \[
+                \lim_{x \to y} \frac{|f(x) - f(y)|}{|x - y|} = 0
+            .\]
+            This means that $f'(x) = 0$ for all $x \in [0,1]$ thus $f$ is a constant function on $[0,1]$.
+
+        \item[$\alpha < 1)$]
+            Let $(f_n)_{n \in \N}$ be a sequence in $c^\alpha([0,1])$ that converges to some $f$ in the $\alpha$-norm. Fix $y$ and take $x \neq y$. Then
+            \begin{align*}
+                \frac{|f(x) - f(y)|}{|x - y|^\alpha} &\leq \frac{|(f(x) - f_n(x)) - (f(y) - f_n(y))|}{|x-y|^\alpha} + \frac{|f_n(x) - f_n(y)|}{|x-y|^\alpha} \\
+                \frac{|f(x) - f(y)|}{|x - y|^\alpha} &\leq [f-f_n]_{\alpha} + \frac{|f_n(x) - f_n(y)|}{|x-y|^\alpha}
+            \end{align*}
+            Take $\eps > 0$. Then there exists $N$ such that $[f - f_N]_{\alpha} \leq \frac{\eps}{2}$, and there exists $\delta > 0 $ such that $0 < |x-y| < \delta$ implies
+            \[
+                \frac{|f_N(x) - f_N(y)|}{|x-y|^\alpha} \leq \frac{\eps}{2}
+            .\]
+            Therefore for $0 < |x-y| < \delta$
+            \[
+                \frac{|f(x) - f(y)|}{|x-y|^\alpha} \leq \frac{\eps}{2} + \frac{\eps}{2} = \eps
+            .\]
+            Since $\eps$ was arbitrary, it follows that
+            \[
+                \lim_{x \to y} \frac{|f(x) - f(y)|}{|x-y|^\alpha} = 0
+            .\]
+            Hence $c^\alpha([0,1])$ is a closed subspace.
+
+            Note that for any continously differentiable function $g$ on $[0,1]$ that by the MVT there exists $M$ such that $|g(x) - g(y)| \leq M|x-y|$ for all $x,y \in [0,1]$. Since $\alpha < 1$, it follows
+            \[
+                \lim_{x\to y} \frac{|g(x) - g(y)|}{|x-y|^\alpha} \leq \lim_{x \to y} M \cdot \frac{|x-y|}{|x-y|^\alpha} = \lim_{x \to y} M |x-y|^{1 - \alpha} = 0
+            .\]
+            Therefore all continuously differentiable functions on $[0,1]$ are contained in $c^\alpha([0,1])$. Infinite dimensionality follows then by noting that $\qty{1, x, x^2, \ldots}$ is an infinite independent set of continuously differentiable functions on $[0,1]$.
+    \end{itemize}
+\end{proof}
+
+\subsection{Exercise 7.36}
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            It is subspace since for $x,y\in N(T)$ it follows $T(ax + by) = aTx + bTy = 0 + 0 = 0$. Let $x_n \in N(T)$ with $x_n \to x \in X$. Since $T$ is bounded, it is also continuous and thus
+            \[
+                Tx = \lim_{n \to \infty} Tx_n = 0
+            .\]
+            Hence $N(T)$ is closed.
+
+        \item 
+            Let $S(x + N(T)) = Tx$. Note $S$ is linear since
+            \[
+                S((x + N(T)) + (y + N(T))) = S((x + y) + N(T)) = T(x + y) = Tx + Ty
+            \]
+            and
+            \[
+                (S \circ \pi)(x) = S(x + N(T)) = Tx
+            .\]
+            Consider $z \in N(T)$. Then
+            \[
+                \norm{Tx} = \norm{T(x - z)} \leq \norm{T} \norm{x - z}
+            .\]
+            Taking the infimum over all $z$ gives then
+            \[
+                \norm{S(x + N(T))} = \norm{Tx} \leq \norm{T} \inf_{z \in N(T)} \norm{x - z} = \norm{T} \norm{x + N(T)}
+            .\]
+            Therefore $S$ is bounded and $\norm{S} \leq \norm{T}$. Furthermore
+            \[
+                \norm{Tx} = \norm{S(\pi(x))} \leq \norm{S} \norm{\pi(x)} \leq \norm{S} \norm{\pi} \norm{x} = \norm{S} \norm{x}
+            .\]
+            Thus $\norm{T} \leq \norm{S} \implies \norm{S} = \norm{T}$. Uniqueness of $S$ follows from that fact that it must equal $Tx$.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 7.55}
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            Let $x_1 \in X$ such that $\norm{x_1} = 1$, and take $Y_1 = \spann\qty{x_1}$. Note $Y_1$ is finite dimensional and thus closed, and $Y_1 \neq X$. Therefore by (b) of 7.18, there exists some $x_2 \in X$ with $\norm{x_2} = 1$ and $\norm{x_2 + Y_1} \geq \frac{1}{2}$. Continue inductively with $Y_n = \spann\qty{x_1, \ldots, x_n}$. By definition of the quotient norm
+            \[
+                \norm{x_{n+1} + Y_n} = \inf_{y \in Y_n} \norm{x_{n+1} - y} \geq \frac{1}{2}
+            .\]
+            Since $x_k \in Y_n$ for $k \leq n$, it follows that
+            \[
+                \norm{x_{n+1} - x_k} \geq \frac{1}{2}
+            .\]
+            Thus for $n \neq m$, WLOG $m < n$ the above process gives $\norm{x_n} = 1$ and
+            \[
+                \norm{x_n - x_m} \geq \frac{1}{2}
+            .\]
+
+        \item 
+            Suppose towards contradiction $X$ is locally compact. Then there exists some $r > 0$ such that $\conj{B}(0,r)$ is compact. From the previous part, there then exists a sequence $x_n$ such that $\norm{x_n} = 1$ and $\norm{x_n - x_m} \geq \frac{1}{2}$ for $n \neq m$. Note that $\norm{rx_n} = r$ and thus $rx_n \in \conj{B}(0,r)$, but for $n\neq m$
+            \[
+                \norm{rx_n - rx_m} = r \norm{x_n - x_m} \geq \frac{r}{2}
+            .\]
+            Therefore $rx_n$ has no Cauchy subsequence and hence no convergent subsequence. But every sequence in a compact set has a convergent subsequence, hence $X$ cannot be locally compact.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 7.61}
+\begin{proof}
+    Let $\qty{f_n : n \in \N}$ be a countable dense subset of $X^*$, and for each $n$ choose $x_n$ such that $\norm{x_n} = 1$ and $|f_n(x_n)| \geq \frac{1}{2} \norm{f_n}$. Let $M = \conj{\spann}\qty{x_n : n \in \N}$. Note that the set $M_{\Q} = \qty{\sum_{k = 1}^N q_k x_k : N \in \N, q_k \in \Q}$ is countable and dense in $M$. Thus $M$ is separable.
+
+    Suppose towards contradiction $M \neq X$. Then $M$ is a proper closed subspace of $X$ and thus by Hahn-Banach, there exists $f \in X^* \neq 0$ such that $f\vert_M = 0$. Since the $f_n$ are dense in $X^*$, there exists $n$ such that 
+    \[
+        \norm{f - f_n} \leq \frac{1}{4} \norm{f}
+    .\]
+    Since $x_n \in M$ and $f|_M = 0$, it follows $f(x_n) = 0$ and
+    \[
+        |f_n(x_n)| = |f_n(x_n) - f(x_n)| \leq \norm{f - f_n}\norm{x_n} \leq \frac{1}{4} \norm{f}
+    .\]
+    Note though
+    \[
+        \norm{f_n} \geq \norm{f} - \norm{f - f_n} \geq \frac{3}{4} \norm{f}
+    \]
+    and so
+    \[
+        |f_n(x_n)| \geq \frac{1}{2} \norm{f_n} \geq \frac{1}{2} \cdot \frac{3}{4} \norm{f} = \frac{3}{8} \norm{f}
+    \]
+    which is a contradiction. Therefore $M = X$, meaning $X$ is separable.
+\end{proof}
+
+\subsection{Exercise 7.70}
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            Note if $E_n$ is closed and has empty interior, then $(\conj{E_n})^\circ = E_n^\circ = \varnothing$ meaning $E_n$ would be nowhere dense. Let $f_k \in E_n$ with $f_k \to f$ uniformly. For every $k$ choose $x_k \in [0,1]$ such that
+            \[
+                |f_k(x) - f_k(x_k)| \leq n |x - x_k|
+            .\]
+            Since $[0,1]$ is compact, the sequence of points $x_k$ can be refined to a convergent subsequence, giving $x_k \to x_0 \in [0,1]$. Then for any $x \in [0,1]$
+            \begin{align*}
+                |f(x) - f(x_0)| &\leq |f(x) - f_k(x)| + |f_k(x) - f_k(x_k)| + |f_k(x_k) - f(x_0)| \\
+                                &\leq |f(x) - f_k(x)| + n|x-x_k| + |f_k(x_k) - f(x_k)| + |f(x_k) - f(x_0)|
+            \end{align*}
+            In the limit as $k \to \infty$, it follows that
+            \[
+                |f(x) - f(x_0)| \leq n|x - x_0|
+            .\]
+            Therefore $f \in E_n$ meaning $E_n$ is closed. Consider now any arbitrary $f \in C([0,1])$ and take $\eps > 0$. Let $g$ be the piecewise approximation in the hint such that $\norm{f - g}_{\infty} \leq \frac{\eps}{2}$ with every linear piece of $g$ having slope $\pm 2n$. Let the points in which the slope of $g$ changes be $0 = t_0 < \ldots < t_n = 1$ and take
+            \[
+                \delta = \frac{1}{2} \cdot \min_{1 \leq i \leq n} (t_i - t_{i - 1})
+            .\]
+            Consider $h \in C([0,1])$ where $\norm{h - g}_{\infty} \leq \frac{\eps}{2}$ and $x_0 \in [0,1]$. Since each piece of $g$ has length greater than $2 \delta$, there exists some $y$ such that $|y - x_0| = \delta$ in the same linear piece as $x_0$, and
+            \[
+                |g(y) - g(x_0)| = 2n|y-y_0|
+            .\]
+            Therefore
+            \begin{align*}
+                |h(y) - h(x_0)| &\geq |g(y) - g(x_0)| - 2 \norm{h-g}_{\infty}  \\
+                                &\geq 2n|y-x_0| - n \delta \\
+                                &=n|y-x_0|
+            \end{align*}
+            Since $x_0$ was arbitrary, it follows $h \notin E_n$. Thus any ball around some $f$ must have an $h \notin E_n$, hence $E_n$ has an empty interior. Since $E_n$ is closed and has empty interior, it is nowhere dense.
+
+        \item 
+            Denote
+            \[
+                D = \qty{ f \in C([0,1]) : f' \text{ exists at some } x_0 \in [0,1] }
+            .\]
+            Consider some $f \in D$ and the corresponding $x_0$. Then
+            \[
+                \lim_{x \to x_0} \frac{|f(x) - f(x_0)|}{|x - x_0|} = |f'(x_0)| < \infty
+            .\]
+            Therefore there exists $\delta > 0$ and $n_0$ such that
+            \[
+                |f(x) - f(x_0)| \leq n_0 |x - x_0|
+            \]
+            for $|x - x_0| < \delta$. Note the set $K_{\delta} = [0,1] \setminus B(x_0, \delta)$ is compact, and thus there exists $M > 0$ such that
+            \[
+                \frac{|f(x) - f(x_0)|}{|x - x_0|} \leq M \implies |f(x) - f(x_0)| \leq M |x - x_0|
+            \]
+            since the left hand side is continuous. Take then $n \geq \max(n_0, M)$ and note for any $x \in [0,1]$
+            \[
+                |f(x) - f(x_0)| \leq n |x-x_0|
+            \]
+            meaning $f \in E_n$. Therefore
+            \[
+                D \subset \bigcup_{n \in \N} E_n
+            \]
+            implying $D$ is meager and hence $D^c$ is residual.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 7.80}
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            Note that $\frac{1}{n^2} \in \mathcal{L}^1(\N)$ but
+            \[
+                \sum_{n \geq 1} n |f(n)| = \sum_{n \geq 1} \frac{1}{n} = \infty
+            \]
+            so $f \notin X$, hence $X \not\subset Y$. Consider some $f : \N \to \R$. Note that
+            \[
+                f_N(n) = \begin{cases}
+                    f(n) & n < N \\
+                    0 & n \geq N
+                \end{cases}
+            \]
+            approaches $f$ as $N \to \infty$. Denote the collection of all such $f_N$ for every $f$ as $C$. By the previous note, it follows $C$ dense in $Y$. Note as well
+            \[
+                \sum_{n \geq 1} n |f_N(n)| = \sum_{n < N} n |f_N(n)| < \infty
+            \]
+            meaning $f_N \in X$. Therefore $C \subset X$ and thus $X$ is also dense in $Y$. However, $X$ cannot be complete since if it was complete then by its density, every point of $Y$ would be a point of $X$ meaning $X = Y$.
+
+        \item 
+            Consider $e_k(n) = \delta_{kn}$ and note $e_k \in X$ with $\norm{e_k}_{L^1} = 1$. Then
+            \[
+                Te_k = k e_k \implies \norm{Te_k}_{L^1} = k \implies \frac{\norm{Te_k}_{L^1}}{\norm{e_k}_{L^1}} = k
+            .\]
+            Thus $T$ is not bounded. Consider $x_n \in X$ such that $x_n \to x$ in the $X$-norm, and $Tx_n \to y$ in the $Y$-norm. Note $L^1$ convergence in this instance implies pointwise convergence, thus $x_m(n) \to x(n)$ and $(Tx_m)(n) \to y(n)$. But $(Tx_m)(n) = n x_m(n) \to n x(n)$, therefore $y(n) = n x(n)$. Since $z \in Y$, it follows
+            \[
+                \sum_{n \in \N} n |y(n)| = \sum_{n \in \N} |z(n)| < \infty
+            \]
+            and hence $x \in X$ and $Tx = y$ giving closure.
+
+        \item 
+            Clearly $T$ is bijective as the map $(Sx)(n) = \frac{x(n)}{n}$ is both a left and right inverse of $T$, and if $x \in Y$ and $y = Sx$, then $y(n) = \frac{x(n)}{n}$ meaning
+            \[
+                \sum_{n \in \N} n |y(n)| = \sum_{n \in \N} n \cdot \frac{|x(n)|}{n} = \sum_{n \in \N} |x(n)| < \infty \implies y \in X
+            .\]
+            Note that $\frac{1}{n} \leq 1$ for $n \geq 1$, hence
+            \[
+                \norm{Sx} = \sum_{n \in \N} \frac{|x(n)|}{n} \leq \sum_{n \in \N} |x(n)| = \norm{x}
+            .\]
+            Therefore $S$ is bounded. Since $S$ is a bijection and $S^{-1} = T$, it is open iff $T$ is continuous. However, since $T$ is unbounded, it cannot be continuous and thus $S$ cannot be open.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 7.81}
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            Take $f_n(x) = \sqrt{x + \frac{1}{n}}$. Note then that $f_n \in C^1([0,1])$ for all $n$ and $f_n \to \sqrt{x}$ uniformly on $[0,1]$ since $f_n \geq f$ on $[0,1]$, and thus
+            \[
+                \norm{f_n - f}_{\infty} = \sup_{x \in [0,1]} \sqrt{x + \frac{1}{n}} - \sqrt{x} \leq \sqrt{\frac{1}{n}}
+            .\]
+            But $\sqrt{x} \notin C^1([0,1])$, so $X$ is not complete.
+
+        \item 
+            Unboundness follows from that fact that $x^k \in C([0,1])$ for all $k$, but $\norm{\dv{x} x^k}_{\infty} = \norm{k x^{k-1}} = k$ which is unbounded for $k \to \infty$. Let $f_n \in C^1([0,1])$ with $f_n \to f$ uniformly and $f_n' \to g \in Y$ uniformly. Note that $f \in C([0,1])$. Fix $x \in [0,1]$. By the FTC
+            \[
+                f_n(x) - f_n(0) = \int_0^x f_n'(t) dt
+            \]
+            which in the limit as $n \to \infty$ gives by uniformity
+            \[
+                f(x) - f(0) = \int_0^x g(t) dt
+            .\]
+            But then the right hand side is $C^1$ and taking derivatives gives $f' = g$. Therefore $\dv{x}$ is a closed map.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 7.89}
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            Note that
+            \[
+                \norm{Tf} = \norm{\sum_{n \in \N} f(n) x_n} \leq \sum_{n \in \N} |f(n)| \norm{x_n} \leq \sum_{n \in \N} |f(n)| = \norm{f}_{L^1}
+            .\]
+            Therefore $\norm{T} \leq 1$ and thus is bounded.
+
+        \item 
+            Let $x \in X$. Note if $x = 0$ then $T f = 0 = x$ for $f = 0$. Suppose then $x \neq 0$. We will construct $n_1, n_2, \ldots$ and $a_1, a_2, \ldots$ such that $\sum |a_k| < \infty$ and $x = \sum a_k x_{n_k}$, which gives then
+            \[
+                f(n) = \sum_{k \in \N \text{ s.t. } n_k = n} a_k
+            \]
+            in which case $Tf = x$.
+
+            First take $r_0 = x$ and assume $r_{k - 1}$ is defined. If $r_{k - 1} = 0$, then set $a_j = 0$ for all $j \geq k$ and stop. Otherwise, set
+            \[
+                u_{k - 1} = \frac{r_{k - 1}}{2 \norm{r_{k-1}}}
+            \]
+            and note $\norm{u_{k - 1}} = \frac{1}{2}$ meaning it is in the unit ball. Thus there exists $n_k$ such that
+            \[
+                \norm{x_{n_k} - u_{k-1}} \leq \frac{1}{4}
+            .\]
+            Take then
+            \[
+                a_k = 2\norm{r_{k-1}}, \hspace{1cm} r_k = r_{k-1} - a_k x_{n_k}
+            \]
+            and note
+            \[
+                r_k = r_{k-1} - 2 \norm{r_{k-1}} x_{n_k} = 2 \norm{r_{k-1}} (u_{k-1} - x_{n_k})
+            \]
+            thus
+            \[
+                \norm{r_k} \leq 2 \norm{r_{k-1}} \cdot \norm{u_{k-1} - x_{n_k}} \leq \frac{1}{2} \norm{r_{k-1}}
+            .\]
+            Iterating this process thus gives
+            \[
+                \norm{r_k} \leq \qty(\frac{1}{2})^k \norm{x}
+            .\]
+            Furthermore
+            \[
+                \sum_{k \in \N} |a_k| = 2 \cdot \sum_{k \in \N} \norm{r_{k-1}} \leq 2 \norm{x} \cdot \sum_{k \in \N} \qty(\frac{1}{2})^{k-1} < \infty
+            .\]
+            By the construction of the $r_k$'s,
+            \[
+                x = r_0 = a_1 x_{n_1} + r_1 = \ldots = \sum_{k \leq m} a_k x_{n_k} + r_m
+            \]
+            for all $m$. Since $r_m \to 0$ as $m \to \infty$, it follows
+            \[
+                x = \sum_{k = 1}^\infty a_k x_{n_k}
+            \]
+            which was to be shown.
+
+
+        \item 
+            Note that since $T$ is bounded, it is continuous and hence $N(T) = T^{-1}(\qty{0})$ is closed since $\qty{0}$ is closed. Therefore $L^1(\nu) / N(T)$ is a valid quotient space. Take then
+            \[
+                \tilde{T} : L^1(\nu) / N(T) \to X : f + N(T) \mapsto Tf
+            .\]
+            It is well defined since $f + N(T) = g + N(T) \implies f - g \in N(T)$, hence $Tf = Tg$. Note surjectivity comes from the surjectivity of $T$, and it is injective since
+            \[
+                \tilde{T}(f + N(T)) = 0 \Leftrightarrow Tf = 0 \Leftrightarrow f \in N(T) \Leftrightarrow f + N(T) = 0
+            .\]
+            Hence $\tilde{T}$ is an isomorphism.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 7.114}
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            Take $y \in H$ and define $\phi_x(x) = (Tx, y)$. Since $T$ is bounded, it follows by Cauchy-Schwarz
+            \[
+                |\phi_y(y)| = |(Tx, y)| \leq \norm{Tx} \norm{y} \leq \norm{T} \norm{x} \norm{y}
+            .\]
+            Thus $\phi_y$ is bounded, meaning by Theorem 7.111 there exists a unique $z \in H$ such that $\phi_y(x) = (x,z)$. Define then $T^* y = z$ giving $(Tx, y) = (x, T^*y)$.
+
+            Linearity of $T^*$ comes from the fact that the inner product is linear. Boundedness follows from the fact that
+            \[
+                \norm{T^*y} = \sup_{\norm{x} = 1} |(x, T^*y)| = \sup_{\norn{x} = 1} |(Tx, y)| \leq \norm{T} \norm{y}
+            .\]
+            Suppose then some other $S$ also satisfies $(Tx, y) = (x, Sy)$. Then for any $x \in H$
+            \[
+                (x, T^*y - Sy) = (x,T^*y) - (x,Sy) = (Tx, y) - (Tx, y) = 0
+            \]
+            meaning $T^*y = Sy$, hence $S = T^*$.
+
+        \item 
+            Note that by Cauchy-Schwarz
+            \[
+                \norm{T^* y} = \sup_{\norm{x} = 1} |(x, T^*y)| = \sup_{\norm{x} = 1} |(Tx, y)| \leq \norm{T} \norm{y}
+            \]
+            hence $\norm{T^*} \leq \norm{T}$. Furthermore
+            \[
+                (T^* T x, x) = (Tx, Tx) = \norm{Tx}^2
+            \]
+            meaning $\norm{Tx}^2 \leq \norm{T^*T} \norm{x}$, thus $\norm{T}^2 \leq \norm{T^*T}$. It also the case that $\norm{T^* T} \leq \norm{T^*} \norm{T} \leq \norm{T}^2$ from the previous result, hence $\norm{T^* T} = \norm{T}^2$.
+
+            For scalar combinations, note that
+            \[
+                ((aS + bT)x, y) = a(Sx, y) + b(Tx, y) = (x, \conj{a} S^* y) + (x, \conj{b} T^*y) = (x, (\conj{a}S + \conj{b}T)y)
+            \]
+            thus $(aS + bT)^* = \conj{a}S + \conj{b}T$. The product rules follows from the definition where
+            \[
+                (STx, y) = (Tx, S^*y) = (x, T^* S^* y)
+            .\]
+            Since $(T^* x, y) = (x, T^{**} y)$ and $(T^* x, y) = (x, Ty)$ for all $x,y$, it must be the case $T^{**} = T$.
+
+            The reverse inequality from the very beginning can now be proven since the same argument can be used to get $\norm{T^{**}} \leq \norm{T^*}$, and $T^{**} = T$ meaning $\norm{T} \leq \norm{T^*}$. Therefore $\norm{T} = \norm{T^*}$.
+
+        \item 
+            By definition $y \in R(T)^\perp$ iff $(Tx, y) = 0$ for all $x$, but this is equivalent to $(x, T^* y) = 0$ for all $x$, which itself is equivalent to $T^* y = 0$. Thus $R(T)^\perp = N(T^*)$.
+
+            The previous result gives $N(T) = R(T^*)^\perp$ by using $T^*$ in place of $T$. Note that $M^\perp = (\conj{M})^\perp$, therefore $(M^\perp)^\perp = \conj{M}$. Thus
+            \[
+                N(T)^\perp = (R(T^*)^\perp)^\perp = \conj{R(T^*)}
+            .\]
+
+        \item 
+            Suppose $T$ is unitary. Then for any $x,y$
+            \[
+                (Tx, Ty) = (x, y) = (x, T^* Ty)
+            .\]
+            Therefore $T^* T$ must be the identity, and similarly for $T T^*$. Thus $T^{-1} = T^*$.
+
+            Suppose $T^{-1} = T^*$. Then
+            \[
+                (Tx, Ty) = (x, T^* T y) = (x, T^{-1} T y) = (x,y)
+            \]
+            meaning $T$ is unitary.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 7.122}
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            Let $x = x_{\parallel} + x_{\perp}$ and $y = y_{\parallel} + y_{\perp}$ where $x_{\parallel}, y_{\parallel} \in M$ and $x_{\perp}, y_{\perp} \in M^\perp$. Then
+            \[
+                ax + by = (a x_{\parallel} + b y_{\parallel}) + (a x_{\perp} + b y_{\perp})
+            .\]
+            Since the first term is in $M$ and the second in $M^\perp$, it follows
+            \[
+                P(ax + by) = a x_{\parallel} + b_{\parallel} = a P x + b P y
+            .\]
+            If $x \in M$, then the only element $y \in H$ such that $x - y \in M^\perp$ is $0$, thus $Px = y = x$. Therefore $P^2x = Px \implies P^2 = P$.
+
+            Clearly $Px \in M$ for all $x$ meaning $R(P) \subset M$, and from before $Px = x$ for $x \in M$, hence $M \subset R(P)$. Thus $R(P) = M$. By definition $Px = 0$ iff $x \in M^\perp$ thus $N(P) = M^\perp$.
+
+            Take $x,y$ the same as the beginning. Since $x_{\parallel} \perp y_{\perp}$
+            \[
+                (Px,y) = (x_{\parallel}, y_{\parallel} + y_{\perp}) = (x_{\parallel}, y_{\parallel})
+            .\]
+            Furthermore $x_{\perp} \perp y_{\parallel}$ meaning
+            \[
+                (x,Py) = (x_{\parallel} + x_{\perp}, y_{\parallel}) = (x_{\parallel}, y_{\parallel})
+            .\]
+            Thus $(Px, y) = (x, Py)$ and hence $P^* = P$.
+
+            Note that $x = Px + (x - Px)$ is an orthogonal decomposition, and thus
+            \[
+                \norm{Px} \leq \sqrt{\norm{Px}^2 + \norm{x - Px}^2} = \sqrt{\norm{x}^2} = \norm{x}
+            .\]
+            Hence $P$ is bounded.
+
+        \item 
+            Suppose that $P^2 = P = P^*$. Note any $x$ can be written as $Px + (x - Px)$. Then for any $y = Pz \in R(P)$
+            \[
+                (x - Px, y) = (x - Px, Pz) = (Px - P^2x, z) = (Px - Px, z) = 0
+            .\]
+            Therefore $x - Px \in R(P)^\perp$, meaning $P$ is the orthogonal projection onto $R(P)$.
+
+        \item 
+            Since $Px \in M$, it follows by Parseval's
+            \[
+                Px = \sum_{\alpha \in A} (Px, u_{\alpha}) u_{\alpha}
+            .\]
+            Note that $x = Px + (x - Px)$ and $x - Px \in M^\perp$, therefore
+            \[
+                (x, u_{\alpha}) = (Px + (x - Px), u_{\alpha}) = (Px, u_{\alpha}) + (x - Px, u_{\alpha}) = (Px, u_{\alpha})
+            .\]
+            Thus
+            \[
+                Px = \sum_{\alpha \in A} (x, u_{\alpha}) u_{\alpha}
+            .\]
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 7.123}
+\begin{proof}
+    Let $M = \inf_{x \in K} \norm{x}$. Then there exists a sequence $x_n \in K$ such that $\norm{x_n} \to M$. Take $m \geq n$. Since $K$ is convex, it follows
+    \[
+        \frac{x_n + x_m}{2} \in K \implies \norm{\frac{x_n + x_m}{2}} \geq M
+    .\]
+    Therefore by the parallelogram law
+    \begin{align*}
+        \norm{x_n - x_m}^2 &= 2 \norm{x_n}^2 + 2\norm{x_m}^2 - \norm{x_n + x_m}^2 \\
+                           &= 2 \norm{x_n}^2 + 2\norm{x_m}^2 - 4 \norm{\frac{x_n + x_m}{2}}^2 \\
+                           &\leq 2 \norm{x_n}^2 + 2 \norm{x_m}^2 - 4M^2
+    \end{align*}
+    Note that the LHS goes to $0$ as $n \to \infty$. Therefore $x_n$ is a Cauchy sequence, which by completeness means there exists $x_n \to x \in H$. $K$ is also closed, hence $x \in K$.
+
+    Suppose then there exists another $y$ that minimizes norm in $K$. Take $z = \frac{x+y}{2}$. By the parallelogram law
+    \[
+        2 \norm{x}^2 + 2\norm{y}^2 = \norm{x + y}^2 + \norm{x - y}^2 \implies 4M^2 = 4 \norm{z}^2 + \norm{x - y}^2
+    .\]
+    But clearly $\norm{z} \geq M$, hence
+    \[
+        4M^2 \geq 4M^2 + \norm{x - y}^2 \implies \norm{x - y} = 0
+    .\]
+    Therefore $y = x$.
+\end{proof}
+
+\subsection{Exercise 7.134}
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            Note that by Bessel's
+            \[
+                \sum_{n \in \N} |(x, e_n)|^2 \leq \norm{x}^2 < \infty
+            .\]
+            Since the sum converges, the inner sequence must converge to $0$, thus $|(x, e_n)| \to 0$. Therefore $(x, e_n) \to 0$ meaning $e_n$ converges weakly to $0$.
+
+        \item 
+            Let $x \in B$. Since $H$ is infinite dimensional, it is possible to take an orthonormal sequence $e_n$ such that $e_n \perp x$. Define then
+            \[
+                x_n = x + \sqrt{1 - \norm{x}^2} e_n
+            .\]
+            Since $e_n \perp x$, it follows
+            \[
+                \norm{x_n}^2 = \norm{x}^2 + (1 - \norm{x}^2) = 1
+            \]
+            thus $x_n \in S$. For any $y \in H$
+            \[
+                (x_n, y) = (x,y) + \sqrt{1 - \norm{x}^2} (e_n, y)
+            .\]
+            By the previous part, the first term goes to $0$ as $n \to \infty$, hence
+            \[
+                (x_n, y) \to (x, y)
+            .\]
+            Thus $x$ is a weak limit of a sequence in $S$, meaning $S$ is weakly dense in $B$.
+    \end{enumerate}
+\end{proof}
+
+\end{document}

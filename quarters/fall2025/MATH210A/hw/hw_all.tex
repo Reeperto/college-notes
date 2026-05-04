@@ -13,16 +13,39 @@
 \DeclareMathOperator{\supp}{supp}
 \newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
 
-\pagestyle{fancy}
+\makeatletter
+\renewcommand{\@seccntformat}[1]{}
+\makeatother
+
+\setcounter{tocdepth}{2}
+\renewcommand\thesection{}
+\renewcommand\thesubsection{}
 
 \begin{document}
 
+\tableofcontents
+\newpage
+
+\section{Chapter 1}
 \subfile{hw_chap_1.tex}
+
+\section{Chapter 2}
 \subfile{hw_chap_2.tex}
+
+\section{Chapter 3}
 \subfile{hw_chap_3.tex}
+
+\section{Chapter 4}
 \subfile{hw_chap_4.tex}
+
+\section{Chapter 5}
 \subfile{hw_chap_5.tex}
+
+\section{Chapter 6}
 \subfile{hw_chap_6.tex}
+
+\section{Chapter 7}
+\subfile{hw_chap_7.tex}
 
 \end{document}
 

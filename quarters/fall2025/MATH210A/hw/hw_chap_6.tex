@@ -2,7 +2,7 @@
 
 \begin{document}
 
-\section*{Exercise 6.12}
+\subsection{Exercise 6.12}
 
 \begin{proof}
     \begin{enumerate}
@@ -45,7 +45,7 @@
     \end{enumerate}
 \end{proof}
 
-\section*{Exercise 6.14}
+\subsection{Exercise 6.14}
 
 \begin{proof}
     \begin{enumerate}
@@ -97,7 +97,7 @@
     \end{enumerate}
 \end{proof}
 
-\section*{Exercise 6.18}
+\subsection{Exercise 6.18}
 
 \begin{proof}
     \begin{enumerate}
@@ -134,7 +134,7 @@
     \end{enumerate}
 \end{proof}
 
-\section*{Exercise 6.19}
+\subsection{Exercise 6.19}
 
 \begin{proof}
     \begin{enumerate}
@@ -178,7 +178,7 @@
     \end{enumerate}
 \end{proof}
 
-\section*{Exercise 6.29}
+\subsection{Exercise 6.29}
 
 \begin{proof}
     Since each $\mathcal{A}_i$ generates themselves ($\sigma(\mathcal{A}_i) = \mathcal{A}_i$), then by Proposition 6.22 it follows that
@@ -206,7 +206,7 @@
     it follows $\mu_1 \times \mu_2 \times \mu_3 = (\mu_1 \times \mu_2) \times \mu_3$ by uniqueness.
 \end{proof}
 
-\section*{Exercise 6.34}
+\subsection{Exercise 6.34}
 
 \begin{proof}
     Note that $D_x^1 = D_x^2 = \qty{x}$ meaning
@@ -240,7 +240,7 @@
     .\]
 \end{proof}
 
-\section*{Exercise 6.36}
+\subsection{Exercise 6.36}
 
 \begin{proof}
     First note that
@@ -265,7 +265,7 @@
     .\]
 \end{proof}
 
-\section*{Exercise 6.42}
+\subsection{Exercise 6.42}
 
 \begin{proof}
     Suppose the case in which $f \geq 0$. From Proposition 6.41, there exists some $g$ that is $\mathcal{A}$ measurable and $f = g$ $\lambda$-a.e. WLOG take $g \geq 0$ (adjust $g$ to be at least $0$ where $f\neq g$). Let $h = f - g$, and note that $h = 0$ $\lambda$-a.e. Therefore
@@ -300,6 +300,989 @@
         &= \iint g d \mu_2 \mu_1 = \iint f d \mu_2 \mu_1 \\
     \end{align*}
 
+\end{proof}
+
+\subsection{Exercise 6.62}
+
+\begin{proof}
+    \begin{enumerate}
+        \item
+            Take $E = \bigcup_{n \in \N} E_n$ and let $F_1 = E_1$ and $F_n = E_n \setminus E_{n-1}$. Note that $E_n = \bigcup_{k=1}^n F_k$ and $E = \bigcup_{k \in \N} F_k$. Since the $F_n$ are pairwise disjoint, it follows
+            \[
+                \nu(E) = \nu\qty(\bigcup_{k \in \N} F_k) = \sum_{k \in \N} \nu(F_k) = \lim_{n \to \infty} \sum_{k=1}^n \nu(F_k) = \lim_{n \to \infty} \nu\qty(\bigcup_{k=1}^n F_k) = \lim_{n \to \infty} \nu(E_n)
+            .\]
+
+        \item 
+            Take $E = \bigcap_{n \in \N} E_n$ and let $F_n = E_1 \setminus E_n$. Note that the $F_n$ are pairwise disjoint and increasing, as well as
+            \[
+                \bigcup_{n \in \N} F_n = \bigcup_{n \in \N} E_1 \setminus E_n = E_1 \setminus \bigcup_{n \in \N} E_n = E_1 \setminus E
+            .\]
+            Using the previous part, it follows that
+            \[
+                \nu(E_1 \setminus E) = \nu\qty(\bigcup_{n \in \N} F_n) = \lim_{n \to \infty} \nu(F_n) = \lim_{n \to \infty} \nu(E_1 \setminus E_n)
+            .\]
+            Note that for $A \subset B$ and $\nu(B) < \infty$ that $\nu(B \setminus A) = \nu(B) - \nu(A)$ by applying additivity to $B = A \cup (B \setminus A)$. Since then $E \subset E_1$ and $E_n \subset E_1$ it follows
+            \[
+                \nu(E_1) - \nu(E) = \lim_{n \to \infty} (\nu(E_1) - \nu(E_n)) = \nu(E_1) - \lim_{n \to \infty} \nu(E_n)
+            .\]
+            Rearranging thus gives $\nu(E) = \lim_{n \to \infty} \nu(E_n)$.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 6.74}
+\begin{proof}
+    The proof of $|v|(E) = 0$ iff $E$ is $\nu$-null comes from remark 6.72 in the notes.
+    \begin{itemize}
+        \item
+            To show $\nu \perp \mu \Leftrightarrow |\nu| \perp \mu$, note that $F$ being $\nu$-null is equivalent to $|v|(F) = 0$ which is the same as $F$ being $|v|$-null. Therefore the same pair $E$ and $F$ that make $\nu$ and $\mu$ mutually singular is the same that makes $|\nu|$ and $\mu$ mutually singular.
+            
+        \item 
+            Suppose that $|\nu| \perp \mu$ and let $E$ and $F$ be the disjoint pair where $|\nu|(E) = 0$ and $\mu(F) = 0$. Since $0 \leq \nu^+ \leq |\nu|$ and $0 \leq \nu^- \leq |\nu|$, it follows that $\nu^+(E) = 0$ and $\nu^-(E) = 0$. Both $\nu^+$ and $\nu^-$ are normal measures as well, so they are zero everywhere on $E$ and hence $E$ is null with respect to both. Thus $\nu^+ \perp \mu$ and $\nu^- \perp \mu$.
+
+            Suppose then that $\nu^+ \perp \mu$ and $\nu^- \perp \mu$. Let $E_1, F_1$ be the disjoint part where $\nu^+(E_1) = 0$ and $\mu(F_1) = 0$. Take $E_2, F_2$ similarly for $\nu^-$ and $\mu$. Let $E = E_1 \cap E_2$ and $F = F_1 \cup F_2$ and note that $F^c = F_1^c \cap F_2^c = E_1 \cap E_2 = E$. Thus $E \cup F = X$ and $E \cap F = \varnothing$. Since both $F_1$ and $F_2$ are $\mu$-null, then $F_1 \cup F_2$ is also $\mu$-null. Note then that
+            \[
+                |v|(E) = v^+(E) + v^-(E) \leq v^+(E_1) + v^-(E_2) = 0 + 0 = 0
+            .\]
+            Therefore $E$ is $|v|$-null, hence $|v| \perp \mu$.
+    \end{itemize}
+\end{proof}
+
+\subsection{Exercise 6.75}
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            Suppose that $f \in L(|v|)$. Note that $\nu^+ \leq |\nu|$ and $\nu^- \leq |\nu|$, therefore
+            \[
+                \int |f| d \nu^+ \leq \int |f| d |\nu| \hspace{2cm} \int |f| d \nu^- \leq \int |f| d |\nu|
+            .\]
+            Since $\int |f| d|\nu| < \infty$, it follows that $f \in L(\nu^+)$ and $f \in L(\nu^-)$, meaning $f \in L(\nu)$. 
+
+            Suppose then that $f \in L(\nu)$. Since
+            \[
+                \int |f| d|\nu| = \int |f| d \nu^+ + \int |f| d \nu^-
+            \]
+            and both $\int |f| d \nu^+ < \infty$ and $\int |f| d \nu^- < \infty$, it follows that $f \in L(|\nu|)$.
+
+        \item 
+            Since $|\int f d \nu^+| \leq \int |f| d \nu^+$ and similarly for $\nu^-$, it follows that
+            \begin{align*}
+                \qty|\int f d \nu| &= \qty|\int f d \nu^+ - \int f d \nu^-|  \\
+                                   &\leq \qty|\int f d \nu^+| + \qty|\int f d \nu^-| \\
+                                   &\leq \int |f| d \nu^+ + \int |f| d \nu^- \\
+                                   &= \int |f| d|\nu|
+            \end{align*}
+
+        \item 
+            Suppose that $|v|(E) = \infty$. Since $\nu$ cannot take on both $+\infty$ and $-\infty$, it follows then that exactly one of $\nu^+(E)$ or $\nu^-(E)$ must be $+\infty$ and the other is finite. WLOG assume that $\nu^+(E)$ is infinite. Clearly then if $f = \ind{E}$, then both $|f| \leq 1$ on $E$ and
+            \[
+                \int_{E} f d \nu = v(E) = v^+(E) - v^-(E) = \infty
+            .\]
+            Therefore the supremum is $\infty$ since $f$ provides a lower bound. Suppose then that $|v|(E) < \infty$. Note then that any $|f| \leq 1$ on $E$ is $L^1(\nu)$ since
+            \[
+                \int_E |f| d|\nu| \leq \int_E 1 d|\nu| \leq |v|(E) < \infty
+            \]
+            meaning $f \in L^1(|\nu|) = L^1(\nu)$. Therefore by part (b) it follows that
+            \[
+                \qty| \int_E f d \nu | \leq \int_E |f| d|\nu| \leq \int_E 1 d|\nu| = |v|(E)
+            \]
+            meaning
+            \[
+                \sup\qty{\qty|\int_E f d \nu| : |f| \leq 1 \text{ on } E} \leq |v|(E)
+            .\]
+            Let $X = X^+ \cup X^-$ be the Hahn decomposition with respect to $\nu$ and take $g = \ind{X^+} - \ind{X^-}$. Note that $|g| \leq 1$ everywhere, and thus also on $E$. Integrating it gives
+            \begin{align*}
+                \int_E g d \nu &= \int_{E \cap X^+} g d \nu + \int_{E \cap X^-} g d \nu \\
+                               &= \int_{E \cap X^+} 1 d \nu + \int_{E \cap X^-} (-1) d \nu \\
+                               &= \nu(E \cap X^+) - \nu(E \cap X^-) \\
+                               &= \nu^+(E) - (-\nu^-(E)) \\
+                               &= \nu^+(E) + \nu^-(E) = |v|(E)
+            \end{align*}
+            Therefore
+            \[
+                |v|(E) = \sup\qty{\qty|\int_E f d \nu| : |f| \leq 1 \text{ on } E}
+            .\]
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 6.77}
+\begin{proof}
+    Take $E \in \mathcal{A}$ and let $f$ be measurable such that $|f| \leq 1$ on $E$. Note then that
+    \[
+        \qty|\int_{E} f d(\nu_1 + \nu_2)| = \qty|\int_E f d \nu_1 + \int_E f d \nu_2| \leq \qty|\int_E f d \nu_1| + \qty|\int_E f d \nu_2|
+    .\]
+    From the previous problem, it follows then that
+    \[
+        \qty|\int_{E} f d(\nu_1 + \nu_2)| \leq |\nu_1|(E) + |\nu_2|(E)
+    .\]
+    Applying the previous problem again, taking the supremum over all such $f$ then gives
+    \[
+        |\nu_1+\nu_2|(E) \leq |\nu_1|(E) + |\nu_2|(E)
+    .\]
+\end{proof}
+
+\subsection{Exercise 6.77}
+\begin{proof}
+    Let $X = X^+ \cup X^-$ be the Hahn decomposition of $X$.
+
+    \begin{enumerate}
+        \item
+            Consider $F = E \cap X^+$. Clearly $F \subset E$ and $F \subset X^+$, therefore
+            \[
+                \sup\qty{\nu(F) : \mathcal{A} \ni F \subset E} \geq \nu(E \cap X^+) = \nu^+(E)
+            .\]
+            Now take $F \subset E$ measurable. Note that $\nu(F) \leq \nu(F \cap X^+)$ and that $F \cap X^+ \subset E \cap X^+$. Since $v$ is a normal measure on $X^+$, montonicity applies there giving
+            \[
+                \nu(F) \leq \nu(F \cap X^+) \leq \nu(E \cap X^+) = \nu^+(E)
+            .\]
+            Therefore
+            \[
+                \sup\qty{\nu(F) : \mathcal{A} \ni F \subset E} = \nu^+(E)
+            .\]
+            This same argument works by flipping the inequalities, using $X^-$ instead of $X^+$, and using $\nu^-$ instead of $\nu^+$.
+
+        \item 
+            Let $(E_k)_{k=1}^n$ be a finite partition of $E$. Note that
+            \[
+                \sum_{k=1}^n |\nu(E_k)| = \sum_{k=1}^n |\nu(E_k \cap X^+) + \nu(E_k \cap X^-)| \leq \sum_{k=1}^n |\nu(E_k \cap X^+)| + \sum_{k=1}^n |\nu(E_k \cap X^-)|
+            .\]
+            Since $\nu$ is positive on $X^+$ and negative on $X^-$, it follows
+            \begin{alignat*}{3}
+                \sum_{k=1}^n |\nu(E_k \cap X^+)| &= \nu(E \cap X^+)  &&= \nu^+(E) \\
+                \sum_{k=1}^n |\nu(E_k \cap X^-)| &= -\nu(E \cap X^-) &&= \nu^-(E)
+            \end{alignat*}
+            Therefore
+            \[
+                \sum_{k=1}^n |\nu(E_k)| \leq \nu^+(E) + \nu^-(E) = |v|(E)
+            \]
+        and hence the supremum over all partitions is bounded above by $|v|(E)$. The other direction follows by taking the partition $E \cap X^+$ and $E \cap X^-$, since the sum over this partition is simply $|v|(E)$.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 6.96}
+
+\begin{proof}
+    \begin{enumerate}
+        \item If $\nu(E) = 0$, then $|E| = 0$ meaning $E = \varnothing$. Thus $\mu(E) = 0$ and $\mu \ll \nu$. Suppose then towards contradiction there is some measurable $f$ such that $\mu(E) = \int_E f d \nu$. Note then for any $x \in (0,1)$ that
+            \[
+                0 = \mu(\qty{x}) = \int_{\qty{x}} f d \nu = f(x)
+            .\]
+            Thus $f = 0$ everywhere. However that would mean $\mu(X) = 0$, a contradiction. Thus there is no such $f$ such that $d \mu = f d \nu$.
+
+        \item 
+            Suppose towards contradiction that there is some measurable $f$ such that $\mu = f d \nu + \lambda$ and $\mu \perp \lambda$. Since $\mu \perp \lambda$, there is some $N$ such that $\nu(N) = 0$ and $\lambda(X \setminus N) = 0$. Note that $\nu(N) = 0$ meaning $N = \varnothing$, thus $\lambda(X) = \lambda(X \setminus N) = 0$. However, this means that $\mu = f d \nu$ which is not possible from the previous part.
+    \end{enumerate}
+    The reason the Radon-Nikodym theorem fails in this instance is because the counting measure is not $\sigma$-finite on the given measure space.
+\end{proof}
+
+\subsection{Exercise 6.97}
+
+\begin{proof}
+    Let $f_1$ and $f_2$ represent the Radon-Nikodym derivatives for $\nu_1$ and $\nu_2$ respectively and let $F(x_1,x_2) = f_1(x_1) f_2(x_2)$. Note then that for any $E = A \times B \in \mathcal{A}_1 \times \mathcal{A}_2$ that by Tonelli's and the definition of the derivative
+    \begin{align*}
+        \int_{A \times B} F d(\mu_1 \times \mu_2) &= \int_{A \times B} f_1(x_1) f_2(x_2) d(\mu_1 \times \mu_2) \\
+        &= \int_A \qty(\int_B f_1(x_1) f_2(x_2) d\mu(x_2)) d \mu_1(x_1) \\
+        &= \int_A f_1(x_1) \qty(\int_B f_2(x_2) d \mu_2(x_2)) d \mu_1(x_1) \\
+        &= \int_A f_1(x_1) \nu_2(B) d \mu_1(x_1) \\
+        &= \nu_2(B) \int_A f_1(x_1) d \mu_1(x_1) \\
+        &= \nu_1(A)\nu_2(B) \\
+        &= (\nu_1 \times \nu_2)(A \times B)
+    \end{align*}
+    Therefore if 
+    \[
+        \mathcal{C} = \qty{E \in \mathcal{A}_1 \otimes \mathcal{A}_2 : (\nu_1 \times \nu_2)(E) = \int_E F d(\mu_1 \times \mu_2)}
+    \]
+    then it follows $\mathcal{A}_1 \times \mathcal{A}_2 \subset \mathcal{C}$. Next we show some closure properties of $\mathcal{C}$
+    \begin{itemize}
+        \item[\textbf{Disjoint Unions})]
+            Suppose $E_1, E_2 \in \mathcal{C}$ are disjoint. Then
+            \begin{align*}
+                (\nu_1 \times \nu_2)(E_1 \cup E_2) &= (\nu_1 \times \nu_2)(E_1) + (\nu_1 \times \nu_2)(E_2)  \\
+                                                   &= \int_{E_1} F d(\mu_1 \times \mu_2) + \int_{E_2} F d(\mu_1 \times \mu_2) = \int_{E_1 \cup E_2} F d(\mu_1 \times \mu_2)
+            \end{align*}
+            Therefore any finite union of sets in $\mathcal{C}$ is also contained in $\mathcal{C}$
+
+        \item[\textbf{Increasing Seq.})]
+            Consider then a non-decreasing sequence $E_n \in \mathcal{C}^\N$. Then by the continuity of signed measures and integrals,
+            \begin{align*}
+                (\nu_1 \times \nu_2)\qty(\bigcup E_n) &= \lim_{n \to \infty} (\nu_1 \times \nu_2)(E_n) \\
+                &= \lim_{n \to \infty} \int_{E_n} F d(\mu_1 \times \mu_2) \\
+                &= \int_{\bigcup E_n} F d(\mu_1 \times \mu_2)
+            \end{align*}
+            Therefore countable unions are contained in $\mathcal{C}$
+
+        \item[\textbf{Complements})]
+            Since $X_1$ and $X_2$ are $\sigma$-finite, then so is $X_1 \times X_2$ meaning there exists disjoint measurable rectangles $K_n$ such that
+            \[
+                X_1 \times X_2 = \bigcup_{n \in \N} K_n \hspace{1cm} (\nu_1 \times \nu_2)(K_n) < \infty
+            .\]
+            Note that for a single $K_n$ and some measurable $E \subset K_n$ that
+            \begin{align*}
+                (\nu_1 \times \nu_2)(K_n \setminus E) &= (\nu_1 \times \nu_2)(K_n) - (\nu_1 \times \nu_2)(E) \\
+                &= \int_{K_n} F d(\mu_1 \times \mu_2) - \int_{E} F d(\mu_1 \times \mu_2) \\
+                &= \int_{K_n \setminus E} F d(\mu_1 \times \mu_2)
+            \end{align*}
+            Consider now some $E \in \mathcal{C}$. Then by countable additivity
+            \begin{align*}
+                (\nu_1 \times \nu_2)(E^c) &= \sum_{n \in \N} (\nu_1 \times \nu_2)(E^c \cap K_n) \\
+                &= \sum_{n \in \N} \int_{E^c \cap K_n} F d(\mu_1 \times \mu_2) \\
+                &= \int_{E^c} F d(\mu_1 \times \mu_2)
+            \end{align*}
+            Therefore $E^c \in \mathcal{C}$.
+
+        \item[\textbf{Decreasing Seq.})]
+            Note that decreasing sequences of sets are in $\mathcal{C}$ since both increasing sequences complements are contained in $\mathcal{C}$.
+    \end{itemize}
+    From the closure properties above, it follows that $\mathcal{C}$ is a monotone class and that the boolean algebra of all finite unions of measurable rectangles $\mathcal{A}_1 \times \mathcal{A}_2$ is contained in $\mathcal{C}$. But since $\mathcal{A}_1 \otimes \mathcal{A}_2$ is generated by that boolean algebra, it follows that
+    \[
+        \mathcal{C} \supset \mathcal{C}(\mathcal{A_1} \times \mathcal{A_2}) = \sigma(\mathcal{A}_1 \times \mathcal{A}_2) = \mathcal{A}_1 \otimes \mathcal{A}_2
+    .\]
+    But clearly $\mathcal{C} \subset \mathcal{A}_1 \otimes \mathcal{A}_2$, thus $\mathcal{C} = \mathcal{A}_1 \otimes \mathcal{A}_2$.
+\end{proof}
+
+\subsection{Exercise 6.98}
+
+\begin{proof}
+    The reverse direction holds without requiring $\nu$ to be finite, so we consider when the forward direction fails. We then want to show that there exists some $\eps > 0$ such that for any $\delta > 0$ that there is some $E$ where $\mu(E) \leq \delta$ but $|\nu(E)| > \eps$.
+    \begin{itemize}
+        \item 
+            For the first example, consider $E_{\delta} = (0, \delta)$ and take $\eps = 1$. Clearly then for any $\delta$ it follows $dx(E_{\delta}) = \delta$ but $\frac{dx}{x}(E_{\delta}) = \infty > \eps$.
+
+        \item 
+            Note that $\sum_{n \in \N} 2^{-n}$ is a convergent sequence, meaning its tail $\sum_{n \geq N} 2^{-n}$ converges to $0$ as $N \to \infty$. Therefore for any $\delta > 0$, take $N_{\delta}$ sufficiently large enough such that $\sum_{n \geq N_{\delta}} 2^{-n} \leq \delta$. Let then $E_{\delta} = \N \setminus \qty{1, \ldots, N_{\delta}}$. Take $\eps = 1$. Clearly $\mu(E_{\delta}) \leq \delta$ but $\nu(E_{\delta}) \geq 1 = \eps$. \qedhere
+    \end{itemize}
+\end{proof}
+
+\subsection{Exercise 6.101}
+
+\begin{proof}
+    Note that for any $E \in \mathcal{A}$ that
+    \[
+        \nu(E) \leq \lambda(E) \hspace{1.5cm} \mu(A) \leq \lambda(E)
+    \]
+    and that $\nu(E) = \int_E f d \lambda$. Suppose towards contradiction that $f < 1$ not $\mu$-a.e. That is, there exists some $E$ such that $f(x) > 1$ for all $x \in E$ and $\mu(E) > 0$. Then
+    \[
+        \nu(E) = \int_E f d \lambda \geq \int_E 1 d \lambda = \lambda(E)
+    .\]
+    However, from the previously established inequalities it follows that $\nu(E) = \lambda(E)$. Therefore $\mu(E) = 0$, a contradiction. Note then that $\mu = \lambda - \nu$ which in integral form gives for some $E \in \mathcal{A}$
+    \[
+        \int_E d \mu = \int_E d \lambda - \int_E f d \lambda = \int_E (1 - f) d \lambda
+    .\]
+    Since $\mu \ll \lambda$, it follows $\dv{\mu}{\lambda} = 1 - f$. Furthermore, $\nu \ll \mu \ll \lambda$ so the chain rule applies giving
+    \[
+        \dv{\nu}{\lambda} = \dv{\nu}{\mu} \cdot \dv{\mu}{\lambda} \implies f = \dv{\nu}{\mu} \cdot (1 - f)
+    .\]
+    Since $f < 1$ $\mu$-a.e., it follows that $1-f$ is non-zero $\mu$-a.e. giving
+    \[
+        \dv{\nu}{\mu} = \frac{f}{1-f} \qedhere
+    \]
+\end{proof}
+
+\subsection{Exercise 6.112}
+
+\begin{proof}
+    Suppose towards contradiction that there is a closed set $S$ such that $f \notin S$ $|\mu|$-a.e. Then the set
+    \[
+        E_0 = \qty{x \in X : f(x) \notin S}
+    \]
+    has measure $|\nu|(E_0) > 0$. Since $\R^d$ is second countable and $S^c$ is open, there is a countable bases of open balls $(B_n)_{n \in \N}$ such that $\conj{B_n} \cap S = \varnothing$ and
+    \[
+        S^c = \bigcup_{n \in \N} B_n
+    .\]
+    Let $E_n = E_0 \cap B_n$ and note that $E_0 \subset S^c$ meaning
+    \[
+        E_0 = \bigcup_{n \in \N} E_n \implies 0 < |\nu|(E_0) \leq \sum_{n \in \N} |\nu|(E_n)
+    .\]
+    Since the sum is of non-negative terms, at least one of the terms must be positive since the sum itself is positive. Let $E_N$ denote the set in which $|\nu|(E_N) > 0$ and $r$, $c$ be the radius and center of the associated ball $B_N$ respectively. Then since $|f-c| \leq r$ for $x \in E_N$
+    \begin{align*}
+        \left|\frac{1}{\mu(E_N)} \int_{E_N} f d|\nu| - c \right| &= \left|\frac{1}{|\nu|(E_N)} \int_{E_N} (f - c) d|\nu|\right| \\
+                                                         &\leq \frac{1}{|\nu|(E_N)} \int_{E_N} \qty|f - c| d|\nu| \\
+                                                         &< \frac{1}{|\nu|(E_N)} \int_{E_N} r d|\nu| \\
+                                                         &= r
+    \end{align*}
+    Therefore the average value of $f$ over $E_N$ is contained in $B_N$. However, $B_N$ is disjoint from $S$ and thus the average value is not in $S$.
+\end{proof}
+
+\subsection{Exercise 6.113}
+
+\begin{proof}
+    Note that $|\mu_i(E)| \leq |\mu|(E)$ for each component $i$, thus $\mu_i \ll |\mu|$ for all components. Applying Radon-Nikodym to each component gives then $f_i \in L^1(|\mu|)$ such that $\mu_i = f d |\mu|$. Therefore $f = (f_1, \ldots, f_d)$ is in $L^1(|\mu|)^d$ and $\mu = f d|\mu|$. Let $S$ be the closed unit ball in $R^d$. Then for any $E \in \mathcal{A}$ with $|\mu|(E) > 0$, it follows that
+    \[
+        \frac{1}{|\mu|(E)} \int_E f d|\mu| = \frac{\mu(E)}{|\mu|(E)} \leq 1
+    \]
+    since $|\mu(E)| \leq |\mu|(E)$. Thus the integral is always contained in $S$. From the previous exercise, it follows then that $|f(x)| \leq 1$ for $x$ $|\mu|$-a.e. 
+    %TODO
+
+    Consider then some finite partition $E_n$ of $X$. Note then that
+    \[
+        \sum_{k=1}^n |\mu(E_n)| = \sum_{k = 1}^n \left|\int_{E_k} f d|\mu|\right| \leq \sum_{k=1}^n \int_{E_k} |f| d|\mu| = \int_X |f| d|\mu|
+    .\]
+    Therefore taking the supremum over all such partition gives $|\mu|(X) \leq \int_X |f| d|\mu|$. From the previous part, we have $|f| \leq 1$ giving
+    \[
+        \int_X |f| d|\mu| \leq \int_X 1 d|\mu| = |\mu|(X)
+    .\]
+    Therefore $\int_X |f|d|\mu| = |\mu|(X)$, or equivalently
+    \[
+        \int_{X} (1 - |f|) d|\mu| = 0
+    .\]
+    Since $1 - |f| \geq 0$ $|\mu|$-a.e., having a zero integral means $|f| = 1$ $|\mu|$-a.e. Uniqueness comes then from the uniqueness of the Radon-Nikodym derivatives (up to a null set).
+\end{proof}
+
+\subsection*{Exercise 6.118}
+
+\begin{definition}[Complex Measure]
+    Let $(X, \mathcal{A})$ be a measurable space. Then a function $\nu : \mathcal{A} \to \C$ is a \textbf{complex measure} iff
+    \begin{enumerate}
+        \item $\nu(\varnothing) = 0$
+        \item $\nu(\dot{\bigcup}_{n \in \N} E_n) = \sum_{n \in \N} E_n$, where $(E_n)_{n \in \N} \in \mathcal{A}^\N$ is pairwise disjoint
+    \end{enumerate}
+
+    The set of integrable functions with respect to $\nu$ is $\mathcal{L}^1(\nu) \coloneq \mathcal{L}^1(|\nu|)$ where
+    \[
+        |\nu|(E) = \sup\qty{ \sum_{n \in \N} |\nu(E_n)| : \dot{\bigcup}_{n \in \N} E_n = E }
+    .\]
+\end{definition}
+
+\begin{proof}
+    To show $\nu$ has in effect a Radon-Nikodym derivative, first let $\nu_r \coloneq \Re[\nu]$ and $\nu_i = \Im[\nu]$. Note that both $\nu_r(\varnothing) = \Re[0] = 0$ and $\nu_i(\varnothing) = \Im[0] = 0$. Take then $(E_n)_{n\in \N} \in \mathcal{A}^\N$ pairwise disjoint. Let $S_N = \sum_{n \leq N} \nu(E_n)$ and note $S_N \to \nu(\bigcup_{n \in \N} E_n)$. Since $\Re[\cdot]$ is continuous and linear, it follows that
+    \begin{align*}
+        v_r\qty(\bigcup_{n \in \N} E_n) &= \Re\qty[\nu\qty(\bigcup_{n \in \N} E_n)] \\
+        &= \Re\qty[\sum_{n \in \N} \nu(E_n)] \\
+        &= \Re\qty[\lim_{N \to \infty} S_N] \\
+        &= \lim_{N \to \infty} \Re\qty[S_N] \\
+        &= \lim_{N \to \infty} \sum_{n \leq N} v_r(E_n) = \sum_{n \in \N} v_r(n \in \N)
+    \end{align*}
+    The same argument applies for $\Im[\cdot]$, thus both $v_r$ and $v_i$ are signed measures. Note also that $|\nu(\cdot)|$ defines a pre-measure on $\mathcal{A}$, meaning $|\nu|$ is a positive measure defined on $\mathcal{A}$. Let $\tilde{\nu} = (\nu_r, \nu_i)$. Since $\nu_r \ll |\nu|$ and $\nu_i \ll |\nu|$, there are Radon-Nikodym derivatives $f_r$ and $f_i$ such that $\nu_r = f_r d|\nu|$ and $\nu_i = f_i d|\nu|$. Take then $f = f_r + i f_i$. Then
+    \[
+        \nu(E) = v_r(E) + i v_i(E) = \int_{E} f_r d|\nu| + i \int_E f_i d|\nu| = \int_E f d|\nu|
+    .\]
+    Since both $f_r$ and $f_i$ are $\mathcal{L}^1(|\nu|)$, then
+    \[
+        \int_X |f| d|\nu| \leq \int_X |f_r| d|\nu| + \int_X |f_i| d|\nu| < \infty
+    .\]
+    Thus $\nu = f d|\nu|$ and $f \in \mathcal{L}^1(X, \mathcal{C})$
+\end{proof}
+
+\subsection{Exercise 6.122}
+
+\begin{proof}
+    Viewing $\nu$ as a vector measure, from problem 2 it follows that there is some $f \in \mathcal{L}^1(X, \C)$ such that $|f| = 1$ $|\nu|$-a.e and $\nu = f d|\nu|$. Note then that
+    \[
+        \int_X f d|\nu| = |\nu|(X) = \int_X 1 d |\nu| \implies \int_X (1 - f) d|\nu| = 0
+    .\]
+    Since the integral is $0$, if $f = u + iv$ then
+    \[
+        \int_X (1 - u) d|\nu| = 0
+    .\]
+    Note that $|f| = 1$ $|\nu|$-a.e. means $u^2 + v^2 = 1$, and thus $u \leq 1$ meaning $1 - u \geq 0$. Since the integral of $1 - u$ is $0$, it follows that $u = 1$ $|\nu|$-a.e. meaning $v = 0$ $|\nu|$-a.e. Therefore for $E \in \mathcal{A}$ it follows that
+    \[
+        \nu(E) = \int_X f d|\nu| = \int_X (1 + 0i) d|\nu| = \int_X 1 d|\nu| = |\nu|(E) \qedhere
+    \]
+\end{proof}
+
+\subsection{Exercise 6.123}
+
+\begin{proof}
+    \begin{itemize}
+        \item[$\mu_1 = \mu_2)$] 
+            Since any finite partition is also a countable partition, it follows that $\mu_1 \leq \mu_2$. Take then $(E_n)_{n \in \N}$ to be a countable partition. Note then that $\qty{E_1, \ldots, E_n, \bigcup_{k \geq n} E_k}$ is a finite partition and since $\mu_1$ is the supremum over all finite partitions
+            \[
+                \sum_{k \leq n} |\nu(E_k)| + \qty|\nu\qty(\bigcup_{k > n} E_k)| \leq \mu_1(E)
+            .\]
+            Therefore in the limit as $n \to \infty$
+            \[
+                \sum_{k \leq n} |\nu(E_k)| \leq \mu_1(E) \implies \sum_{n \in \N} |\nu(E_n)| \leq \mu_1(E)
+            .\]
+            Taking the supremum over all countable partitions then gives $\mu_2 \leq \mu_1$, hence $\mu_1 = \mu_2 = |\nu|$.
+
+        \item[$\mu_3 = |v|)$]
+            Let $f$ be measurable such that $|f| \leq 1$. Note that
+            \[
+                \qty|\int_E f d \nu| \leq \int_E |f| d|\nu| \leq \int_E 1 d|\nu| = |\nu|(E)
+            .\]
+            Taking the supremum over all such $f$ then gives $\mu_3 \leq |\nu|$. Viewing $\nu$ as a vector measure, from problem 2 it follows that there is some $f \in \mathcal{L}^1(X, \C)$ such that $|f| = 1$ $|\nu|$-a.e and $\nu = f d|\nu|$. Note then that $\qty|\conj{f}| \leq 1$ and
+            \[
+                \int_E \conj{f} d \nu = \int_E \conj{f} \cdot f d|\nu| = \int_E |f|^2 d|\nu| = \int_E 1 d|\nu| = |\nu|(E)
+            .\]
+            Therefore since $\mu_3$ is the supremum over all such $f$, it follows $|\nu| \leq \mu_3$ and hence $\mu_3 = |\nu|$
+    \end{itemize}
+    All three measures are hence equal since they all equal $|\nu|$.
+\end{proof}
+
+\subsection{Exercise 6.130}
+\begin{proof}
+    Since $f \neq 0$, then
+    \[
+        \int_{\R^d} |f(y)| dy > 0
+    \]
+    and
+    \[
+        \lim_{R \to \infty} \int_{\mathbb{B}(0,r)} |f(y)| dy = \int_{\R^d} |f(y)| dy > 0
+    .\]
+    Therefore there is some $R_0$ such that 
+    \[
+        A \coloneq \int_{\mathbb{B}(0, R_0)} |f(y)| dy > 0
+    .\]
+    Fix $x \in \R^d$ and note that if $r = |x| + R_0$, then $\mathbb{B}(0, R_0) \subset \mathbb{B}(x, r)$, thus
+    \[
+        A \leq \int_{\mathbb{B}(x,r)} |f(y)| dy \implies H f(x) \geq \frac{1}{m(\mathbb{B}(x,r))} \int_{\mathbb{B}(x,r)} |f(y)| dy \geq \frac{A}{m(\mathbb{B}(x, r))}
+    .\]
+    Note that if $B = m(\mathbb{B}(0, 1))$, then $m(\mathbb{B}(x, r)) = B \cdot r^d$ meaning
+    \[
+        H f(x) \geq \frac{A}{B \cdot r^d} = \frac{A}{B \cdot (|x| + R_0)^d}
+    .\]
+    Therefore if $|x| \geq R_0$, then $|x| + R_0 \leq 2 |x|$ giving
+    \[
+        H f(x) \geq \frac{A}{B \cdot (2|x|)^d} = \frac{A}{B \cdot 2^d} |x|^{-d}
+    .\]
+    Hence taking $R = R_0$ and $C = \frac{A}{B \cdot 2^d}$ gives the desired result.
+
+    Note that if $\alpha < \frac{C}{R^d}$, then $(\frac{C}{\alpha})^{\frac{1}{d}} > R$ , hence
+    \[
+        [Hf > \alpha] \supset \qty{x \in \R^d : R < |x| < \qty(\frac{C}{\alpha})^{\frac{1}{d}}} \implies m([Hf > \alpha]) \geq B \cdot \qty(\frac{C}{\alpha} - R^d)
+    .\]
+    If $\alpha \leq \frac{C}{2 R^d}$, then $\frac{1}{\alpha} \geq \frac{2 R^d}{C}$ and
+    \begin{align*}
+        \frac{C}{\alpha} - R^d &\geq \frac{2R^d}{C} \cdot C - R^d \\
+        &= 2R^d - R^d \\
+        &= R^d \\
+        &\geq \frac{C}{2 \alpha}
+    \end{align*}
+    Therefore
+    \[
+        m([Hf > \alpha]) \geq B \cdot \frac{C}{2 \alpha} = \frac{C'}{\alpha}
+    \]
+    for $C' = \frac{B \cdot C}{2}$ and $\alpha \leq \frac{C}{2 R^d}$.
+\end{proof}
+
+\subsection{Exercise 6.132}
+\begin{proof}
+    Suppose that $\lim_{r \to 0} \phi(r) = a$. Take $f(r) = |\phi(r) - a|$ and note that $\lim_{r \to 0} f(r) = 0$ and $f(r) \geq 0$. Then for every $\eps > 0$, there is some $\delta$ such that $0 < |r| < \delta \implies f(r) < \eps$. Therefore
+    \[
+        \sup_{0 < |r| < \delta} f(r) < \eps \implies \inf_{\delta > 0} \sup_{0 < |r| < \delta} f(r) < \eps
+    .\]
+    Taking $\eps$ arbitrarily small thus gives $\limsup_{r \to 0} |\phi(r) - a| = 0$.
+
+    Suppose then $\limsup_{r \to 0} |\phi(r) - a| = 0$ and take $\eps > 0$. Then there exists some $\delta > 0$ such that
+    \[
+        \sup_{0 < |r| < \delta} f(r) < \eps
+    .\]
+    Therefore for $0 < |r| < \delta$ it follows that
+    \[
+        f(r) < \sup_{0 < |r| < \delta} f(r) < \eps \implies |\phi(r) - a| < \eps
+    .\]
+    Thus $\lim_{r \to 0} |\phi(r) - a| = 0$.
+\end{proof}
+
+\subsection{Exercise 6.143}
+\begin{proof}
+    Clearly $Hf \leq H^* f$ since any ball centered at $x$ is a ball containing $x$. Consider then some ball $B$ with center $c$ and radius $r$ where $x \in r$. Note for $y \in B$ that
+    \[
+        |y - x| \leq |y - c| + |c - x| < 2r
+    .\]
+    Therefore $B \subset \mathbb{B}(x,2r)$, meaning
+    \[
+        \int_{B} |f(y)| dy \leq \int_{\mathbb{B}(x,2r)} |f(y)| dy
+    .\]
+    Note that $m(\mathbb{B}(x,2r)) = 2^d m(B)$ which combined with the previous inequality gives
+    \[
+        \frac{1}{m(B)} \int_B |f(y)| dy \leq \frac{1}{m(B)} \int_{\mathbb{B}(x,2r)} |f(y)| dy = \frac{2^d}{m(\mathbb{B}(x,2r))} |f(y)| dy \leq 2^d H f
+    .\]
+    Taking the supremum over all $B$ gives then $H^* f \leq Hf$.
+\end{proof}
+
+\subsection{Exercise 6.145}
+\begin{proof}
+    Let $E \in \mathcal{B}(\R^d)$ and take $f = \ind{E}$. Note that for any bounded set $B \in \mathcal{B}(\R^d)$
+    \[
+        \int_{B} |f| dm = \int_{B \cap E} 1 dm = m(E \cap B) \leq m(B) < \infty
+    .\]
+    Therefore $f \in \mathcal{L}_{loc}^1$ so by the Lebesgue differentiation theorem
+    \[
+        f(x) = \ind{E}(x) = \lim_{r \to 0} \frac{1}{m(\mathbb{B}(x,r))} \int_{m(\mathbb{B}(x,r))} \ind{E}(y) dy = \lim_{r \to 0} \frac{m(E \cap \mathbb{B}(x,r))}{m(\mathbb{B}(x,r))}
+    \]
+    for $x$ a.e. Thus $D_E(x) = \ind{E}(x)$ almost everywhere, giving the desired result.
+
+    Consider the set $E_{\theta} = \qty{x \in \R^2 : 0 \leq \arg x \leq \theta}$. Then for $a \in (0,1)$ if $\theta = 2 \pi a$
+    \[
+        D_{E_{\theta}}(0) = \lim_{r \to 0} \frac{m(E_{\theta} \cap \mathbb{B}(0, r))}{m(\mathbb{B}(0,r))} = \lim_{r \to 0} \frac{\frac{1}{2} \cdot \theta \cdot r^2}{\pi \cdot r^2} = \lim_{r \to 0} \frac{\pi \cdot a \cdot r^2}{\pi \cdot r^2} = a
+    .\]
+\end{proof}
+
+\subsection{Exercise 6.146}
+\begin{proof}
+    Since $\lambda \perp \mu$, there is a Borel set $A$ such that $\mu(A) = 0$ and $\lambda(A^c) = 0$. Let $E$ be a borel set and take $\eps > 0$. By inner regularity of $\nu$ there then exists a compact set $K \subset E \cap A$ such that
+    \[
+        \nu(E \cap A) - \nu(K) < \eps
+    .\]
+    Note that $\nu(E \cap A) = \lambda(E)$ and $\nu(K) = \lambda(K)$ since $A$ is $\mu$-null. Therefore $\lambda(E) - \lambda(K) < \eps$ meaning $\lambda$ is inner regular.
+
+    By outer regularity of $\nu$ there exists an open set $U \supset E \cap A$ such that
+    \[
+        \nu(U) \leq \nu(E \cap A) + \eps = \lambda(E) + \eps
+    .\]
+    Note that $\lambda(A) = \lambda(\R^d) < \infty$, and so by inner regularity of $\nu$ there is a compact set $C$ such that
+    \[
+        \nu(A) - \nu(C) < \eps \implies \lambda(A) - \lambda(C) < \eps
+    .\]
+    Thus if $O = C^c$, then $O$ is open, $O \supset A^c \supset A^c \cap E$ and
+    \[
+        \lambda(O) = \lambda(C^c) = \lambda(A \setminus C) = \lambda(A) - \lambda(C) < \eps
+    .\]
+    If $F = U \cup O$ then $F$ is open and contains $E$ since $E \cap A \subset U$ and $E \cap A^c$, thus
+    \[
+        \lambda(F) \leq \lambda(U) + \lambda(O) \leq \nu(U) + \eps \leq \lambda(E) + 2 \eps
+    .\]
+    Hence $\lambda$ is outer regular. The same proof with $A^c$ instead of $A$ shows that $\mu$ is regular.
+\end{proof}
+
+\subsection{Exercise 6.148}
+\begin{proof}
+    Let $f$ be non-decreasing and right continuous with $\mu_0$ defined on
+    \[
+        S = \qty{\bigsqcup_{k=1}^n (a_k, b_k] :  -\infty \leq a_k < b_k \leq \infty}
+    \]
+    where
+    \[
+        \mu_0\qty(\bigsqcup_{k=1}^n (a_k, b_k])) = \sum_{k=1}^n f(b_k) - f(a_k)
+    .\]
+    Note that this is well-defined since for any disjoint decomposition of some set in $S$, any division of an interval into subintervals will telescope in the sum to the original interval. Furthemore it is monotonic since $f$ is non-decreasing.
+
+    Clearly if $A, B \in S$ are disjoint then $\mu_0(A \cup B) = \mu_0(A) + \mu_0(B)$ by writing out each of their disjoint decompositions, thus finite additivity holds on $S$. For countable additivity in $S$, it is sufficient to show it for a single interval. Let $I_n = (a_n, b_n] \in S^\N$ be pairwise disjoint and $\bigcup_{n \in \N} I_n = (a,b] \in S$. From finite additivity and monotonicity, it follows that
+    \[
+        \sum_{k=1}^N \mu_0((a_k, b_k]) = \mu_0\left(\bigcup_{k = 1}^N (a_k, b_k]\right) \leq \mu_0((a,b])
+    .\]
+    Thus in the limit as $N \to \infty$
+    \[
+        \sum_{k \in \N} \mu_0((a_k, b_k]) \leq \mu_0((a,b])
+    .\]
+    
+    Take $\eps > 0 $. Since $f$ is right-continuous at $a$, there is $\delta > 0$ such that $f(a + \delta) - f(a) < \eps$. Furthermore $f$ is right-continuous at each $b_n$ thus there is $\delta_n > 0$ such that $f(b_n + \delta_n) - f(b_n) < \frac{\eps}{2^n}$ for each $n$. Note then that
+    \[
+        [a + \delta, b] \subset (a,b] = \bigcup_{n \in \N} (a_n, b_n] \subset \bigcup_{n \in \N} (a_n, b_n + \delta_n)
+    .\]
+    The far RHS defines an open cover on $[a + \delta, b]$, thus there is a finite subcover 
+    \[
+        [a + \delta, b] \subset \bigcup_{k \leq N} (a_{n_k}, b_{n_k} + \delta_{n_k})
+    .\]
+    By finite subadditivity (which comes from finite additivity and monotonicty)
+    \[
+        f(b) - f(a + \delta) \leq \sum_{k \leq N} f(b_{n_k} + \delta_{n_k}) - f(a_{n_k}) \leq \sum_{n \in \N} f(b_n + \delta_n) - f(a_n)
+    .\]
+    Note then that
+    \[
+        f(b) - f(a + \delta) = f(b) - f(a) - (f(a + \delta) - f(a)) > f(b) - f(a) - \eps
+    \]
+    and
+    \begin{align*}
+        \sum_{n \in \N} f(b_n + \delta_n) - f(a_n) &= \sum_{n \in \N} f(b_n) - f(a_n) + f(b_n + \delta_n) - f(b_n) \\
+                                                   &< \sum_{n \in \N} f(b_n) - f(a_n) + \frac{\eps}{2^n} \\
+                                                   &= \eps + \sum_{n \in \N} f(b_n) - f(a_n)
+    \end{align*}
+    Combining these results then gives
+    \[
+        f(b) - f(a) - \eps < \eps + \sum_{n \in \N} f(b_n) - f(a_n)
+    .\]
+    Since $\eps$ was arbitrary, it then follows that
+    \[
+        \mu_0((a,b]) = f(b) - f(a) \leq \sum_{n \in \N} f(b_n) - f(a_n) = \sum_{n \in \N} \mu_0((a_n, b_n])
+    .\]
+    Hence $\mu_0$ is countably additive for sets whose union remains in $S$, and thus a pre-measure on $S$. Let $\mu_f^*$ be the outer measure generated by $\mu_0$ and $\mathcal{A} = \sigma(S) = \mathcal{B}(\R)$. Clearly $\mu_0$ is $\sigma$-finite and so there is a unique measure $\mu_f$ such that $\mu_f\vert_S = \mu_0$ and $\mu_f = \mu_f^*\vert_\mathcal{A}$.
+
+    For outer regularity, let $E \in \mathcal{A}$ and suppose first that $\mu_f(E) < \infty$. Take $\eps > 0$. By the definition of outer measure, there is $I_n = (a_n,b_n] \in S^\N$ such that $E \subset \bigcup I_n$ and
+    \[
+        \sum_{n \in \N} \mu_f(I_n) < \mu_f(E) + \frac{\eps}{2}
+    .\]
+    Because $f$ is right-continuous at each $b_n$, there is $\delta_n > 0$ such that
+    \[
+        f(b_n + \delta_n) - f(b_n) < \frac{\eps}{2^{n+1}}
+    .\]
+    Take $O_n = (a_n, b_n + \delta_n)$ and note that $I_n \subset O_n$. Clearly $O = \bigcup O_n \supset E$ is open and
+    \[
+        \mu(O) \leq \sum_{n \in \N} \mu(O_n)
+    .\]
+    Since
+    \begin{align*}
+        \mu(O_n) \leq f(b_n + \delta_n) - f(a_n) &= (f(b_n) - f(a_n)) + (f(b_n + \delta_n) - f(b_n)) \\
+&= \mu(I_n) + (f(b_n + \delta_n) - f(b_n))
+    \end{align*}
+    it follows then
+    \[
+        \mu(O) \leq \sum_{n \in \N} \mu(O_n) \leq \sum_{n \in \N} \mu(I_n) + \frac{\eps}{2^{n+1}} = \frac{\eps}{2} + \sum_{n \in \N} \mu(I_n) < \mu_f(E) + \eps
+    .\]
+    Therefore
+    \[
+        \mu(E) \leq \inf_{E \subset U \overset{o}{\subset} \R} \mu_f^*(U) \leq \mu(O) < \mu_f(E) + \eps
+    \]
+    which gives the desired equality when $\eps \to 0$. If $\mu_f(E) = \infty$, then any open superset $U \supset E$ has $\mu_f(U) = \infty$ and thus outer regularity trivially holds.
+
+    For inner regularity, let $E \in \mathcal{A}$ and suppose first that $E$ is bounded, meaning $E \subset [-N, N]$ for some $N > 0$. Clearly $\mu_f$ is finite on $[-N, N]$. Applying outer regularity to $[-N, N] \setminus E$ gives $O \supset [-N, N] \setminus E$ such that
+    \[
+        \mu_f(O) < \mu([-N, N] \setminus E) + \eps
+    .\]
+    Let $K = [-N, N] \setminus O$. Clearly $K$ is compact since it is bounded and $O$ is open. Furthermore $K \subset E$ and since $[-N, N] = K \dot\cup (O \cap [-N, N])$ it follows
+    \begin{align*}
+        \mu_f([-N, N]) &= \mu_f(K) + \mu_f(O \cap [-N, N]) \\
+                       &\leq \mu_f(K) + \mu_f(O) \\
+                       &< \mu_f(K) + \mu_f([-N, N] \setminus E) + \eps \\
+                       &< \mu_f(K) + \mu_f([-N, N]) - \mu_f(E) + \eps \\
+    \end{align*}
+    Subtracting $\mu_f([-N, N])$ and rearranging sides gives
+    \[
+        \mu(K) > \mu(E) - \eps
+    .\]
+    Thus inner regularity holds for bounded sets. For an unbounded set, simply take $E_n = E \cap [-n, n]$ and apply montonicity of $\mu_f$ to recover the desired compact sets.
+
+
+    The main difference between a measure $\mu_f$ and the Lebesgue measure when $f$ has discontinuities is that $m({x}) = 0$ for any $x \in \R$, but if $x$ is a discontinuity of $f$, then
+    \begin{align*}
+        \mu_f({x}) &= \lim_{n \to \infty} \mu_f((x - \frac{1}{n}, x)) \\
+                   &= \lim_{n \to \infty} f(x) - f(x - \frac{1}{n}) \\
+                   &= f(x) - f(x-) > 0
+    \end{align*}
+    This means that for discontinuous choices of $f$, individual points can end up with positive measure and thus it is not the case in general that $\mu_f((a,b)) = \mu_f([a,b])$ as is the case with the Lebesgue measure.
+\end{proof}
+
+\subsection{Exercise 6.155}
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            Since $f$ is non-decreasing, it follows for any $-\infty < x_0 < \ldots < x_n = x$ that
+            \[
+                \sum_{j=1}^n |f(x_j) - f(x_{j-1})| = \sum_{j=1}^n f(x_j) - f(x_{j-1}) = f(x) - f(x_0)
+            .\]
+            Since $f$ is bounded, then $f(-\infty)$ exists and is finite by Bolzano-Weistrass. By the same argument, $f(\infty)$ also exists and is finite. Note then that by $f$ being non-decreasing, the supremum over all partitions is then $f(x) - f(-\infty)$. Hence $T_f(x) = f(x) - f(-\infty)$ and $T_f(\infty) = f(\infty) - f(-\infty)$ is finite meaning $f \in BV$.
+
+        \item 
+            Note that
+            \begin{align*}
+                \sum_{j=1}^n \qty|(a \cdot f(x_j) + b \cdot g(x_j)) - (a \cdot f(x_{j-1}) + b \cdot g(x_{j-1})))| &\leq a \cdot \sum_{j=1}^n |f(x_j) - f(x_{j-1})| \\
+                                                                                                                  &+ b \cdot \sum_{j = 1}^n |g(x_j) - g(x_{j-1})|
+            \end{align*}
+            Taking the supremum over all partitions then gives $T_{af + bg}(x) \leq a T_f(x) + b T_g(x)$. Since $f, g \in BV$ it follows that
+            \[
+                T_{af+ bg}(\infty) = \leq a T_f(\infty) + b T_g(\infty) < \infty
+            .\]
+            Hence $af + bg \in BV$.
+
+        \item
+            Since $f'$ is bounded, there is some $M$ such that $|f'(x)| \leq M$ for all $x$. For a given partition $a = x_0 < \ldots < x_n = b$, note by MVT there exists $c_j$ such that
+            \[
+                \sum_{j = 1}^n |f(x_j) - f(x_{j-1})| \leq |f'(c_j)| |x_j - x_{j - 1}| \leq M \cdot \sum_{j = 1}^n |x_j - x_{j-1}| = M(b - a)
+            .\]
+            Thus the supremum over all such partitions is finite meaning $f \in BV([a,b])$.
+
+        \item 
+            Note that $f'(x) = \cos x$ and $|\cos x| \leq 1$, thus be the previous part it follows $\sin x \in BV([a,b])$. For $\R$, consider the partition $x_j = \frac{\pi}{2} + j \pi$. Then
+            \[
+                \sum_{j = 1}^N |\sin(x_j) - \sin(x_{j-1})| = \sum_{j = 1}^N |1 - (-1)| = 2N
+            .\]
+            Thus by taking more and more partition points, the sum diverges. Hence $T_f(\infty) = \infty$ and $\sin x \notin BV$.
+
+        \item 
+            Taking $\frac{1}{x_k} = \frac{\pi}{2} + k \pi$ means that $\sin(\frac{1}{x_k}) = \pm 1$. Taking some partition $0 < x_n < x_{n-1} < \ldots < x_m < b$ of $[0,b]$ where $m$ is the first integer where $x_m < b$, note then that
+            \[
+                |f(x_k) - f(x_{k-1})| = x_k + x_{k-1}
+            .\]
+            and thus
+            \[
+                \sum_{k=m+1}^n (x_k + x_{k-1}) > \sum_{k = m}^n x_k = \sum_{k=m}^n \frac{2}{(2k+1) \pi} = \frac{2}{\pi} \sum_{k=m}^n \frac{1}{2k+1}
+            .\]
+            By taking $n \to \infty$, this sum diverges and thus the total variation is $\infty$ for any interval containing $0$. Hence $f \notin BV([a,b])$.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 6.162}
+\begin{proof}
+    Consider $-\infty < x_0 < \ldots < x_m$ and let
+    \[
+        S_n(x_0, \ldots, x_m) = \sum_{j = 1}^m |f_n(x_j) - f_n(x_{j-1})|
+    .\]
+    Since $\lim_{n \to \infty} f_n(x_j) = f(x_j)$, it follows that
+    \[
+        \lim_{n \to \infty} |f_n(x_j) - f_n(x_{j-1})| = |f(x_j) - f(x_{j-1})| \implies \lim_{n\to \infty} S_n(x_0, \ldots, x_m) = \sum_{j=1}^m |f(x_j) - f(x_{j-1})|
+    .\]
+    But for every $n$ it follows $S_n \leq T_{f_n}$, thus
+    \[
+        \sum_{j=1}^m |f(x_j) - f(x_{j-1})| = \lim_{n\to \infty} S_n(x_0, \ldots, x_m) \leq \liminf_{n \to \infty} T_{f_n}
+    .\]
+    Taking the supremum over all partitions thus gives
+    \[
+        T_f \leq \liminf_{n \to \infty} T_{f_n}
+    . \qedhere\]
+\end{proof}
+
+
+\subsection{Exercise 6.167}
+\begin{proof}
+    For any half open interval $(a,b]$ note that
+    \begin{align*}
+        \mu_{f^+}((a,b]) - \mu_{f^-}((a,b]) &= \qty[f^+(b) - f^+(a)] - \qty[f^-(b) - f^-(a)] \\
+                                            &= \qty[f^+(b) - f^-(b)] - \qty[f^+(a) - f^-(a)] \\
+                                            &= f(b) - f(a) \\
+                                            &= \mu_f((a,b]).
+    \end{align*}
+    Thus $\mu_f = \mu_{f^+} - \mu_{f^-}$. Furthermore since $T_f = f^+ + f^-$ then
+    \begin{align*}
+        \mu_{f^+}((a,b]) + \mu_{f^-}((a,b]) &= \qty[f^+(b) - f^+(a)] + \qty[f^-(b) - f^-(a)] \\
+                                            &= \qty[f^+(b) - f^-(b)] - \qty[f^+(a) + f^-(a)] \\
+                                            &= T_f(b) - T_f(a) \\
+                                            &= \mu_{T_f}((a,b]).
+    \end{align*}
+    From Excercise 6.166, it follows that $\mu_{T_f} = |\mu_f|$, thus $|\mu_f| = \mu_{f^+} + \mu_{f^-}$. Let $\mu_f = \mu_f^+ - \mu_f^-$ be the Jordan decomposition of $\mu_f$. Note then that
+    \begin{alignat*}{5}
+        2 \mu_f^+ &= |\mu_f| + \mu_f &&= (\mu_{f^+} + \mu_{f^-}) + (\mu_{f^+} - \mu_{f^-}) &&= 2\mu_{f^+} \\
+        2 \mu_f^- &= |\mu_f| - \mu_f &&= (\mu_{f^+} + \mu_{f^-}) - (\mu_{f^+} - \mu_{f^-}) &&= 2\mu_{f^-}
+    \end{alignat*}
+    Therefore $\mu_f^+ = \mu_{f^+}$ and $\mu_f^- = \mu_{f^-}$.
+\end{proof}
+
+\subsection{Exercise 6.179}
+
+\begin{proof}
+    Note that $\mu_f$ is regular, thus by Theorem 4.162 it follows $d\mu_f = d \lambda + g dm$ where $\lambda \geq 0$ and
+    \[
+        g = \lim_{r \to 0} \frac{\mu_f(E_r)}{m(E_r)} = g(x)
+    \]
+    for a nicely shrinking family to $x$. Note that by taking $E_r = (x, x+h]$ gives
+    \[
+        g(x) = \lim_{r \to 0} \frac{f(x+r) - f(x)}{r} = f'(x)
+    .\]
+    Therefore
+    \begin{align*}
+        f(b) - f(a) &= \mu_f((a,b]) \\
+        &= \int_a^b f'(t) dt + \int_a^b d \lambda \\
+        &\geq \int_a^b f'(t) dt
+    \end{align*}
+\end{proof}
+
+\subsection{Exercise 6.185}
+\begin{proof}
+    \begin{enumerate}
+        \item
+            Similar to the mentioned theorem, assume $f$ and $g$ are non-decreasing. Let
+            \[
+                S_1 = \qty{(x,y) \in [a,b]^2 : x \leq y} \hspace{1.5cm} S_2 = \qty{(x,y) \in [a,b]^2 : x < y}
+            .\]
+            Since $\mu_f([a,y]) = f(y) - f(a-)$ and $\mu_g([x,b]) = g(b) - g(x-)$, by Fubini
+            \begin{align*}
+                (\mu_f \times \mu_g)(S_1) &= \int_{[a,b]} ((f(y) - f(a-))) dg(y) \\
+                                          &= \int_{[a,b]} f dg - f(a-) [g(b) - g(a-)]
+            \end{align*}
+            and
+            \begin{align*}
+                (\mu_f \times \mu_g)(S_1) &= \int_{[a,b]} (g(b) - g(x-)) df(x) \\
+                                          &= g(b)(f(b) - f(a-)) - \int_{[a,b]} g(x-) df(x)
+            \end{align*}
+            Equating both then gives
+            \[
+                \int_{[a,b]} f dg + \int_{[a,b]} g(x-) df = f(b) g(b) - f(a-) g(a-)
+            .\]
+            Since $\mu_f([a,y)) = f(y-) - f(a-)$ and $\mu_g((x,b]) = g(b) - g(x)$, by Fubini again
+            \begin{align*}
+                (\mu_f \times \mu_g)(S_2) &= \int_{[a,b]} (f(y-) - f(a-)) dg(y) \\
+                                          &= \int_{[a,b]} f(y-) dg(y) - f(a-)(g(b) - g(a-))
+            \end{align*}
+            and
+            \begin{align*}
+                (\mu_f \times \mu_g)(S_2) &= \int_{[a,b]} (g(b) - g(x)) df(x) \\
+                                          &= g(b)(f(b) - f(a-)) - \int_{[a,b]} g df
+            \end{align*}
+            Equating both then gives
+            \[
+                \int_{[a,b]} f(x-) dg(x) + \int_{[a,b]} g df = f(b)g(b) - f(a-)g(a-)
+            .\]
+            Adding the two derived equalities and dividing by $2$ gives the desired result.
+
+        \item 
+            Define $\Delta f(x) = f(x) - f(x-)$ and $J_f = [\Delta f \neq 0]$, doing so similarly for $g$. Note that
+            \[
+                h_f(x) = \frac{f(x) + f(x-)}{2} - f(x) = -\frac{\Delta f(x)}{2}
+            \]
+            is non-zero on $J_f$, and since $J_f$ is at most countable
+            \begin{align*}
+                \int_{[a,b]} h_f dg = \int_{J_f \cap [a,b]} d \mu_g \\
+                &= \sum_{x \in J_f \cap [a,b]} h(x) \mu_g(\qty{x}) \\
+                &= -\frac{1}{2} \sum_{x \in J_f[a,b]} \Delta f(x) \Delta g(x)
+            \end{align*}
+            But since $J_f \cap J_g = \varnothing$, this sum is zero. Hence $h$ is zero almost everywhere on $[a,b]$ meaning
+            \[
+                \int_{[a,b]} \frac{f(x) - f(x-)}{2} dg = \int_{[a,b]} f(x) dg
+            .\]
+            The same argument works replacing the roles of $f$ and $g$, which in combination with $(a)$ gives the desired result.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 6.189}
+\begin{proof}
+    \begin{enumerate}
+        \item
+            Note that for some polygonal chain of points $p_0, \ldots, p_n$, there are corresponding $t_0, \ldots, t_n$ such that $p_k = F(t_k)$. Therefore the length of the polygonal chain is
+            \[
+                \sum_{k=1}^n |p_k - p_{k-1}| = \sum_{k=1}^n |F(t_k) - F(t_{k-1})|
+            .\]
+            Therefore since there is a bijection between polygonal chains and partitions of the input space of $F(t)$, it follows that $L = T_{F}(b) - T_{F}(a)$.
+
+        \item 
+            First we show that $F$ is absolutely continuous. Take $\eps > 0$. Since $f$ is absolutely continuous, it follows there is $\delta > 0$ such that
+            \[
+                \sum_{k=1}^n b_n - a_n < \delta \implies \sum_{k=1}^n |f(b_n) - f(a_n)| < \eps
+            .\]
+            Note then that by the triangle inequality
+            \[
+                \sum_{k=1}^n |F(b_n) - F(a_n)| \leq \sum_{k = 1}^n |b_n - a_n| + \sum_{k = 1}^n |f(b_n) - f(a_n)| < \eps + \delta
+            .\]
+            Note then the choice of $\tilde{\delta} = \min{\eps, \delta}$ gives the desired bound for $F$ being absolutely continuous. Since $F$ is absolutely continuous on the interval, it can be transformed and extended to be $NBV$, and thus it induces a complex regular borel measure $\mu_F$. Since $F$ is absolutely continuous, then $\mu_F \ll m$ hence $\mu_F = F' dm$. Next we show that $|\mu_F| = |F'| dm$. If $|g| \leq 1$ then
+            \[
+                \qty|\int_E g d \mu_F| = \qty|\int_E g F' d m| \leq \int_E |g| |F'| d m \leq \int_E |F'| d m
+            \]
+            meaning
+            \[
+                |\mu_F|(E) = \sup\qty{\qty|\int_E g d \mu_F| : |g| \leq 1} \leq \int_E |F'| d m
+            .\]
+            Consider $g = \frac{\conj{F'}}{|F'|}$. Then $|g| \leq 1$ and
+            \[
+                \qty|\int_E g d \mu_F| = \qty|\int_E \frac{\conj{F'}}{F'} F' d m| = \left|\int_E |F'| d m \right| = \int_E |F'| d m
+            .\]
+            Thus $g$ is in the supremum and achieves the given upper bound, hence $|\mu_F| = |F'| d m$.
+
+            Since $|\mu_F| = \mu_{T_F}$ and $|F'(t)| = \sqrt{1 + f'(t)^2}$, it follows
+            \begin{align*}
+                L = T_F(b) - T_F(a) &= \mu_{T_F}((a,b]) \\
+                                    &= |\mu_F|((a,b])  \\
+                                    &= \int_a^b |F'| d m \\
+                                    &= \int_a^b \sqrt{1 + f'(t)^2} d t
+            \end{align*}
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 6.190}
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            Since $A$ has finite measure, then $\ind{A} \in \mathcal{L}^1$ and $f_A(x) = \int_{0}^x \ind{A} dt$, thus by Corollary 6.172, $f_A$ is absolutely continuous. Take $0 \leq x < y \leq 1$. Then
+            \[
+                f_A(y) - f_A(x) = m([0,y] \cap A) - m([0,x] \cap A) = m((x,y] \cap A) > 0
+            \]
+            thus $f_A$ is strictly increasing on $[0,1]$. Since $f_A' = \ind{A}$ almost everywhere, then $f_A'(A^c) = 0$ and $m(A^c) = 1 - m(A) > 0$ since $0 < m(A) < 1$.
+
+        \item 
+            Similarly as above, $2\ind{A} - 1 \in \mathcal{L}^1$ since $\ind{A} - \ind{A^c} = 2\ind{A} - 1$ and thus
+            \begin{align*}
+                \int_0^x (2 \ind{A} - 1) dt &= \int_0^x \ind{A} dt - \int_0^x \ind{A^c} dt \\
+                                            &= m([0,x] \cap A) - m([0,x] \cap A^c) \\
+                                            &= g(x)
+            \end{align*}
+            Therefore $g$ is absolutely continuous and $g' = 2\ind{A} - 1$ almost everywhere. Since $m(A) > 0$ and $m(A^c)$ and $g' > 0$ on $A$ and $g' < 0$ on $A^c$, then $g$ cannot be monotone since $g'$ must be either almost everywhere positive or almost everywhere negative for $g$ to be monotone.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 6.191}
+\begin{proof}
+    \begin{enumerate}
+        \item
+            Take $s < t < u$. Note there is $\lambda \in (0,1)$ such that $t =  \lambda s + (1 - \lambda) u$, and thus
+            \[
+                \lambda = \frac{u - t}{u - s}
+            .\]
+            Convexity of $f$ gives
+            \begin{align*}
+                f(t) &\leq \lambda f(s) + (1-\lambda) f(u) = \frac{u-t}{u-s} f(s) + \frac{t-s}{u-s} f(u) \\
+                (u-s) f(t) &\leq (u-t) f(s) + (t-s) f(u) \\
+                (u-s) (f(t) - f(s)) &\leq (t-s) (f(u) - f(s)) \\
+                \frac{f(t) - f(s)}{t - s} &\leq \frac{f(u) - f(s)}{u - s}
+            \end{align*}
+            Thus $\sigma(s,t) \leq \sigma(s,u)$. The same argument with $t = \lambda u + (1 - \lambda) s$ gives $\sigma(s,u) \leq \sigma(t,u)$, which in total means
+            \[
+                \sigma(s,t) \leq \sigma(s,u) \leq \sigma(t, u)
+            .\]
+            Thus if $s \leq s' < t'$ and $s < t \leq t'$, then
+            \[
+                \sigma(s,t) \leq \sigma(s, t')
+            \]
+            and
+            \[
+                \sigma(s,t') \leq \sigma(s', t')
+            \]
+            then
+            \[
+                \sigma(s,t) \leq \sigma(s',t')
+            .\]
+
+        \item 
+            Let $[c,d] \subset (a,b)$. Suppose $f$ is convex. Take $a < \alpha < c < x < y < \beta < d < b$ and note
+            \[
+                \sigma(\alpha, c) \leq \sigma(x,y) \leq \sigma(d, \beta)
+            .\]
+            Thus if $M = \max\qty{|\sigma(\alpha, c)|, |\sigma(d, \beta)|}$ then
+            \[
+                |\sigma(x,y)| \leq M \implies \qty|\frac{f(y) - f(x)}{y - x}| \leq M \implies |f(y) - f(x)| \leq M |y - x|
+            .\]
+            Take $\eps > 0$ and $\delta = \frac{\eps}{M}$. Then if $(a_n,b_n) \in [c,d]^\N$ where
+            \[
+                \sum_{k=1}^n b_n - a_n < \delta = \frac{\eps}{M}
+            \]
+            then
+            \[
+                \sum_{k=1}^n |f(b_n) - f(a_n)| \leq M \sum_{k=1}^n b_n - a_n < M \cdot \frac{\eps}{M} = \eps
+            .\]
+            Thus $f$ is absolutely continuous. Take $h > 0$ small enough such that $c < x - h < x < y < y + h < d$. Then
+            \[
+                \sigma(x-h, x) \leq \sigma(x,y) \leq \sigma(y, y+h)
+            .\]
+            Assuming that the derivatives of $f'$ exist at $x,y$, it follows
+            \begin{alignat*}{3}
+                \lim_{h \to 0} \sigma(x-h, x) &= \lim_{h \to 0} \frac{f(x) - f(x-h)}{h} &&= f'(x) \\
+                \lim_{h \to 0} \sigma(y, y+h) &= \lim_{h \to 0} \frac{f(y+h) - f(y)}{h} &&= f'(y)
+            \end{alignat*}
+            and thus
+            \[
+                f'(x) \leq \sigma(x,y) \leq f'(y)
+            .\]
+            Hence $f'$ is non-decreasing.
+
+
+            Suppose the backwards direction. Take $s < t$ in $(a,b)$ and let $x = \lambda s + (1 - \lambda) t$. Since $f$ is absolutely continuous, then the fundamental theorem of calculus applies. Since $f'$ is non-decreasing, then for $u \in [s,x]$ and $v \in [x,t]$, $f'(u) \leq f'(v)$ meaning
+            \[
+                \frac{1}{x-s} \int_s^x f'(u) \leq \frac{1}{t-x} \int_x^t f'(u) du
+            .\]
+            Thus
+            \[
+               \frac{f(x) - f(s)}{x -s} = \frac{1}{x-s} \int_s^x f'(u) \leq \frac{1}{t-x} \int_x^t f'(u) du = \frac{f(t) - f(x)}{t - x}
+            \]
+            which is equivalent to convexity by $(a)$.
+
+        \item 
+            Let $\beta_- = \sup_{s < t_0} \sigma(s, t_0)$ and $\beta_+ = \inf_{u > t_0} \sigma(t_0, u)$. Note then if $s < t_0 < u$
+            \[
+                \sigma(s, t_0) \leq \sigma(t_0, u) \implies \beta_- \leq \beta_+
+            .\]
+            Take $\beta \in [\beta_-, \beta_+]$. If $t > t_0$, then $\beta \leq \beta_+ \leq \sigma(t_0, t)$ meaning
+            \[
+                \beta \leq \frac{f(t) - f(t_0)}{t - t_0} \implies \beta(t - t_0) \leq f(t) - f(t_0)
+            .\]
+            If $t < t_0$, then $\sigma(t, t_0) \leq \beta_- \leq \beta$ meaning
+            \[
+                \frac{f(t_0) - f(t)}{t_0 - t} \leq \beta \implies \beta(t - t_0) \leq f(t) - f(t_0)
+            .\]
+
+        \item 
+            Take $t_0 = \int_X g d \mu$. Since $g(X) \subset (a,b)$, then $t_0 \in (a,b)$ as well. From the previous part, there exists $\beta$ such that
+            \[
+                f(t) - f(t_0) \geq \beta (t-t_0)
+            .\]
+            If $t = g(x)$, then
+            \[
+                f(g(x)) - f(t_0) \geq \beta(g(x) - t_0)
+            \]
+            which integrated gives
+            \[
+                \int_X f \circ g d \mu - f(t_0) \mu(X) \geq \beta \qty(\int_X g d \mu - t_0 \mu(X))
+            .\]
+            Since $\mu(X) = 1$, then $\int_X g d \mu - t_0 \mu(X) = t_0 (1 - \mu(X)) = 0$, hence
+            \[
+                \int_X f \circ g d \mu - f(t_0) \mu(X) \geq 0 \implies f\qty(\int_X g d \mu) = f(t_0) \leq \int_X f \circ g d \mu
+            .\]
+    \end{enumerate}
 \end{proof}
 
 \end{document}
