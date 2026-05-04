@@ -547,7 +547,7 @@
 
             Linearity of $T^*$ comes from the fact that the inner product is linear. Boundedness follows from the fact that
             \[
-                \norm{T^*y} = \sup_{\norm{x} = 1} |(x, T^*y)| = \sup_{\norn{x} = 1} |(Tx, y)| \leq \norm{T} \norm{y}
+                \norm{T^*y} = \sup_{\norm{x} = 1} |(x, T^*y)| = \sup_{\norm{x} = 1} |(Tx, y)| \leq \norm{T} \norm{y}
             .\]
             Suppose then some other $S$ also satisfies $(Tx, y) = (x, Sy)$. Then for any $x \in H$
             \[
@@ -709,6 +709,53 @@
                 (x_n, y) \to (x, y)
             .\]
             Thus $x$ is a weak limit of a sequence in $S$, meaning $S$ is weakly dense in $B$.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 7.137}
+\begin{proof}
+    \begin{enumerate}
+        \item
+            We equip $M$ with the $L^2$ norm and $C([0,1])$ with the $L^\infty$ norm. Let $T : M \to C([0,1])$ with $Tf = f$. Note that if $T$ is bounded, then we are done as $\norm{f}_{\infty} = \norm{Tf}_{\infty} \leq \norm{T} \norm{f}_{2}$. Consider a convergent sequence $(f_n, Tf_n) \to (f, g)$ in $M \times C([0,1])$. That is, $f_n \to f$ in the $L^2$ norm and $Tf_n = f_n \to g$ in the $L^\infty$ norm. We want to show that $(f,g) \in G(T)$, meaning $g = Tf = f$ as continuous functions.
+
+            Since $f_n \to f$ in $L^2$, there exists a subsequence $f_{n_k} \to f$ pointwise a.e., and the $L^\infty$ convergence gives uniform convergence of $f_n \to g$, hence $f_{n_k} \to g$ pointwise a.e. as well. Since limits are unique it follows $f = g$ a.e. But both $f$ and $g$ are continuous, so $f = g$ everywhere. Therefore $g = Tf$, meaning $T$ is closed and hence bounded.
+
+        \item 
+            Take $x \in [0,1]$ and define $i_x : M \to \mathbb{K}$ as $i_x(f) = f(x)$. By the previous part, $|i_x(f)| = |f(x)| \leq \norm{f}_{\infty} \leq C \norm{f}_2$. Therefore $i_x$ is a bounded linear functional on $M$, meaning by Theorem 7.111 there is a unique $g_x \in M$ such that $f(x) = i_x(f) = (f, g_x)$ for every $f$. Note that
+            \[
+                i_x(g_x) = (g_x, g_x) = \norm{g_x}_2^2
+            .\]
+            Since boundedness gives $|i_x(g_x)| \leq C \norm{g_x}_2$, it follows then (excluding the trivial case where $\norm{g_x}_2 = 0$)
+            \[
+                \norm{g_x}_2^2 \leq C \norm{g_x}_2 \implies \norm{g_x}_2 \leq C
+            .\]
+
+        \item 
+            Let $f_1, \ldots, f_N$ be an orthonormal set in $M$. Note that for any $x \in [0,1]$ that by the previous part and Bessel's that there exists $g_x$ such that $f_n(x) = (f_n, g_x)$ and
+            \[
+                \sum_{k = 1}^N |f_n(x)|^2 = \sum_{k = 1}^N |(f_n, g_x)|^2 \leq \norm{g_x}_2^2 \leq C^2
+            .\]
+            Therefore
+            \[
+                N = \sum_{k = 1}^N \norm{f_n}_2^2 = \int_0^1 \sum_{k=1}^N |f_n(x)|^2 \dd x \leq \int_0^1 C^2 \dd x = C^2
+            \]
+            meaning every orthonormal sequence has at most $C^2$ non-zero elements. Thus the dimension of $M$ can be at most $C^2$.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Exercise 7.156}
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            Since $|g| \leq \norm{g}_{\infty}$ a.e., it follows
+            \[
+                \norm{fg}_1 = \int |fg| d \mu = \int |f| |g| d \mu \leq \norm{g}_{\infty} \int f d \mu = \norm{f}_1 \norm{g}_{\infty}
+            .\]
+            Suppose then that $f \in L^1$ and $g \in L^\infty$. Then
+            \[
+                \norm{fg}_1 = \norm{f}_1 \norm{g}_{\infty} \Leftrightarrow \int |f|(\norm{g}_{\infty} - |g|) d \mu = 0
+            .\]
+            Note that $|f|(\norm{g}_{\infty} - |g|) \geq 0$ a.e., so the integral of it is zero iff it is zero a.e. Thus assuming the forward direction, it is clear that $|g(x)| = \norm{g}_{\infty}$ a.e. on $[f \neq 0]$. The converse holds since the integrand will be zero on $[f \neq 0]$.
     \end{enumerate}
 \end{proof}
 
